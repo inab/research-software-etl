@@ -8,7 +8,7 @@ pages:
     - mkdir .public
     - cp -r * .public
     - mv .public public
-    - mkdocs build --strict --verbose
+    - mkdocs build --strict --verbose --site-dir public
   artifacts:
     paths:
       # The folder that contains the files to be exposed at the Page URL
