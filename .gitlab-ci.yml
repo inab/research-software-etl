@@ -5,6 +5,9 @@ before_script:
   - pip install -r requirements.txt
 pages:
   script:
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
     - mkdocs build --strict --verbose
   artifacts:
     paths:
