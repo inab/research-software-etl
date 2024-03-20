@@ -168,18 +168,19 @@ theme:
   # +------------------------------------------------------------------------------------------------------+
   palette:
   
-    # +----------------------------------------------------------------------------------------------------+
-    # |                                                                                                    |
-    # | The "scheme" option is used to define the Color Scheme used by Material.                           |
-    # |                                                                                                    |
-    # | Material offers a "default" and a "slate" scheme. "default" is obviously the default (bright)      |
-    # | Color scheme while "slate" is the native dark theme from Material.                                 |
-    # |                                                                                                    |
-    # | Read More:                                                                                         |
-    # | - https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-scheme              |
-    # |                                                                                                    |
-    # +----------------------------------------------------------------------------------------------------+
-    # Palette toggle for automatic mode
+  # +----------------------------------------------------------------------------------------------------+
+  # |                                                                                                    |
+  # | The "scheme" option is used to define the Color Scheme used by Material.                           |
+  # |                                                                                                    |
+  # | Material offers a "default" and a "slate" scheme. "default" is obviously the default (bright)      |
+  # | Color scheme while "slate" is the native dark theme from Material.                                 |
+  # |                                                                                                    |
+  # | Read More:                                                                                         |
+  # | - https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-scheme              |
+  # |                                                                                                    |
+  # +----------------------------------------------------------------------------------------------------+
+  # Palette toggle for automatic mode
+
     - media: "(prefers-color-scheme)"
       toggle:
         icon: material/brightness-auto
@@ -209,7 +210,7 @@ theme:
     # | - https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#primary-color             |
     # |                                                                                                    |
     # +----------------------------------------------------------------------------------------------------+
-    primary: 'red'
+    #primary: 'red'
     
     # +----------------------------------------------------------------------------------------------------+
     # |                                                                                                    |
@@ -219,7 +220,7 @@ theme:
     # | - https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#accent-color              |
     # |                                                                                                    |
     # +----------------------------------------------------------------------------------------------------+
-    accent: 'indigo'
+    #accent: 'indigo'
     
   # +------------------------------------------------------------------------------------------------------+
   # |                                                                                                      |
