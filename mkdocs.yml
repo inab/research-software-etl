@@ -430,8 +430,8 @@ extra:
   # |                                                                                                      |
   # +------------------------------------------------------------------------------------------------------+
   social:
-    - icon: 'fontawesome/brands/github'
-      link: 'https://github.com/Andre601/mkdocs-template'
+    - icon: 'fontawesome/brands/gitlab'
+      link: 'https://gitlab.com/evamdpico/research-software-meta'
   
   # +------------------------------------------------------------------------------------------------------+
   # |                                                                                                      |
