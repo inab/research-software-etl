@@ -10,9 +10,3 @@ pydantic_core==2.14.5
 email-validator==2.1.0.post1
 bibtexparser==1.4.0
 
-# Documentation static site generator & deployment tool
-mkdocs>=1.5.3
-
-# Add your custom theme if not inside a theme_dir
-# (https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes)
-mkdocs-material>=5.4.0
