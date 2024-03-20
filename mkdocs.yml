@@ -27,7 +27,7 @@
 # | - https://www.mkdocs.org/user-guide/configuration/#site_url                                            |
 # |                                                                                                        |
 # +--------------------------------------------------------------------------------------------------------+
-site_name: Research Software Metadata Documentation
+site_name: Research Software Metadata
 site_description: 'Research Software Metadata Documentation'
 site_author: 'evamdpico'
 #site_url: 'https://www.andre601.ch/mkdocs-template' # Uncomment to set a canonical URL
