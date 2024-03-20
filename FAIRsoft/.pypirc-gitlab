@@ -1,0 +1,8 @@
+[distutils]
+index-servers =
+    gitlab
+
+[gitlab]
+repository = https://gitlab.bsc.es/api/v4/projects/1151/packages/pypi
+username = gitlab+deploy-token-28
+

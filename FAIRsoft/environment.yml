@@ -1,0 +1,9 @@
+name: FAIRsoft-pack
+channels:
+  - conda-forge
+  - free
+  - bioconda
+dependencies:
+  - bioconda-utils
+  - conda-lock
+prefix: /Users/evabsc/mambaforge/envs/FAIRsoft-pack

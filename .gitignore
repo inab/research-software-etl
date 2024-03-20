@@ -1,0 +1,8 @@
+*.error
+*.log
+*config.ini
+*db_config.ini
+*__pycache__
+*.ipynb*
+*.env
+*.json

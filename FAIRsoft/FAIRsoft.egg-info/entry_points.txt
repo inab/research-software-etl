@@ -1,0 +1,4 @@
+[console_scripts]
+FAIRsoft_evaluate = FAIRsoft.indicators_evaluation.cli:main
+FAIRsoft_integrate = FAIRsoft.integration.cli:main
+FAIRsoft_transform = FAIRsoft.transformation.cli:main
