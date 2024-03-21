@@ -501,21 +501,21 @@ markdown_extensions:
   #- pymdownx.caret:
   #- pymdownx.critic:
   #- pymdownx.details:
-  #- pymdownx.emoji:
+  - pymdownx.emoji:
   #- pymdownx.escapeall:
   #- pymdownx.extra:
   #- pymdownx.extrarawhtml:
-  #- pymdownx.highlight:
-  #- pymdownx.inlinehilite:
+  - pymdownx.highlight:
+  - pymdownx.inlinehilite:
   #- pymdownx.keys:
   #- pymdownx.magiclink:
   #- pymdownx.mark:
   #- pymdownx.pathconverter:
-  #- pymdownx.progressbar:
+  - pymdownx.progressbar:
   #- pymdownx.smartsymbols:
-  #- pymdownx.snippets:
+  - pymdownx.snippets:
   #- pymdownx.striphtml:
-  #- pymdownx.superfences:
+  - pymdownx.superfences:
   #- pymdownx.tabbed:
   #- pymdownx.tasklist:
   #- pymdownx.tilde:
