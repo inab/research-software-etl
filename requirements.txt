@@ -4,3 +4,4 @@ mkdocs>=1.5.3
 # Add your custom theme if not inside a theme_dir
 # (https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes)
 mkdocs-material>=5.4.0
+mkdocstrings==0.24.1

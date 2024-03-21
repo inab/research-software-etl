@@ -519,3 +519,7 @@ markdown_extensions:
   #- pymdownx.tabbed:
   #- pymdownx.tasklist:
   #- pymdownx.tilde:
+
+plugins:
+- search
+- mkdocstrings
