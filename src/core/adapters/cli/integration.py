@@ -2,7 +2,7 @@
 The command-line interface for the integration
 """
 
-from .FAIR_indicators_eval import connect_to_db, computeScores, push_to_db
+from .....FAIRsoft.FAIRsoft.integration.run_integration import run_integration
 import argparse
 import logging
 from dotenv import load_dotenv
@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 def main():
     parser = argparse.ArgumentParser(
-        description="FAIRsoft evaluation of Software Metadata."
+        description="Integration of Software Metadata."
     )
     parser.add_argument(
         "--env-file", "-e",
@@ -33,13 +33,9 @@ def main():
     logging.basicConfig(level=numeric_level)
     logging.debug(f"Env file: {args.env_file}")
 
-    logging.info("Evaluation starting...")
-
-    tools, fair = connect_to_db()
-    indicators_scores = computeScores(tools)
-
-    push_to_db(indicators_scores, fair)
-    logging.info("Evaluation successful!")
+    logging.info("Integrating data from sources...")
+    run_integration(loglevel=numeric_level)
+    logging.info("Integration successful!")
 
 if __name__ == "__main__":
     main()
