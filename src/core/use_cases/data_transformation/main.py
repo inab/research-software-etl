@@ -1,15 +1,13 @@
 import os
 import importlib
 import logging 
-from typing import List, Dict, Any
+from typing import List, Dict
 
-import FAIRsoft
-import FAIRsoft.utils
-import FAIRsoft.transformation.biotools_opeb
+import src.core.domain.services.transformation.biotools_opeb
 
 
 tool_generators = {
-        'biotools' : FAIRsoft.transformation.biotools_opeb.biotoolsOPEBToolsGenerator
+        'biotools' : src.core.domain.services.transformation.biotools_opeb.biotoolsOPEBToolsGenerator
 }
 
 def get_raw_data_db(source: str) -> List[Dict]:
@@ -18,7 +16,7 @@ def get_raw_data_db(source: str) -> List[Dict]:
     - source: label of the source to be transformed
     '''
     ALAMBIQUE = os.getenv('ALAMBIQUE', 'alambique')
-    alambique = FAIRsoft.utils.connect_collection(collection=ALAMBIQUE)
+    alambique = src.core.shared.utils.connect_collection(collection=ALAMBIQUE)
     
     logging.debug(f"Extracting raw data of source {source} from collection {alambique.name}")
     raw = alambique.find({ "@data_source" : source })
@@ -53,15 +51,15 @@ def transform(loglevel, **kwargs):
 
     # transformed data collection
     PRETOOLS = os.getenv('PRETOOLS', 'pretools') 
-    pretools = FAIRsoft.utils.connect_collection(collection=PRETOOLS)
+    pretools = src.core.shared.utils.connect_collection(collection=PRETOOLS)
 
     # Run whole transformation pipeline
-    for source in FAIRsoft.utils.sources_labels.keys():
+    for source in src.core.shared.utils.utils.sources_labels.keys():
 
         # Check if source has to be transformed
         if os.getenv(source) == 'True':
             # label to match "source" field in the raw data and appropriate transformer
-            this_source_label = FAIRsoft.utils.sources_labels[source]
+            this_source_label = src.core.shared.utils.sources_labels[source]
                         
             # 1. getting raw data
             logging.info(f"------------ Starting transformation of data from {source} -------------")
@@ -87,7 +85,7 @@ def transform(loglevel, **kwargs):
                         logging.debug(f'{n}/{len(insts)} ({landmarks[str(n)]}) instances pushed to database\r')
 
                     inst['@id'] = f"https://openebench.bsc.es/monitor/tool/{inst['source'][0]}:{inst['name']}:{inst['version'][0]}/{inst['type']}"
-                    log = FAIRsoft.utils.update_entry(inst, pretools, log)
+                    log = src.core.domain.utils.update_entry(inst, pretools, log)
                     #log = FAIRsoft.utils.push_entry(inst, pretools, log)
                     n+=1
                 

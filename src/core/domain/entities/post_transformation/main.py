@@ -3,14 +3,14 @@ from typing import List, Optional
 from enum import Enum
 import re
 
-from FAIRsoft.classes.data_format import data_format
-from FAIRsoft.classes.documentation import documentation_item
-from FAIRsoft.classes.license import license_item
-from FAIRsoft.classes.recognition import contributor
-from FAIRsoft.classes.publication import publication_item
-from FAIRsoft.classes.topic_operation import vocabulary_topic, vocabulary_operation
-from FAIRsoft.classes.utils import prepare_sources_labels
-from FAIRsoft.classes.repository import repository_item
+from src.core.domain.entities.post_transformation.data_format import data_format
+from src.core.domain.entities.post_transformation.documentation import documentation_item
+from src.core.domain.entities.post_transformation.license import license_item
+from src.core.domain.entities.post_transformation.recognition import contributor
+from src.core.domain.entities.post_transformation.publication import publication_item
+from src.core.domain.entities.post_transformation.topic_operation import vocabulary_topic, vocabulary_operation
+from src.core.domain.services.post_transformation.utils import prepare_sources_labels
+from src.core.domain.entities.post_transformation.repository import repository_item
 
 class setOfInstances(object):
 

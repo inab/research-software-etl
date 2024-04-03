@@ -2,7 +2,7 @@ from pydantic import BaseModel, model_validator, HttpUrl, AnyUrl, TypeAdapter
 from enum import Enum
 from typing import List, Optional, Any, Dict
 
-from FAIRsoft.classes.EDAM_forFE import EDAMDict
+from src.core.domain.entities.post_transformation.EDAM_forFE import EDAMDict
 
 
 ###------------------------------------------------------------

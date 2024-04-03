@@ -1,6 +1,6 @@
 from pydantic import BaseModel, field_validator, HttpUrl, model_validator
 from typing import Optional
-from FAIRsoft.utils import connect_collection
+from src.core.shared.utils import connect_collection
 import os
 class license_item(BaseModel, validate_assignment=True):
     name: str = None # optional, non-nullable
