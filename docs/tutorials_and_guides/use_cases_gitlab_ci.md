@@ -10,7 +10,8 @@ This guide provides instructions for contributors on how to integrate applicatio
 - Basic understanding of clean architecture principles.
 - Access to the project's GitLab repository.
 
-## Examples of Use Cases Currently Automated with GitLab CI
+## Examples 
+The following use cases are currently automated with GitLab CI via CLI adapters:
 
 - **Data Transformation**: Use cases that transform data from a source-specific format to the common format.
 - **Data Integration**: Use cases that integrate data from multiple sources into a unified dataset.
