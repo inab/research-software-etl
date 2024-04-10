@@ -26,6 +26,8 @@ class contributor(BaseModel):
             raise ValueError("Name cannot be empty")
         else:
             return data
+        
+
 
 
     @staticmethod
@@ -128,23 +130,25 @@ class contributor(BaseModel):
 
             if contributor.is_trash(data):
                 return None
+
+        
         return data
-            
-    '''
-    @model_validator(mode="after")
+    
+    
+    @model_validator(mode="before")
     @classmethod
     def classify_person_organization(cls, data):
-        if isinstance(data, str):
-            if contributor.is_organization(data):
-                cls.type = type_contributor.Organization
+        if data.get('orcid'):
+            data['type'] = type_contributor.Person
+        else:
+            print(data)
 
-            else:
-                cls.type = type_contributor.Person
-    '''
+        return data
 
     @staticmethod
     def is_organization(data):
         '''
+        NOt USED
         Check if the contributor is an organization.
         '''
         inst_keywords = [
