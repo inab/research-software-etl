@@ -84,9 +84,9 @@ def transform(loglevel, **kwargs):
                     if str(n) in landmarks.keys():
                         logging.debug(f'{n}/{len(insts)} ({landmarks[str(n)]}) instances pushed to database\r')
 
-                    inst['@id'] = f"https://openebench.bsc.es/monitor/tool/{inst['source'][0]}:{inst['name']}:{inst['version'][0]}/{inst['type']}"
+                    identifier = inst['name']
                     log = src.core.domain.utils.update_entry(inst, pretools, log)
-                    #log = FAIRsoft.utils.push_entry(inst, pretools, log)
+                    
                     n+=1
                 
                     logging.info(f"Pushed {log['n_ok']} entries to database")

@@ -290,6 +290,9 @@ class biotoolsOPEBToolsGenerator(toolGenerator):
             tags = tags
             )
         
+        # add metadata
+        metadata = {}
+        
     
         self.instSet.instances.append(new_instance)
 
