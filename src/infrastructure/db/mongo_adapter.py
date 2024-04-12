@@ -1,6 +1,6 @@
 # infrastructure/mongo_adapter.py
 import os
-from pymongo import MongoClient
+import pymongo
 
 class MongoDBAdapter:
     def __init__(self):
@@ -14,7 +14,7 @@ class MongoDBAdapter:
 
         # Connect to MongoDB using the specified parameters
         
-        self.client = MongoClient(
+        self.client = pymongo.MongoClient(
                 host=[f'{mongo_host}:{mongo_port}'],
                 username=mongo_user,
                 password=mongo_pass,
