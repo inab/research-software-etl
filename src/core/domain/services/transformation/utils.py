@@ -4,11 +4,10 @@ from abc import ABC, abstractmethod
 import src.core.shared.utils
 
 class toolGenerator(ABC):
-    def __init__(self, tools, source):
-        self.tools = tools
+    def __init__(self,source, ignore_empty_bioconda_types=False):
         self.source = source
         self.bioconda_types = self.generate_bioconda_types()
-        self.ignore_empty_bioconda_types = False
+        self.ignore_empty_bioconda_types = ignore_empty_bioconda_types
         logging.debug('Generator for ' + self.source + ' initialized') 
 
     @abstractmethod
