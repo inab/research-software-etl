@@ -1,4 +1,4 @@
-from core.domain.services.transformation.metadata_standardizers import MetadataStandardizer
+from src.core.domain.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.core.domain.entities.software_instance.main import instance
 
 import logging
