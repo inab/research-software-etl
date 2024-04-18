@@ -182,7 +182,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         Transforms a single tool into an instance.
         '''
         if len(tool['data'].get('@id').split('/'))<7:
-            return None
+            return []
 
         else:
             tool = tool.get('data')

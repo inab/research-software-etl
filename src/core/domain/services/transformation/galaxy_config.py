@@ -1,4 +1,4 @@
-from src.core.domain.services.transformation.utils import toolGenerator
+from src.core.domain.services.transformation.utils import MetadataStandardizer
 from src.core.domain.entities.software_instance.main import instance, setOfInstances
 
 from typing import Dict, Any
@@ -7,17 +7,14 @@ import json
 import bibtexparser
 
 # -------------------------------------------------
-# Galaxy Config (from Toolshed) Tools Transformer
+# Galaxy Config (from Toolshed) MetadataStandardizer
 # -------------------------------------------------
 
-class toolshedToolsGenerator(toolGenerator):
+class toolshedMetadataStandardizer(MetadataStandardizer):
 
-    def __init__(self, tools, source = 'toolshed'):
-        toolGenerator.__init__(self, tools, source)
+    def __init__(self, tools, source = 'toolshed', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, tools, source, ignore_empty_bioconda_types)
 
-        self.instSet = setOfInstances('toolshed')
-
-        self.transform()
     
     def description(self, tool: Dict[str, Any]):
         '''
@@ -144,7 +141,7 @@ class toolshedToolsGenerator(toolGenerator):
         else:
             return([])
 
-    def transform_single_tool(self, tool):
+    def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
@@ -185,24 +182,11 @@ class toolshedToolsGenerator(toolGenerator):
                 )
                 
             
-            self.instSet.instances.append(new_instance)
+            standardized_tools.append(new_instance)
+            return standardized_tools
 
         else:
-            pass
+            return standardized_tools
     
-    def transform(self):
-        '''
-        Performs the transformation of the raw data into instances.
-        '''
-        
-        
-        for tool in self.tools:
-
-            try:
-                self.transform_single_tool(tool)
-            except Exception as e:
-                logging.error(f"Error transforming tool {tool['@id']}: {e}")
-                continue
-
     
     
