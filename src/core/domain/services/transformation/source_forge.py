@@ -1,21 +1,16 @@
-from src.core.domain.services.transformation.utils import toolGenerator
-from src.core.domain.entities.software_instance.main import instance, setOfInstances
+from src.core.domain.services.transformation.utils import MetadataStandardizer
+from src.core.domain.entities.software_instance.main import instance
 
 from typing import List, Dict, Any
-import logging
 
 # --------------------------------------------
-# SourceForge Tools Transformer
+# SourceForge Metadata Standardizer
 # --------------------------------------------
 
-class sourceforgeToolsGenerator(toolGenerator):
-    def __init__(self, tools, source = 'sourceforge'):
-        toolGenerator.__init__(self, tools, source)
+class sourceforgeStandardizer(MetadataStandardizer):
+    def __init__(self, tools, source = 'sourceforge', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, tools, source, ignore_empty_bioconda_types)
 
-        self.instSet = setOfInstances('sourceforge')
-
-        self.transform()
-    
     @classmethod
     def description(self, tool: Dict[str, Any]) -> List[str]:
         '''
@@ -97,7 +92,7 @@ class sourceforgeToolsGenerator(toolGenerator):
         else:
             return([])
 
-    def transform_single_tool(self, tool):
+    def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         - tool: metadata of tool to be transformed
@@ -128,20 +123,7 @@ class sourceforgeToolsGenerator(toolGenerator):
             download = download,
             license = license
             )
-            
         
-        self.instSet.instances.append(new_instance)
-    
-
-    def transform(self):
-        '''
-        Performs the transformation of the raw metadata of tools into instances (homogenized and standardized).
-        '''
-        for tool in self.tools:
-            
-            try:
-                self.transform_single_tool(tool)
-            except Exception as e:
-                logging.error(f"Error transforming tool {tool['_id']}: {e}")
-                continue
-            
+        standardized_tools.append(new_instance)
+        return standardized_tools
+                
