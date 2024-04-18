@@ -1,18 +1,22 @@
 import logging
-import re
 import requests
+from abc import ABC, abstractmethod
 import src.core.shared.utils
 
-class toolGenerator(object):
+class toolGenerator(ABC):
     def __init__(self, tools, source):
         self.tools = tools
         self.source = source
         self.bioconda_types = self.generate_bioconda_types()
+        self.ignore_empty_bioconda_types = False
         logging.debug('Generator for ' + self.source + ' initialized') 
 
-    # --------------------------------------------
-    # Functions used by several transformations
-    # --------------------------------------------
+    @abstractmethod
+    def transform_one(self, tool):
+        '''
+        Transforms one tool into an instance.
+        '''
+        pass
 
     @staticmethod
     def generate_bioconda_types():
