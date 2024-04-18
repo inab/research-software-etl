@@ -10,7 +10,7 @@ import re
 # Bioconductor Tools Transformer
 # --------------------------------------------
 
-class bioconductorToolsGenerator(MetadataStandardizer): 
+class bioconductorStandardizer(MetadataStandardizer): 
 
     def __init__(self, source = 'bioconductor', ignore_empty_bioconda_types = False):
         MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
@@ -38,7 +38,6 @@ class bioconductorToolsGenerator(MetadataStandardizer):
             return [tool.get('@source_url')]
         
 
-    
     @classmethod
     def dependencies(self, tool: Dict[str, Any]):
         '''
@@ -233,7 +232,7 @@ class bioconductorToolsGenerator(MetadataStandardizer):
 
         return(documentation)
     
-    def transform_single_tool(self, tool):
+    def transform_one(self, tool, standadized_tools):
         '''
         Transforms a single tool into an instance.
         '''
@@ -269,19 +268,7 @@ class bioconductorToolsGenerator(MetadataStandardizer):
             dependencies = dependencies,
             authors = authors,
             )
-            
         
-        return new_instance
+        standadized_tools.append(new_instance)
 
-    def transform_one(self, tool):
-        '''
-        Performs the transformation of the raw metadata of tools into instances (homogenized and standardized).
-        '''
-        
-        try:
-            standadized_tool = self.transform_single_tool(tool)
-        except Exception as e:
-            logging.error(f"Error transforming tool {tool['_id']}: {e}")
-            return None
-        else:
-            return standadized_tool
+        return standadized_tools
