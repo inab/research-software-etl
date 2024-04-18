@@ -10,7 +10,7 @@ import bibtexparser
 # Galaxy Config (from Toolshed) MetadataStandardizer
 # -------------------------------------------------
 
-class toolshedMetadataStandardizer(MetadataStandardizer):
+class toolshedStandardizer(MetadataStandardizer):
 
     def __init__(self, tools, source = 'toolshed', ignore_empty_bioconda_types = False):
         MetadataStandardizer.__init__(self, tools, source, ignore_empty_bioconda_types)
