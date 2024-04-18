@@ -1,16 +1,15 @@
-from src.core.domain.services.transformation.biotools_opeb import biotoolsOPEBToolsGenerator
+from src.core.domain.services.transformation.biotools_opeb import biotoolsOPEBStandardizer
 from src.core.domain.entities.software_instance.main import software_types, operating_systems, data_sources
 from src.core.domain.entities.software_instance.recognition import type_contributor
 from src.core.domain.entities.software_instance.repository import repository_kind
 
-from pydantic import HttpUrl, EmailStr
+from pydantic import HttpUrl
 
 class TestTransform:
 
     # Transforms a tool with all fields filled correctly
     def test_transform_tool_with_all_fields_filled_correctly(self):
-        tools = [
-            {
+        tool = {
                 '_id': 'biotools/16s-itgdb/db/None',
                 '@last_updated_at': "2024-02-28T17:06:29.476Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/45aa662604db6427c289c97ac24cfba730b78f72',
@@ -106,12 +105,13 @@ class TestTransform:
                 '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/e2b685b10889a328a0d038d4fca92f5306a20736',
                 '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/pipelines/120778'
             }
-        ]
+        
 
-        biotools_generator = biotoolsOPEBToolsGenerator(tools)
+        biotools_generator = biotoolsOPEBStandardizer()
+        standardized_tools = biotools_generator.process_transformation(tool)
 
-        assert len(biotools_generator.instSet.instances) == 1
-        instance = biotools_generator.instSet.instances[0]
+        assert len(standardized_tools) == 1
+        instance = standardized_tools[0]
         assert instance.name == ("ps2-v3")
         assert instance.type == software_types.web
         assert instance.version == ['3.0']
@@ -237,7 +237,7 @@ class TestTransform:
 
     # Transforms a tool with empty fields
     def test_transform_tool_with_empty_fields_filled_correctly(self):
-        tools = [{
+        tool = {
             '_id': 'biotools/16s-itgdb/db/None',
             '@last_updated_at': "2024-02-28T17:06:29.476Z",
             '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/45aa662604db6427c289c97ac24cfba730b78f72',
@@ -284,12 +284,12 @@ class TestTransform:
             '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/e2b685b10889a328a0d038d4fca92f5306a20736',
             '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/pipelines/120778'
             }
-        ]
 
-        biotools_generator = biotoolsOPEBToolsGenerator(tools)
+        biotools_generator = biotoolsOPEBStandardizer()
+        standardized_tools = biotools_generator.process_transformation(tool)
 
-        assert len(biotools_generator.instSet.instances) == 1
-        instance = biotools_generator.instSet.instances[0]
+        assert len(standardized_tools) == 1
+        instance = standardized_tools[0]
         assert instance.name == "ps2-v3"
         assert instance.type == software_types.web
         assert instance.version == ['3.0']
@@ -313,7 +313,7 @@ class TestTransform:
     
     # with missing fields
     def test_transform_tool_with_missing_fields(self):
-        tools = [{
+        tool = {
             '_id': 'biotools/16s-itgdb/db/None',
             '@last_updated_at': "2024-02-28T17:06:29.476Z",
             '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/45aa662604db6427c289c97ac24cfba730b78f72',
@@ -338,12 +338,13 @@ class TestTransform:
             '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/e2b685b10889a328a0d038d4fca92f5306a20736',
             '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/pipelines/120778'
             
-            }]
+            }
         
-        biotools_generator = biotoolsOPEBToolsGenerator(tools)
+        biotools_generator = biotoolsOPEBStandardizer()
+        standardized_tools = biotools_generator.process_transformation(tool)
 
-        assert len(biotools_generator.instSet.instances) == 1
-        instance = biotools_generator.instSet.instances[0]
+        assert len(standardized_tools) == 1
+        instance = standardized_tools[0]
         assert instance.name == ("ps2-v3")
         assert instance.type == software_types.web
         assert instance.version == ['3.0']

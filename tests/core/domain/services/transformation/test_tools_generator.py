@@ -1,13 +1,25 @@
 
-from src.core.domain.services.transformation.utils import toolGenerator
+from src.core.domain.services.transformation.utils import MetadataStandardizer
 from unittest.mock import patch
+
+
+class Standardizer(MetadataStandardizer):
+    '''
+    MetadataStandardizer subclass with dummy transform_one method for testing purposes.
+    '''
+
+    def __init__(self, source='source', ignore_empty_bioconda_types=False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
+
+    def transform_one(self, tool, standardized_tools):
+        return standardized_tools
 
 class TestGenerateBiocondaTypes:
 
     # Returns a dictionary with the types of the bioconda tools in the pretools collection.
     def test_returns_dictionary_with_types(self):
         # Initialize the class object
-        generator = toolGenerator([], 'source')
+        generator = Standardizer()
         result = generator.generate_bioconda_types()
     
         # Assert the result is a dictionary with the correct types
@@ -24,7 +36,7 @@ class TestGenerateBiocondaTypes:
     @patch('src.core.shared.utils.connect_collection')
     def test_returns_empty_dictionary(self, mock_connect_collection):
         # Initialize the class object
-        generator = toolGenerator([], 'source')
+        generator = Standardizer()
     
         # Mock the connect_collection method
         mock_connect_collection.return_value = {}
@@ -40,7 +52,7 @@ class TestGenerateBiocondaTypes:
     @patch('src.core.shared.utils.connect_collection')
     def test_handles_inaccessible_pretools_collection(self, mock_connect_collection):
         # Initialize the class object
-        generator = toolGenerator([], 'source')
+        generator = Standardizer()
     
         # Mock the connect_collection method
         def side_effect(args):

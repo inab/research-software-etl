@@ -9,8 +9,8 @@ from typing import List, Dict, Any
 
 
 class OPEBMetricsStandardizer(MetadataStandardizer):
-    def __init__(self, tools, source = 'opeb_metrics', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, tools, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'opeb_metrics', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
 
 
     def type(self, name, _id, type_):

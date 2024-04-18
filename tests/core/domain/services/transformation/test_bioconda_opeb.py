@@ -1,14 +1,14 @@
-from src.core.domain.services.transformation.bioconda_opeb import biocondaOPEBToolsGenerator
+from src.core.domain.services.transformation.bioconda_opeb import biocondaOPEBStandardizer
 from src.core.domain.entities.software_instance.main import operating_systems, data_sources
 
 from pydantic import HttpUrl
 
 
-class TestBiocondaopebtoolsgenerator:
+class TestBiocondaopebStandardizer:
 
     # Transforms a single tool into an instance correctly.
     def test_transform_single_tool(self, mocker):
-        tools = [{
+        tool = {
             '_id': 'bioconda/abaenrichment/cmd/1.10.0',
             '@last_updated_at': "2024-02-28T17:06:34.219Z",
             '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/45aa662604db6427c289c97ac24cfba730b78f72',
@@ -65,13 +65,14 @@ class TestBiocondaopebtoolsgenerator:
             '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/e2b685b10889a328a0d038d4fca92f5306a20736',
             '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/pipelines/120778'
                     
-        }]
+        }
 
-        generator = biocondaOPEBToolsGenerator(tools)
+        generator = biocondaOPEBStandardizer()
+        standardized_tools = generator.process_transformation(tool)
 
-        assert len(generator.instSet.instances) == 1
+        assert len(standardized_tools) == 1
         
-        instance = generator.instSet.instances[0]
+        instance = standardized_tools[0]
         assert instance.name == 'abyss'
         assert instance.type == 'cmd'
         assert instance.version == ['1.5.2']
@@ -122,7 +123,7 @@ class TestBiocondaopebtoolsgenerator:
 
     # Transforms a single tool with most fileds empty into an instance correctly.
     def test_transform_empty_fields(self):
-        tools = [{
+        tool = {
             '_id': 'bioconda/abaenrichment/cmd/1.10.0',
             '@last_updated_at': "2024-02-28T17:06:34.219Z",
             '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/45aa662604db6427c289c97ac24cfba730b78f72',
@@ -168,12 +169,12 @@ class TestBiocondaopebtoolsgenerator:
             '@created_at': "2024-02-28T16:57:08.057Z",
             '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/e2b685b10889a328a0d038d4fca92f5306a20736',
             '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/pipelines/120778'
-        }]
-        generator = biocondaOPEBToolsGenerator(tools)
+        }
+        generator = biocondaOPEBStandardizer()
+        standardized_tools = generator.process_transformation(tool)
+        assert len(standardized_tools) == 1
 
-        assert len(generator.instSet.instances) == 1
-
-        instance = generator.instSet.instances[0]
+        instance = standardized_tools[0]
         assert instance.name == 'abyss'
         assert instance.type == 'cmd'
         assert instance.version == ['1.5.2']

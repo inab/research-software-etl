@@ -232,7 +232,7 @@ class bioconductorStandardizer(MetadataStandardizer):
 
         return(documentation)
     
-    def transform_one(self, tool, standadized_tools):
+    def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
@@ -269,6 +269,6 @@ class bioconductorStandardizer(MetadataStandardizer):
             authors = authors,
             )
         
-        standadized_tools.append(new_instance)
+        standardized_tools.append(new_instance)
 
-        return standadized_tools
+        return standardized_tools

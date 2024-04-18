@@ -1,13 +1,13 @@
-from src.core.domain.services.transformation.galaxy_opeb import galaxyOPEBToolsGenerator
+from src.core.domain.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
 from src.core.domain.entities.software_instance.main import software_types, data_sources
 from pydantic import HttpUrl
 
 
-class TestGalaxyopebtoolsgenerator:
+class TestGalaxyopebStandardizer:
 
     # Transforms a single tool into an instance correctly.
     def test_transform_single_tool(self, mocker):
-        tools = [{
+        tool = {
              '_id': 'galaxy/cometadapter/workflow/2.3.0',
             '@last_updated_at': "2024-02-28T17:09:49.300Z",
             '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/45aa662604db6427c289c97ac24cfba730b78f72',
@@ -48,12 +48,13 @@ class TestGalaxyopebtoolsgenerator:
             '@created_at': "2024-02-28T16:59:18.863Z",
             '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/e2b685b10889a328a0d038d4fca92f5306a20736',
             '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/pipelines/120778'
-        }]
+        }
 
-        generator = galaxyOPEBToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        generator = galaxyOPEBStandardizer()
+        standardized_tools = generator.process_transformation(tool)
+        assert len(standardized_tools) == 1
 
-        instance = generator.instSet.instances[0]
+        instance = standardized_tools[0]
         assert instance.name == 'augustus'
         assert instance.type == software_types.cmd
         assert instance.version == ['3.2.3']

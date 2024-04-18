@@ -1,5 +1,5 @@
 from src.core.domain.services.transformation.utils import MetadataStandardizer
-from src.core.domain.entities.software_instance.main import instance, setOfInstances
+from src.core.domain.entities.software_instance.main import instance
 
 from typing import Dict, Any
 import logging
@@ -12,8 +12,8 @@ import bibtexparser
 
 class toolshedStandardizer(MetadataStandardizer):
 
-    def __init__(self, tools, source = 'toolshed', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, tools, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'toolshed', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
 
     
     def description(self, tool: Dict[str, Any]):
@@ -90,7 +90,7 @@ class toolshedStandardizer(MetadataStandardizer):
                     new_pub = {'doi':cit.get('citation')}
                     new_pubs.append(new_pub)
                 else:
-                    new_entries = toolshedToolsGenerator.parse_bibtex(cit.get('citation'))
+                    new_entries = toolshedStandardizer.parse_bibtex(cit.get('citation'))
                     for se in new_entries:
                         new_pubs.append(se)
         

@@ -7,7 +7,7 @@ import src.core.domain.services.transformation.biotools_opeb
 
 
 tool_generators = {
-        'biotools' : src.core.domain.services.transformation.biotools_opeb.biotoolsOPEBToolsGenerator
+        'biotools' : src.core.domain.services.transformation.biotools_opeb.biotoolsOPEBStandardizer
 }
 
 def get_raw_data_db(source: str) -> List[Dict]:
@@ -36,10 +36,11 @@ def transform_this_source(raw: Dict, this_source_label: str) -> List[Dict]:
     #generator_module = importlib.import_module(f".meta_transformers", 'FAIRsoft.transformation')
     
     logging.debug(f"Transforming raw data into instances")
-    generator = tool_generators[this_source_label](raw)
+    generator = tool_generators[this_source_label]()
+    insts = []
+    for tool in raw:
+        insts.extend(generator.process_transformation(tool))
     
-    # From instance objects to dictionaries
-    insts = [i.__dict__ for i in generator.instSet.instances]
     logging.debug(f"Transformed {len(insts)} instances")
     return(insts)
 

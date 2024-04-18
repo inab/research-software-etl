@@ -1,4 +1,4 @@
-from src.core.use_cases.data_transformation.main import transform_this_source, get_raw_data_db
+from src.core.use_cases.data_transformation import transform_this_source, get_raw_data_db
 from src.core.domain.entities.software_instance.main import software_types
 import src.core.shared.utils
 import pytest
@@ -47,17 +47,17 @@ class TestTransformThisSource:
     
         # Assert
         assert len(result) == 3
-        assert result[0]['name'] == 'tool 1'
-        assert result[0]['version'] == ['1.0']
-        assert result[0]['type'] == software_types.cmd
-        assert result[0]['description'] == []
-        assert result[0]['publication'] == []
+        assert result[0].name == 'tool 1'
+        assert result[0].version == ['1.0']
+        assert result[0].type == software_types.cmd
+        assert result[0].description == []
+        assert result[0].publication == []
         
-        assert result[1]['name'] == 'tool 2'
-        assert result[1]['version'] == ['2.0']
-        assert result[1]['type'] == software_types.lib
-        assert result[0]['description'] == []
-        assert result[0]['publication'] == []
+        assert result[1].name == 'tool 2'
+        assert result[1].version == ['2.0']
+        assert result[1].type == software_types.lib
+        assert result[0].description == []
+        assert result[0].publication == []
 
     # Empty raw data returns an empty list
     def test_empty_raw_data(self):

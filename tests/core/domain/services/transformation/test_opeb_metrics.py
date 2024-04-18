@@ -1,13 +1,12 @@
-from src.core.domain.services.transformation.opeb_metrics import OPEBMetricsToolsGenerator
+from src.core.domain.services.transformation.opeb_metrics import OPEBMetricsStandardizer
 from src.core.domain.entities.software_instance.main import software_types, data_sources
 from pydantic import HttpUrl
 
-class TestOpebMetricsToolsGenerator:
+class TestOpebMetricsStandardizer:
 
     # Transforms a single tool into an instance correctly.
     def test_transform_single_tool(self, mocker):
-        tools = [
-            {
+        tool = {
                 '_id': 'opeb_metrics/alexa-seq//',
                 '@last_updated_at': "2024-02-29T16:23:31.837Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-metrics-importer/-/commit/06a5edb82031101800a65fd49d4ba688db8de449',
@@ -48,9 +47,10 @@ class TestOpebMetricsToolsGenerator:
                 },
                 '@data_source': 'opeb_metrics'
             }
-        ]
 
-        generator = OPEBMetricsToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        generator = OPEBMetricsStandardizer()
+        standardized_tools = generator.process_transformation(tool)
 
-        instance = generator.instSet.instances[0]
+        assert len(standardized_tools) == 1
+
+        instance = standardized_tools[0]

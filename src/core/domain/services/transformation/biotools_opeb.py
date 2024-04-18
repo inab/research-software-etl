@@ -35,7 +35,7 @@ class biotools_data_format(BaseModel, validate_assignment=True):
 
 # bio.tools metadata standardizer subclass --------------------------------------------
 class biotoolsOPEBStandardizer(MetadataStandardizer):
-    def __init__(self, tools, source = 'biotoolsOPEB', ignore_empty_bioconda_types = False):
+    def __init__(self, source = 'biotoolsOPEB', ignore_empty_bioconda_types = False):
         MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
     
     def type(self, name, _id, type_):

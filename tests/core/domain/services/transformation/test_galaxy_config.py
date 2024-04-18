@@ -1,12 +1,10 @@
-from src.core.domain.services.transformation.galaxy_config import toolshedToolsGenerator
+from src.core.domain.services.transformation.galaxy_config import toolshedStandardizer
 from src.core.domain.entities.software_instance.main import software_types, operating_systems
 from pydantic import HttpUrl
-import json
 
-class TestGalaxyToolsGenerator:
+class TestGalaxyStandardizer:
     def test_transform_single_tool(self):
-        tools = [
-            {
+        tool = {
                  '_id': 'galaxy_config/abritamr/cmd/1.0.14+galaxy1',
                 '@last_updated_at': "2024-02-28T10:54:31.931Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/toolshed-config-importer/-/commit/4c1e763b18c9025a242cae7bc10e127634339a56',
@@ -50,13 +48,13 @@ class TestGalaxyToolsGenerator:
                 '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/toolshed-config-importer/-/commit/c11e263c834746332eec226bc8cc12f462df1e51',
                 '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/toolshed-config-importer/-/pipelines/120412'         
             }
-        ]
 
-        generator = toolshedToolsGenerator(tools)
+        generator = toolshedStandardizer()
+        standardized_tools = generator.process_transformation(tool)
+        
+        assert len(standardized_tools) == 1
 
-        assert len(generator.instSet.instances) == 1
-
-        instance = generator.instSet.instances[0]
+        instance = standardized_tools[0]
         with open('instance.json', 'w') as file:
             file.write(instance.model_dump_json())
         
@@ -91,8 +89,7 @@ class TestGalaxyToolsGenerator:
         - "description" field empty
         '''
 
-        tools = [
-            {  
+        tool = {  
                 '_id': 'galaxy_config/abritamr/cmd/1.0.14+galaxy1',
                 '@last_updated_at': "2024-02-28T10:54:31.931Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/toolshed-config-importer/-/commit/4c1e763b18c9025a242cae7bc10e127634339a56',
@@ -123,7 +120,8 @@ class TestGalaxyToolsGenerator:
                 '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/toolshed-config-importer/-/commit/c11e263c834746332eec226bc8cc12f462df1e51',
                 '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/toolshed-config-importer/-/pipelines/120412'
             }
-        ]
+        
 
-        generator = toolshedToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        generator = toolshedStandardizer()
+        standardized_tools = generator.process_transformation(tool)
+        assert len(standardized_tools) == 1

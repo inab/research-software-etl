@@ -1,13 +1,12 @@
-from src.core.domain.services.transformation.source_forge import sourceforgeToolsGenerator
+from src.core.domain.services.transformation.source_forge import sourceforgeStandardizer
 from src.core.domain.entities.software_instance.main import operating_systems
 from src.core.domain.entities.software_instance.repository import repository_kind
 from pydantic import HttpUrl
 
-class TestSourceForgeToolsGenerator:
+class TestSourceForgeStandardizer:
 
     def test_transform_single_tool(self):
-        tools = [
-            {
+        tool = {
                 '_id': 'sourceforge/bio-bwa//',
                 '@last_updated_at': "2024-02-29T13:07:34.066Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/sourceforge-importer/-/commit/5e90d47d67e858c5fe9a5b64076f299f3869ebfa',
@@ -38,12 +37,12 @@ class TestSourceForgeToolsGenerator:
                 '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/sourceforge-importer/-/commit/5d162c5f1286efba9342d13b6f2bae7f7f2892ee',
                 '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/sourceforge-importer/-/pipelines/120893'
             }
-        ]
 
-        generator = sourceforgeToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        generator = sourceforgeStandardizer()
+        standardized_tools = generator.process_transformation(tool)
+        assert len(standardized_tools) == 1
 
-        instance = generator.instSet.instances[0]
+        instance = standardized_tools[0]
         assert instance.name == "bio-bwa"
         assert instance.version == []
         assert instance.label == ["bio-bwa"]
@@ -73,8 +72,7 @@ class TestSourceForgeToolsGenerator:
         assert instance.webpage == [HttpUrl('http://bio-bwa.sourceforge.net')]
     
     def test_transform_tool_with_empty_fields_filled_correctly(self):
-        tools = [
-            {
+        tool = {
                 '_id': 'sourceforge/bio-bwa//',
                 '@last_updated_at': "2024-02-29T13:07:34.066Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/sourceforge-importer/-/commit/5e90d47d67e858c5fe9a5b64076f299f3869ebfa',
@@ -99,12 +97,12 @@ class TestSourceForgeToolsGenerator:
                 '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/sourceforge-importer/-/commit/5d162c5f1286efba9342d13b6f2bae7f7f2892ee',
                 '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/sourceforge-importer/-/pipelines/120893'
             }
-        ]
+        
 
-        generator = sourceforgeToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        generator = sourceforgeStandardizer()
+        standardized_tools = generator.process_transformation(tool)
 
-        instance = generator.instSet.instances[0]
+        instance = standardized_tools[0]
         assert instance.name == "bio-bwa"
         assert instance.version == []
         assert instance.label == ["bio-bwa"]

@@ -3,7 +3,7 @@
                 DEPRECATED
 --------------------------------------------
 New importer of repositories in the making.
-'''
+
 
 from src.core.domain.services.transformation.repository import repositoryToolsGenerator
 from src.core.domain.entities.software_instance.main import software_types, data_sources
@@ -211,10 +211,10 @@ class TestRepositoryToolsGenerator:
 
 
     def test_transform_tool_with_missing_fields(self):
-        '''
-        This test checks that the generator raises an EXCEPTION when the input dictionary is missing the "repos" field.
-        This metadata dictionary has no relevant information and will be skipped after the error is raised.
-        '''
+        
+        #This test checks that the generator raises an EXCEPTION when the input dictionary is missing the "repos" field.
+        #This metadata dictionary has no relevant information and will be skipped after the error is raised.
+        
         tools = [
             {
                 "_id" : 'ObjectId("602a96dd651dd46a70b0836c")',
@@ -228,3 +228,4 @@ class TestRepositoryToolsGenerator:
         generator = repositoryToolsGenerator(tools)
         assert len(generator.instSet.instances) == 0
 
+'''

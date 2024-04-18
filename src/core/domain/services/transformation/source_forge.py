@@ -8,8 +8,8 @@ from typing import List, Dict, Any
 # --------------------------------------------
 
 class sourceforgeStandardizer(MetadataStandardizer):
-    def __init__(self, tools, source = 'sourceforge', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, tools, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'sourceforge', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
 
     @classmethod
     def description(self, tool: Dict[str, Any]) -> List[str]:

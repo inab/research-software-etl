@@ -7,13 +7,10 @@ import logging
 # Galaxy Metadata Metadata Standardizer
 # --------------------------------------------
 
-class galaxyStandardizer(MetadataStandardizer):
-    def __init__(self, tools, source = 'galaxy_metadata', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, tools, source, ignore_empty_bioconda_types)
+class galaxyMetadataStandardizer(MetadataStandardizer):
+    def __init__(self, source = 'galaxy_metadata', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
 
-        self.instSet = setOfInstances('galaxy_metadata')
-
-        self.transform()
 
     def transform_one(self, tool, standardized_tools):
         '''

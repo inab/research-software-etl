@@ -1,13 +1,13 @@
-from src.core.domain.services.transformation.bioconda_recipes import biocondaRecipesToolsGenerator
+from src.core.domain.services.transformation.bioconda_recipes import biocondaRecipesStandardizer
 from src.core.domain.entities.software_instance.main import software_types, operating_systems, data_sources
 from src.core.domain.entities.software_instance.recognition import type_contributor
 from pydantic import HttpUrl
 
-class TestBiocondaRecipesToolsGenerator:
+class TestBiocondaRecipesStandardizer:
 
     # Transforms a single tool into an instance correctly.
     def test_transform_single_tool(self, mocker):
-        tools=[{
+        tool={
                 '_id': 'bioconda_recipes/ucsc-chainnet/cmd/455',
                 '@last_updated_at': "2024-02-28T15:34:11.722Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/biconda-importer/-/commit/96e7639eab516a89f6a7ddece0252c16aef1491f',
@@ -80,12 +80,13 @@ class TestBiocondaRecipesToolsGenerator:
                     ]
                 }
             }
-        ]
         
-        generator = biocondaRecipesToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        
+        generator = biocondaRecipesStandardizer()
+        standardized_tools = generator.process_transformation(tool)
+        assert len(standardized_tools) == 1
 
-        instance = generator.instSet.instances[0]
+        instance = standardized_tools[0]
         assert instance.name == 'bioconductor-mafdb.gnomadex.r2.1.hs37d5'
         assert instance.type == software_types.lib
         assert instance.version == ['3.10.0']

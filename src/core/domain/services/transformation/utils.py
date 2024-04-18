@@ -14,7 +14,7 @@ class MetadataStandardizer(ABC):
         """Template method that defines the algorithm steps."""
         standardized_tools = []
         try:
-            self.transform_one(standardized_tools, tool)
+            self.transform_one(tool, standardized_tools)
         except Exception as e:
             logging.error('while transforming tool: ' + str(e))
             raise Exception('while transforming tool: ' + str(e))

@@ -1,13 +1,13 @@
-from src.core.domain.services.transformation.bioconductor import bioconductorToolsGenerator
+from src.core.domain.services.transformation.bioconductor import bioconductorStandardizer
 from src.core.domain.entities.software_instance.main import software_types, operating_systems, data_sources
 from src.core.domain.entities.software_instance.recognition import type_contributor
 from src.core.domain.entities.software_instance.repository import repository_kind
 from pydantic import HttpUrl
 
-class TestBioconductorToolsGenerator:
+class TestBioconductorStandardizer:
 
     def test_transform_single_tool(self):
-        tools = [{
+        tool = {
             '_id': 'bioconductor/EnrichedHeatmap/lib/1.33.0',
             '@last_updated_at': "2024-03-18T17:22:04.586Z",
             '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/bioconductor-imoprter-v2/-/commit/180347cb5bae6b553663a670a560e13c40f1e64f',
@@ -69,12 +69,14 @@ class TestBioconductorToolsGenerator:
             '@created_at': "2024-03-05T15:47:50.111Z",
             '@created_by': 'https://gitlab.bsc.es/None/None/-/commit/None',
             '@created_logs': None
-        }]
+        }
         
-        generator = bioconductorToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        generator = bioconductorStandardizer()
+        standardized_tools = generator.process_transformation(tool)
 
-        tool = generator.instSet.instances[0]
+        assert len(standardized_tools) == 1
+        tool = standardized_tools[0]
+
         assert tool.name == 'enrichedheatmap'
         assert tool.version == ['1.33.0']
         assert tool.type == software_types.lib
@@ -123,8 +125,3 @@ class TestBioconductorToolsGenerator:
                 'source_isRepoAccessible': None
             }
         ]
-
-        
-        generator = bioconductorToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
-        

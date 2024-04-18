@@ -1,10 +1,9 @@
-from src.core.domain.services.transformation.galaxy_metadata import galaxyMetadataToolsGenerator
+from src.core.domain.services.transformation.galaxy_metadata import galaxyMetadataStandardizer
 from src.core.domain.entities.software_instance.main import software_types
 
-class TestGalaxyMetadataToolsGenerator:
+class TestGalaxyMetadataStandardizer:
     def test_transform_single_tool(self):
-        tools = [
-            {
+        tool = {
                 '_id': 'galaxy_metadata/abslen_bed/cmd/1',
                 '@last_updated_at': "2024-02-26T17:08:20.000Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/toolshed-metadata-importer/-/commit/00235a20431730b84ccf8bef17072e4b026eded0',
@@ -26,12 +25,13 @@ class TestGalaxyMetadataToolsGenerator:
                 }
                 
             }
-        ]
     
-        generator = galaxyMetadataToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        generator = galaxyMetadataStandardizer()
+        standardized_tools = generator.process_transformation(tool)
 
-        instance = generator.instSet.instances[0]
+        assert len(standardized_tools) == 1
+        instance = standardized_tools[0]
+        
         assert instance.name == "predict_activity"
         assert instance.type == software_types.cmd
         assert instance.version == ["1.0"]
@@ -44,8 +44,7 @@ class TestGalaxyMetadataToolsGenerator:
         ]
 
     def test_transform_tool_with_empty_fields_filled_correctly(self):
-        tools = [            
-            {
+        tool =  {
                 '_id': 'galaxy_metadata/abslen_bed/cmd/1',
                 '@last_updated_at': "2024-02-26T17:08:20.000Z",
                 '@updated_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/toolshed-metadata-importer/-/commit/00235a20431730b84ccf8bef17072e4b026eded0',
@@ -63,12 +62,12 @@ class TestGalaxyMetadataToolsGenerator:
                     "version" : "1.46.0"
                 }
             }
-        ]
     
-        generator = galaxyMetadataToolsGenerator(tools)
-        assert len(generator.instSet.instances) == 1
+        generator = galaxyMetadataStandardizer()
+        standardized_tools = generator.process_transformation(tool)
+        assert len(standardized_tools) == 1
 
-        instance = generator.instSet.instances[0]
+        instance = standardized_tools[0]
         assert instance.name == "predict_activity"
         assert instance.type == software_types.cmd
         assert instance.version == ["1.46.0"]
