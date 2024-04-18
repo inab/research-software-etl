@@ -2,10 +2,9 @@ from src.core.domain.services.transformation.utils import MetadataStandardizer
 from src.core.domain.entities.software_instance.main import instance
 
 from typing import List, Dict, Any
-import logging
 
 # --------------------------------------------
-# Bioconda Tools Transformer
+# Bioconda OPEB Metadata Standardizer
 # --------------------------------------------
 
 

@@ -1,23 +1,17 @@
-from src.core.domain.services.transformation.utils import toolGenerator
-from src.core.domain.entities.software_instance.main import instance, setOfInstances
-
+from src.core.domain.services.transformation.utils import MetadataStandardizer
+from src.core.domain.entities.software_instance.main import instance
 
 from typing import List, Dict, Any
-import logging 
-
 
 # --------------------------------------------
-# OPEB Metrics Tools Transformer
+# OPEB Metrics Metadata Standardizer
 # --------------------------------------------
 
 
-class OPEBMetricsToolsGenerator(toolGenerator):
-    def __init__(self, tools, source = 'opeb_metrics'):
-        toolGenerator.__init__(self, tools, source)
+class OPEBMetricsStandardizer(MetadataStandardizer):
+    def __init__(self, tools, source = 'opeb_metrics', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, tools, source, ignore_empty_bioconda_types)
 
-        self.instSet = setOfInstances('opeb_metrics')
-
-        self.transform()
 
     def type(self, name, _id, type_):
         '''
@@ -121,16 +115,19 @@ class OPEBMetricsToolsGenerator(toolGenerator):
         return(id_data)
     
     
-    def transform_single_tool(self, tool):
+    def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool from oeb bio.tools into an instance.
         - tool: metadata of tool to be transformed
-
+        - standardized_tools: list of standardized tools. To be appended with the new instance.
+    
         * label is not present in the metadata. Since there must be a 
         document from OPEB tools with it, we will not try to guess a label
         using the name here.
         * since the URL of the website that fields like "ssl" refers to, is not gathered here
         '''
+
+        self.check_bioconda_types_empty()
 
         tool = tool.get('data', {})
 
@@ -150,25 +147,6 @@ class OPEBMetricsToolsGenerator(toolGenerator):
                 publication = publication
                 )
             
-            self.instSet.instances.append(new_instance)
-
-
-    def transform(self, ignore_empty_bioconda_types = False):
-        '''
-        Performs the transformation of the raw data into instances.
-            - ignore_empty_bioconda_types: if True, the transformation is performed even if the bioconda_types dictionary is empty.
-        '''
-        if ignore_empty_bioconda_types == False:
-            if self.bioconda_types == {}:
-                logging.error('bioconda_types is empty, aborting transformation')
-                raise Exception('bioconda_types is empty, aborting transformation')
-            
-        for tool in self.tools:
-
-            try:
-                self.transform_single_tool(tool)
-            except Exception as e:
-                raise e
-                logging.error(f"Error transforming tool {tool['_id']}: {e}")
-                continue
-            
+            standardized_tools.append(new_instance)
+        
+        return standardized_tools
