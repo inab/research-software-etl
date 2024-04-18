@@ -1,10 +1,9 @@
-from src.core.domain.services.transformation.utils import toolGenerator
-from src.core.domain.entities.software_instance.main import instance, setOfInstances
+from src.core.domain.services.transformation.utils import MetadataStandardizer
+from src.core.domain.entities.software_instance.main import instance
 from src.core.domain.entities.software_instance.EDAM_forFE import EDAMDict
 
 from pydantic import TypeAdapter, HttpUrl, BaseModel, model_validator
 from typing import List, Dict, Any
-import logging
 
 # --------------------------------------------
 # Biotools OPEB Tools Transformer
@@ -34,14 +33,10 @@ class biotools_data_format(BaseModel, validate_assignment=True):
         else:
             return data
 
-# bio.tools tool generator class --------------------------------------------
-class biotoolsOPEBToolsGenerator(toolGenerator):
-    def __init__(self, tools, source = 'biotoolsOPEB'):
-        toolGenerator.__init__(self, tools, source)
-
-        self.instSet = setOfInstances('biotoolsOPEB')
-
-        self.transform()
+# bio.tools metadata standardizer subclass --------------------------------------------
+class biotoolsOPEBStandardizer(MetadataStandardizer):
+    def __init__(self, tools, source = 'biotoolsOPEB', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
     
     def type(self, name, _id, type_):
         '''
@@ -234,10 +229,12 @@ class biotoolsOPEBToolsGenerator(toolGenerator):
         return(repositories)
 
         
-    def transform_single_tool(self, tool):
+    def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool from oeb bio.tools into an instance.
         '''
+        self.check_bioconda_types_empty()
+
         tool = tool.get('data')
 
         name = self.clean_name(tool.get('@label')).lower()
@@ -289,30 +286,10 @@ class biotoolsOPEBToolsGenerator(toolGenerator):
             authors = authors,
             tags = tags
             )
-        
-        # add metadata
-        metadata = {}
-        
+
+        standardized_tools.append(new_instance)
     
-        self.instSet.instances.append(new_instance)
+        return standardized_tools
+    
 
-            
-    def transform(self, ignore_empty_bioconda_types = False):
-        '''
-        Performs the transformation of the raw data into instances.
-            - ignore_empty_bioconda_types: if True, the transformation is performed even if the bioconda_types dictionary is empty.
-        '''
-        if ignore_empty_bioconda_types == False:
-            if self.bioconda_types == {}:
-                logging.error('bioconda_types is empty, aborting transformation')
-                raise Exception('bioconda_types is empty, aborting transformation')
-            
-        for tool in self.tools:
-
-            try:
-                self.transform_single_tool(tool)
-            except Exception as e:
-                logging.error(f"Error transforming tool {tool['_id']}: {e}")
-                continue
-            
             
