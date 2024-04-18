@@ -1,5 +1,5 @@
-from src.core.domain.services.transformation.utils import toolGenerator
-from src.core.domain.entities.software_instance.main import instance, setOfInstances
+from src.core.domain.services.transformation.utils import MetadataStandardizer
+from src.core.domain.entities.software_instance.main import instance
 
 from pydantic import TypeAdapter, HttpUrl
 from typing import Dict, Any
@@ -10,14 +10,10 @@ import re
 # Bioconductor Tools Transformer
 # --------------------------------------------
 
-class bioconductorToolsGenerator(toolGenerator): 
+class bioconductorToolsGenerator(MetadataStandardizer): 
 
-    def __init__(self, tools, source = 'bioconductor'):
-        toolGenerator.__init__(self, tools, source)
-
-        self.instSet = setOfInstances('bioconductor')
-
-        self.transform()
+    def __init__(self, source = 'bioconductor', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
 
     @classmethod
     def description(self, tool: Dict[str, Any]):
@@ -275,19 +271,17 @@ class bioconductorToolsGenerator(toolGenerator):
             )
             
         
-        self.instSet.instances.append(new_instance)
+        return new_instance
 
-
-    def transform(self):
+    def transform_one(self, tool):
         '''
         Performs the transformation of the raw metadata of tools into instances (homogenized and standardized).
         '''
         
-        for tool in self.tools:
-            try:
-                self.transform_single_tool(tool)
-            except Exception as e:
-                logging.error(f"Error transforming tool {tool['_id']}: {e}")
-                continue
-            
-            
+        try:
+            standadized_tool = self.transform_single_tool(tool)
+        except Exception as e:
+            logging.error(f"Error transforming tool {tool['_id']}: {e}")
+            return None
+        else:
+            return standadized_tool

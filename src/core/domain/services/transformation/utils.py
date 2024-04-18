@@ -9,13 +9,27 @@ class MetadataStandardizer(ABC):
         self.bioconda_types = self.generate_bioconda_types()
         self.ignore_empty_bioconda_types = ignore_empty_bioconda_types
         logging.debug('Generator for ' + self.source + ' initialized') 
+    
+    def process_transformation(self, tool):
+        """Template method that defines the algorithm steps."""
+        standardized_tools = []
+        self.transform_one(standardized_tools, tool)
+        return standardized_tools
 
     @abstractmethod
-    def transform_one(self, tool):
+    def transform_one(self, tool, standardized_tools):
         '''
         Transforms one tool into an instance.
         '''
         pass
+
+    def check_bioconda_types_empty(self):
+        """Checks if bioconda_types is empty. If it is, it raises an exception."""
+        if self.ignore_empty_bioconda_types == False:
+            if self.bioconda_types == {}:
+                logging.error('bioconda_types is empty, aborting transformation')
+                raise Exception('bioconda_types is empty, aborting transformation')
+
 
     @staticmethod
     def generate_bioconda_types():

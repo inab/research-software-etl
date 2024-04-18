@@ -1,7 +1,5 @@
 from src.core.domain.services.transformation.utils import MetadataStandardizer
-from src.core.domain.entities.software_instance.main import setOfInstances
 from src.core.domain.entities.software_instance.main import instance
-from src.core.domain.entities.software_instance.EDAM_forFE import EDAMDict
 
 from typing import List, Dict, Any
 import logging
@@ -179,72 +177,53 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         return None
     
 
-    def transform_single_tool(self, tool):
+    def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
-        tool = tool.get('data')
-        
-        id_data = self.get_repo_name_version_type(tool.get('@id'))
-        name = self.clean_name(id_data['name'].lower())
-        version = [ id_data['version'] ]
-        types = self.types(tool, name, id_data['type'])
-        source = ['bioconda']
-        label = self.clean_name(tool.get('@label'))
-        description = self.description(tool)
-        webpage = self.webpage(tool)
-        publication = self.publication(tool)
-        download = self.download(tool)
-        source_code = self.source_code(tool)
-        documentation = self.documentation(tool)
-        license = self.license(tool)
-        repository = self.repositories(tool)
-        operating_system = operating_system = ['Linux', 'macOS', 'Windows']
-
-        results = []
-
-        for type_ in types:
-
-            new_instance = instance(
-                name = name,
-                type = type_,
-                version = version,
-                source = source,
-                download = download,
-                label = label,
-                description = description,
-                publication = publication,
-                source_code = source_code,
-                license = license,
-                documentation = documentation,
-                operating_system = operating_system,
-                repository = repository,
-                webpage = webpage,
-                )
-            
-            results.append(new_instance)
-        
-        return results
-
-    def transform_one(self, tool):
-        '''
-        Performs the transformation of the raw metadata of tools into instances (homogenized and standardized).
-            - ignore_empty_bioconda_types: if True, the transformation is performed even if the bioconda_types dictionary is empty.
-        '''
-        if self.ignore_empty_bioconda_types == False:
-            if self.bioconda_types == {}:
-                logging.error('bioconda_types is empty, aborting transformation')
-                raise Exception('bioconda_types is empty, aborting transformation')
-            
-        # We skip generic entries
-        if len(tool['data'].get('@id').split('/'))>=7:
-            try:
-                standardized_tools = self.transform_single_tool(tool)
-            except Exception as e:
-                logging.error(f"Error transforming tool {tool['@id']}: {e}")
-                return None
-            else:
-                return standardized_tools
-        else:
+        if len(tool['data'].get('@id').split('/'))<7:
             return None
+
+        else:
+            tool = tool.get('data')
+            
+            id_data = self.get_repo_name_version_type(tool.get('@id'))
+            name = self.clean_name(id_data['name'].lower())
+            version = [ id_data['version'] ]
+            types = self.types(tool, name, id_data['type'])
+            source = ['bioconda']
+            label = self.clean_name(tool.get('@label'))
+            description = self.description(tool)
+            webpage = self.webpage(tool)
+            publication = self.publication(tool)
+            download = self.download(tool)
+            source_code = self.source_code(tool)
+            documentation = self.documentation(tool)
+            license = self.license(tool)
+            repository = self.repositories(tool)
+            operating_system = operating_system = ['Linux', 'macOS', 'Windows']
+
+            for type_ in types:
+
+                new_instance = instance(
+                    name = name,
+                    type = type_,
+                    version = version,
+                    source = source,
+                    download = download,
+                    label = label,
+                    description = description,
+                    publication = publication,
+                    source_code = source_code,
+                    license = license,
+                    documentation = documentation,
+                    operating_system = operating_system,
+                    repository = repository,
+                    webpage = webpage,
+                    )
+                
+                standardized_tools.append(new_instance)
+            
+            return standardized_tools
+
 

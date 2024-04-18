@@ -1,5 +1,5 @@
 from src.core.domain.services.transformation.utils import MetadataStandardizer
-from src.core.domain.entities.software_instance.main import instance, setOfInstances
+from src.core.domain.entities.software_instance.main import instance
 
 import logging
 import re
