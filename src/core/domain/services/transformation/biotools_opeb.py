@@ -1,4 +1,4 @@
-from src.core.domain.services.transformation.utils import MetadataStandardizer
+from core.domain.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.core.domain.entities.software_instance.main import instance
 from src.core.domain.entities.software_instance.EDAM_forFE import EDAMDict
 

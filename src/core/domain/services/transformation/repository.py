@@ -4,7 +4,7 @@
 --------------------------------------------
 New importer of repositories in the making.
 '''
-from src.core.domain.services.transformation.utils import toolGenerator
+from core.domain.services.transformation.metadata_standardizers import toolGenerator
 from src.core.domain.entities.software_instance.main import instance, setOfInstances
 
 
