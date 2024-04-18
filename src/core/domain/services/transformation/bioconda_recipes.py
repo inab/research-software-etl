@@ -382,7 +382,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         return authors
     
 
-    def transform_single_document(self, tool):
+    def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
@@ -404,8 +404,6 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         dependencies = self.dependencies(tool)
         authors = self.authors(tool)
         test = False
-
-        results = []
 
         for type_ in types_:
 
@@ -429,20 +427,6 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
                 authors = authors
                 )
             
-            results.append(new_instance)
+            standardized_tools.append(new_instance)
         
-        return results
-
-    
-    def transform_one(self, tool):
-        '''
-        Performs the transformation of the raw data into instances.
-        '''
-        try:
-            standardized_tools = self.transform_single_document(tool)
-        except Exception as e:
-            logging.error(f"Error transforming tool {tool['_id']}: {e}")
-            return None 
-        else:
-            return standardized_tools
-        
+        return standardized_tools
