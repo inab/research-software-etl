@@ -1,4 +1,4 @@
-from src.core.domain.services.transformation.utils import toolGenerator
+from src.core.domain.services.transformation.utils import MetadataStandardizer
 from src.core.domain.entities.software_instance.main import setOfInstances
 from src.core.domain.entities.software_instance.main import instance
 from src.core.domain.entities.software_instance.EDAM_forFE import EDAMDict
@@ -11,13 +11,12 @@ import logging
 # --------------------------------------------
 
 
-class biocondaOPEBToolsGenerator(toolGenerator):
+class biocondaOPEBStandardizer(MetadataStandardizer):
 
-    def __init__(self, tools, source = 'biocondaOPEB'):
-        toolGenerator.__init__(self, tools, source)
-
+    def __init__(self, source = 'biocondaOPEB', ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
+        
         self.instSet = setOfInstances('biocondaOPEB')
-
         self.transform()
     
     @classmethod
@@ -230,23 +229,19 @@ class biocondaOPEBToolsGenerator(toolGenerator):
 
 
 
-    def transform(self, ignore_empty_bioconda_types = False):
+    def transform_one(self, tool):
         '''
         Performs the transformation of the raw metadata of tools into instances (homogenized and standardized).
             - ignore_empty_bioconda_types: if True, the transformation is performed even if the bioconda_types dictionary is empty.
         '''
-        if ignore_empty_bioconda_types == False:
+        if self.ignore_empty_bioconda_types == False:
             if self.bioconda_types == {}:
                 logging.error('bioconda_types is empty, aborting transformation')
                 raise Exception('bioconda_types is empty, aborting transformation')
             
-        for tool in self.tools:
-            # We skip generic entries
-            if len(tool['data'].get('@id').split('/'))<7:
-                continue
-                
+        # We skip generic entries
+        if len(tool['data'].get('@id').split('/'))>=7:
             try:
                 self.transform_single_tool(tool)
             except Exception as e:
                 logging.error(f"Error transforming tool {tool['@id']}: {e}")
-                continue
