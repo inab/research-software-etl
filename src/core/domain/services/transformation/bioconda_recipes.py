@@ -1,4 +1,4 @@
-from src.core.domain.services.transformation.utils import toolGenerator
+from src.core.domain.services.transformation.utils import MetadataStandardizer
 from src.core.domain.entities.software_instance.main import instance, setOfInstances
 
 import logging
@@ -10,12 +10,9 @@ from typing import List, Dict
 # Bioconda Recipes Transformer
 # ------------------------------------------
 
-class biocondaRecipesToolsGenerator(toolGenerator):
-    def __init__(self, tools, source = 'bioconda_recipes'):
-        toolGenerator.__init__(self, tools, source)
-        self.instSet = setOfInstances('bioconda_recipes')
-        self.transform()
-
+class biocondaRecipesStandardizer(MetadataStandardizer):
+    def __init__(self, source = 'bioconda_recipes',ignore_empty_bioconda_types = False):
+        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
 
     @classmethod
     def name(self, tool):
@@ -408,7 +405,7 @@ class biocondaRecipesToolsGenerator(toolGenerator):
         authors = self.authors(tool)
         test = False
 
-
+        results = []
 
         for type_ in types_:
 
@@ -431,17 +428,21 @@ class biocondaRecipesToolsGenerator(toolGenerator):
                 dependencies = dependencies,
                 authors = authors
                 )
+            
+            results.append(new_instance)
         
-            self.instSet.instances.append(new_instance)
+        return results
 
     
-    def transform(self):
+    def transform_one(self, tool):
         '''
         Performs the transformation of the raw data into instances.
         '''
-        for tool in self.tools:            
-            try:
-                self.transform_single_document(tool)
-            except Exception as e:
-                logging.error(f"Error transforming tool {tool['_id']}: {e}")
-                continue
+        try:
+            standardized_tools = self.transform_single_document(tool)
+        except Exception as e:
+            logging.error(f"Error transforming tool {tool['_id']}: {e}")
+            return None 
+        else:
+            return standardized_tools
+        

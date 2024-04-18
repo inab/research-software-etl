@@ -15,9 +15,6 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
 
     def __init__(self, source = 'biocondaOPEB', ignore_empty_bioconda_types = False):
         MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
-        
-        self.instSet = setOfInstances('biocondaOPEB')
-        self.transform()
     
     @classmethod
     def get_repo_name_version_type(self, id_):
@@ -204,6 +201,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         repository = self.repositories(tool)
         operating_system = operating_system = ['Linux', 'macOS', 'Windows']
 
+        results = []
 
         for type_ in types:
 
@@ -224,10 +222,9 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
                 webpage = webpage,
                 )
             
+            results.append(new_instance)
         
-            self.instSet.instances.append(new_instance)
-
-
+        return results
 
     def transform_one(self, tool):
         '''
@@ -242,6 +239,12 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         # We skip generic entries
         if len(tool['data'].get('@id').split('/'))>=7:
             try:
-                self.transform_single_tool(tool)
+                standardized_tools = self.transform_single_tool(tool)
             except Exception as e:
                 logging.error(f"Error transforming tool {tool['@id']}: {e}")
+                return None
+            else:
+                return standardized_tools
+        else:
+            return None
+
