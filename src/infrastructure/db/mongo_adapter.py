@@ -26,14 +26,20 @@ class MongoDBAdapter(DatabaseAdapter):
         self.db = self.client[mongo_db]
 
     
-    def entry_exists(self, collection_name, query):
+    def entry_exists(self, collection_name: str, identifier: str) -> bool:
         # Check if an entry exists in the specified collection based on the query
         collection = self.db[collection_name]
+        query = { 
+            '_id' : identifier 
+        }
         return collection.count_documents(query) > 0
 
-    def get_entry_metadata(self, collection_name, query):
+    def get_entry_metadata(self, collection_name: str, identifier: str) -> bool:
         # Retrieve an entry from the specified collection based on the query
         collection = self.db[collection_name]
+        query = {
+            '_id': identifier
+        }
         projection = {
             'data': 0  # Exclude 'data' field
         }

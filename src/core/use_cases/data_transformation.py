@@ -5,7 +5,7 @@ from typing import List, Dict
 from src.core.domain.services.transformation.standardizers_factory import StandardizersFactory
 from src.core.domain.services.transformation.metadata import create_new_metadata, update_existing_metadata
 from src.core.domain.entities.metadata.pretools import Metadata
-from src.infrastructure.db.mongo_adapter import MongoDBAdapter
+from src.adapters.db.database_adapter import DatabaseAdapter
 
 def get_raw_data_db(source: str) -> List[Dict]:
     '''
@@ -44,16 +44,15 @@ def get_identifier(entry: Dict) -> str:
         return None
     return identifier
 
-def generate_metadata(identifier: str, mongo_adapter: MongoDBAdapter):
+def generate_metadata(identifier: str, db_adapter: DatabaseAdapter):
     '''
     Generates metadata for the transformed data.
     '''
-
-    entry_exists_db = mongo_adapter.check_metadata('pretools', {'_id': identifier} )
+    entry_exists_db = db_adapter.entry_exist('pretools', identifier )
     if entry_exists_db:
         metadata = create_new_metadata(identifier, 'pretools')
     else:
-        existing_metadata  = mongo_adapter.get_entry_metadata('pretools', {'_id': identifier})
+        existing_metadata  = db_adapter.get_entry_metadata('pretools', identifier)
         existing_metadata = Metadata(**existing_metadata)
         metadata = update_existing_metadata(identifier, 'pretools', existing_metadata)
     
