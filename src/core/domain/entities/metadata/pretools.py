@@ -24,13 +24,13 @@ class Metadata(BaseModel):
             }
         }
         '''
-        created_at: str = Field(..., description="Creation date of the entry")
-        created_by: str = Field(..., description="User or task that created the entry")
-        created_logs: str = Field(..., description="Link to the logs of the creation process")
-        last_updated_at: str = Field(..., description="Last update of the entry")
-        updated_by: str = Field(..., description="User or task that updated the entry")
-        updated_logs: str = Field(..., description="Link to the logs of the last update")
-        source: source_item = Field(..., description="Source of the entry") # only one source!
+        created_at: str = Field(..., description="Creation date of the entry", alias='@created_at')
+        created_by: str = Field(..., description="User or task that created the entry", alias='@created_by')
+        created_logs: str = Field(..., description="Link to the logs of the creation process", alias='@created_logs')
+        last_updated_at: str = Field(..., description="Last update of the entry", alias='@last_updated_at')
+        updated_by: str = Field(..., description="User or task that updated the entry", alias='@updated_by')
+        updated_logs: str = Field(..., description="Link to the logs of the last update", alias='@updated_logs')
+        source: source_item = Field(..., description="Source of the entry", alias='@source') # only one source!
 
         def to_dict_for_db_insertion(self):
             '''

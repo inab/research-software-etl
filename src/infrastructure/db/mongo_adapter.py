@@ -1,8 +1,9 @@
 # infrastructure/mongo_adapter.py
 import os
 import pymongo
+from src.adapters.db.database_adapter import DatabaseAdapter
 
-class MongoDBAdapter:
+class MongoDBAdapter(DatabaseAdapter):
     def __init__(self):
         # Load connection parameters from environment variables
         mongo_host = os.getenv('MONGO_HOST', default='localhost')
@@ -30,8 +31,17 @@ class MongoDBAdapter:
         collection = self.db[collection_name]
         return collection.count_documents(query) > 0
 
-    # TODO: modify the following
-    #def update_entry(self, collection_name, query, update_data):
-        # Update an entry in the specified collection based on the query
-    #    collection = self.db[collection_name]
-    #    collection.update_one(query, {'$set': update_data})
+    def get_entry_metadata(self, collection_name, query):
+        # Retrieve an entry from the specified collection based on the query
+        collection = self.db[collection_name]
+        projection = {
+            'data': 0  # Exclude 'data' field
+        }
+        return collection.find_one(query, projection=projection)
+    
+    def update_entry(self, collection_name, identifier, data):
+        collection = self.db[collection_name]
+        collection.update_one(
+            {'_id': identifier},  # Query matching the document to update
+            {'$set': data}  # Fields to update
+        )
