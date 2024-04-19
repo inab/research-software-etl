@@ -1,6 +1,7 @@
 # infrastructure/mongo_adapter.py
 import os
 import pymongo
+from typing import Dict, Any
 from src.adapters.db.database_adapter import DatabaseAdapter
 
 class MongoDBAdapter(DatabaseAdapter):
@@ -51,3 +52,13 @@ class MongoDBAdapter(DatabaseAdapter):
             {'_id': identifier},  # Query matching the document to update
             {'$set': data}  # Fields to update
         )
+
+    def get_raw_documents_from_source(self, collection_name: str, source: str) -> Dict[str, Any]:
+        # Retrieve documents from the specified collection based on the source
+        collection = self.db[collection_name]
+        query = {
+            '@data_source': source
+        }
+        return collection.find(query)
+
+    

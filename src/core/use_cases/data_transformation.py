@@ -5,19 +5,21 @@ from typing import List, Dict
 from src.core.domain.services.transformation.standardizers_factory import StandardizersFactory
 from src.core.domain.services.transformation.metadata import create_new_metadata, update_existing_metadata
 from src.core.domain.entities.metadata.pretools import Metadata
+from src.infrastructure.db.mongo_adapter import MongoDBAdapter
 from src.adapters.db.database_adapter import DatabaseAdapter
 
-def get_raw_data_db(source: str) -> List[Dict]:
+def get_raw_data_db(source: str, db_adapter: DatabaseAdapter) -> List[Dict]:
     '''
     Connects to mongo database and returns raw data from a specific source.
     - source: label of the source to be transformed
+    - db_adapter: database adapter
     '''
-    logging.debug(f"Accessing data of source {source} in db collection {alambique.name}")
 
     ALAMBIQUE = os.getenv('ALAMBIQUE', 'alambique')
-    alambique = src.core.shared.utils.connect_collection(collection=ALAMBIQUE)
     
-    raw = alambique.find({ "@data_source" : source })
+    logging.debug(f"Accessing data of source {source} in db collection {ALAMBIQUE}")
+    
+    raw = db_adapter.get_raw_documents_from_source(ALAMBIQUE, source)
     
     return list(raw)
 
@@ -80,9 +82,10 @@ def transform(loglevel,  sources: List[str] = sources, **kwargs):
     # Run whole transformation pipeline
     for source in sources:
             logging.info(f"Starting transformation of data from {source}")            
-            mongo_adapter = MongoDBAdapter()
 
-            raw_data = get_raw_data_db(source)
+            db_adapter = MongoDBAdapter()
+
+            raw_data = get_raw_data_db(source, db_adapter)
     
             if not raw_data:
                 logging.info(f"No entries found for {source}")
@@ -93,13 +96,13 @@ def transform(loglevel,  sources: List[str] = sources, **kwargs):
                     identifier = get_identifier(entry)
                     if identifier: 
                         insts = standardize_entry(entry, source)
-                        metadata = generate_metadata(identifier, mongo_adapter)
+                        metadata = generate_metadata(identifier, db_adapter)
 
                         for inst in insts:
                             document = metadata.to_dict_for_db_insertion()
                             document['data'] = inst.__dict__
 
-                            mongo_adapter.update_entry('pretools', identifier, document)
+                            db_adapter.update_entry('pretools', identifier, document)
 
 
 if __name__ == "__main__":

@@ -9,3 +9,6 @@ class DatabaseAdapter(Protocol):
 
     def update_entry(self, collection_name: str, identifier: str, data: Dict[str, Any]) -> None:
         pass
+
+    def get_raw_documents_from_source(self, collection_name: str, source: str) -> Dict[str, Any]:
+        pass
