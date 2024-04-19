@@ -3,6 +3,9 @@ import os
 import pymongo
 from typing import Dict, Any
 from src.adapters.db.database_adapter import DatabaseAdapter
+from src.core.domain.entities.database_entries.pretools import PretoolsEntryModel
+from pydantic import ValidationError
+import logging
 
 class MongoDBAdapter(DatabaseAdapter):
     def __init__(self):
@@ -53,12 +56,36 @@ class MongoDBAdapter(DatabaseAdapter):
             {'$set': data}  # Fields to update
         )
 
-    def get_raw_documents_from_source(self, collection_name: str, source: str) -> Dict[str, Any]:
-        # Retrieve documents from the specified collection based on the source
+    def fetch_entries(self, collection_name, query):
         collection = self.db[collection_name]
+        document = collection.find(query)
+        return document
+    
+
+    def validate_pretools_data(self, documents):
+        validated_documents = []
+        for doc in documents:
+            try:
+                validated_doc = PretoolsEntryModel(metadata=doc, data=doc['data'])
+                validated_documents.append(validated_doc.dict)
+            except ValidationError as ve:
+                logging.error(f"Data validation failed for {doc}: {ve}")
+                continue  # Optionally, you could choose to stop processing and raise an exception here
+        return validated_documents
+    
+
+    def build_raw_docs_query(self, source: str):
         query = {
             '@data_source': source
         }
-        return collection.find(query)
+        return query
+
+
+    def get_raw_documents_from_source(self, collection_name: str, source: str) -> Dict[str, Any]:
+        # Retrieve documents from the specified collection based on the source and validate them
+        query = self.build_raw_docs_query(source)
+        raw_data = self.fetch_entries(collection_name, query)
+
+        return raw_data
 
     
