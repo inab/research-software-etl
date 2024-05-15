@@ -2,7 +2,7 @@ import pytest
 from mongomock import MongoClient
 from src.infrastructure.db.mongo_adapter import MongoDBAdapter
 from src.core.domain.services.transformation.standardizers_factory import StandardizersFactory
-from src.core.domain.entities.metadata.pretools import Metadata
+from src.core.domain.entities.metadata import Metadata
 from src.core.use_cases.data_transformation import generate_metadata, standardize_entry
 
 

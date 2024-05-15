@@ -2,9 +2,9 @@ import os
 import logging 
 from typing import List, Dict
 
-from src.core.domain.services.transformation.standardizers_factory import StandardizersFactory
+from src.core.domain.services.transformation.standardizers_factory import MetadataStandardizerFactory
 from src.core.domain.services.transformation.metadata import create_new_metadata, update_existing_metadata
-from src.core.domain.entities.metadata.pretools import Metadata
+from src.core.domain.entities.metadata import Metadata
 from src.infrastructure.db.mongo_adapter import MongoDBAdapter
 from src.adapters.db.database_adapter import DatabaseAdapter
 
@@ -53,7 +53,7 @@ def standardize_entry(raw: Dict, source: str) -> List[Dict]:
         List[Dict]: A list of dictionaries, each conforming to the 'software_instance' model from the 'entities' module. Each dictionary represents a standardized version of the input data or a part of it, structured as defined by the model.
 
     """
-    standardizer = StandardizersFactory.get_standardizer(source)
+    standardizer = MetadataStandardizerFactory.get_standardizer(source)
     tools = standardizer.process_transformation(raw)
     
     return(tools)

@@ -208,6 +208,43 @@ class instance(BaseModel, validate_assignment=True):
     citation: Optional[List[dict]] = Field([],
                                 title="Citation",
                                 description="How to cite the software.")
+            
+
+    def merge(self, other: 'instance') -> 'instance':
+        '''
+        Merges two instances of the same software into one.
+        The name and the type must be the same.
+        In lists, the duplication of items is avoided.
+        '''
+        if self.name != other.name:
+            raise ValueError("The names of the instances must be the same.")
+        if self.type != other.type:
+            raise ValueError("The types of the instances must be the same.")
+        
+        self.version = list(set(self.version + other.version))
+        self.label = list(set(self.label + other.label))
+        self.links = list(set(self.links + other.links))
+        self.webpage = list(set(self.webpage + other.webpage)) ## 
+        self.download = list(set(self.download + other.download))
+        self.merge_repositories(other.repository)
+        self.operating_system = list(set(self.operating_system + other.operating_system))
+        self.source_code = list(set(self.source_code + other.source_code))
+            
+    def merge_repositories(self, other_repository):
+        """
+        Merges the other_repository into the self_repository by appending repositories that don't already exist.
+
+        Args:
+            self_repository (list): The list of repositories to merge into.
+            other_repository (list): The list of repositories to merge from.
+
+        Returns:
+            list: The merged list of repositories.
+        """
+        existing_urls = [repo.url for repo in self.repository] 
+        for repo in other_repository:
+            if repo.url not in existing_urls:
+                self.repository.append(repo)
 
 
     @field_validator('name')
@@ -271,7 +308,7 @@ class instance(BaseModel, validate_assignment=True):
             if link.path:
                 x = re.search("^(.*)(\\.)(rar|bz2|tar|gz|zip|bz|json|txt|js|py|md)$", link.path)
                 if x:
-                    # remove the item from the list
+                    # keep item in the list
                     new_links.append(link)
         
         return new_links

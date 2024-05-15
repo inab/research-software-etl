@@ -1,15 +1,13 @@
 '''
-Functions to create the metadata for the entries after transformation. To be inserted in the "pretools" collection.
-- import metadata entity
-- create_metadata
-- return metadata object
+Functions to create the metadata for the entries after integration. To be inserted in the "tools" collection.
 ''' 
 import os
+from typing import List
 from datetime import datetime
-from src.core.domain.entities.metadata import Metadata
+from src.core.domain.entities.metadata import VersionedMetadata
 from datetime import datetime
 
-def create_new_metadata(identifier: str, alambique: str) -> Metadata:
+def create_new_metadata(identifier: str, pretools: str, source_identifiers: List) -> VersionedMetadata:
     """
     Creates metadata for a new database entry.
 
@@ -17,7 +15,7 @@ def create_new_metadata(identifier: str, alambique: str) -> Metadata:
 
     Parameters:
         identifier (str): The unique identifier for the new entry.
-        alambique (str): The collection name associated with the entry.
+        pretools (str): The collection name associated with the entry.
 
     Returns:
         Metadata: A Metadata object initialized with the current date and environment-specific values for a new entry.
@@ -31,30 +29,29 @@ def create_new_metadata(identifier: str, alambique: str) -> Metadata:
     commit_url = build_commit_url()
     pipeline_url = os.getenv("CI_PIPELINE_URL")
 
-    metadata = Metadata(
+    metadata = VersionedMetadata(
         created_at=current_date,
         created_by=commit_url,
         created_logs=pipeline_url,
         last_updated_at=current_date,
         updated_by=commit_url,
         updated_logs=pipeline_url,
+        version=1,
         source={
-            "collection": alambique,
-            "id": identifier
+            "collection": pretools,
+            "ids": source_identifiers
         }
     )
     return metadata
 
 
-def update_existing_metadata(identifier: str, alambique: str, existing_metadata: Metadata) -> Metadata:
+def update_existing_metadata(existing_metadata: VersionedMetadata) -> VersionedMetadata:
     """
     Updates metadata for an existing database entry.
 
     This function updates the metadata for an existing entry, setting the last updated fields to the current date and time, and updating the URLs for the update logs based on current environment variables.
 
     Parameters:
-        identifier (str): The unique identifier for the existing entry.
-        alambique (str): The collection name associated with the entry.
         existing_metadata (Metadata): The current metadata object that needs to be updated.
 
     Returns:
@@ -72,6 +69,7 @@ def update_existing_metadata(identifier: str, alambique: str, existing_metadata:
     existing_metadata.last_updated_at = current_date
     existing_metadata.updated_by = commit_url
     existing_metadata.updated_logs = os.getenv("CI_PIPELINE_URL")
+    existing_metadata.version += 1
     
     return existing_metadata
 

@@ -876,18 +876,11 @@ class instance(object):
         Usage of (public) version control
         Whether the software follows a version-control system
         '''
-        if self.version_control:
-            return(True)
-        else:
-            return(False)
-        
-        '''
-        DEPRECATED
         for repo in self.repository:
             if 'github' in repo or 'mercurial-scm' in repo:
                 return(True)
         return(False)
-        '''
+        
 
     def compR4_2(self):
         '''

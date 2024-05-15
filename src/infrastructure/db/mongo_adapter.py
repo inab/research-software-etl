@@ -3,19 +3,23 @@ import os
 import pymongo
 from typing import Dict, Any
 from src.adapters.db.database_adapter import DatabaseAdapter
-from src.core.domain.entities.database_entries.pretools import PretoolsEntryModel
+from src.core.domain.entities.database_entries import PretoolsEntryModel
 from pydantic import ValidationError
 import logging
 
 class MongoDBAdapter(DatabaseAdapter):
-    def __init__(self):
+    def __init__(self, database=None):
         # Load connection parameters from environment variables
         mongo_host = os.getenv('MONGO_HOST', default='localhost')
         mongo_port = os.getenv('MONGO_PORT', default='27017')
         mongo_user = os.getenv('MONGO_USER')
         mongo_pass = os.getenv('MONGO_PWD')
         mongo_auth_src = os.getenv('MONGO_AUTH_SRC', default='admin')
-        mongo_db = os.getenv('MONGO_DB', default='oeb-research-software')
+
+        if not database:
+            mongo_db = os.getenv('MONGO_DB', default='oeb-research-software')
+        else:
+            mongo_db = database
 
         # Connect to MongoDB using the specified parameters
         self.client = pymongo.MongoClient(
@@ -104,6 +108,24 @@ class MongoDBAdapter(DatabaseAdapter):
         document = collection.find(query)
         return document
     
+    def fetch_entry(self, collection_name: str, query: Dict):
+        """
+        Retrieve a single document from a specified MongoDB collection that matches a given query.
+
+        This function searches for a single document within the specified collection that matches the criteria outlined in the query dictionary. It returns the document if found, or None if no matching document is located. This is typically used for fetching a single document based on specific criteria.
+
+        Args:
+            collection_name (str): The name of the collection from which the document is to be retrieved.
+            query (dict): A dictionary specifying the query criteria used to find the document. This must conform to MongoDB's query format.
+
+        Returns:
+            dict or None: A dictionary representing the document that matches the query, or None if no matching document is found.
+
+        """
+        collection = self.db[collection_name]
+        document = collection.find_one(query)
+        return document
+    
 
     def validate_pretools_data(self, documents):
         """
@@ -168,5 +190,17 @@ class MongoDBAdapter(DatabaseAdapter):
         raw_data = self.fetch_entries(collection_name, query)
 
         return raw_data
-
     
+    def insert_one(self, collection_name: str, document: Dict):
+        """
+        Insert a single document into a specified MongoDB collection.
+
+        This function inserts a single document into the specified collection within the MongoDB database. The document is provided as a dictionary and is added to the collection as a new entry. The function does not return any value, but it will add the document to the collection.
+
+        Args:
+            collection_name (str): The name of the MongoDB collection where the document will be inserted.
+            document (dict): A dictionary representing the document to be added to the collection. This should conform to the structure expected by the collection.
+
+        """
+        collection = self.db[collection_name]
+        collection.insert_one(document)
