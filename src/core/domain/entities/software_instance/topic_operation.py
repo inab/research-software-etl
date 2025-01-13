@@ -76,6 +76,30 @@ class vocabularyItem(BaseModel):
             
         return data
     
+    # ----------------------------------------
+    # Merge 
+    # ----------------------------------------
+    def merge(self, other: 'vocabularyItem') -> 'vocabularyItem':
+        if not isinstance(other, vocabularyItem):
+            raise ValueError("Cannot merge with a non-vocabularyItem object")
+        
+        # Ensure they are the same vocabulary item
+        if self.is_same_vocabulary_item(other):
+            # Merge vocabulary: Prefer non-empty vocabulary
+            self.vocabulary = self.vocabulary or other.vocabulary
+            
+            # Merge term: Prefer non-empty term
+            self.term = self.term or other.term
+            
+            # Merge URI: Prefer non-empty URI
+            self.uri = self.uri or other.uri
+            
+        return self
+    
+    def is_same_vocabulary_item(self, other: 'vocabularyItem') -> bool:
+        return (self.uri and self.uri == other.uri) or (self.term and self.term == other.term)
+
+    
     @model_validator(mode="after")
     @classmethod
     def populate_EDAM_vocabulary(cls, data):
@@ -110,6 +134,10 @@ class vocabulary_topic(vocabularyItem):
             raise ValueError("URI must correspond an EDAM topic")
             
         return data
+    
+    def merge(self, other: 'vocabulary_topic') -> 'vocabulary_topic':
+        # Call the parent class merge method
+        return super().merge(other)
 
 #------------------------------------------------
 # Operations class. Inherits from vocabularyItem
@@ -132,4 +160,8 @@ class vocabulary_operation(vocabularyItem):
             raise ValueError("URI must correspond an EDAM operation")
             
         return data
+    
+    def merge(self, other: 'vocabulary_operation') -> 'vocabulary_operation':
+        # Call the parent class merge method
+        return super().merge(other)
 

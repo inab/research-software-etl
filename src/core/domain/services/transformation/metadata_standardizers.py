@@ -33,6 +33,7 @@ class MetadataStandardizer(ABC):
             if self.bioconda_types == {}:
                 logging.error('bioconda_types is empty, aborting transformation')
                 raise Exception('bioconda_types is empty, aborting transformation')
+        return
 
 
     @staticmethod
@@ -43,12 +44,13 @@ class MetadataStandardizer(ABC):
         bioconda_types = {}
         try:
             pretools = src.core.shared.utils.connect_collection(collection='pretools')
-            biocondaCursor = pretools.find({'source': 'bioconda'}, {'name': 1, 'type': 1, '_id': 0})
+            biocondaCursor = pretools.find({'source': ['bioconda']}, {'name': 1, 'type': 1, '_id': 0})
         except:
             logging.error('while generating bioconda_types: could not connect to the pretools collection')
         else:
             for tool in biocondaCursor:
                 bioconda_types[tool['name']] = tool['type']
+    
     
         return(bioconda_types)
 

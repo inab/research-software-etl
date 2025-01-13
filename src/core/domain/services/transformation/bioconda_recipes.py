@@ -11,7 +11,7 @@ from typing import List, Dict
 # ------------------------------------------
 
 class biocondaRecipesStandardizer(MetadataStandardizer):
-    def __init__(self, source = 'bioconda_recipes',ignore_empty_bioconda_types = False):
+    def __init__(self, source = 'bioconda_recipes',ignore_empty_bioconda_types = True):
         MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
 
     @classmethod

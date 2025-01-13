@@ -1,4 +1,5 @@
 import json
+import os
 from typing import List, Dict
 from collections import defaultdict
 
@@ -8,6 +9,10 @@ from src.core.domain.entities.software_instance.main import instance
 from src.core.domain.services.integration.metadata import create_new_metadata, update_existing_metadata
 db_adapter = MongoDBAdapter()
 
+# collections 
+PRETOOLS = os.getenv('PRETOOLS', 'pretoolsDev')
+TOOLS = os.getenv('TOOLS', 'toolsDev')
+HISTORICAL_TOOLS = os.getenv('HISTORICAL_TOOLS', 'historical_toolsDev')
 
 def should_update(new_data, existing_data):
     # Simple comparison logic; this should be expanded based on actual schema and requirements
@@ -15,25 +20,25 @@ def should_update(new_data, existing_data):
 
 def fetch_current_document(name, type):
     query = {"data.name": name, "data.type": type}
-    current_document = db_adapter.fetch_entry('tools', query)
+    current_document = db_adapter.fetch_entry(TOOLS, query)
     return current_document
 
 def move_to_historical(document: Dict):
-    db_adapter.insert_one('historical_tools', document)
+    db_adapter.insert_one(HISTORICAL_TOOLS, document)
     return
 
 def update_primary_tools_colletion(document: Dict, metadata: Dict):
     db_adapter = MongoDBAdapter()
     doc = metadata.to_dict_for_db_insertion()
     doc['data'] = document
-    db_adapter.update_entry('tools', doc)
+    db_adapter.update_entry(TOOLS, doc)
     return
 
 def insert_into_primary_tools_collection(document: Dict, metadata: Dict):
     db_adapter = MongoDBAdapter()
     doc = metadata.to_dict_for_db_insertion()
     doc['data'] = document
-    db_adapter.insert_one('tools', document)
+    db_adapter.insert_one(TOOLS, document)
     return
 
 def merged_instance_to_database(instance, source_identifiers):
@@ -81,7 +86,8 @@ def merge_instances(instances):
     """
     merged_instance = instances[0]
     
-    # TODO: Implement merging logic based on actual requirements
+    for inst in instances[1:]:
+        merged_instance = merged_instance.merge(inst)
     
     return merged_instance
 
@@ -121,7 +127,7 @@ def fetch_pretools():
     """
     db_adapter = MongoDBAdapter()
     query = {}
-    db_collection = 'pretools'
+    db_collection = PRETOOLS
 
     documents = db_adapter.fetch_entries(db_collection, query)
     validated_documents = db_adapter.validate_pretools_data(documents)

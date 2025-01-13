@@ -142,13 +142,12 @@ def connect_collection(collection:str='test'):
     mongoPass = os.getenv('MONGO_PWD')
     mongoAuthSrc = os.getenv('MONGO_AUTH_SRC', default='admin')
     mongoDb = os.getenv('MONGO_DB', default='oeb-research-software')
-
     
 
     collections = {
-        'pretools' : os.environ.get('PRETOOLS', default='pretools'),
-        'alambique' : os.environ.get('ALAMBIQUE', default='alambique'),
-        'tools' : os.environ.get('TOOLS', default='tools'),
+        'pretools' : os.environ.get('PRETOOLS', default='pretoolsDev'),
+        'alambique' : os.environ.get('ALAMBIQUE', default='alambiqueDev'),
+        'tools' : os.environ.get('TOOLS', default='toolsDev'),
         'licensesMapping' : os.environ.get('LICENSES_COLLECTION', default='licensesMapping'),
     }
 

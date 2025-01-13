@@ -16,10 +16,19 @@ class MongoDBAdapter(DatabaseAdapter):
         mongo_pass = os.getenv('MONGO_PWD')
         mongo_auth_src = os.getenv('MONGO_AUTH_SRC', default='admin')
 
+            # print environment variables
+        logging.info(f"MongoDB host: {mongo_host}")
+        logging.info(f"MongoDB port: {mongo_port}")
+        logging.info(f"MongoDB user: {mongo_user}")
+        logging.info(f"MongoDB password: {mongo_pass}")
+        logging.info(f"MongoDB auth source: {mongo_auth_src}")
+
         if not database:
             mongo_db = os.getenv('MONGO_DB', default='oeb-research-software')
         else:
             mongo_db = database
+
+        logging.debug(f"MongoDB database: {mongo_db}")
 
         # Connect to MongoDB using the specified parameters
         self.client = pymongo.MongoClient(
@@ -104,6 +113,7 @@ class MongoDBAdapter(DatabaseAdapter):
             pymongo.cursor.Cursor: A cursor for all documents that match the query, which allows for iterating over the documents found.
  
         """
+        logging.debug(f"Fetching entries from collection {collection_name} with query: {query}")
         collection = self.db[collection_name]
         document = collection.find(query)
         return document

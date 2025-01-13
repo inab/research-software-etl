@@ -9,9 +9,8 @@ from src.infrastructure.db.mongo_adapter import MongoDBAdapter
 from src.adapters.db.database_adapter import DatabaseAdapter
 
 # Variables for collection names:
-
-PRETOOLS = os.getenv('PRETOOLS', 'pretools')
-ALAMBIQUE = os.getenv('ALAMBIQUE', 'alambique')
+PRETOOLS = os.getenv('PRETOOLS', 'pretoolsDev')
+ALAMBIQUE = os.getenv('ALAMBIQUE', 'alambiqueDev')
 
 # Code:
 def get_raw_data_db(source: str, db_adapter: DatabaseAdapter) -> List[Dict]:
@@ -79,7 +78,7 @@ def generate_metadata(identifier: str, db_adapter: DatabaseAdapter):
 
     Args:
         identifier (str): The unique identifier for which metadata is to be generated or updated.
-        db_adapter (DatabaseAdapter): An adapter instance used to interact with the database. It must have 'entry_exist', 'get_entry_metadata', and appropriate update and creation methods implemented.
+        db_adapter (DatabaseAdapter): An adapter instance used to interact with the database. It must have 'entry_exists', 'get_entry_metadata', and appropriate update and creation methods implemented.
 
     Returns:
         Metadata: An instance of the Metadata class containing the generated or updated metadata.
@@ -89,14 +88,15 @@ def generate_metadata(identifier: str, db_adapter: DatabaseAdapter):
 
     """
     
-    entry_exists_db = db_adapter.entry_exist(PRETOOLS, identifier )
-    if entry_exists_db:
+    entry_exists_db = db_adapter.entry_exists(PRETOOLS, identifier)
+    if entry_exists_db == False:
         metadata = create_new_metadata(identifier, PRETOOLS)
     else:
         existing_metadata  = db_adapter.get_entry_metadata(PRETOOLS, identifier)
         existing_metadata = Metadata(**existing_metadata)
         metadata = update_existing_metadata(identifier, PRETOOLS, existing_metadata)
     
+    print(metadata.__dict__)
     return metadata
     
 
@@ -163,7 +163,8 @@ def process_entry(entry, source, db_adapter):
         metadata = generate_metadata(identifier, db_adapter)
 
         for inst in insts:
-            document = metadata.to_dict_for_db_insertion()
+            #document = metadata.to_dict_for_db_insertion()
+            document = metadata.__dict__
             document['data'] = inst.__dict__
             db_adapter.update_entry(PRETOOLS, identifier, document)
     
@@ -171,9 +172,9 @@ def process_entry(entry, source, db_adapter):
         logging.error(f"An error occurred while processing entry from {source}: {e}")
 
 sources = [
-    'biotools',
     'bioconda',
     'bioconda_recipes',
+    'biotools',
     'bioconductor',
     'galaxy_metadata',
     'toolshed',
@@ -182,7 +183,7 @@ sources = [
     'opeb_metrics'
 ]
 
-def transform(loglevel: int = logging.WARNING, sources: List[str] = sources, **kwargs):
+def transform_sources(loglevel: int = logging.WARNING, sources: List[str] = sources, **kwargs):
     """
     Main function to orchestrate the transformation process for multiple sources.
 

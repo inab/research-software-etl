@@ -2,7 +2,7 @@
 The command-line interface for the transformer
 """
 
-from .main import transform
+from src.core.use_cases.data_transformation import transform_sources
 import argparse
 import logging
 from dotenv import load_dotenv
@@ -34,7 +34,10 @@ def main():
     logging.debug(f"Env file: {args.env_file}")
 
     logging.info("Transforming raw data...")
-    transform(loglevel=numeric_level)
+
+    # TODO: take sources from argparse
+    sources = ['bioconda', 'biotools', 'bioconductor', 'galaxy_metadata', 'toolshed', 'galaxy', 'sourceforge', 'opeb_metrics']
+    transform_sources(loglevel=numeric_level, sources=sources)
     logging.info("Transformation successful!")
 
 if __name__ == "__main__":

@@ -68,6 +68,27 @@ class license_item(BaseModel, validate_assignment=True):
         '''
         licensesCollection = connect_collection(collection='licensesMapping')
         return(licensesCollection)
+    
+
+    def merge(self, other: 'license_item') -> 'license_item':
+        if not isinstance(other, license_item):
+            raise ValueError("Cannot merge with a non-license_item object")
+        
+        # Merge names: Prefer SPDX-mapped name if available
+        if self.name != other.name:
+            if 'SPDX' in self.name and 'SPDX' not in other.name:
+                merged_name = self.name
+            elif 'SPDX' in other.name and 'SPDX' not in self.name:
+                merged_name = other.name
+            else:
+                merged_name = self.name or other.name
+        else:
+            merged_name = self.name
+        
+        # Merge URLs: Prefer non-null URL
+        merged_url = self.url or other.url
+
+        return license_item(name=merged_name, url=merged_url)
 
             
     

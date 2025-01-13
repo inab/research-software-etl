@@ -31,6 +31,8 @@ def create_new_metadata(identifier: str, alambique: str) -> Metadata:
     commit_url = build_commit_url()
     pipeline_url = os.getenv("CI_PIPELINE_URL")
 
+    
+
     metadata = Metadata(
         created_at=current_date,
         created_by=commit_url,

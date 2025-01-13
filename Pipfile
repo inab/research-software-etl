@@ -8,6 +8,8 @@ mkdocs = ">=1.5.3"
 mkdocs-material = ">=5.4.0"
 mkdocstrings = "==0.24.1"
 freezegun = "*"
+pydantic = {extras = ["email"], version = "*"}
+bibtexparser = "*"
 
 [dev-packages]
 

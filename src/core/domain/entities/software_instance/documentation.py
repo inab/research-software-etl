@@ -44,7 +44,23 @@ class documentation_item(BaseModel):
                     data['type'] = 'general'
         
         return data
-        
+    
+    def merge(self, other: 'documentation_item') -> 'documentation_item':
+        if not isinstance(other, documentation_item):
+            raise ValueError("Cannot merge with a non-documentation_item object")
+
+        # Merge 'type': prefer the most specific type
+        if self.type == 'general' and other.type != 'general':
+            self.type = other.type
+
+        # Merge 'url': prefer the non-null URL
+        self.url = self.url or other.url
+
+        # Merge 'content': prefer the longer or more detailed content
+        if not self.content or (other.content and len(other.content) > len(self.content)):
+            self.content = other.content
+
+        return self
         
 
 

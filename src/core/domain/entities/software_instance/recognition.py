@@ -1,6 +1,8 @@
 from pydantic import BaseModel, EmailStr, field_validator, HttpUrl, model_validator
 from enum import Enum
+from typing import Optional
 import re
+
 
 
 class type_contributor(Enum):
@@ -11,10 +13,10 @@ class type_contributor(Enum):
 class contributor(BaseModel):
     type: type_contributor = None
     name: str = None
-    email: EmailStr = None
+    email: Optional[EmailStr] = None
     maintainer: bool = False
-    url: HttpUrl = None
-    orcid: str = None
+    url: Optional[HttpUrl] = None
+    orcid: Optional[str] = None
 
     @field_validator('name', mode="after")
     @classmethod
@@ -27,8 +29,6 @@ class contributor(BaseModel):
         else:
             return data
         
-
-
 
     @staticmethod
     def is_trash(data):
@@ -192,5 +192,28 @@ class contributor(BaseModel):
 
         return False
 
+    def merge(self, other: 'contributor') -> 'contributor':
+        if not isinstance(other, contributor):
+            raise ValueError("Cannot merge with a non-contributor object")
+
+        # Merge name: Prefer non-empty name
+        self.name = self.name or other.name
+
+        # Merge type: Prefer the type from 'self' if defined, otherwise take from 'other'
+        self.type = self.type or other.type
+
+        # Merge email: Prefer the non-null email
+        self.email = self.email or other.email
+
+        # Merge maintainer: If either is a maintainer, the merged result should be True
+        self.maintainer = self.maintainer or other.maintainer
+
+        # Merge URL: Prefer the non-null URL
+        self.url = self.url or other.url
+
+        # Merge ORCID: Prefer the non-null ORCID
+        self.orcid = self.orcid or other.orcid
+
+        return self
             
             

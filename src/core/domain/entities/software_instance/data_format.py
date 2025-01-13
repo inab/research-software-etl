@@ -40,6 +40,21 @@ class data_type(BaseModel, validate_assignment=True):
     term : str = ''
     uri : Optional[HttpUrl] = None
 
+    #------------------------------------------------------------
+    # Merging data types
+    #------------------------------------------------------------
+
+    def merge(self, other: 'data_type') -> 'data_type':
+        if not isinstance(other, data_type):
+            raise ValueError("Cannot merge with a non-data_type object")
+
+        # Prefer the non-empty vocabulary, term, and URI
+        self.vocabulary = self.vocabulary or other.vocabulary
+        self.term = self.term or other.term
+        self.uri = self.uri or other.uri
+
+        return self
+
 
 class data_format(BaseModel, validate_assignment=True):
     '''
@@ -60,6 +75,28 @@ class data_format(BaseModel, validate_assignment=True):
     term : str = ''
     uri : Optional[HttpUrl] = None
     datatype : Optional[data_type] = None
+
+    #------------------------------------------------------------
+    # Merging data formats
+    #------------------------------------------------------------
+
+    def merge(self, other: 'data_format') -> 'data_format':
+        if not isinstance(other, data_format):
+            raise ValueError("Cannot merge with a non-data_format object")
+
+        # Prefer the non-empty vocabulary, term, and URI
+        self.vocabulary = self.vocabulary or other.vocabulary
+        self.term = self.term or other.term
+        self.uri = self.uri or other.uri
+
+        # Merge the datatype if present
+        if self.datatype and other.datatype:
+            self.datatype = self.datatype.merge(other.datatype)
+        elif other.datatype:
+            self.datatype = other.datatype
+
+        return self
+    
 
     #------------------------------------------------------------
     # Dealing with free text formats
