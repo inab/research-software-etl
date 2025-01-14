@@ -202,6 +202,13 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
             return self.is_bitbucket_repo(url)
         else:
             return []
+        
+
+    #if url starts with "/opt/recipe", remove that part 
+    def clean_url(self, url):
+        if url.startswith("/opt/recipe"):
+            url = url.replace("/opt/recipe", "")
+        return url
 
     @classmethod
     def repository(self, tool: Dict) -> List[HttpUrl]:
@@ -213,7 +220,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         # It can be in about/home
         if tool.get('about'):
             if tool['about'].get('home'):
-                repository = self.is_repository(tool['about']['home'])
+                clean_url = self.clean_url(tool['about']['home'])
+                repository = self.is_repository(clean_url)
                 if repository:
                     return [{
                         'url': repository
@@ -222,7 +230,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         # It can be in about/dev_url
         if tool.get('about'):
             if tool['about'].get('dev_url'):
-                repository = self.is_repository(tool['about']['dev_url'])
+                clean_url = self.clean_url(tool['about']['dev_url'])
+                repository = self.is_repository(clean_url)
                 if repository:
                     return [{
                         'url': repository
@@ -231,7 +240,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         # It can be in source/url
         if tool.get('source'):
             if tool['source'].get('url'):
-                repository = self.is_repository(tool['source']['url'])
+                clean_url = self.clean_url(tool['source']['url'])
+                repository = self.is_repository(clean_url)
                 if repository:
                     return [{
                         'url': repository
