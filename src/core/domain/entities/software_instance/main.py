@@ -109,7 +109,7 @@ class instance(BaseModel, validate_assignment=True):
                                                         that supports a computer's basic functions, such as scheduling 
                                                         tasks, executing applications, and controlling peripherals.""",
                                                         example=["Linux", "macOS"])
-    source_code : List[HttpUrl] = Field([],
+    source_code : List[AnyUrl] = Field([],
                                         title="Source code",
                                         description="""List of source code links of the software. The source code 
                                         is the version of software as it is originally written (i.e., typed into a 
@@ -547,6 +547,20 @@ class instance(BaseModel, validate_assignment=True):
                     new_links.append(link)
         
         return new_links
+    
+
+    @field_validator('webpage', mode="before")
+    @classmethod
+    def clean_webpage(cls, value) -> List[str]:
+        # Ensure value is a list (for cases where it might be passed as a single string)
+        if isinstance(value, str):
+            value = [value]
+        
+        # Filter out URLs starting with "ftp://ftp."
+        filtered_urls = [
+            url for url in value if not str(url).startswith("ftp://ftp.")
+        ]
+        return filtered_urls
 
 
     @field_validator('webpage',  mode="after")
@@ -619,6 +633,7 @@ class instance(BaseModel, validate_assignment=True):
                         value.remove(item)
                         value.extend(item.split("|"))
         return value
+    
         
     @classmethod
     def generate_sources_labels(self):

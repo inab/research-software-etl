@@ -1,6 +1,6 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional
-
+import re
 
 class mentions_year(BaseModel):
     year: int
@@ -9,13 +9,27 @@ class mentions_year(BaseModel):
 class publication_item(BaseModel):
     cit_count: int = None
     citations : List[mentions_year] = []
-    doi: Optional[str] = Field(pattern=r"^10\.\d{4,9}/[-._;()/:a-zA-Z0-9]+$", default=None)
+    doi: Optional[str] = Field(pattern=r"10\.\d{4,9}\/[-._;()\/:a-zA-Z0-9]+", default=None)
     pmcid:  Optional[str] = Field(pattern=r"^PMC\d{7}$", default=None)
     pmid:  Optional[str] = Field(pattern=r"^\d+$",  default=None) 
     title: str = None
     year: int = None
     ref_count: int = None
     refs : List[mentions_year] = []
+
+    @field_validator('doi', mode="before")
+    @classmethod
+    def clean_doi(cls, value) -> str:
+        """
+        Ensures that the DOI is trimmed to exclude the URL if it is provided as a full DOI URL.
+        """
+        if value and value.startswith("https://doi.org/"):
+            match = re.match(r"https://doi\.org/(.+)", value)
+            if match:
+                value = match.group(1)
+        
+        return value
+
     
     def merge(self, other: 'publication_item') -> 'publication_item':
         if not isinstance(other, publication_item):

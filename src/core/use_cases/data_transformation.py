@@ -90,13 +90,12 @@ def generate_metadata(identifier: str, db_adapter: DatabaseAdapter):
     
     entry_exists_db = db_adapter.entry_exists(PRETOOLS, identifier)
     if entry_exists_db == False:
-        metadata = create_new_metadata(identifier, PRETOOLS)
+        metadata = create_new_metadata(identifier, ALAMBIQUE)
     else:
         existing_metadata  = db_adapter.get_entry_metadata(PRETOOLS, identifier)
         existing_metadata = Metadata(**existing_metadata)
         metadata = update_existing_metadata(identifier, PRETOOLS, existing_metadata)
     
-    print(metadata.__dict__)
     return metadata
     
 
@@ -164,13 +163,17 @@ def process_entry(entry, source, db_adapter):
 
         for inst in insts:
             #document = metadata.to_dict_for_db_insertion()
-            document = metadata.__dict__
-            document['data'] = inst.__dict__
-            db_adapter.update_entry(PRETOOLS, identifier, document)
+            document = metadata.model_dump()
+            document['data'] = inst.model_dump()
+            if db_adapter.entry_exists(PRETOOLS, identifier):
+                db_adapter.update_entry(PRETOOLS, identifier, document)
+            else:
+                db_adapter.insert_one(PRETOOLS, document)
     
     except Exception as e:
         logging.error(f"An error occurred while processing entry from {source}: {e}")
 
+'''
 sources = [
     'bioconda',
     'bioconda_recipes',
@@ -181,6 +184,11 @@ sources = [
     'galaxy',
     'sourceforge',
     'opeb_metrics'
+]
+'''
+
+sources = [
+    'bioconda_recipes'
 ]
 
 def transform_sources(loglevel: int = logging.WARNING, sources: List[str] = sources, **kwargs):

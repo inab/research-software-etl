@@ -31,7 +31,10 @@ def create_new_metadata(identifier: str, alambique: str) -> Metadata:
     commit_url = build_commit_url()
     pipeline_url = os.getenv("CI_PIPELINE_URL")
 
-    
+    if not pipeline_url:
+        pipeline_url = "local"
+    if not commit_url:
+        commit_url = "https://gitlab.com/evamdpico/research-software-meta/-/tree/4a4cdc3c2076f6f7c920c5de93d9d2563ec5bcba"
 
     metadata = Metadata(
         created_at=current_date,

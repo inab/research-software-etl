@@ -94,6 +94,7 @@ class MongoDBAdapter(DatabaseAdapter):
             data (dict): A dictionary containing the fields and values to be updated. Format should match MongoDB's update standards.
         """
         collection = self.db[collection_name]
+        logging.info("Updating entry in collection: %s", collection_name)
         collection.update_one(
             {'_id': identifier},  # Query matching the document to update
             {'$set': data}  # Fields to update
