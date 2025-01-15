@@ -154,9 +154,9 @@ def process_entry(entry, source, db_adapter):
     """
     try:
         identifier = get_identifier(entry)
-        logging.info(f"Processing entry with identifier {identifier} from {source}")
+        # logging.info(f"Processing entry with identifier {identifier} from {source}")
         if not identifier:
-            logging.debug("No identifier found for entry; skipping...")
+            # logging.debug("No identifier found for entry; skipping...")
             return
 
         insts = standardize_entry(entry, source)
@@ -172,7 +172,7 @@ def process_entry(entry, source, db_adapter):
                 db_adapter.insert_one(PRETOOLS, document)
     
     except Exception as e:
-        logging.error(f"An error occurred while processing entry from {source}: {e}")
+        logging.error(f"An error occurred while processing entry {entry} from {source}: {e}")
 
 '''
 sources = [
