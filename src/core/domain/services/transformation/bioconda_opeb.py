@@ -1,6 +1,7 @@
 from src.core.domain.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.core.domain.entities.software_instance.main import instance
 
+from pydantic import HttpUrl, ValidationError
 from typing import List, Dict, Any
 
 # --------------------------------------------
@@ -14,7 +15,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
     
     @classmethod
-    def get_repo_name_version_type(self, id_):
+    def get_repo_name_version_type(cls, id_):
         fields = id_.split('/')
         name_plus = fields[5]
         name_plus_fields=name_plus.split(':')
@@ -47,7 +48,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         return(types_)
     
     @classmethod
-    def description(self, tool: Dict[str, Any]):
+    def description(cls, tool: Dict[str, Any]):
         '''
         Returns the description of the tool.
         - tool: tool to be transformed
@@ -61,7 +62,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             return []        
         
     @classmethod
-    def webpage(self, tool: Dict[str, Any]):
+    def webpage(cls, tool: Dict[str, Any]):
         '''
         Returns the webpage of the tool.
         - tool: tool to be transformed
@@ -74,7 +75,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             return []
         
     @classmethod
-    def publication(self, tool: Dict[str, Any]):
+    def publication(cls, tool: Dict[str, Any]):
         '''
         Returns the publication of the tool.
         - tool: tool to be transformed
@@ -86,7 +87,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             return []
     
     @classmethod
-    def source_code(self, tool: Dict[str, Any]):
+    def source_code(cls, tool: Dict[str, Any]):
         '''
         Returns the source code links of the tool.
         - tool: tool to be transformed
@@ -102,7 +103,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         return(source_code)
     
     @classmethod
-    def download(self, tool: Dict[str, Any]):
+    def download(cls, tool: Dict[str, Any]):
         '''
         Returns the download links of the tool.
         - tool: tool to be transformed
@@ -116,7 +117,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         return(download)
     
     @classmethod
-    def documentation(self, tool: Dict) -> List[Dict]:
+    def documentation(cls, tool: Dict) -> List[Dict]:
         '''
         Builds the documentation of the tool.
         - tool: dictionary with the tool data
@@ -125,7 +126,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         # Installation instructions in Bioconda page
         if tool.get('name'):
             # make sure the page exists
-            if self.page_exists(f"https://bioconda.github.io/recipes/{tool['name']}/README.html"):
+            if cls.page_exists(f"https://bioconda.github.io/recipes/{tool['name']}/README.html"):
                 documentation.append({
                     'type': 'installation_instructions',
                     'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
@@ -138,7 +139,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         return(documentation)
     
     @classmethod
-    def license(self, tool: Dict[str, Any]):
+    def license(cls, tool: Dict[str, Any]):
         '''
         Returns the license of the tool.
         - tool: tool to be transformed
@@ -152,8 +153,20 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         
         return(license)
     
+    @staticmethod
+    def validate_http_url(url: str) -> bool:
+        '''
+        Validates an HTTP URL.
+        - url: url to be validated
+        '''
+        try:
+            validated_url = HttpUrl.validate(url)
+            return True
+        except ValidationError as e:
+            return False
+    
     @classmethod
-    def repositories(self, tool: Dict[str, Any]):
+    def repositories(cls, tool: Dict[str, Any]):
         '''
         Returns the repositories of the tool.
         - tool: tool to be transformed
@@ -161,14 +174,15 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         repositories = []
         if tool.get('repositories'):
             for repo in tool['repositories']:
-                repositories.append({
-                    'url': repo
-                })
-        
+                if cls.validate_http_url(repo):
+                    repositories.append({
+                        'url': repo
+                    })
+            
         return(repositories)
     
     @classmethod
-    def version(self, version):
+    def version(cls, version):
         if version:
             if isinstance(version, str):
                 return([version])

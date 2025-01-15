@@ -154,6 +154,7 @@ def process_entry(entry, source, db_adapter):
     """
     try:
         identifier = get_identifier(entry)
+        logging.info(f"Processing entry with identifier {identifier} from {source}")
         if not identifier:
             logging.debug("No identifier found for entry; skipping...")
             return
@@ -191,7 +192,7 @@ sources = [
     'bioconda_recipes'
 ]
 
-def transform_sources(loglevel: int = logging.WARNING, sources: List[str] = sources, **kwargs):
+def transform_sources(loglevel: int = logging.DEBUG, sources: List[str] = sources, **kwargs):
     """
     Main function to orchestrate the transformation process for multiple sources.
 

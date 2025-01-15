@@ -83,7 +83,15 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         '''
         source_code = []
         try:
-            source_code = tool.get('source').get('url')
+            source_url = tool['source'].get('url')
+
+            # if source_url is a list of strings, we take all as source_url
+            if isinstance(source_url, list):
+                source_code = source_url
+            elif isinstance(source_url, str):
+                source_code = [source_url]
+
+            logging.info(f"Source code: {source_code}")
         except:
             pass
 
@@ -204,12 +212,6 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
             return []
         
 
-    #if url starts with "/opt/recipe", remove that part 
-    def clean_url(self, url):
-        if url.startswith("/opt/recipe"):
-            url = url.replace("/opt/recipe", "")
-        return url
-
     @classmethod
     def repository(self, tool: Dict) -> List[HttpUrl]:
         '''
@@ -220,8 +222,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         # It can be in about/home
         if tool.get('about'):
             if tool['about'].get('home'):
-                clean_url = self.clean_url(tool['about']['home'])
-                repository = self.is_repository(clean_url)
+                repository = self.is_repository(tool['about']['home'])
                 if repository:
                     return [{
                         'url': repository
@@ -230,8 +231,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         # It can be in about/dev_url
         if tool.get('about'):
             if tool['about'].get('dev_url'):
-                clean_url = self.clean_url(tool['about']['dev_url'])
-                repository = self.is_repository(clean_url)
+                repository = self.is_repository(tool['about']['dev_url'])
                 if repository:
                     return [{
                         'url': repository
@@ -240,8 +240,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         # It can be in source/url
         if tool.get('source'):
             if tool['source'].get('url'):
-                clean_url = self.clean_url(tool['source']['url'])
-                repository = self.is_repository(clean_url)
+                repository = self.is_repository(tool['source']['url'])
                 if repository:
                     return [{
                         'url': repository
