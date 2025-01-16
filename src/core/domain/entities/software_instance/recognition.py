@@ -5,7 +5,7 @@ import re
 
 
 
-class type_contributor(Enum):
+class type_contributor(str, Enum):
     Person = 'Person'
     Organization = 'Organization'
 
@@ -18,6 +18,12 @@ class contributor(BaseModel):
     url: Optional[HttpUrl] = None
     orcid: Optional[str] = None
 
+    class Config:
+        # Automatically serialize Enums to their string values
+        json_encoders = {
+            type_contributor: lambda v: v.value
+        }
+
     @field_validator('name', mode="after")
     @classmethod
     def name_cannot_be_empty(cls, data):
@@ -28,6 +34,19 @@ class contributor(BaseModel):
             raise ValueError("Name cannot be empty")
         else:
             return data
+        
+    @field_validator('type', mode="before")
+    @classmethod
+    def reclassify_organizations(cls, data):
+        '''
+        If type is Institute, Project, Funding Agency, etc..., reclassify to Organization
+        '''
+        org_keywords = ['institute', 'project', 'funding agency', 'division', 'consortium']
+        for keyword in org_keywords:
+            if data.lower() == keyword:
+                return type_contributor.Organization
+        
+        return data
         
 
     @staticmethod
@@ -130,7 +149,6 @@ class contributor(BaseModel):
 
             if contributor.is_trash(data):
                 return None
-
         
         return data
     
@@ -140,8 +158,6 @@ class contributor(BaseModel):
     def classify_person_organization(cls, data):
         if data.get('orcid'):
             data['type'] = type_contributor.Person
-        else:
-            print(data)
 
         return data
 

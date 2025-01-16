@@ -10,7 +10,7 @@ class publication_item(BaseModel):
     cit_count: int = None
     citations : List[mentions_year] = []
     doi: Optional[str] = Field(pattern=r"10\.\d{4,9}\/[-._;()\/:a-zA-Z0-9]+", default=None)
-    pmcid:  Optional[str] = Field(pattern=r"^PMC\d{7}$", default=None)
+    pmcid:  Optional[str] = Field(pattern=r"^PMC\d+$", default=None)
     pmid:  Optional[str] = Field(pattern=r"^\d+$",  default=None) 
     title: str = None
     year: int = None

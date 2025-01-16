@@ -33,6 +33,7 @@ class software_types(str, Enum):
     rest = 'rest'
     workbench = 'workbench'
     suite = 'suite'
+    undefined = 'undefined'
 
 class operating_systems(str, Enum):
     Linux = 'Linux'
@@ -46,16 +47,16 @@ class operating_systems(str, Enum):
 
 
 class data_sources(str, Enum):
-    bioconda = "bioconda",
-    bioconda_recipes = "bioconda_recipes",
-    bioconductor = "bioconductor",
-    biotools = "biotools",
-    bitbucket = "bitbucket",
-    galaxy = "galaxy",
-    galaxy_metadata = "galaxy_metadata",
-    github = "github",
-    opeb_metrics = "opeb_metrics",
-    sourceforge = "sourceforge",
+    bioconda = "bioconda"
+    bioconda_recipes = "bioconda_recipes"
+    bioconductor = "bioconductor"
+    biotools = "biotools"
+    bitbucket = "bitbucket"
+    galaxy = "galaxy"
+    galaxy_metadata = "galaxy_metadata"
+    github = "github"
+    opeb_metrics = "opeb_metrics"
+    sourceforge = "sourceforge"
     toolshed = "toolshed"
     
 
@@ -209,6 +210,13 @@ class instance(BaseModel, validate_assignment=True):
                                 title="Citation",
                                 description="How to cite the software.")
             
+    class Config:
+        # Serialize Enums to their string values
+        json_encoders = {
+            software_types: lambda v: v.value,
+            operating_systems: lambda v: v.value,
+            data_sources: lambda v: v.value
+            }
 
     def merge(self, other: 'instance') -> 'instance':
         '''

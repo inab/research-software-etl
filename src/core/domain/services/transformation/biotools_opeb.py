@@ -61,8 +61,18 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         '''
         documentation = []
         if tool.get('documentation'):
+            # Links without classification. They are a list under the key 'doc_links'
+            if tool['documentation'].get('doc_links') and len(tool['documentation']['doc_links']) > 0:
+                for url in tool['documentation']['doc_links']:
+                    if url:
+                        documentation.append({
+                            'type': 'general',
+                            'url': url
+                        })
+
+            # Diferent kinds of documentation. They are different keys in documentation
             for key in tool['documentation'].keys():
-                if tool['documentation'][key]:
+                if key != 'doc_links' and tool['documentation'][key]:
                     documentation.append({
                         'type': key,
                         'url': tool['documentation'][key]            

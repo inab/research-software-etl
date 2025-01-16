@@ -44,12 +44,12 @@ class MetadataStandardizer(ABC):
         bioconda_types = {}
         try:
             pretools = src.core.shared.utils.connect_collection(collection='pretools')
-            biocondaCursor = pretools.find({'source': ['bioconda']}, {'name': 1, 'type': 1, '_id': 0})
+            biocondaCursor = pretools.find({'data.source': ['bioconda']}, {'data.name': 1, 'data.type': 1, '_id': 0})
         except:
             logging.error('while generating bioconda_types: could not connect to the pretools collection')
         else:
             for tool in biocondaCursor:
-                bioconda_types[tool['name']] = tool['type']
+                bioconda_types[tool['data']['name']] = tool['data']['type']
     
     
         return(bioconda_types)
