@@ -108,6 +108,50 @@ def group_by_key(instances):
         grouped_instances[key].append(inst)
     return grouped_instances
 
+
+def extract_links(instances):
+    '''
+    IN: {
+    'name/type': [instance1, instance2, ...],
+    'name/type': [instance3, instance4, ...],
+    }
+    OUT: {
+    'name/type': [link1, link2, ...],
+    'name/type': [link3, link4, ...],
+    }
+    '''
+    pass
+
+def group_by_links(instances):
+    main_sources = ['biotools','galaxy','galaxy_metadata', 'toolshed', 'bioconda', 'bioconda_recipes' ]
+    repository_sources = ['github', 'sourceforge', 'bioconductor']
+
+    # Step 1: Generate Set A: Make name and type groups with instances from main_sources.
+    instances_set_a = [inst for inst in instances if inst.source[0] in main_sources]
+    grouped_instances_set_a = group_by_key(instances_set_a)
+    
+    # Step 2: Extract github, sourceforge and bioconductor links from instances in Set A. 
+    set_a_w_links = extract_links(grouped_instances_set_a)
+    all_links_a = [link for links in set_a_w_links.values() for link in links] 
+
+    # Step 3: Generate Set B: Group by name-type instances from repository_sources that are not in Set B.
+    ## !!! I NEED TO KEEP THE SOURCE URL IN PRETOOLS METADATA !!!
+    instances_set_b = [inst for inst in instances if inst.source[0] in repository_sources]
+    instances_set_b = [inst for inst in instances_set_b if inst.source_url not in all_links_a]
+    grouped_instances_set_b = group_by_key(instances_set_b)
+
+    # Step 4: Extract github, sourceforge and bioconductor links from instances in Set B.
+    set_b_w_links = extract_links(grouped_instances_set_b)
+    all_links_b = [link for links in set_b_w_links.values() for link in links]
+
+    # Step 5: Remove tools in Set B whose link is in other tool of Set B.
+    instances_set_b = [inst for inst in instances_set_b if inst.source_url not in all_links_b]
+
+
+    # Step 6: Merge instances in Set A and Set B.
+
+    # Step 7: Make groups by name and type. If there are different github, etc links for same name and type, notify about it.
+
 def full_merge_process(instances: List, batch_size: int = 100):
     """
     Group metadata objects by key, process each group in batches, and merge instances within each batch.
