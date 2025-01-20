@@ -6,10 +6,13 @@ from typing import List, Optional, Any, Dict
 class source_item(BaseModel):
     collection: str = Field(..., description="Collection of the source")
     id: str = Field(..., description="Id of the source")
+    source_url = Optional(HttpUrl) = Field(None, description="URL of the source") # generally, only available for github, sourceforge and bioconductor
+
 
 class source_items_list(BaseModel):
     collection : str = Field(..., description="Collection of the source")
     ids: List[str] = Field(..., description="List of ids of the source")
+
 
 class Metadata(BaseModel):
     '''
@@ -24,7 +27,8 @@ class Metadata(BaseModel):
         "updated_logs": "https://gitlab.bsc.es/oeb-research-software/oeb-research-software/-/pipelines/1235",
         "source":  {
             "collection": "tools",
-            "id": "toolshed/trimal/cmd/1.4"
+            "id": "toolshed/trimal/cmd/1.4",
+            "source_url": "http://github.com/foo/bar"
         }
     }
     '''
@@ -34,7 +38,8 @@ class Metadata(BaseModel):
     last_updated_at: str = Field(..., description="Last update of the entry", alias='last_updated_at')
     updated_by: str = Field(..., description="User or task that updated the entry", alias='updated_by')
     updated_logs: str = Field(..., description="Link to the logs of the last update", alias='updated_logs')
-    source: source_item = Field(..., description="Source of the entry", alias='source') # only one source!
+    source: List[source_item] = Field(..., description="Sources of the entry", alias='source') # only one source!
+    
 
     def to_dict_for_db_insertion(self):
         '''
@@ -42,7 +47,7 @@ class Metadata(BaseModel):
         The fields are the same as the ones in the class, but prefixed by a "@".
         '''
         metadata_for_db = {}
-        for field in self.__fields__:
+        for field in self.__model_fields__:
             metadata_for_db['@'+field] = getattr(self, field)
         
         return metadata_for_db

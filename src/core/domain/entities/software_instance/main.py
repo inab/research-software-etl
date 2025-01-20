@@ -209,6 +209,7 @@ class instance(BaseModel, validate_assignment=True):
     citation: Optional[List[dict]] = Field([],
                                 title="Citation",
                                 description="How to cite the software.")
+    
             
     class Config:
         # Serialize Enums to their string values

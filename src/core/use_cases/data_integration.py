@@ -135,7 +135,7 @@ def group_by_links(instances):
     all_links_a = [link for links in set_a_w_links.values() for link in links] 
 
     # Step 3: Generate Set B: Group by name-type instances from repository_sources that are not in Set B.
-    ## !!! I NEED TO KEEP THE SOURCE URL IN PRETOOLS METADATA !!!
+    ## Keep the URL of instances in B.
     instances_set_b = [inst for inst in instances if inst.source[0] in repository_sources]
     instances_set_b = [inst for inst in instances_set_b if inst.source_url not in all_links_a]
     grouped_instances_set_b = group_by_key(instances_set_b)
@@ -146,7 +146,6 @@ def group_by_links(instances):
 
     # Step 5: Remove tools in Set B whose link is in other tool of Set B.
     instances_set_b = [inst for inst in instances_set_b if inst.source_url not in all_links_b]
-
 
     # Step 6: Merge instances in Set A and Set B.
 
