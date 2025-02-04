@@ -70,7 +70,7 @@ def get_identifier(entry: Dict) -> str:
         return None
     return identifier
 
-def generate_metadata(identifier: str, db_adapter: DatabaseAdapter):
+def generate_metadata(identifier: str, source_url: str, db_adapter: DatabaseAdapter):
     """
     Generate or update metadata for a given identifier using a database adapter.
 
@@ -90,7 +90,7 @@ def generate_metadata(identifier: str, db_adapter: DatabaseAdapter):
     
     entry_exists_db = db_adapter.entry_exists(PRETOOLS, identifier)
     if entry_exists_db == False:
-        metadata = create_new_metadata(identifier, ALAMBIQUE)
+        metadata = create_new_metadata(identifier, source_url, ALAMBIQUE)
     else:
         existing_metadata  = db_adapter.get_entry_metadata(PRETOOLS, identifier)
         existing_metadata = Metadata(**existing_metadata)
@@ -154,13 +154,14 @@ def process_entry(entry, source, db_adapter):
     """
     try:
         identifier = get_identifier(entry)
+        source_url = entry.get('@source_url', None)
         logging.info(f"Processing entry with identifier {identifier} from {source}")
         if not identifier:
             logging.debug("No identifier found for entry; skipping...")
             return
 
         insts = standardize_entry(entry, source)
-        metadata = generate_metadata(identifier, db_adapter)
+        metadata = generate_metadata(identifier, source_url, db_adapter)
 
         for inst in insts:
             #document = metadata.to_dict_for_db_insertion()
@@ -189,10 +190,7 @@ sources = [
     'opeb_metrics'
 ]
 '''
-
-sources = [
-    'bioconda_recipes'
-]
+sources = []
 
 def transform_sources(loglevel: int = logging.DEBUG, sources: List[str] = sources, **kwargs):
     """

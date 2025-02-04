@@ -9,7 +9,7 @@ from datetime import datetime
 from src.core.domain.entities.metadata import Metadata
 from datetime import datetime
 
-def create_new_metadata(identifier: str, alambique: str) -> Metadata:
+def create_new_metadata(identifier: str, source_url: str = None,  alambique: str = 'alambiqueDev') -> Metadata:
     """
     Creates metadata for a new database entry.
 
@@ -43,10 +43,11 @@ def create_new_metadata(identifier: str, alambique: str) -> Metadata:
         last_updated_at=current_date,
         updated_by=commit_url,
         updated_logs=pipeline_url,
-        source={
+        source=[{
             "collection": alambique,
-            "id": identifier
-        }
+            "id": identifier,
+            "source_url": source_url
+        }]
     )
     return metadata
 

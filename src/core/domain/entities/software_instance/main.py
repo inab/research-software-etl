@@ -2,6 +2,7 @@ from pydantic import BaseModel, field_validator, HttpUrl, AnyUrl,  Field
 from typing import List, Optional, Dict
 from enum import Enum
 import re
+import logging
 
 from src.core.domain.entities.software_instance.data_format import data_format
 from src.core.domain.entities.software_instance.documentation import documentation_item
@@ -497,6 +498,7 @@ class instance(BaseModel, validate_assignment=True):
         '''
         Raises an error if the name is empty.
         '''
+        # logging.info(f"-- Validating name: {value}")
         value = value.strip()
         if value == "":
             raise ValueError("The name cannot be empty.")
@@ -508,6 +510,7 @@ class instance(BaseModel, validate_assignment=True):
         '''
         Converts the version number to string if it is an integer.
         '''
+        # logging.info(f"-- Validating version: {value}")
         if isinstance(value, int):
             return [ str(value) ]
         elif isinstance(value, list):
@@ -521,24 +524,11 @@ class instance(BaseModel, validate_assignment=True):
         '''
         Converts the label to a list if it is a string.
         '''
+        # logging.info(f"-- Validating label: {value}")
         if isinstance(value, str):
             return [value]
         else:
             return value
-
-    @field_validator('webpage',  mode="before")
-    @classmethod
-    def empty_string_to_none(cls, value):
-        '''
-        If the webpage is an empty string or none, remove it
-        '''
-        webpage = set()
-        if value:
-            for link in value:
-                if link:
-                    webpage.add(link)
-        
-        return list(webpage)
     
 
     @field_validator('links', mode="after")
@@ -547,6 +537,7 @@ class instance(BaseModel, validate_assignment=True):
         '''
         If an element in links is not a file, remove it from the list.
         '''
+        # logging.info(f"-- Validating links: {value}")
         new_links = []
         for link in value:
             if link.path:
@@ -562,14 +553,26 @@ class instance(BaseModel, validate_assignment=True):
     @classmethod
     def clean_webpage(cls, value) -> List[str]:
         # Ensure value is a list (for cases where it might be passed as a single string)
-        if isinstance(value, str):
-            value = [value]
-        
-        # Filter out URLs starting with "ftp://ftp."
-        filtered_urls = [
-            url for url in value if not str(url).startswith("ftp://ftp.")
-        ]
-        return filtered_urls
+        # logging.info(f"-- Validating webpage before: {value}")
+        if not value:
+            return []
+        else:
+            if isinstance(value, str):
+                value = [value]
+            
+            # Remove empty strings and None values
+            elif isinstance(value, list):
+                webpage = set()
+                for link in value:
+                    if link:
+                        webpage.add(link)
+            
+            # Filter out URLs starting with "ftp://ftp."
+            webpage = [
+                url for url in value if not str(url).startswith("ftp://ftp.")
+            ]
+            
+            return webpage
 
 
     @field_validator('webpage',  mode="after")
@@ -578,7 +581,9 @@ class instance(BaseModel, validate_assignment=True):
         '''
         Remove file urls from webpage attribute.
         '''
+        # logging.info(f"-- Validating webpage after: {value}")
         webpage = []
+        
         if value:
             for link in value:
                 if link.path:
@@ -586,7 +591,8 @@ class instance(BaseModel, validate_assignment=True):
                     if not x:
                         # remove the item from the list
                         webpage.append(link)
-        
+            
+    
         return webpage
         
     @field_validator('operating_system', mode="before")
@@ -595,6 +601,7 @@ class instance(BaseModel, validate_assignment=True):
         ''''
         Converts mac to macOS.
         '''
+        # logging.info(f"-- Validating operating_system: {value}")
         for i in range(len(value)):
             if value[i] == 'Mac':
                 value[i] = 'macOS'
@@ -606,6 +613,7 @@ class instance(BaseModel, validate_assignment=True):
         '''
         Removes duplicates from the source code links.
         '''
+        # logging.info(f"-- Validating source_code: {value}")
         return list(set(value))
     
     @field_validator('description', mode="after")
@@ -614,6 +622,7 @@ class instance(BaseModel, validate_assignment=True):
         '''
         Capitalizes the first letter of the description and adds a dot at the end.
         '''
+        # logging.info(f"-- Validating description: {value}")
         descriptions = set(value)
         new_descriptions = set()
         for desc in descriptions:
@@ -635,6 +644,7 @@ class instance(BaseModel, validate_assignment=True):
         '''
         Splits the license string.
         '''
+        # logging.info(f"-- Validating license: {value}")
         if isinstance(value, List):
             for item in value:
                 if isinstance(item, str):

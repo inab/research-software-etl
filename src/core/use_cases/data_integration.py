@@ -174,6 +174,7 @@ def fetch_pretools():
 
     documents = db_adapter.fetch_entries(db_collection, query)
     validated_documents = db_adapter.validate_pretools_data(documents)
+    
     return [doc['data'] for doc in validated_documents]
 
 

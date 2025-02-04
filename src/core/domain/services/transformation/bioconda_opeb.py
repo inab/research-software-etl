@@ -160,7 +160,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         - url: url to be validated
         '''
         try:
-            validated_url = HttpUrl.validate(url)
+            validated_url = HttpUrl(url)
             return True
         except ValidationError as e:
             return False

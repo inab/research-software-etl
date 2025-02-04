@@ -29,7 +29,7 @@ class sourceforgeStandardizer(MetadataStandardizer):
         - tool: metadata of tool to be transformed
         '''
         if tool.get('homepage'):
-            return(tool['homepage'])
+            return([tool['homepage']])
         else:
             return([])
         
@@ -108,7 +108,7 @@ class sourceforgeStandardizer(MetadataStandardizer):
         description = self.description(tool)
         license = self.license(tool)
         repository = self.repository(tool)
-        webpage =  [ self.webpage(tool) ]
+        webpage =   self.webpage(tool)
         download = [source_url]
 
         new_instance = instance(

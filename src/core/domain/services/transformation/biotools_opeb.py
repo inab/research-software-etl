@@ -204,17 +204,20 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
     
     @classmethod
     def webpage(self, tool: Dict[str, Any]):
-        '''
-        If the webpage is empty, return None.
-        '''
+        """
+        If the webpage is empty or not present, return an empty list.
+        Otherwise, return a list containing the homepage URL.
+        """
         try:
-            if tool['web']['homepage'] == '':
-                pass
-        except:
+            # Safely attempt to access the homepage URL
+            homepage = tool.get('web', {}).get('homepage', '')
+            if not homepage:  # Covers both empty string and None
+                return []
+            return [homepage]
+        except Exception as e:
+            # Handle unexpected errors
             return []
-        else:
-            return [tool['web']['homepage']]
-    
+        
     @classmethod
     def description(self, tool: Dict[str, Any]):
         if tool.get('description'):

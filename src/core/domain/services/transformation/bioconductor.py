@@ -1,14 +1,18 @@
 from src.core.domain.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.core.domain.entities.software_instance.main import instance
 
-from pydantic import TypeAdapter, HttpUrl
-from typing import Dict, Any
+from pydantic import TypeAdapter, HttpUrl, EmailStr, ValidationError, BaseModel
+from typing import Dict, Any, Optional, List
 import logging
 import re
+import requests
 
 # --------------------------------------------
 # Bioconductor Tools Transformer
 # --------------------------------------------
+
+class User(BaseModel):
+    email: EmailStr
 
 class bioconductorStandardizer(MetadataStandardizer): 
 
@@ -20,29 +24,122 @@ class bioconductorStandardizer(MetadataStandardizer):
         '''
         Returns the description of the tool.
         '''
+        #logging.info('-- Getting the description of the tool --')
+
         if tool.get('Description'):
             return [tool.get('Description')]
         
         else:
             return []
-    
+        
+    @staticmethod
+    def check_url_resolves(url: str, timeout: int = 5) -> bool:
+        '''
+        Checks if a URL resolves. Returns True if the URL resolves, else False.
+        TODO: move to utils or similar so other transformers can use it.
+        '''
+        def try_url(protocol: str, base_url: str) -> bool:
+            try:
+                full_url = f"{protocol}://{base_url}" if not base_url.startswith((f"{protocol}://")) else base_url
+                response = requests.head(full_url, allow_redirects=True, timeout=timeout)
+                return response.status_code < 400
+            except requests.RequestException:
+                return False
+
+        # Check if protocol is already present; if not, assume https
+        if "://" not in url:
+            url = f"https://{url}"
+
+        # Attempt with the original protocol (https by default)
+        if try_url("https", url):
+            return True
+
+        # Fallback to http if https fails
+        return try_url("http", url)
+            
+    def clean_webpage(self, webpage: str) -> Optional[str]:
+        if not webpage:  # Handle empty strings or None
+            return None
+        
+        # Strip unwanted leading characters
+        if webpage[0] in ['"', "'", '<']:
+            webpage = webpage[1:]
+        
+        # Strip unwanted trailing characters
+        if webpage and webpage[-1] in ['"', "'", '>']:
+            webpage = webpage[:-1]
+
+        # Correct malformed protocols
+        if webpage.startswith('http//'):
+            webpage = webpage.replace('http//', 'http://', 1)
+
+        if webpage.startswith('https//'):
+            webpage = webpage.replace('https//', 'https://', 1)
+        
+        # Add default protocol for URLs starting with "www."
+        if webpage.startswith('www.'):
+            webpage = 'https://' + webpage
+
+        # Verify if the URL resolves
+        if not webpage.startswith('http://') or not webpage.startswith('https://'):
+            webpage = 'https://' + webpage
+            if self.check_url_resolves(webpage):
+                return webpage
+            else:
+                return None
+        else:
+            return None
+
+    @staticmethod
+    def get_bioconductor_package_url(source_url: Optional[str]) -> List[str]:
+        '''
+        Returns the Bioconductor package URL if available.
+        '''
+        if source_url:
+            source_url = source_url.replace(
+                'https://git.bioconductor.org/packages/',
+                'https://bioconductor.org/packages/'
+            )
+            return [source_url]
+        else:
+            return []
+
     @classmethod
-    def webpage(self, tool: Dict[str, Any]):
+    def webpage(cls, tool: Dict[str, Any], source_url: str) -> List[str]:
         '''
         Returns the webpage of the tool.
         '''
-        if tool.get('URL'):
-            return [tool.get('URL')]
-        
-        else:
-            return [tool.get('@source_url')]
-        
+        # If the tool provides a URL
+        tool_url = tool.get('URL')
+        if tool_url:
+            # Handle multiple URLs separated by ', '
+            if ', ' in tool_url:
+                urls = tool_url.split(', ')
+                urls = [cls().clean_webpage(url) for url in urls]
+                urls = [url for url in urls if url]  # Filter out None values
+                return urls
+
+            # Handle special case for 'TBA'
+            if tool_url == 'TBA':
+                return []
+
+            # Handle a single URL
+            webpage = cls().clean_webpage(tool_url)
+            if webpage:
+                return [webpage]
+            else:
+                return cls.get_bioconductor_package_url(source_url)
+
+        # If no URL is provided, try the Bioconductor package URL
+        return cls.get_bioconductor_package_url(source_url)
 
     @classmethod
     def dependencies(self, tool: Dict[str, Any]):
         '''
         Returns the dependencies of the package
         '''
+        #logging.info('-- Getting the dependencies of the tool --')
+
         dependencies = []
         if tool.get('Depends'):
             for package in tool.get('Depends'):
@@ -59,6 +156,8 @@ class bioconductorStandardizer(MetadataStandardizer):
         '''
         Returns the license of the package
         '''
+        #logging.info('-- Getting the license of the tool --')
+
         licenses = []
         if tool.get('License'):
             ta = TypeAdapter(HttpUrl)
@@ -75,110 +174,58 @@ class bioconductorStandardizer(MetadataStandardizer):
                 
             
         return licenses
-    
 
-    @classmethod
-    def find_names(self, string):
-        name_pattern = r'\b[A-Z][a-z]*\s[A-Z][a-z]*\b|\b[A-Z][a-z]*\s[A-Z]\.\s[A-Z][a-z]*\b'
-        return re.findall(name_pattern, string)
-
-    @classmethod
-    def process_only_names(self, string):
-        names= self.find_names(string)
-        results = []
-        for name in names:
-            results.append({
-            'name': name,
-            'type': 'Person'
-            })
-        return results
-
-    @classmethod
-    def find_names_from(self, string):
-        pattern = r'(?<=\bfrom\s)([A-Z][a-z]*\s[A-Z][a-z]*\b|[A-Z][a-z]*\s[A-Z]\.\s[A-Z][a-z]*\b|[A-Z][a-z]*\s[A-Z][a-z]*(-[A-Z][a-z]*)?\b)'
-        matches = re.findall(pattern, string)
-        new_matches = []
-        for m in matches:
-            new_matches.append(m[0])
-        
-        return new_matches
-
-    @classmethod
-    def find_name_email_pairs(self, matches):
-        results = []
-        for match in matches:
-            name = match[0].strip()
-            name = self.find_names(name)[0]
-            email = match[1].replace(' at ', '@').lower()
-            results.append({
-                'name': name,
-                'email': email,
-                'type': 'Person'
-                })
-        return results
-
-    @classmethod
-    def find_name_email(self, string, maintainer = False):
-        results = []
-        # Pattern to match name and email pairs
-        pair_pattern = r"([\w\s.]+?) *<([\w\.]+ at \w+\.\w+(\.\w+)?)>"
-
-        # Find all matches of the pattern
-        matches = re.findall(pair_pattern, string)
-
-        # If no matches, find only names
-        if len(matches)>0:
-            # name-email pairs
-            pairs = self.find_name_email_pairs(matches)
-            for author in pairs:
-                author['maintainer'] = maintainer
-                results.append(author)
+    @staticmethod
+    def clean_email(email):
+        '''
+        Cleans the email of the author
+        '''
+        if email:
+            if email[-1] in [';','>']:
+                email = email[:-1]
             
-            # only name stracted
-            names = self.find_names_from(string)
-            names_in_pairs = [item['name'] for item in pairs]
-            for name in names:
-                if name in names_in_pairs:
-                    continue
-                else:
-                    results.append({
-                        'name' : name,
-                        'type': 'Person',
-                        'maintainer': maintainer
-                    })
-        # No emails in this string
-        else:
-            new_authors = self.process_only_names(string)
-            for author in new_authors:
-                author['maintainer'] = maintainer
-            results.extend(new_authors)
-        
+            if email in ['-','DECEASED']:
+                email = None
 
-        return results
-    
+            # validate email and drop if invalid
+            try:
+                user = User(email=email)
+            except ValidationError as e:
+                logging.info(f"Invalid email: {email}. Error: {e}")
+                return None
+            else:
+                return email          
 
     @classmethod
     def authors(self, tool: Dict[str, Any]):
+        #logging.info('-- Getting the authors of the tool --')
 
         all_results = []
         maintainers = set()
         for maintainer in tool.get('Maintainer', []):
-            all_results.extend(maintainer)
+            if maintainer.get('name') == '':
+                continue
+                
+            if maintainer.get('email'):
+                maintainer['email'] = self.clean_email(maintainer['email'])
+
+            all_results.append(maintainer)
             [maintainers.add(item.get('name')) for item in all_results]
 
         # go through maintainers and see if the maintainer is among authors
-        for author in tool.get('Authors@R (parsed)', []):
-            if author['name'] in maintainers:
-                continue
-            else:
-                all_results.append(author)
-        
-        for author in tool.get('Authors', []):
-            if author['name'] in maintainers:
-                continue
-            else:
-                all_results.append(author)
-            
+        # logging.info('----- Authors@R -----')
+        if tool.get('Authors@R (parsed)'):
+            for author in tool.get('Authors@R (parsed)', []):
+                if author['name'] in maintainers:
+                    continue
+                else:
+                    if author['name'] == '':
+                        continue
+
+                    if author.get('email'):
+                        author['email'] = self.clean_email(author['email'])
+
+                    all_results.append(author)
             
         return all_results
     
@@ -201,6 +248,7 @@ class bioconductorStandardizer(MetadataStandardizer):
         '''
         Returns the repositories of the package
         '''
+        #logging.info('-- Getting the repositories of the tool --')
         repositories = []
         if source_url:
             repositories.append({
@@ -232,6 +280,7 @@ class bioconductorStandardizer(MetadataStandardizer):
 
         return(documentation)
     
+    
     def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
@@ -244,7 +293,7 @@ class bioconductorStandardizer(MetadataStandardizer):
         version = [tool.get('Version')]
         label = self.clean_name(tool.get('Package'))
         description = self.description(tool)
-        webpage = self.webpage(tool)
+        webpage = self.webpage(tool, source_url)
         source = ['bioconductor']
         operating_system = ['Linux', 'macOS', 'Windows']
         license = self.license(tool)

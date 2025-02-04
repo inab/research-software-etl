@@ -6,8 +6,8 @@ import pytest
 from pydantic import BaseModel, Field
 from typing import Any
 
-from src.core.domain.entities.metadata.pretools import Metadata
-from src.core.domain.entities.metadata.pretools import source_item
+from src.core.domain.entities.metadata import Metadata
+from src.core.domain.entities.metadata import source_item
 
 
 # Example test data
@@ -19,10 +19,11 @@ test_data = [
         "last_updated_at": "2023-02-01T12:00:00Z",
         "updated_by": "https://gitlab.bsc.es/inb/elixir/software-observatory/bioconductor-imoprter-v2/-/commit/180347cb5bae6b553663a670a560e13c40f1e64f",
         "updated_logs": "https://example.com/update-logs",
-        "source": {
+        "source": [{
             "collection": "tools",
-            "id": "toolshed/trimal/cmd/1.4"
-        }
+            "id": "toolshed/trimal/cmd/1.4",
+            "source_url": "https://github.com"
+        }]
     }, True),
     # Add test cases for invalid data
     ({
@@ -32,10 +33,11 @@ test_data = [
         "last_updated_at": "Not a datetime",
         "updated_by": "Anonymous",
         "updated_logs": "Still not a URL",
-        "source": {
+        "source": [{
             "collection": "tools",
-            "id": 12345  # Incorrect type
-        }
+            "id": 12345,  # Incorrect type,
+            "source_url": "https://github.com"
+        }]
     }, False)
 ]
 
@@ -58,7 +60,7 @@ def test_to_dict_for_db_insertion():
         last_updated_at="2023-02-01T12:00:00Z",
         updated_by="https://gitlab.bsc.es/inb/elixir/software-observatory/bioconductor-imoprter-v2/-/commit/180347cb5bae6b553663a670a560e13c40f1e64f",
         updated_logs="https://example.com/update-logs",
-        source=source_item(collection="tools", id="toolshed/trimal/cmd/1.4")
+        source=[source_item(collection="tools", id="toolshed/trimal/cmd/1.4", source_url="https://github.com")]
     )
     result = metadata.to_dict_for_db_insertion()
     # Check for correct keys and values

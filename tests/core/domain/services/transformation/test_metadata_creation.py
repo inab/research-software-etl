@@ -1,5 +1,6 @@
 import pytest
 from freezegun import freeze_time
+from pydantic import HttpUrl
 from unittest.mock import patch, MagicMock
 from src.core.domain.services.transformation.metadata import create_new_metadata, update_existing_metadata, Metadata, build_commit_url
 
@@ -19,7 +20,8 @@ def env_setup(mocker):
 def test_create_new_metadata(env_setup):
     identifier = "001"
     alambique = "tools"
-    metadata = create_new_metadata(identifier, alambique)
+    source_url = "https://github.com"
+    metadata = create_new_metadata(identifier, source_url, alambique)
 
     assert metadata.created_at == "2023-01-01T12:00:00"
     assert metadata.created_by == build_commit_url()
@@ -27,13 +29,15 @@ def test_create_new_metadata(env_setup):
     assert metadata.last_updated_at == "2023-01-01T12:00:00"
     assert metadata.updated_by == build_commit_url()
     assert metadata.updated_logs == "https://pipeline.url"
-    assert metadata.source.collection == alambique
-    assert metadata.source.id == identifier
+    assert metadata.source[0].collection == alambique
+    assert metadata.source[0].id == identifier
+    assert metadata.source[0].source_url == HttpUrl(source_url)
 
 @freeze_time("2023-01-01T12:00:00")
 def test_update_existing_metadata(env_setup):
     identifier = "002"
     alambique = "tools"
+    source_url = "https://github.com"
     existing_metadata = Metadata(
         created_at="2022-12-25T12:00:00",
         created_by="https://old.url",
@@ -41,7 +45,7 @@ def test_update_existing_metadata(env_setup):
         last_updated_at="2022-12-25T12:00:00",
         updated_by="https://old.url",
         updated_logs="https://old.pipeline.url",
-        source={"collection": alambique, "id": identifier}
+        source=[{"collection": alambique, "id": identifier, "source_url": source_url}]
     )
 
     updated_metadata = update_existing_metadata(identifier, alambique, existing_metadata)

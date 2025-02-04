@@ -6,7 +6,8 @@ from typing import List, Optional, Any, Dict
 class source_item(BaseModel):
     collection: str = Field(..., description="Collection of the source")
     id: str = Field(..., description="Id of the source")
-    source_url = Optional(HttpUrl) = Field(None, description="URL of the source") # generally, only available for github, sourceforge and bioconductor
+
+    source_url : Optional[HttpUrl] = Field(None, description="URL of the source") # generally, only available for github, sourceforge and bioconductor
 
 
 class source_items_list(BaseModel):
@@ -47,7 +48,7 @@ class Metadata(BaseModel):
         The fields are the same as the ones in the class, but prefixed by a "@".
         '''
         metadata_for_db = {}
-        for field in self.__model_fields__:
+        for field in self.model_fields:
             metadata_for_db['@'+field] = getattr(self, field)
         
         return metadata_for_db

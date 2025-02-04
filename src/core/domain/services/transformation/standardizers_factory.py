@@ -7,6 +7,7 @@ from src.core.domain.services.transformation.galaxy_metadata import galaxyMetada
 from src.core.domain.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
 from src.core.domain.services.transformation.opeb_metrics import OPEBMetricsStandardizer
 from src.core.domain.services.transformation.source_forge import sourceforgeStandardizer
+from src.core.domain.services.transformation.github import githubStandardizer
 
 
 class MetadataStandardizerFactory:
@@ -33,6 +34,7 @@ MetadataStandardizerFactory.register_standardizer('galaxy_metadata', galaxyMetad
 MetadataStandardizerFactory.register_standardizer('galaxy', galaxyOPEBStandardizer)
 MetadataStandardizerFactory.register_standardizer('opeb_metrics', OPEBMetricsStandardizer)
 MetadataStandardizerFactory.register_standardizer('sourceforge', sourceforgeStandardizer)
+MetadataStandardizerFactory.register_standardizer('github', githubStandardizer)
 
 
 
