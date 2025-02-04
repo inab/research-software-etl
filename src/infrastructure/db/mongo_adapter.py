@@ -1,4 +1,4 @@
-# infrastructure/mongo_adapter.py
+# infrastructure/db/mongo_adapter.py
 # If database changes, for example to SQL, then only this file will change, while
 # the repositories (in adpaters/db) will remain the same.
 
@@ -6,7 +6,7 @@
 import os
 import pymongo
 from typing import Dict, Any
-from src.adapters.db.database_adapter import DatabaseAdapter
+from infrastructure.db.database_adapter import DatabaseAdapter
 from src.core.domain.entities.database_entries import PretoolsEntryModel
 from pydantic import ValidationError
 import logging
