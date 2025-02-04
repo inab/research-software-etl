@@ -6,7 +6,7 @@ from src.core.domain.services.transformation.standardizers_factory import Metada
 from src.core.domain.services.transformation.metadata import create_new_metadata, update_existing_metadata
 from src.core.domain.entities.metadata import Metadata
 from src.infrastructure.db.mongo_adapter import MongoDBAdapter
-from src.adapters.db.database_adapter import DatabaseAdapter
+from infrastructure.db.database_adapter import DatabaseAdapter
 
 # Variables for collection names:
 PRETOOLS = os.getenv('PRETOOLS', 'pretoolsDev')
@@ -161,6 +161,8 @@ def process_entry(entry, source, db_adapter):
             return
 
         insts = standardize_entry(entry, source)
+        # here, deal with publications 
+        
         metadata = generate_metadata(identifier, source_url, db_adapter)
 
         for inst in insts:
