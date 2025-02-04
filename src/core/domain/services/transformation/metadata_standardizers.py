@@ -121,6 +121,7 @@ class MetadataStandardizer(ABC):
     @staticmethod
     def page_exists(url):
         '''
+        TODO: move to infrastructure layer
         Checks if the url exists.
         - url: url to check
         '''

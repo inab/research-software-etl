@@ -1,15 +1,15 @@
 '''
-Functions to create the metadata for the entries after transformation. To be inserted in the "pretools" collection.
+Functions to create the metadata for the publication entries. To be inserted in the "publications" collection.
 - import metadata entity
 - create_metadata
 - return metadata object
 ''' 
 import os
 from datetime import datetime
-from src.core.domain.entities.metadata import Metadata
+from src.core.domain.entities.publication.metadata import Metadata
 from datetime import datetime
 
-def create_new_metadata(identifier: str, source_url: str = None,  alambique: str = 'alambiqueDev') -> Metadata:
+def create_new_metadata(identifier: str, source_url: str = None,  collection: str = 'PublicationsDev') -> Metadata:
     """
     Creates metadata for a new database entry.
 
@@ -17,7 +17,7 @@ def create_new_metadata(identifier: str, source_url: str = None,  alambique: str
 
     Parameters:
         identifier (str): The unique identifier for the new entry.
-        alambique (str): The collection name associated with the entry.
+        collection (str): The collection name associated with the entry.
 
     Returns:
         Metadata: A Metadata object initialized with the current date and environment-specific values for a new entry.
@@ -42,12 +42,7 @@ def create_new_metadata(identifier: str, source_url: str = None,  alambique: str
         created_logs=pipeline_url,
         last_updated_at=current_date,
         updated_by=commit_url,
-        updated_logs=pipeline_url,
-        source=[{
-            "collection": alambique,
-            "id": identifier,
-            "source_url": source_url
-        }]
+        updated_logs=pipeline_url
     )
     return metadata
 

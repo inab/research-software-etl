@@ -16,3 +16,10 @@ class ToolEntryModel(BaseModel):
     '''
     metadata: VersionedMetadata = Field(..., description="Metadata of the entry")
     data: instance = Field(..., description="Data of the entry")
+
+class PublicationEntryModel(BaseModel):
+    '''
+    Model for the publications collection in the database.
+    '''
+    metadata: Metadata = Field(..., description="Metadata of the entry")
+    data: instance = Field(..., description="Data of the entry")
