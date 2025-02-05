@@ -9,24 +9,7 @@ from datetime import datetime
 from src.core.domain.entities.metadata import Metadata
 from datetime import datetime
 
-def create_new_metadata(identifier: str, source_url: str = None,  alambique: str = 'alambiqueDev') -> Metadata:
-    """
-    Creates metadata for a new database entry.
-
-    This function generates metadata for an entry that is not yet in the database. It sets both creation and last updated fields to the current date and time, and it includes URLs for creation and update logs based on the current environment variables.
-
-    Parameters:
-        identifier (str): The unique identifier for the new entry.
-        alambique (str): The collection name associated with the entry.
-
-    Returns:
-        Metadata: A Metadata object initialized with the current date and environment-specific values for a new entry.
-    
-    Example:
-        >>> new_metadata = create_new_metadata("001", "tools")
-        >>> print(new_metadata.created_at)
-        '2023-10-04T14:48:00.123456'
-    """
+def create_new_metadata(source_identifier, source_url: str = None,  alambique: str = 'alambiqueDev') -> Metadata:
     current_date = datetime.now().isoformat()
     commit_url = build_commit_url()
     pipeline_url = os.getenv("CI_PIPELINE_URL")
@@ -45,32 +28,14 @@ def create_new_metadata(identifier: str, source_url: str = None,  alambique: str
         updated_logs=pipeline_url,
         source=[{
             "collection": alambique,
-            "id": identifier,
+            "id": source_identifier,
             "source_url": source_url
         }]
     )
     return metadata
 
 
-def update_existing_metadata(identifier: str, existing_metadata: Metadata) -> Metadata:
-    """
-    Updates metadata for an existing database entry.
-
-    This function updates the metadata for an existing entry, setting the last updated fields to the current date and time, and updating the URLs for the update logs based on current environment variables.
-
-    Parameters:
-        identifier (str): The unique identifier for the existing entry.
-        existing_metadata (Metadata): The current metadata object that needs to be updated.
-
-    Returns:
-        Metadata: The updated Metadata object with the new last updated time and URLs for update logs.
-    
-    Example:
-        >>> existing_metadata = Metadata(created_at="2023-01-01T00:00:00Z", created_by="url1", ...)
-        >>> updated_metadata = update_existing_metadata("001", "tools", existing_metadata)
-        >>> print(updated_metadata.last_updated_at)
-        '2023-10-04T14:48:00.123456'
-    """
+def update_existing_metadata(existing_metadata: Metadata) -> Metadata:
     current_date = datetime.now().isoformat()
     commit_url = build_commit_url()
 

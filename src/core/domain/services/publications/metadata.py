@@ -9,7 +9,7 @@ from datetime import datetime
 from src.core.domain.entities.publication.metadata import Metadata
 from datetime import datetime
 
-def create_new_metadata(identifier: str, source_url: str = None,  collection: str = 'PublicationsDev') -> Metadata:
+def create_new_metadata(identifier: str, source_url: str = None,  collection: str = 'PublicationsDev') -> Dict:
     """
     Creates metadata for a new database entry.
 
@@ -20,12 +20,8 @@ def create_new_metadata(identifier: str, source_url: str = None,  collection: st
         collection (str): The collection name associated with the entry.
 
     Returns:
-        Metadata: A Metadata object initialized with the current date and environment-specific values for a new entry.
-    
-    Example:
-        >>> new_metadata = create_new_metadata("001", "tools")
-        >>> print(new_metadata.created_at)
-        '2023-10-04T14:48:00.123456'
+        Metadata: A Metadata dictionary with the current date and environment-specific values for a new entry.
+
     """
     current_date = datetime.now().isoformat()
     commit_url = build_commit_url()
@@ -44,7 +40,10 @@ def create_new_metadata(identifier: str, source_url: str = None,  collection: st
         updated_by=commit_url,
         updated_logs=pipeline_url
     )
-    return metadata
+
+    metadata_dict = metadata.model_dump()
+
+    return metadata_dict
 
 
 def update_existing_metadata(identifier: str, existing_metadata: Metadata) -> Metadata:
