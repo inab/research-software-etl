@@ -77,7 +77,7 @@ def add_publication(publication: Dict[str, Any], publications_repo: DatabaseAdap
     return
 
 
-def process_publication(source_name : str, publications : List[Dict[str, Any]]) -> List[str]:
+def extract_publications(source_name : str, publications : List[Dict[str, Any]]) -> List[str]:
 
     mongo_adapter = MongoDBAdapter()
     publications_repo = PublicationsMetadataRepository(mongo_adapter)
