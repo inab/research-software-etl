@@ -1,10 +1,10 @@
 import os
 import logging 
 from typing import List, Dict
-from src.infrastructure.db.mongo_adapter import MongoDBAdapter
-from src.application.use_cases.transformation.publications_helpers import extract_publications
-from src.adapters.db.raw_software_repository import RawSoftwareMetadataRepository
-from src.application.use_cases.transformation.software_metadata_helpers import standardize_entry, save_entry
+from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+from application.use_cases.transformation.publications_processing import extract_publications
+from src.infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
+from application.use_cases.transformation.software_metadata_processing import standardize_entry, save_entry
 
 def get_identifier(entry: Dict) -> str:
     '''
@@ -47,11 +47,15 @@ def process_publications(entry: Dict, source: str):
 def process_raw_entry(raw_entry, source):
     # TODO Validate values in the software metadata entry (URLs)
 
+
     # Process publication metadata in the entry and push publications to the appropriate collection
     publication_ids = process_publications(raw_entry, source)
 
     # Standardize software metadata in the entry
     software_metadata_dicts = standardize_entry(raw_entry, source)
+
+    # TODO Validate URLs of repositories and webpage
+    # using function sin adapters/http/url_resolver.py 
 
     for software_metadata_dict in software_metadata_dicts:
         

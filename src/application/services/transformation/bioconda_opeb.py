@@ -125,16 +125,10 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         documentation = []
         # Installation instructions in Bioconda page
         if tool.get('name'):
-            # make sure the page exists
-            if cls.page_exists(f"https://bioconda.github.io/recipes/{tool['name']}/README.html"):
-                documentation.append({
-                    'type': 'installation_instructions',
-                    'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
-                })
-                documentation.append({
-                    'type': 'general',
-                    'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
-                })
+            documentation.append({
+                'type': 'installation_instructions',
+                'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
+            })
         
         return(documentation)
     

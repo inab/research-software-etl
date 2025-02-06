@@ -107,16 +107,10 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         documentation = []
         # Installation instructions in Bioconda page
         if tool.get('name'):
-            # make sure the page exists
-            if self.page_exists(f"https://bioconda.github.io/recipes/{tool['name']}/README.html"):
-                documentation.append({
-                    'type': 'installation_instructions',
-                    'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
-                })
-                documentation.append({
-                    'type': 'general',
-                    'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
-                })
+            documentation.append({
+                'type': 'installation_instructions',
+                'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
+            })
 
         # Documentation in the about field
         if tool.get('about'):
@@ -152,8 +146,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
 
             clean_repo = f"https://github.com/{owner}/{repo}"
 
-            if self.page_exists(clean_repo):
-                return clean_repo
+            return clean_repo
             
         else:
             return None
@@ -171,8 +164,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
          
             clean_repo = f"https://gitlab.com/{owner}/{repo}"
 
-            if self.page_exists(clean_repo):
-                return clean_repo
+            return clean_repo
             
         else:
             return None
@@ -189,9 +181,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
             repo = end.split('/')[1]
          
             clean_repo = f"https://bitbucket.org/{owner}/{repo}"
-
-            if self.page_exists(clean_repo):
-                return clean_repo
+            return clean_repo
             
         else:
             return None
@@ -317,13 +307,11 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         '''
         '''
         if len(name.split(' ')) == 1:
-            # if github page exists
-            if self.page_exists(f"https://github.com/{name}"):
-            
-                return({
-                    'type': 'Person',
-                    'url': f"https://github.com/{name}",
-                })
+
+            return({
+                'type': 'Person',
+                'url': f"https://github.com/{name}",
+            })
         
         return {}
     

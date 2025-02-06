@@ -31,31 +31,6 @@ class bioconductorStandardizer(MetadataStandardizer):
         
         else:
             return []
-        
-    @staticmethod
-    def check_url_resolves(url: str, timeout: int = 5) -> bool:
-        '''
-        Checks if a URL resolves. Returns True if the URL resolves, else False.
-        TODO: move to utils or similar so other transformers can use it.
-        '''
-        def try_url(protocol: str, base_url: str) -> bool:
-            try:
-                full_url = f"{protocol}://{base_url}" if not base_url.startswith((f"{protocol}://")) else base_url
-                response = requests.head(full_url, allow_redirects=True, timeout=timeout)
-                return response.status_code < 400
-            except requests.RequestException:
-                return False
-
-        # Check if protocol is already present; if not, assume https
-        if "://" not in url:
-            url = f"https://{url}"
-
-        # Attempt with the original protocol (https by default)
-        if try_url("https", url):
-            return True
-
-        # Fallback to http if https fails
-        return try_url("http", url)
             
     def clean_webpage(self, webpage: str) -> Optional[str]:
         if not webpage:  # Handle empty strings or None
@@ -83,10 +58,8 @@ class bioconductorStandardizer(MetadataStandardizer):
         # Verify if the URL resolves
         if not webpage.startswith('http://') or not webpage.startswith('https://'):
             webpage = 'https://' + webpage
-            if self.check_url_resolves(webpage):
-                return webpage
-            else:
-                return None
+            return webpage
+ 
         else:
             return None
 
