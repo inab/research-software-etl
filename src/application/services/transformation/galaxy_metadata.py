@@ -8,9 +8,8 @@ import logging
 # --------------------------------------------
 
 class galaxyMetadataStandardizer(MetadataStandardizer):
-    def __init__(self, source = 'galaxy_metadata', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
-
+    def __init__(self, source = 'galaxy_metadata'):
+        MetadataStandardizer.__init__(self, source)
 
     def transform_one(self, tool, standardized_tools):
         '''

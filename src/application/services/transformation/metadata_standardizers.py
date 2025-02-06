@@ -1,14 +1,11 @@
 import logging
-import requests
 from abc import ABC, abstractmethod
 
 class MetadataStandardizer(ABC):
-    def __init__(self, source, ignore_empty_bioconda_types=False):
+    def __init__(self, source):
         self.source = source
-        self.bioconda_types = self.generate_bioconda_types()
-        self.ignore_empty_bioconda_types = ignore_empty_bioconda_types
         logging.debug('Generator for ' + self.source + ' initialized') 
-    
+
     def process_transformation(self, tool):
         """Template method that defines the algorithm steps."""
         standardized_tools = []
@@ -26,34 +23,6 @@ class MetadataStandardizer(ABC):
         '''
         pass
 
-    def check_bioconda_types_empty(self):
-        """Checks if bioconda_types is empty. If it is, it raises an exception."""
-        if self.ignore_empty_bioconda_types == False:
-            if self.bioconda_types == {}:
-                logging.error('bioconda_types is empty, aborting transformation')
-                raise Exception('bioconda_types is empty, aborting transformation')
-        return
-
-    """
-    TODO: move to infrastructure layer
-    @staticmethod
-    def generate_bioconda_types():
-        '''
-        This function returns a dictionary with the types of the bioconda tools in the pretools collection.
-        '''
-        bioconda_types = {}
-        try:
-            pretools = src.core.shared.utils.connect_collection(collection='pretools')
-            biocondaCursor = pretools.find({'data.source': ['bioconda']}, {'data.name': 1, 'data.type': 1, '_id': 0})
-        except:
-            logging.error('while generating bioconda_types: could not connect to the pretools collection')
-        else:
-            for tool in biocondaCursor:
-                bioconda_types[tool['data']['name']] = tool['data']['type']
-    
-    
-        return(bioconda_types)
-    """
 
     @staticmethod
     def clean_name(name):

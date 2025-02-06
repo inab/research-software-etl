@@ -14,8 +14,8 @@ import re
 
 class githubStandardizer(MetadataStandardizer):
 
-    def __init__(self, source = 'github', ignore_empty_bioconda_types = True):
-        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'github'):
+        MetadataStandardizer.__init__(self)
 
     @classmethod
     def repository(cls, tool: Dict[str, Any]):

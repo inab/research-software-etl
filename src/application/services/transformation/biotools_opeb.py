@@ -35,23 +35,9 @@ class biotools_data_format(BaseModel, validate_assignment=True):
 
 # bio.tools metadata standardizer subclass --------------------------------------------
 class biotoolsOPEBStandardizer(MetadataStandardizer):
-    def __init__(self, source = 'biotoolsOPEB', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'biotoolsOPEB'):
+        MetadataStandardizer.__init__(self, source)
     
-    def type(self, name, _id, type_):
-        '''
-        This function returns the type of the tool.
-        If the tool is in bioconda, it returns the type of the bioconda tool, since it is more reliable.
-        If the tool is a workflow, it returns cmd.
-        '''
-        if self.bioconda_types.get(name):
-                types_ = self.bioconda_types[name]
-        elif type_ == 'workflow' and 'galaxy' in _id:
-            types_='cmd'
-        else:
-            types_ = type_
-
-        return(types_)
 
     @classmethod
     def documentation(self, tool):
@@ -246,12 +232,11 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         '''
         Transforms a single tool from oeb bio.tools into an instance.
         '''
-        self.check_bioconda_types_empty()
 
         tool = tool.get('data')
 
         name = self.clean_name(tool.get('@label')).lower()
-        type = self.type(name = name, _id = tool['@id'], type_ = tool['@type'])
+        type = tool.get('@type')
         version = [ tool['@version'] ]
         source = ['biotools']
         label = self.label(tool)

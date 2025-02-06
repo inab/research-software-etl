@@ -9,24 +9,9 @@ from typing import List, Dict, Any
 
 
 class OPEBMetricsStandardizer(MetadataStandardizer):
-    def __init__(self, source = 'opeb_metrics', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'opeb_metrics'):
+        MetadataStandardizer.__init__(self, source)
 
-
-    def type(self, name, _id, type_):
-        '''
-        This function returns the type of the tool.
-        If the tool is in bioconda, it returns the type of the bioconda tool, since it is more reliable.
-        If the tool is a workflow, it returns cmd.
-        '''
-        if self.bioconda_types.get(name):
-                types_ = self.bioconda_types[name]
-        elif type_ == 'workflow' and 'galaxy' in _id:
-            types_=['cmd']
-        else:
-            types_ = [type_]
-
-        return(types_)
     
     @classmethod
     def bioschemas(self, tool: Dict[str, Any]) -> List[str]:
@@ -127,14 +112,12 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
         * since the URL of the website that fields like "ssl" refers to, is not gathered here
         '''
 
-        self.check_bioconda_types_empty()
-
         tool = tool.get('data', {})
 
         id_data = self.extract_from_id(tool.get('@id'))
         name = self.clean_name(id_data.get('name')).lower()
         version = [id_data.get('version')]
-        types_ = self.type(name, tool.get('@id'), id_data.get('type'))
+        types_ = id_data.get('type')
         source = ['opeb_metrics']
         publication = self.publications(tool)
         

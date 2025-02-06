@@ -11,8 +11,8 @@ from typing import List, Dict, Any
 
 class biocondaOPEBStandardizer(MetadataStandardizer):
 
-    def __init__(self, source = 'biocondaOPEB', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'biocondaOPEB'):
+        MetadataStandardizer.__init__(self, source)
     
     @classmethod
     def get_repo_name_version_type(cls, id_):

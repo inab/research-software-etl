@@ -9,8 +9,8 @@ import logging
 # --------------------------------------------
 
 class galaxyOPEBStandardizer(MetadataStandardizer):
-    def __init__(self, source = 'galaxy', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'galaxy'):
+        MetadataStandardizer.__init__(self)
     
     @classmethod
     def description(self, tool: Dict[str, Any]) -> List[str]:

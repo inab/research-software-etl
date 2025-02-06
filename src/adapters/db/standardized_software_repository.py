@@ -1,4 +1,5 @@
 # This adapter translates DB logic into domain logic from src.infrastructure.mongo_adapter import MongoDBAdapter
+# THis repository connects to the pretools collection and performs specific operations on it.
 
 from src.infrastructure.db.mongo_adapter import MongoDBAdapter
 from src.domain.models.database_entries import PretoolsEntryModel
@@ -36,3 +37,25 @@ class StdSoftwareMetaRepository:
                 continue  
 
         return validated_documents
+
+
+    def get_bioconda_types(self):
+        '''
+        This function returns a dictionary with the types of the bioconda tools in the pretools collection.
+        >>> To use this function:
+        db_adapter = MongoDBAdapter()
+        standardized_software_repository = StandardizedSoftwareMetadataRepository(db_adapter)
+        bioconda_types = standardized_software_repository.generate_bioconda_types()
+        '''
+        bioconda_types = {}
+        try:
+            
+            biocondaCursor = self.fetch_entries(self.collection_name, {'data.source': ['bioconda']}, {'data.name': 1, 'data.type': 1, '_id': 0})
+        except:
+            logging.error('while generating bioconda_types: could not connect to the pretools collection')
+        else:
+            for tool in biocondaCursor:
+                bioconda_types[tool['data']['name']] = tool['data']['type']
+
+
+        return(bioconda_types)

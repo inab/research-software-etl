@@ -12,8 +12,8 @@ import bibtexparser
 
 class toolshedStandardizer(MetadataStandardizer):
 
-    def __init__(self, source = 'toolshed', ignore_empty_bioconda_types = False):
-        MetadataStandardizer.__init__(self, source, ignore_empty_bioconda_types)
+    def __init__(self, source = 'toolshed'):
+        MetadataStandardizer.__init__(self, source)
 
     
     def description(self, tool: Dict[str, Any]):
