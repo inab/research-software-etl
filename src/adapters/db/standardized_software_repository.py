@@ -1,7 +1,7 @@
 # This adapter translates DB logic into domain logic from src.infrastructure.mongo_adapter import MongoDBAdapter
 
 from src.infrastructure.db.mongo_adapter import MongoDBAdapter
-from src.core.domain.entities.database_entries import PretoolsEntryModel
+from src.domain.models.database_entries import PretoolsEntryModel
 from pydantic import ValidationError
 import logging
 

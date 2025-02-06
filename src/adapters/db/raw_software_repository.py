@@ -1,10 +1,7 @@
 # Raw software repository# This adapter translates DB logic into domain logic from src.infrastructure.mongo_adapter import MongoDBAdapter
 
 from src.infrastructure.db.mongo_adapter import MongoDBAdapter
-from src.core.domain.entities.database_entries import PretoolsEntryModel
-from pydantic import ValidationError
 from typing import Dict, Any
-import logging
 
 class RawSoftwareMetadataRepository:
     def __init__(self, db_adapter: MongoDBAdapter):
