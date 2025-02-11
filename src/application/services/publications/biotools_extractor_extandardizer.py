@@ -7,19 +7,21 @@ from src.shared.utils import validate_and_filter
 class BiotoolsPublicationExtractor(PublicationExtractor):
     """Extracts publication data from Biotools."""
 
-    def extract_publications(self) -> List[Dict]:
+    @classmethod
+    def extract_publications(cls, raw_data) -> List[Dict]:
         '''
         THe puclications are in the 'publications' (data.publications) field of the raw data.
         '''
-        if self.raw_data['data'].get('publications'):
-            return self.raw_data['data'].get('publications')
+        if raw_data['data'].get('publications'):
+            return raw_data['data'].get('publications')
         else:
             return []
 
 class BiotoolsPublicationStandardizer(PublicationStandardizer):
     """Standardizes publication data from Biotools."""
 
-    def standardize(self) -> Dict[str, Any]:
+    @classmethod
+    def standardize(cls, raw_data) -> Dict[str, Any]:
         '''
         bio.tools entries only have the following information (usually only one):
         - doi
@@ -27,19 +29,16 @@ class BiotoolsPublicationStandardizer(PublicationStandardizer):
         - pmcid
         '''
         try:
-            publication_meta_dict = {
-                "doi": self.raw_data.get("doi", None),
-                "pmid": self.raw_data.get("pmid", None),
-                "pmcid": self.raw_data.get("pmcid", None),
+            publication_dict = {
+                "doi": raw_data.get("doi", None),
+                "pmid": raw_data.get("pmid", None),
+                "pmcid": raw_data.get("pmcid", None),
             }
 
-            new_publication = validate_and_filter(Publication, **publication_meta_dict)
+            publication = validate_and_filter(Publication, **publication_dict)
 
-            return new_publication
-
-
-            return 
+            return publication
 
         except Exception as e:
-            self.log_error(f"Error processing Biotools publication data: {str(e)}")
+            cls.log_error(f"Error processing Biotools publication data: {str(e)}")
             return {}

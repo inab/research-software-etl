@@ -84,13 +84,13 @@ def add_publication(publication: Dict[str, Any], publications_repo: DatabaseAdap
 
 
 
-def standardize_publications(source_name : str, publications_ids, publication: Dict[str, Any]) -> List[str]:
+def standardize_publications(source_name : str, publications_ids, raw_publication_dict: Dict[str, Any]) -> List[str]:
     mongo_adapter = MongoDBAdapter()
     publications_repo = PublicationsMetadataRepository(mongo_adapter)
 
     # Parse the entry 
-    publication_standardizer = StandardizerFactory.get_standardizer(source_name, publication)
-    standardized_publication = publication_standardizer.standardize()
+    publication_standardizer = StandardizerFactory.get_standardizer(source_name)
+    standardized_publication = publication_standardizer.standardize(raw_publication_dict)
     standardized_publication_dict = standardized_publication.model_dump() 
     
     # Check if the publication is already in the publications collection
@@ -104,10 +104,10 @@ def standardize_publications(source_name : str, publications_ids, publication: D
     return publications_ids
 
 
-def extract_publications(source_name : str, entry : Dict) -> List[str]:
+def extract_publications(source_name : str, raw_entry : Dict) -> List[str]:
 
-    publication_extractor = ExtractorFactory.get_extractor(source_name, entry)
-    publications = publication_extractor.extract_publications()
+    publication_extractor = ExtractorFactory.get_extractor(source_name)
+    publications = publication_extractor.extract_publications(raw_entry)
 
     return publications
     

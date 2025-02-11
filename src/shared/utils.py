@@ -41,7 +41,75 @@ def timeit(func):
         print(f'Function {func.__name__}{args} {kwargs} Took {total_time:.4f} seconds')
         return result
     return timeit_wrapper
+def is_github_repo(url):
+    '''
+    Checks if the url is a github repository.
+    - url: url to check
+    '''
+    if 'github.com' in url:
+        end =  url.split('github.com/')[1]
+        owner = end.split('/')[0]
+        repo = end.split('/')[1]
 
+        clean_repo = f"https://github.com/{owner}/{repo}"
+
+        return clean_repo
+        
+    else:
+        return None
+
+def is_gitlab_repo(url):
+    '''
+    Checks if the url is a gitlab repository.
+    - url: url to check
+    '''
+    if 'gitlab.com' in url:
+        end =  url.split('gitlab.com/')[1]
+        owner = end.split('/')[0]
+        repo = end.split('/')[1]
+        
+        clean_repo = f"https://gitlab.com/{owner}/{repo}"
+
+        return clean_repo
+        
+    else:
+        return None
+        
+    
+def is_bitbucket_repo(url):
+    '''
+    Checks if the url is a bitbucket repository.
+    - url: url to check
+    '''
+    if 'bitbucket.org' in url:
+        end =  url.split('bitbucket.org/')[1]
+        owner = end.split('/')[0]
+        repo = end.split('/')[1]
+        
+        clean_repo = f"https://bitbucket.org/{owner}/{repo}"
+        return clean_repo
+        
+    else:
+        return None
+
+def is_repository(url):
+    '''
+    Checks if the url is a repository.
+    - url: url to check
+    '''
+    gh_repo = is_github_repo(url)
+    if gh_repo:
+        return { 'kind': 'github', 'url': gh_repo}
+    
+    gitlab_repo = is_gitlab_repo(url)
+    if gitlab_repo(url):
+        return { 'kind': 'gitlab', 'url': gitlab_repo}
+    
+    bitbucket_repo = is_bitbucket_repo(url)
+    if bitbucket_repo:
+        return { 'kind': 'bitbucket', 'url': bitbucket_repo}
+    
+    return []
 
 def validate_and_filter(instance_cls, **data):
     """Validates data dictionary, keeping only valid fields."""

@@ -40,8 +40,8 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         MetadataStandardizer.__init__(self, source)
     
 
-    @classmethod
-    def documentation(self, tool):
+    @staticmethod
+    def documentation(tool):
         '''
         Reformat the documentation field. 
         The url cannot be empty, so if it is, it is not added to the documentation list.
@@ -66,8 +66,8 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
                     })
         return(documentation)
 
-    @classmethod
-    def topics_operations(self, items):
+    @staticmethod
+    def topics_operations(items):
         '''
         Reformat edam_topics and edam_operations fields.
         - tool: the tool dictionary.
@@ -83,8 +83,8 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         return(new_items)
 
 
-    @classmethod
-    def license(self, tool):
+    @staticmethod
+    def license(tool):
         '''
         Builds a dictionary for the licenses.
         '''
@@ -115,8 +115,8 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         else:
             return []
 
-    @classmethod
-    def data_format_item(self, data: Dict[str, Any]):
+    @staticmethod
+    def data_format_item(data: Dict[str, Any]):
         '''
         Reformats each data format item coming from bio.tools
         '''
@@ -156,20 +156,20 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
 
             return reformatted_items
         
-    @classmethod
-    def data_format(self, items):
+    @staticmethod
+    def data_format(items):
         '''
         Performs the reformat of the input and output field.
         '''
         new_items = []
         for item in items:
-            new_item = self.data_format_item(item)
+            new_item = biotoolsOPEBStandardizer.data_format_item(item)
             if new_item:
                 new_items.extend(new_item)
         return(new_items)
     
-    @classmethod
-    def empty_string_to_none(self, data):
+    @staticmethod
+    def empty_string_to_none(data):
         '''
         If the string is empty, turn it into None.
         '''
@@ -178,19 +178,19 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         else:
             return data
         
-    @classmethod
-    def label(self, tool: Dict[str, Any]):
+    @staticmethod
+    def label(tool: Dict[str, Any]):
         '''
         If name does not exist, use label instead.
         '''
-        name = self.clean_name(tool['name'])
+        name = biotoolsOPEBStandardizer.clean_name(tool['name'])
         if name:
             return([name])
         else:
             return([tool['@label']])
     
-    @classmethod
-    def webpage(self, tool: Dict[str, Any]):
+    @staticmethod
+    def webpage(tool: Dict[str, Any]):
         """
         If the webpage is empty or not present, return an empty list.
         Otherwise, return a list containing the homepage URL.
@@ -205,16 +205,16 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
             # Handle unexpected errors
             return []
         
-    @classmethod
-    def description(self, tool: Dict[str, Any]):
+    @staticmethod
+    def description(tool: Dict[str, Any]):
         if tool.get('description'):
             return [tool['description']]
         else:
             return []
         
 
-    @classmethod
-    def repositories(self, tool: Dict[str, Any]):
+    @staticmethod
+    def repositories(tool: Dict[str, Any]):
         '''
         Returns the repositories of the tool.
         - tool: tool to be transformed
@@ -228,32 +228,33 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
 
         return(repositories)
 
-        
-    def transform_one(self, tool, standardized_tools):
+    
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool from oeb bio.tools into an instance.
         '''
 
         tool = tool.get('data')
 
-        name = self.clean_name(tool.get('@label')).lower()
+        name = cls.clean_name(tool.get('@label')).lower()
         type = tool.get('@type')
         version = [ tool['@version'] ]
         source = ['biotools']
-        label = self.label(tool)
-        description = self.description(tool)
+        label = cls.label(tool)
+        description = cls.description(tool)
         publication = tool.get('publications',[])
         test = False
-        license = self.license(tool)
-        documentation = self.documentation(tool)
+        license = cls.license(tool)
+        documentation = cls.documentation(tool)
         os = tool.get('os', [])
-        repository = self.repositories(tool)
-        webpage = self.webpage(tool)
+        repository = cls.repositories(tool)
+        webpage = cls.webpage(tool)
         if tool.get('semantics'):
-            input = self.data_format(tool['semantics'].get('inputs', []))
-            output = self.data_format(tool['semantics'].get('outputs', []))
-            topics = self.topics_operations(tool['semantics']['topics'])
-            operations = self.topics_operations(tool['semantics']['operations'])
+            input = cls.data_format(tool['semantics'].get('inputs', []))
+            output = cls.data_format(tool['semantics'].get('outputs', []))
+            topics = cls.topics_operations(tool['semantics']['topics'])
+            operations = cls.topics_operations(tool['semantics']['operations'])
         else:
             input = []
             output = []

@@ -1,3 +1,7 @@
+''''
+
+DEPRECATED: This module is deprecated and will be removed in a future release.
+
 from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional
 import re
@@ -75,3 +79,5 @@ class publication_item(BaseModel):
             else:
                 merged[mention.year] = mention
         return list(merged.values())
+
+'''

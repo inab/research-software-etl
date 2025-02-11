@@ -15,9 +15,8 @@ class StandardizerFactory:
     }
 
     @classmethod
-    def get_standardizer(cls, source: str, raw_data: Dict[str, Any]) -> PublicationStandardizer:
+    def get_standardizer(cls, source: str) -> PublicationStandardizer:
         """Returns the appropriate standardizer based on the source name."""
-        print(source)
         if source not in cls._standardizers:
             raise ValueError(f"Unsupported source: {source}")
-        return cls._standardizers[source](raw_data)
+        return cls._standardizers[source]

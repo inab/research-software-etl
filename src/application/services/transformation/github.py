@@ -16,8 +16,8 @@ class githubStandardizer(MetadataStandardizer):
     def __init__(self, source = 'github'):
         MetadataStandardizer.__init__(self)
 
-    @classmethod
-    def repository(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def repository(tool: Dict[str, Any]):
         '''
         Returns the repository of the tool.
         '''
@@ -30,8 +30,8 @@ class githubStandardizer(MetadataStandardizer):
         else:
             return []
     
-    @classmethod
-    def authors(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def authors(tool: Dict[str, Any]):
         '''
         Turns person into Person
         '''
@@ -51,8 +51,8 @@ class githubStandardizer(MetadataStandardizer):
         return new_authors
 
 
-                
-    def transform_one(self, tool, standardized_tools):
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms one tool to the standardized format.
         '''
@@ -69,10 +69,10 @@ class githubStandardizer(MetadataStandardizer):
             "links" : data['links'],
             "webpage" : data['webpage'],
             "download" : data['download'],
-            "repository" : self.repository(data),
+            "repository" : cls.repository(data),
             "operating_system" : data['os'],
             "documentation" : data['documentation'],
-            "authors" : self.authors(data),
+            "authors" : cls.authors(data),
             "publications" : data['publication'],
             "topics" : data['topics']
         }

@@ -12,8 +12,8 @@ class sourceforgeStandardizer(MetadataStandardizer):
     def __init__(self, source = 'sourceforge'):
         MetadataStandardizer.__init__(self)
 
-    @classmethod
-    def description(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def description(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the description of the tool.
         - tool: metadata of tool to be transformed
@@ -23,8 +23,8 @@ class sourceforgeStandardizer(MetadataStandardizer):
         else:
             return([])
         
-    @classmethod
-    def webpage(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def webpage(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the webpage of the tool.
         - tool: metadata of tool to be transformed
@@ -34,8 +34,8 @@ class sourceforgeStandardizer(MetadataStandardizer):
         else:
             return([])
         
-    @classmethod
-    def repository(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def repository(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the repository of the tool.
         - tool: metadata of tool to be transformed
@@ -52,8 +52,8 @@ class sourceforgeStandardizer(MetadataStandardizer):
         
         return(repos)
         
-    @classmethod
-    def license(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def license(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the license of the tool.
         - tool: metadata of tool to be transformed
@@ -68,8 +68,8 @@ class sourceforgeStandardizer(MetadataStandardizer):
 
         return(licenses)
         
-    @classmethod
-    def operating_systems(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def operating_systems(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the operating systems of the tool.
         - tool: metadata of tool to be transformed
@@ -82,8 +82,8 @@ class sourceforgeStandardizer(MetadataStandardizer):
 
         return operating_systems
 
-    @classmethod
-    def description(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def description(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the description of the tool.
         - tool: metadata of tool to be transformed
@@ -93,7 +93,8 @@ class sourceforgeStandardizer(MetadataStandardizer):
         else:
             return([])
 
-    def transform_one(self, tool, standardized_tools):
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         - tool: metadata of tool to be transformed
@@ -105,11 +106,11 @@ class sourceforgeStandardizer(MetadataStandardizer):
         version = []
         label = [name]
         source = ['sourceforge']
-        operating_systems = self.operating_systems(tool)
-        description = self.description(tool)
-        license = self.license(tool)
-        repository = self.repository(tool)
-        webpage =   self.webpage(tool)
+        operating_systems = cls.operating_systems(tool)
+        description = cls.description(tool)
+        license = cls.license(tool)
+        repository = cls.repository(tool)
+        webpage =   cls.webpage(tool)
         download = [source_url]
 
         new_instance_dict = {

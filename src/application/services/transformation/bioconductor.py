@@ -18,8 +18,8 @@ class bioconductorStandardizer(MetadataStandardizer):
     def __init__(self, source = 'bioconductor'):
         MetadataStandardizer.__init__(self, source)
 
-    @classmethod
-    def description(self, tool: Dict[str, Any]):
+    @staticmethod
+    def description(tool: Dict[str, Any]):
         '''
         Returns the description of the tool.
         '''
@@ -27,11 +27,11 @@ class bioconductorStandardizer(MetadataStandardizer):
 
         if tool.get('Description'):
             return [tool.get('Description')]
-        
         else:
             return []
             
-    def clean_webpage(self, webpage: str) -> Optional[str]:
+    @staticmethod
+    def clean_webpage(webpage: str) -> Optional[str]:
         if not webpage:  # Handle empty strings or None
             return None
         
@@ -76,8 +76,8 @@ class bioconductorStandardizer(MetadataStandardizer):
         else:
             return []
 
-    @classmethod
-    def webpage(cls, tool: Dict[str, Any], source_url: str) -> List[str]:
+    @staticmethod
+    def webpage(tool: Dict[str, Any], source_url: str) -> List[str]:
         '''
         Returns the webpage of the tool.
         '''
@@ -87,7 +87,7 @@ class bioconductorStandardizer(MetadataStandardizer):
             # Handle multiple URLs separated by ', '
             if ', ' in tool_url:
                 urls = tool_url.split(', ')
-                urls = [cls().clean_webpage(url) for url in urls]
+                urls = [bioconductorStandardizer.clean_webpage(url) for url in urls]
                 urls = [url for url in urls if url]  # Filter out None values
                 return urls
 
@@ -96,17 +96,17 @@ class bioconductorStandardizer(MetadataStandardizer):
                 return []
 
             # Handle a single URL
-            webpage = cls().clean_webpage(tool_url)
+            webpage = bioconductorStandardizer.clean_webpage(tool_url)
             if webpage:
                 return [webpage]
             else:
-                return cls.get_bioconductor_package_url(source_url)
+                return bioconductorStandardizer.get_bioconductor_package_url(source_url)
 
         # If no URL is provided, try the Bioconductor package URL
-        return cls.get_bioconductor_package_url(source_url)
+        return bioconductorStandardizer.get_bioconductor_package_url(source_url)
 
-    @classmethod
-    def dependencies(self, tool: Dict[str, Any]):
+    @staticmethod
+    def dependencies(tool: Dict[str, Any]):
         '''
         Returns the dependencies of the package
         '''
@@ -123,8 +123,8 @@ class bioconductorStandardizer(MetadataStandardizer):
 
         return dependencies
     
-    @classmethod
-    def license(self, tool: Dict[str, Any]):
+    @staticmethod
+    def license(tool: Dict[str, Any]):
         '''
         Returns the license of the package
         '''
@@ -143,8 +143,6 @@ class bioconductorStandardizer(MetadataStandardizer):
                     licenses.append({
                         'name': license
                         })
-                
-            
         return licenses
 
     @staticmethod
@@ -167,8 +165,8 @@ class bioconductorStandardizer(MetadataStandardizer):
             else:
                 return email          
 
-    @classmethod
-    def authors(self, tool: Dict[str, Any]):
+    @staticmethod
+    def authors(tool: Dict[str, Any]):
         #logging.info('-- Getting the authors of the tool --')
 
         all_results = []
@@ -178,7 +176,7 @@ class bioconductorStandardizer(MetadataStandardizer):
                 continue
                 
             if maintainer.get('email'):
-                maintainer['email'] = self.clean_email(maintainer['email'])
+                maintainer['email'] = bioconductorStandardizer.clean_email(maintainer['email'])
 
             all_results.append(maintainer)
             [maintainers.add(item.get('name')) for item in all_results]
@@ -194,14 +192,14 @@ class bioconductorStandardizer(MetadataStandardizer):
                         continue
 
                     if author.get('email'):
-                        author['email'] = self.clean_email(author['email'])
+                        author['email'] = bioconductorStandardizer.clean_email(author['email'])
 
                     all_results.append(author)
             
         return all_results
     
-    @classmethod
-    def find_github_repo(self, string):
+    @staticmethod
+    def find_github_repo(string):
         # Regex pattern to match a GitHub repository URL and capture the username/repo part
         github_repo_pattern = r'https://github\.com/([A-Za-z0-9][A-Za-z0-9_-]*/[A-Za-z0-9_.-]+)'
 
@@ -214,8 +212,8 @@ class bioconductorStandardizer(MetadataStandardizer):
         else:
             return None
         
-    @classmethod
-    def repositories(self, tool: Dict[str, Any], source_url: str):
+    @staticmethod
+    def repositories(tool: Dict[str, Any], source_url: str):
         '''
         Returns the repositories of the package
         '''
@@ -226,7 +224,7 @@ class bioconductorStandardizer(MetadataStandardizer):
                 'url': source_url
             })
         if tool.get('BugReports'):
-            repo = self.find_github_repo(tool.get('BugReports'))
+            repo = bioconductorStandardizer.find_github_repo(tool.get('BugReports'))
             if repo:
                 repositories.append({
                     'url': repo,
@@ -235,9 +233,10 @@ class bioconductorStandardizer(MetadataStandardizer):
         
         return repositories
 
-    def documentation(self, tool: Dict[str, Any]):
+    @staticmethod
+    def documentation(tool: Dict[str, Any]):
         '''
-        NOT USED FOR NOW
+        NOT USED FOR NOW - not present in the raw metadata ...
         Returns the documentation of the tool.
         '''
         documentation = []
@@ -251,26 +250,27 @@ class bioconductorStandardizer(MetadataStandardizer):
 
         return(documentation)
     
-    
-    def transform_one(self, tool, standardized_tools):
+
+    @classmethod    
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
         source_url = tool.get('@source_url')
         tool = tool.get('data')
 
-        name = name = self.clean_name(tool.get('Package')).lower()
+        name = name = cls.clean_name(tool.get('Package')).lower()
         type_ = 'lib'
         version = [tool.get('Version')]
-        label = self.clean_name(tool.get('Package'))
-        description = self.description(tool)
-        webpage = self.webpage(tool, source_url)
+        label = cls.clean_name(tool.get('Package'))
+        description = cls.description(tool)
+        webpage = cls.webpage(tool, source_url)
         source = ['bioconductor']
         operating_system = ['Linux', 'macOS', 'Windows']
-        license = self.license(tool)
-        dependencies = self.dependencies(tool)
-        authors = self.authors(tool)
-        repository = self.repositories(tool, source_url)
+        license = cls.license(tool)
+        dependencies = cls.dependencies(tool)
+        authors = cls.authors(tool)
+        repository = cls.repositories(tool, source_url)
 
         new_instance_dict = {
             "name" : name,

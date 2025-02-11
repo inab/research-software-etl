@@ -1,6 +1,7 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
-from src.shared.utils import validate_and_filter
+from src.shared.utils import validate_and_filter, is_repository
+
 
 
 import logging
@@ -17,16 +18,16 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         MetadataStandardizer.__init__(self, source)
 
     @classmethod
-    def name(self, tool):
+    def name(cls, tool):
         '''
         Build the name of the tool.
         - tool: dictionary with the tool data
         '''
-        name = self.clean_name(tool.get('name')).lower()
+        name = cls.clean_name(tool.get('name')).lower()
         return name
 
-    @classmethod
-    def type(self, tool):
+    @staticmethod
+    def type(tool):
         '''
         Builds the type of the tool. If there is no type in the document, it returns cmd.
         - tool: dictionary with the tool data
@@ -36,8 +37,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         else:
             return ['cmd']
 
-    @classmethod
-    def version(self, tool):
+    @staticmethod
+    def version(tool):
         '''
         Builds the version of the tool. The version is extracted from the @id field.
         - tool: dictionary with the tool data
@@ -48,8 +49,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         else:
             return None
         
-    @classmethod
-    def description(self, tool: Dict) -> List[str]:
+    @staticmethod
+    def description(tool: Dict) -> List[str]:
         '''
         Builds the description of the tool.
         - tool: dictionary with the tool data
@@ -65,8 +66,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         
         return []
             
-    @classmethod
-    def webpage(self, tool: Dict) -> List[HttpUrl]:
+    @staticmethod
+    def webpage(tool: Dict) -> List[HttpUrl]:
         '''
         Builds the webpage of the tool.
         - tool: dictionary with the tool data
@@ -77,8 +78,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         except:
             return []
         
-    @classmethod
-    def source_code(self, tool: Dict) -> List[HttpUrl]:
+    @staticmethod
+    def source_code(tool: Dict) -> List[HttpUrl]:
         '''
         Builds the source code of the tool.
         - tool: dictionary with the tool data
@@ -100,8 +101,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         return source_code
     
 
-    @classmethod
-    def documentation(self, tool: Dict) -> List[Dict]:
+    @staticmethod
+    def documentation(tool: Dict) -> List[Dict]:
         '''
         Builds the documentation of the tool.
         - tool: dictionary with the tool data
@@ -135,77 +136,9 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
 
         return documentation
     
-    @classmethod
-    def is_github_repo(self, url):
-        '''
-        Checks if the url is a github repository.
-        - url: url to check
-        '''
-        if 'github.com' in url:
-            end =  url.split('github.com/')[1]
-            owner = end.split('/')[0]
-            repo = end.split('/')[1]
 
-            clean_repo = f"https://github.com/{owner}/{repo}"
-
-            return clean_repo
-            
-        else:
-            return None
-        
-    @classmethod
-    def is_gitlab_repo(self, url):
-        '''
-        Checks if the url is a gitlab repository.
-        - url: url to check
-        '''
-        if 'gitlab.com' in url:
-            end =  url.split('gitlab.com/')[1]
-            owner = end.split('/')[0]
-            repo = end.split('/')[1]
-         
-            clean_repo = f"https://gitlab.com/{owner}/{repo}"
-
-            return clean_repo
-            
-        else:
-            return None
-        
-    @classmethod
-    def is_bitbucket_repo(self, url):
-        '''
-        Checks if the url is a bitbucket repository.
-        - url: url to check
-        '''
-        if 'bitbucket.org' in url:
-            end =  url.split('bitbucket.org/')[1]
-            owner = end.split('/')[0]
-            repo = end.split('/')[1]
-         
-            clean_repo = f"https://bitbucket.org/{owner}/{repo}"
-            return clean_repo
-            
-        else:
-            return None
-    
-    @classmethod
-    def is_repository(self, url):
-        '''
-        Checks if the url is a repository.
-        - url: url to check
-        '''
-        if self.is_github_repo(url):
-            return self.is_github_repo(url)
-        elif self.is_gitlab_repo(url):
-            return self.is_gitlab_repo(url)
-        elif self.is_bitbucket_repo(url):
-            return self.is_bitbucket_repo(url)
-        else:
-            return []
-        
-
-    @classmethod
-    def repository(self, tool: Dict) -> List[HttpUrl]:
+    @staticmethod
+    def repository(tool: Dict) -> List[HttpUrl]:
         '''
         Builds the repository of the tool.
         - tool: dictionary with the tool data
@@ -214,35 +147,29 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         # It can be in about/home
         if tool.get('about'):
             if tool['about'].get('home'):
-                repository = self.is_repository(tool['about']['home'])
+                repository = is_repository(tool['about']['home'])
                 if repository:
-                    return [{
-                        'url': repository
-                    }]
+                    return repository
         
         # It can be in about/dev_url
         if tool.get('about'):
             if tool['about'].get('dev_url'):
-                repository = self.is_repository(tool['about']['dev_url'])
+                repository = is_repository(tool['about']['dev_url'])
                 if repository:
-                    return [{
-                        'url': repository
-                    }]
+                    return repository
         
         # It can be in source/url
         if tool.get('source'):
             if tool['source'].get('url'):
-                repository = self.is_repository(tool['source']['url'])
+                repository = is_repository(tool['source']['url'])
                 if repository:
-                    return [{
-                        'url': repository
-                    }]
+                    return repository
 
         return repository
 
 
-    @classmethod
-    def license(self, tool: Dict) -> List[Dict]:
+    @staticmethod
+    def license(tool: Dict) -> List[Dict]:
         '''
         Builds the license of the tool.
         - tool: dictionary with the tool data
@@ -257,9 +184,10 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
                 }
                 return [license]
     
-    @classmethod
-    def publications(self, tool: Dict) -> List[Dict]:
+    @staticmethod
+    def publications(tool: Dict) -> List[Dict]:
         '''
+        TODO: move to a separate extractor and standardizer
         Builds the publications of the tool.
         - tool: dictionary with the tool data
         Publication DOI identifiers can be in extra/identifiers or extra/doi.
@@ -289,8 +217,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
     
         return publications
     
-    @classmethod
-    def dependencies(self, tool: Dict) -> List[Dict]:
+    @staticmethod
+    def dependencies(tool: Dict) -> List[Dict]:
         '''
         Builds the dependencies of the tool.
         - tool: dictionary with the tool data
@@ -304,9 +232,10 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
 
         return dependencies
     
-    @classmethod
-    def extract_github_user(self, name):
+    @staticmethod
+    def extract_github_user(name):
         '''
+        Heuristic from observation of the data.
         '''
         if len(name.split(' ')) == 1:
 
@@ -317,9 +246,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         
         return {}
     
-
-    @classmethod
-    def convert_names_to_list(self, names_str):
+    @staticmethod
+    def convert_names_to_list(names_str):
         # Replace ' and ' with ', ' to standardize separators
         standardized_str = names_str.replace(' and ', ', ')
         # Split the string by ', ' to create a list
@@ -340,13 +268,14 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
             if tool['about'].get('maintainers'):
                 raw_authors = tool['about']['maintainers']
                 if isinstance(raw_authors, str):
-                    raw_authors = self.convert_names_to_list(raw_authors)
+                    raw_authors = biocondaRecipesStandardizer.convert_names_to_list(raw_authors)
 
                 for maintainer in raw_authors:
                     maintainers.add(maintainer)
                     # check if this seems a github user
-                    if self.extract_github_user(maintainer):
-                        user = self.extract_github_user(maintainer)
+                    github_user = biocondaRecipesStandardizer.extract_github_user(maintainer)
+                    if github_user:
+                        user = github_user
                         user['maintainer'] = True
                         authors.append(user)
                     else:
@@ -367,8 +296,9 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
                     if author in maintainers:
                         continue
                     # check if this seems a github user
-                    if self.extract_github_user(author):
-                        user = self.extract_github_user(author)
+                    github_user = biocondaRecipesStandardizer.extract_github_user(author)
+                    if github_user:
+                        user = github_user
                         user['maintainer'] = False
                         authors.append(user)
                     else:
@@ -381,27 +311,28 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         return authors
     
 
-    def transform_one(self, tool, standardized_tools):
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
         tool = tool['data']
 
-        name = self.name(tool)
-        types_ = self.type(tool)
-        version = self.version(tool)
+        name = cls.name(tool)
+        types_ = cls.type(tool)
+        version = cls.version(tool)
         source = ['bioconda_recipes']
-        label = self.clean_name(tool.get('name'))
-        description = self.description(tool)
-        webpage = self.webpage(tool)
-        source_code = self.source_code(tool)
-        documentation = self.documentation(tool)
-        repository = self.repository(tool)
+        label = cls.clean_name(tool.get('name'))
+        description = cls.description(tool)
+        webpage = cls.webpage(tool)
+        source_code = cls.source_code(tool)
+        documentation = cls.documentation(tool)
+        repository = cls.repository(tool)
         operating_system = ['Linux', 'macOS', 'Windows']
-        license = self.license(tool)
-        publication = self.publications(tool)
-        dependencies = self.dependencies(tool)
-        authors = self.authors(tool)
+        license = cls.license(tool)
+        # publication = self.publications(tool) TODO: to be moved out of here
+        dependencies = cls.dependencies(tool)
+        authors = cls.authors(tool)
         test = False
 
         for type_ in types_:
@@ -415,7 +346,6 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
                 "description" : description,
                 "source_code" : source_code,
                 "download" : source_code,
-                "publication" : publication,
                 "test" : test,
                 "license" : license,
                 "documentation" : documentation,

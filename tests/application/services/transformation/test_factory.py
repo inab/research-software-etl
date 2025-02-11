@@ -4,7 +4,7 @@ from src.application.services.transformation.bioconda_opeb import biocondaOPEBSt
 from src.application.services.transformation.bioconda_recipes import biocondaRecipesStandardizer
 from src.application.services.transformation.bioconductor import bioconductorStandardizer
 from src.application.services.transformation.biotools_opeb import biotoolsOPEBStandardizer
-from src.application.services.transformation.galaxy_config import toolshedStandardizer
+from application.services.transformation.toolshed import toolshedStandardizer
 from src.application.services.transformation.galaxy_metadata import galaxyMetadataStandardizer
 from src.application.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
 from src.application.services.transformation.opeb_metrics import OPEBMetricsStandardizer

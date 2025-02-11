@@ -13,8 +13,8 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
         MetadataStandardizer.__init__(self, source)
 
     
-    @classmethod
-    def bioschemas(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def bioschemas(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the bioschemas of the tool.
         - tool: tool to be transformed
@@ -22,12 +22,12 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
         bioschemas = None
         if tool.get('project'):
             if tool['project'].get('website'):
-                bioschemas = tool['project']['bioschemas'].get('bioschemas')
+                bioschemas = tool['project']['website'].get('bioschemas')
 
         return(bioschemas)
     
-    @classmethod
-    def https(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def https(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns https.
         - tool: tool to be transformed
@@ -39,8 +39,8 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
 
         return(https)
     
-    @classmethod
-    def ssl(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def ssl(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns ssl.
         - tool: tool to be transformed
@@ -52,8 +52,8 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
         
         return(ssl)
     
-    @classmethod
-    def operational(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def operational(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns operational.
         - tool: tool to be transformed
@@ -66,8 +66,8 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
         return(operational)
     
 
-    @classmethod
-    def publications(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def publications(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the publications of the tool.
         - tool: tool to be transformed
@@ -80,8 +80,8 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
         
         return(publications)
 
-
-    def extract_from_id(self, _id):
+    @staticmethod
+    def extract_from_id(_id):
         '''
         Extracts the name and version from the id of the tool.
         - _id: id of the tool
@@ -95,12 +95,13 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
                 'type': None,
             }
         else:
-            id_data = self.extract_ids(_id)
+            id_data = OPEBMetricsStandardizer.extract_ids(_id)
 
         return(id_data)
     
     
-    def transform_one(self, tool, standardized_tools):
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool from oeb bio.tools into an instance.
         - tool: metadata of tool to be transformed
@@ -114,12 +115,12 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
 
         tool = tool.get('data', {})
 
-        id_data = self.extract_from_id(tool.get('@id'))
-        name = self.clean_name(id_data.get('name')).lower()
+        id_data = cls.extract_from_id(tool.get('@id'))
+        name = cls.clean_name(id_data.get('name')).lower()
         version = [id_data.get('version')]
         types_ = id_data.get('type')
         source = ['opeb_metrics']
-        publication = self.publications(tool)
+        publication = cls.publications(tool)
         
         for type_ in types_:
             new_instance = instance(

@@ -1,20 +1,21 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
-from src.shared.utils import validate_and_filter
+from src.shared.utils import validate_and_filter, is_repository
 from typing import Dict, Any
 import logging
-import json
 import bibtexparser
 
-# -------------------------------------------------
+# -----------------------------------------------------------
 # Galaxy Config (from Toolshed) MetadataStandardizer
-# -------------------------------------------------
+# -----------------------------------------------------------
 
 class toolshedStandardizer(MetadataStandardizer):
 
     def __init__(self, source = 'toolshed'):
         MetadataStandardizer.__init__(self, source)
     
+    # --------  Functions to format specific fields --------
+
     def description(self, tool: Dict[str, Any]):
         '''
         Returns the description of the tool.
@@ -24,79 +25,9 @@ class toolshedStandardizer(MetadataStandardizer):
         else:
             return([])
         
-
-    @staticmethod
-    def parse_bibtex(ent):
-        '''
-        Gets journal publication information from bibtex citation.
-        '''
-        parser = bibtexparser.bparser.BibTexParser(common_strings=True)
-        logger = logging.getLogger('bibtexparser')
-        new_entries = []
-        try:
-            bibtexdb = bibtexparser.loads(ent, parser=parser)
-            for entry in bibtexdb.entries:
-                if entry['ENTRYTYPE'].lower() != 'misc':
-                    #print(entry)
-                    single_entry = {}
-                    single_entry['url'] = entry.get('url')
-                    single_entry['title'] = entry.get('title')
-                    single_entry['year'] = entry.get('year')
-                    single_entry['journal'] = entry.get('journal')
-                    single_entry['doi'] = entry.get('doi')
-                    single_entry['pmid'] = entry.get('pmid')
-                    new_entries.append(single_entry)
-        except Exception as err:
-            logger.error(f'FAILED attempt to parse citation (bibtex). Error: {err}')
-            logger.error(json.dumps(ent, sort_keys=False, indent=4))
-
-        return(new_entries)
     
     @classmethod
-    def parse_bibtex_any(self, ent):
-        '''
-        Gets any kind of information from bibtex citation.
-        '''
-        parser = bibtexparser.bparser.BibTexParser(common_strings=True)
-        logger = logging.getLogger('bibtexparser')
-        new_entries = []
-        
-        
-        bibtexdb = bibtexparser.loads(ent, parser=parser)
-        for entry in bibtexdb.entries:
-            if entry['ENTRYTYPE'].lower() == 'misc':
-                single_entry = {}
-                for key in entry:
-                    single_entry[key] = entry[key]
-
-                new_entries.append(single_entry)
-        '''
-        except Exception as err:
-            logger.error(f'FAILED attempt to parse citation (bibtex). Error: {err}')
-            logger.error(json.dumps(ent, sort_keys=False, indent=4))
-        '''
-        
-        return(new_entries)
-    
-    def publication(self, tool: Dict[str, Any]):
-        '''
-        Returns the publication of the tool.
-        '''
-        new_pubs = []
-        if tool.get('citation'):
-            for cit in tool['citation']:
-                if cit.get('type') == 'doi':
-                    new_pub = {'doi':cit.get('citation')}
-                    new_pubs.append(new_pub)
-                else:
-                    new_entries = toolshedStandardizer.parse_bibtex(cit.get('citation'))
-                    for se in new_entries:
-                        new_pubs.append(se)
-        
-        return(new_pubs)
-    
-    @classmethod
-    def data_formats(self, tool: Dict[str, Any], field: str):
+    def data_formats(cls, tool: Dict[str, Any], field: str):
         '''
         Returns the data formats of the tool (for input or output fileds).
         - tool: tool dictionary
@@ -112,12 +43,11 @@ class toolshedStandardizer(MetadataStandardizer):
                     })
                 
                 return(formats)
-        
             
         return([])
             
     @classmethod
-    def documentation(self, tool: Dict[str, Any]):
+    def documentation(cls, tool: Dict[str, Any]):
         '''
         Returns the documentation of the tool.
         '''
@@ -127,7 +57,7 @@ class toolshedStandardizer(MetadataStandardizer):
             return([])
         
     @classmethod
-    def citation(self, tool: Dict[str, Any]):
+    def citation(cls, tool: Dict[str, Any]):
         '''
         Returns the citation of the tool.
         '''
@@ -135,11 +65,59 @@ class toolshedStandardizer(MetadataStandardizer):
         if tool.get('citation'):
             for cit in tool['citation']:
                 if cit.get('type') != 'doi':
-                    new_cits.extend(self.parse_bibtex_any(cit['citation']))
+                    new_cits.extend(cls.parse_bibtex_any(cit['citation']))
             return(new_cits)
         else:
             return([])
+        
+    
+    @classmethod
+    def parse_bibtex_misc(cls, bibtex_string):
+        '''
+        Gets any kind of information from bibtex citation.
+        '''
+        parser = bibtexparser.bparser.BibTexParser(common_strings=True)
+        logger = logging.getLogger('bibtexparser')
+        new_entries = []
+        
+        bibtexdb = bibtexparser.loads(bibtex_string, parser=parser)
+        for entry in bibtexdb.entries:
+            if entry['ENTRYTYPE'].lower() == 'misc':
+                single_entry = {}
+                for key in entry:
+                    single_entry[key] = entry[key]
 
+                new_entries.append(single_entry)
+        '''
+        except Exception as err:
+            logger.error(f'FAILED attempt to parse citation (bibtex). Error: {err}')
+            logger.error(json.dumps(ent, sort_keys=False, indent=4))
+        '''
+        return(new_entries)
+    
+        
+    @classmethod
+    def repository(cls, tool: Dict[str, Any]):
+        """
+        Looks for a GitHub repository in the citation of the tool.
+        """
+        if not tool.get('citation'):
+            return []
+
+        for citation in tool['citation']:
+            if citation.get('type') != 'bibtex':
+                continue
+
+            parsed_citation = cls.parse_bibtex_misc(citation['value'])
+            for item in parsed_citation:
+                for key in ['url', 'crossref']:
+                    repository = is_repository(item.get(key))
+                    if repository:
+                        return repository
+
+        return []
+    
+    # --------  Main Function  --------
     def transform_one(self, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
@@ -149,19 +127,17 @@ class toolshedStandardizer(MetadataStandardizer):
             name = self.clean_name(tool.get('id')).lower()
             version = [tool.get('version')]
             type_ = 'cmd'
-
             label = [tool.get('name')]
             description = self.description(tool)
-            publication = self.publication(tool)
             test = tool.get('test', False)
             input = self.data_formats(tool, 'inputs')
             output = self.data_formats(tool, 'outputs')
             documentation = self.documentation(tool)
-            citation = self.citation(tool)
+            #citation = self.citation(tool)
             download = [tool.get('@source_url')]
             operating_system = ['Linux', 'macOS']
             source = ['toolshed']
-        
+            repository = self.repository(tool)
 
             new_instance_dict = {
                 "name" : name,
@@ -171,13 +147,12 @@ class toolshedStandardizer(MetadataStandardizer):
                 "download" : download,
                 "label" : label,
                 "description" : description,
-                "publication" : publication,
                 "documentation" : documentation,
                 "operating_system" : operating_system,
                 "test" : test,
                 "input" : input,
                 "output" : output,
-                "citation" : citation
+                "repository" : repository
             }
                 
             # We keep only the fields that pass the validation

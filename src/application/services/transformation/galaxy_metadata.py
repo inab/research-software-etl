@@ -10,14 +10,15 @@ class galaxyMetadataStandardizer(MetadataStandardizer):
     def __init__(self, source = 'galaxy_metadata'):
         MetadataStandardizer.__init__(self, source)
 
-    def transform_one(self, tool, standardized_tools):
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
         tool = tool.get('data')
         
         if tool.get('id'):
-            name = self.clean_name(tool.get('id')).lower()
+            name = cls.clean_name(tool.get('id')).lower()
             version = [tool.get('version')]
             type_ = 'cmd'
             label = [tool.get('name')]

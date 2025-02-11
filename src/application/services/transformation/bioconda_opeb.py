@@ -16,8 +16,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
     def __init__(self, source = 'biocondaOPEB'):
         MetadataStandardizer.__init__(self, source)
     
-    @classmethod
-    def get_name_version_type(cls, id_):
+    @staticmethod
+    def get_name_version_type(id_):
         fields = id_.split('/')
         name_plus = fields[5]
         name_plus_fields=name_plus.split(':')
@@ -34,8 +34,9 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         
         return({'name':name, 'version':version, 'type':type_})
     
-    def types(self, tool: Dict[str, Any], name: str, type_: str):
+    def types( self, name: str):
         '''
+        NOT USED, but kept for future reference
         Returns the types of the tool.
         - tool: tool to be transformed
         '''
@@ -49,8 +50,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
 
         return(types_)
     
-    @classmethod
-    def description(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def description(tool: Dict[str, Any]):
         '''
         Returns the description of the tool.
         - tool: tool to be transformed
@@ -63,8 +64,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         else:
             return []        
         
-    @classmethod
-    def webpage(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def webpage(tool: Dict[str, Any]):
         '''
         Returns the webpage of the tool.
         - tool: tool to be transformed
@@ -76,8 +77,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         else:
             return []
         
-    @classmethod
-    def publication(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def publication(tool: Dict[str, Any]):
         '''
         Returns the publication of the tool.
         - tool: tool to be transformed
@@ -88,8 +89,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         else:
             return []
     
-    @classmethod
-    def source_code(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def source_code(tool: Dict[str, Any]):
         '''
         Returns the source code links of the tool.
         - tool: tool to be transformed
@@ -104,8 +105,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         
         return(source_code)
     
-    @classmethod
-    def download(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def download(tool: Dict[str, Any]):
         '''
         Returns the download links of the tool.
         - tool: tool to be transformed
@@ -118,8 +119,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         
         return(download)
     
-    @classmethod
-    def documentation(cls, tool: Dict) -> List[Dict]:
+    @staticmethod
+    def documentation(tool: Dict) -> List[Dict]:
         '''
         Builds the documentation of the tool.
         - tool: dictionary with the tool data
@@ -134,8 +135,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         
         return(documentation)
     
-    @classmethod
-    def license(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def license(tool: Dict[str, Any]):
         '''
         Returns the license of the tool.
         - tool: tool to be transformed
@@ -161,8 +162,8 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         except ValidationError as e:
             return False
     
-    @classmethod
-    def repositories(cls, tool: Dict[str, Any]):
+    @staticmethod
+    def repositories(tool: Dict[str, Any]):
         '''
         Returns the repositories of the tool.
         - tool: tool to be transformed
@@ -170,23 +171,16 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         repositories = []
         if tool.get('repositories'):
             for repo in tool['repositories']:
-                if cls.validate_http_url(repo):
+                if biocondaOPEBStandardizer.validate_http_url(repo):
                     repositories.append({
                         'url': repo
                     })
             
         return(repositories)
     
-    @classmethod
-    def version(cls, version):
-        if version:
-            if isinstance(version, str):
-                return([version])
-        
-        return None
     
-
-    def transform_one(self, tool, standardized_tools):
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
@@ -196,21 +190,21 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         else:
             tool = tool.get('data')
             
-            id_data = self.get_name_version_type(tool.get('@id'))
-            name = self.clean_name(id_data['name'].lower())
+            id_data = cls.get_name_version_type(tool.get('@id'))
+            name = cls.clean_name(id_data['name'].lower())
             version = [ id_data['version'] ]
             type_ = id_data['type'] 
             source = ['bioconda']
-            label = self.clean_name(tool.get('@label'))
-            description = self.description(tool)
-            webpage = self.webpage(tool)
-            publication = self.publication(tool)
-            download = self.download(tool)
-            source_code = self.source_code(tool)
-            documentation = self.documentation(tool)
-            license = self.license(tool)
-            repository = self.repositories(tool)
-            operating_system = operating_system = ['Linux', 'macOS', 'Windows']
+            label = cls.clean_name(tool.get('@label'))
+            description = cls.description(tool)
+            webpage = cls.webpage(tool)
+            publication = cls.publication(tool)
+            download = cls.download(tool)
+            source_code = cls.source_code(tool)
+            documentation = cls.documentation(tool)
+            license = cls.license(tool)
+            repository = cls.repositories(tool)
+            operating_system = ['Linux', 'macOS', 'Windows']
 
             
 

@@ -3,7 +3,7 @@ from typing import Dict, List, Optional
 from pydantic import BaseModel, Field
 
 
-# ------------------ ENTRY METADATA ------------------
+# ------------------ PUBLICATION ENTRY METADATA ------------------
 
 class Metadata(BaseModel):
     '''

@@ -13,8 +13,8 @@ class galaxyOPEBStandardizer(MetadataStandardizer):
     def __init__(self, source = 'galaxy'):
         MetadataStandardizer.__init__(self)
     
-    @classmethod
-    def description(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def description(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the description of the tool.
         - tool: metadata of tool to be transformed
@@ -25,8 +25,8 @@ class galaxyOPEBStandardizer(MetadataStandardizer):
             return([])
         
 
-    @classmethod
-    def webpage(self, tool: Dict[str, Any]) -> List[str]:
+    @staticmethod
+    def webpage(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the webpage of the tool.
         - tool: metadata of tool to be transformed
@@ -38,21 +38,22 @@ class galaxyOPEBStandardizer(MetadataStandardizer):
         
         return(webpage)
 
-    def transform_one(self, tool, standardized_tools):
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         - tool: metadata of tool to be transformed
         '''
         tool = tool.get('data')
         
-        name = self.clean_name(tool.get('@label')).lower()
+        name = cls.clean_name(tool.get('@label')).lower()
         version = [tool.get('@version')]
         type_ = 'cmd'
         label = [tool.get('name')]
-        description = self.description(tool)
+        description = cls.description(tool)
         source = ['galaxy']
         operating_systems = ['macOS', 'Linux']
-        webpage = self.webpage(tool)
+        webpage = cls.webpage(tool)
     
         new_instance_dict = {
             "name" : name,
