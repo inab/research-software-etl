@@ -1,5 +1,7 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
+from src.shared.utils import validate_and_filter
+
 
 import logging
 import re
@@ -404,25 +406,28 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
 
         for type_ in types_:
 
-            new_instance = instance(
-                name = name,
-                type = type_,
-                version = version,
-                source = source,
-                label = label,
-                description = description,
-                source_code = source_code,
-                download = source_code,
-                publication = publication,
-                test = test,
-                license = license,
-                documentation = documentation,
-                operating_system = operating_system,
-                repository = repository,
-                webpage = webpage,
-                dependencies = dependencies,
-                authors = authors
-                )
+            new_instance_dict = {
+                "name" : name,
+                "type" : type_,
+                "version" : version,
+                "source" : source,
+                "label" : label,
+                "description" : description,
+                "source_code" : source_code,
+                "download" : source_code,
+                "publication" : publication,
+                "test" : test,
+                "license" : license,
+                "documentation" : documentation,
+                "operating_system" : operating_system,
+                "repository" : repository,
+                "webpage" : webpage,
+                "dependencies" : dependencies,
+                "authors" : authors
+            }
+            
+            # We keep only the fields that pass the validation
+            new_instance = validate_and_filter(instance, **new_instance_dict)
             
             standardized_tools.append(new_instance)
         

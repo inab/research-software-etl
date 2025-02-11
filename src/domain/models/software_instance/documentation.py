@@ -1,6 +1,5 @@
 from pydantic import BaseModel, model_validator, HttpUrl, TypeAdapter
-from enum import Enum
-from typing import List, Optional, Any, Dict
+from typing import Optional, Any, Dict
 
 
 ###------------------------------------------------------------

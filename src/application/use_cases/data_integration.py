@@ -3,10 +3,10 @@ import os
 from typing import List, Dict
 from collections import defaultdict
 
-from src.infrastructure.db.mongo_adapter import MongoDBAdapter
-from infrastructure.db.database_adapter import DatabaseAdapter
-from src.core.domain.entities.software_instance.main import instance
-from src.core.domain.services.integration.metadata import create_new_metadata, update_existing_metadata
+from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
+from src.domain.models.software_instance.main import instance
+from src.application.services.integration.metadata import create_new_metadata, update_existing_metadata
 db_adapter = MongoDBAdapter()
 
 # collections 

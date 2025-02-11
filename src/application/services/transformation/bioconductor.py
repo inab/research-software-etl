@@ -1,11 +1,10 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
+from src.shared.utils import validate_and_filter
 
 from pydantic import TypeAdapter, HttpUrl, EmailStr, ValidationError, BaseModel
 from typing import Dict, Any, Optional, List
-import logging
 import re
-import requests
 
 # --------------------------------------------
 # Bioconductor Tools Transformer
@@ -164,7 +163,6 @@ class bioconductorStandardizer(MetadataStandardizer):
             try:
                 user = User(email=email)
             except ValidationError as e:
-                logging.info(f"Invalid email: {email}. Error: {e}")
                 return None
             else:
                 return email          
@@ -274,22 +272,23 @@ class bioconductorStandardizer(MetadataStandardizer):
         authors = self.authors(tool)
         repository = self.repositories(tool, source_url)
 
-        #citation = self.citation(tool)
+        new_instance_dict = {
+            "name" : name,
+            "type" : type_,
+            "version" : version,
+            "source" : source,
+            "label" : label,
+            "description" : description,
+            "license" : license,
+            "operating_system" : operating_system,
+            "repository" : repository,
+            "webpage" : webpage,
+            "dependencies" : dependencies,
+            "authors" : authors,
+        }
 
-        new_instance = instance(
-            name = name,
-            type = type_,
-            version = version,
-            source = source,
-            label = label,
-            description = description,
-            license = license,
-            operating_system = operating_system,
-            repository = repository,
-            webpage = webpage,
-            dependencies = dependencies,
-            authors = authors,
-            )
+        # We keep only the fields that pass the validation
+        new_instance = validate_and_filter(instance, **new_instance_dict)
         
         standardized_tools.append(new_instance)
 

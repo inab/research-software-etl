@@ -1,17 +1,23 @@
 from src.application.services.publications.publication_standardizer import PublicationStandardizer
-from src.application.services.publications.bioconductor_publication_standardizer import BioconductorPublicationStandardizer
+from src.application.services.publications.bioconductor_extractor_extandardizer import BioconductorPublicationStandardizer
+from src.application.services.publications.biotools_extractor_extandardizer import BiotoolsPublicationStandardizer
+from src.application.services.publications.toolshed_extractor_extandardizer import ToolshedPublicationStandardizer
+
 from typing import Dict, Any
 
 class StandardizerFactory:
     """Factory for creating the appropriate publication standardizer."""
     
-    standardizers = {
+    _standardizers = {
         "bioconductor": BioconductorPublicationStandardizer,
+        "biotools": BiotoolsPublicationStandardizer,
+        "toolshed": ToolshedPublicationStandardizer
     }
 
-    @staticmethod
-    def get_standardizer(source: str, raw_data: Dict[str, Any]) -> PublicationStandardizer:
+    @classmethod
+    def get_standardizer(cls, source: str, raw_data: Dict[str, Any]) -> PublicationStandardizer:
         """Returns the appropriate standardizer based on the source name."""
-        if source not in StandardizerFactory.standardizers:
+        print(source)
+        if source not in cls._standardizers:
             raise ValueError(f"Unsupported source: {source}")
-        return StandardizerFactory.standardizers[source](raw_data)
+        return cls._standardizers[source](raw_data)

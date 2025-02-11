@@ -1,7 +1,10 @@
 from pydantic import BaseModel, field_validator, HttpUrl, model_validator
 from typing import Optional
-from core.utils import connect_collection
-import os
+
+# TODO: THe mapping using a remote database needs to be moved to a service
+# from core.utils import connect_collection
+
+
 class license_item(BaseModel, validate_assignment=True):
     name: str = None # optional, non-nullable
     url: Optional[HttpUrl] = None # optional, nullable
@@ -44,6 +47,8 @@ class license_item(BaseModel, validate_assignment=True):
     @classmethod
     def map_to_name_to_spdx(cls, data):
         '''Map to SPDX license if possible.'''
+        '''
+        TODO: This needs to be moved to a service, it does not belong to a model.
         if data.get('url') is None:
             # Map to SPDX
             collection = cls.connect_license_collection()
@@ -57,7 +62,7 @@ class license_item(BaseModel, validate_assignment=True):
             if matching_license:
                 data['name'] = matching_license['licenseId']
                 data['url'] = matching_license['reference']
-                
+        '''        
             
         return data
     
@@ -66,8 +71,11 @@ class license_item(BaseModel, validate_assignment=True):
         '''
         connect to the licenses collection in remote database and return the collection object
         '''
+        '''
         licensesCollection = connect_collection(collection='licensesMapping')
         return(licensesCollection)
+        '''
+        return
     
 
     def merge(self, other: 'license_item') -> 'license_item':

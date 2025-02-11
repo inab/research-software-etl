@@ -2,11 +2,10 @@
 
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
+from src.shared.utils import validate_and_filter
 
-from pydantic import TypeAdapter, HttpUrl
 from typing import Dict, Any
-import logging
-import re
+
 
 # --------------------------------------------
 # GitHub Tools Transformer
@@ -59,23 +58,28 @@ class githubStandardizer(MetadataStandardizer):
         '''
         
         data = tool['data']
-        standardized_tool = instance(
-            name = data['name'],
-            source = ['github'],
-            description = data['description'],
-            type = None,
-            version = data['version'],
-            label = data['label'],
-            links = data['links'],
-            webpage = data['webpage'],
-            download = data['download'],
-            repository= self.repository(data),
-            operating_system= data['os'],
-            documentation= data['documentation'],
-            authors= self.authors(data),
-            publications= data['publication'],
-            topics = data['topics']
-        )
-       
 
-        standardized_tools.append(standardized_tool)
+        new_instance_dict = {
+            "name" : data['name'],
+            "source" : ['github'],
+            "description" : data['description'],
+            "type" : None,
+            "version" : data['version'],
+            "label" : data['label'],
+            "links" : data['links'],
+            "webpage" : data['webpage'],
+            "download" : data['download'],
+            "repository" : self.repository(data),
+            "operating_system" : data['os'],
+            "documentation" : data['documentation'],
+            "authors" : self.authors(data),
+            "publications" : data['publication'],
+            "topics" : data['topics']
+        }
+        
+        # We keep only the fields that pass the validation
+        new_instance = validate_and_filter(instance, **new_instance_dict)
+
+        standardized_tools.append(new_instance)
+       
+        return standardized_tools

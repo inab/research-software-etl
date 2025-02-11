@@ -1,7 +1,7 @@
 from pydantic import BaseModel, HttpUrl, model_validator, field_validator
 from typing import Optional
 import re
-from src.core.domain.entities.software_instance.EDAM_forFE import EDAMDict
+from src.domain.models.software_instance.EDAM_forFE import EDAMDict
 
 
 class vocabularyItem(BaseModel):

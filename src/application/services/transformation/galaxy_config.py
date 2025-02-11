@@ -1,6 +1,6 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
-
+from src.shared.utils import validate_and_filter
 from typing import Dict, Any
 import logging
 import json
@@ -14,7 +14,6 @@ class toolshedStandardizer(MetadataStandardizer):
 
     def __init__(self, source = 'toolshed'):
         MetadataStandardizer.__init__(self, source)
-
     
     def description(self, tool: Dict[str, Any]):
         '''
@@ -164,24 +163,25 @@ class toolshedStandardizer(MetadataStandardizer):
             source = ['toolshed']
         
 
-            new_instance = instance(
-                name = name,
-                type = type_,
-                version = version,
-                source = source,
-                download = download,
-                label = label,
-                description = description,
-                publication = publication,
-                documentation = documentation,
-                operating_system = operating_system,
-                test = test,
-                input = input,
-                output = output,
-                citation = citation
-                )
+            new_instance_dict = {
+                "name" : name,
+                "type" : type_,
+                "version" : version,
+                "source" : source,
+                "download" : download,
+                "label" : label,
+                "description" : description,
+                "publication" : publication,
+                "documentation" : documentation,
+                "operating_system" : operating_system,
+                "test" : test,
+                "input" : input,
+                "output" : output,
+                "citation" : citation
+            }
                 
-            
+            # We keep only the fields that pass the validation
+            new_instance = validate_and_filter(instance, **new_instance_dict)
             standardized_tools.append(new_instance)
             return standardized_tools
 

@@ -1,5 +1,7 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
+from src.shared.utils import validate_and_filter
+
 
 from pydantic import HttpUrl, ValidationError
 from typing import List, Dict, Any
@@ -15,7 +17,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         MetadataStandardizer.__init__(self, source)
     
     @classmethod
-    def get_repo_name_version_type(cls, id_):
+    def get_name_version_type(cls, id_):
         fields = id_.split('/')
         name_plus = fields[5]
         name_plus_fields=name_plus.split(':')
@@ -194,10 +196,10 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
         else:
             tool = tool.get('data')
             
-            id_data = self.get_repo_name_version_type(tool.get('@id'))
+            id_data = self.get_name_version_type(tool.get('@id'))
             name = self.clean_name(id_data['name'].lower())
             version = [ id_data['version'] ]
-            types = self.types(tool, name, id_data['type'])
+            type_ = id_data['type'] 
             source = ['bioconda']
             label = self.clean_name(tool.get('@label'))
             description = self.description(tool)
@@ -210,26 +212,29 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             repository = self.repositories(tool)
             operating_system = operating_system = ['Linux', 'macOS', 'Windows']
 
-            for type_ in types:
+            
 
-                new_instance = instance(
-                    name = name,
-                    type = type_,
-                    version = version,
-                    source = source,
-                    download = download,
-                    label = label,
-                    description = description,
-                    publication = publication,
-                    source_code = source_code,
-                    license = license,
-                    documentation = documentation,
-                    operating_system = operating_system,
-                    repository = repository,
-                    webpage = webpage,
-                    )
-                
-                standardized_tools.append(new_instance)
+            new_instance_dict = {
+                "name" : name,
+                "type" : type_,
+                "version" : version,
+                "source" : source,
+                "download" : download,
+                "label" : label,
+                "description" : description,
+                "publication" : publication,
+                "source_code" : source_code,
+                "license" : license,
+                "documentation" : documentation,
+                "operating_system" : operating_system,
+                "repository" : repository,
+                "webpage" : webpage,
+            }
+            
+            # We keep only the fields that pass the validation
+            new_instance = validate_and_filter(instance, **new_instance_dict)
+            
+            standardized_tools.append(new_instance)
             
             return standardized_tools
 

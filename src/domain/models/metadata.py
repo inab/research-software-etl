@@ -1,6 +1,6 @@
 
-from pydantic import BaseModel, field_validator, HttpUrl, AnyUrl,  Field
-from typing import List, Optional, Any, Dict
+from pydantic import BaseModel, HttpUrl, Field
+from typing import List, Optional
 
 
 class source_item(BaseModel):

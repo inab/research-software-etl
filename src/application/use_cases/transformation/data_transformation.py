@@ -2,9 +2,9 @@ import os
 import logging 
 from typing import List, Dict
 from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
-from application.use_cases.transformation.publications_processing import extract_publications
+from src.application.use_cases.transformation.publications_processing import extract_publications, standardize_publications
 from src.infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
-from application.use_cases.transformation.software_metadata_processing import standardize_entry, save_entry
+from src.application.use_cases.transformation.software_metadata_processing import standardize_entry, save_entry
 
 def get_identifier(entry: Dict) -> str:
     '''
@@ -18,7 +18,6 @@ def get_identifier(entry: Dict) -> str:
         logging.error(f"No identifier found for entry {entry}")
         return None
     return identifier
-
     
 
 def setup_logging(loglevel: int):
@@ -38,32 +37,37 @@ def setup_logging(loglevel: int):
 
 def process_publications(entry: Dict, source: str):
     sources_w_publication = ['bioconductor', 'biotools', 'toolshed']
+    publications_ids = set()
     if source in sources_w_publication:
-        extract_publications(entry, source)
+        logging.info(f"Processing publications for entry {entry['_id']}")
+        publications = extract_publications(source, entry)
+        if len(publications) > 0:
+            logging.info(f"Found {len(publications)} publications for entry {entry['_id']}")
+            for publication in publications:
+                publications_ids = standardize_publications(source, publications_ids, publication)
 
-    return
+    return list(publications_ids)
 
 
 def process_raw_entry(raw_entry, source):
-    # TODO Validate values in the software metadata entry (URLs)
-
 
     # Process publication metadata in the entry and push publications to the appropriate collection
     publication_ids = process_publications(raw_entry, source)
 
     # Standardize software metadata in the entry
-    software_metadata_dicts = standardize_entry(raw_entry, source)
+    identifier = get_identifier(raw_entry)
+    software_metadata_dicts = standardize_entry(identifier, raw_entry, source)
 
     # TODO Validate URLs of repositories and webpage
-    # using function sin adapters/http/url_resolver.py 
+    # using functions in adapters/http/url_resolver.py 
 
     for software_metadata_dict in software_metadata_dicts:
         
         # Add publication Ids to the dictionary
-        software_metadata_dict['publications'] = publication_ids
+        software_metadata_dict['publication'] = publication_ids
 
         # Save the entry in the database
-        save_entry(software_metadata_dict, raw_entry)
+        save_entry(identifier, software_metadata_dict, raw_entry)
     
     return
 
@@ -118,6 +122,7 @@ def process_source(source: str):
             process_raw_entry(raw_entry, source)
             
     except Exception as e:
+        raise e
         logging.error(f"An error occurred while processing source {source}: {e}")
 
     return

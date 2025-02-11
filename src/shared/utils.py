@@ -1,13 +1,7 @@
 from functools import wraps
-import os
 import time
-import logging
-from dotenv import load_dotenv
-from datetime import datetime
-
-# import pymongo
-from pymongo import MongoClient
-from pymongo.collection import Collection
+import logging 
+from pydantic import ValidationError
 
 # --------------------------------------------
 # Constants 
@@ -49,3 +43,17 @@ def timeit(func):
     return timeit_wrapper
 
 
+def validate_and_filter(instance_cls, **data):
+    """Validates data dictionary, keeping only valid fields."""
+    try:
+        # Validate the entire input data
+        validated_instance = instance_cls(**data)
+        return validated_instance  # Return the fully valid instance
+    except ValidationError as e:
+        # If validation fails, filter out invalid fields
+        for error in e.errors():
+            invalid_field = error["loc"][0]  # Get the invalid field name
+            data.pop(invalid_field, None)  # Remove the invalid field
+        
+        # Create a new instance with only valid fields
+        return instance_cls(**data)

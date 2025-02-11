@@ -1,7 +1,6 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
-from src.domain.models.software_instance.main import instance, setOfInstances
-
-import logging 
+from src.domain.models.software_instance.main import instance
+from src.shared.utils import validate_and_filter
 
 # --------------------------------------------
 # Galaxy Metadata Metadata Standardizer
@@ -24,16 +23,19 @@ class galaxyMetadataStandardizer(MetadataStandardizer):
             label = [tool.get('name')]
             dependencies = tool.get('dependencies')
             source = ['galaxy_metadata']
-        
-            new_instance = instance(
-                name = name,
-                type = type_,
-                version = version,
-                label = label,
-                dependencies = dependencies,
-                source = source
-                )
-                
+
+            new_instance_dict = {
+                "name" : name,
+                "type" : type_,
+                "version" : version,
+                "label" : label,
+                "dependencies" : dependencies,
+                "source" : source
+            }
+
+            # We keep only the fields that pass the validation
+            new_instance = validate_and_filter(instance, **new_instance_dict)
+
             standardized_tools.append(new_instance)
             return standardized_tools
 

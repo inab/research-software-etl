@@ -1,6 +1,7 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
 from src.domain.models.software_instance.EDAM_forFE import EDAMDict
+from src.shared.utils import validate_and_filter
 
 from pydantic import TypeAdapter, HttpUrl, BaseModel, model_validator
 from typing import List, Dict, Any
@@ -263,27 +264,30 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         tags = tool.get('tags',[])
         
     
-        new_instance = instance(
-            name = name,
-            type = type,
-            version = version,
-            source = source,
-            label = label,
-            description = description,
-            publication = publication,
-            test = test,
-            license = license,
-            documentation = documentation,
-            operating_system = os,
-            repository = repository,
-            webpage = webpage,
-            input = input,
-            output = output,
-            topics = topics,
-            operations = operations,
-            authors = authors,
-            tags = tags
-            )
+        new_instance_dict = {
+            "name" : name,
+            "type" : type,
+            "version" : version,
+            "source" : source,
+            "label" : label,
+            "description" : description,
+            "publication" : publication,
+            "test" : test,
+            "license" : license,
+            "documentation" : documentation,
+            "operating_system" : os,
+            "repository" : repository,
+            "webpage" : webpage,
+            "input" : input,
+            "output" : output,
+            "topics" : topics,
+            "operations" : operations,
+            "authors" : authors,
+            "tags" : tags
+        }
+
+        # We keep only the fields that pass the validation
+        new_instance = validate_and_filter(instance, **new_instance_dict)
 
         standardized_tools.append(new_instance)
     

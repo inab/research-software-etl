@@ -1,5 +1,6 @@
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
+from src.shared.utils import validate_and_filter
 
 from typing import List, Dict, Any
 import logging 
@@ -52,20 +53,21 @@ class galaxyOPEBStandardizer(MetadataStandardizer):
         source = ['galaxy']
         operating_systems = ['macOS', 'Linux']
         webpage = self.webpage(tool)
-
     
-        new_instance = instance(
-            name = name,
-            type = type_,
-            version = version,
-            label = label,
-            source = source,
-            description = description,
-            operating_systems = operating_systems,
-            webpage = webpage
-            )
+        new_instance_dict = {
+            "name" : name,
+            "type" : type_,
+            "version" : version,
+            "label" : label,
+            "source" : source,
+            "description" : description,
+            "operating_systems" : operating_systems,
+            "webpage" : webpage
+        }
             
-        
+        # We keep only the fields that pass the validation
+        new_instance = validate_and_filter(instance, **new_instance_dict)
+
         standardized_tools.append(new_instance)
 
         return standardized_tools

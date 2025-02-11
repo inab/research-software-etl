@@ -1,5 +1,5 @@
-from src.core.domain.entities.software_instance.main import instance
-from src.core.domain.entities.metadata import Metadata, VersionedMetadata
+from src.domain.models.software_instance.main import instance
+from src.domain.models.metadata import Metadata, VersionedMetadata
 from pydantic import BaseModel, Field
 
 class PretoolsEntryModel(BaseModel):

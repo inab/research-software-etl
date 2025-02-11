@@ -8,8 +8,9 @@ import os
 from datetime import datetime
 from src.domain.models.publication.metadata import Metadata
 from datetime import datetime
+from typing import Dict
 
-def create_new_metadata(identifier: str, source_url: str = None,  collection: str = 'PublicationsDev') -> Dict:
+def create_new_metadata() -> Dict:
     """
     Creates metadata for a new database entry.
 

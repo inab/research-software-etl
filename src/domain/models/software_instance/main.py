@@ -4,14 +4,13 @@ from enum import Enum
 import re
 import logging
 
-from src.core.domain.entities.software_instance.data_format import data_format
-from src.core.domain.entities.software_instance.documentation import documentation_item
-from src.core.domain.entities.software_instance.license import license_item
-from src.core.domain.entities.software_instance.recognition import contributor
-from src.core.domain.entities.software_instance.publication import publication_item
-from src.core.domain.entities.software_instance.topic_operation import vocabulary_topic, vocabulary_operation
-from src.core.domain.services.post_transformation.utils import prepare_sources_labels
-from src.core.domain.entities.software_instance.repository import repository_item
+from src.domain.models.software_instance.data_format import data_format
+from src.domain.models.software_instance.documentation import documentation_item
+from src.domain.models.software_instance.license import license_item
+from src.domain.models.software_instance.recognition import contributor
+from src.domain.models.software_instance.publication import publication_item
+from src.domain.models.software_instance.topic_operation import vocabulary_topic, vocabulary_operation
+from src.domain.models.software_instance.repository import repository_item
 
 class setOfInstances(object):
 
@@ -213,6 +212,7 @@ class instance(BaseModel, validate_assignment=True):
     
             
     class Config:
+        extra = "allow"
         # Serialize Enums to their string values
         json_encoders = {
             software_types: lambda v: v.value,
@@ -652,13 +652,3 @@ class instance(BaseModel, validate_assignment=True):
                         value.remove(item)
                         value.extend(item.split("|"))
         return value
-    
-        
-    @classmethod
-    def generate_sources_labels(self):
-        '''
-        Generates the labels for the sources.
-        '''
-        self.sources_labels = prepare_sources_labels(self.source, self.links)
-        return self.sources_labels
-    
