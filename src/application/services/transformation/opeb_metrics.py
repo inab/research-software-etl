@@ -95,7 +95,7 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
                 'type': None,
             }
         else:
-            id_data = OPEBMetricsStandardizer.extract_ids(_id)
+            id_data = MetadataStandardizer.extract_ids(_id)
 
         return(id_data)
     
@@ -118,19 +118,19 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
         id_data = cls.extract_from_id(tool.get('@id'))
         name = cls.clean_name(id_data.get('name')).lower()
         version = [id_data.get('version')]
-        types_ = id_data.get('type')
+        type_ = id_data.get('type')
         source = ['opeb_metrics']
         publication = cls.publications(tool)
         
-        for type_ in types_:
-            new_instance = instance(
-                name = name,
-                type = type_,
-                version = version,
-                source = source,
-                publication = publication
-                )
-            
-            standardized_tools.append(new_instance)
+        
+        new_instance = instance(
+            name = name,
+            type = type_,
+            version = version,
+            source = source,
+            publication = publication
+            )
+        
+        standardized_tools.append(new_instance)
         
         return standardized_tools
