@@ -5,7 +5,14 @@
 
 We have developed a pipeline to **gather metadata about research software specific** to Computational Biology, **harmonize** and **integrate** it and to then be able to monitor certain features and **evaluate** their compliance with ** FAIRsoft indicators**.  [*FAIRsoft*](https://github.com/inab/FAIRsoft_indicators) are a set of research software *FAIRness* indicators, specifically devised to be assesed automatically. 
 
-The code for the previos steps can be found in the respotories specified as follows:
+**This repository** contains the code for:
+
+- Harmonization of raw metadata.
+- Integration of pieces of metadata belonging to the same software: `integration` use case.
+- Calculation of *FAIRsoft* indicators compliance and FAIRsoft scores.
+
+
+The code for the **previos steps** can be found in the respotories specified as follows:
 
 - Data extraction: each importer, which is responsible for extracting metadata from a specific source, has a repository of its own:
   - [Bioconda importer](https://gitlab.bsc.es/inb/elixir/software-observatory/bioconda-importer)
@@ -16,11 +23,24 @@ The code for the previos steps can be found in the respotories specified as foll
   - [Sourceforge importer](https://gitlab.bsc.es/inb/elixir/software-observatory/sourceforge-importer)
   - [Repositories importer](https://gitlab.bsc.es/inb/elixir/software-observatory/respositories-importer) 
 
-  > :exclamation: Given the complexity of the installation of the requirements of some of the importers, it is highly recommended to use the dockerized version of the different importers (in `registry.bsc.es/inb/elixir/software-observatory/`). 
 
-- Harmonization of raw metadata.
-- Integration of pieces of metadata belonging to the same software.
-- Calculation of *FAIRsoft* indicators compliance and FAIRsoft scores.
+## Installation 
+
+Install the dependencies 
+
+```
+pip install -r requirements.txt
+```
+
+
+## Usage 
+
+### Data transformation
+This is one [use case](/src/application/use_cases/transformation/) and can be executed from the [CLI](/src/adapters/cli/transformation.py) in the following way:
+
+```
+python3 src/adapters/cli/transformation.py -l INFO
+```
 
 
 ## Data storage

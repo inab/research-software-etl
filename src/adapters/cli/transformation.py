@@ -2,7 +2,7 @@
 The command-line interface for the transformer
 """
 
-from src.application.use_cases.transformation.data_transformation import transform_sources
+from src.application.use_cases.transformation.main import transform_sources
 import argparse
 import logging
 from dotenv import load_dotenv
