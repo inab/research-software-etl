@@ -5,9 +5,12 @@
 
 import os
 import pymongo
-from typing import Dict
-from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
 import logging
+from typing import Dict
+from pymongo.errors import NetworkTimeout, AutoReconnect
+
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
 
 logger = logging.getLogger("rs-etl-pipeline")
 
@@ -45,7 +48,11 @@ class MongoDBAdapter(DatabaseAdapter):
         
         self.db = self.client[mongo_db]
 
-    
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10), 
+    stop=stop_after_attempt(5),
+    )
     def entry_exists(self, collection_name: str, identifier: str) -> bool:
         """
         Check if an entry with the given identifier exists in the specified collection.
@@ -65,6 +72,12 @@ class MongoDBAdapter(DatabaseAdapter):
         }
         return collection.count_documents(query) > 0
 
+
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10), 
+    stop=stop_after_attempt(5),
+    )
     def get_entry_metadata(self, collection_name: str, identifier: str) -> bool:
         """
         Retrieve metadata for an entry from the specified collection, excluding the 'data' field.
@@ -86,6 +99,13 @@ class MongoDBAdapter(DatabaseAdapter):
         }
         return collection.find_one(query, projection=projection)
     
+
+
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10), 
+    stop=stop_after_attempt(5),
+    )
     def update_entry(self, collection_name: str, identifier: str, data: dict):
         """
         Update specific fields of an entry in a given MongoDB collection.
@@ -104,6 +124,12 @@ class MongoDBAdapter(DatabaseAdapter):
             {'$set': data}  # Fields to update
         )
 
+
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10), 
+    stop=stop_after_attempt(5),
+    )
     def fetch_entries(self, collection_name: str, query: Dict):
         """
         Retrieve documents from a specified MongoDB collection that match a given query.
@@ -123,6 +149,11 @@ class MongoDBAdapter(DatabaseAdapter):
         document = collection.find(query)
         return document
     
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10), 
+    stop=stop_after_attempt(5),
+    )
     def fetch_entry(self, collection_name: str, query: Dict):
         """
         Retrieve a single document from a specified MongoDB collection that matches a given query.
@@ -141,6 +172,12 @@ class MongoDBAdapter(DatabaseAdapter):
         document = collection.find_one(query)
         return document
     
+
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10), 
+    stop=stop_after_attempt(5),
+    )
     def insert_one(self, collection_name: str, document: Dict):
         """
         Insert a single document into a specified MongoDB collection.

@@ -10,6 +10,7 @@ mkdocstrings = "==0.24.1"
 freezegun = "*"
 pydantic = {extras = ["email"], version = "*"}
 bibtexparser = "*"
+tenacity = "*"
 
 [dev-packages]
 

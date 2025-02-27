@@ -5,7 +5,7 @@ import argparse
 import logging
 from dotenv import load_dotenv
 from src.application.use_cases.transformation.main import transform_sources
-from infrastructure.logging_config import setup_logging
+from src.infrastructure.logging_config import setup_logging
 
 # assuming loglevel is bound to the string value obtained from the
 # command line argument. Convert to upper case to allow the user to
