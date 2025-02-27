@@ -1,10 +1,13 @@
 import logging
 from abc import ABC, abstractmethod
 
+logger = logging.getLogger("rs-etl-pipeline")
+
+
 class MetadataStandardizer(ABC):
     def __init__(self, source):
         self.source = source
-        logging.debug('Generator for ' + self.source + ' initialized') 
+        logger.debug('Generator for ' + self.source + ' initialized') 
 
     @classmethod
     def process_transformation(self, tool):
@@ -13,7 +16,7 @@ class MetadataStandardizer(ABC):
         try:
             standardized_tools = self.transform_one(tool, standardized_tools)
         except Exception as e:
-            logging.error('while transforming tool: ' + str(e))
+            logger.error('while transforming tool: ' + str(e))
             raise Exception('while transforming tool: ' + str(e))
         return standardized_tools
 

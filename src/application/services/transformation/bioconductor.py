@@ -5,7 +5,9 @@ from src.shared.utils import validate_and_filter
 from pydantic import TypeAdapter, HttpUrl, EmailStr, ValidationError, BaseModel
 from typing import Dict, Any, Optional, List
 import re
+import logging
 
+logger = logging.getLogger("rs-etl-pipeline")
 # --------------------------------------------
 # Bioconductor Tools Transformer
 # --------------------------------------------
@@ -23,7 +25,7 @@ class bioconductorStandardizer(MetadataStandardizer):
         '''
         Returns the description of the tool.
         '''
-        #logging.info('-- Getting the description of the tool --')
+        #logger.info('-- Getting the description of the tool --')
 
         if tool.get('Description'):
             return [tool.get('Description')]
@@ -110,7 +112,7 @@ class bioconductorStandardizer(MetadataStandardizer):
         '''
         Returns the dependencies of the package
         '''
-        #logging.info('-- Getting the dependencies of the tool --')
+        #logger.info('-- Getting the dependencies of the tool --')
 
         dependencies = []
         if tool.get('Depends'):
@@ -128,7 +130,7 @@ class bioconductorStandardizer(MetadataStandardizer):
         '''
         Returns the license of the package
         '''
-        #logging.info('-- Getting the license of the tool --')
+        #logger.info('-- Getting the license of the tool --')
 
         licenses = []
         if tool.get('License'):
@@ -167,7 +169,7 @@ class bioconductorStandardizer(MetadataStandardizer):
 
     @staticmethod
     def authors(tool: Dict[str, Any]):
-        #logging.info('-- Getting the authors of the tool --')
+        #logger.info('-- Getting the authors of the tool --')
 
         all_results = []
         maintainers = set()
@@ -182,7 +184,7 @@ class bioconductorStandardizer(MetadataStandardizer):
             [maintainers.add(item.get('name')) for item in all_results]
 
         # go through maintainers and see if the maintainer is among authors
-        # logging.info('----- Authors@R -----')
+        # logger.info('----- Authors@R -----')
         if tool.get('Authors@R (parsed)'):
             for author in tool.get('Authors@R (parsed)', []):
                 if author['name'] in maintainers:
@@ -217,7 +219,7 @@ class bioconductorStandardizer(MetadataStandardizer):
         '''
         Returns the repositories of the package
         '''
-        #logging.info('-- Getting the repositories of the tool --')
+        #logger.info('-- Getting the repositories of the tool --')
         repositories = []
         if source_url:
             repositories.append({

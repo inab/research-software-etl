@@ -3,7 +3,6 @@ from src.domain.models.software_instance.main import instance
 from src.shared.utils import validate_and_filter
 
 from typing import List, Dict, Any
-import logging 
 
 # --------------------------------------------
 # Galaxy OPEB Metadata Standardizer

@@ -6,6 +6,8 @@ from src.domain.models.database_entries import PretoolsEntryModel
 from pydantic import ValidationError
 import logging
 
+logger = logging.getLogger("rs-etl-pipeline")
+
 class StdSoftwareMetaRepository:
     def __init__(self, db_adapter: MongoDBAdapter):
         self.db_adapter = db_adapter
@@ -33,7 +35,7 @@ class StdSoftwareMetaRepository:
                 validated_doc = PretoolsEntryModel(metadata=doc, data=doc['data'])
                 validated_documents.append(validated_doc.dict)
             except ValidationError as ve:
-                logging.error(f"Data validation failed for {doc}: {ve}")
+                logger.error(f"Data validation failed for {doc}: {ve}")
                 continue  
 
         return validated_documents
@@ -52,7 +54,7 @@ class StdSoftwareMetaRepository:
             
             biocondaCursor = self.fetch_entries(self.collection_name, {'data.source': ['bioconda']}, {'data.name': 1, 'data.type': 1, '_id': 0})
         except:
-            logging.error('while generating bioconda_types: could not connect to the pretools collection')
+            logger.error('while generating bioconda_types: could not connect to the pretools collection')
         else:
             for tool in biocondaCursor:
                 bioconda_types[tool['data']['name']] = tool['data']['type']

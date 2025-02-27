@@ -9,6 +9,8 @@ from typing import Dict
 from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
 import logging
 
+logger = logging.getLogger("rs-etl-pipeline")
+
 class MongoDBAdapter(DatabaseAdapter):
     def __init__(self, database=None):
         # Load connection parameters from environment variables
@@ -19,18 +21,18 @@ class MongoDBAdapter(DatabaseAdapter):
         mongo_auth_src = os.getenv('MONGO_AUTH_SRC', default='admin')
 
         # print environment variables
-        # logging.info(f"MongoDB host: {mongo_host}")
-        # logging.info(f"MongoDB port: {mongo_port}")
-        # logging.info(f"MongoDB user: {mongo_user}")
-        # logging.info(f"MongoDB password: {mongo_pass}")
-        # logging.info(f"MongoDB auth source: {mongo_auth_src}")
+        # logger.info(f"MongoDB host: {mongo_host}")
+        # logger.info(f"MongoDB port: {mongo_port}")
+        # logger.info(f"MongoDB user: {mongo_user}")
+        # logger.info(f"MongoDB password: {mongo_pass}")
+        # logger.info(f"MongoDB auth source: {mongo_auth_src}")
 
         if not database:
             mongo_db = os.getenv('MONGO_DB', default='oeb-research-software')
         else:
             mongo_db = database
 
-        logging.debug(f"MongoDB database: {mongo_db}")
+        logger.debug(f"MongoDB database: {mongo_db}")
 
         # Connect to MongoDB using the specified parameters
         self.client = pymongo.MongoClient(
@@ -96,7 +98,7 @@ class MongoDBAdapter(DatabaseAdapter):
             data (dict): A dictionary containing the fields and values to be updated. Format should match MongoDB's update standards.
         """
         collection = self.db[collection_name]
-        logging.info("Updating entry in collection: %s", collection_name)
+        logger.info("Updating entry in collection: %s", collection_name)
         collection.update_one(
             {'_id': identifier},  # Query matching the document to update
             {'$set': data}  # Fields to update
@@ -116,7 +118,7 @@ class MongoDBAdapter(DatabaseAdapter):
             pymongo.cursor.Cursor: A cursor for all documents that match the query, which allows for iterating over the documents found.
  
         """
-        logging.debug(f"Fetching entries from collection {collection_name} with query: {query}")
+        logger.debug(f"Fetching entries from collection {collection_name} with query: {query}")
         collection = self.db[collection_name]
         document = collection.find(query)
         return document
@@ -155,6 +157,6 @@ class MongoDBAdapter(DatabaseAdapter):
             document['_id'] = document.pop('id')
         
         id_inserted_doc =  collection.insert_one(document)
-        logging.info(f"Inserted document into collection {collection_name}")
+        logger.info(f"Inserted document into collection {collection_name}")
         return id_inserted_doc.inserted_id
     

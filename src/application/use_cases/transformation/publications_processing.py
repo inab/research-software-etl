@@ -12,16 +12,16 @@ publications_repo.save_entry({"_id": "456", "title": "Some Publication"})
 '''
 
 import os
+import logging
 from typing import Dict, Any, Optional, List
+from src.application.services.publications.metadata import create_new_metadata
 from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 from src.infrastructure.db.mongo.publications_repository import PublicationsMetadataRepository
 from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
 from src.application.services.publications.publication_standardizer_factory import StandardizerFactory
 from src.application.services.publications.publication_extractor_factory import ExtractorFactory
-import logging
 
-from src.application.services.publications.metadata import create_new_metadata
-
+logger = logging.getLogger("rs-etl-pipeline")
 
 PUBLICATIONS_COLLECTION = os.getenv('PUBLICATIONS_COLLECTION', 'publicationsDev')
 
@@ -78,7 +78,7 @@ def add_publication(publication: Dict[str, Any], publications_repo: DatabaseAdap
 
     # Insert in database
     print(metadata_dict)
-    logging.info(f"Adding publication {metadata_dict['data']['title']} to the publications collection.")
+    logger.info(f"Adding publication {metadata_dict['data']['title']} to the publications collection.")
     id = publications_repo.save_entry(metadata_dict)
     return id
 

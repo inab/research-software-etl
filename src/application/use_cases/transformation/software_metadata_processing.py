@@ -6,6 +6,7 @@ from src.application.services.transformation.metadata import create_new_metadata
 from src.domain.models.metadata import Metadata
 from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 
+logger = logging.getLogger("rs-etl-pipeline")
 
 ALAMBIQUE = os.getenv('ALAMBIQUE', 'alambiqueDev')
 PRETOOLS = os.getenv('PRETOOLS', 'pretoolsDev')
@@ -18,14 +19,14 @@ def get_identifier(entry: Dict) -> str:
     '''
     identifier = entry.get('_id', None)
     if not identifier:
-        logging.error(f"No identifier found for entry {entry}")
+        logger.error(f"No identifier found for entry {entry}")
         return None
     return identifier
 
 def standardize_entry(identifier: str,  raw: Dict, source: str) -> List[Dict]:
     
     if not identifier:
-        logging.debug("No identifier found for entry; skipping...")
+        logger.debug("No identifier found for entry; skipping...")
         return
 
     # Standardize the software metadata entries into the standard data model
@@ -37,7 +38,7 @@ def standardize_entry(identifier: str,  raw: Dict, source: str) -> List[Dict]:
         tools_dicts = [inst.model_dump(mode="json") for inst in tools]
     else:
         tools_dicts = []
-        
+
     return(tools_dicts)
 
 
@@ -59,8 +60,8 @@ def generate_metadata(raw_entry, identifier):
     if entry_exists_db == False:
         source_url = raw_entry.get('@source_url', None)
         source_identifier = get_identifier(raw_entry)
-        logging.info(f"Creating metadata for entry {identifier}")
-        logging.info(f"Source identifier: {source_identifier}")
+        logger.info(f"Creating metadata for entry {identifier}")
+        logger.info(f"Source identifier: {source_identifier}")
         metadata = create_new_metadata(source_identifier, identifier, source_url, ALAMBIQUE)
     else:
         existing_metadata  = mongo_adapter.get_entry_metadata(PRETOOLS, identifier)
@@ -107,4 +108,4 @@ def push_to_db(software_metadata_dict, entry_metadata, identifier):
             mongo_adapter.insert_one(PRETOOLS, document)
     
     except Exception as e:
-        logging.error(f"An error occurred while processing entry {identifier}: {e}")
+        logger.error(f"An error occurred while processing entry {identifier}: {e}")

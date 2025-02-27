@@ -1,13 +1,11 @@
+import logging
+from pydantic import HttpUrl, TypeAdapter
+from typing import List, Dict
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
 from src.shared.utils import validate_and_filter, is_repository
 
-
-
-import logging
-import re
-from pydantic import HttpUrl, TypeAdapter
-from typing import List, Dict
+logger = logging.getLogger("rs-etl-pipeline")
 
 # ------------------------------------------
 # Bioconda Recipes Transformer
@@ -94,7 +92,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
             elif isinstance(source_url, str):
                 source_code = [source_url]
 
-            logging.info(f"Source code: {source_code}")
+            logger.info(f"Source code: {source_code}")
         except:
             pass
 
