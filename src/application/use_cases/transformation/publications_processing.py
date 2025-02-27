@@ -79,8 +79,8 @@ def add_publication(publication: Dict[str, Any], publications_repo: DatabaseAdap
     # Insert in database
     print(metadata_dict)
     logging.info(f"Adding publication {metadata_dict['data']['title']} to the publications collection.")
-    publications_repo.save_entry(metadata_dict)
-    return
+    id = publications_repo.save_entry(metadata_dict)
+    return id
 
 
 
