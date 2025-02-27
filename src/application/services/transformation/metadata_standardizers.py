@@ -11,7 +11,7 @@ class MetadataStandardizer(ABC):
         """Template method that defines the algorithm steps."""
         standardized_tools = []
         try:
-            self.transform_one(tool, standardized_tools)
+            standardized_tools = self.transform_one(tool, standardized_tools)
         except Exception as e:
             logging.error('while transforming tool: ' + str(e))
             raise Exception('while transforming tool: ' + str(e))
@@ -49,14 +49,14 @@ class MetadataStandardizer(ABC):
     # Extract ids from metrics @id
         fields = id_.split('/')
         if len(fields)>6:
-            name = fields[5].split(':')[1]
-            if len(fields[5].split(':'))>2:
-                version = fields[5].split(':')[2]
-                source = fields[5].split(':')[0]
+            name = fields[6].split(':')[1]
+            if len(fields[6].split(':'))>2:
+                version = fields[6].split(':')[2]
+                source = fields[6].split(':')[0]
             else:
                 version = None
                 source = fields[5].split(':')[0]
-            type_ = fields[6]
+            type_ = fields[7]
         
             ids = {
                 'name' : name,

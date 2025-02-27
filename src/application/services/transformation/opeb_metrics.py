@@ -84,18 +84,19 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
     def extract_from_id(_id):
         '''
         Extracts the name and version from the id of the tool.
-        - _id: id of the tool
+        - _id: id of the tool in OpenEBench. Exmaple: https://openebench.bsc.es/monitor/metrics/biotools:trimal:2.0-RC/cmd/trimal.cgenomics.org
         '''
-        if len(_id.split('/')) < 3:
-            raise Exception(f"Error extracting ids from {_id}")
-        elif len(_id.split('/')) == 6:
-            id_data = {
-                'name': _id.split('/')[-1],
-                'version': _id.split('/')[-2],
-                'type': None,
-            }
-        else:
-            id_data = MetadataStandardizer.extract_ids(_id)
+        id_data = {}
+        id_items = _id.split('/') # ['https:', '', 'openebench.bsc.es', 'monitor', 'metrics', 'biotools:trimal:2.0-RC', 'cmd', 'trimal.cgenomics.org']
+        if len(id_items) > 6:
+            source_name_version = id_items[5].split(':')
+            id_data['name'] = source_name_version[1]
+            if len(source_name_version) > 2:
+                id_data['version'] = source_name_version[2]
+            else:
+                id_data['version'] = None
+            
+            id_data['type'] = id_items[6]
 
         return(id_data)
     
@@ -116,21 +117,19 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
         tool = tool.get('data', {})
 
         id_data = cls.extract_from_id(tool.get('@id'))
-        name = cls.clean_name(id_data.get('name')).lower()
-        version = [id_data.get('version')]
-        type_ = id_data.get('type')
-        source = ['opeb_metrics']
-        publication = cls.publications(tool)
-        
-        
-        new_instance = instance(
-            name = name,
-            type = type_,
-            version = version,
-            source = source,
-            publication = publication
-            )
-        
-        standardized_tools.append(new_instance)
+        if id_data:
+            name = id_data.get('name')
+            version = [id_data.get('version')]
+            type_ = id_data.get('type')
+            source = ['opeb_metrics']            
+            
+            new_instance = instance(
+                name = name,
+                type = type_,
+                version = version,
+                source = source,
+                )
+            
+            standardized_tools.append(new_instance)
         
         return standardized_tools

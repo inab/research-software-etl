@@ -32,9 +32,12 @@ def standardize_entry(identifier: str,  raw: Dict, source: str) -> List[Dict]:
     standardizer = MetadataStandardizerFactory.get_standardizer(source)
     tools = standardizer.process_transformation(raw)
 
-    # To dictionary 
-    tools_dicts = [inst.model_dump(mode="json") for inst in tools]
-    
+    if tools:
+        # To dictionary 
+        tools_dicts = [inst.model_dump(mode="json") for inst in tools]
+    else:
+        tools_dicts = []
+        
     return(tools_dicts)
 
 
@@ -80,7 +83,7 @@ def save_entry(software_metadata_dict, raw_entry):
     type = software_metadata_dict['type']
     version = software_metadata_dict['version'][0]
     identifier = f'{source}/{name}/{type}/{version}'
-    logging.info(f"Processing entry {identifier}")
+    
     entry_metadata = generate_metadata(raw_entry, identifier)
 
     # Push to the database 
