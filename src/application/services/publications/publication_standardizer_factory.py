@@ -2,8 +2,9 @@ from src.application.services.publications.publication_standardizer import Publi
 from src.application.services.publications.bioconductor_extractor_extandardizer import BioconductorPublicationStandardizer
 from src.application.services.publications.biotools_extractor_extandardizer import BiotoolsPublicationStandardizer
 from src.application.services.publications.toolshed_extractor_extandardizer import ToolshedPublicationStandardizer
+from src.application.services.publications.opeb_metrics_extractor_extandardizer import OPEBMetricsPublicationStandardizer
+from src.application.services.publications.bioconda_recipes_extractor_extandardizer import BiocondaRecipesPublicationStandardizer
 
-from typing import Dict, Any
 
 class StandardizerFactory:
     """Factory for creating the appropriate publication standardizer."""
@@ -11,7 +12,9 @@ class StandardizerFactory:
     _standardizers = {
         "bioconductor": BioconductorPublicationStandardizer,
         "biotools": BiotoolsPublicationStandardizer,
-        "toolshed": ToolshedPublicationStandardizer
+        "toolshed": ToolshedPublicationStandardizer,
+        "opeb_metrics": OPEBMetricsPublicationStandardizer,
+        "bioconda_recipes": BiocondaRecipesPublicationStandardizer
     }
 
     @classmethod

@@ -55,8 +55,8 @@ def process_raw_entry(raw_entry, source):
     publication_ids = process_publications(raw_entry, source)
 
     # Standardize software metadata in the entry
-    identifier = get_identifier(raw_entry)
-    software_metadata_dicts = standardize_entry(identifier, raw_entry, source)
+    raw_identifier = get_identifier(raw_entry)
+    software_metadata_dicts = standardize_entry(raw_identifier, raw_entry, source)
 
     # TODO Validate URLs of repositories and webpage
     # using functions in adapters/http/url_resolver.py 
@@ -67,7 +67,7 @@ def process_raw_entry(raw_entry, source):
         software_metadata_dict['publication'] = publication_ids
 
         # Save the entry in the database
-        save_entry(identifier, software_metadata_dict, raw_entry)
+        save_entry(software_metadata_dict, raw_entry)
     
     return
 

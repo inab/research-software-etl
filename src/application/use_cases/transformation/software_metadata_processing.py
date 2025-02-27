@@ -33,7 +33,7 @@ def standardize_entry(identifier: str,  raw: Dict, source: str) -> List[Dict]:
     tools = standardizer.process_transformation(raw)
 
     # To dictionary 
-    tools_dicts = [inst.model_dump() for inst in tools]
+    tools_dicts = [inst.model_dump(mode="json") for inst in tools]
     
     return(tools_dicts)
 
@@ -56,19 +56,21 @@ def generate_metadata(raw_entry, identifier):
     if entry_exists_db == False:
         source_url = raw_entry.get('@source_url', None)
         source_identifier = get_identifier(raw_entry)
-        metadata = create_new_metadata(source_identifier, source_url, ALAMBIQUE)
+        logging.info(f"Creating metadata for entry {identifier}")
+        logging.info(f"Source identifier: {source_identifier}")
+        metadata = create_new_metadata(source_identifier, identifier, source_url, ALAMBIQUE)
     else:
         existing_metadata  = mongo_adapter.get_entry_metadata(PRETOOLS, identifier)
         existing_metadata = Metadata(**existing_metadata)
         metadata = update_existing_metadata(PRETOOLS, existing_metadata)
     
-    metadata_dict = metadata.model_dump()
+    metadata_dict = metadata.model_dump(mode="json")
 
     return metadata_dict
 
 
 
-def save_entry(identifier, software_metadata_dict, raw_entry):
+def save_entry(software_metadata_dict, raw_entry):
     '''
     Save the entry in the database
     '''
@@ -76,8 +78,9 @@ def save_entry(identifier, software_metadata_dict, raw_entry):
     source = software_metadata_dict['source'][0]
     name = software_metadata_dict['name']
     type = software_metadata_dict['type']
-    version = software_metadata_dict['version']
+    version = software_metadata_dict['version'][0]
     identifier = f'{source}/{name}/{type}/{version}'
+    logging.info(f"Processing entry {identifier}")
     entry_metadata = generate_metadata(raw_entry, identifier)
 
     # Push to the database 

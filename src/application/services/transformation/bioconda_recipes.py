@@ -185,39 +185,6 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
                 return [license]
     
     @staticmethod
-    def publications(tool: Dict) -> List[Dict]:
-        '''
-        TODO: move to a separate extractor and standardizer
-        Builds the publications of the tool.
-        - tool: dictionary with the tool data
-        Publication DOI identifiers can be in extra/identifiers or extra/doi.
-        '''
-        new_pubids = set()
-        if tool.get('extra'):
-            if tool['extra'].get('identifiers'):
-                for ident in tool['extra'].get('identifiers'):
-                    reg1 = 'https:\/\/doi.org\/(10.([\w.]+?)\/([\w.]+)([\w.\/]+)?)'
-                    reg2 = 'doi:(10.([\w.]+?)\/([\w.]+)([\w.\/]+)?)'
-                    m1 = re.match(reg1, ident)
-                    m2 = re.match(reg2, ident)
-                    if m1:
-                        new_pubids.add(m1.group(1))
-                    if m2:
-                        new_pubids.add(m2.group(1))
-
-            if tool['extra'].get('doi'):
-                for doi in tool['extra'].get('doi'):
-                    new_pubids.add(doi)
-        
-        publications = []
-        for pubid in new_pubids:
-            publications.append({
-                'doi': pubid
-            })
-    
-        return publications
-    
-    @staticmethod
     def dependencies(tool: Dict) -> List[Dict]:
         '''
         Builds the dependencies of the tool.

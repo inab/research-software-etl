@@ -91,7 +91,10 @@ def standardize_publications(source_name : str, publications_ids, raw_publicatio
     # Parse the entry 
     publication_standardizer = StandardizerFactory.get_standardizer(source_name)
     standardized_publication = publication_standardizer.standardize(raw_publication_dict)
-    standardized_publication_dict = standardized_publication.model_dump() 
+    if not standardized_publication:
+        return publications_ids
+    else:
+        standardized_publication_dict = standardized_publication.model_dump() 
     
     # Check if the publication is already in the publications collection
     publication_id = publication_in_collection(standardized_publication_dict, publications_repo)

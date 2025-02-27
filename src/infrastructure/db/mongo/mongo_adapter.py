@@ -151,6 +151,9 @@ class MongoDBAdapter(DatabaseAdapter):
 
         """
         collection = self.db[collection_name]
+        if 'id' in document:
+            document['_id'] = document.pop('id')
+        
         collection.insert_one(document)
         logging.info(f"Inserted document into collection {collection_name}")
     

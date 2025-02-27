@@ -1,9 +1,9 @@
 from typing import Dict, Any, List
 from src.application.services.publications.publication_standardizer import PublicationStandardizer
 from src.application.services.publications.publication_extractor import PublicationExtractor
-from src.domain.models.software_instance.publication import Publication
+from src.domain.models.publication.publication import Publication
 from src.shared.utils import validate_and_filter
-
+import logging
 
 class BioconductorPublicationExtractor(PublicationExtractor):
     """Extracts publication data from Bioconductor."""
@@ -37,5 +37,5 @@ class BioconductorPublicationStandardizer(PublicationStandardizer):
             return publication
 
         except Exception as e:
-            cls.log_error(f"Error processing Bioconductor publication data: {str(e)}")
-            return {}
+            logging.error(f"Error processing Bioconductor publication data: {str(e)}")
+            return None

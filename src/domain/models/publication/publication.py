@@ -6,17 +6,18 @@ import re
 
 # ------------------ CITATIONS MODEL ------------------
 
+class YearlyCitation(BaseModel):
+    """Model for tracking citations per year."""
+    year: int = Field(..., description="Year")
+    count: int = Field(..., description="Citation count")
+
+
 class CitationSource(BaseModel):
     """Model for tracking citations from a single source (Google Scholar, Semantic Scholar, etc.)."""
     source_id: str = Field(..., description="Unique ID from the citation source")
     total_citations: int = Field(default=0, description="Total number of citations")
-    citations_per_year: Dict[int, int] = Field(default={}, description="Citations count per year")
+    citations_per_year: List[YearlyCitation] = Field(default={}, description="Citations count per year")
     last_updated: datetime = Field(default_factory=datetime.utcnow, description="Last updated timestamp")
-
-
-class PublicationCitations(BaseModel):
-    """Stores citation data inside 'data' for consistency with software collection."""
-    sources: Dict[str, CitationSource] = Field(default={}, description="Dictionary of sources (Google Scholar, Semantic Scholar, etc.)")
 
 
 # ------------------ PUBLICATION METADATA ------------------
@@ -32,8 +33,7 @@ class Publication(BaseModel):
     # authors: Optional[List[str]] = Field(None, description="List of authors")
     year: Optional[int] = Field(None, description="Year of publication")
     journal: Optional[str] = Field(None, description="Journal or conference name")
-    citations: Optional[PublicationCitations] = Field(None, description="Citation data from various sources")
-    cit_count: int = Field(None, description="Total number of citations")
+    citations: Optional[List[CitationSource]] = Field(None, description="Citation data from various sources")
 
     @field_validator('doi', mode="before")
     @classmethod

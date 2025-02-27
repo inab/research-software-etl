@@ -4,7 +4,7 @@ import logging
 from typing import Dict, Any, List
 from src.application.services.publications.publication_standardizer import PublicationStandardizer
 from src.application.services.publications.publication_extractor import PublicationExtractor
-from src.domain.models.software_instance.publication import Publication
+from src.domain.models.publication.publication import Publication
 from src.shared.utils import validate_and_filter
 
 class ToolshedPublicationExtractor(PublicationExtractor):

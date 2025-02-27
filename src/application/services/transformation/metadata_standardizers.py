@@ -6,7 +6,6 @@ class MetadataStandardizer(ABC):
         self.source = source
         logging.debug('Generator for ' + self.source + ' initialized') 
 
-    @abstractmethod
     @classmethod
     def process_transformation(self, tool):
         """Template method that defines the algorithm steps."""
@@ -18,7 +17,7 @@ class MetadataStandardizer(ABC):
             raise Exception('while transforming tool: ' + str(e))
         return standardized_tools
 
-    @abstractmethod
+    @classmethod
     def transform_one(self, tool, standardized_tools):
         '''
         Transforms one tool into an instance.

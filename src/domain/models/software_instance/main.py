@@ -8,7 +8,6 @@ from src.domain.models.software_instance.data_format import data_format
 from src.domain.models.software_instance.documentation import documentation_item
 from src.domain.models.software_instance.license import license_item
 from src.domain.models.software_instance.recognition import contributor
-from src.domain.models.software_instance.publication import publication_item
 from src.domain.models.software_instance.topic_operation import vocabulary_topic, vocabulary_operation
 from src.domain.models.software_instance.repository import repository_item
 
@@ -192,7 +191,7 @@ class instance(BaseModel, validate_assignment=True):
     authors : List[contributor] = Field([],
                                         title="Authors",
                                         description="List of authors of the software.")
-    publication: List[publication_item] = Field([],
+    publication: List[str] = Field([],
                                                 title="Publication",
                                                 description="List of publications of the software.")
     topics: List[vocabulary_topic] = Field([],

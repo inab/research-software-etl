@@ -20,6 +20,7 @@ class Metadata(BaseModel):
     Metadata of entries after transformation.
     It goes in the "pretools" collection. Example of metadata object:
     {
+        "id": "toolshed/trimal/cmd/1.4",
         "created_at": "2023-01-01T00:00:00Z", 
         "created_by": "https://gitlab.bsc.es/inb/elixir/software-observatory/bioconductor-imoprter-v2/-/commit/180347cb5bae6b553663a670a560e13c40f1e64f",
         "created_logs": "https://gitlab.bsc.es/oeb-research-software/oeb-research-software/-/pipelines/1234",
@@ -33,6 +34,7 @@ class Metadata(BaseModel):
         }
     }
     '''
+    id: str = Field(..., description="Identifier of the entry in the database. It is transform to _id right before insertion.")
     created_at: str = Field(..., description="Creation date of the entry", alias='created_at')
     created_by: str = Field(..., description="User or task that created the entry", alias='created_by')
     created_logs: str = Field(..., description="Link to the logs of the creation process", alias='created_logs')

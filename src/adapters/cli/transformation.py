@@ -35,9 +35,9 @@ def main():
 
     logging.info("Transforming raw data...")
 
-    # TODO: take sources from argparse
+    # COULD DO: take sources from argparse
     #sources = ['bioconda', 'biotools', 'bioconductor', 'galaxy_metadata', 'toolshed', 'galaxy', 'sourceforge', 'opeb_metrics']
-    sources = ['bioconductor']
+    sources = ['bioconda']
     transform_sources(loglevel=numeric_level, sources=sources)
     logging.info("Transformation successful!")
 

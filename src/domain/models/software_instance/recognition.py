@@ -18,12 +18,6 @@ class contributor(BaseModel):
     url: Optional[HttpUrl] = None
     orcid: Optional[str] = None
 
-    class Config:
-        # Automatically serialize Enums to their string values
-        json_encoders = {
-            type_contributor: lambda v: v.value
-        }
-
     @field_validator('name', mode="after")
     @classmethod
     def name_cannot_be_empty(cls, data):

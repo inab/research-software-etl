@@ -9,7 +9,7 @@ from datetime import datetime
 from src.domain.models.metadata import Metadata
 from datetime import datetime
 
-def create_new_metadata(source_identifier, source_url: str = None,  alambique: str = 'alambiqueDev') -> Metadata:
+def create_new_metadata(source_identifier, identifier, source_url: str = None,  alambique: str = 'alambiqueDev') -> Metadata:
     current_date = datetime.now().isoformat()
     commit_url = build_commit_url()
     pipeline_url = os.getenv("CI_PIPELINE_URL")
@@ -20,6 +20,7 @@ def create_new_metadata(source_identifier, source_url: str = None,  alambique: s
         commit_url = "https://gitlab.com/evamdpico/research-software-meta/-/tree/4a4cdc3c2076f6f7c920c5de93d9d2563ec5bcba"
 
     metadata = Metadata(
+        id=identifier,
         created_at=current_date,
         created_by=commit_url,
         created_logs=pipeline_url,
