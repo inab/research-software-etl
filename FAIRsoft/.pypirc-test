@@ -1,8 +1,0 @@
-[distutils]
-index-servers =
-    testpypi
-
-[testpypi]
-username = __token__
-password = pypi-AgENdGVzdC5weXBpLm9yZwIkZjIwNDcwMTQtYTJkOC00MzNhLWI3MzktMDdmZDU2YTQxMGYwAAIqWzMsImEzMGE1N2FlLWI2ZmItNDhkYy05YjBkLWUwMTM4OTU1ZDJiYSJdAAAGIKTEBoIekTc4ZoEpXNJryz3EI-VyAUbtU8lLtHqpoo9F 
-

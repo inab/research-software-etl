@@ -1,1 +1,0 @@
-The file `bioconda_types.json` will be removed in the future. The information it contains will be generated from the databse instead.

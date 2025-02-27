@@ -1,7 +1,7 @@
 # Software metadata extraction, consolidation and evaluation
 
-> :warning: This branch is under development. 
-> Its purpose is to restructure the whole project to align it with a clean architecture and to make it more modular and scalable.
+> :warning: under development. 
+> Currently restructuring the whole project to align it with a clean architecture and to make it more modular and scalable.
 
 We have developed a pipeline to **gather metadata about research software specific** to Computational Biology, **harmonize** and **integrate** it and to then be able to monitor certain features and **evaluate** their compliance with ** FAIRsoft indicators**.  [*FAIRsoft*](https://github.com/inab/FAIRsoft_indicators) are a set of research software *FAIRness* indicators, specifically devised to be assesed automatically. 
 
@@ -18,12 +18,11 @@ The code for the previos steps can be found in the respotories specified as foll
 
   > :exclamation: Given the complexity of the installation of the requirements of some of the importers, it is highly recommended to use the dockerized version of the different importers (in `registry.bsc.es/inb/elixir/software-observatory/`). 
 
-- Harmonization of raw metadata: part of *FAIRsoft* package.
-- Integration of pieces of metadata belonging to the same software: part of *FAIRsoft* package.
-- Calculation of *FAIRsoft* indicators compliance and FAIRsoft scores: part of *FAIRsoft* package.
+- Harmonization of raw metadata.
+- Integration of pieces of metadata belonging to the same software.
+- Calculation of *FAIRsoft* indicators compliance and FAIRsoft scores.
 
 
 ## Data storage
 During the whole process, metadata is stored in a Mongo Database (INB Mongo `oeb-research-software`). The database connection is configured through environment variables. 
 
-:construction:

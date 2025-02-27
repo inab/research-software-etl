@@ -1,8 +1,0 @@
-bidict
-munch
-pymongo
-requests
-selenium
-simplejson
-webdriver_manager
-bibtexparser
