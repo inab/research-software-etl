@@ -33,7 +33,7 @@ def main():
 
     # COULD DO: take sources from argparse
     #sources = ['bioconda', 'biotools', 'bioconductor', 'galaxy_metadata', 'toolshed', 'galaxy', 'sourceforge', 'opeb_metrics']
-    sources = ['bioconda_recipes']
+    sources = ['toolshed']
     transform_sources(sources=sources)
     logger.info("Transformation successful!")
 
