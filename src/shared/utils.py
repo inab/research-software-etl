@@ -102,7 +102,7 @@ def is_repository(url):
         return { 'kind': 'github', 'url': gh_repo}
     
     gitlab_repo = is_gitlab_repo(url)
-    if gitlab_repo(url):
+    if gitlab_repo:
         return { 'kind': 'gitlab', 'url': gitlab_repo}
     
     bitbucket_repo = is_bitbucket_repo(url)
