@@ -25,25 +25,25 @@ def publication_in_collection(publication: Dict[str, Any], publications_repo: Da
             return entry['_id']
 
     # Check title 
-    elif publication.get('title'):
+    if publication.get('title'):
         entry = publications_repo.find_by_title(publication.get('title'))
         if entry:
             return entry['_id']
 
     # Check URL 
-    elif publication.get('url'):
+    if publication.get('url'):
         entry = publications_repo.find_by_url(publication.get('url'))
         if entry:
             return entry['_id']
 
     # Check pmid 
-    elif publication.get('pmid'):
+    if publication.get('pmid'):
         entry = publications_repo.find_by_pmid(publication.get('pmid'))
         if entry:
             return entry['_id']
 
     # Check pmcid
-    elif publication.get('pmcid'):
+    if publication.get('pmcid'):
         entry = publications_repo.find_by_pmcid(publication.get('pmcid'))
         if entry:
             return entry['_id']
