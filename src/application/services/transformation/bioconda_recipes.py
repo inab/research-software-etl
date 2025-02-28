@@ -1,5 +1,5 @@
 import logging
-from pydantic import HttpUrl, TypeAdapter
+from pydantic import HttpUrl, ValidationError
 from typing import List, Dict
 from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
 from src.domain.models.software_instance.main import instance
@@ -30,8 +30,8 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         Builds the type of the tool. If there is no type in the document, it returns cmd.
         - tool: dictionary with the tool data
         '''
-        if tool.get('type'):
-            return tool.get('type')
+        if tool.get('@type'):
+            return [tool.get('@type')]
         else:
             return ['cmd']
 
@@ -98,6 +98,14 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
 
         return source_code
     
+    @staticmethod
+    def is_valid_url(url: str) -> bool:
+        try:
+            HttpUrl(url)
+            return True
+        except ValidationError:
+            return False
+
 
     @staticmethod
     def documentation(tool: Dict) -> List[Dict]:
@@ -115,10 +123,9 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
 
         # Documentation in the about field
         if tool.get('about'):
-            ta=TypeAdapter(HttpUrl)
             if tool['about'].get('docs'):
                 # make sure value is a url
-                if ta.validate_strings(tool['about']['docs']):
+                if biocondaRecipesStandardizer.is_valid_url(tool['about']['docs']):
                     documentation.append({
                         'type': 'general',
                         'url': tool['about']['docs']
@@ -126,13 +133,16 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
             
             elif tool['about'].get('doc_url'):
                 # make sure value is a url
-                if ta.validate_strings(tool['about']['doc_url']):
+                if biocondaRecipesStandardizer.is_valid_url(tool['about']['doc_url']):
                     documentation.append({
                         'type': 'general',
                         'url': tool['about']['home']
                     })
 
         return documentation
+    
+    from pydantic import HttpUrl, ValidationError
+
     
 
     @staticmethod
