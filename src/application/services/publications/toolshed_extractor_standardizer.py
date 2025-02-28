@@ -45,11 +45,11 @@ class ToolshedPublicationExtractor(PublicationExtractor):
             for cit in raw_data['data']['citation']:
 
                 if cit.get('type') == 'doi':
-                    new_pub = {'doi':cit.get('citation')}
+                    new_pub = {'doi': cit.get('value')}
                     publications.append(new_pub)
                 
-                else:
-                    new_entries = cls.parse_bibtex(cit.get('citation'))
+                elif cit.get('type') == 'bibtex':
+                    new_entries = cls.parse_bibtex(cit.get('value'))
                     for se in new_entries:
                         publications.append(se)
         
