@@ -158,10 +158,20 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         
         # It can be in source/url
         if tool.get('source'):
-            if tool['source'].get('url'):
-                repository = is_repository(tool['source']['url'])
-                if repository:
-                    return repository
+            # if source is a dict 
+            if isinstance(tool['source'], dict):
+                if tool['source'].get('url'):
+                    repository = is_repository(tool['source']['url'])
+                    if repository:
+                        return repository
+
+            # if source is a list of dicts
+            elif isinstance(tool['source'], list):
+                for source in tool['source']:
+                    if source.get('url'):
+                        repository = is_repository(source['url'])
+                        if repository:
+                            return repository
 
         return repository
 
