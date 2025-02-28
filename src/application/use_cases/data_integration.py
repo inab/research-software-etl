@@ -3,11 +3,8 @@ import os
 from typing import List, Dict
 from collections import defaultdict
 
-from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
-from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
-from src.domain.models.software_instance.main import instance
+from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from src.application.services.integration.metadata import create_new_metadata, update_existing_metadata
-db_adapter = MongoDBAdapter()
 
 # collections 
 PRETOOLS = os.getenv('PRETOOLS', 'pretoolsDev')
@@ -20,25 +17,23 @@ def should_update(new_data, existing_data):
 
 def fetch_current_document(name, type):
     query = {"data.name": name, "data.type": type}
-    current_document = db_adapter.fetch_entry(TOOLS, query)
+    current_document = mongo_adapter.fetch_entry(TOOLS, query)
     return current_document
 
 def move_to_historical(document: Dict):
-    db_adapter.insert_one(HISTORICAL_TOOLS, document)
+    mongo_adapter.insert_one(HISTORICAL_TOOLS, document)
     return
 
 def update_primary_tools_colletion(document: Dict, metadata: Dict):
-    db_adapter = MongoDBAdapter()
     doc = metadata.to_dict_for_db_insertion()
     doc['data'] = document
-    db_adapter.update_entry(TOOLS, doc)
+    mongo_adapter.update_entry(TOOLS, doc)
     return
 
 def insert_into_primary_tools_collection(document: Dict, metadata: Dict):
-    db_adapter = MongoDBAdapter()
     doc = metadata.to_dict_for_db_insertion()
     doc['data'] = document
-    db_adapter.insert_one(TOOLS, document)
+    mongo_adapter.insert_one(TOOLS, document)
     return
 
 def merged_instance_to_database(instance, source_identifiers):
@@ -168,12 +163,11 @@ def fetch_pretools():
     Get all entries from the pretools collection.
     Returns a list of dictionaries with the data field of each entry.
     """
-    db_adapter = MongoDBAdapter()
     query = {}
     db_collection = PRETOOLS
 
-    documents = db_adapter.fetch_entries(db_collection, query)
-    validated_documents = db_adapter.validate_pretools_data(documents)
+    documents = mongo_adapter.fetch_entries(db_collection, query)
+    validated_documents = mongo_adapter.validate_pretools_data(documents)
     
     return [doc['data'] for doc in validated_documents]
 

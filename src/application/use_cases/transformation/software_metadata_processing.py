@@ -4,7 +4,8 @@ from typing import List, Dict
 from src.application.services.transformation.standardizers_factory import MetadataStandardizerFactory
 from src.application.services.transformation.metadata import create_new_metadata, update_existing_metadata
 from src.domain.models.metadata import Metadata
-from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+
 
 logger = logging.getLogger("rs-etl-pipeline")
 
@@ -54,7 +55,6 @@ def generate_metadata(raw_entry, identifier):
     Returns:
         Metadata: An instance of the Metadata class containing the generated or updated metadata.
     """
-    mongo_adapter = MongoDBAdapter()
     entry_exists_db = mongo_adapter.entry_exists(PRETOOLS, identifier)
 
     if entry_exists_db == False:
@@ -88,13 +88,15 @@ def save_entry(software_metadata_dict, raw_entry):
     entry_metadata = generate_metadata(raw_entry, identifier)
 
     # Push to the database 
-    push_to_db(software_metadata_dict, entry_metadata, identifier)
+    try:
+        push_to_db(software_metadata_dict, entry_metadata, identifier)
+    except Exception as e:
+        logger.error(f"An error occurred while saing to database {identifier}: {e}")
 
     return
 
 
 def push_to_db(software_metadata_dict, entry_metadata, identifier):
-    mongo_adapter = MongoDBAdapter()
 
     try:
         # Build the entry merging entry metadata and content (software metadata)

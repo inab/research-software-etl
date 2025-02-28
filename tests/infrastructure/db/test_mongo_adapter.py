@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch, MagicMock
-from src.infrastructure.db.mongo_adapter import MongoDBAdapter
+from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 # Ensure the environment variables are correctly mocked
@@ -24,7 +24,7 @@ def mock_mongo_client(mocker):
 
 def test_mongodb_adapter_init(mock_env_vars, mock_mongo_client):
     # Test initialization of MongoDBAdapter
-    adapter = MongoDBAdapter()
+    adapter = mongo_adapter
     mock_mongo_client.assert_called_once_with(
         host=['localhost:27017'],
         username='user',
@@ -35,7 +35,7 @@ def test_mongodb_adapter_init(mock_env_vars, mock_mongo_client):
 
 def test_entry_exists_true(mock_env_vars, mock_mongo_client):
     # Setup
-    adapter = MongoDBAdapter()
+    adapter = mongo_adapter
     collection_name = 'test_collection'
     query = {'_id': 'some_id'}
     
@@ -47,7 +47,7 @@ def test_entry_exists_true(mock_env_vars, mock_mongo_client):
 
 def test_entry_exists_false(mock_env_vars, mock_mongo_client):
     # Setup
-    adapter = MongoDBAdapter()
+    adapter = mongo_adapter
     collection_name = 'test_collection'
     query = {'_id': 'nonexistent_id'}
     

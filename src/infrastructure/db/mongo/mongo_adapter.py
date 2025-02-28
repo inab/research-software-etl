@@ -15,39 +15,55 @@ from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
 logger = logging.getLogger("rs-etl-pipeline")
 
 class MongoDBAdapter(DatabaseAdapter):
+    _client = None  # Class variable to hold the single MongoClient instance
+
     def __init__(self, database=None):
-        # Load connection parameters from environment variables
-        mongo_host = os.getenv('MONGO_HOST', default='localhost')
-        mongo_port = os.getenv('MONGO_PORT', default='27017')
+
+        # avoid creating multiple connections
+        if MongoDBAdapter._client is None:
+            MongoDBAdapter._client = self._initialize_client()
+
+        # Reuse the existing connection
+        self.client = MongoDBAdapter._client
+
+        # Use the provided database name or default
+        self.db = self.client[self._get_database_name(database)]
+
+    def _initialize_client(self):
+        """Initialize MongoDB Client"""
+        mongo_host = os.getenv('MONGO_HOST', 'localhost')
+        mongo_port = os.getenv('MONGO_PORT', '27017')
         mongo_user = os.getenv('MONGO_USER')
         mongo_pass = os.getenv('MONGO_PWD')
-        mongo_auth_src = os.getenv('MONGO_AUTH_SRC', default='admin')
+        mongo_auth_src = os.getenv('MONGO_AUTH_SRC', 'admin')
 
-        # print environment variables
-        # logger.info(f"MongoDB host: {mongo_host}")
-        # logger.info(f"MongoDB port: {mongo_port}")
-        # logger.info(f"MongoDB user: {mongo_user}")
-        # logger.info(f"MongoDB password: {mongo_pass}")
-        # logger.info(f"MongoDB auth source: {mongo_auth_src}")
+        logger.info(f"Connecting to MongoDB at {mongo_host}:{mongo_port}")
 
-        if not database:
-            mongo_db = os.getenv('MONGO_DB', default='oeb-research-software')
-        else:
-            mongo_db = database
-
-        logger.debug(f"MongoDB database: {mongo_db}")
-
-        # Connect to MongoDB using the specified parameters
-        self.client = pymongo.MongoClient(
+        # Initialize MongoDB Client with AutoReconnect handling
+        try:
+            client = pymongo.MongoClient(
                 host=[f'{mongo_host}:{mongo_port}'],
                 username=mongo_user,
                 password=mongo_pass,
                 authSource=mongo_auth_src,
-                authMechanism='SCRAM-SHA-256'
+                authMechanism='SCRAM-SHA-256',
+                maxPoolSize=100,
+                serverSelectionTimeoutMS=5000  # Avoid indefinite hanging
             )
+            # Test connection
+            client.admin.command('ping')
+            return client
+        except Exception as e:
+            logger.error(f"MongoDB connection failed: {e}")
+            raise
         
-        self.db = self.client[mongo_db]
 
+    def _get_database_name(self, database):
+        """Get database name from parameter or environment variable"""
+        return database or os.getenv('MONGO_DB', 'oeb-research-software')
+
+
+    
     @retry(
     retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
     wait=wait_exponential(multiplier=1, min=1, max=10), 

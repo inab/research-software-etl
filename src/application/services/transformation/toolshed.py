@@ -5,6 +5,7 @@ from typing import Dict, Any
 import logging
 import bibtexparser
 
+logger = logging.getLogger("rs-etl-pipeline")
 # -----------------------------------------------------------
 # Galaxy Config (from Toolshed) MetadataStandardizer
 # -----------------------------------------------------------
@@ -77,7 +78,7 @@ class toolshedStandardizer(MetadataStandardizer):
         Gets any kind of information from bibtex citation.
         '''
         parser = bibtexparser.bparser.BibTexParser(common_strings=True)
-        logger = logging.getLogger('bibtexparser')
+        logger_bibtex = logging.getLogger('bibtexparser')
         new_entries = []
         
         bibtexdb = bibtexparser.loads(bibtex_string, parser=parser)
