@@ -10,7 +10,7 @@ from typing import List, Dict, Any
 
 class sourceforgeStandardizer(MetadataStandardizer):
     def __init__(self, source = 'sourceforge'):
-        MetadataStandardizer.__init__(self)
+        MetadataStandardizer.__init__(self, source)
 
     @staticmethod
     def description(tool: Dict[str, Any]) -> List[str]:

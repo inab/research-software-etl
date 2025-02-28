@@ -82,7 +82,12 @@ def save_entry(software_metadata_dict, raw_entry):
     source = software_metadata_dict['source'][0]
     name = software_metadata_dict['name']
     type = software_metadata_dict['type']
-    version = software_metadata_dict['version'][0]
+
+    if len(software_metadata_dict['version']) > 0:
+        version = software_metadata_dict['version'][0]
+    else:
+        version = None
+
     identifier = f'{source}/{name}/{type}/{version}'
     
     entry_metadata = generate_metadata(raw_entry, identifier)
