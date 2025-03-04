@@ -14,7 +14,7 @@ from typing import Dict, Any
 class githubStandardizer(MetadataStandardizer):
 
     def __init__(self, source = 'github'):
-        MetadataStandardizer.__init__(self)
+        MetadataStandardizer.__init__(self, source)
 
     @staticmethod
     def repository(tool: Dict[str, Any]):
