@@ -17,7 +17,8 @@ class toolshedStandardizer(MetadataStandardizer):
     
     # --------  Functions to format specific fields --------
 
-    def description(self, tool: Dict[str, Any]):
+    @staticmethod
+    def description(tool: Dict[str, Any]):
         '''
         Returns the description of the tool.
         '''
@@ -80,20 +81,18 @@ class toolshedStandardizer(MetadataStandardizer):
         parser = bibtexparser.bparser.BibTexParser(common_strings=True)
         logger_bibtex = logging.getLogger('bibtexparser')
         new_entries = []
-        
-        bibtexdb = bibtexparser.loads(bibtex_string, parser=parser)
-        for entry in bibtexdb.entries:
-            if entry['ENTRYTYPE'].lower() == 'misc':
-                single_entry = {}
-                for key in entry:
-                    single_entry[key] = entry[key]
+        try:
+            bibtexdb = bibtexparser.loads(bibtex_string, parser=parser)
+            for entry in bibtexdb.entries:
+                if entry['ENTRYTYPE'].lower() == 'misc':
+                    single_entry = {}
+                    for key in entry:
+                        single_entry[key] = entry[key]
 
-                new_entries.append(single_entry)
-        '''
+                    new_entries.append(single_entry)
         except Exception as err:
             logger.error(f'FAILED attempt to parse citation (bibtex). Error: {err}')
-            logger.error(json.dumps(ent, sort_keys=False, indent=4))
-        '''
+        
         return(new_entries)
     
         
@@ -119,26 +118,27 @@ class toolshedStandardizer(MetadataStandardizer):
         return []
     
     # --------  Main Function  --------
-    def transform_one(self, tool, standardized_tools):
+    @classmethod
+    def transform_one(cls, tool, standardized_tools):
         '''
         Transforms a single tool into an instance.
         '''
         tool = tool.get('data')
         if tool.get('id'):
-            name = self.clean_name(tool.get('id')).lower()
+            name = cls.clean_name(tool.get('id')).lower()
             version = [tool.get('version')]
             type_ = 'cmd'
             label = [tool.get('name')]
-            description = self.description(tool)
+            description = cls.description(tool)
             test = tool.get('test', False)
-            input = self.data_formats(tool, 'inputs')
-            output = self.data_formats(tool, 'outputs')
-            documentation = self.documentation(tool)
+            input = cls.data_formats(tool, 'inputs')
+            output = cls.data_formats(tool, 'outputs')
+            documentation = cls.documentation(tool)
             #citation = self.citation(tool)
             download = [tool.get('@source_url')]
             operating_system = ['Linux', 'macOS']
             source = ['toolshed']
-            repository = self.repository(tool)
+            repository = cls.repository(tool)
 
             new_instance_dict = {
                 "name" : name,

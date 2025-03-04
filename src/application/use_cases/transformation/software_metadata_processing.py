@@ -1,5 +1,6 @@
 import os
 import logging 
+import json
 from typing import List, Dict
 from src.application.services.transformation.standardizers_factory import MetadataStandardizerFactory
 from src.application.services.transformation.metadata import create_new_metadata, update_existing_metadata
@@ -65,8 +66,11 @@ def generate_metadata(raw_entry, identifier):
         metadata = create_new_metadata(source_identifier, identifier, source_url, ALAMBIQUE)
     else:
         existing_metadata  = mongo_adapter.get_entry_metadata(PRETOOLS, identifier)
+        logger.info(f"Updating metadata for entry {identifier}")
+        # _id must become id 
+        existing_metadata['id'] = existing_metadata.pop('_id')
         existing_metadata = Metadata(**existing_metadata)
-        metadata = update_existing_metadata(PRETOOLS, existing_metadata)
+        metadata = update_existing_metadata(existing_metadata)
     
     metadata_dict = metadata.model_dump(mode="json")
 
@@ -82,7 +86,12 @@ def save_entry(software_metadata_dict, raw_entry):
     source = software_metadata_dict['source'][0]
     name = software_metadata_dict['name']
     type = software_metadata_dict['type']
-    version = software_metadata_dict['version'][0]
+
+    if len(software_metadata_dict['version']) > 0:
+        version = software_metadata_dict['version'][0]
+    else:
+        version = None
+
     identifier = f'{source}/{name}/{type}/{version}'
     
     entry_metadata = generate_metadata(raw_entry, identifier)

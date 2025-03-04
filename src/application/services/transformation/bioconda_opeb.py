@@ -11,7 +11,7 @@ from src.shared.utils import validate_and_filter
 
 class biocondaOPEBStandardizer(MetadataStandardizer):
 
-    def __init__(self, source = 'biocondaOPEB'):
+    def __init__(self, source = 'bioconda'):
         MetadataStandardizer.__init__(self, source)
     
     @staticmethod

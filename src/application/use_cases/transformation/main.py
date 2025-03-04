@@ -143,9 +143,10 @@ sources = [
     'opeb_metrics'
 ]
 '''
-sources = []
 
-def transform_sources(sources: List[str] = sources, **kwargs):
+
+
+def transform_sources(sources: List[str], **kwargs):
     """
     Main function to orchestrate the transformation process for multiple sources.
 

@@ -46,15 +46,17 @@ def is_github_repo(url):
     Checks if the url is a github repository.
     - url: url to check
     '''
-    if 'github.com' in url:
-        end =  url.split('github.com/')[1]
-        owner = end.split('/')[0]
-        repo = end.split('/')[1]
+    if isinstance(url, str):
+        if 'github.com/' in url:
+            if len(url.split('github.com/'))>1:
+                end =  url.split('github.com/')[1]
+                if len(end.split('/'))>=2:
+                    owner = end.split('/')[0]
+                    repo = end.split('/')[1]
 
-        clean_repo = f"https://github.com/{owner}/{repo}"
-
-        return clean_repo
-        
+                    clean_repo = f"https://github.com/{owner}/{repo}"
+                    return clean_repo
+            
     else:
         return None
 
@@ -63,14 +65,16 @@ def is_gitlab_repo(url):
     Checks if the url is a gitlab repository.
     - url: url to check
     '''
-    if 'gitlab.com' in url:
-        end =  url.split('gitlab.com/')[1]
-        owner = end.split('/')[0]
-        repo = end.split('/')[1]
-        
-        clean_repo = f"https://gitlab.com/{owner}/{repo}"
-
-        return clean_repo
+    if isinstance(url, str):
+        if 'gitlab.com/' in url:
+            if len(url.split('gitlab.com/'))>1:
+                end =  url.split('gitlab.com/')[1]
+                if len(end.split('/'))>=2:
+                    owner = end.split('/')[0]
+                    repo = end.split('/')[1]
+                    
+                    clean_repo = f"https://gitlab.com/{owner}/{repo}"
+                    return clean_repo
         
     else:
         return None
@@ -81,14 +85,17 @@ def is_bitbucket_repo(url):
     Checks if the url is a bitbucket repository.
     - url: url to check
     '''
-    if 'bitbucket.org' in url:
-        end =  url.split('bitbucket.org/')[1]
-        owner = end.split('/')[0]
-        repo = end.split('/')[1]
-        
-        clean_repo = f"https://bitbucket.org/{owner}/{repo}"
-        return clean_repo
-        
+    if isinstance(url, str):
+        if 'bitbucket.org/' in url:
+            if len(url.split('bitbucket.org/'))>1:
+                end =  url.split('bitbucket.org/')[1]
+                if len(end.split('/'))>=2:
+                    owner = end.split('/')[0]
+                    repo = end.split('/')[1]
+            
+                    clean_repo = f"https://bitbucket.org/{owner}/{repo}"
+            return clean_repo
+            
     else:
         return None
 
@@ -102,7 +109,7 @@ def is_repository(url):
         return { 'kind': 'github', 'url': gh_repo}
     
     gitlab_repo = is_gitlab_repo(url)
-    if gitlab_repo(url):
+    if gitlab_repo:
         return { 'kind': 'gitlab', 'url': gitlab_repo}
     
     bitbucket_repo = is_bitbucket_repo(url)
