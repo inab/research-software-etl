@@ -32,8 +32,10 @@ def main():
     logger.info("Transforming raw data...")
 
     # COULD DO: take sources from argparse
-    #sources = ['bioconda', 'biotools', 'bioconductor', 'galaxy_metadata', 'toolshed', 'galaxy', 'sourceforge', 'opeb_metrics']
-    sources = ['toolshed']
+    #sources = ['bioconda', 'biotools', 'bioconductor', 'galaxy_metadata', 'toolshed', 'galaxy', 'sourceforge', 'opeb_metrics', 'github']
+    # galaxy_metadata
+
+    sources = ['galaxy_metadata']
     transform_sources(sources=sources)
     logger.info("Transformation successful!")
 

@@ -28,7 +28,7 @@ class Publication(BaseModel):
     pmcid:  Optional[str] = Field(pattern=r"^PMC\d+$", default=None, description="PubMed Central ID")
     pmid:  Optional[str] = Field(pattern=r"^\d+$",  default=None, description="PubMed Central ID") 
     url: Optional[str] = Field(None, description="URL to the paper or publisher's page")
-    title: str = Field(..., description="Title of the paper")
+    title: Optional[str] = Field(..., description="Title of the paper")
     abstract: Optional[str] = Field(None, description="Abstract of the paper")
     # authors: Optional[List[str]] = Field(None, description="List of authors")
     year: Optional[int] = Field(None, description="Year of publication")
