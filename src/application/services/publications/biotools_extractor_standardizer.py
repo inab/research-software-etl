@@ -37,7 +37,10 @@ class BiotoolsPublicationStandardizer(PublicationStandardizer):
             publication_dict = {
                 "doi": raw_data.get("doi", None),
                 "pmid": raw_data.get("pmid", None),
-                "pmcid": raw_data.get("pmcid", None)
+                "pmcid": raw_data.get("pmcid", None),
+                "title": raw_data.get("title", None),
+                "journal": raw_data.get("journal", None),
+                "year": raw_data.get("year", None),
             }
 
             publication = validate_and_filter(Publication, **publication_dict)
