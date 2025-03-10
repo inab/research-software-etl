@@ -2,7 +2,7 @@
 The command-line interface for the integration
 """
 
-from .....FAIRsoft.FAIRsoft.integration.run_integration import run_integration
+from src.application.use_cases.data_integration import integration_process
 import argparse
 import logging
 from dotenv import load_dotenv
@@ -34,7 +34,7 @@ def main():
     logging.debug(f"Env file: {args.env_file}")
 
     logging.info("Integrating data from sources...")
-    run_integration(loglevel=numeric_level)
+    integration_process()
     logging.info("Integration successful!")
 
 if __name__ == "__main__":

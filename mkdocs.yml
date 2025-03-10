@@ -45,7 +45,7 @@ site_author: 'evamdpico'
 # |                                                                                                        |
 # +--------------------------------------------------------------------------------------------------------+
 copyright: |
-  &copy;  BSC-CNS 2024
+  &copy;  BSC-CNS 2025
 
 # +--------------------------------------------------------------------------------------------------------+
 # |                                                                                                        |
@@ -95,6 +95,8 @@ repo_url: https://evamdpico.gitlab.io/research-software-meta/
 nav:
   - Getting Started: index.md
   - Architecture Overview: architecture.md
+  - Use Cases: 
+    - use_cases/integration.md
   - Guides and Tutorials: 
     - tutorials_and_guides/use_cases_gitlab_ci.md
 

@@ -9,7 +9,7 @@ class RawSoftwareMetadataRepository:
         self.collection_name = "alambiqueDev"
 
 
-    def get_raw_documents_from_source(self,source: str) -> Dict[str, Any]:
+    def get_raw_documents_from_source(self,source: str):
         """
         Retrieve and return documents from a specified MongoDB collection that match a particular source.
 
@@ -19,9 +19,9 @@ class RawSoftwareMetadataRepository:
             source (str): The source identifier used to generate the query for fetching documents. Documents in the collection that match this source will be retrieved.
 
         Returns:
-            pymongo.cursor.Cursor: A cursor for all documents that match the query, which allows for iterating over the documents found.
+            Generator.
         """
-        raw_data = self.db_adapter.fetch_entries(self.collection_name, {'@data_source': source})
+        raw_data = self.db_adapter.fetch_paginated_entries(self.collection_name, {'@data_source': source})
 
         return raw_data
     

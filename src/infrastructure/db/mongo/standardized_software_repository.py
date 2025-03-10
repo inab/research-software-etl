@@ -13,7 +13,16 @@ class StdSoftwareMetaRepository:
         self.db_adapter = db_adapter
         self.collection_name = "pretoolsDev"
 
-    def validate_pretools_data(self, documents):
+
+    def get_standardized_software_data(self):
+        logger.info('Fetching standardized software data from the pretools collection')
+        query = {}
+        standardized_software_data = self.db_adapter.fetch_entries(self.collection_name, query)
+        logger.info('software obtained')
+        return standardized_software_data
+
+
+    def validate_standardized_software_data(self, documents):
         """
         Validate a list of documents using the PretoolsEntryModel schema and return the validated documents.
 

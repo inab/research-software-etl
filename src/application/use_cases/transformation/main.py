@@ -75,31 +75,6 @@ def process_raw_entry(raw_entry, source):
     return
 
 
-def get_raw_data_db(source: str) -> List[Dict]:
-    '''
-    Retrieve raw data from a specific source in the database.
-
-    This function connects to a database using a provided database adapter and retrieves raw data from a specified source. The data is fetched from a database collection named by the 'ALAMBIQUE' environment variable, or 'alambique' if the variable is not set. This function logs the access attempt and returns the raw data as a list of dictionaries.
-
-    Args:
-        source (str): The label of the source from which to retrieve data. This determines the subset of data to be fetched from the database.
-        db_adapter (DatabaseAdapter): An adapter used to facilitate connection to and interaction with the database.
-
-    Returns:
-        List[Dict]: A list of dictionaries, each representing an item of raw data retrieved from the specified source.
-
-    Environment Variables:
-        ALAMBIQUE (str): Defines the name of the database collection to query. Defaults to 'alambique' if not set.
-
-    '''
-    ALAMBIQUE = os.getenv('ALAMBIQUE', 'alambiqueDev')
-
-    logger.debug(f"Accessing data of source {source} in db collection {ALAMBIQUE}")
-    alambique_repo = RawSoftwareMetadataRepository(mongo_adapter)
-    raw = alambique_repo.get_raw_documents_from_source(source)
-    
-    return raw
-
 
 def process_source(source: str):
     """
@@ -113,16 +88,27 @@ def process_source(source: str):
     """
     try:
         logger.info(f"Starting transformation of data from {source}")            
-        raw_data = get_raw_data_db(source)
+        alambique_repo = RawSoftwareMetadataRepository(mongo_adapter)
+        raw_data = alambique_repo.get_raw_documents_from_source(source)
 
-        if not raw_data:
-            logger.info(f"No entries found for {source}")
+        # checking if first batch has data
+        try:
+            first_batch = next(raw_data)
+        except StopIteration:
+            logger.info(f"No data found for source {source}")
             return
 
         logger.debug(f"Transforming raw tools metadata from {source}")
-        for raw_entry in raw_data:
+
+        # first batch 
+        for raw_entry in first_batch:
             process_raw_entry(raw_entry, source)
-            
+
+        # remaining batches
+        for batch in raw_data:
+            for raw_entry in batch:
+                process_raw_entry(raw_entry, source)
+ 
     except Exception as e:
         raise e
         logger.error(f"An error occurred while processing source {source}: {e}")

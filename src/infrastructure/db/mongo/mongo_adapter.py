@@ -7,8 +7,7 @@ import os
 import pymongo
 import logging
 from typing import Dict
-from pymongo.errors import NetworkTimeout, AutoReconnect
-
+from pymongo.errors import NetworkTimeout, AutoReconnect, CursorNotFound
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
 
@@ -142,7 +141,7 @@ class MongoDBAdapter(DatabaseAdapter):
 
 
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect, CursorNotFound)),
     wait=wait_exponential(multiplier=1, min=1, max=10), 
     stop=stop_after_attempt(5),
     )
@@ -162,9 +161,49 @@ class MongoDBAdapter(DatabaseAdapter):
         """
         logger.debug(f"Fetching entries from collection {collection_name} with query: {query}")
         collection = self.db[collection_name]
-        document = collection.find(query)
-        return document
-    
+
+        try:
+            document = collection.find(query, no_cursor_timeout=True).batch_size(100) # preventing automatic cursor timeout
+            return list(document)
+
+        except CursorNotFound:
+            logger.error(f"Cursor was lost for query: {query}. Retrying...")
+            raise # Retrying the operation
+
+    @retry( 
+            retry=retry_if_exception_type((NetworkTimeout, AutoReconnect, CursorNotFound)),
+            wait=wait_exponential(multiplier=1, min=1, max=10),
+            stop=stop_after_attempt(5),
+    )
+    def fetch_paginated_entries(self, collection_name: str, query: Dict, page_size: int = 100):
+        """
+        Retrieve documents from a specified MongoDB collection that match a given query in paginated form.
+
+        This function searches for all documents within the specified collection that match the criteria outlined in the query dictionary. It returns a cursor to the documents, which can be iterated over to access individual documents. This is typically used for fetching multiple documents rather than a single document.
+
+        Args:
+            collection_name (str): The name of the collection from which documents are to be retrieved.
+            query (dict): A dictionary specifying the query criteria used to find documents. This must conform to MongoDB's query format.
+            page_size (int): The number of documents to retrieve per page. Defaults to 100.
+        
+        Yields:
+            List[Dict]: A list of documents that match the query, with each list representing a page of documents.
+        """
+        logger.debug(f"Fetching paginated entries from collection {collection_name} with query: {query}")
+        collection = self.db[collection_name]
+        skip = 0 
+
+        while True:
+            cursor = collection.find(query).skip(skip).limit(page_size)
+            documents = list(cursor)
+            if not documents:
+                break # stops when no more documents are found
+
+            yield documents
+            skip += page_size # moves to the next page
+
+
+
     @retry(
     retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
     wait=wait_exponential(multiplier=1, min=1, max=10), 
