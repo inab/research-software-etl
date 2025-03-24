@@ -11,23 +11,14 @@ class type_contributor(str, Enum):
 
     
 class contributor(BaseModel):
-    type: type_contributor = None
-    name: str = None
+    type: Optional[type_contributor] = None
+    name: Optional[str] = None
     email: Optional[EmailStr] = None
     maintainer: bool = False
     url: Optional[HttpUrl] = None
     orcid: Optional[str] = None
 
-    @field_validator('name', mode="after")
-    @classmethod
-    def name_cannot_be_empty(cls, data):
-        '''
-        Name cannot be empty.
-        '''
-        if not data:
-            raise ValueError("Name cannot be empty")
-        else:
-            return data
+
         
     @field_validator('type', mode="before")
     @classmethod
@@ -36,10 +27,11 @@ class contributor(BaseModel):
         If type is Institute, Project, Funding Agency, etc..., reclassify to Organization
         '''
         org_keywords = ['institute', 'project', 'funding agency', 'division', 'consortium']
-        for keyword in org_keywords:
-            if data.lower() == keyword:
-                return type_contributor.Organization
-        
+        if data:
+            for keyword in org_keywords:
+                if data.lower() == keyword:
+                    return type_contributor.Organization
+            
         return data
         
 
