@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Project directory
+PROJECT_DIR="$HOME/projects/software-observatory/research-software-etl"
+
+# File paths
+SCRIPT_PATH="src/adapters/cli/integration/group_and_recovery.py"
+GROUPED_ENTRIES_FILE="scripts/data/grouped_entries.json"
+ENV_FILE=".env"
+
+# Change to the project directory
+cd "$PROJECT_DIR" || {
+  echo "❌ Failed to change directory to $PROJECT_DIR"
+  exit 1
+}
+
+# Check VPN connection
+if ! ping -c 1 intranet.bsc.es &>/dev/null; then
+  echo "❌ VPN not connected. Please connect to the BSC VPN and try again. This is required to access the database."
+  exit 1
+fi
+
+# Set the PYTHONPATH environment variable
+export PYTHONPATH="$PROJECT_DIR"
+
+echo "ℹ️ Running the group and recovery script..."
+# Run the Python script
+python3 "$SCRIPT_PATH" \
+  --grouped-entries-file "$GROUPED_ENTRIES_FILE" \
+  --env-file "$ENV_FILE"

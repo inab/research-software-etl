@@ -7,3 +7,5 @@
 *.env
 *.json
 FAIRsoft/
+.qodo
+*.log.*
