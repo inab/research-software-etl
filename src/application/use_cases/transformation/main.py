@@ -38,6 +38,9 @@ def setup_logging(loglevel: int):
 
 
 def process_publications(entry: Dict, source: str):
+    '''
+    TODO: test this function
+    '''
     sources_w_publication = ['bioconductor', 'biotools', 'toolshed', 'opeb_metrics', 'bioconda_recipes']
     publications_ids = set()
     if source in sources_w_publication:
@@ -86,6 +89,8 @@ def process_source(source: str):
     This function logs the start of the data transformation, retrieves the raw data, and
     processes each entry if data is found. Logs if no data is found.
     """
+    
+
     try:
         logger.info(f"Starting transformation of data from {source}")            
         alambique_repo = RawSoftwareMetadataRepository(mongo_adapter)

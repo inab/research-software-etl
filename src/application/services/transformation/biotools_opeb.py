@@ -243,7 +243,6 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         source = ['biotools']
         label = cls.label(tool)
         description = cls.description(tool)
-        publication = tool.get('publications',[])
         test = False
         license = cls.license(tool)
         documentation = cls.documentation(tool)
@@ -272,7 +271,6 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
             "source" : source,
             "label" : label,
             "description" : description,
-            "publication" : publication,
             "test" : test,
             "license" : license,
             "documentation" : documentation,

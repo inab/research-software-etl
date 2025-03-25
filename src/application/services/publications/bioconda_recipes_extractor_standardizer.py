@@ -51,6 +51,7 @@ class BiocondaRecipesPublicationStandardizer(PublicationStandardizer):
             
             publication_dict = {
                 "doi": raw_data.get("doi"),
+                "title": None
             }
 
             publication = validate_and_filter(Publication, **publication_dict)

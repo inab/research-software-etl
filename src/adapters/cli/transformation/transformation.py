@@ -4,7 +4,6 @@ The command-line interface for the transformer
 import argparse
 import logging
 from dotenv import load_dotenv
-from src.application.use_cases.transformation.main import transform_sources
 from src.infrastructure.logging_config import setup_logging
 
 # assuming loglevel is bound to the string value obtained from the
@@ -26,6 +25,9 @@ def main():
     args = parser.parse_args()
 
     load_dotenv(args.env_file)
+
+    from src.application.use_cases.transformation.main import transform_sources
+
 
     logger.debug(f"Env file: {args.env_file}")
 
