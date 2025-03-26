@@ -33,7 +33,7 @@ class MongoDBAdapter(DatabaseAdapter):
         mongo_host = os.getenv('MONGO_HOST', 'localhost')
         mongo_port = os.getenv('MONGO_PORT', '27017')
         mongo_user = os.getenv('MONGO_USER')
-        print(mongo_user)
+        print(f"Mongo user from singleton: {mongo_user}")
         mongo_pass = os.getenv('MONGO_PWD')
         mongo_auth_src = os.getenv('MONGO_AUTH_SRC', 'admin')
 

@@ -54,12 +54,15 @@ class license_item(BaseModel, validate_assignment=True):
 
         if data.get('url') is None:
             # Map to SPDX
-            matching_license = mongo_adapter.fetch_entry('licensesMapping',{ "$or": [ 
-                                            { "licenseId": data['name'] }, 
-                                            { "synonyms": data['name'] }, 
-                                            {"name": data['name']} 
-                                            ],
-                                        "isDeprecatedLicenseId": False}, {"_id": 0, "reference": 1, "licenseId":1 } )
+            query = { "$or": [ 
+                { "licenseId": data['name'] }, 
+                { "synonyms": data['name'] }, 
+                {"name": data['name']} 
+                ],
+            "isDeprecatedLicenseId": False}, {"_id": 0, "reference": 1, "licenseId":1 }
+            matching_license = mongo_adapter.fetch_entry('licensesMapping', query )
+            print(f"Query: {query}")
+            print(f"Matching license: {matching_license}")
 
             if matching_license:
                 data['name'] = matching_license['licenseId']
