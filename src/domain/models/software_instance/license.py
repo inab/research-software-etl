@@ -34,13 +34,14 @@ class license_item(BaseModel, validate_assignment=True):
     @model_validator(mode="before")
     @classmethod
     def one_must_be_not_empty(cls, data):
-        '''At least one of the fields 'name' or 'url' must be present.'''
+        '''
+        At least one of the fields 'name' or 'url' must be present.
         if 'name' not in data and 'url' not in data:
             raise ValueError("At least one of the fields 'name' or 'url' must be present")
         else:
             if not data.get('name') and not data.get('url'):
                 raise ValueError("At least one of the fields 'name' or 'url' must be present")
-        
+        '''
         return data
     
     @model_validator(mode="before")
