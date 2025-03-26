@@ -108,6 +108,8 @@ class toolshedStandardizer(MetadataStandardizer):
             if citation.get('type') != 'bibtex':
                 continue
 
+            print(f"\bCitation: {citation}")
+
             parsed_citation = cls.parse_bibtex_misc(citation['value'])
             for item in parsed_citation:
                 for key in ['url', 'crossref']:

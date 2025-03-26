@@ -57,8 +57,11 @@ class bioconductorStandardizer(MetadataStandardizer):
             webpage = 'https://' + webpage
 
         # Verify if the URL resolves
-        if not webpage.startswith('http://') or not webpage.startswith('https://'):
+        if not webpage.startswith('http://') and not webpage.startswith('https://'):
             webpage = 'https://' + webpage
+            return webpage
+
+        if webpage.startswith('http://') or webpage.startswith('https://'):
             return webpage
  
         else:
@@ -99,6 +102,8 @@ class bioconductorStandardizer(MetadataStandardizer):
 
             # Handle a single URL
             webpage = bioconductorStandardizer.clean_webpage(tool_url)
+
+
             if webpage:
                 return [webpage]
             else:

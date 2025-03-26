@@ -16,7 +16,7 @@ class TestGalaxyStandardizer:
                     "@source_url" : "https://toolshed.g2.bx.psu.edu/repository/download?repository_id=783bde422b425bd9&changeset_revision=f71fd828c126&file_type=zip",
                     "citation" : [
                         {
-                            "citation" : "\n            @misc{github10xbamtofastq,\n            author = {},\n            year = {2022},\n            title = {10x bamtofastq},\n            publisher = {Github},\n            journal = {Github repository},\n            url = {https://github.com/10XGenomics/bamtofastq},\n        }",
+                            "value" : "\n            @misc{github10xbamtofastq,\n            author = {},\n            year = {2022},\n            title = {10x bamtofastq},\n            publisher = {Github},\n            journal = {Github repository},\n            url = {https://github.com/10XGenomics/bamtofastq},\n        }",
                             "type" : "bibtex"
                         }
                     ],

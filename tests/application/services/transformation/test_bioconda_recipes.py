@@ -2,11 +2,13 @@ from src.application.services.transformation.bioconda_recipes import biocondaRec
 from src.domain.models.software_instance.main import software_types, operating_systems, data_sources
 from src.domain.models.software_instance.recognition import type_contributor
 from pydantic import HttpUrl
+from dotenv import load_dotenv
 
 class TestBiocondaRecipesStandardizer:
 
     # Transforms a single tool into an instance correctly.
     def test_transform_single_tool(self, mocker):
+        load_dotenv('./.env')
         tool={
                 '_id': 'bioconda_recipes/ucsc-chainnet/cmd/455',
                 '@last_updated_at': "2024-02-28T15:34:11.722Z",
@@ -75,9 +77,7 @@ class TestBiocondaRecipesStandardizer:
                             "$R -e \"library('MafDb.gnomADex.r2.1.hs37d5')\""
                         ]
                     },
-                    "type" : [
-                        "lib"
-                    ]
+                    "@type" : "lib"
                 }
             }
         

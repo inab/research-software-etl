@@ -118,7 +118,7 @@ class TestTransform:
         assert instance.source == [data_sources.biotools]
         assert instance.label == ['(PS)2 - v3']
         assert instance.description == ['Automated homology modeling server. The method uses an effective consensus strategy by combining PSI-BLAST, IMPALA, and T-Coffee in both template selection and target-template alignment. The final three dimensional structure is built using the modeling package MODELLER.']
-        assert [item.model_dump() for item in instance.publication] == [{'cit_count':None, 'citations':[], 'doi':None, 'pmcid':None, 'pmid':'25943546', 'title':None, 'year':None, 'ref_count':None, 'refs':[], 'pmid': '25943546'}]
+        assert [item.model_dump() for item in instance.publication] == [] # publications are processed separately
         assert instance.test == False
         assert [item.model_dump() for item in  instance.license] == [{
                                                                         'name': 'MIT',

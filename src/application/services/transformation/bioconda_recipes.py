@@ -120,6 +120,11 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
                 'type': 'installation_instructions',
                 'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
             })
+            documentation.append({
+                'type': 'general',
+                'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
+            })
+
 
         # Documentation in the about field
         if tool.get('about'):

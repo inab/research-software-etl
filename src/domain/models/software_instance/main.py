@@ -390,7 +390,7 @@ class instance(BaseModel, validate_assignment=True):
         new_licenses = []
         if isinstance(value, List):
             for item in value:
-                if item['name'] and item['url']:
+                if item.get('name') and item.get('url'):
                     new_licenses.append(item)
         
         return value

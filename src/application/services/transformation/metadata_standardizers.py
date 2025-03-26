@@ -17,7 +17,8 @@ class MetadataStandardizer(ABC):
             standardized_tools = self.transform_one(tool, standardized_tools)
         except Exception as e:
             logger.error('while transforming tool: ' + str(e))
-            raise Exception('while transforming tool: ' + str(e))
+            raise
+            #raise Exception('while transforming tool: ' + str(e))
         return standardized_tools
 
     @classmethod

@@ -39,7 +39,7 @@ class TestOpebMetricsStandardizer:
                         }
                     },
                     '@timestamp': '2024-02-29T02:32:00.367119Z',
-                    '@id': 'https://openebench.bsc.es/monitor/metrics/alexa-seq',
+                    '@id': 'https://openebench.bsc.es/monitor/metrics/biotools:alexa-seq:2.0-RC/cmd/trimal.cgenomics.org',
                     '@nmsp': None,
                     '@type': 'metrics',
                     '@license': 'https://creativecommons.org/licenses/by/4.0/',

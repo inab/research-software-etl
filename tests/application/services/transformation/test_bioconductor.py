@@ -3,10 +3,13 @@ from src.domain.models.software_instance.main import software_types, operating_s
 from src.domain.models.software_instance.recognition import type_contributor
 from src.domain.models.software_instance.repository import repository_kind
 from pydantic import HttpUrl
+from dotenv import load_dotenv
 
 class TestBioconductorStandardizer:
 
     def test_transform_single_tool(self):
+
+        load_dotenv('./.env')
         tool = {
             '_id': 'bioconductor/EnrichedHeatmap/lib/1.33.0',
             '@last_updated_at': "2024-03-18T17:22:04.586Z",
