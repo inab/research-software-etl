@@ -46,13 +46,14 @@ class license_item(BaseModel, validate_assignment=True):
     @model_validator(mode="before")
     @classmethod
     def map_to_name_to_spdx(cls, data):
-        '''Map to SPDX license if possible.'''
-        '''
+        '''Map to SPDX license if possible.
         TODO: This needs to be moved to a service, it does not belong to a model.
+        '''
+        from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+
         if data.get('url') is None:
             # Map to SPDX
-            collection = cls.connect_license_collection()
-            matching_license = collection.find_one({ "$or": [ 
+            matching_license = mongo_adapter.fetch_entry('licensesMapping',{ "$or": [ 
                                             { "licenseId": data['name'] }, 
                                             { "synonyms": data['name'] }, 
                                             {"name": data['name']} 
@@ -61,23 +62,10 @@ class license_item(BaseModel, validate_assignment=True):
 
             if matching_license:
                 data['name'] = matching_license['licenseId']
-                data['url'] = matching_license['reference']
-        '''        
+                data['url'] = matching_license['reference']     
             
         return data
     
-    @staticmethod
-    def connect_license_collection():
-        '''
-        connect to the licenses collection in remote database and return the collection object
-        '''
-        '''
-        licensesCollection = connect_collection(collection='licensesMapping')
-        return(licensesCollection)
-        '''
-        return
-    
-
     def merge(self, other: 'license_item') -> 'license_item':
         if not isinstance(other, license_item):
             raise ValueError("Cannot merge with a non-license_item object")
