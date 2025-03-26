@@ -127,6 +127,7 @@ def validate_and_filter(instance_cls, **data):
     except ValidationError as e:
         # If validation fails, filter out invalid fields
         for error in e.errors():
+            print(f"Error in Validation: {error}")
             invalid_field = error["loc"][0]  # Get the invalid field name
             data.pop(invalid_field, None)  # Remove the invalid field
         

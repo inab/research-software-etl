@@ -1,6 +1,8 @@
 from src.application.services.transformation.bioconda_opeb import biocondaOPEBStandardizer
 from src.domain.models.software_instance.main import operating_systems, data_sources
 
+from dotenv import load_dotenv
+
 from pydantic import HttpUrl
 
 
@@ -114,6 +116,7 @@ class TestBiocondaopebStandardizer:
 
     # Transforms a single tool with most fileds empty into an instance correctly.
     def test_transform_empty_fields(self):
+        load_dotenv('./.env')
         tool = {
             '_id': 'bioconda/abaenrichment/cmd/1.10.0',
             '@last_updated_at': "2024-02-28T17:06:34.219Z",

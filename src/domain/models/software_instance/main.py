@@ -386,13 +386,14 @@ class instance(BaseModel, validate_assignment=True):
         Removes empty name and url from the license.
         '''
         # logging.info(f"-- Validating license: {value}")
+        
         new_licenses = []
         if isinstance(value, List):
             for item in value:
                 if item['name'] and item['url']:
                     new_licenses.append(item)
         
-        return new_licenses
+        return value
 
     @field_validator('license', mode="after")
     @classmethod

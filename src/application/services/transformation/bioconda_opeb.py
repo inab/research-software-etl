@@ -211,8 +211,6 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             repository = cls.repositories(tool)
             operating_system = ['Linux', 'macOS', 'Windows']
 
-            
-
             new_instance_dict = {
                 "name" : name,
                 "type" : type_,
@@ -231,7 +229,12 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             }
             
             # We keep only the fields that pass the validation
+
+            print(f"\nLicense before validation: {new_instance_dict['license']}")
+
             new_instance = validate_and_filter(instance, **new_instance_dict)
+
+            print(f"License after validation: {new_instance.license}")
             
             standardized_tools.append(new_instance)
             
