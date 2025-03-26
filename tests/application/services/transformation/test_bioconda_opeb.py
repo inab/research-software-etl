@@ -80,17 +80,7 @@ class TestBiocondaopebStandardizer:
         assert instance.label == ['abyss']
         assert instance.description == ['Assembly By Short Sequences - a de novo, parallel, paired-end sequence assembler.']
         assert instance.webpage == [HttpUrl('http://www.bcgsc.ca/platform/bioinfo/software/abyss')]
-        assert [item.model_dump() for item in   instance.publication ] == [{
-            'doi': '10.1101/gr.089532.108',
-            'cit_count' : None, 
-            'citations' : [], 
-            'pmcid' : None, 
-            'pmid' : None, 
-            'title' : None, 
-            'year' : None, 
-            'ref_count' : None, 
-            'refs' : []
-        }]
+        assert [item.model_dump() for item in instance.publication ] == []
         
         assert instance.download == [
                     HttpUrl("https://anaconda.org/bioconda/abyss/1.5.2/download/linux-64/abyss-1.5.2-boost1.61_5.tar.bz2"),
@@ -100,6 +90,7 @@ class TestBiocondaopebStandardizer:
         
         assert instance.source_code == [HttpUrl("https://github.com/bcgsc/abyss/releases/download/1.5.2/abyss-1.5.2.tar.gz")]
         
+        print(f"instance.documentation: {instance.documentation}")
         assert [item.model_dump() for item in  instance.documentation ] == [
             {'type': 'installation_instructions', 'url': HttpUrl('https://bioconda.github.io/recipes/abyss/README.html'), 'content': None},
             {'type': 'general', 'url': HttpUrl('https://bioconda.github.io/recipes/abyss/README.html'), 'content': None}

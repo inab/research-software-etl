@@ -26,6 +26,15 @@ def convert_to_multi_type_instance(entry):
     return multitype_instance(**instance_data_dict)
 
 
+def merge_instances(instances):
+    merged_instances = instances[0]
+    for instance in instances[1:]:
+        merged_instances = merged_instances.merge(instance)   
+
+    return merged_instances 
+        
+
+
 def merge_and_save(new_grouped_entries_file):
 
     with open(new_grouped_entries_file, 'r') as f:
@@ -33,12 +42,10 @@ def merge_and_save(new_grouped_entries_file):
 
     grouped_entries = json_util.loads(file_contents)
 
-
     print('Grouped entries loaded.')
 
     final_instances_groups = [group['instances'] for group in grouped_entries.values()]
     print('Final instances groups loaded.')
-
 
     # Merge entries in each group
     print('-----------------------------------')
@@ -57,9 +64,8 @@ def merge_and_save(new_grouped_entries_file):
 
             # merge entries
             print(f"Merging {len(instances)} entries in group...")
-            merged_instances = instances[0]
-            for instance in instances[1:]:
-                merged_instances = merged_instances.merge(instance)    
+            merged_instances = merge_instances(instances)
+            
             
             print('Entries in group merged.')
 

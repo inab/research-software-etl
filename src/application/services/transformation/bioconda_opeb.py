@@ -130,6 +130,13 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
                 'type': 'installation_instructions',
                 'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
             })
+
+            documentation.append({
+                'type': 'general',
+                'url': f"https://bioconda.github.io/recipes/{tool['name']}/README.html"
+            })
+
+
         
         return(documentation)
     
