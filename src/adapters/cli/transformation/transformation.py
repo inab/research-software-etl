@@ -86,7 +86,7 @@ def main():
 
     logger.info("Transforming raw data...")
 
-    #transform_sources(sources=sources)
+    transform_sources(sources=sources)
 
     # Finish ------------------------------------------------------------------
     logger.info("Transformation finished!")
