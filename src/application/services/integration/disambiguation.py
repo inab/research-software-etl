@@ -1,7 +1,7 @@
 import requests
 import json
 import time
-import ast
+import os
 from tenacity import retry, stop_after_attempt, wait_exponential
 from jinja2 import Template
 import src.application.services.integration.prompts.disconnected_entries as disconnected_entries
@@ -158,29 +158,40 @@ def write_to_results_file(result, results_file):
     """Write the result to a file."""
     print("Writing to results file")
     try:
-        with open(results_file, 'a') as f:
-            f.write(json.dumps(result, indent=4))
+        with open(results_file, "a") as f:
+            json.dump(result, f)
+            f.write("\n")
+
     except FileNotFoundError:
         print("Error writing to results file")
+
+def load_solved_conflict_keys(jsonl_path):
+    solved_keys = set()
+    
+    if not os.path.exists(jsonl_path):
+        return solved_keys  # File doesn't exist yet, return empty set
+
+    with open(jsonl_path, 'r') as f:
+        for line in f:
+            if line.strip():
+                try:
+                    entry = json.loads(line)
+                    key = next(iter(entry))  # top-level key
+                    solved_keys.add(key)
+                except Exception as e:
+                    print(f"Warning: Couldn't parse line:\n{line[:100]}...\n{e}")
+    
+    return solved_keys
 
 
 def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grouped_entries, results_file):
     
-
     disambiguated_grouped = {}
     results = {}
     count = 0
 
     solved_conflicts_keys = set()
-    # if the file results_file actually exists
-    try:
-        with open(results_file, 'r') as f:
-            results = json.load(results_file)
-            for key in results:
-                solved_conflicts_keys.add(key)
-    except FileNotFoundError:
-        results = {}
-        print("Results file not found")
+    solved_conflicts_keys = load_solved_conflict_keys(results_file) 
     
     
     for key in grouped_entries:
@@ -200,16 +211,15 @@ def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grou
                     result = parse_result(inference)
                     print("Result obtained")
                     log_result(result)
-                    results[key] = result
-                    solved_conflicts_keys.add(key)
-                    # keep the following line for now
-
-                    write_to_results_file({key: result}, results_file)
-
-                    if result["verdict"] != "Unclear":
-                        disambiguated_grouped[key] = {'instances': [[instances_dict[id] for id in group] for group in result["groups"]]}
-                    else:
-                        create_issue(result['github_issue'])
+                    if result:
+                        results[key] = result
+                        solved_conflicts_keys.add(key)
+                        write_to_results_file({key: result}, results_file)
+                        if result["verdict"] != "Unclear":
+                            disambiguated_grouped[key] = {'instances': [[instances_dict[id] for id in group] for group in result["groups"]]}
+                        else:
+                            create_issue(result['github_issue'])
+                            
                 except Exception as e:
                     print(f"Error processing conflict: {e}")
 

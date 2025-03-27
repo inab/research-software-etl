@@ -128,6 +128,7 @@ def validate_and_filter(instance_cls, **data):
         return validated_instance  # Return the fully valid instance
     except ValidationError as e:
         # If validation fails, filter out invalid fields
+        logger.warning(f"Could not validate the entire entry. Some fields will be excluded: {e}")
         for error in e.errors():
             logger.warning(f"Could not validate a filed. It will be excluded from the entry: {error}")
             invalid_field = error["loc"][0]  # Get the invalid field name
