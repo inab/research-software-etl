@@ -13,6 +13,9 @@ possible sources : [
     'opeb_metrics'
     ]
 
+Example of usage:
+python src/adapters/cli/transformation/transformation.py -e .env -s bioconda_recipes github
+python src/adapters/cli/transformation/transformation.py -e .env -s all
 """
 import argparse
 import logging
@@ -41,7 +44,7 @@ ALL_SOURCES = [
 
 def main():
     parser = argparse.ArgumentParser(
-        description=""
+        description="Transform raw data from different sources into a common format."
     )
     parser.add_argument(
         "--env-file", "-e",
@@ -50,7 +53,7 @@ def main():
     )
 
     parser.add_argument(
-        "--sources-to-transform", "-s",
+        "--sources", "-s",
         help=("Sources to transform. The posiblities are: bioconda, bioconda_recipes, github, biotools, bioconductor, galaxy_metadata, toolshed, galaxy, sourceforge and opeb_metrics, or all to include all of them. Default is all sources."),
         nargs='+',
         default=['all'],
@@ -67,15 +70,23 @@ def main():
     from src.application.use_cases.transformation.main import transform_sources
     
     # Transform the sources ---------------------------------------------------
-    logger.info(f"Sources to transform: {args.sources}")
     if 'all' in args.sources:
-        args.sources = ALL_SOURCES
+        sources = ALL_SOURCES
     else: 
         sources = args.sources
 
+    # check that all sources are valid
+    for source in sources:
+        if source not in ALL_SOURCES:
+            logger.error(f"Invalid source: {source}. The posiblities are: bioconda, bioconda_recipes, github, biotools, bioconductor, galaxy_metadata, toolshed, galaxy, sourceforge and opeb_metrics.")
+            logger.info("Transformation aborted because invalid sources were provided.")
+            return
+    
+    logger.info(f"Sources to transform: {sources}")
+
     logger.info("Transforming raw data...")
 
-    transform_sources(sources=sources)
+    #transform_sources(sources=sources)
 
     # Finish ------------------------------------------------------------------
     logger.info("Transformation finished!")
