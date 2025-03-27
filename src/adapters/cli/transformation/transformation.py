@@ -25,6 +25,20 @@ from src.infrastructure.logging_config import setup_logging
 
 logger = setup_logging()
 
+ALL_SOURCES = [
+            "bioconda", 
+            "bioconda_recipes", 
+            "github", 
+            "biotools", 
+            "bioconductor", 
+            "galaxy_metadata", 
+            "toolshed", 
+            "galaxy", 
+            "sourceforge", 
+            "opeb_metrics"
+        ]
+
+
 def main():
     parser = argparse.ArgumentParser(
         description=""
@@ -37,25 +51,13 @@ def main():
 
     parser.add_argument(
         "--sources-to-transform", "-s",
-        help=("Sources to transform. The posiibliities are: bioconda, bioconda_recipes, github, biotools, bioconductor, galaxy_metadata, toolshed, galaxy, sourceforge and opeb_metrics. Default is all sources."),
-        type=list,
-        default=[
-            "bioconda", 
-            "bioconda_recipes", 
-            "github", 
-            "biotools", 
-            "bioconductor", 
-            "galaxy_metadata", 
-            "toolshed", 
-            "galaxy", 
-            "sourceforge", 
-            "opeb_metrics"
-        ],
+        help=("Sources to transform. The posiblities are: bioconda, bioconda_recipes, github, biotools, bioconductor, galaxy_metadata, toolshed, galaxy, sourceforge and opeb_metrics, or all to include all of them. Default is all sources."),
+        nargs='+',
+        default=['all'],
         dest="sources"
     )
 
     args = parser.parse_args()
-
 
     # Load the environment variables ------------------------------------------
     logger.debug(f"Env file: {args.env_file}")
@@ -66,9 +68,14 @@ def main():
     
     # Transform the sources ---------------------------------------------------
     logger.info(f"Sources to transform: {args.sources}")
+    if 'all' in args.sources:
+        args.sources = ALL_SOURCES
+    else: 
+        sources = args.sources
+
     logger.info("Transforming raw data...")
 
-    transform_sources(sources=args.sources)
+    transform_sources(sources=sources)
 
     # Finish ------------------------------------------------------------------
     logger.info("Transformation finished!")
