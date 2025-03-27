@@ -44,13 +44,13 @@ def process_publications(entry: Dict, source: str):
     sources_w_publication = ['bioconductor', 'biotools', 'toolshed', 'opeb_metrics', 'bioconda_recipes']
     publications_ids = set()
     if source in sources_w_publication:
-        logger.info(f"Processing publications for entry {entry['_id']}")
+        logger.debug(f"Processing publications for entry {entry['_id']}")
         publications = extract_publications(source, entry)
         if len(publications) > 0:
-            logger.info(f"Found {len(publications)} publications for entry {entry['_id']}")
+            logger.debug(f"Found {len(publications)} publications for entry {entry['_id']}")
             for publication in publications:
                 publications_ids = standardize_publications(source, publications_ids, publication)
-                logger.info(f"Id of publication: {publications_ids}")
+                logger.debug(f"Id of publication: {publications_ids}")
 
     return list(publications_ids)
 

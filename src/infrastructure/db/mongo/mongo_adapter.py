@@ -250,6 +250,6 @@ class MongoDBAdapter(DatabaseAdapter):
             document['_id'] = document.pop('id')
         
         id_inserted_doc =  collection.insert_one(document)
-        logger.info(f"Inserted document into collection {collection_name}")
+        logger.debug(f"Inserted document into collection {collection_name}")
         return id_inserted_doc.inserted_id
     

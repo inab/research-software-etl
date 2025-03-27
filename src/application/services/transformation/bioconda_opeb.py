@@ -74,18 +74,6 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             
         else:
             return []
-        
-    @staticmethod
-    def publication(tool: Dict[str, Any]):
-        '''
-        Returns the publication of the tool.
-        - tool: tool to be transformed
-        '''
-        if tool.get('publications'):
-            return(tool['publications'])
-        
-        else:
-            return []
     
     @staticmethod
     def source_code(tool: Dict[str, Any]):
@@ -203,7 +191,6 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             label = cls.clean_name(tool.get('@label'))
             description = cls.description(tool)
             webpage = cls.webpage(tool)
-            publication = cls.publication(tool)
             download = cls.download(tool)
             source_code = cls.source_code(tool)
             documentation = cls.documentation(tool)
@@ -219,7 +206,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
                 "download" : download,
                 "label" : label,
                 "description" : description,
-                "publication" : publication,
+                "publication" : [],
                 "source_code" : source_code,
                 "license" : license,
                 "documentation" : documentation,
@@ -230,11 +217,7 @@ class biocondaOPEBStandardizer(MetadataStandardizer):
             
             # We keep only the fields that pass the validation
 
-            print(f"\nLicense before validation: {new_instance_dict['license']}")
-
             new_instance = validate_and_filter(instance, **new_instance_dict)
-
-            print(f"License after validation: {new_instance.license}")
             
             standardized_tools.append(new_instance)
             

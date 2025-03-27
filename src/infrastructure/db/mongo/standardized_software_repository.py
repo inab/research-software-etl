@@ -18,7 +18,7 @@ class StdSoftwareMetaRepository:
         logger.info('Fetching standardized software data from the pretools collection')
         query = {}
         standardized_software_data = self.db_adapter.fetch_entries(self.collection_name, query)
-        logger.info('software obtained')
+        logger.debug('Software obtained')
         return standardized_software_data
 
 

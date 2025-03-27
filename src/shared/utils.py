@@ -1,7 +1,9 @@
 import time
-
+import logging
 from functools import wraps
 from pydantic import ValidationError
+
+logger = logging.getLogger("rs-etl-pipeline")
 
 # --------------------------------------------
 # Constants 
@@ -127,7 +129,7 @@ def validate_and_filter(instance_cls, **data):
     except ValidationError as e:
         # If validation fails, filter out invalid fields
         for error in e.errors():
-            print(f"Error in Validation: {error}")
+            logger.warning(f"Could not validate a filed. It will be excluded from the entry: {error}")
             invalid_field = error["loc"][0]  # Get the invalid field name
             data.pop(invalid_field, None)  # Remove the invalid field
         

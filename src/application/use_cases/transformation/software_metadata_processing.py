@@ -61,12 +61,12 @@ def generate_metadata(raw_entry, identifier):
     if entry_exists_db == False:
         source_url = raw_entry.get('@source_url', None)
         source_identifier = get_identifier(raw_entry)
-        logger.info(f"Creating metadata for entry {identifier}")
-        logger.info(f"Source identifier: {source_identifier}")
+        logger.debug(f"Creating metadata for entry {identifier}")
+        logger.debug(f"Source identifier: {source_identifier}")
         metadata = create_new_metadata(source_identifier, identifier, source_url, ALAMBIQUE)
     else:
         existing_metadata  = mongo_adapter.get_entry_metadata(PRETOOLS, identifier)
-        logger.info(f"Updating metadata for entry {identifier}")
+        logger.debug(f"Updating metadata for entry {identifier}")
         # _id must become id 
         existing_metadata['id'] = existing_metadata.pop('_id')
         existing_metadata = Metadata(**existing_metadata)
