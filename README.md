@@ -46,3 +46,16 @@ python3 src/adapters/cli/transformation.py -l INFO
 ## Data storage
 During the whole process, metadata is stored in a Mongo Database (INB Mongo `oeb-research-software`). The database connection is configured through environment variables. 
 
+## Development 
+
+### Logging 
+
+To add loggings, use:
+
+```python
+import logging 
+
+logger = logging.getLogger("rs-etl-pipeline")
+```
+
+The logger configuration can be found in `src/infrastructure/logging_config.py`. `INFO` logs are writen to terminal and all the rest to a file (`re_etl_pipeline.log`)

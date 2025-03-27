@@ -160,14 +160,14 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
         # It can be in about/home
         if tool.get('about'):
             if tool['about'].get('home'):
-                repository = is_repository(tool['about']['home'])
+                repository = [ is_repository(tool['about']['home']) ]
                 if repository:
                     return repository
         
         # It can be in about/dev_url
         if tool.get('about'):
             if tool['about'].get('dev_url'):
-                repository = is_repository(tool['about']['dev_url'])
+                repository = [ is_repository(tool['about']['dev_url']) ]
                 if repository:
                     return repository
         
@@ -176,7 +176,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
             # if source is a dict 
             if isinstance(tool['source'], dict):
                 if tool['source'].get('url'):
-                    repository = is_repository(tool['source']['url'])
+                    repository = [ is_repository(tool['source']['url']) ]
                     if repository:
                         return repository
 
@@ -184,7 +184,7 @@ class biocondaRecipesStandardizer(MetadataStandardizer):
             elif isinstance(tool['source'], list):
                 for source in tool['source']:
                     if source.get('url'):
-                        repository = is_repository(source['url'])
+                        repository = [ is_repository(source['url']) ]
                         if repository:
                             return repository
 
