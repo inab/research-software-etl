@@ -10,21 +10,21 @@ ENV_FILE=".env"
 
 # Change to the project directory
 cd "$PROJECT_DIR" || {
-  echo "❌ Failed to change directory to $PROJECT_DIR"
+  echo "❌ Failed to change directory to $PROJECT_DIR" | tee -a rs-integration.log
   exit 1
 }
 
 # Check VPN connection
 if ! ping -c 1 intranet.bsc.es &>/dev/null; then
-  echo "❌ VPN not connected. Please connect to the BSC VPN and try again. This is required to access the database."
+  echo "❌ VPN not connected. Please connect to the BSC VPN and try again. This is required to access the database." | tee -a rs-integration.log
   exit 1
 fi
 
 # Set the PYTHONPATH environment variable
 export PYTHONPATH="$PROJECT_DIR"
 
-echo "ℹ️ Running the group and recovery script..."
+echo "ℹ️ Running the group and recovery script..." | tee -a rs-integration.log
 # Run the Python script
 python3 "$SCRIPT_PATH" \
   --grouped-entries-file "$GROUPED_ENTRIES_FILE" \
-  --env-file "$ENV_FILE"
+  --env-file "$ENV_FILE" 2>&1 | tee -a rs-integration.log
