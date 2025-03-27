@@ -21,7 +21,6 @@ class ExtractorFactory:
     @classmethod
     def get_extractor(cls, source: str) -> PublicationExtractor:
         """Returns the appropriate extractor based on the source name."""
-        print(source)
         if source not in cls._extractors:
             raise ValueError(f"Unsupported source: {source}")
         return cls._extractors[source]
