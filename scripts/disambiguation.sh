@@ -8,7 +8,7 @@ SCRIPT_PATH="src/adapters/cli/integration/disambiguation.py"
 GROUPED_ENTRIES_FILE="scripts/data/grouped_entries.json"
 DISCONNECTED_ENTRIES_FILE="scripts/data/disconnected_entries.json"
 NEW_GROUPED_ENTRIES_FILE="scripts/data/new_grouped_entries.json"
-RESULTS_FILE="scripts/data/disambiguation_results.json"
+RESULTS_FILE="scripts/data/disambiguation_results.jsonl"
 
 # Change to the project directory
 cd "$PROJECT_DIR" || {

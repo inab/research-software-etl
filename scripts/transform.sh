@@ -8,7 +8,7 @@ SCRIPT_PATH="src/adapters/cli/transformation/transformation.py"
 ENV_FILE=".env"
 
 # Sources to transform 
-SOURCES="all"
+SOURCES="bioconda_recipes github biotools bioconductor galaxy_metadata toolshed galaxy sourceforge opeb_metrics"
 
 # Change to the project directory
 cd "$PROJECT_DIR" || {
@@ -24,5 +24,9 @@ echo "ℹ️ Running the transformation script..." | tee -a rs-transformation.lo
 # Run the Python script
 python3 "$SCRIPT_PATH" \
   --env-file "$ENV_FILE" \
-  --sources "$SOURCES" 2>&1 | tee -a rs-transformation.log
+  --sources $SOURCES 2>&1 | tee -a rs-transformation.log
   
+
+
+
+    

@@ -118,7 +118,7 @@ def is_repository(url):
     if bitbucket_repo:
         return { 'kind': 'bitbucket', 'url': bitbucket_repo}
     
-    return []
+    return None
 
 def validate_and_filter(instance_cls, **data):
     """Validates data dictionary, keeping only valid fields."""
