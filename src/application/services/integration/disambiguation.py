@@ -199,7 +199,7 @@ def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grou
         # if conflictive, resolve
         if key in disconnected_entries:
             # if the conflict has not been solved yet and we have not reached the limit of 200 conflicts (OpenRouter API limit)
-            if key not in solved_conflicts_keys and count < 187:
+            if key not in solved_conflicts_keys and count < 200:
                 count += 1
                 print(f"Processing conflict {count}")
                 try:

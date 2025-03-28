@@ -44,10 +44,10 @@ def main():
 
     load_dotenv()
 
-    logger.debug(f"Grouped entries file: {args.grouped_entries_file}")
-    logger.debug(f"Disconnected entries file: {args.disconnected_entries_file}")
-    logger.debug(f"New grouped entries file: {args.new_grouped_entries_file}")
-    logger.debug(f"Results file: {args.results_file}")
+    logger.info(f"Grouped entries file: {args.grouped_entries_file}")
+    logger.info(f"Disconnected entries file: {args.disconnected_entries_file}")
+    logger.info(f"New grouped entries file: {args.new_grouped_entries_file}")
+    logger.info(f"Results file: {args.results_file}")
 
     logger.info("Disambiguating entries...")
     disambiguate_entries(args.grouped_entries_file, args.disconnected_entries_file, args.new_grouped_entries_file, args.results_file)
@@ -56,4 +56,5 @@ def main():
 
 
 if __name__ == "__main__":
+    print("Running disambiguation...")
     main()

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, model_validator, HttpUrl, TypeAdapter
+from pydantic import BaseModel, model_validator, AnyUrl, TypeAdapter
 from typing import Optional, Any, Dict
 
 
@@ -13,7 +13,7 @@ class documentation_item(BaseModel):
     Documentation item in intance class.
     '''
     type: str = 'general' # optional, non-nullable
-    url : Optional[HttpUrl] = None # optional, nullable
+    url : Optional[AnyUrl] = None # optional, nullable
     content: Optional[str] = None # optional, nullable
 
 
