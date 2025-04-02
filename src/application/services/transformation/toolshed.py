@@ -121,7 +121,7 @@ class toolshedStandardizer(MetadataStandardizer):
                 for key in ['url', 'crossref']:
                     repository = is_repository(item.get(key))
                     if repository:
-                        return repository
+                        return [ repository ]
 
         return []
     
@@ -143,7 +143,6 @@ class toolshedStandardizer(MetadataStandardizer):
             output = cls.data_formats(tool, 'outputs')
             documentation = cls.documentation(tool)
             #citation = self.citation(tool)
-            download = [tool.get('@source_url')]
             operating_system = ['Linux', 'macOS']
             source = ['toolshed']
             repository = cls.repository(tool)
@@ -153,7 +152,6 @@ class toolshedStandardizer(MetadataStandardizer):
                 "type" : type_,
                 "version" : version,
                 "source" : source,
-                "download" : download,
                 "label" : label,
                 "description" : description,
                 "documentation" : documentation,
