@@ -22,15 +22,28 @@ class sourceforgeStandardizer(MetadataStandardizer):
             return(tool['description'])
         else:
             return([])
-        
+    
+    @staticmethod
+    def clean_web(link):
+        print(link)
+        if not link.startswith('http://') and not link.startswith('https://'):
+            link = 'http://' + link
+        return link
+
     @staticmethod
     def webpage(tool: Dict[str, Any]) -> List[str]:
         '''
         Returns the webpage of the tool.
         - tool: metadata of tool to be transformed
         '''
+        webpages= tool.get('homepage', [])
         if tool.get('homepage'):
-            return([tool['homepage']])
+            if isinstance(webpages, str):
+                return(sourceforgeStandardizer.clean_web(webpages))
+
+            elif isinstance(webpages, list):
+                return([sourceforgeStandardizer.clean_web(link) for link in webpages])
+
         else:
             return([])
         

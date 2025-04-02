@@ -50,16 +50,20 @@ class githubStandardizer(MetadataStandardizer):
 
         return new_authors
     
-    def webpage(self, tool: Dict[str, Any]):
+    @staticmethod
+    def webpage(tool: Dict[str, Any]):
         '''
         Returns the webpage of the tool.
         '''
         if tool.get('webpage') is None:
             return []
-        elif tool.get('webpage') == ['']:
-            return []
-        else:
-            return tool.get('webpage')
+        
+        webpage = []
+        for item in tool.get('webpage'):
+            if item:
+                webpage.append(item)
+
+        return webpage
 
     @classmethod
     def transform_one(cls, tool, standardized_tools):
@@ -77,7 +81,7 @@ class githubStandardizer(MetadataStandardizer):
             "version" : data['version'],
             "label" : data['label'],
             "links" : data['links'],
-            "webpage" : data['webpage'],
+            "webpage" : cls.webpage(data),
             "download" : data['download'],
             "repository" : cls.repository(data),
             "operating_system" : data['os'],
