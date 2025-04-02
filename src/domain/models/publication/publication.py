@@ -17,7 +17,6 @@ class CitationSource(BaseModel):
     source_id: str = Field(..., description="Unique ID from the citation source")
     total_citations: int = Field(default=0, description="Total number of citations")
     citations_per_year: List[YearlyCitation] = Field(default={}, description="Citations count per year")
-    last_updated: datetime = Field(default_factory=datetime.utcnow, description="Last updated timestamp")
 
 
 # ------------------ PUBLICATION METADATA ------------------

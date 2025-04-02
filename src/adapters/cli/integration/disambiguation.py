@@ -5,7 +5,6 @@ The command-line interface for the disambiguation step of the integration
 import argparse
 import logging
 from dotenv import load_dotenv
-from src.application.use_cases.integration.disambiguation import disambiguate_entries
 
 logger = logging.getLogger("rs-etl-pipeline")
 
@@ -40,9 +39,21 @@ def main():
         help=("Path to the file where the results of the disambiguation process will be written. Default is 'data/results.json'."),
     )
 
+    parser.add_argument(
+        "--env-file", "-e",
+        help=("File containing environment variables to be set before running "),
+        default=".env",
+    )
+
+
     args = parser.parse_args()
 
-    load_dotenv()
+    # Load the environment variables ------------------------------------------
+    logger.debug(f"Env file: {args.env_file}")
+    load_dotenv(args.env_file)
+
+    from src.application.use_cases.integration.disambiguation import disambiguate_entries
+
 
     logger.info(f"Grouped entries file: {args.grouped_entries_file}")
     logger.info(f"Disconnected entries file: {args.disconnected_entries_file}")

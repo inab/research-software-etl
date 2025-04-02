@@ -129,9 +129,7 @@ class OPEBMetricsStandardizer(MetadataStandardizer):
                 version = version,
                 source = source,
                 )
-            
-            print(f"New instance: {new_instance}")
-            
+                        
             standardized_tools.append(new_instance)
         
         return standardized_tools

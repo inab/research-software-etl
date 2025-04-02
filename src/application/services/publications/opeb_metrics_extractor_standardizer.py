@@ -41,7 +41,6 @@ class OPEBMetricsPublicationStandardizer(PublicationStandardizer):
                         "source_id": "europepmc",
                         "total_citations": raw_data.get("cit_count", None),
                         "citations_per_year" : raw_data.get("citations", []),
-                        "last_updated": raw_data.get("last_updated", None)
                     }
                 ]
             }

@@ -122,7 +122,8 @@ def recover_shared_name_link(grouped_instancies):
 
     print(f"Groups of tools before recovery: {len(grouped_instancies)}")
     print(f"Example of group keys: {list(grouped_instancies.keys())[:5]}")
-    print(f"Example of group data: {grouped_instancies['validatefastq/*']}")
+    example_key = list(grouped_instancies.keys())[0]
+    print(f"Example of group data: {grouped_instancies[example_key]}")
 
     # 1. Build the shared_links dictionary
     shared_links = find_shared_links_accross_groups(grouped_instancies)

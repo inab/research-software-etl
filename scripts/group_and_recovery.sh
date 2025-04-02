@@ -14,12 +14,6 @@ cd "$PROJECT_DIR" || {
   exit 1
 }
 
-# Check VPN connection
-if ! ping -c 1 intranet.bsc.es &>/dev/null; then
-  echo "❌ VPN not connected. Please connect to the BSC VPN and try again. This is required to access the database." | tee -a rs-integration.log
-  exit 1
-fi
-
 # Set the PYTHONPATH environment variable
 export PYTHONPATH="$PROJECT_DIR"
 

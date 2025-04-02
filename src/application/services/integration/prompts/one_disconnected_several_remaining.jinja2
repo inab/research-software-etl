@@ -1,0 +1,79 @@
+### **Task: Software Metadata Verification**
+
+I am integrating software metadata from multiple sources. I already know that a group of tools (under `"remaining"`) refer to the same software. However, I have another tool (under `"disconnected"`) that may or may not belong to this same group.
+
+Your task is to compare the **disconnected** entry against the **remaining** entries and determine whether they refer to the same tool.
+
+---
+
+### **Input Format**
+
+You will receive the input in **multiple JSON messages**, due to size constraints. These will include:
+
+- One or more messages containing tool entries under `"remaining"` (known to refer to the same tool).
+- One or more messages containing the `"disconnected"` entry (or parts of it, if large).
+
+Please wait until all parts have been sent before performing the analysis.
+
+The final message will say:  
+**"All parts have been sent. Please now analyze the entries and provide the output as specified."**
+
+---
+
+### **Processing Instructions**
+1. Compare the `"disconnected"` entry with the `"remaining"` tools by analyzing:
+   - Link similarity between repositories and webpages.
+   - Description similarity.
+   - README similarity.
+   - Common publications.
+   - Common authors.
+   - Common organizations.
+   - Any other relevant factors.
+
+2. Return a **structured Python dictionary** with:
+   - **`verdict`**:
+     - `"Yes"` → Disconnected entry belongs to the same tool as remaining group.
+     - `"No"` → Disconnected entry refers to a different tool.
+     - `"Unclear"` → Not enough information to decide.
+   - **`message`**: Explanation of your reasoning.
+   - **`groups`**:
+     - If `"Yes"` → All IDs grouped together.
+     - If `"No"` → `"remaining"` entries in one group, `"disconnected"` entry in another.
+
+**Important**: Return only the **Python dictionary as a string**, with no extra text or formatting.
+
+---
+
+### **Handling 'Unclear' Verdicts**
+If the **verdict is "Unclear"**, also return a `github_issue` dictionary to request human review. Include:
+- A brief summary of the conflict.
+- The conflicting metadata entries.
+- A proposed resolution or verification prompt.
+
+---
+
+### **Expected Output Format**
+```python
+{
+  "verdict": "Yes" | "No" | "Unclear",
+  "groups": [
+    ["Id1", "Id2"],  # Known group
+    ["Id3"]           # Disconnected tool
+  ],
+  "message": "Explanation here."
+}
+```
+
+If `"Unclear"`, also include:
+```python
+"github_issue": {
+  "title": "Disambiguation Needed: Possible Duplicate Tools (Id1, Id2)",
+  "body": "..."
+}
+```
+
+---
+
+You will now receive the tool entries in parts.  
+Please wait for the final message to begin your analysis.
+

@@ -1,0 +1,93 @@
+## **Task: Software Metadata Disambiguation**
+
+I am integrating software metadata from multiple sources. I already know that a group of tools (under `"remaining"`) refer to the same software. However, I have multiple tools (under `"disconnected"`) that may or may not:
+
+- Refer to the same tool as each other.
+- Belong to the **"remaining"** group.
+- Be completely separate tools.
+
+Your task is to **determine relationships between all tools and return grouped results.**
+
+---
+
+### **Input Format**
+
+You will receive the tool entries in **multiple JSON messages**, due to size constraints. These will include:
+
+- One or more messages containing tools under `"remaining"` (known to be the same software).
+- One or more messages containing tools under `"disconnected"` (entries to be analyzed).
+
+Please wait until all parts have been sent before starting the analysis.
+
+The final message will say:  
+**"All parts have been sent. Please now analyze the entries and provide the output as specified."**
+
+---
+
+## **Processing Instructions**
+
+### **Step 1: Compare Each Tool**
+For each tool in `"disconnected"`, determine its relationship to:
+1. The `"remaining"` group → Does it belong to this known group?
+2. Other `"disconnected"` tools → Do they belong together?
+
+Compare tools based on:
+- Link similarity between repositories and webpages.
+- Description similarity.
+- README similarity.
+- Common publications.
+- Common authors.
+- Common organizations.
+- Any other relevant factors.
+
+### **Step 2: Return Structured Output**
+Return a **dictionary** containing:
+- **`verdicts`** → A dictionary mapping **each disconnected ID** to:
+  - `"Yes"` → It belongs to the `"remaining"` group.
+  - `"No"` → It is distinct from both `"remaining"` and other `"disconnected"` tools.
+  - `"Unclear"` → Ambiguous or insufficient information.
+- **`groups`** → Lists of tool IDs grouped by identity.
+- **`message`** → A textual explanation of the reasoning.
+
+**Important**: Return only the **Python dictionary as a string**, with no additional text or formatting.
+
+---
+
+### **Handling 'Unclear' Cases**
+If any **verdict is "Unclear"**, also return a `github_issue` dictionary to request human review. Include:
+- A brief summary of the conflict.
+- The conflicting metadata entries.
+- A proposed resolution or verification prompt.
+
+---
+
+### **Expected Output Format**
+```python
+{
+  "verdicts": {
+    "Id3": "Yes" | "No" | "Unclear",
+    "Id4": "No",
+    ...
+  },
+  "groups": [
+    ["Id1", "Id2"],  # Known group
+    ["Id3"],         # Disconnected group 1
+    ["Id4"]          # Disconnected group 2
+  ],
+  "message": "Explanation of the grouping logic."
+}
+```
+
+If any verdict is `"Unclear"`, also include:
+```python
+"github_issue": {
+  "title": "Disambiguation Needed: Possible Duplicate Tools (IdX, IdY)",
+  "body": "..."
+}
+```
+
+---
+
+You will now receive the entries in multiple parts.  
+Please wait for the final message before beginning your analysis.
+

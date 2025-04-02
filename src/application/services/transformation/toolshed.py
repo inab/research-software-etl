@@ -22,8 +22,14 @@ class toolshedStandardizer(MetadataStandardizer):
         '''
         Returns the description of the tool.
         '''
+
         if tool.get('description'):
-            return([tool['description']])
+            description =  tool['description']
+            if description:
+                description = description.strip()
+                if description:
+                    return([description])
+            
         else:
             return([])
         
