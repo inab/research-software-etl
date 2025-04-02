@@ -34,6 +34,9 @@ class bioconductorStandardizer(MetadataStandardizer):
             
     @staticmethod
     def clean_webpage(webpage: str) -> Optional[str]:
+        # remove leading and trailing whitespaces
+        webpage = webpage.strip()
+
         if not webpage:  # Handle empty strings or None
             return None
         
