@@ -52,6 +52,7 @@ class operating_systems(str, Enum):
     Solaris = 'Solaris'
     Android = 'Android'
     iOS = 'iOS'
+    ChromeOS = 'ChromeOS'
     other = 'other'
 
 

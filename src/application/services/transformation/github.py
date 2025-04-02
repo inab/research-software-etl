@@ -49,7 +49,17 @@ class githubStandardizer(MetadataStandardizer):
                     new_authors.append(author)
 
         return new_authors
-
+    
+    def webpage(self, tool: Dict[str, Any]):
+        '''
+        Returns the webpage of the tool.
+        '''
+        if tool.get('webpage') is None:
+            return []
+        elif tool.get('webpage') == ['']:
+            return []
+        else:
+            return tool.get('webpage')
 
     @classmethod
     def transform_one(cls, tool, standardized_tools):
