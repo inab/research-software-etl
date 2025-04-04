@@ -60,24 +60,8 @@ def estimate_total_tokens(messages, model="gpt-4"):
 
 
 # -------------------------------
-# HTML Cleaning and Chunking
+# Chunking big text
 # -------------------------------
-
-def extract_text_from_html(html: str) -> str:
-    if not html or not isinstance(html, str):
-        logging.warning("No valid HTML string provided to readability.")
-        return ""
-
-    try:
-        doc = Document(html)
-        summary_html = doc.summary()
-        soup = BeautifulSoup(summary_html, 'html.parser')
-        return soup.get_text(separator='\n', strip=True)
-    except Exception as e:
-        logging.error(f"Error parsing HTML with readability: {e}")
-        return ""
-
-
 def chunk_text(text: str, max_tokens: int = 8000, model: str = "gpt-4"):
     enc = get_tokenizer(model)
     words = text.split()
@@ -100,17 +84,16 @@ def chunk_text(text: str, max_tokens: int = 8000, model: str = "gpt-4"):
 
     return chunks
 
-def clean_and_chunk_html(html: str, max_tokens: int = 8000, model: str = "gpt-4"):
-    cleaned_text = extract_text_from_html(html)
-    if count_tokens(cleaned_text, model=model) > max_tokens:
-        return chunk_text(cleaned_text, max_tokens=max_tokens, model=model)
+def chunk_text(text: str, max_tokens: int = 8000, model: str = "gpt-4"):
+    if count_tokens(text, model=model) > max_tokens:
+        return chunk_text(text, max_tokens=max_tokens, model=model)
     else:
-        return [cleaned_text]
+        return [text]
 
 def split_large_html_entries(entry: dict, max_tokens=8000, model="gpt-4"):
     split_entries = []
     if "readme_content" in entry["data"]:
-        chunks = clean_and_chunk_html(entry["data"]["readme_content"], max_tokens=max_tokens, model=model)
+        chunks = chunk_text(entry["data"]["readme_content"], max_tokens=max_tokens, model=model)
         if len(chunks) > 1:
             logging.info(f"Splitting entry {entry['id']} into {len(chunks)} parts.")
             for i, chunk in enumerate(chunks):
@@ -124,7 +107,7 @@ def split_large_html_entries(entry: dict, max_tokens=8000, model="gpt-4"):
         for link in entry["data"]["webpage"]:
             if "content" in link:
                 html = link["content"]
-                chunks = clean_and_chunk_html(html, max_tokens=max_tokens, model=model)
+                chunks = chunk_text(html, max_tokens=max_tokens, model=model)
                 if len(chunks) > 1:
                     logging.info(f"Splitting entry {entry['id']} into {len(chunks)} parts.")
                     for a, chunk in enumerate(chunks):
@@ -266,14 +249,14 @@ def build_prompt(disconnected, remaining):
 # -------------------------------
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
-def query_openrouter(messages):
+def query_openrouter(messages, model=MODEL):
     headers = {
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json"
     }
 
     payload = {
-        "model": MODEL,
+        "model": model,
         "messages": messages,
         "temperature": 0.2
     }
@@ -298,12 +281,12 @@ def query_openrouter(messages):
 
 
 # Process flagged cases
-def resolve_conflicts(conflict):
+def make_inference_and_wait(conflict, model=MODEL):
     """ Uses OpenRouter to resolve flagged software conflicts. """
 
     # Query LLM to check if they are the same
     try: 
-        result = query_openrouter(conflict)
+        result = query_openrouter(conflict, model)
 
         time.sleep(DELAY_BETWEEN_REQUESTS)  # Respect API rate limit
     
@@ -336,7 +319,7 @@ def build_full_conflict(conflict, instances_dict, max_tokens=8000, model="gpt-4"
             seen.add(url)
             enriched = enrich_func([url])
             if enriched and enriched[0].get("content"):
-                chunks = clean_and_chunk_html(enriched[0]["content"], max_tokens=max_tokens, model=model)
+                chunks = chunk_text(enriched[0]["content"], max_tokens=max_tokens, model=model)
                 contents[url] = chunks
         return dict(contents)
 
@@ -431,17 +414,16 @@ def load_solved_conflict_keys(jsonl_path):
     return solved_keys
 
 
-def resolve_conflicts(conflict):
-    try:
-        result = query_openrouter(conflict)
-        time.sleep(DELAY_BETWEEN_REQUESTS)
-        return result
-    except Exception as e:
-        logging.error(f"Error resolving conflict: {e}")
-        return None
-
-
 def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grouped_entries, results_file):
+    '''
+    Function for disambiguation in production. Scans grouped entries for disconnected entries and solve conflicts along the way.
+    The result is a grouped dictionary with the same structure as the input, but with disambiguated entries.
+    Also:
+        - logs the results and creates issues for unclear cases.
+        - loads the solved conflicts from the results file to avoid reprocessing them.
+        - handles the case where the results file does not exist yet.
+    '''
+
     disambiguated_grouped = {}
     results = {}
     count = 0
@@ -449,21 +431,27 @@ def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grou
 
     for key in grouped_entries:
         if key in disconnected_entries:
-            if key not in solved_conflicts_keys and count < 180:
+            if key not in solved_conflicts_keys:
                 count += 1
                 logging.info(f"Processing conflict {count} - {key}")
                 try:
+                    """ ------------------- PREPARE MESSAGES --------------------""" 
+
                     full_conflict = build_full_conflict(disconnected_entries[key], instances_dict)
                     messages = build_prompt(full_conflict["disconnected"], full_conflict["remaining"])
-                    logging.info(f"Sending messages to OpenRouter for conflict {key}")
                     logging.info(f"Number of messages: {len(messages)}")
-                    result = resolve_conflicts(messages)
+
+                    """ ------------------- DISAMBIGUATE --------------------"""
+                    logging.info(f"Sending messages to OpenRouter for conflict {key}")
+                    result = make_inference_and_wait(messages)
                     parsed = parse_result(result)
                     if parsed:
                         logging.info(f"Result for conflict {key}: {parsed}")
                         results[key] = parsed
                         solved_conflicts_keys.add(key)
                         write_to_results_file({key: parsed}, results_file)
+
+                        """ ------------------- ADD DISAMBIGUATED INTO GROUPED ENTRIES --------------------"""
                         if parsed["verdict"] != "Unclear":
                             disambiguated_grouped[key] = {
                                 'instances': [[instances_dict[id] for id in group] for group in parsed["groups"]]
@@ -474,6 +462,7 @@ def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grou
                     raise e
                     #logging.error(f"Error processing conflict {key}: {e}")
         else:
+            """ ------------------- ADD INTO GROUPED ENTRIES --------------------"""
             disambiguated_grouped[key] = {'instances': grouped_entries[key]['instances']}
 
     return disambiguated_grouped, results
@@ -485,4 +474,3 @@ if __name__ == "__main__":
     grouped_entries_file = 'data/grouped.json'
     results_file = 'data/results.json'
 
-    disambiguate_disconnected_entries(disconnected_entries_file, instances_dict_file, grouped_entries_file, results_file)
