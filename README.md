@@ -10,6 +10,7 @@ We have developed a pipeline to **gather metadata about research software specif
 - Harmonization of raw metadata.
 - Integration of pieces of metadata belonging to the same software: `integration` use case.
 - Calculation of *FAIRsoft* indicators compliance and FAIRsoft scores.
+- Evaluation of language models for software identity resolution.
 
 
 The code for the **previos steps** can be found in the respotories specified as follows:
