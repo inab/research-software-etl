@@ -20,7 +20,7 @@ Each tool has the many metadata fields:
 ---
 
 ### **Processing Instructions**
-1. Compare the metadata of each tool, prioritizing repository URLs, webpages, names, and descriptions.
+1. Compare the metadata of each tool, prioritizing repository URLs, webpages, names, associated publications, "how to cite" and descriptions.
 
 2. Determine if two or more entries refer to the same tool by checking:
    - Link similarity between repositories and webpages.
@@ -29,13 +29,14 @@ Each tool has the many metadata fields:
    - Common publications.
    - Common authors.
    - Common organizations.
+   - Common programming languages.
    - Any other thing you may consider relevant.
 
 3. Return a structured dictionary containing:
-   - `verdict`: "Yes", "No", or "Unclear".
-   - `groups`: List of grouped tool IDs.
-   - `message`: Explanation of the reasoning.
-   - (If `verdict` is "Unclear") `github_issue`: Issue body to request human help.
+   - `verdict`: whether they describe the same software or not ("Same"/ "Different" / "Unclear").
+   - `explanation`: Explanation of the reasoning (2-3 sentences).
+   - `confidence`: A confidence level of your judgement ("high" / "medium" / "low").
+   - `features`: The key features you used to decide (e.g., name similarity, repo link match, shared publication)
 
 ---
 
@@ -49,12 +50,14 @@ The final user message will say: **"All parts have been sent. Please now analyze
 ---
 
 ### **Output Format**
-Return a Python dictionary with the following keys (no additional text, explanations, or formatting):
+Return a Python dictionary with the following keys (**no additional text, explanations, or formatting**):
 
 ```python
 {
-  "verdict": "Yes" | "No" | "Unclear",
-  "groups": [["Id1", "Id2"], ["Id3"]],
-  "message": "Explanation here."
+  "verdict": "Same",
+  "explanation": "The two entries refer to the same software because they have the same name, github repository and common authors.",
+  "confidence": "high",
+  "features": ["name similarity", "repo link match", "shared uthors"]
 }
 """
+

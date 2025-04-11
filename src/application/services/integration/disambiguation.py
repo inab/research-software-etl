@@ -1,6 +1,6 @@
 import requests
 import json
-import time
+import re
 import os
 import logging
 from pathlib import Path
@@ -12,18 +12,27 @@ from readability import Document
 from bs4 import BeautifulSoup
 import tiktoken
 
-from src.application.services.integration.enrich_links import enrich_webpages, enrich_repositories
+from src.application.services.integration.enrich_links import enrich_link
 
 # -------------------------------
 # Configuration
 # -------------------------------
 
-API_KEY = os.environ.get("OPENROUTER_API_KEY")
-API_URL = "https://openrouter.ai/api/v1/chat/completions"
+# OpenRouter - https://openrouter.ai
+OR_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+OR_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 MODEL = "meta-llama/llama-3.3-70b-instruct:free"
 REQUESTS_PER_MINUTE = 20
 DELAY_BETWEEN_REQUESTS = 60 / REQUESTS_PER_MINUTE
-MAX_TOTAL_TOKENS = 130000  # Token cap based on Together.ai model limit
+MAX_TOTAL_TOKENS = 130000  
+
+
+# HuggingFace - https://huggingface.co
+HF_API_URL = "https://api-inference.huggingface.co/models" 
+HF_API_KEY = os.environ.get("HUGGINGFACE_API_KEY")
+
+
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -84,52 +93,6 @@ def chunk_text(text: str, max_tokens: int = 8000, model: str = "gpt-4"):
 
     return chunks
 
-def chunk_text(text: str, max_tokens: int = 8000, model: str = "gpt-4"):
-    if count_tokens(text, model=model) > max_tokens:
-        return chunk_text(text, max_tokens=max_tokens, model=model)
-    else:
-        return [text]
-
-def split_large_html_entries(entry: dict, max_tokens=8000, model="gpt-4"):
-    split_entries = []
-    if "readme_content" in entry["data"]:
-        chunks = chunk_text(entry["data"]["readme_content"], max_tokens=max_tokens, model=model)
-        if len(chunks) > 1:
-            logging.info(f"Splitting entry {entry['id']} into {len(chunks)} parts.")
-            for i, chunk in enumerate(chunks):
-                new_entry = entry.copy()
-                new_entry["data"] = new_entry["data"].copy()
-                new_entry["id"] = f"{entry['id']}_part{i+1}"
-                new_entry["data"]["readme_content"] = chunk
-                split_entries.append(new_entry)
-
-    if "webpage" in entry["data"]:
-        for link in entry["data"]["webpage"]:
-            if "content" in link:
-                html = link["content"]
-                chunks = chunk_text(html, max_tokens=max_tokens, model=model)
-                if len(chunks) > 1:
-                    logging.info(f"Splitting entry {entry['id']} into {len(chunks)} parts.")
-                    for a, chunk in enumerate(chunks):
-                        new_entry = entry.copy()
-                        new_entry["data"] = new_entry["data"].copy()
-                        new_entry["id"] = f"{entry['id']}_part{i+a+1}"
-                        new_entry["data"]["webpage"] = [{
-                            "url": link["url"],
-                            "content": chunk
-                        }]
-                        split_entries.append(new_entry)
-    if split_entries:
-        logging.info(f"Split entry {entry['id']} into {len(split_entries)} parts.")
-        return split_entries
-    else:
-        return [entry]
-
-def preprocess_entries_for_html_chunking(entries: list):
-    result = []
-    for entry in entries:
-        result.extend(split_large_html_entries(entry))
-    return result
 
 # -------------------------------
 # Prompt + Chat Message Builder
@@ -138,6 +101,8 @@ def preprocess_entries_for_html_chunking(entries: list):
 def build_chat_messages_with_disconnected(
     instruction_prompt: str,
     conflict_data: dict,
+    disconnected_preamble= "**Disconnected tools** to be analyzed",
+    remaining_preamble= "Tools known to be the **same software**",
     max_tokens_per_chunk=8000,
     model="gpt-4"
 ):
@@ -166,11 +131,10 @@ def build_chat_messages_with_disconnected(
 
         return chunks
 
-    def chunk_dict_of_lists(d: dict, label: str):
-        """Yields tuples of (url, chunk_text) for each content chunk in dict"""
-        for url, chunks in d.items():
-            for i, chunk in enumerate(chunks):
-                text = f"{label} content from {url} (part {i+1}):\n```\n{chunk}\n```"
+    def chunk_dict(d: dict):
+        for url, content in d.items():
+            for label, body in content.items():
+                text = f"Content from {url}:\n```\n{label}:\n{body}```"
                 yield {"role": "user", "content": text}
 
     # Add entries: known and disconnected tools
@@ -178,29 +142,25 @@ def build_chat_messages_with_disconnected(
         for i, chunk in enumerate(chunk_entries(conflict_data["remaining"])):
             messages.append({
                 "role": "user",
-                "content": f"Part {i+1} — tools known to be the **same software**:\n```json\n{json.dumps(chunk, indent=2, ensure_ascii=False)}\n```"
+                "content": f"{remaining_preamble} - part {i+1}:\n```json\n{json.dumps(chunk, indent=2, ensure_ascii=False)}\n```"
             })
 
     if conflict_data.get("disconnected"):
-        for i, chunk in enumerate(chunk_entries(conflict_data["disconnected"])):
+        for j, chunk in enumerate(chunk_entries(conflict_data["disconnected"])):
             messages.append({
                 "role": "user",
-                "content": f"Part {i+1} — **disconnected tools** to be analyzed:\n```json\n{json.dumps(chunk, indent=2, ensure_ascii=False)}\n```"
+                "content": f"{disconnected_preamble} - part {j+1}:\n```json\n{json.dumps(chunk, indent=2, ensure_ascii=False)}\n```"
             })
 
     # Add enriched webpage and repository contents
     if "webpage_contents" in conflict_data:
-        for chunk in chunk_dict_of_lists(conflict_data["webpage_contents"], "Webpage"):
-            messages.append(chunk)
-
-    if "repository_contents" in conflict_data:
-        for chunk in chunk_dict_of_lists(conflict_data["repository_contents"], "Repository README"):
+        for chunk in chunk_dict(conflict_data["webpage_contents"]):
             messages.append(chunk)
 
     # Final instruction
     messages.append({
         "role": "user",
-        "content": "All parts have been sent. Please now analyze the entries and provide the output as specified."
+        "content": "All parts have been sent. Please now analyze the entries and provide the output as specified. \n\nIMPORTANT: Return ONLY a valid Python dictionary with the following keys: 'verdict', 'explanation', 'confidence', and 'features'. Do NOT explanation, or extra commentary. This is a strict output constraint."
     })
 
     # Token budget check
@@ -249,59 +209,128 @@ def build_prompt(disconnected, remaining):
 # -------------------------------
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
-def query_openrouter(messages, model=MODEL):
+def query_openrouter(messages, model):
     headers = {
-        "Authorization": f"Bearer {API_KEY}",
+        "Authorization": f"Bearer {OR_API_KEY}",
         "Content-Type": "application/json"
     }
-
     payload = {
         "model": model,
         "messages": messages,
         "temperature": 0.2
     }
 
-    for _ in range(3):
-        logging.info(f"Sending request to OpenRouter API: {API_URL} with key {API_KEY[:4]}...")
-        response = requests.post(API_URL, headers=headers, json=payload)
-        logging.info(f"API response: {response.status_code}")
-        if response.status_code == 200:
-            try:
-                content = response.json()["choices"][0]["message"]["content"].strip()
-                if content:
-                    return content
-            except:
-                logging.warning(response.json())
-                continue
-        else:
-            raise Exception(f"API Error: {response.status_code} - {response.text}")
+    logging.info(f"Sending request to OpenRouter API: {OR_API_URL} with key {OR_API_KEY[:4]}...")
+    
+    response = requests.post(OR_API_URL, json=payload, headers=headers )
+    
+    if response.status_code == 200:
+        try:
+            # main answer 
+            content = response.json()["choices"][0]["message"]["content"].strip()
+            # metadata
+            meta = response.json().get("usage", {})
+            meta['provider'] = response.json().get("provider", "")
+            if content:
+                return content, meta
+        except:
+            logging.warning(response.json())
+    
+    logging.warning(f"API response was empty: {response.status_code} - {response.text}")
+    return '', {}
 
+
+
+
+#@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
+def query_huggingface_new(messages, model, provider):
+    headers = {
+        "Authorization": f"Bearer {HF_API_KEY}",
+    }
+    payload = {
+        "model": model,
+        "messages": messages,
+    }
+     
+    URL = f"https://router.huggingface.co/{provider}/v1/chat/completions"
+    logging.info(f"Sending request to Hugging Face Inference API: {URL} with key {HF_API_KEY[:4]}...")
+    
+    response = requests.post(URL, headers=headers, json=payload)
+    logging.info(f"API response: {response}")
+    if response.status_code == 200:
+        try:
+            # main answer 
+            content = response.json()["choices"][0]["message"]["content"].strip()
+            # metadata
+            meta = response.json().get("usage", {})
+            meta['provider'] = provider
+            if content:
+                return content, meta
+           
+        except Exception as e:
+            logging.warning(f"Parsing error: {e} | Response: {response.json()}")
+        
+    logging.warning("API response was empty after 3 attempts.")
+    return '', {}
+
+def query_huggingface(messages, model):
+    headers = {
+        "Authorization": f"Bearer {HF_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    payload = { 
+        "inputs": messages,
+        "parameters": {
+            "temperature": 0.2,
+            "top_p": 0.95,
+            "max_new_tokens": 512,
+            "return_full_text": False
+        }
+    }
+     
+    URL = f"{HF_API_URL}/{model}"
+    logging.info(f"Sending request to Hugging Face Inference API: {URL} with key {HF_API_KEY[:4]}...")
+    
+    response = requests.post(URL, headers=headers, json=payload)
+    logging.info(f"API response: {response.json()}")
+    if response.status_code == 200:
+        try:
+            print(f"Whole response: {response.json()}")
+            output_text = response.json()[0]["generated_text"].strip()
+            # TODO: extract metadata
+            return output_text, {}  # You could add more metadata if needed
+        except Exception as e:
+            logging.warning(f"Parsing error: {e} | Response: {response.json()}")
+        
     logging.warning("API response was empty after 3 attempts.")
     return None
 
 
 # Process flagged cases
-def make_inference_and_wait(conflict, model=MODEL):
-    """ Uses OpenRouter to resolve flagged software conflicts. """
+def make_inference(messages, model, provider):
 
     # Query LLM to check if they are the same
-    try: 
-        result = query_openrouter(conflict, model)
+    if provider == "openrouter":
+        query_func = query_openrouter
+    elif provider == "huggingface":
+        query_func = query_huggingface
 
-        time.sleep(DELAY_BETWEEN_REQUESTS)  # Respect API rate limit
+    try: 
+        #result, meta = query_openrouter(conflict, model)
+        result, meta = query_func(messages, model=model)
     
     except Exception as e:
         logging.error(f"Error resolving conflict: {e}")
         return None
     
-
-    return result
+    return result, meta
 
 # -------------------------------
 # Conflict Handling
 # -------------------------------
 
-def build_full_conflict(conflict, instances_dict, max_tokens=8000, model="gpt-4"):
+async def build_full_conflict(conflict, instances_dict, max_tokens=8000, model="gpt-4"):
     """
     Returns a conflict dictionary where:
     - 'disconnected' and 'remaining' contain minimal metadata (with URLs)
@@ -309,25 +338,39 @@ def build_full_conflict(conflict, instances_dict, max_tokens=8000, model="gpt-4"
     """
     from collections import defaultdict
 
-    def enrich_and_collect_content(url_list, enrich_func):
-        contents = defaultdict(list)
+    async def enrich_and_collect_content(url_list):
+        contents = {}
         seen = set()
 
         for url in url_list:
             if url in seen or not url:
                 continue
             seen.add(url)
-            enriched = enrich_func([url])
-            if enriched and enriched[0].get("content"):
-                chunks = chunk_text(enriched[0]["content"], max_tokens=max_tokens, model=model)
-                contents[url] = chunks
+
+            enriched = await enrich_link(url)
+
+            contents[url] = {}
+
+            if enriched and enriched.get("content"):
+                chunks = chunk_text(enriched["content"], max_tokens=max_tokens, model=model)
+                contents[url]["Content"]  = chunks
+
+            if enriched and enriched.get("readme_content"):
+                contents[url]["README content"] = chunk_text(enriched.get("readme_content"), max_tokens=max_tokens, model=model)
+            
+            if enriched and enriched.get("repo_metadata"):
+                contents[url]['Repository metadata'] = enriched["repo_metadata"]
+            
+            if enriched and enriched.get("project_metadata"):
+                contents[url]["Project metadata"] = enriched["project_metadata"]
+
         return dict(contents)
+
 
     new_conflict = {
         "disconnected": [],
         "remaining": [],
         "webpage_contents": {},
-        "repository_contents": {}
     }
 
     all_webpages = set()
@@ -335,43 +378,67 @@ def build_full_conflict(conflict, instances_dict, max_tokens=8000, model="gpt-4"
 
     def strip_content_fields(entry):
         entry = entry.copy()
-        entry["data"] = entry["data"].copy()
-        webpages = entry["data"].get("webpage", [])
-        repos = entry["data"].get("repository", [])
+        webpages = entry.get("webpage", [])
+        repos = entry.get("repository", [])
         all_webpages.update(webpages)
         for repo in repos:  
             if repo.get('kind') == "github" and "github.com" in repo.get('url', ''):
                 all_repos.add(repo.get('url', ''))
+            elif repo.get('kind') == "bitbucket" and "bitbucket.com" in repo.get('url', ''):
+                all_repos.add(repo.get('url', ''))
+            elif repo.get('kind') == "gitlab" and "gitlab.com" in repo.get('url', ''):
+                all_repos.add(repo.get('url', ''))
             else:
                 all_webpages.add(repo.get('url', ''))
-        
-        entry["data"].pop("readme_content", None)
+            
         return entry
 
     for entry in conflict["disconnected"]:
-        instance_id = entry["id"]
-        full_entry = instances_dict[instance_id]
-        new_conflict["disconnected"].append(strip_content_fields(full_entry))
+        new_conflict["disconnected"].append(strip_content_fields(entry))
 
     for entry in conflict["remaining"]:
-        instance_id = entry["id"]
-        full_entry = instances_dict[instance_id]
-        new_conflict["remaining"].append(strip_content_fields(full_entry))
+        new_conflict["remaining"].append(strip_content_fields(entry))
 
     # Enrich and chunk all unique URLs
-    new_conflict["webpage_contents"] = enrich_and_collect_content(list(all_webpages), enrich_webpages)
-    new_conflict["repository_contents"] = enrich_and_collect_content(list(all_repos), enrich_repositories)
+    repos_and_webpages = all_webpages.union(all_repos)
+    all_links = set(repos_and_webpages)
+    new_conflict["webpage_contents"] = await enrich_and_collect_content(list(all_links))
 
     return new_conflict
 
 
-def parse_result(result):
+def parse_result(text):
+    """
+    Extracts and parses a JSON object from either a Markdown-style code block or raw inline JSON.
+
+    Args:
+        text (str): Input text containing the dictionary.
+
+    Returns:
+        dict: Parsed JSON object as a Python dictionary.
+
+    Raises:
+        ValueError: If no valid JSON is found or if JSON parsing fails.
+    """
+
+    # Try to extract from code block first
+    match = re.search(r"```(?:json|python)?\s*(\{.*?\})\s*```", text, re.DOTALL)
+    if match:
+        json_str = match.group(1)
+    else:
+        # Fallback: try to find a top-level JSON object in plain text
+        match = re.search(r"(\{.*\})", text, re.DOTALL)
+        if match:
+            json_str = match.group(1)
+        else:
+            logging.warning("No JSON object found in input.")
+            return {}
+
     try:
-        cleaned = result.replace("```python", "").replace("```json", "").replace("```", "")
-        return json.loads(cleaned)
-    except Exception as e:
-        logging.error(f"Error parsing result: {e}")
-        return None
+        return json.loads(json_str)
+    except json.JSONDecodeError as e:
+        logging.warning(f"Failed to parse JSON: {e}")
+        return {}
 
 def create_issue(issue):
     with open('data/issues.json', 'a') as f:
@@ -391,12 +458,14 @@ def log_result(result):
 
 def write_to_results_file(result, results_file):
     try:
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(results_file), exist_ok=True)
+        
         with open(results_file, "a") as f:
             json.dump(result, f)
             f.write("\n")
-    except FileNotFoundError:
-        logging.error("Error writing to results file")
-
+    except Exception as e:
+        logging.error(f"Error writing to results file: {e}")
 
 def load_solved_conflict_keys(jsonl_path):
     solved_keys = set()
@@ -443,7 +512,7 @@ def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grou
 
                     """ ------------------- DISAMBIGUATE --------------------"""
                     logging.info(f"Sending messages to OpenRouter for conflict {key}")
-                    result = make_inference_and_wait(messages)
+                    result = make_inference(messages)
                     parsed = parse_result(result)
                     if parsed:
                         logging.info(f"Result for conflict {key}: {parsed}")

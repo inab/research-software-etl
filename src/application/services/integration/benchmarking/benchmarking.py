@@ -1,52 +1,104 @@
 
 import json
 import logging 
-from src.application.services.integration.disambiguation import build_full_conflict, write_to_results_file, build_chat_messages_with_disconnected, load_templates_from_folder, make_inference_and_wait, parse_result
+from src.application.services.integration.disambiguation import build_full_conflict, write_to_results_file, build_chat_messages_with_disconnected, load_templates_from_folder
 PROMPT_TEMPLATES = load_templates_from_folder("src/application/services/integration/benchmarking")
 
 # --------------------------------
 # Preparing messages for inference
 # --------------------------------
 
-def build_prompt_benchmarking(disconnected, remaining):
+def flatten_messages_to_prompt(messages, model_name="default"):
+    """
+    Convert OpenAI-style chat messages into a single prompt string
+    suitable for instruction-tuned models (version2 style).
+    """
+    # Define simple role tags (can be adjusted for model-specific formatting)
+    role_tags = {
+        "system": "### System",
+        "user": "### User",
+        "assistant": "### Assistant"
+    }
+
+    prompt_parts = []
+
+    for msg in messages:
+        role = msg["role"]
+        content = msg["content"].strip()
+
+        if role in role_tags:
+            prompt_parts.append(f"{role_tags[role]}\n{content}\n")
+        else:
+            prompt_parts.append(f"### {role.capitalize()}\n{content}\n")
+
+    # Add final assistant marker (helps some models know when to answer)
+    prompt_parts.append("### Assistant\n")
+
+    return "\n".join(prompt_parts).strip()
+
+def build_prompt_benchmarking(data_dict, prompt_type):
     """
     Build the prompt for benchmarking. The prompt for the benchmarking is slightly different
     from the one used in the disambiguation process. The benchmarking prompt asks for more details
     about the disambiguation process, such as the key features behind the decision.
     """
-    template = PROMPT_TEMPLATES["prompt_benchmarking"]
 
-    instruction_prompt = template.render()
+    disconnected_preamble = "The first software metadata_entry"
+    remaining_preamble = "The second software metadata_entry"
 
-    data_dict = {
-        "disconnected": disconnected,
-        "remaining": remaining
-    }
 
-    messages = build_chat_messages_with_disconnected(instruction_prompt, data_dict)
+    if prompt_type == "chat":
+        template = PROMPT_TEMPLATES["prompt_benchmarking_chat_style"]
+        instruction_prompt = template.render()
 
-    return messages
+    
+        if len(data_dict['disconnected']) > 1 and len(data_dict['remaining']) == 0:
+            data_dict['remaining'] = [data_dict['disconnected'][1]]
+            data_dict['disconnected'] = [data_dict['disconnected'][0]]
+        
+        if len(data_dict['disconnected']) == 0 and len(data_dict['remaining']) == 2:
+            data_dict['disconnected'] = [data_dict['remaining'][0]]
+            data_dict['remaining'] = [data_dict['remaining'][1]]
 
-def prepare_messages_file(disconnected_entries, instances_dict, messages_file_path):
+
+        # pretty print the data_dict
+        # logging.info(f"Data dict: {json.dumps(data_dict, indent=4)}")
+
+
+        messages = build_chat_messages_with_disconnected(instruction_prompt, data_dict, 
+                                                        disconnected_preamble, remaining_preamble)
+        return messages 
+    
+    elif prompt_type == "flattened":
+        template = PROMPT_TEMPLATES["prompt_benchmarking_flattened_style"]
+        instruction_prompt = template.render()
+        messages = build_chat_messages_with_disconnected(instruction_prompt, data_dict, 
+                                                        disconnected_preamble, remaining_preamble)
+        messages = flatten_messages_to_prompt(messages)
+        
+        return messages
+
+async def prepare_messages_file(conflicts, instances_dict, messages_file_path, prompt_type):
     '''
     For benchmarking of the disambiguation process.
     '''
     count = 0
-    for key in disconnected_entries:
+    for key in conflicts:
         count += 1
         logging.info(f"Building messsages for conflict {count} - {key}")
         try:
-            full_conflict = build_full_conflict(disconnected_entries[key], instances_dict)
-            messages = build_prompt_benchmarking(full_conflict["disconnected"], full_conflict["remaining"])
+            full_conflict = await build_full_conflict(conflicts[key], instances_dict)
+            messages = build_prompt_benchmarking(full_conflict, prompt_type)
             logging.info(f"Number of messages: {len(messages)}")
             result = {
-                "key": messages
+                key : messages
             }
             write_to_results_file(result, messages_file_path)
             logging.info(f"Messages for conflict {key} written to file.")
         
         except Exception as e:
             logging.error(f"Error processing conflict {key}: {e}")
+            raise
 
 # ---------------------------------------------------------------
 # MAKE INFERENCES: with a given model for a given set of messages 
@@ -67,77 +119,16 @@ def parse_messages_file(messages_file_path):
 
     return messages
 
-
-def make_inferences(messages,model, output_file_path):
-    '''
-    For benchmarking of the disambiguation process.
-    This maybe can be moved to a use_case
-    '''
-    logging.info(f"Number of cases to process: {len(messages)}")
-
-    for key in messages:
-        logging.info(f"Making inference for conflict {key}")
-        try:
-            logging.info(f"Making inference for conflict {key}")
-            result = make_inference_and_wait(messages[key], model)
-            logging.info(f"Parsing result for conflict {key}")
-            parsed_result  = parse_result(result)
-
-            with open(output_file_path, 'a') as f:
-                json.dump({key: parsed_result}, f)
-                f.write('\n')
-
-            logging.info(f"Results for conflict {key} written to file.")
-            logging.info("----------------------------")
-            
-        
-        except Exception as e:
-            logging.error(f"Error processing conflict {key}: {e}")
-    
-    logging.info("All inferences completed.")
-    
-
-
-
 if __name__ == "__main__":
-    disconnected_entries_file = 'data/disconnected_entries.json'
-    messages_file = 'scripts/data/messages.json'
-    grouped_entries_file = 'data/grouped.json'
 
-    # ---------- SCRIPT 1 - MESSAGES PREP -----------------------
-    # create instances dict from grouped entries 
-    instances_dict = {}
+    results_paths = {
+        "model_1": "scripts/data/model_1_results.json",
+        "model_2": "scripts/data/model_2_results.json",
+        # Add more models as needed
+    }
 
-    # Create messages for each inference
-    prepare_messages_file(disconnected_entries_file, instances_dict, messages_file)
-
-
-
-    # ---------- SCRIPT 2 - INFERENCE  ----------------------
-
-    # 🤔 Measure time for each inference??
-    # 🤔 Have different and parallel bash script for each model??
-
-    # Make inferences for each message
-    messages = parse_messages_file(messages_file)
-
-    output_file_path_root = 'scripts/data/benchmarking_results.json'
-
-    models = [
-
-    ]
-
-    results_paths = {}
-    for model in models:
-        output_file_path = f"{output_file_path_root}_{model}.json"
-        results_paths[model] = output_file_path
-
-    for model in models:
-        logging.info(f"Making inferences with model {model}")
-        make_inferences(messages, model, results_paths[model])
-    
     # ---------- JUPYTER NOTEBOOK 1 - METRICS CALCULATION ----------------------
-
+    models = []
     # Compare with human results and compute metrics
     human_results = "scripts/data/human_results.json"
     for model in models:
