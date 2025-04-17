@@ -24,15 +24,13 @@ jobs:
       - name: Extract decision
         id: set-output
         run: |
-          set -e
           pip install requests
-          echo "Running extract_decision.py..."
           python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" > decision.json
-          echo "Extracted decision:"
-          cat decision.json
-          echo "decision=$(cat decision.json)" >> $GITHUB_OUTPUT
+          echo 'decision<<EOF' >> $GITHUB_OUTPUT
+          cat decision.json >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
   update-annotation-log:
     runs-on: ubuntu-latest
