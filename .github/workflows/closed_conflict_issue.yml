@@ -30,7 +30,7 @@ jobs:
           python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" > decision.json
           echo "Extracted decision:"
           cat decision.json
-          echo "decision=$(cat decision.json | jq -c .)" >> $GITHUB_OUTPUT
+          echo "decision=$(cat decision.json)" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
   

@@ -16,6 +16,8 @@ headers = {
 
 comments = requests.get(url, headers=headers).json()
 
+print(comments)
+
 for comment in reversed(comments):
     matches = re.findall(r"```json\n(.*?)\n```", comment['body'], re.DOTALL)
     if matches:
