@@ -3,7 +3,7 @@ import requests, sys, os, re, json
 
 repo = sys.argv[1]
 issue_number = sys.argv[2]
-token = os.environ['GITHUB_TOKEN']
+token = os.environ['TOKEN']
 url = f"https://api.github.com/repos/{repo}/issues/{issue_number}/comments"
 
 headers = {
