@@ -1,0 +1,53 @@
+name: Handle resolved conflict
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  extract-decision:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'conflict')
+    outputs:
+      decision: ${{ steps.set-output.outputs.decision }}
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Extract decision
+        id: set-output
+        run: |
+          pip install requests
+          python .github/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" > decision.json
+          echo "decision=$(cat decision.json | jq -c .)" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+    update-annotation-log:
+      runs-on: ubuntu-latest
+      needs: extract-decision
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+
+        - name: Set up Python
+          uses: actions/setup-python@v4
+          with:
+            python-version: '3.10'
+
+        - name: Append decision to human annotation log
+          run: |
+            mkdir -p human_annotations
+            echo '${{ needs.extract-decision.outputs.decision }}' >> human_annotations/human_conflicts_log.jsonl
+
+        - name: Commit and push annotation
+          run: |
+            git config user.name "github-actions"
+            git config user.email "github-actions@github.com"
+            git add human_annotations/human_conflicts_log.jsonl
+            git commit -m "Log human conflict decision (#${{ github.event.issue.number }})"
+            git push
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
