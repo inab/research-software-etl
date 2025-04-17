@@ -24,8 +24,12 @@ jobs:
       - name: Extract decision
         id: set-output
         run: |
+          set -e
           pip install requests
+          echo "Running extract_decision.py..."
           python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" > decision.json
+          echo "Extracted decision:"
+          cat decision.json
           echo "decision=$(cat decision.json | jq -c .)" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
