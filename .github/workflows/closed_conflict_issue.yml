@@ -23,7 +23,6 @@ jobs:
 
       - name: Extract decision
         id: set-output
-        
         run: |
           pip install requests
           python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" > decision.json
