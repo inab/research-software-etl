@@ -25,29 +25,29 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
-    update-annotation-log:
-      runs-on: ubuntu-latest
-      needs: extract-decision
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v3
+  update-annotation-log:
+    runs-on: ubuntu-latest
+    needs: extract-decision
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-        - name: Set up Python
-          uses: actions/setup-python@v4
-          with:
-            python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-        - name: Append decision to human annotation log
-          run: |
-            mkdir -p human_annotations
-            echo '${{ needs.extract-decision.outputs.decision }}' >> human_annotations/human_conflicts_log.jsonl
+      - name: Append decision to human annotation log
+        run: |
+          mkdir -p human_annotations
+          echo '${{ needs.extract-decision.outputs.decision }}' >> human_annotations/human_conflicts_log.jsonl
 
-        - name: Commit and push annotation
-          run: |
-            git config user.name "github-actions"
-            git config user.email "github-actions@github.com"
-            git add human_annotations/human_conflicts_log.jsonl
-            git commit -m "Log human conflict decision (#${{ github.event.issue.number }})"
-            git push
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push annotation
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add human_annotations/human_conflicts_log.jsonl
+          git commit -m "Log human conflict decision (#${{ github.event.issue.number }})"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
