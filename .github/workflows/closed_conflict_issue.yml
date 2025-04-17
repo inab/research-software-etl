@@ -11,19 +11,15 @@ jobs:
     outputs:
       decision: ${{ steps.set-output.outputs.decision }}
     steps:
-      - name: Show working directory
-        run: pwd
-
-      - name: List contents
-        run: ls -R
+      - name: Checkout repository
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      
-      - name: Verify extract_decision.py exists
-        run: test -f human_annotations/scripts/extract_decision.py && echo "Script found." || echo "Script not found!"
 
       - name: Extract decision
         id: set-output
