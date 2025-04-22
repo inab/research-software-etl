@@ -516,7 +516,8 @@ def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grou
 
                     """ ------------------- DISAMBIGUATE --------------------"""
                     logging.info(f"Sending messages to OpenRouter for conflict {key}")
-                    result = make_inference(messages)
+                    # result = make_inference(messages)
+                    # result = decision_agreement_proxy()
                     parsed = parse_result(result)
                     if parsed:
                         logging.info(f"Result for conflict {key}: {parsed}")
