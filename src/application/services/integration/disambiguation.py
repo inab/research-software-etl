@@ -307,25 +307,6 @@ def query_huggingface(messages, model):
     return None
 
 
-# Process flagged cases
-def make_inference(messages, model, provider):
-
-    # Query LLM to check if they are the same
-    if provider == "openrouter":
-        query_func = query_openrouter
-    elif provider == "huggingface":
-        query_func = query_huggingface
-
-    try: 
-        #result, meta = query_openrouter(conflict, model)
-        result, meta = query_func(messages, model=model)
-    
-    except Exception as e:
-        logging.error(f"Error resolving conflict: {e}")
-        return None
-    
-    return result, meta
-
 # -------------------------------
 # Conflict Handling
 # -------------------------------
@@ -483,6 +464,45 @@ def load_solved_conflict_keys(jsonl_path):
     return solved_keys
 
 
+def decision_agreement_proxy(messages: str) -> str:
+    """
+    This function takes a message as input and returns the agreement of the models.
+    It uses the `decision_agreement` function from the `decision_agreement` module.
+    """
+    # model 1: Llama 4 Scout
+    model = "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+    provider = "together"
+    result_llama_4, meta_llama_4 = query_huggingface_new(messages, model=model, provider=provider)
+    try:
+        result_llama_4 = parse_result(result_llama_4)
+    except Exception as e:
+        result_llama_4 = {}
+
+    # model 2: Mixtral 8x7B
+    model = "mistralai/mixtral-8x7b-instruct"
+    result_mixtral, meta_mixtral = query_openrouter(messages, model=model)
+    try:
+        result_mixtral = parse_result(result_mixtral)
+    except Exception as e:
+        result_mixtral = {}
+    
+    # agreement
+    result_llama_4_verdict = result_llama_4.get("verdict", None)
+    result_mixtral_verdict = result_mixtral.get("verdict", None)
+    # if both models agree, return the result
+    if result_llama_4_verdict == result_mixtral_verdict:
+        if result_llama_4_verdict != None:
+            return result_llama_4
+        # If models agree and are None, human annotation is needed
+        
+    else:
+        return {
+            "verdict": "disagreement",
+            "llama_4": result_llama_4,
+            "mixtral": result_mixtral,
+        }
+
+
 
 def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grouped_entries, results_file):
     '''
@@ -508,36 +528,80 @@ def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grou
                     """ ------------------- PREPARE MESSAGES --------------------""" 
 
                     full_conflict = build_full_conflict(disconnected_entries[key], instances_dict)
+                    # TODO: merge entries in "remaining" into one entry
+                    # keep ids of involved entries
+                    ids_remaining = [entry["id"] for entry in full_conflict["remaining"]]
+                    ids_disconnected = [entry["id"] for entry in full_conflict["disconnected"]]
+
                     messages = build_prompt(full_conflict["disconnected"], full_conflict["remaining"])
                     logging.info(f"Number of messages: {len(messages)}")
-                    # Merge entries in remaining if len(remaining) > 1
-                    # The task becomes a comparison of pairs (as in the benchmark)
-                    
+
+
 
                     """ ------------------- DISAMBIGUATE --------------------"""
                     logging.info(f"Sending messages to OpenRouter for conflict {key}")
-                    # result = make_inference(messages)
-                    # result = decision_agreement_proxy()
-                    parsed = parse_result(result)
-                    if parsed:
-                        logging.info(f"Result for conflict {key}: {parsed}")
-                        results[key] = parsed
-                        solved_conflicts_keys.add(key)
-                        write_to_results_file({key: parsed}, results_file)
+                    result = decision_agreement_proxy(messages)
 
-                        """ ------------------- ADD DISAMBIGUATED INTO GROUPED ENTRIES --------------------"""
-                        if parsed["verdict"] != "Unclear":
-                            disambiguated_grouped[key] = {
-                                'instances': [[instances_dict[id] for id in group] for group in parsed["groups"]]
+                    # If there is agreement
+                    if result.get("verdict") != "disagreement":
+                        logging.info(f"Result for conflict {key}: {result}")
+                        results[key] = result
+                        solved_conflicts_keys.add(key)
+                        write_to_results_file({key: results}, results_file)
+
+                        """ ------------------- ADD DISAMBIGUATED INTO DISAMBIGUATED GROUPED ENTRIES --------------------"""
+                        if result.get("verdict") == "same":
+                            group_ids = []
+                            for entry in full_conflict["remaining"]:
+                                group_ids.append(entry["id"])
+                            for entry in full_conflict["disconnected"]:
+                                group_ids.append(entry["id"])
+                            
+                            disambiguated_grouped[key] = group_ids
+
+
+                        elif result.get("verdict") == "different":
+                            group_one_ids = []
+                            key_one = key + "_1"
+                            for entry in full_conflict["remaining"]:
+                                group_one_ids.append(entry["id"])
+                            
+                            disambiguated_grouped[key_one] = group_one_ids
+                            
+                            group_two_ids = []
+                            key_two = key + "_2"
+                            for entry in full_conflict["disconnected"]:
+                                group_two_ids.append(entry["id"])
+                            
+                            disambiguated_grouped[key_two] = group_two_ids
+                            
+                    else:
+                        # reamining part of the conflict is pushed to the database 
+                        group_ids = []
+                        key_one = key + "_1"
+                        for entry in full_conflict["remaining"]:
+                            group_ids.append(entry["id"])
+                        
+                        disambiguated_grouped[key_one] = group_ids
+            
+                        # create issue to be solved manually
+                        create_issue({
+                            "title": f"Disambiguation needed for {key}",
+                            "description": f"Disambiguation needed for {key}. Models disagreed.",
+                            "entries": {
+                                "disconnected": full_conflict["disconnected"],
+                                "remaining": full_conflict["remaining"]
                             }
-                        else:
-                            create_issue(parsed['github_issue'])
+                        })
+                
                 except Exception as e:
                     raise e
                     #logging.error(f"Error processing conflict {key}: {e}")
         else:
             """ ------------------- ADD INTO GROUPED ENTRIES --------------------"""
-            disambiguated_grouped[key] = {'instances': grouped_entries[key]['instances']}
+            # keep only the ids of the entries in disambiguated_grouped
+            disambiguated_grouped[key] = [entry["id"] for entry in grouped_entries[key]["instances"]]
+
 
     return disambiguated_grouped, results
 
