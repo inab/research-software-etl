@@ -28,8 +28,10 @@ def decision_agreement_proxy(messages: str) -> str:
     result_mixtral_verdict = result_mixtral.get("verdict", None)
     # if both models agree, return the result
     if result_llama_4_verdict == result_mixtral_verdict:
-        return result_llama_4
-    
+        if result_llama_4_verdict != None:
+            return result_llama_4
+        # If models agree and are None, human annotation is needed
+        
     else:
         return {
             "verdict": "disagreement",
