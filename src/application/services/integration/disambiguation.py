@@ -483,6 +483,8 @@ def load_solved_conflict_keys(jsonl_path):
     return solved_keys
 
 
+
+
 def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grouped_entries, results_file):
     '''
     Function for disambiguation in production. Scans grouped entries for disconnected entries and solve conflicts along the way.
@@ -509,6 +511,10 @@ def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grou
                     full_conflict = build_full_conflict(disconnected_entries[key], instances_dict)
                     messages = build_prompt(full_conflict["disconnected"], full_conflict["remaining"])
                     logging.info(f"Number of messages: {len(messages)}")
+                    # Merge entries in remaining if len(remaining) > 1
+                    # The task becomes a comparison of pairs (as in the benchmark)
+                    
+
 
                     """ ------------------- DISAMBIGUATE --------------------"""
                     logging.info(f"Sending messages to OpenRouter for conflict {key}")
