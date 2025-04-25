@@ -11,10 +11,10 @@ def build_instances_keys_dict(data):
             instances_keys[instance["_id"]] = instance
     return instances_keys
 
-def disambiguate_entries(grouped_entries_file, 
+def run_full_disambiguation(grouped_entries_file, 
                          disconnected_entries_file, 
                          disambiguated_blocks_file, 
-                         results_file):
+                         instances_dict_file):
 
     # 1. Load input data
     with open(grouped_entries_file, 'r') as f:
@@ -61,9 +61,3 @@ def disambiguate_entries(grouped_entries_file,
         else:
             print(f"🔁 {len(unresolved_keys)} unresolved blocks remain. Continuing...")
 
-
-if __name__ == "__main__":
-    disconnected_entries_file = 'scripts/data/disconnected_entries.json'
-    instances_dict_file = 'scripts/data/test/instances_dict.json'
-    grouped_entries_file = 'scripts/data/test/grouped.json'
-    results_file = 'scripts/data/test/results.json'

@@ -8,24 +8,14 @@ from readability import Document
 from bs4 import BeautifulSoup
 #from playwright.sync_api import sync_playwright
 from playwright.async_api import async_playwright
-
-# -------------------------------
-# Configuration & Logging
-# -------------------------------
-
-# Github API
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-GITHUB_API_BASE = "https://api.github.com"
-GITHUB_API_HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
-
-logging.basicConfig(level=logging.INFO)
-
-# Github metadata api
-GITHUB_METADATA_URL = "https://observatory.openebench.bsc.es/github-metadata-api/metadata/user"
-GITHUB_CONTENT_URL = "https://observatory.openebench.bsc.es/github-metadata-api/metadata/content/user"
-
-# Gitlab API
-GITLAB_TOKEN = os.environ.get("GITLAB_TOKEN")
+from src.application.services.integration.disambiguation.config import (
+    GITHUB_TOKEN,
+    GITHUB_API_BASE,
+    GITHUB_API_HEADERS,
+    GITHUB_METADATA_URL,
+    GITHUB_CONTENT_URL,
+    GITLAB_TOKEN,
+)
 
 # -------------------------------
 # GitHub API Helpers
