@@ -44,6 +44,7 @@ class license_item(BaseModel, validate_assignment=True):
         
         return data
     
+    """
     @model_validator(mode="before")
     @classmethod
     def map_to_name_to_spdx(cls, data):
@@ -67,6 +68,7 @@ class license_item(BaseModel, validate_assignment=True):
                 data['url'] = matching_license['reference']     
             
         return data
+    """
     
     def merge(self, other: 'license_item') -> 'license_item':
         if not isinstance(other, license_item):

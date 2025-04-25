@@ -8,11 +8,12 @@ from typing import List
 from tenacity import retry, stop_after_attempt, wait_exponential
 from jinja2 import Template
 from functools import lru_cache
-from readability import Document
-from bs4 import BeautifulSoup
 import tiktoken
+import datetime
 
 from src.application.services.integration.enrich_links import enrich_link
+from src.application.services.integration.github_issue_helpers import generate_github_issue, create_issue, generate_context
+from src.domain.models.software_instance.multitype_instance import multitype_instance
 
 # -------------------------------
 # Configuration
@@ -299,7 +300,7 @@ def query_huggingface(messages, model):
             print(f"Whole response: {response.json()}")
             output_text = response.json()[0]["generated_text"].strip()
             # TODO: extract metadata
-            return output_text, {}  # You could add more metadata if needed
+            return output_text, {}  
         except Exception as e:
             logging.warning(f"Parsing error: {e} | Response: {response.json()}")
         
@@ -311,13 +312,12 @@ def query_huggingface(messages, model):
 # Conflict Handling
 # -------------------------------
 
-async def build_full_conflict(conflict, instances_dict, max_tokens=8000, model="gpt-4"):
+async def build_full_conflict(conflict, max_tokens=8000, model="gpt-4"):
     """
     Returns a conflict dictionary where:
     - 'disconnected' and 'remaining' contain minimal metadata (with URLs)
     - 'webpage_contents' and 'repository_contents' contain deduplicated content
     """
-    from collections import defaultdict
 
     async def enrich_and_collect_content(url_list):
         contents = {}
@@ -421,9 +421,6 @@ def parse_result(text):
         logging.warning(f"Failed to parse JSON: {e}")
         return {}
 
-def create_issue(issue):
-    with open('data/issues.json', 'a') as f:
-        f.write(json.dumps(issue, indent=4))
 
 
 def log_error(conflict):
@@ -501,114 +498,420 @@ def decision_agreement_proxy(messages: str) -> str:
             "llama_4": result_llama_4,
             "mixtral": result_mixtral,
         }
+    
+
+def convert_to_multi_type_instance(instance_data_dict):
+    if instance_data_dict['type']:
+        instance_data_dict['type'] = [instance_data_dict['type']]
+    else:
+        instance_data_dict['type'] = []
+    
+    instance_data_dict['other_names'] = []
+
+    return multitype_instance(**instance_data_dict)
+
+
+def merge_instances(instances):
+    merged_instances = instances[0]
+    for instance in instances[1:]:
+        merged_instances = merged_instances.merge(instance)   
+
+    return merged_instances 
+
+
+def merge_remaining(entries):
+    entries_remaining_dict = {}
+    for entry in entries:
+        id = entry["_id"]
+        metadata = entry["data"]
+        entries_remaining_dict[id] = convert_to_multi_type_instance(metadata)
+    
+    print('Instances in group converted to multitype_instance.')
+    ids_remaining = [entry["_id"] for entry in entries]
+    # merge entries
+    print(f"Merging {len(entries_remaining_dict)} entries in group...")
+    instances = [entries_remaining_dict[id] for id in ids_remaining]
+    merged_instances = merge_instances(instances)
+
+    # convert to dictionary again
+    entry_remaining_merged = merged_instances.model_dump()
+
+    return entry_remaining_merged
+
+def build_pairs(full_conflict, key, more_than_two_pairs):
+    """
+    Function to build pairs of disconnected and remaining entries.
+    It checks the number of entries in each group and handles them accordingly.
+    - If there are no disconnected entries, it skips the conflict.
+    - If there are more than two disconnected entries, it creates several pairs.
+    - If there are more than two remaining entries, it merges them into one entry.
+    """
+    pairs = []
+
+    disconnected = full_conflict.get("disconnected", [])
+    remaining = full_conflict.get("remaining", [])
+
+    if len(disconnected) == 0:
+        # No conflict to resolve
+        logging.info(f"Conflict {key} has no disconnected entries. Skipping.")
+        return pairs, more_than_two_pairs
+
+    elif len(disconnected) > 1:
+        more_than_two_pairs += 1
+
+        if len(remaining) == 0:
+            if len(disconnected) == 2:
+                # Treat first as remaining, second as disconnected
+                pair = {
+                    "remaining": [disconnected[0]],
+                    "disconnected": disconnected[1]
+                }
+                pairs.append(pair)
+            else:
+                # No remaining, and more than two disconnected – pair disconnected entries among themselves
+                for i in range(1, len(disconnected)):
+                    pair = {
+                        "remaining": [disconnected[0]],  # use first as pseudo-"remaining"
+                        "disconnected": disconnected[i]
+                    }
+                    pairs.append(pair)
+            return pairs, more_than_two_pairs
+
+        elif len(remaining) == 1:
+            # Pair each disconnected with the single remaining
+            for disc in disconnected:
+                pair = {
+                    "remaining": [remaining[0]],
+                    "disconnected": disc
+                }
+                pairs.append(pair)
+            return pairs, more_than_two_pairs
+
+        elif len(remaining) > 1:
+            # Merge remaining entries into one, and pair each disconnected with the merged remaining
+            merged = merge_remaining(remaining)
+            for disc in disconnected:
+                pair = {
+                    "remaining": [merged],
+                    "disconnected": disc
+                }
+                pairs.append(pair)
+            return pairs, more_than_two_pairs
+
+    else:
+        # Only one disconnected entry
+        if len(remaining) == 0:
+            # Not enough context to make a pair
+            logging.info(f"Conflict {key} has only one disconnected and no remaining entries. Skipping.")
+            return pairs, more_than_two_pairs
+
+        elif len(remaining) == 1:
+            # Simple pair
+            pairs.append(full_conflict)
+            return pairs, more_than_two_pairs
+
+        elif len(remaining) > 1:
+            # Merge remaining entries and create one pair
+            full_conflict['remaining'] = [merge_remaining(remaining)]
+            pairs.append(full_conflict)
+            return pairs, more_than_two_pairs
+
+    return pairs, more_than_two_pairs
 
 
 
-def disambiguate_disconnected_entries(disconnected_entries, instances_dict, grouped_entries, results_file):
-    '''
-    Function for disambiguation in production. Scans grouped entries for disconnected entries and solve conflicts along the way.
-    The result is a grouped dictionary with the same structure as the input, but with disambiguated entries.
-    Also:
-        - logs the results and creates issues for unclear cases.
-        - loads the solved conflicts from the results file to avoid reprocessing them.
-        - handles the case where the results file does not exist yet.
-    '''
 
-    disambiguated_grouped = {}
-    results = {}
-    count = 0
-    solved_conflicts_keys = load_solved_conflict_keys(results_file)
-
-    for key in grouped_entries:
-        if key in disconnected_entries:
-            if key not in solved_conflicts_keys:
-                count += 1
-                logging.info(f"Processing conflict {count} - {key}")
-                try:
-                    """ ------------------- PREPARE MESSAGES --------------------""" 
-
-                    full_conflict = build_full_conflict(disconnected_entries[key], instances_dict)
-                    # TODO: merge entries in "remaining" into one entry
-                    # keep ids of involved entries
-                    ids_remaining = [entry["id"] for entry in full_conflict["remaining"]]
-                    ids_disconnected = [entry["id"] for entry in full_conflict["disconnected"]]
-
-                    messages = build_prompt(full_conflict["disconnected"], full_conflict["remaining"])
-                    logging.info(f"Number of messages: {len(messages)}")
+def build_instances_keys_dict(data):
+    """Create a mapping of instance IDs to their respective instance data."""
+    instances_keys = {}
+    for key, value in data.items():
+        instances = value.get("instances", [])
+        for instance in instances:
+            instances_keys[instance["_id"]] = instance
+    return instances_keys
 
 
+def replace_with_full_entries(conflict, instances_dict):
+    new_conflict = {
+        "disconnected": [],
+        "remaining": [],
+    }
+    for entry in conflict['disconnected']:
+        entry_id = entry["id"]
+        new_conflict['disconnected'].append(instances_dict.get(entry_id))
 
-                    """ ------------------- DISAMBIGUATE --------------------"""
-                    logging.info(f"Sending messages to OpenRouter for conflict {key}")
-                    result = decision_agreement_proxy(messages)
+    for entry in conflict['remaining']:
+        entry_id = entry["id"]
+        new_conflict['remaining'].append(instances_dict.get(entry_id))
+    
+    return new_conflict
 
-                    # If there is agreement
-                    if result.get("verdict") != "disagreement":
-                        logging.info(f"Result for conflict {key}: {result}")
-                        results[key] = result
-                        solved_conflicts_keys.add(key)
-                        write_to_results_file({key: results}, results_file)
+def filter_relevant_fields(conflict):
+    """
+    Filter the relevant fields from the conflict dictionary.
+    """
+    filtered_conflict = {
+        "disconnected": [],
+        "remaining": []
+    }
 
-                        """ ------------------- ADD DISAMBIGUATED INTO DISAMBIGUATED GROUPED ENTRIES --------------------"""
-                        if result.get("verdict") == "same":
-                            group_ids = []
-                            for entry in full_conflict["remaining"]:
-                                group_ids.append(entry["id"])
-                            for entry in full_conflict["disconnected"]:
-                                group_ids.append(entry["id"])
-                            
-                            disambiguated_grouped[key] = group_ids
+    for entry in conflict["disconnected"]:
+        filtered_entry = {
+            "id": entry["id"],
+            "name": entry["name"],
+            "description": entry["description"],
+            "repository": entry["repository"],
+            "webpage": entry["webpage"],
+            "source": entry["source"],
+            "license": entry["license"],
+            "authors": entry["authors"],
+            "publication": entry["publication"],
+            "documentation": entry["documentation"],
+        }
+        filtered_conflict["disconnected"].append(filtered_entry)
+
+    for entry in conflict["remaining"]:
+        filtered_entry = {
+            "id": entry["id"],
+            "name": entry["name"],
+            "description": entry["description"],
+            "repository": entry["repository"],
+            "webpage": entry["webpage"],
+            "source": entry["source"],
+            "license": entry["license"],
+            "authors": entry["authors"],
+            "publication": entry["publication"],
+            "documentation": entry["documentation"],
+        }
+        filtered_conflict["remaining"].append(filtered_entry)
+
+    return filtered_conflict
 
 
-                        elif result.get("verdict") == "different":
-                            group_one_ids = []
-                            key_one = key + "_1"
-                            for entry in full_conflict["remaining"]:
-                                group_one_ids.append(entry["id"])
-                            
-                            disambiguated_grouped[key_one] = group_one_ids
-                            
-                            group_two_ids = []
-                            key_two = key + "_2"
-                            for entry in full_conflict["disconnected"]:
-                                group_two_ids.append(entry["id"])
-                            
-                            disambiguated_grouped[key_two] = group_two_ids
-                            
-                    else:
-                        # reamining part of the conflict is pushed to the database 
-                        group_ids = []
-                        key_one = key + "_1"
-                        for entry in full_conflict["remaining"]:
-                            group_ids.append(entry["id"])
-                        
-                        disambiguated_grouped[key_one] = group_ids
-            
-                        # create issue to be solved manually
-                        create_issue({
-                            "title": f"Disambiguation needed for {key}",
-                            "description": f"Disambiguation needed for {key}. Models disagreed.",
-                            "entries": {
-                                "disconnected": full_conflict["disconnected"],
-                                "remaining": full_conflict["remaining"]
-                            }
-                        })
-                
-                except Exception as e:
-                    raise e
-                    #logging.error(f"Error processing conflict {key}: {e}")
+
+def build_disambiguated_record(block_id, block, pair_results, model_name="auto:agreement-proxy-v"):
+    """
+    Given the results of pairwise disambiguation, build a complete
+    record for disambiguated_blocks.json.
+    """
+    merged_ids = [entry["id"] for entry in block.get("remaining", [])]
+    unmerged_ids = []
+    confidence_scores = {}
+
+    for res in pair_results:
+        confidence_scores[res["disconnected_id"]] = res["confidence"]
+        if res["same_as_remaining"]:
+            merged_ids.append(res["disconnected_id"])
         else:
-            """ ------------------- ADD INTO GROUPED ENTRIES --------------------"""
-            # keep only the ids of the entries in disambiguated_grouped
-            disambiguated_grouped[key] = [entry["id"] for entry in grouped_entries[key]["instances"]]
+            unmerged_ids.append(res["disconnected_id"])
+
+    record = {
+        "resolution": "merged" if not unmerged_ids else "partial",
+        "merged_entries": merged_ids,
+        "unmerged_entries": unmerged_ids,
+        "source": model_name,
+        "confidence_scores": confidence_scores,
+        "timestamp": datetime.utcnow().isoformat(),
+        "notes": None
+    }
+
+    return {block_id: record}
 
 
-    return disambiguated_grouped, results
+
+def process_conflict(key, conflict, instances_dict, model_name="auto:mistral-7b"):
+    """
+    Process a single conflict block: build pairs, disambiguate them, and return
+    a disambiguated_blocks record for this block.
+    """
+
+    # Replace summary info with full entries
+    conflict = replace_with_full_entries(conflict, instances_dict)
+
+    # Build disambiguation pairs
+    conflict_pairs, _ = build_pairs(conflict, key, more_than_two_pairs=0)
+
+    pair_results = []
+
+    for conflict_pair in conflict_pairs:
+        # Prepare minimal, enriched entry for disambiguation
+        full_conflict = filter_relevant_fields(conflict_pair)
+        full_conflict = build_full_conflict(full_conflict)
+
+        # Generate prompt and run model
+        messages = build_prompt(full_conflict["disconnected"], full_conflict["remaining"])
+        result = decision_agreement_proxy(messages)
+
+        if result.get("verdict") != "disagreement":
+            pair_results.append({
+                "disconnected_id": full_conflict["disconnected"]["id"],
+                "same_as_remaining": result["verdict"] == "same",
+                "confidence": result.get("confidence", 1.0)
+            })
+        else:
+            # Human fallback
+            context = generate_context(key, full_conflict)
+            body = generate_github_issue(context, 'github_issue.jinja2')
+            title = f"Manual resolution needed for {key}"
+            labels = ['conflict']
+            create_issue(title, body, labels)
+
+    # Build final record
+    return build_disambiguated_record(key, conflict, pair_results, model_name)
+
+
+def build_no_conflict_record(block_id, block, source="auto:no_disagreement"):
+    """
+    Generate a disambiguated_blocks record for a block with no disconnected entries.
+    This assumes all entries are already grouped (e.g., they share a repo or author).
+    """
+    merged_ids = [entry["id"] for entry in block.get("instances", [])]
+
+    return {
+        block_id: {
+            "resolution": "no_conflict",
+            "merged_entries": merged_ids,
+            "unmerged_entries": [],
+            "source": source,
+            "confidence_scores": {},
+            "timestamp": datetime.utcnow().isoformat(),
+            "notes": "All entries grouped heuristically or by shared metadata. No disambiguation needed."
+        }
+    }
+
+# ----------------- FIRST ROUND OF DISAMBIGUATION -----------------
+def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks):
+    '''
+    Disambiguated blocks can be empty at the beginning.
+    The function will fill it with the disambiguated entries.
+    '''
+    instances_dict = build_instances_keys_dict(blocks)
+    solved_conflicts_keys = load_solved_conflict_keys(disambiguated_blocks)
+
+    for key in blocks:
+        if key in conflict_blocks:
+            if key not in solved_conflicts_keys:
+                try:
+                    record = process_conflict(key, conflict_blocks[key], instances_dict)
+                    disambiguated_blocks.update(record)
+                except Exception as e:
+                    logging.error(f"Error processing conflict {key}: {e}")
+                
+        else:
+            record = build_no_conflict_record(key, blocks[key])
+            disambiguated_blocks.update(record)
+
+    return disambiguated_blocks
+
+def generate_secondary_conflicts(disambiguated_blocks, threshold=0.85):
+    """
+    Create new conflict blocks from unresolved entries in disambiguated_blocks.
+    """
+    secondary_blocks = {}
+    secondary_counter = 0
+
+    for parent_id, record in disambiguated_blocks.items():
+        unmerged = record.get("unmerged_entries", [])
+        if len(unmerged) > 1:
+            for i in range(1, len(unmerged)):
+                secondary_counter += 1
+                new_id = f"{parent_id}_secondary_{secondary_counter}"
+                secondary_blocks[new_id] = {
+                    "remaining": [{"id": unmerged[0]}],  # use first as reference
+                    "disconnected": [{"id": unmerged[i]}],
+                    "parent_block_id": parent_id,
+                    "generated_at": datetime.utcnow().isoformat()
+                }
+
+    return secondary_blocks
+
+
+def run_second_round(conflict_blocks_path, disambiguated_blocks_path, blocks, disambiguate_blocks_func):
+    """
+    Loads existing disambiguation results and conflict blocks,
+    generates second-round conflicts, and runs disambiguation again.
+    """
+    # Load files
+    with open(disambiguated_blocks_path, "r") as f:
+        disambiguated_blocks = json.load(f)
+
+    with open(conflict_blocks_path, "r") as f:
+        conflict_blocks = json.load(f)
+
+    # Generate secondary conflict blocks
+    secondary_blocks = generate_secondary_conflicts(disambiguated_blocks)
+
+    if not secondary_blocks:
+        print("No secondary conflicts to process.")
+        return disambiguated_blocks
+
+    # Update conflict_blocks.json with secondary round blocks
+    conflict_blocks.update(secondary_blocks)
+
+    with open(conflict_blocks_path, "w") as f:
+        json.dump(conflict_blocks, f, indent=2)
+
+    print(f"🔁 {len(secondary_blocks)} secondary conflict blocks generated and added.")
+
+    # Re-run disambiguation on new conflicts
+    updated_disambiguated_blocks = disambiguate_blocks_func(conflict_blocks, blocks, disambiguated_blocks)
+
+    # Save updated disambiguated_blocks.json
+    with open(disambiguated_blocks_path, "w") as f:
+        json.dump(updated_disambiguated_blocks, f, indent=2)
+
+    print("✅ Second round of disambiguation completed.")
+    return updated_disambiguated_blocks
 
 
 if __name__ == "__main__":
+    
     disconnected_entries_file = 'data/disconnected_entries.json'
     instances_dict_file = 'data/instances_dict.json'
     grouped_entries_file = 'data/grouped.json'
-    results_file = 'data/results.json'
+    disambiguated_blocks_file = 'data/disambiguated_blocks.json'
 
+    # 1. Load input data
+    with open(grouped_entries_file, 'r') as f:
+        blocks = json.load(f)
+
+    with open(disconnected_entries_file, 'r') as f:
+        conflict_blocks = json.load(f)
+
+    with open(instances_dict_file, 'r') as f:
+        instances_dict = json.load(f)
+
+    # 2. Run first round of disambiguation
+    disambiguated_blocks = {}
+
+    disambiguated_blocks = disambiguate_blocks(
+        conflict_blocks=conflict_blocks,
+        blocks=blocks,
+        disambiguated_blocks=disambiguated_blocks
+    )
+
+    # 3. Save disambiguated_blocks after first round
+    with open(disambiguated_blocks_file, 'w') as f:
+        json.dump(disambiguated_blocks, f, indent=2)
+
+    # 4. Repeat second-round disambiguation until everything is resolved
+    while True:
+        # Run a second (or N-th) round
+        disambiguated_blocks = run_second_round(
+            conflict_blocks_path=disconnected_entries_file,
+            disambiguated_blocks_path=disambiguated_blocks_file,
+            blocks=blocks,
+            disambiguate_blocks_func=disambiguate_blocks
+        )
+
+        # Reload conflict_blocks to see what's left
+        with open(disconnected_entries_file, 'r') as f:
+            conflict_blocks = json.load(f)
+
+        unresolved_keys = [k for k in conflict_blocks if k not in disambiguated_blocks]
+
+        if not unresolved_keys:
+            print("🎉 All conflicts resolved.")
+            break
+        else:
+            print(f"🔁 {len(unresolved_keys)} unresolved blocks remain. Continuing...")
