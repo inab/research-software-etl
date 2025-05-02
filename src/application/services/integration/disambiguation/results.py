@@ -31,7 +31,7 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
 
 
 
-def build_no_conflict_record(block_id, block, source="auto:no_disagreement"):
+def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
     """
     Generate a disambiguated_blocks record for a block with no disconnected entries.
     This assumes all entries are already grouped (e.g., they share a repo or author).

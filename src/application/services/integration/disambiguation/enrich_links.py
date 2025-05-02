@@ -28,13 +28,15 @@ def request_github_metadata(owner, repo_name):
         'userToken': GITHUB_TOKEN,
         'prepare': False
     }
+    
     try:
-        response = requests.post(GITHUB_METADATA_URL, data=data)
+        response = requests.post(GITHUB_METADATA_URL, json=data)
         response.raise_for_status()
         return response.json().get('data')
     except Exception as e:
-        logging.warning(f"Metadata fetch failed for {owner}/{repo_name}: {e}")
-        return None
+        raise
+        #logging.warning(f"Metadata fetch failed for {owner}/{repo_name}: {e}")
+        #return None
 
 def request_github_content(owner, repo_name, file_path):
     data = {
@@ -44,12 +46,13 @@ def request_github_content(owner, repo_name, file_path):
         'userToken': GITHUB_TOKEN
     }
     try:
-        response = requests.post(GITHUB_CONTENT_URL, data=data)
+        response = requests.post(GITHUB_CONTENT_URL, json=data)
         response.raise_for_status()
         return response.json().get('content')
     except Exception as e:
-        logging.warning(f"README fetch failed for {owner}/{repo_name}: {e}")
-        return None
+        raise
+        #logging.warning(f"README fetch failed for {owner}/{repo_name}: {e}")
+        #return None
 
 def request_github_readme(owner, repo_name):
     try:
@@ -425,6 +428,7 @@ async def enrich_link(link):
     if link:
         processed = False
         if "github.com" in link:
+            print(f"Processing GitHub link: {link}")
             try:
                 parts = link.split('/')
                 owner, repo_name = parts[3], parts[4]
@@ -433,6 +437,7 @@ async def enrich_link(link):
                 processed = True
             except Exception as e:
                 logging.warning(f"Error processing GitHub link {link}: {e}")
+                raise e
 
         elif "gitlab.com" in link:
             pattern = r"https?://gitlab\.com/([^/]+/[^/]+)"

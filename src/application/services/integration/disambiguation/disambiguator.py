@@ -3,11 +3,12 @@ from src.application.services.integration.disambiguation.conflict_builder import
 from src.application.services.integration.disambiguation.prompts import build_prompt
 from src.application.services.integration.disambiguation.proxy import decision_agreement_proxy
 from src.application.services.integration.disambiguation.results import build_disambiguated_record, build_no_conflict_record
-from src.application.services.integration.disambiguation.issues import create_issue, generate_github_issue, generate_context
+from src.application.services.integration.disambiguation.issues import create_github_issue, generate_github_issue, generate_context
 from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict
 import json 
 import logging 
 import os
+from pprint import pprint
 
 
 def log_error(conflict):
@@ -48,7 +49,7 @@ def load_solved_conflict_keys(jsonl_path):
     return solved_keys
 
 
-async def process_conflict(key, conflict, instances_dict, model_name="auto:mistral-7b"):
+async def process_conflict(key, conflict, instances_dict):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
@@ -67,8 +68,15 @@ async def process_conflict(key, conflict, instances_dict, model_name="auto:mistr
         full_conflict = filter_relevant_fields(conflict_pair)
         full_conflict = await build_full_conflict(full_conflict)
 
+        #print("Full conflict:")
+        #print(full_conflict)
+
         # Generate prompt and run model
         messages = build_prompt(full_conflict["disconnected"], full_conflict["remaining"])
+        
+        #print("Messages:")
+        #print(messages)
+        
         result = decision_agreement_proxy(messages)
 
         if result.get("verdict") != "disagreement":
@@ -80,14 +88,14 @@ async def process_conflict(key, conflict, instances_dict, model_name="auto:mistr
         else:
             # Human fallback
             context = generate_context(key, full_conflict)
-            body = generate_github_issue(context, 'github_issue.jinja2')
+            body = generate_github_issue(context)
             title = f"Manual resolution needed for {key}"
             labels = ['conflict']
-            # TODO: tigger the issue creation in github
-            create_issue(title, body, labels)
+            #create_issue(title, body, labels)
+            create_github_issue(title, body, labels)
 
     # Build final record
-    return build_disambiguated_record(key, conflict, pair_results, model_name)
+    return build_disambiguated_record(key, conflict, pair_results)
 
 
 def load_disambiguated(disambiguated_blocks_path):
@@ -130,6 +138,8 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
                 
         else:
             record = build_no_conflict_record(key, blocks[key])
+            #pprint(record)
+
             disambiguated_blocks.update(record)
 
     return disambiguated_blocks

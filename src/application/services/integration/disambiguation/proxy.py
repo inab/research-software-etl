@@ -58,8 +58,9 @@ def query_huggingface_new(messages, model, provider):
     URL = f"https://router.huggingface.co/{provider}/v1/chat/completions"
     logging.info(f"Sending request to Hugging Face Inference API: {URL} with key {HF_API_KEY[:4]}...")
     
-    response = requests.post(URL, headers=headers, json=payload)
-    logging.info(f"API response: {response}")
+    response = requests.post(URL, headers=headers, json=payload, verify=False)
+    response.raise_for_status()
+
     if response.status_code == 200:
         try:
             # main answer 
@@ -72,8 +73,9 @@ def query_huggingface_new(messages, model, provider):
            
         except Exception as e:
             logging.warning(f"Parsing error: {e} | Response: {response.json()}")
+            raise
         
-    logging.warning("API response was empty after 3 attempts.")
+    logging.warning("API response was empty")
     return '', {}
 
 def query_huggingface(messages, model):
@@ -101,7 +103,6 @@ def query_huggingface(messages, model):
         try:
             print(f"Whole response: {response.json()}")
             output_text = response.json()[0]["generated_text"].strip()
-            # TODO: extract metadata
             return output_text, {}  
         except Exception as e:
             logging.warning(f"Parsing error: {e} | Response: {response.json()}")
@@ -115,7 +116,6 @@ def decision_agreement_proxy(messages: str) -> str:
     This function takes a message as input and returns the agreement of the models.
     It uses the `decision_agreement` function from the `decision_agreement` module.
     """
-    print("Real Decision agreement proxy called")
     # model 1: Llama 4 Scout
     model = "meta-llama/Llama-4-Scout-17B-16E-Instruct"
     provider = "together"
@@ -123,6 +123,7 @@ def decision_agreement_proxy(messages: str) -> str:
     try:
         result_llama_4 = parse_result(result_llama_4)
     except Exception as e:
+        logging.warning(f"Parsing error: {e} | Response: {result_llama_4}")
         result_llama_4 = {}
 
     # model 2: Mixtral 8x7B
@@ -139,7 +140,11 @@ def decision_agreement_proxy(messages: str) -> str:
     # if both models agree, return the result
     if result_llama_4_verdict == result_mixtral_verdict:
         if result_llama_4_verdict != None:
-            return result_llama_4
+            return {
+                'verdict': result_llama_4_verdict,
+                'llama_4': result_llama_4,
+                'mixtral': result_mixtral
+            }
         # If models agree and are None, human annotation is needed
         
     else:

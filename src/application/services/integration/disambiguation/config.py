@@ -1,9 +1,11 @@
 import os 
 import logging
-
+from dotenv import load_dotenv
 # -------------------------------
 # Configuration
 # -------------------------------
+
+load_dotenv(".env")  # Load environment variables from .env file
 
 # OpenRouter - https://openrouter.ai
 OR_API_KEY = os.environ.get("OPENROUTER_API_KEY")
@@ -26,8 +28,11 @@ GITHUB_API_HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
 logging.basicConfig(level=logging.INFO)
 
 # Github metadata api
-GITHUB_METADATA_URL = "https://observatory.openebench.bsc.es/github-metadata-api/metadata/user"
-GITHUB_CONTENT_URL = "https://observatory.openebench.bsc.es/github-metadata-api/metadata/content/user"
+GITHUB_METADATA_URL = "http://localhost:3800/metadata/user"
+GITHUB_CONTENT_URL = "http://localhost:3800/metadata/content/user"
+
+#GITHUB_METADATA_URL = "https://observatory.openebench.bsc.es/github-metadata-api/metadata/user"
+#GITHUB_CONTENT_URL = "https://observatory.openebench.bsc.es/github-metadata-api/metadata/content/user"
 
 # Gitlab API
 GITLAB_TOKEN = os.environ.get("GITLAB_TOKEN")

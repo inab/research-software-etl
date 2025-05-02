@@ -9,28 +9,44 @@ def create_issue(issue):
     with open('data/issues.json', 'a') as f:
         f.write(json.dumps(issue, indent=4))
 
-def generate_github_issue(context, template_path='template.md'):
+def generate_github_issue(context, template_path='src/application/services/integration/disambiguation/github_issue.jinja2'):
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template(template_path)
     return template.render(context)
 
 def extract_url(repo):
-    return repo.get("url") if isinstance(repo, dict) else repo
+    urls = ""
+    for repos in repo:
+        if isinstance(repos, dict):
+            url = repos.get("url")
+            if url:
+                urls += f"\n\t- {url}"
+        elif isinstance(repos, str):
+            urls += f"\n\t- {repos}"
+
+    return urls
 
 def prepare_description(description_list):
     if not description_list:
         return "No description available."
 
     if isinstance(description_list, str):
-        return description_list.strip()
+        return f"\n\t```\n\t{description_list.strip()}\n\t```\n"
 
     if isinstance(description_list, list):
         # Strip whitespace and remove empty descriptions
         cleaned = [desc.strip() for desc in description_list if desc.strip()]
         if not cleaned:
             return "No description available."
-        return "\n\n".join(cleaned)
 
+        text = "\n\t```"    
+        for item in cleaned:
+            text += f"\n\t{item}"
+
+        text += "\n\t```"
+        return text
+    
+    
     return str(description_list)  # Fallback, just in case
 
 def prepare_publications(publications):
@@ -71,18 +87,21 @@ def prepare_publications(publications):
 
 
 def prepare_license(license_data):
+    licenses = ""
     if not license_data:
         return "No license information."
+    
+    for license in license_data:
 
-    value = license_data.get("value", "").strip()
-    url = license_data.get("url", "").strip()
+        value = license.get("name", "").strip()
+        url = license.get("url", "").strip()
 
-    if value and url:
-        return f"[{value}]({url})"
-    elif value:
-        return value
-    elif url:
-        return f"[License link]({url})"
+        if value and url:
+           licenses += f"\n\t- [{value}]({url})"
+        elif value:
+            licenses += f"\n\t- {value}"
+        elif url:
+            licenses += f"\n\t- [License link]({url})"
     else:
         return "No license information."
 
@@ -90,50 +109,50 @@ def prepare_documentation(docs):
     if not docs:
         return "No documentation available."
 
-    lines = []
+    text = ""
     for doc in docs:
         doc_type = doc.get("type", "Unknown").capitalize()
         url = doc.get("url")
         if url:
-            lines.append(f"- [{doc_type}]({url})")
+            text += f"\n\t- [{doc_type}]({url})"
         else:
-            lines.append(f"- {doc_type} (no URL)")
+            text += f"\n\t- {doc_type} (no URL)"
 
-    return "\n".join(lines)
+    return text
 
 
 def prepare_authors(authors):
     if not authors:
         return "No authors listed."
 
-    formatted = []
+    formatted = ""
     for author in authors:
         author_type = author.get("type", "Unknown")
         name = author.get("name", "Unnamed")
         email = author.get("email")
 
         if email:
-            formatted.append(f"{name} ({author_type}, [{email}](mailto:{email}))")
+            formatted += f"\n\t- {name} ({author_type}, [{email}](mailto:{email}))"
         else:
-            formatted.append(f"{name} ({author_type})")
+            formatted += (f"\n\t-{name} ({author_type})")
 
-    return "\n".join(formatted)
+    return formatted
 
 def preprocess_entry(entry):
-    data = entry["data"]
+
     return {
         "id": entry.get("id"),
-        "name": data.get("name"),
-        "source": data.get("source")[0],
-        "version": data.get("version"),
-        "type": data.get("type"),
-        "repository": extract_url(data.get("repository")),
-        "website": data.get("website"),
-        "authors": prepare_authors(data.get("authors")),
-        "publications": prepare_publications(data.get("publications")),
-        "license": prepare_license(data.get("license")),
-        "description": prepare_description(data.get("description")),
-        "documentation": prepare_documentation(data.get("documentation")),   
+        "name": entry.get("name"),
+        "source": entry.get("source")[0],
+        "version": entry.get("version"),
+        "type": entry.get("type"),
+        "repository": extract_url(entry.get("repository")),
+        "website": entry.get("website"),
+        "authors": prepare_authors(entry.get("authors")),
+        "publications": prepare_publications(entry.get("publications")),
+        "license": prepare_license(entry.get("license")),
+        "description": prepare_description(entry.get("description")),
+        "documentation": prepare_documentation(entry.get("documentation")),   
     }
 
 def generate_context(key, full_conflict):
