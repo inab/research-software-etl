@@ -83,6 +83,7 @@ async def process_conflict(key, conflict, instances_dict, model_name="auto:mistr
             body = generate_github_issue(context, 'github_issue.jinja2')
             title = f"Manual resolution needed for {key}"
             labels = ['conflict']
+            # TODO: tigger the issue creation in github
             create_issue(title, body, labels)
 
     # Build final record
