@@ -130,7 +130,7 @@ PROMPT_TEMPLATES = load_templates_from_folder("src/application/services/integrat
 def build_prompt(disconnected, remaining):
 
     # TODO: Add template here
-    template = ""
+    template = PROMPT_TEMPLATES["prompt_benchmarking_chat_style"]
 
     instruction_prompt = template.render()
 

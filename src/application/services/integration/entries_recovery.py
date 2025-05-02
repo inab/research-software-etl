@@ -203,8 +203,3 @@ def recover_shared_name_link(grouped_instancies):
 
 if __name__ == "__main__":
     pass
-
-   
-
-
-    # 4. Update the grouped.json file

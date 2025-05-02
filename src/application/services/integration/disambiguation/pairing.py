@@ -1,14 +1,19 @@
 import logging
+from pprint import pprint
 from src.domain.models.software_instance.multitype_instance import multitype_instance
 
 
 def convert_to_multi_type_instance(instance_data_dict):
-    if instance_data_dict['type']:
+    if instance_data_dict['type'] and isinstance(instance_data_dict['type'], str):
         instance_data_dict['type'] = [instance_data_dict['type']]
+    elif instance_data_dict['type'] and isinstance(instance_data_dict['type'], list):
+        instance_data_dict['type'] = instance_data_dict['type']
     else:
         instance_data_dict['type'] = []
     
     instance_data_dict['other_names'] = []
+
+    #pprint(instance_data_dict)
 
     return multitype_instance(**instance_data_dict)
 
@@ -35,9 +40,9 @@ def merge_remaining(entries):
     merged_instances = merge_instances(instances)
 
     # convert to dictionary again
-    entry_remaining_merged = merged_instances.model_dump()
+    entry_remaining_merged = merged_instances.model_dump(mode="json")
 
-    return entry_remaining_merged
+    return entry_remaining_merged, ids_remaining
 
 def build_pairs(full_conflict, key, more_than_two_pairs):
     """
@@ -65,7 +70,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
                 # Treat first as remaining, second as disconnected
                 pair = {
                     "remaining": [disconnected[0]],
-                    "disconnected": disconnected[1]
+                    "disconnected": [disconnected[1]]
                 }
                 pairs.append(pair)
             else:
@@ -83,7 +88,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
             for disc in disconnected:
                 pair = {
                     "remaining": [remaining[0]],
-                    "disconnected": disc
+                    "disconnected": [disc]
                 }
                 pairs.append(pair)
             return pairs, more_than_two_pairs
@@ -94,7 +99,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
             for disc in disconnected:
                 pair = {
                     "remaining": [merged],
-                    "disconnected": disc
+                    "disconnected": [disc]
                 }
                 pairs.append(pair)
             return pairs, more_than_two_pairs
@@ -113,7 +118,8 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
 
         elif len(remaining) > 1:
             # Merge remaining entries and create one pair
-            full_conflict['remaining'] = [merge_remaining(remaining)]
+            merged, merged_ids = merge_remaining(remaining)
+            full_conflict['remaining'] = [{"_id": ','.join(merged_ids) ,"data": merged}]
             pairs.append(full_conflict)
             return pairs, more_than_two_pairs
 

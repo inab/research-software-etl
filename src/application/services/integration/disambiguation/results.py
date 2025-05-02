@@ -1,11 +1,12 @@
-import datetime
+from datetime import datetime
+
 
 def build_disambiguated_record(block_id, block, pair_results, model_name="auto:agreement-proxy-v"):
     """
     Given the results of pairwise disambiguation, build a complete
     record for disambiguated_blocks.json.
     """
-    merged_ids = [entry["id"] for entry in block.get("remaining", [])]
+    merged_ids = [entry["_id"] for entry in block.get("remaining", [])]
     unmerged_ids = []
     confidence_scores = {}
 
@@ -35,7 +36,7 @@ def build_no_conflict_record(block_id, block, source="auto:no_disagreement"):
     Generate a disambiguated_blocks record for a block with no disconnected entries.
     This assumes all entries are already grouped (e.g., they share a repo or author).
     """
-    merged_ids = [entry["id"] for entry in block.get("instances", [])]
+    merged_ids = [entry["_id"] for entry in block.get("instances", [])]
 
     return {
         block_id: {

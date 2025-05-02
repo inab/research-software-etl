@@ -115,6 +115,7 @@ def decision_agreement_proxy(messages: str) -> str:
     This function takes a message as input and returns the agreement of the models.
     It uses the `decision_agreement` function from the `decision_agreement` module.
     """
+    print("Real Decision agreement proxy called")
     # model 1: Llama 4 Scout
     model = "meta-llama/Llama-4-Scout-17B-16E-Instruct"
     provider = "together"

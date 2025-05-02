@@ -1,3 +1,4 @@
+from pprint import pprint
 
 def build_instances_keys_dict(data):
     """Create a mapping of instance IDs to their respective instance data."""
@@ -14,14 +15,17 @@ def replace_with_full_entries(conflict, instances_dict):
         "disconnected": [],
         "remaining": [],
     }
+
+
     for entry in conflict['disconnected']:
         entry_id = entry["id"]
         new_conflict['disconnected'].append(instances_dict.get(entry_id))
 
+    
     for entry in conflict['remaining']:
         entry_id = entry["id"]
         new_conflict['remaining'].append(instances_dict.get(entry_id))
-    
+
     return new_conflict
 
 def filter_relevant_fields(conflict):
@@ -35,31 +39,32 @@ def filter_relevant_fields(conflict):
 
     for entry in conflict["disconnected"]:
         filtered_entry = {
-            "id": entry["id"],
-            "name": entry["name"],
-            "description": entry["description"],
-            "repository": entry["repository"],
-            "webpage": entry["webpage"],
-            "source": entry["source"],
-            "license": entry["license"],
-            "authors": entry["authors"],
-            "publication": entry["publication"],
-            "documentation": entry["documentation"],
+            "id": entry["_id"],
+            "name": entry["data"].get("name"),
+            "description": entry["data"].get("description"),
+            "repository": entry["data"].get("repository"),
+            "webpage": entry["data"].get("webpage"),
+            "source": entry["data"].get("source"),
+            "license": entry["data"].get("license"),
+            "authors": entry["data"].get("authors"),
+            "publication": entry["data"].get("publication"),
+            "documentation": entry["data"].get("documentation")
         }
         filtered_conflict["disconnected"].append(filtered_entry)
 
     for entry in conflict["remaining"]:
+        #print('Entry:', entry)
         filtered_entry = {
-            "id": entry["id"],
-            "name": entry["name"],
-            "description": entry["description"],
-            "repository": entry["repository"],
-            "webpage": entry["webpage"],
-            "source": entry["source"],
-            "license": entry["license"],
-            "authors": entry["authors"],
-            "publication": entry["publication"],
-            "documentation": entry["documentation"],
+            "id": entry["_id"],
+            "name": entry["data"].get("name"),
+            "description": entry["data"].get("description"),
+            "repository": entry["data"].get("repository"),
+            "webpage": entry["data"].get("webpage"),
+            "source": entry["data"].get("source"),
+            "license": entry["data"].get("license"),
+            "authors": entry["data"].get("authors"),
+            "publication": entry["data"].get("publication"),
+            "documentation": entry["data"].get("documentation")
         }
         filtered_conflict["remaining"].append(filtered_entry)
 
