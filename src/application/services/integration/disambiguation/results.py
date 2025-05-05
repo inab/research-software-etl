@@ -1,12 +1,92 @@
 from datetime import datetime
 
 
+def generate_merge_note_if_needed(merged_ids):
+    """
+   
+    """
+
+    # Extract name from _id assuming format: <source>/<name>/<type><version>
+    def parse_name_from_id(entry_id):
+        try:
+            return entry_id.split("/")[1]
+        except IndexError:
+            return entry_id
+
+    name_set = set()
+
+    for id in merged_ids:
+        name = parse_name_from_id(id)
+        if name:
+            name_set.add(name)
+
+    if len(name_set) > 1:
+        return "Caution: merged entries have different names — may be distinct software."
+
+    else:
+        return ''
+
+
 def build_disambiguated_record(block_id, block, pair_results, model_name="auto:agreement-proxy-v"):
+
     """
-    Given the results of pairwise disambiguation, build a complete
-    record for disambiguated_blocks.json.
+    Builds a structured resolution record for a disambiguation block.
+
+    This function summarizes the results of pairwise comparisons between disconnected entries
+    and a group of known related entries ("remaining") for a given block. It determines which
+    disconnected entries should be merged, which remain separate, and stores the associated
+    confidence scores.
+
+    Parameters:
+    ----------
+    block_id : str
+        The identifier of the disambiguation block (typically the group key).
+    block : dict
+        The full conflict block containing "remaining" entries (considered same) and "disconnected" entries (to test).
+    pair_results : list of dict
+        Each dict contains:
+            - "disconnected_id": str
+            - "same_as_remaining": bool
+            - "confidence": float (from 0 to 1)
+    model_name : str, optional
+        The source of the decision (e.g., model name). Default is "auto:agreement-proxy-v".
+
+    Returns:
+    -------
+    dict
+        A single-entry dictionary with the block_id as key and the resolution record as value.
+        The record includes merged and unmerged IDs, confidence scores, source, timestamp, and resolution type.
+
+    Example:
+    -------
+    >>> block_id = "toolX/cmd"
+    >>> block = {
+            "remaining": [{"_id": "id1"}, {"_id": "id2"}],
+            "disconnected": [{"_id": "id3"}, {"_id": "id4"}]
+        }
+    >>> pair_results = [
+            {"disconnected_id": "id3", "same_as_remaining": True, "confidence": "high"},
+            {"disconnected_id": "id4", "same_as_remaining": False, "confidence": "medium"}
+        ]
+    >>> build_disambiguated_record(block_id, block, pair_results)
+    {
+        "toolX/cmd": {
+            "resolution": "partial",
+            "merged_entries": ["id1", "id2", "id3"],
+            "unmerged_entries": ["id4"],
+            "source": "auto:agreement-proxy-v",
+            "confidence_scores": {
+                "id3": "high",
+                "id4": "medium"
+            },
+            "timestamp": "2025-04-28T15:00:00.000Z",
+            "notes": None
+        }
+    }
     """
-    merged_ids = [entry["_id"] for entry in block.get("remaining", [])]
+ 
+    #merged_ids = [entry["_id"] for entry in block.get("remaining", [])]
+    merged_ids = block.get("remaining")[0]['_id'].split(',')
     unmerged_ids = []
     confidence_scores = {}
 
@@ -17,6 +97,10 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
         else:
             unmerged_ids.append(res["disconnected_id"])
 
+    note = generate_merge_note_if_needed(merged_ids)
+    if not note:
+        note = None
+
     record = {
         "resolution": "merged" if not unmerged_ids else "partial",
         "merged_entries": merged_ids,
@@ -24,7 +108,7 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
         "source": model_name,
         "confidence_scores": confidence_scores,
         "timestamp": datetime.utcnow().isoformat(),
-        "notes": None
+        "notes": note
     }
 
     return {block_id: record}
@@ -38,6 +122,10 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
     """
     merged_ids = [entry["_id"] for entry in block.get("instances", [])]
 
+    note = generate_merge_note_if_needed(block)
+    note = f"All entries grouped heuristically or by shared metadata. No disambiguation needed.{note}"
+    note = note.strip() # strip leading and trailing whitespace
+
     return {
         block_id: {
             "resolution": "no_conflict",
@@ -46,6 +134,6 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
             "source": source,
             "confidence_scores": {},
             "timestamp": datetime.utcnow().isoformat(),
-            "notes": "All entries grouped heuristically or by shared metadata. No disambiguation needed."
+            "notes": note
         }
     }

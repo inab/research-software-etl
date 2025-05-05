@@ -83,7 +83,7 @@ async def process_conflict(key, conflict, instances_dict):
             pair_results.append({
                 "disconnected_id": full_conflict["disconnected"][0]["id"],
                 "same_as_remaining": result["verdict"] == "same",
-                "confidence": result.get("confidence", 1.0)
+                "confidence": result.get("confidence", None)
             })
         else:
             # Human fallback
@@ -138,9 +138,8 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
                 
         else:
             record = build_no_conflict_record(key, blocks[key])
-            #pprint(record)
-
             disambiguated_blocks.update(record)
+            print(f"{key} is not a conflict block")
 
     return disambiguated_blocks
 
