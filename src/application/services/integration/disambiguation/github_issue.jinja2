@@ -1,0 +1,56 @@
+A conflict has been detected between two software metadata entries with the same name but no shared repository or website. Please review the metadata and provide your decision using the format below.
+
+**Annotation Guidelines**: refer to the [annotation guidelines](https://link-to-guidelines.example.com) if needed.
+
+---
+
+### Entry A - {{ entry_a.name }}
+
+- **Name**: {{ entry_a.name }}
+- **ID**: {{ entry_a.id }}
+- **Source**: {{ entry_a.source }}
+- **Version**: {{ entry_a.version }}
+- **Type**: {{ entry_a.type }}
+- **Repository**: {{ entry_a.repository }}
+- **Website**: {{ entry_a.website }}
+- **Authors**: {{ entry_a.authors }}
+- **Publications**: {{ entry_a.publications }}
+- **License**: {{ entry_a.license }}
+- **Documentation**: {{ entry_a.documentation }}
+- **Description**: {{ entry_a.description }}
+
+---
+
+### Entry B - {{ entry_b.name }} 
+
+- **Name**: {{ entry_b.name }}
+- **ID**: {{ entry_b.id }}
+- **Source**: {{ entry_b.source }}
+- **Version**: {{ entry_b.version }}
+- **Type**: {{ entry_b.type }}
+- **Repository**: {{ entry_b.repository }}
+- **Website**: {{ entry_b.website }}
+- **Authors**: {{ entry_b.authors }}
+- **Publications**: {{ entry_b.publications }}
+- **License**: {{ entry_b.license }}
+- **Documentation**: {{ entry_b.documentation }}
+- **Description**: {{ entry_b.description }}
+
+---
+
+### Your Decision (in a code block below)
+
+Use the **exact format shown** in a single comment, replacing the values as needed:
+
+```json
+{
+  "decision": "same",  // options: "same", "different", "unclear"
+  "canonical_id": "entry_a_name/cmd",  // ID of the software to keep if "same"
+  "explanation": "Brief explanation of your decision",
+  "confidence": "high" // options: "high", "medium", "low"
+}
+```
+
+---
+
+Thank you! Your annotation will be automatically ingested and logged.
