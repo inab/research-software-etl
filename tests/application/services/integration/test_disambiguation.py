@@ -46,11 +46,13 @@ async def test_real_conflict_cases(monkeypatch):
     print(f"Instances in ale/cmd block: {len(blocks['ale/cmd']['instances'])}")
     for i, conflicts_blocks in enumerate(conflicts_blocks_sets):
 
-        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.jsonl')
+        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.json')
 
         # --- Assertions ---
 
         assert "ale/cmd" in disamb_result.keys()
+
+        print(f"------- Disambiguation result for {i} ----------------------------")
         pprint(disamb_result)
 
         # ---- ale/cmd conflict results -----
@@ -71,6 +73,7 @@ async def test_real_conflict_cases(monkeypatch):
         print("===" * 20)
 
 
+@pytest.mark.asyncio
 async def test_real_conflict_cases_human(monkeypatch):
     '''
     This test passes five different conflict cases to the disambiguation pipeline.
@@ -101,7 +104,7 @@ async def test_real_conflict_cases_human(monkeypatch):
     print(f"Instances in ale/cmd block: {len(blocks['ale/cmd']['instances'])}")
     for conflicts_blocks in conflicts_blocks_sets[0:1]:
 
-        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.jsonl')
+        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.json')
 
         # --- Assertions ---
 

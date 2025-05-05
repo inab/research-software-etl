@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from pprint import pprint
 
 def generate_merge_note_if_needed(merged_ids):
     """
@@ -84,12 +84,23 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
         }
     }
     """
- 
-    #merged_ids = [entry["_id"] for entry in block.get("remaining", [])]
-    merged_ids = block.get("remaining")[0]['_id'].split(',')
-    unmerged_ids = []
-    confidence_scores = {}
+    print(f"PAIR RESULTS:")
+    pprint(pair_results)
 
+    if len(pair_results) == 0:
+        # No pairs to process
+        merged_ids = [entry["_id"] for entry in block.get("remaining", [])]
+        unmerged_ids = []
+        confidence_scores = {}
+        note = 'All entries grouped heuristically or by shared metadata. No disambiguation needed. '
+    else:
+        remaining_ids_in_pairs = pair_results[0]['remaining_id']
+        #merged_ids = [entry["_id"] for entry in block.get("remaining", [])]
+        merged_ids = remaining_ids_in_pairs.split(',')
+        unmerged_ids = []
+        confidence_scores = {}
+        note = ''
+        
     for res in pair_results:
         confidence_scores[res["disconnected_id"]] = res["confidence"]
         if res["same_as_remaining"]:
@@ -97,9 +108,11 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
         else:
             unmerged_ids.append(res["disconnected_id"])
 
-    note = generate_merge_note_if_needed(merged_ids)
+    note += generate_merge_note_if_needed(merged_ids)
     if not note:
         note = None
+    else: 
+        note = note.strip()
 
     record = {
         "resolution": "merged" if not unmerged_ids else "partial",
@@ -107,7 +120,7 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
         "unmerged_entries": unmerged_ids,
         "source": model_name,
         "confidence_scores": confidence_scores,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(),
         "notes": note
     }
 
@@ -122,8 +135,8 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
     """
     merged_ids = [entry["_id"] for entry in block.get("instances", [])]
 
-    note = generate_merge_note_if_needed(block)
-    note = f"All entries grouped heuristically or by shared metadata. No disambiguation needed.{note}"
+    note = generate_merge_note_if_needed(merged_ids)
+    note = f"All entries grouped heuristically or by shared metadata. No disambiguation needed. {note}"
     note = note.strip() # strip leading and trailing whitespace
 
     return {
@@ -133,7 +146,7 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
             "unmerged_entries": [],
             "source": source,
             "confidence_scores": {},
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(),
             "notes": note
         }
     }

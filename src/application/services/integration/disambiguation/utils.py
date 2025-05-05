@@ -5,6 +5,9 @@ def build_instances_keys_dict(data):
     instances_keys = {}
     for key, value in data.items():
         instances = value.get("instances", [])
+        # remove instalce with only _id
+        instances = [instance for instance in instances if len(instance) > 1]
+
         for instance in instances:
             instances_keys[instance["_id"]] = instance
     return instances_keys
@@ -15,8 +18,6 @@ def replace_with_full_entries(conflict, instances_dict):
         "disconnected": [],
         "remaining": [],
     }
-
-
     for entry in conflict['disconnected']:
         entry_id = entry["id"]
         new_conflict['disconnected'].append(instances_dict.get(entry_id))

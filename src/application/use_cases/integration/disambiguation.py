@@ -1,6 +1,6 @@
 
 import json 
-from src.application.services.integration.disambiguation import disambiguate_blocks, run_second_round
+from src.application.services.integration.disambiguation.secondary_round import disambiguate_blocks, run_second_round
 
 def build_instances_keys_dict(data):
     """Create a mapping of instance IDs to their respective instance data."""
@@ -23,8 +23,6 @@ def run_full_disambiguation(grouped_entries_file,
     with open(disconnected_entries_file, 'r') as f:
         conflict_blocks = json.load(f)
 
-    with open(instances_dict_file, 'r') as f:
-        instances_dict = json.load(f)
 
     # 2. Run first round of disambiguation
     disambiguated_blocks = {}
@@ -56,7 +54,7 @@ def run_full_disambiguation(grouped_entries_file,
         unresolved_keys = [k for k in conflict_blocks if k not in disambiguated_blocks]
 
         if not unresolved_keys:
-            print("🎉 All conflicts resolved.")
+            print("✨All conflicts resolved.")
             break
         else:
             print(f"🔁 {len(unresolved_keys)} unresolved blocks remain. Continuing...")

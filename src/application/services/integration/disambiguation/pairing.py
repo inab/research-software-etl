@@ -63,8 +63,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
         return pairs, more_than_two_pairs
 
     elif len(disconnected) > 1:
-        more_than_two_pairs += 1
-
+        
         if len(remaining) == 0:
             if len(disconnected) == 2:
                 # Treat first as remaining, second as disconnected
@@ -84,6 +83,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
             return pairs, more_than_two_pairs
 
         elif len(remaining) == 1:
+            more_than_two_pairs += 1
             # Pair each disconnected with the single remaining
             for disc in disconnected:
                 pair = {
@@ -94,6 +94,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
             return pairs, more_than_two_pairs
 
         elif len(remaining) > 1:
+            more_than_two_pairs += 1
             # Merge remaining entries into one, and pair each disconnected with the merged remaining
             merged = merge_remaining(remaining)
             for disc in disconnected:

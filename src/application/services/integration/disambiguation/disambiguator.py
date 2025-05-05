@@ -8,6 +8,7 @@ from src.application.services.integration.disambiguation.utils import replace_wi
 import json 
 import logging 
 import os
+import copy
 from pprint import pprint
 
 
@@ -56,10 +57,10 @@ async def process_conflict(key, conflict, instances_dict):
     """
 
     # Replace summary info with full entries
-    conflict = replace_with_full_entries(conflict, instances_dict)
+    conflict_full = replace_with_full_entries(conflict, instances_dict)
 
     # Build disambiguation pairs
-    conflict_pairs, _ = build_pairs(conflict, key, more_than_two_pairs=0)
+    conflict_pairs, _ = build_pairs(copy.deepcopy(conflict_full), key, more_than_two_pairs=0)
 
     pair_results = []
 
@@ -81,6 +82,7 @@ async def process_conflict(key, conflict, instances_dict):
 
         if result.get("verdict") != "disagreement":
             pair_results.append({
+                "remaining_id": full_conflict["remaining"][0]["id"],
                 "disconnected_id": full_conflict["disconnected"][0]["id"],
                 "same_as_remaining": result["verdict"] == "same",
                 "confidence": result.get("confidence", None)
@@ -94,24 +96,16 @@ async def process_conflict(key, conflict, instances_dict):
             #create_issue(title, body, labels)
             create_github_issue(title, body, labels)
 
+
     # Build final record
     return build_disambiguated_record(key, conflict, pair_results)
 
 
 def load_disambiguated(disambiguated_blocks_path):
     with open(disambiguated_blocks_path, 'r') as f:
-        disambiguated_blocks = {}
-        for line in f:
-            if line.strip():
-                try:
-                    entry = json.loads(line)
-                    key = next(iter(entry))
-                    disambiguated_blocks[key] = entry[key]
-                except Exception as e:
-                    logging.warning(f"Could not parse line: {line[:100]}...\n{e}")
+        disambiguated_blocks = json.load(f)
     
     return disambiguated_blocks
-
 
 
 async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path):

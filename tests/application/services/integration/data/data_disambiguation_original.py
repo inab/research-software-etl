@@ -139,18 +139,18 @@ expected_two_one = {
     'merged_entries': ['bioconda_recipes/ale-core/cmd/20220503'],
     'unmerged_entries': ['biotools/ale/cmd/None', 'bioconda_recipes/ale/cmd/20180904'],
     'resolution': 'partial',
-    'notes': ''
+    'notes': None
 }
 
 expected_two_zero = {
     'merged_entries': ['biotools/ale/cmd/None'],
     'unmerged_entries': ['bioconda_recipes/ale/cmd/20180904'],
     'resolution': 'partial',
-    'notes': ''
+    'notes': None
 }
 
 expected_zero_two = {
-    'merged_entries': ['biotools/ale/cmd/None','bioconda_recipes/ale/cmd/20180904'],
+    'merged_entries': ['bioconda_recipes/ale/cmd/20180904', 'bioconda_recipes/ale-core/cmd/20220503'],
     'unmerged_entries': [],
     'resolution': 'merged',
     'notes': 'All entries grouped heuristically or by shared metadata. No disambiguation needed. Caution: merged entries have different names — may be distinct software.'
