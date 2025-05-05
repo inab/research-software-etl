@@ -41,15 +41,27 @@ class MongoDBAdapter(DatabaseAdapter):
 
         # Initialize MongoDB Client with AutoReconnect handling
         try:
-            client = pymongo.MongoClient(
-                host=[f'{mongo_host}:{mongo_port}'],
-                username=mongo_user,
-                password=mongo_pass,
-                authSource=mongo_auth_src,
-                authMechanism='SCRAM-SHA-256',
-                maxPoolSize=100,
-                serverSelectionTimeoutMS=5000  # Avoid indefinite hanging
-            )
+            if mongo_user is None or mongo_pass is None:
+                # If no credentials are provided, connect without authentication
+                logger.debug('Connecting to local MongoDB without authentication')
+                client = pymongo.MongoClient(
+                    host=[f'localhost:27017'],
+                    maxPoolSize=100,
+                    serverSelectionTimeoutMS=5000  # Avoid indefinite hanging
+                )
+                logger.info("Connected to local MongoDB")
+            else:
+                logging.debug('Connecting to MongoDB with authentication')
+                client = pymongo.MongoClient(
+                    host=[f'{mongo_host}:{mongo_port}'],
+                    username=mongo_user,
+                    password=mongo_pass,
+                    authSource=mongo_auth_src,
+                    authMechanism='SCRAM-SHA-256',
+                    maxPoolSize=100,
+                    serverSelectionTimeoutMS=5000  # Avoid indefinite hanging
+                )
+                logger.info(f"Connected to MongoDB at {mongo_host}:{mongo_port} with authentication")
             # Test connection
             client.admin.command('ping')
             return client

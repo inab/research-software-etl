@@ -36,8 +36,8 @@ class githubStandardizer(MetadataStandardizer):
         Turns person into Person
         '''
         new_authors = []
-        if tool.get('author'):
-            for author in tool.get('author'):
+        if tool.get('authors'):
+            for author in tool.get('authors'):
                 if author.get("type") == "person":
                     new_authors.append({
                         "name": author.get("name"),
@@ -88,7 +88,8 @@ class githubStandardizer(MetadataStandardizer):
             "documentation" : data['documentation'],
             "authors" : cls.authors(data),
             "publications" : data['publication'],
-            "topics" : data['topics']
+            "topics" : data['topics'],
+            "license" : data['license']
         }
         
         # We keep only the fields that pass the validation
