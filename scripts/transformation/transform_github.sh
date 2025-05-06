@@ -12,17 +12,17 @@ ENV_FILE=".env"
 
 # Change to the project directory
 cd "$PROJECT_DIR" || {
-  echo "❌ Failed to change directory to $PROJECT_DIR" | tee -a rs-transformation-github-02042025.log
+  echo "❌ Failed to change directory to $PROJECT_DIR" | tee -a rs-transformation-github-06052025.log
   exit 1
 }
 
 # Set the PYTHONPATH environment variable
 export PYTHONPATH="$PROJECT_DIR"
 
-echo "ℹ️ Running the transformation script..." | tee -a rs-transformation-github-02042025.log
+echo "ℹ️ Running the transformation script..." | tee -a rs-transformation-github-06052025.log
 
 # Run the Python script
-python3 "$SCRIPT_PATH" --env-file "$ENV_FILE" --sources github 2>&1 | tee -a rs-transformation-github-02042025.log
+python3 "$SCRIPT_PATH" --env-file "$ENV_FILE" --sources github 2>&1 | tee -a rs-transformation-github-06052025.log
 
 
 

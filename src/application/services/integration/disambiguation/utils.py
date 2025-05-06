@@ -1,16 +1,12 @@
 from pprint import pprint
+from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
-def build_instances_keys_dict(data):
-    """Create a mapping of instance IDs to their respective instance data."""
-    instances_keys = {}
-    for key, value in data.items():
-        instances = value.get("instances", [])
-        # remove instalce with only _id
-        instances = [instance for instance in instances if len(instance) > 1]
 
-        for instance in instances:
-            instances_keys[instance["_id"]] = instance
-    return instances_keys
+def build_instances_keys_dict():
+    
+    doc_dict = {doc['_id']: doc for doc in mongo_adapter.fetch_entries( "pretoolsDev", {})}
+
+    return doc_dict
 
 
 def replace_with_full_entries(conflict, instances_dict):
