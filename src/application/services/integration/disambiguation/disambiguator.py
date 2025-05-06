@@ -113,7 +113,7 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
     Disambiguated blocks can be empty at the beginning.
     The function will fill it with the disambiguated entries.
     '''
-    instances_dict = build_instances_keys_dict(blocks)
+    instances_dict = build_instances_keys_dict()
     disambiguated_blocks = load_disambiguated(disambiguated_blocks_path)
 
     for key in blocks:
