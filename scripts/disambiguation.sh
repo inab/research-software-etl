@@ -6,10 +6,9 @@ PROJECT_DIR="$HOME/projects/software-observatory/research-software-etl"
 
 # File paths
 SCRIPT_PATH="src/adapters/cli/integration/disambiguation.py"
-GROUPED_ENTRIES_FILE="scripts/data/grouped_entries.json"
-DISCONNECTED_ENTRIES_FILE="scripts/data/disconnected_entries_test.json"
-NEW_GROUPED_ENTRIES_FILE="scripts/data/new_grouped_entries_test.json"
-RESULTS_FILE="scripts/data/disambiguation_results_test.jsonl"
+BLOCKS_FILE="scripts/data/blocks.json"
+CONFLICT_BLOCKS_FILE="scripts/data/conflict_blocks.json"
+DISAMBIGUATED_BLOCKS_FILE="scripts/data/disambiguated_blocks.json"
 
 # Change to the project directory
 cd "$PROJECT_DIR" || {
@@ -25,8 +24,7 @@ echo "ℹ️  Running the disambiguation script..." | tee -a rs-disambiguation-t
 
 # Run the Python script
 python3 -u "$SCRIPT_PATH" \
-  --grouped-entries-file "$GROUPED_ENTRIES_FILE" \
-  --disconnected-entries-file "$DISCONNECTED_ENTRIES_FILE" \
-  --new-grouped-entries-file "$NEW_GROUPED_ENTRIES_FILE" \
+  --blocks-file "$BLOCKS_FILE" \
+  --conflict-blocks-file "$CONFLICT_BLOCKS_FILE" \
+  --disambiguated-blocks-file "$DISAMBIGUATED_BLOCKS_FILE" \
   --env-file ".env" \
-  --results-file "$RESULTS_FILE" 2>&1 | tee -a rs-disambiguation-test.log

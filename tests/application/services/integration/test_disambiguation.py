@@ -12,7 +12,7 @@ load_dotenv(".env")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 print(f"GITHUB_TOKEN: {GITHUB_TOKEN}")
 
-with open('tests/application/services/integration/data/grouped_entries_no_opeb_test.json') as f:
+with open('tests/application/services/integration/data/blocks_test.json') as f:
     blocks = json.load(f)
 
 @pytest.mark.asyncio

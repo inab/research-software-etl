@@ -13,7 +13,7 @@ class type_contributor(str, Enum):
 class contributor(BaseModel):
     type: Optional[type_contributor] = None
     name: Optional[str] = None
-    email: Optional[EmailStr] = None
+    email: Optional[str] = None
     maintainer: bool = False
     url: Optional[HttpUrl] = None
     orcid: Optional[str] = None

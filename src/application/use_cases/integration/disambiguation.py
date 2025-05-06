@@ -43,10 +43,12 @@ async def run_full_disambiguation(blocks_file,
     # 4. Repeat second-round disambiguation until everything is resolved
     while True:
         # Run a second (or N-th) round
+        # conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, disambiguate_blocks_func
         disambiguated_blocks = await run_second_round(
             conflict_blocks_path=conflict_blocks_file,
             disambiguated_blocks_path=disambiguated_blocks_file,
             blocks=blocks,
+            blocks_path=blocks_file,
             disambiguate_blocks_func=disambiguate_blocks
         )
 

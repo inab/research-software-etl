@@ -123,7 +123,7 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
         "unmerged_entries": unmerged_ids,
         "source": model_name,
         "confidence_scores": confidence_scores,
-        "timestamp": datetime.now(),
+        "timestamp": datetime.now().isoformat(),
         "notes": note
     }
 
@@ -136,7 +136,11 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
     Generate a disambiguated_blocks record for a block with no disconnected entries.
     This assumes all entries are already grouped (e.g., they share a repo or author).
     """
-    merged_ids = [entry["_id"] for entry in block.get("instances", [])]
+
+    print("BLOCK:")
+    pprint(block)
+
+    merged_ids = block.get("instances", [])
 
     note = generate_merge_note_if_needed(merged_ids)
     note = f"All entries grouped heuristically or by shared metadata. No disambiguation needed. {note}"
@@ -149,7 +153,7 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
             "unmerged_entries": [],
             "source": source,
             "confidence_scores": {},
-            "timestamp": datetime.now(),
+            "timestamp": datetime.now().isoformat(),
             "notes": note
         }
     }
