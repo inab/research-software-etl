@@ -1,10 +1,29 @@
 from pprint import pprint
+from bson import ObjectId
 from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 def build_instances_keys_dict():
-    
-    doc_dict = {doc['_id']: doc for doc in mongo_adapter.fetch_entries( "pretoolsDev", {})}
+    # Step 1: Build a publication lookup dict with stringified ObjectIds
+    publication_dict = {
+        str(doc['_id']): {**doc, "_id": str(doc['_id'])}
+        for doc in mongo_adapter.fetch_entries( "publicationsMetadataDev", {})
+    }
+    # Step 2: Build the main document dictionary and replace data.publication
+    doc_dict = {}
+    for doc in mongo_adapter.fetch_entries( "pretoolsDev", {}):
+        pub_ids= doc.get('data', {}).get('publication')
+        pubs = []
+        for pub_id in pub_ids:
+            if isinstance(pub_id, ObjectId):
+                pub_str_id = str(pub_id)
+                full_publication = publication_dict.get(pub_str_id)
+                if full_publication:
+                    pubs.append(publication_dict.get(pub_str_id).get('data'))
+        
+        doc['data']['publication'] = pubs
+        doc['_id'] = str(doc['_id'])
+        doc_dict[doc['_id']] = doc
 
     return doc_dict
 

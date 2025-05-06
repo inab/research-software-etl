@@ -33,7 +33,7 @@ def generate_secondary_conflicts(disambiguated_blocks):
     return secondary_conflict, secondary_block
 
 
-def run_second_round(conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, disambiguate_blocks_func):
+async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, disambiguate_blocks_func):
     """
     Loads existing disambiguation results and conflict blocks,
     generates second-round conflicts, and runs disambiguation again.
@@ -67,7 +67,7 @@ def run_second_round(conflict_blocks_path, disambiguated_blocks_path, blocks, bl
     print(f"🔁 {len(secondary_conflict)} secondary conflict blocks generated and added.")
 
     # Re-run disambiguation on new conflicts
-    updated_disambiguated_blocks = disambiguate_blocks_func(conflict_blocks, blocks, disambiguated_blocks)
+    updated_disambiguated_blocks = await disambiguate_blocks_func(conflict_blocks, blocks, disambiguated_blocks)
 
     # Save updated disambiguated_blocks.json
     with open(disambiguated_blocks_path, "w") as f:

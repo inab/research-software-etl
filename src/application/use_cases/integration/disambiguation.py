@@ -1,6 +1,8 @@
 
 import json 
-from src.application.services.integration.disambiguation.secondary_round import disambiguate_blocks, run_second_round
+from src.application.services.integration.disambiguation.secondary_round import run_second_round
+from src.application.services.integration.disambiguation.disambiguator import disambiguate_blocks 
+from pprint import pprint
 
 def build_instances_keys_dict(data):
     """Create a mapping of instance IDs to their respective instance data."""
@@ -11,27 +13,28 @@ def build_instances_keys_dict(data):
             instances_keys[instance["_id"]] = instance
     return instances_keys
 
-def run_full_disambiguation(grouped_entries_file, 
-                         disconnected_entries_file, 
-                         disambiguated_blocks_file, 
-                         instances_dict_file):
+async def run_full_disambiguation(blocks_file, 
+                         conflict_blocks_file, 
+                         disambiguated_blocks_file):
 
     # 1. Load input data
-    with open(grouped_entries_file, 'r') as f:
+    with open(blocks_file, 'r') as f:
         blocks = json.load(f)
 
-    with open(disconnected_entries_file, 'r') as f:
+    with open(conflict_blocks_file, 'r') as f:
         conflict_blocks = json.load(f)
 
 
     # 2. Run first round of disambiguation
-    disambiguated_blocks = {}
 
-    disambiguated_blocks = disambiguate_blocks(
+    disambiguated_blocks = await disambiguate_blocks(
         conflict_blocks=conflict_blocks,
         blocks=blocks,
-        disambiguated_blocks=disambiguated_blocks
+        disambiguated_blocks_path=disambiguated_blocks_file
     )
+
+    print("Disambiguated blocks after first round:")
+    pprint(disambiguated_blocks)
 
     # 3. Save disambiguated_blocks after first round
     with open(disambiguated_blocks_file, 'w') as f:
@@ -40,15 +43,15 @@ def run_full_disambiguation(grouped_entries_file,
     # 4. Repeat second-round disambiguation until everything is resolved
     while True:
         # Run a second (or N-th) round
-        disambiguated_blocks = run_second_round(
-            conflict_blocks_path=disconnected_entries_file,
+        disambiguated_blocks = await run_second_round(
+            conflict_blocks_path=conflict_blocks_file,
             disambiguated_blocks_path=disambiguated_blocks_file,
             blocks=blocks,
             disambiguate_blocks_func=disambiguate_blocks
         )
 
         # Reload conflict_blocks to see what's left
-        with open(disconnected_entries_file, 'r') as f:
+        with open(conflict_blocks_file, 'r') as f:
             conflict_blocks = json.load(f)
 
         unresolved_keys = [k for k in conflict_blocks if k not in disambiguated_blocks]

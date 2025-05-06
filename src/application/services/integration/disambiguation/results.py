@@ -87,9 +87,12 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
     print(f"PAIR RESULTS:")
     pprint(pair_results)
 
+    print("BLOCK:")
+    pprint(block)
+
     if len(pair_results) == 0:
         # No pairs to process
-        merged_ids = [entry["_id"] for entry in block.get("remaining", [])]
+        merged_ids = [entry["id"] for entry in block.get("remaining", [])]
         unmerged_ids = []
         confidence_scores = {}
         note = 'All entries grouped heuristically or by shared metadata. No disambiguation needed. '
