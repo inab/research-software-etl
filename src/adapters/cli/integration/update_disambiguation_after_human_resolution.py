@@ -1,5 +1,4 @@
 from src.application.use_cases.integration.update_disambiguation_after_human_resolution import run_disambiguation_after_human_annotation
-from dotenv import load_dotenv
 import argparse 
 
 async def main():
@@ -31,18 +30,7 @@ async def main():
         default="data/disambiguated_blocks.json",
     )
 
-    parser.add_argument(
-        "--env-file", "-e",
-        help=("File containing environment variables to be set before running "),
-        type=str,
-        dest="env_file",
-        default=".env",
-    )
-
     args = parser.parse_args() 
-
-    load_dotenv(args.env_file)
-
 
     conflict_id = args.conflict_id
     conflict_blocks_file = args.conflict_blocks_file
