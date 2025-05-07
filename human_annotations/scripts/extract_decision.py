@@ -19,7 +19,7 @@ json_error = "No JSON block found in any comment."
 # Try to parse a JSON block from comments
 for comment in reversed(comments):
     print(f"comment: {comment.get('body')}")
-    matches = re.findall(r"```json\n(.*?)\n```", comment['body'], re.DOTALL)
+    matches = re.findall(r"```json(.*?)```", comment['body'], re.DOTALL)
     if matches:
         try:
             data = json.loads(matches[0])
