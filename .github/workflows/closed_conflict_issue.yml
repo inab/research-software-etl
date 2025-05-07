@@ -61,6 +61,6 @@ jobs:
         id: update-disambiguation-file
         run: |
           pip install bson
-          PYTHONPATH=$(pwd) python src/adapters/cli/integration/update_disambiguation_after_human_resolution.py
+          PYTHONPATH=$(pwd) python src/adapters/cli/integration/update_disambiguation_after_human_resolution.py --conflict-id "${{ needs.extract-id.outputs.conflict_id }}" --decision "${{ needs.extract-decision.outputs.decision }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

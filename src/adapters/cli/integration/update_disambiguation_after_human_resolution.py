@@ -19,7 +19,7 @@ async def main():
         help=("Path to the file containing conflict blocks."),
         type=str,
         dest="conflict_blocks_file",
-        default="data/conflict_blocks.json",
+        default="tests/application/use_cases/integration/data/conflict_blocks.json",
     )
 
     parser.add_argument(
@@ -27,7 +27,7 @@ async def main():
         help=("Path to the file containing disambiguated blocks."),
         type=str,
         dest="disambiguated_blocks_file",
-        default="data/disambiguated_blocks.json",
+        default="tests/application/use_cases/integration/data/disambiguated_blocks.json",
     )
 
     args = parser.parse_args() 
