@@ -4,6 +4,9 @@ on:
   issues:
     types: [closed]
 
+permissions:
+  contents: write
+
 jobs:
   extract-id:
     runs-on: ubuntu-latest
@@ -40,6 +43,16 @@ jobs:
         run: |
           pip install requests
           python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" "${{ needs.extract-id.outputs.conflict_id }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push updated log
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add human_annotations/human_conflicts_log.json
+          git commit -m "Update human_conflicts_log.json for ${{ needs.extract-id.outputs.conflict_id }}" || echo "No changes to commit"
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
