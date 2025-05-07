@@ -1,9 +1,1 @@
-{
-  "Manual resolution needed for ale": {
-    "decision": "different",
-    "canonical_id": "ale/cmd",
-    "explanation": "different purpose and authors",
-    "confidence": "high",
-    "issue_url": "https://github.com/inab/research-software-etl/issues/8"
-  }
-}
+{}
