@@ -162,7 +162,7 @@ def build_disambiguated_record_after_human(conflict_id, conflict, decision):
             unmerged_ids.append(entry["id"])
         
 
-    note = f"Decision made by human annotator in issue {issue_url}."
+    note = f"Decision made by human annotator in issue {issue_url}. "
     note += generate_merge_note_if_needed(merged_ids)
     if not note:
         note = None
