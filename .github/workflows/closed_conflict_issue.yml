@@ -80,3 +80,12 @@ jobs:
           PYTHONPATH=$(pwd) python src/adapters/cli/integration/update_disambiguation_after_human_resolution.py --conflict-id "${{ needs.extract-id.outputs.conflict_id }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push updated disambiguated blocks
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git commit -a -m "Update disambiguated block ${{ needs.extract-id.outputs.conflict_id }}" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
