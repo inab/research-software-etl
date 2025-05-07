@@ -149,14 +149,18 @@ def build_disambiguated_record_manual(block_id, block, issue_url, model_name="au
 
 
 def build_disambiguated_record_after_human(conflict_id, conflict, decision):
-    merged_ids = conflict.get('remaining', [])
+    merged_ids =  [entry["id"] for entry in conflict.get("remaining", [])]
     unmerged_ids = []
     issue_url = decision.get('issue_url', None)
     
     if decision['decision'] == 'same':
-        merged_ids.append(conflict["disconnected"]) 
+        for entry in conflict["disconnected"]:
+            merged_ids.append(entry["id"])
+
     else:
-        unmerged_ids.append(conflict["disconnected"])
+        for entry in conflict["disconnected"]:
+            unmerged_ids.append(entry["id"])
+        
 
     note = f"Decision made by human annotator in issue {issue_url}."
     note += generate_merge_note_if_needed(merged_ids)
