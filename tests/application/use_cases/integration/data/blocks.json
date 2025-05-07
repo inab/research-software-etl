@@ -1,0 +1,29 @@
+{
+  "1000genomes_vcf2ped/web": {
+      "instances": [
+      "biotools/1000genomes_vcf2ped/web/1"
+      ]
+  },
+  "ale/cmd": {
+      "instances": [
+      "biotools/ale/cmd/None",
+      "bioconda_recipes/ale/cmd/20180904",
+      "bioconda_recipes/ale-core/cmd/20220503",
+      "github/ALE/None/None"
+      ]
+  },
+  "mapcaller/cmd": {
+      "instances": [
+      "bioconda_recipes/mapcaller/cmd/0.9.9.41",
+      "biotools/mapcaller/cmd/None",
+      "github/MapCaller/None/v0.9.9.d"
+      ]
+  },
+  "cvinspector/cmd": {
+      "instances": [
+      "galaxy/cvinspector/cmd/2.3.0",
+      "galaxy_metadata/cvinspector/cmd/2.2.0",
+      "toolshed/cvinspector/cmd/2.2.0"
+      ]
+  }
+}

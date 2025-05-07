@@ -1,0 +1,54 @@
+{
+  "1000genomes_vcf2ped/web": {
+    "resolution": "no_conflict",
+    "merged_entries": [
+      "biotools/1000genomes_vcf2ped/web/1"
+    ],
+    "unmerged_entries": [],
+    "source": "auto:no_conflict",
+    "confidence_scores": {},
+    "timestamp": "2025-05-07T14:37:24.349671",
+    "notes": "All entries grouped heuristically or by shared metadata. No disambiguation needed."
+  },
+  "ale/cmd": {
+    "resolution": "manual_review_pending",
+    "merged_entries": [
+      "bioconda_recipes/ale/cmd/20180904",
+      "bioconda_recipes/ale-core/cmd/20220503",
+      "github/ALE/None/None"
+    ],
+    "unmerged_entries": [
+      "biotools/ale/cmd/None"
+    ],
+    "source": "auto:agreement-proxy-v",
+    "confidence_scores": {},
+    "timestamp": "2025-05-07T14:37:42.678386",
+    "notes": "Manual review needed. Issue URL: https://github.com/inab/research-software-etl/issues/8"
+  },
+  "mapcaller/cmd": {
+    "resolution": "no_conflict",
+    "merged_entries": [
+      "bioconda_recipes/mapcaller/cmd/0.9.9.41",
+      "biotools/mapcaller/cmd/None",
+      "github/MapCaller/None/v0.9.9.d"
+    ],
+    "unmerged_entries": [],
+    "source": "auto:no_conflict",
+    "confidence_scores": {},
+    "timestamp": "2025-05-07T14:37:42.679015",
+    "notes": "All entries grouped heuristically or by shared metadata. No disambiguation needed. Caution: merged entries have different names \u2014 may be distinct software."
+  },
+  "cvinspector/cmd": {
+    "resolution": "no_conflict",
+    "merged_entries": [
+      "galaxy/cvinspector/cmd/2.3.0",
+      "galaxy_metadata/cvinspector/cmd/2.2.0",
+      "toolshed/cvinspector/cmd/2.2.0"
+    ],
+    "unmerged_entries": [],
+    "source": "auto:no_conflict",
+    "confidence_scores": {},
+    "timestamp": "2025-05-07T14:37:42.679107",
+    "notes": "All entries grouped heuristically or by shared metadata. No disambiguation needed."
+  }
+}
