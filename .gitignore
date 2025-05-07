@@ -4,7 +4,6 @@
 *db_config.ini
 *__pycache__
 *.env
-*.json
 FAIRsoft/
 .qodo
 *.log.*
