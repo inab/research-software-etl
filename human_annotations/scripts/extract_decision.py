@@ -36,8 +36,8 @@ for comment in reversed(comments):
             with open('human_annotations/human_conflicts_log.json', 'w') as f:
                 json.dump(human_annotations, f, indent=2)
             sys.exit(0)
-        except json.JSONDecodeError as e:
-            json_error = f"JSONDecodeError: {e}"
+        except Exception as e:
+            json_error = f"Error: {e}"
 
 # If we reach here, parsing failed
 comment_payload = {
