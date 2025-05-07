@@ -15,7 +15,7 @@ jobs:
         id: extract
         run: |
           echo "Issue title: ${{ github.event.issue.title }}"
-          CONFLICT_ID=$(echo "${{ github.event.issue.title }}" | grep -oE 'block_id_[a-zA-Z0-9_-]+')
+          CONFLICT_ID=$(echo "${{ github.event.issue.title }}" | grep -oE 'Manual resolution needed for [a-zA-Z0-9_-]+')
           echo "conflict_id=$CONFLICT_ID" >> $GITHUB_OUTPUT
 
   extract-decision:
