@@ -1,4 +1,4 @@
-from src.application.services.integration.disambiguation.utils import build_disambiguated_record_after_human
+from src.application.services.integration.disambiguation.results import build_disambiguated_record_after_human
 import json
 
 
@@ -6,7 +6,7 @@ async def run_disambiguation_after_human_annotation(
     conflict_id,
     conflict_blocks_file, 
     disambiguated_blocks_file):
-    
+
     # Load input data
     with open(conflict_blocks_file, 'r') as f:
         conflict_blocks = json.load(f)
