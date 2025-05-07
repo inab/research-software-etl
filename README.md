@@ -51,7 +51,7 @@ During the whole process, metadata is stored in a Mongo Database (INB Mongo `oeb
 
 ### Testing 
 
-To run tests use:
+To run tests, go to the root directory of this repository and use:
 
 ```bash
 PYTHONPATH=$(pwd) pytest -v -s tests/
