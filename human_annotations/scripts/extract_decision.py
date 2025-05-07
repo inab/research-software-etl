@@ -23,10 +23,10 @@ for comment in reversed(comments):
         try:
             data = json.loads(matches[0])
             data['issue_url'] = f"https://github.com/inab/research-software-etl/issues/{issue_number}"
-            with open('human_annotations.json', 'r') as f:
+            with open('human_annotations/human_conflicts_log.json', 'r') as f:
                 human_annotations = json.load(f)
             human_annotations[conflict_id] = data
-            with open('human_annotations.json', 'w') as f:
+            with open('human_annotations/human_conflicts_log.json', 'w') as f:
                 json.dump(human_annotations, f, indent=2)
             sys.exit(0)
         except json.JSONDecodeError as e:
