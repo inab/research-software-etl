@@ -60,6 +60,7 @@ jobs:
       - name: Update disambiguation file
         id: update-disambiguation-file
         run: |
+          pip install bson
           PYTHONPATH=$(pwd) python src/adapters/cli/integration/update_disambiguation_after_human_resolution.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

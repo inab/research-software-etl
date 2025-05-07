@@ -1,9 +1,9 @@
-from pprint import pprint
 from bson import ObjectId
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 def build_instances_keys_dict():
+    from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+
     # Step 1: Build a publication lookup dict with stringified ObjectIds
     publication_dict = {
         str(doc['_id']): {**doc, "_id": str(doc['_id'])}
