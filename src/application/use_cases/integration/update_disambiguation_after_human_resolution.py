@@ -18,9 +18,15 @@ async def run_disambiguation_after_human_annotation(
         human_annotations = json.load(f)
 
     decision = human_annotations.get(conflict_id)
-    
+    print("Decision")
+    print(decision)
+
     # Generate record for disambiguated_blocks.json
     conflict = conflict_blocks.get(conflict_id)
+    print(f"Conflict ID: {conflict_id}")
+    print("Conflict:")
+    print(conflict)
+    
     record = build_disambiguated_record_after_human(conflict_id, conflict, decision)
 
     # Update the disambiguated_blocks.json file. There is already a record for this conflict, so we need to update it
