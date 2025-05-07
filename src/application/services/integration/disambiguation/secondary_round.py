@@ -13,7 +13,8 @@ def generate_secondary_conflicts(disambiguated_blocks):
 
     for parent_id, record in disambiguated_blocks.items():
         unmerged = record.get("unmerged_entries", [])
-        if len(unmerged) > 1:
+        resolution = record.get("resolution", None)
+        if len(unmerged) > 1 and resolution!= "manual_review_pending":
             
             secondary_counter += 1
             new_id = f"{parent_id}_secondary_{secondary_counter}"

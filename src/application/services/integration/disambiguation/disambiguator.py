@@ -2,7 +2,7 @@ from src.application.services.integration.disambiguation.pairing import build_pa
 from src.application.services.integration.disambiguation.conflict_builder import build_full_conflict
 from src.application.services.integration.disambiguation.prompts import build_prompt
 from src.application.services.integration.disambiguation.proxy import decision_agreement_proxy
-from src.application.services.integration.disambiguation.results import build_disambiguated_record, build_no_conflict_record
+from src.application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
 from src.application.services.integration.disambiguation.issues import create_github_issue, generate_github_issue, generate_context
 from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict
 import json 
@@ -92,9 +92,11 @@ async def process_conflict(key, conflict, instances_dict):
             context = generate_context(key, full_conflict)
             body = generate_github_issue(context)
             title = f"Manual resolution needed for {key}"
-            labels = ['conflict']
+            labels = ['conflict', 'automated']
             #create_issue(title, body, labels)
-            create_github_issue(title, body, labels)
+            response = create_github_issue(title, body, labels)
+            return build_disambiguated_record_manual(key, conflict, response["html_url"])
+
 
 
     # Build final record

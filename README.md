@@ -49,6 +49,22 @@ During the whole process, metadata is stored in a Mongo Database (INB Mongo `oeb
 
 ## Development 
 
+### Testing 
+
+To run tests use:
+
+```bash
+PYTHONPATH=$(pwd) pytest -v -s tests/
+``` 
+
+The previous command will run all tests except the ones marked as "manual". To run tests marked as "manual" use: 
+
+```bash
+PYTHONPATH=$(pwd) pytest -v -s -m manual tests/
+```
+
+
+
 ### Logging 
 
 To add loggings, use:

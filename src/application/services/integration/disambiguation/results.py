@@ -90,8 +90,7 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
     print("BLOCK:")
     pprint(block)
 
-    if len(pair_results) == 0:
-        # No pairs to process
+    if len(pair_results) == 0:        
         merged_ids = [entry["id"] for entry in block.get("remaining", [])]
         unmerged_ids = []
         confidence_scores = {}
@@ -125,6 +124,25 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
         "confidence_scores": confidence_scores,
         "timestamp": datetime.now().isoformat(),
         "notes": note
+    }
+
+    return {block_id: record}
+
+
+
+def build_disambiguated_record_manual(block_id, block, issue_url, model_name="auto:agreement-proxy-v"):
+    merged_ids = [entry["id"] for entry in block.get("remaining", [])]
+    unmerged_ids = [entry["id"] for entry in block.get("disconnected", [])]
+    resolution = "manual_review_pending"
+    
+    record = {
+        "resolution": resolution,
+        "merged_entries": merged_ids,
+        "unmerged_entries": unmerged_ids,
+        "source": model_name,
+        "confidence_scores": {},
+        "timestamp": datetime.now().isoformat(),
+        "notes": f"Manual review needed. Issue URL: {issue_url}"
     }
 
     return {block_id: record}
