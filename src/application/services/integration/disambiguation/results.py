@@ -148,6 +148,39 @@ def build_disambiguated_record_manual(block_id, block, issue_url, model_name="au
     return {block_id: record}
 
 
+def build_disambiguated_record_after_human(conflict_id, conflict, decision):
+    merged_ids = conflict.get('remaining', [])
+    unmerged_ids = []
+    issue_url = decision.get('issue_url', None)
+    
+    if decision['decision'] == 'same':
+        merged_ids.append(conflict["disconnected"]) 
+    else:
+        unmerged_ids.append(conflict["disconnected"])
+
+    note = f"Decision made by human annotator in issue {issue_url}."
+    note += generate_merge_note_if_needed(merged_ids)
+    if not note:
+        note = None
+    else: 
+        note = note.strip()
+
+    record = {
+        conflict_id: {
+            "resolution": decision['decision'],
+            "merged_entries": merged_ids,
+            "unmerged_entries": unmerged_ids,
+            "source": "manual",
+            "confidence_scores": {},
+            "timestamp": datetime.now().isoformat(),
+            "notes": note
+        }
+    }
+    return record
+
+    
+
+
 
 def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
     """

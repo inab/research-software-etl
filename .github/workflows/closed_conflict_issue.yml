@@ -5,6 +5,17 @@ on:
     types: [closed]
 
 jobs:
+  extract-id:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'conflict')
+    steps:
+      - name: Extract conflict ID from issue title
+        id: extract
+        run: |
+          echo "Issue title: ${{ github.event.issue.title }}"
+          CONFLICT_ID=$(echo "${{ github.event.issue.title }}" | grep -oE 'block_id_[a-zA-Z0-9_-]+')
+          echo "CONFLICT_ID=$CONFLICT_ID" >> $GITHUB_ENV
+
   extract-decision:
     runs-on: ubuntu-latest
     if: contains(github.event.issue.labels.*.name, 'conflict')
@@ -25,36 +36,26 @@ jobs:
         id: set-output
         run: |
           pip install requests
-          python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" > decision.json
-          echo 'decision<<EOF' >> $GITHUB_OUTPUT
-          cat decision.json >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
+          python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" "${{ CONFLICT_ID }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
-  update-annotation-log:
+  update-disambiguation-file:
     runs-on: ubuntu-latest
-    needs: extract-decision
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Append decision to human annotation log
+      
+      - name: Update disambiguation file
+        id: update-disambiguation-file
         run: |
-          mkdir -p human_annotations
-          echo '${{ needs.extract-decision.outputs.decision }}' >> human_annotations/human_conflicts_log.jsonl
-
-      - name: Commit and push annotation
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add human_annotations/human_conflicts_log.jsonl
-          git commit -m "Log human conflict decision (#${{ github.event.issue.number }})"
-          git push
+          python src/adapters/cli/integration/update_disambiguation_after_human_resolution.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

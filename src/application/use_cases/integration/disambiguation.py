@@ -4,15 +4,6 @@ from src.application.services.integration.disambiguation.secondary_round import 
 from src.application.services.integration.disambiguation.disambiguator import disambiguate_blocks 
 from pprint import pprint
 
-def build_instances_keys_dict(data):
-    """Create a mapping of instance IDs to their respective instance data."""
-    instances_keys = {}
-    for key, value in data.items():
-        instances = value.get("instances", [])
-        for instance in instances:
-            instances_keys[instance["_id"]] = instance
-    return instances_keys
-
 async def run_full_disambiguation(blocks_file, 
                          conflict_blocks_file, 
                          disambiguated_blocks_file):
