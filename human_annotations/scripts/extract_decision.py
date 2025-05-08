@@ -16,7 +16,7 @@ headers = {
 comments = requests.get(f"{api_base}/comments", headers=headers).json()
 
 json_error = "No JSON block found in any comment."
-human_annotations_path = 'human_annotations/human_conflicts_log.json'
+human_annotations_path = 'human_annotations/human_conflicts_log.jsonl'
 # Try to parse a JSON block from comments
 for comment in reversed(comments):
     print("---- COMMENT BODY ----")

@@ -19,7 +19,7 @@ def main():
         help=("Path to the file containing conflict blocks."),
         type=str,
         dest="conflict_blocks_file",
-        default="tests/application/use_cases/integration/data/conflict_blocks.jsonl",
+        default="scripts/data/conflict_blocks.jsonl",
     )
 
     parser.add_argument(
@@ -27,7 +27,7 @@ def main():
         help=("Path to the file containing disambiguated blocks."),
         type=str,
         dest="disambiguated_blocks_file",
-        default="tests/application/use_cases/integration/data/disambiguated_blocks.jsonl",
+        default="scripts/data/disambiguated_blocks.jsonl",
     )
 
     args = parser.parse_args() 
