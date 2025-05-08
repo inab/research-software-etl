@@ -3,7 +3,7 @@ from src.application.services.integration.disambiguation.utils import load_dict_
 import json
 
 
-async def run_disambiguation_after_human_annotation(
+def run_disambiguation_after_human_annotation(
     conflict_id,
     conflict_blocks_file, 
     disambiguated_blocks_file):
@@ -12,8 +12,7 @@ async def run_disambiguation_after_human_annotation(
 
 
     # Load input data
-    with open(conflict_blocks_file, 'r') as f:
-        conflict_blocks = json.load(f)
+    conflict_blocks = load_dict_from_jsonl(conflict_blocks_file)
 
 
     # Takes the decision from the human annotations file 
