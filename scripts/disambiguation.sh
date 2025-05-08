@@ -27,4 +27,4 @@ python3 -u "$SCRIPT_PATH" \
   --blocks-file "$BLOCKS_FILE" \
   --conflict-blocks-file "$CONFLICT_BLOCKS_FILE" \
   --disambiguated-blocks-file "$DISAMBIGUATED_BLOCKS_FILE" \
-  --env-file ".env" \
+  --env-file ".env" 
