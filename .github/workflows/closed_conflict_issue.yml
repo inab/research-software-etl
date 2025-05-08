@@ -42,7 +42,7 @@ jobs:
         id: set-output
         run: |
           pip install requests
-          python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" "${{ needs.extract-id.outputs.conflict_id }}"
+          PYTHONPATH=$(pwd) python human_annotations/scripts/extract_decision.py "${{ github.repository }}" "${{ github.event.issue.number }}" "${{ needs.extract-id.outputs.conflict_id }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
