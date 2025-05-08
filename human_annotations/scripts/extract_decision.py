@@ -32,7 +32,7 @@ for comment in reversed(comments):
             data = json.loads(matches[0])
             data['issue_url'] = f"https://github.com/inab/research-software-etl/issues/{issue_number}"
             
-            record = { "conflict_id" : data }
+            record = { conflict_id : data }
             add_jsonl_record(human_annotations_path, record)
  
             sys.exit(0)
