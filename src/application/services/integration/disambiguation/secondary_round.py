@@ -1,3 +1,4 @@
+from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl, add_jsonl_record, update_jsonl_record
 from datetime import datetime
 import json
 
@@ -40,8 +41,7 @@ async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, bloc
     generates second-round conflicts, and runs disambiguation again.
     """
     # Load files
-    with open(disambiguated_blocks_path, "r") as f:
-        disambiguated_blocks = json.load(f)
+    disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_path)
 
     with open(conflict_blocks_path, "r") as f:
         conflict_blocks = json.load(f)
@@ -57,22 +57,13 @@ async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, bloc
     conflict_blocks.update(secondary_conflict)
     blocks.update(secondary_block)
 
-    with open(conflict_blocks_path, "w") as f:
-        json.dump(conflict_blocks, f, indent=2)
-
-
-    with open(blocks_path, "w") as f:
-        json.dump(blocks, f, indent=2)
-    
+    update_jsonl_record(conflict_blocks_path, secondary_conflict)
+    update_jsonl_record(blocks_path, secondary_block)
 
     print(f"🔁 {len(secondary_conflict)} secondary conflict blocks generated and added.")
 
     # Re-run disambiguation on new conflicts
     updated_disambiguated_blocks = await disambiguate_blocks_func(conflict_blocks, blocks, disambiguated_blocks)
-
-    # Save updated disambiguated_blocks.json
-    with open(disambiguated_blocks_path, "w") as f:
-        json.dump(updated_disambiguated_blocks, f, indent=2)
 
     print("✅ Second round of disambiguation completed.")
     return updated_disambiguated_blocks

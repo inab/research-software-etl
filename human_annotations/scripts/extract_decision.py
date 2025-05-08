@@ -1,4 +1,5 @@
 import requests, sys, os, re, json
+from src.application.services.integration.disambiguation.utils import add_jsonl_record
 
 repo = sys.argv[1]
 issue_number = sys.argv[2]
@@ -15,7 +16,7 @@ headers = {
 comments = requests.get(f"{api_base}/comments", headers=headers).json()
 
 json_error = "No JSON block found in any comment."
-
+human_annotations_path = 'human_annotations/human_conflicts_log.json'
 # Try to parse a JSON block from comments
 for comment in reversed(comments):
     print("---- COMMENT BODY ----")
@@ -30,11 +31,10 @@ for comment in reversed(comments):
             print(matches[0])
             data = json.loads(matches[0])
             data['issue_url'] = f"https://github.com/inab/research-software-etl/issues/{issue_number}"
-            with open('human_annotations/human_conflicts_log.json', 'r') as f:
-                human_annotations = json.load(f)
-            human_annotations[conflict_id] = data
-            with open('human_annotations/human_conflicts_log.json', 'w') as f:
-                json.dump(human_annotations, f, indent=2)
+            
+            record = { "conflict_id" : data }
+            add_jsonl_record(human_annotations_path, record)
+ 
             sys.exit(0)
         except Exception as e:
             json_error = f"Error: {e}"

@@ -4,7 +4,7 @@ from src.application.services.integration.disambiguation.prompts import build_pr
 from src.application.services.integration.disambiguation.proxy import decision_agreement_proxy
 from src.application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
 from src.application.services.integration.disambiguation.issues import create_github_issue, generate_github_issue, generate_context
-from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict
+from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record
 import json 
 import logging 
 import os
@@ -69,14 +69,9 @@ async def process_conflict(key, conflict, instances_dict):
         full_conflict = filter_relevant_fields(conflict_pair)
         full_conflict = await build_full_conflict(full_conflict)
 
-        #print("Full conflict:")
-        #print(full_conflict)
-
         # Generate prompt and run model
         messages = build_prompt(full_conflict["disconnected"], full_conflict["remaining"])
-        
-        #print("Messages:")
-        #print(messages)
+    
         
         result = decision_agreement_proxy(messages)
 
@@ -103,11 +98,6 @@ async def process_conflict(key, conflict, instances_dict):
     return build_disambiguated_record(key, conflict, pair_results)
 
 
-def load_disambiguated(disambiguated_blocks_path):
-    with open(disambiguated_blocks_path, 'r') as f:
-        disambiguated_blocks = json.load(f)
-    
-    return disambiguated_blocks
 
 
 async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path):
@@ -115,9 +105,8 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
     Disambiguated blocks can be empty at the beginning.
     The function will fill it with the disambiguated entries.
     '''
+    disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_path)
     instances_dict = build_instances_keys_dict()
-    disambiguated_blocks = load_disambiguated(disambiguated_blocks_path)
-
     for key in blocks:
         print(f"Processing block: {key}")
         if key in conflict_blocks:
@@ -129,13 +118,16 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
                     disambiguated_blocks.update(record)
                 except Exception as e:
                     print(f"Error processing conflict {key}")
-                    raise e
                     logging.error(f"Error processing conflict {key}: {e}")
+                    raise e
+                    
                 
         else:
             record = build_no_conflict_record(key, blocks[key])
             disambiguated_blocks.update(record)
             print(f"{key} is not a conflict block")
+
+        add_jsonl_record(disambiguated_blocks_path, record)
 
     return disambiguated_blocks
 

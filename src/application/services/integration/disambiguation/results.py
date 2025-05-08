@@ -84,11 +84,11 @@ def build_disambiguated_record(block_id, block, pair_results, model_name="auto:a
         }
     }
     """
-    print(f"PAIR RESULTS:")
-    pprint(pair_results)
+    #print(f"PAIR RESULTS:")
+    #pprint(pair_results)
 
-    print("BLOCK:")
-    pprint(block)
+    #print("BLOCK:")
+    #pprint(block)
 
     if len(pair_results) == 0:        
         merged_ids = [entry["id"] for entry in block.get("remaining", [])]

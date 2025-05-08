@@ -49,6 +49,7 @@ def build_chat_messages_with_disconnected(
         current_token_count = 0
 
         for entry in entries:
+            #print(entry)
             entry_json = json.dumps(entry, ensure_ascii=False)
             entry_tokens = len(enc.encode(entry_json))
 

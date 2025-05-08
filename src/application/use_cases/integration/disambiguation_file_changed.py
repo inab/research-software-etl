@@ -1,6 +1,8 @@
 
 from src.application.services.integration.disambiguation.secondary_round import run_second_round
 from src.application.services.integration.disambiguation.disambiguator import disambiguate_blocks 
+from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
+
 import json
 
 
@@ -10,14 +12,9 @@ async def run_disambiguation(
     disambiguated_blocks_file,
 ):
     # Load input data
-    with open(conflict_blocks_file, 'r') as f:
-        conflict_blocks = json.load(f)
-
-    with open(blocks_file, 'r') as f:
-        blocks = json.load(f)
-
-    with open(disambiguated_blocks_file, 'r+') as f:
-        disambiguated_blocks = json.load(f)
+    blocks = load_dict_from_jsonl(blocks_file)
+    conflict_blocks = load_dict_from_jsonl(conflict_blocks_file)
+    disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_file)
 
     # Resume the disambiguation process: second round, etc
     # Repeat second-round disambiguation until everything is resolved
@@ -33,8 +30,7 @@ async def run_disambiguation(
         )
 
         # Reload conflict_blocks to see what's left
-        with open(conflict_blocks_file, 'r') as f:
-            conflict_blocks = json.load(f)
+        conflict_blocks = load_dict_from_jsonl(conflict_blocks_file)
 
         unresolved_keys = [k for k in conflict_blocks if k not in disambiguated_blocks]
 
