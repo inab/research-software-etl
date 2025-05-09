@@ -41,3 +41,4 @@
 {"pash/cmd": {"decision": "same", "explanation": "Description of B is the title of the publication of A", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/84"}}
 {"pepnovo/cmd": {"decision": "same", "explanation": "Same documentation page", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/83"}}
 {"pyrpipe/cmd": {"decision": "same", "explanation": "Same repos in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/81"}}
+{"pyrpipe/cmd": {"decision": "same", "explanation": "Same repos in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/81"}}
