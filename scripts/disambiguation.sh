@@ -6,9 +6,9 @@ PROJECT_DIR="$HOME/projects/software-observatory/research-software-etl"
 
 # File paths
 SCRIPT_PATH="src/adapters/cli/integration/disambiguation.py"
-BLOCKS_FILE="scripts/data/blocks.json"
-CONFLICT_BLOCKS_FILE="scripts/data/conflict_blocks.json"
-DISAMBIGUATED_BLOCKS_FILE="scripts/data/disambiguated_blocks.json"
+BLOCKS_FILE="scripts/data/blocks.jsonl"
+CONFLICT_BLOCKS_FILE="scripts/data/conflict_blocks.jsonl"
+DISAMBIGUATED_BLOCKS_FILE="scripts/data/disambiguated_blocks.jsonl"
 
 # Change to the project directory
 cd "$PROJECT_DIR" || {

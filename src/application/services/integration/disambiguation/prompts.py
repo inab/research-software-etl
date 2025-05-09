@@ -8,6 +8,8 @@ from functools import lru_cache
 from pathlib import Path
 from pprint import pprint
 
+from src.application.services.integration.disambiguation.utils import get_pub
+
 MAX_TOTAL_TOKENS = 130000  
 
 
@@ -49,7 +51,12 @@ def build_chat_messages_with_disconnected(
         current_token_count = 0
 
         for entry in entries:
-            #print(entry)
+            new_pubs = []
+            if entry['publication']:
+                new_pubs.append(get_pub(entry['publication']))
+            entry['publication'] = new_pubs
+            print('Entry')
+            pprint(entry)
             entry_json = json.dumps(entry, ensure_ascii=False)
             entry_tokens = len(enc.encode(entry_json))
 

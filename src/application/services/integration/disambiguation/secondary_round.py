@@ -1,6 +1,7 @@
 from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl, add_jsonl_record, update_jsonl_record
 from datetime import datetime
 import json
+from pprint import pprint
 
 
 
@@ -23,16 +24,18 @@ def generate_secondary_conflicts(disambiguated_blocks):
                 "remaining": [{"id": unmerged[0]}],  # use first as reference
                 "disconnected":  [{"id": entry} for entry in unmerged[1:]],
                 "parent_block_id": parent_id,
-                "generated_at": datetime.now()
+                "generated_at": datetime.now().isoformat()
             }
 
             secondary_block[new_id] = {
                 "instances": [{"_id": entry} for entry in unmerged],
                 "parent_block_id": parent_id,
-                "generated_at": datetime.now()
+                "generated_at": datetime.now().isoformat()
             }
 
     return secondary_conflict, secondary_block
+
+
 
 
 async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, disambiguate_blocks_func):
@@ -42,9 +45,8 @@ async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, bloc
     """
     # Load files
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_path)
+    conflict_blocks = load_dict_from_jsonl(conflict_blocks_path)
 
-    with open(conflict_blocks_path, "r") as f:
-        conflict_blocks = json.load(f)
 
     # Generate secondary conflict blocks
     secondary_conflict, secondary_block = generate_secondary_conflicts(disambiguated_blocks)
@@ -57,13 +59,15 @@ async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, bloc
     conflict_blocks.update(secondary_conflict)
     blocks.update(secondary_block)
 
-    update_jsonl_record(conflict_blocks_path, secondary_conflict)
-    update_jsonl_record(blocks_path, secondary_block)
+
+    for key in secondary_conflict:
+        update_jsonl_record(conflict_blocks_path, key, secondary_conflict)
+        update_jsonl_record(blocks_path, key, secondary_block)
 
     print(f"🔁 {len(secondary_conflict)} secondary conflict blocks generated and added.")
 
     # Re-run disambiguation on new conflicts
-    updated_disambiguated_blocks = await disambiguate_blocks_func(conflict_blocks, blocks, disambiguated_blocks)
+    updated_disambiguated_blocks = await disambiguate_blocks_func(conflict_blocks, blocks, disambiguated_blocks_path)
 
     print("✅ Second round of disambiguation completed.")
     return updated_disambiguated_blocks

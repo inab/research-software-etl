@@ -55,7 +55,8 @@ async def process_conflict(key, conflict, instances_dict):
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
     """
-
+    print("Processing conflict:")
+    pprint(conflict)
     # Replace summary info with full entries
     conflict_full = replace_with_full_entries(conflict, instances_dict)
 
@@ -75,11 +76,14 @@ async def process_conflict(key, conflict, instances_dict):
         
         result = decision_agreement_proxy(messages)
 
+        # Log the result
+        add_jsonl_record("scripts/data/results_proxy.jsonl", { key: result })
+
         if result.get("verdict") != "disagreement":
             pair_results.append({
                 "remaining_id": full_conflict["remaining"][0]["id"],
                 "disconnected_id": full_conflict["disconnected"][0]["id"],
-                "same_as_remaining": result["verdict"] == "same",
+                "same_as_remaining": result["verdict"].lower() == "same",
                 "confidence": result.get("confidence", None)
             })
         else:
@@ -108,26 +112,30 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_path)
     instances_dict = build_instances_keys_dict()
     for key in blocks:
-        print(f"Processing block: {key}")
-        if key in conflict_blocks:
-            print(f"{key} is a conflict block")
-            if key not in disambiguated_blocks:
-                print(f"{key} not in disambiguated blocks")
-                try:
-                    record = await process_conflict(key, conflict_blocks[key], instances_dict)
-                    disambiguated_blocks.update(record)
-                except Exception as e:
-                    print(f"Error processing conflict {key}")
-                    logging.error(f"Error processing conflict {key}: {e}")
-                    raise e
+        if key not in disambiguated_blocks:
+            print(f"Processing block: {key}")
+            if key in conflict_blocks:
+                print(f"{key} is a conflict block")
+                if key not in disambiguated_blocks:
+                    print(f"{key} not in disambiguated blocks")
+                    try:
+                        record = await process_conflict(key, conflict_blocks[key], instances_dict)
+                        disambiguated_blocks.update(record)
+                    except Exception as e:
+                        print(f"Error processing conflict {key}")
+                        logging.error(f"Error processing conflict {key}: {e}")
+                        raise e
+                        
                     
-                
-        else:
-            record = build_no_conflict_record(key, blocks[key])
-            disambiguated_blocks.update(record)
-            print(f"{key} is not a conflict block")
+            else:
+                record = build_no_conflict_record(key, blocks[key])
+                disambiguated_blocks.update(record)
+                print(f"{key} is not a conflict block")
 
-        add_jsonl_record(disambiguated_blocks_path, record)
+            add_jsonl_record(disambiguated_blocks_path, record)
+
+        else:
+            print(f"Record {key} already exists in disambiguated blocks, skipping...")
 
     return disambiguated_blocks
 

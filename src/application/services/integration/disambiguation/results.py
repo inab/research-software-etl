@@ -21,7 +21,7 @@ def generate_merge_note_if_needed(merged_ids):
             name_set.add(name)
 
     if len(name_set) > 1:
-        return "Caution: merged entries have different names — may be distinct software."
+        return "Caution: merged entries have different names. May be distinct software."
 
     else:
         return ''

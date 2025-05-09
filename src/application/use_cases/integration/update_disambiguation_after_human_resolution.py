@@ -31,7 +31,7 @@ def run_disambiguation_after_human_annotation(
     record = build_disambiguated_record_after_human(conflict_id, conflict, decision)
 
     # Update the disambiguated_blocks.json file. There is already a record for this conflict, so we need to update it
-    update_jsonl_record(disambiguated_blocks_file, record)
+    update_jsonl_record(disambiguated_blocks_file, conflict_id, record)
 
 
 

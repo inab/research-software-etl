@@ -3,6 +3,7 @@ import random
 import pytest
 from src.application.services.integration.disambiguation.disambiguator import disambiguate_blocks
 from tests.application.services.integration.data.data_disambiguation_original import conflicts_blocks_sets, expected, expected_heuristics
+from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
 from pprint import pprint
 from dotenv import load_dotenv
 import os 
@@ -12,8 +13,8 @@ load_dotenv(".env")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 print(f"GITHUB_TOKEN: {GITHUB_TOKEN}")
 
-with open('tests/application/services/integration/data/blocks_test.json') as f:
-    blocks = json.load(f)
+blocks = load_dict_from_jsonl('tests/application/services/integration/data/blocks.jsonl')
+
 
 @pytest.mark.asyncio
 async def test_real_conflict_cases(monkeypatch):
@@ -46,7 +47,7 @@ async def test_real_conflict_cases(monkeypatch):
     print(f"Instances in ale/cmd block: {len(blocks['ale/cmd']['instances'])}")
     for i, conflicts_blocks in enumerate(conflicts_blocks_sets):
 
-        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.json')
+        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.jsonl')
 
         # --- Assertions ---
 
@@ -69,6 +70,10 @@ async def test_real_conflict_cases(monkeypatch):
             assert disamb_result[id]["resolution"] == expected_heuristics[id]["resolution"]
             assert disamb_result[id]["source"] == expected_heuristics[id]["source"]
             assert disamb_result[id]["notes"] == expected_heuristics[id]["notes"]
+        
+        # clean disambiguated results
+        open('tests/application/services/integration/data/disambiguated_blocks.jsonl', 'w').close()
+    
 
         print("===" * 20)
 
@@ -96,7 +101,7 @@ async def test_real_conflict_cases_human(monkeypatch):
         # Simulate issue creation
         print("Mock issue creation called")
         print(f"Mock issue created: {title}")
-        return "Mock issue created"
+        return {"html_url": "https://github.com"}
     
     monkeypatch.setattr("src.application.services.integration.disambiguation.disambiguator.create_github_issue", mock_create_github_issue)
 
@@ -104,7 +109,7 @@ async def test_real_conflict_cases_human(monkeypatch):
     print(f"Instances in ale/cmd block: {len(blocks['ale/cmd']['instances'])}")
     for conflicts_blocks in conflicts_blocks_sets[0:1]:
 
-        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.json')
+        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.jsonl')
 
         # --- Assertions ---
 

@@ -26,6 +26,26 @@ def extract_url(repo):
 
     return urls
 
+def prepare_website(websites):
+    if not websites:
+        return "No website available."
+
+    if isinstance(websites, str):
+        return f"\n\t- [{websites}]({websites})"
+
+    if isinstance(websites, list):
+        cleaned = [website.strip() for website in websites if website.strip()]
+        if not cleaned:
+            return "No website available."
+
+        text = ""
+        for item in cleaned:
+            text += f"\n\t- [{item}]({item})"
+        return text
+
+    return str(websites)  # Fallback, just in case
+
+
 def prepare_description(description_list):
     if not description_list:
         return "No description available."
@@ -93,8 +113,8 @@ def prepare_license(license_data):
     
     for license in license_data:
 
-        value = license.get("name", "").strip()
-        url = license.get("url", "").strip()
+        value = license.get("name", "")
+        url = license.get("url", "")
 
         if value and url:
            licenses += f"\n\t- [{value}]({url})"
@@ -147,7 +167,7 @@ def preprocess_entry(entry):
         "version": entry.get("version"),
         "type": entry.get("type"),
         "repository": extract_url(entry.get("repository")),
-        "website": entry.get("website"),
+        "website": prepare_website(entry.get("webpage")),
         "authors": prepare_authors(entry.get("authors")),
         "publications": prepare_publications(entry.get("publications")),
         "license": prepare_license(entry.get("license")),

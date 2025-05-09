@@ -1,6 +1,7 @@
 from bson import ObjectId
 import json
 import os
+from pprint import pprint 
 
 def build_instances_keys_dict():
     from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
@@ -17,8 +18,7 @@ def build_instances_keys_dict():
         pubs = []
         for pub_id in pub_ids:
             if isinstance(pub_id, ObjectId):
-                pub_str_id = str(pub_id)
-                pubs.append(pub_str_id)
+                pubs.append(pub_id)
         
         doc['data']['publication'] = pubs
         doc['_id'] = str(doc['_id'])
@@ -53,8 +53,33 @@ def load_dict_from_jsonl(path):
     return result
 
 
-def update_jsonl_record(path, new_record):
-    updated_key = next(iter(new_record))  # Assumes one key per record
+def remove_jsonl_record(path, target_key):
+    print(f'Removing record(s) with key: {target_key}')
+    temp_path = path + '.tmp'
+    removed = False
+
+    with open(path, 'r') as infile, open(temp_path, 'w') as outfile:
+        for line in infile:
+            try:
+                record = json.loads(line)
+                key = next(iter(record))
+                if key != target_key:
+                    json.dump(record, outfile)
+                    outfile.write('\n')
+                else:
+                    removed = True
+            except json.JSONDecodeError:
+                continue  # optionally log or keep corrupted lines
+
+    if removed:
+        os.replace(temp_path, path)
+    else:
+        os.remove(temp_path)
+        print(f'Key {target_key} not found.')
+
+
+def update_jsonl_record(path, updated_key, new_value):
+    print(f'Updating record with key: {updated_key}')
     updated = False
     temp_path = path + '.tmp'
 
@@ -64,7 +89,7 @@ def update_jsonl_record(path, new_record):
                 record = json.loads(line)
                 key = next(iter(record))
                 if key == updated_key:
-                    json.dump(new_record, outfile)
+                    json.dump({updated_key: new_value}, outfile)
                     updated = True
                 else:
                     json.dump(record, outfile)
@@ -73,9 +98,8 @@ def update_jsonl_record(path, new_record):
                 continue  # optionally log bad lines
 
     if not updated:
-        # Append the new record if it wasn't found
         with open(temp_path, 'a') as outfile:
-            json.dump(new_record, outfile)
+            json.dump({updated_key: new_value}, outfile)
             outfile.write('\n')
 
     os.replace(temp_path, path)  # atomic rename
@@ -105,18 +129,21 @@ def process_publications(publications):
 
 
 def replace_with_full_entries(conflict, instances_dict):
+    from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
     new_conflict = {
         "disconnected": [],
         "remaining": [],
     }
     for entry in conflict['disconnected']:
         entry_id = entry["id"]
-        new_conflict['disconnected'].append(instances_dict.get(entry_id))
+        new_entry = mongo_adapter.fetch_entry("pretoolsDev", entry_id)
+        new_conflict['disconnected'].append(new_entry)
 
     
     for entry in conflict['remaining']:
         entry_id = entry["id"]
-        new_conflict['remaining'].append(instances_dict.get(entry_id))
+        new_entry = mongo_adapter.fetch_entry("pretoolsDev", entry_id)
+        new_conflict['remaining'].append(new_entry)
 
     return new_conflict
 
@@ -132,6 +159,7 @@ def filter_relevant_fields(conflict):
     }
 
     for entry in conflict["disconnected"]:
+        print('Entry:', entry)
         filtered_entry = {
             "id": entry["_id"],
             "name": entry["data"].get("name"),
@@ -147,7 +175,7 @@ def filter_relevant_fields(conflict):
         filtered_conflict["disconnected"].append(filtered_entry)
 
     for entry in conflict["remaining"]:
-        #print('Entry:', entry)
+        print('Entry:', entry)
         filtered_entry = {
             "id": entry["_id"],
             "name": entry["data"].get("name"),

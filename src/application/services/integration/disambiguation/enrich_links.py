@@ -34,9 +34,9 @@ def request_github_metadata(owner, repo_name):
         response.raise_for_status()
         return response.json().get('data')
     except Exception as e:
-        raise
-        #logging.warning(f"Metadata fetch failed for {owner}/{repo_name}: {e}")
-        #return None
+        #raise
+        logging.warning(f"Metadata fetch failed for {owner}/{repo_name}: {e}")
+        return None
 
 def request_github_content(owner, repo_name, file_path):
     data = {
@@ -50,9 +50,9 @@ def request_github_content(owner, repo_name, file_path):
         response.raise_for_status()
         return response.json().get('content')
     except Exception as e:
-        raise
-        #logging.warning(f"README fetch failed for {owner}/{repo_name}: {e}")
-        #return None
+        #raise
+        logging.warning(f"README fetch failed for {owner}/{repo_name}: {e}")
+        return None
 
 def request_github_readme(owner, repo_name):
     try:
@@ -102,7 +102,7 @@ def parse_gitlab_repo_url(repo_url: str) -> str:
     pattern = r"https?://gitlab\.com/([^/]+/[^/]+)"
     match = re.search(pattern, repo_url)
     if not match:
-        raise ValueError("Invalid GitLab repository URL.")
+        return None
     namespace_repo = match.group(1)
     return urllib.parse.quote(namespace_repo, safe="")
 
@@ -113,6 +113,8 @@ def get_gitlab_repo_metadata(repo_url: str) -> dict:
     Optionally accepts a GitLab Personal Access Token for private repositories.
     """
     encoded_project = parse_gitlab_repo_url(repo_url)
+    if not encoded_project:
+        return {}
     api_url = f"https://gitlab.com/api/v4/projects/{encoded_project}"
     
     headers = {}
@@ -121,7 +123,8 @@ def get_gitlab_repo_metadata(repo_url: str) -> dict:
 
     response = requests.get(api_url, headers=headers)
     if response.status_code != 200:
-        raise Exception(f"Failed to get metadata. Status code: {response.status_code}, Response: {response.text}")
+        return {}
+        #raise Exception(f"Failed to get metadata. Status code: {response.status_code}, Response: {response.text}")
     
     return response.json()
 
@@ -367,7 +370,7 @@ def get_bitbucket_readme(user, repo, metadata):
 async def extract_with_playwright(url: str) -> str:
     try:
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=False, args=[
+            browser = await p.chromium.launch(headless=True, args=[
                 "--proxy-bypass-list=<-loopback>",
                 "--dns-prefetch-disable"
             ])
@@ -404,10 +407,14 @@ def enrich_repo(url):
     repo = { 'url': url ,'metadata': None, 'readme_content': None }
     try:
         parts = url.split('/')
-        owner, repo_name = parts[3], parts[4]
-        logging.info(f"Fetching GitHub metadata for {owner}/{repo_name} with token {GITHUB_TOKEN[:4]}...")
-        repo['repo_metadata'] = request_github_metadata(owner, repo_name)
-        repo['readme_content'] = request_github_readme(owner, repo_name)
+        if len(parts) < 5:
+            return repo 
+        
+        else:
+            owner, repo_name = parts[3], parts[4]
+            logging.info(f"Fetching GitHub metadata for {owner}/{repo_name} with token {GITHUB_TOKEN[:4]}...")
+            repo['repo_metadata'] = request_github_metadata(owner, repo_name)
+            repo['readme_content'] = request_github_readme(owner, repo_name)
     except Exception as e:
         logging.error(f"Invalid GitHub URL: {url} -> {e}")
 
@@ -431,10 +438,11 @@ async def enrich_link(link):
             print(f"Processing GitHub link: {link}")
             try:
                 parts = link.split('/')
-                owner, repo_name = parts[3], parts[4]
-                new_link['repo_metadata'] = request_github_metadata(owner, repo_name)
-                new_link['readme_content'] = request_github_readme(owner, repo_name)
-                processed = True
+                if len(parts) >= 5:
+                    owner, repo_name = parts[3], parts[4]
+                    new_link['repo_metadata'] = request_github_metadata(owner, repo_name)
+                    new_link['readme_content'] = request_github_readme(owner, repo_name)
+                    processed = True
             except Exception as e:
                 logging.warning(f"Error processing GitHub link {link}: {e}")
                 raise e

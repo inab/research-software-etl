@@ -112,6 +112,11 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
                 items.append(new_item)
 
             return items
+        elif isinstance(value, str):
+            return [{
+                'name': value,
+                'url': None
+            }]
         else:
             return []
 
@@ -262,6 +267,7 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
 
         authors = tool.get('credits',[])
         tags = tool.get('tags',[])
+        links = tool.get('links', [])
         
     
         new_instance_dict = {
@@ -282,7 +288,9 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
             "topics" : topics,
             "operations" : operations,
             "authors" : authors,
-            "tags" : tags
+            "tags" : tags,
+            "links" : links
+        
         }
 
         # We keep only the fields that pass the validation

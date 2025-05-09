@@ -77,7 +77,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
                 for i in range(1, len(disconnected)):
                     pair = {
                         "remaining": [disconnected[0]],  # use first as pseudo-"remaining"
-                        "disconnected": disconnected[i]
+                        "disconnected": [disconnected[i]]
                     }
                     pairs.append(pair)
             return pairs, more_than_two_pairs
@@ -96,10 +96,12 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
         elif len(remaining) > 1:
             more_than_two_pairs += 1
             # Merge remaining entries into one, and pair each disconnected with the merged remaining
-            merged = merge_remaining(remaining)
+            merged, merged_ids = merge_remaining(remaining)
+            print('Merged:')
+            pprint(merged)
             for disc in disconnected:
                 pair = {
-                    "remaining": [merged],
+                    "remaining": [{"_id": ','.join(merged_ids) ,"data": merged}],
                     "disconnected": [disc]
                 }
                 pairs.append(pair)
