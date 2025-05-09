@@ -13,3 +13,4 @@
 {"vadr/*": {"decision": "same", "explanation": "Repo A redirects to repo B", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/117"}}
 {"sparsedossa2/lib": {"decision": "same", "explanation": "Common name including number, one common author and similar description", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/116"}}
 {"sbgn/*": {"decision": "different", "explanation": "Different purposes", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/114"}}
+{"potamos/soap": {"decision": "same", "explanation": "Same author and identical description", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/111"}}
