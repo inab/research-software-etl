@@ -10,3 +10,4 @@
 {"fastphylo/*": {"decision": "same", "explanation": "same publication and website of A referenced in repo B as old web site", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/120"}}
 {"oligomap/*": {"decision": "different", "explanation": "Different purpose and no common links", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/119"}}
 {"mendelscan/*": {"decision": "same", "explanation": "Same readme in websites. Same programming language.", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/118"}}
+{"vadr/*": {"decision": "same", "explanation": "Repo A redirects to repo B", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/117"}}
