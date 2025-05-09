@@ -2,3 +2,4 @@
 {"responsenet/*": {"decision": "same", "explanation": "Same description", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/130"}}
 {"sina/*": {"decision": "unclear", "explanation": "no information in entry A", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/128"}}
 {"roddy/cmd": {"decision": "same", "explanation": "Seems that the unreleased is an old biotools entry of the same tool", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/127"}}
+{"proteoformer/cmd": {"decision": "same", "explanation": "Old biotools entry", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/126"}}
