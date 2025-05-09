@@ -38,3 +38,4 @@
 {"velvet/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/87"}}
 {"hypercluster/lib": {"decision": "same", "explanation": "Repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/86"}}
 {"pathoscope/cmd": {"decision": "same", "explanation": "Same publication", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/85"}}
+{"pash/cmd": {"decision": "same", "explanation": "Description of B is the title of the publication of A", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/84"}}
