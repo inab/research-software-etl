@@ -62,3 +62,4 @@
 {"discosnp/cmd": {"decision": "same", "explanation": "Same publication and descriptions", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/59"}}
 {"bioconductor-lipidr/lib": {"decision": "same", "explanation": "same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/58"}}
 {"vibrant/cmd": {"decision": "same", "explanation": "Same repository in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/57"}}
+{"pindel/cmd": {"decision": "same", "explanation": "Same documentation and similar descriptions", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/56"}}
