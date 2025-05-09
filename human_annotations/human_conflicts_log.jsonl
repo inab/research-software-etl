@@ -15,3 +15,4 @@
 {"sbgn/*": {"decision": "different", "explanation": "Different purposes", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/114"}}
 {"potamos/soap": {"decision": "same", "explanation": "Same author and identical description", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/111"}}
 {"methylsig/lib": {"decision": "same", "explanation": "same repository and very similar descriptions", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/110"}}
+{"hgca/web": {"decision": "same", "explanation": "One is an older version of the other", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/109"}}
