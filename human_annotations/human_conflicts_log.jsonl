@@ -47,3 +47,4 @@
 {"prosampler/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/77"}}
 {"bioconductor-multicrispr/lib": {"decision": "same", "explanation": "Same publication, same readme, new releases in github and old ones in gitlab", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/76"}}
 {"telescope/cmd": {"decision": "different", "explanation": "Different purpose and repositories", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/75"}}
+{"transgenescan/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/74"}}
