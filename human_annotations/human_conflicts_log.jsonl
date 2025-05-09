@@ -67,3 +67,4 @@
 {"pgap/cmd": {"decision": "same", "explanation": "Same description", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/54"}}
 {"percolator/cmd": {"decision": "same", "explanation": "Same repository (in description)", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/53"}}
 {"rna-seqc/cmd": {"decision": "different", "explanation": "One is a reimplementation of the other with an independent publication", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/52"}}
+{"uropa/cmd": {"decision": "same", "explanation": "Same documentation and purpose", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/51"}}
