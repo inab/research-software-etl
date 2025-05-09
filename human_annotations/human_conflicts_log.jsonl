@@ -54,3 +54,4 @@
 {"saspector/cmd": {"decision": "same", "explanation": "repo in A is the continuation of repo in B", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/69"}}
 {"mir-prefer/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/67"}}
 {"hichipper/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/66"}}
+{"smap_design/cmd": {"decision": "unclear", "explanation": "No info from galaxy", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/64"}}
