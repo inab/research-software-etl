@@ -25,3 +25,4 @@
 {"sambamba/cmd": {"decision": "same", "explanation": "Documentation of A is repo of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/102"}}
 {"rodeo/cmd": {"decision": "same", "explanation": "It seems like an abandoned tool from mitchells lab", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/101"}}
 {"trnascan-se/cmd": {"decision": "same", "explanation": "both from bioconda and identical descriptions", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/100"}}
+{"weeder/cmd": {"decision": "same", "explanation": "Very similar descriptions. Authors of A are authors of publications in docs of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/99"}}
