@@ -22,3 +22,4 @@
 {"faf-drugs/web": {"decision": "same", "explanation": "Same description, same authors, same documentation", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/105"}}
 {"expressionview/lib": {"decision": "same", "explanation": "B is a bioconductor package according to documentation", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/104"}}
 {"enterotyping/cmd": {"decision": "same", "explanation": "Same metadata", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/103"}}
+{"sambamba/cmd": {"decision": "same", "explanation": "Documentation of A is repo of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/102"}}
