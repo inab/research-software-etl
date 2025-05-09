@@ -36,3 +36,4 @@
 {"crossicc/lib": {"decision": "same", "explanation": "Bioconductor reference in biotools.", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/89"}}
 {"mustang/cmd": {"decision": "same", "explanation": "Same description and page", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/88"}}
 {"velvet/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/87"}}
+{"hypercluster/lib": {"decision": "same", "explanation": "Repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/86"}}
