@@ -51,7 +51,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add human_annotations/human_conflicts_log.json
+          git add human_annotations/human_conflicts_log.jsonl
           git commit -m "Update human_conflicts_log.json for ${{ needs.extract-id.outputs.conflict_id }}" || echo "No changes to commit"
           git push
         env:
