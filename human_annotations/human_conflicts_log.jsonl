@@ -28,3 +28,4 @@
 {"weeder/cmd": {"decision": "same", "explanation": "Very similar descriptions. Authors of A are authors of publications in docs of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/99"}}
 {"gepard/cmd": {"decision": "same", "explanation": "Same publication and organization", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/98"}}
 {"debreak/cmd": {"decision": "same", "explanation": "Repo B redirects of repo A", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/96"}}
+{"soapdenovo2/cmd": {"decision": "same", "explanation": "Same purpose", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/95"}}
