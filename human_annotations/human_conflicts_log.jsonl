@@ -7,3 +7,4 @@
 {"beagle/cmd": {"decision": "unclear", "explanation": "No info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/124"}}
 {"gdsctools/*": {"decision": "same", "explanation": "Same documentation", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/123"}}
 {"sbpipe/*": {"decision": "same", "explanation": "Same documentation and repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/121"}}
+{"fastphylo/*": {"decision": "same", "explanation": "same publication and website of A referenced in repo B as old web site", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/120"}}
