@@ -58,3 +58,4 @@
 {"oncocnv/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/63"}}
 {"exparna/cmd": {"decision": "different", "explanation": "Different purposes", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/62"}}
 {"liquorice/cmd": {"decision": "same", "explanation": "Same purpose, authors (included in publication from biotools) are the same and same repo (from eradthedocs of A).", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/61"}}
+{"r-vision/cmd": {"decision": "different", "explanation": "Different descriptions and preprints", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/60"}}
