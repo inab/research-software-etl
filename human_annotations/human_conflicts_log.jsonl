@@ -50,3 +50,4 @@
 {"transgenescan/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/74"}}
 {"viga/cmd": {"decision": "different", "explanation": "Different repos, galaxy tool seems to be https://github.com/EGTortuero/viga", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/73"}}
 {"gapfiller/cmd": {"decision": "different", "explanation": "Different purposes", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/71"}}
+{"scitrack/cmd": {"decision": "same", "explanation": "repo in A moved to B", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/70"}}
