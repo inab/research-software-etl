@@ -1,2 +1,3 @@
 {"beagle/cmd": {"decision": "unclear", "explanation": "No info", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/131"}}
 {"responsenet/*": {"decision": "same", "explanation": "Same description", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/130"}}
+{"sina/*": {"decision": "unclear", "explanation": "no information in entry A", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/128"}}
