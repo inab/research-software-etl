@@ -30,3 +30,4 @@
 {"debreak/cmd": {"decision": "same", "explanation": "Repo B redirects of repo A", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/96"}}
 {"soapdenovo2/cmd": {"decision": "same", "explanation": "Same purpose", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/95"}}
 {"r-cdseq/cmd": {"decision": "different", "explanation": "Different implementations: R and MATLAB", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/94"}}
+{"prosolo/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/93"}}
