@@ -60,3 +60,4 @@
 {"liquorice/cmd": {"decision": "same", "explanation": "Same purpose, authors (included in publication from biotools) are the same and same repo (from eradthedocs of A).", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/61"}}
 {"r-vision/cmd": {"decision": "different", "explanation": "Different descriptions and preprints", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/60"}}
 {"discosnp/cmd": {"decision": "same", "explanation": "Same publication and descriptions", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/59"}}
+{"bioconductor-lipidr/lib": {"decision": "same", "explanation": "same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/58"}}
