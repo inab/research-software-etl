@@ -23,3 +23,4 @@
 {"expressionview/lib": {"decision": "same", "explanation": "B is a bioconductor package according to documentation", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/104"}}
 {"enterotyping/cmd": {"decision": "same", "explanation": "Same metadata", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/103"}}
 {"sambamba/cmd": {"decision": "same", "explanation": "Documentation of A is repo of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/102"}}
+{"rodeo/cmd": {"decision": "same", "explanation": "It seems like an abandoned tool from mitchells lab", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/101"}}
