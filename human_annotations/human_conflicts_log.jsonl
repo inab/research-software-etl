@@ -33,3 +33,4 @@
 {"prosolo/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/93"}}
 {"bioconductor-cbnplot/lib": {"decision": "same", "explanation": "Same repo in both (in biotools)", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/92"}}
 {"cytotree/lib": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/90"}}
+{"crossicc/lib": {"decision": "same", "explanation": "Bioconductor reference in biotools.", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/89"}}
