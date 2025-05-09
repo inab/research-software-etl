@@ -20,3 +20,4 @@
 {"gnet2/lib": {"decision": "same", "explanation": "One repository is an up-to-date fork of the other", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/107"}}
 {"fasta/web": {"decision": "different", "explanation": "Different biotools entries, entry A is the EBI web service of the tool. They have different publications and EBI uses the other. ", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/106"}}
 {"faf-drugs/web": {"decision": "same", "explanation": "Same description, same authors, same documentation", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/105"}}
+{"expressionview/lib": {"decision": "same", "explanation": "B is a bioconductor package according to documentation", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/104"}}
