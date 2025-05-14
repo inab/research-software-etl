@@ -107,3 +107,4 @@
 {"msgfplus/cmd": {"decision": "unclear", "explanation": "The blocking seems wrong, since it is the protomics communiy repo", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/20"}}
 {"suitor/lib": {"decision": "different", "explanation": "They seem like diverging implementations", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/115"}}
 {"flash/cmd": {"decision": "unclear", "explanation": "Not enough info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/19"}}
+{"msstats/cmd": {"decision": "unclear", "explanation": "Not enough info in entry B", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/49"}}
