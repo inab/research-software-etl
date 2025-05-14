@@ -94,3 +94,4 @@
 {"leehom/cmd": {"decision": "same", "explanation": "Same repository with description that contains the descriptions of the two records", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/26"}}
 {"axiome/cmd": {"decision": "different", "explanation": "Different implementations, B is newer using only Python", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/25"}}
 {"transtermhp/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/24"}}
+{"bayescan/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/23"}}
