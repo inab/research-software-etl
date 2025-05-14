@@ -75,3 +75,4 @@
 {"cvlr/cmd": {"decision": "same", "explanation": "There seems to be a typo in the repo of A", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/45"}}
 {"pegs/cmd": {"decision": "same", "explanation": "Common authors and same description", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/44"}}
 {"bowtie/cmd": {"decision": "same", "explanation": "Same description, same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/43"}}
+{"xxmotif/cmd": {"decision": "different", "explanation": "The first record is a webserver that use XXmotif", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/42"}}
