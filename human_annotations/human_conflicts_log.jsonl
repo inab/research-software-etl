@@ -89,3 +89,4 @@
 {"bibliospec/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/31"}}
 {"stringmlst/cmd": {"decision": "same", "explanation": "Same lab", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/30"}}
 {"cap3/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/29"}}
+{"express/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/28"}}
