@@ -102,3 +102,4 @@
 {"htseq/cmd": {"decision": "same", "explanation": "biotools is the older version, the src moved to a different repo", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/17"}}
 {"suitor/lib": {"decision": "different", "explanation": "They seem like diverging implementations", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/115"}}
 {"pecora/lib": {"decision": "unclear", "explanation": "No clear why there are two different repositories", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/112"}}
+{"mglex/cmd": {"decision": "same", "explanation": "pypi repo is the one in the other record, so they are the same", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/82"}}
