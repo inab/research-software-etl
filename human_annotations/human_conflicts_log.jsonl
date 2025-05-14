@@ -71,3 +71,4 @@
 {"rfmix/cmd": {"decision": "unclear", "explanation": "Broken link, insufficient description in entry A", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/50"}}
 {"minia/cmd": {"decision": "same", "explanation": "Common authors, same purpose and description. Same github repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/48"}}
 {"traitar/cmd": {"decision": "same", "explanation": "The different repos correspond to different python versions", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/47"}}
+{"mapseq/cmd": {"decision": "same", "explanation": "Descriptions defer, but both entries end up pointing to the same repository", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/46"}}
