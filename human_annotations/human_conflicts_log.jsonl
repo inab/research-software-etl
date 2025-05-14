@@ -96,3 +96,4 @@
 {"transtermhp/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/24"}}
 {"bayescan/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/23"}}
 {"sailfish/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/22"}}
+{"rnashapes/cmd": {"decision": "same", "explanation": "colection of tools", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/21"}}
