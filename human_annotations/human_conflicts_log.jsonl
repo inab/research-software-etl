@@ -77,3 +77,4 @@
 {"bowtie/cmd": {"decision": "same", "explanation": "Same description, same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/43"}}
 {"xxmotif/cmd": {"decision": "different", "explanation": "The first record is a webserver that use XXmotif", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/42"}}
 {"suppa/cmd": {"decision": "same", "explanation": "Same description and respository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/41"}}
+{"masurca/cmd": {"decision": "same", "explanation": "Same description and repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/40"}}
