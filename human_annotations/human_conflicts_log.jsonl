@@ -105,3 +105,4 @@
 {"mglex/cmd": {"decision": "same", "explanation": "pypi repo is the one in the other record, so they are the same", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/82"}}
 {"wgd/lib": {"decision": "same", "explanation": "One repo is old and the other is refered to in it", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/97"}}
 {"msgfplus/cmd": {"decision": "unclear", "explanation": "The blocking seems wrong, since it is the protomics communiy repo", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/20"}}
+{"suitor/lib": {"decision": "different", "explanation": "They seem like diverging implementations", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/115"}}
