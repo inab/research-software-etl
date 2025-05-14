@@ -86,3 +86,4 @@
 {"copyrighter/cmd": {"decision": "unclear", "explanation": "Not enough info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/34"}}
 {"bioconductor-ngsreports/lib": {"decision": "different", "explanation": "Related, but A is a shiny app that uses the other tool", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/33"}}
 {"preseq/cmd": {"decision": "same", "explanation": "Same description and resspository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/32"}}
+{"bibliospec/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/31"}}
