@@ -83,3 +83,4 @@
 {"ectyper/cmd": {"decision": "different", "explanation": "Related, but the first is a plugin written in Java", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/37"}}
 {"bedgraphtobigwig/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/36"}}
 {"jvarkit-wgscoverageplotter/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/35"}}
+{"copyrighter/cmd": {"decision": "unclear", "explanation": "Not enough info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/34"}}
