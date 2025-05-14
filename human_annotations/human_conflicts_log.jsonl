@@ -74,3 +74,4 @@
 {"mapseq/cmd": {"decision": "same", "explanation": "Descriptions defer, but both entries end up pointing to the same repository", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/46"}}
 {"cvlr/cmd": {"decision": "same", "explanation": "There seems to be a typo in the repo of A", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/45"}}
 {"pegs/cmd": {"decision": "same", "explanation": "Common authors and same description", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/44"}}
+{"bowtie/cmd": {"decision": "same", "explanation": "Same description, same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/43"}}
