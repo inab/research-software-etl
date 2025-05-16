@@ -106,3 +106,4 @@
 {"flash/cmd": {"decision": "unclear", "explanation": "Not enough info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/19"}}
 {"msstats/cmd": {"decision": "unclear", "explanation": "Not enough info in entry B", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/49"}}
 {"salsa/*": {"decision": "same", "explanation": "Same purpose", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/113"}}
+{"ifeature/*": {"decision": "different", "explanation": "Different authors and repositories", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/122"}}
