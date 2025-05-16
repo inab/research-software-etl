@@ -113,3 +113,4 @@
 {"sspace/cmd": {"decision": "unclear", "explanation": "No info from toolshed", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/65"}}
 {"hmmcopy/cmd": {"decision": "different", "explanation": "A references B as a different software in its description", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/68"}}
 {"rnaplex/cmd": {"decision": "different", "explanation": "Different purposes", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/72"}}
+{"cellml/*": {"decision": "unclear", "explanation": "Too little info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/80"}}
