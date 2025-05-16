@@ -2,9 +2,11 @@
 import json
 from bson import json_util
 from pydantic import BaseModel
+from datetime import datetime
 from pydantic.json import pydantic_encoder
 from src.domain.models.software_instance.main import instance
 from src.domain.models.software_instance.multitype_instance import multitype_instance
+from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
 from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 def pretty_print_model(model: BaseModel) -> None:
@@ -50,80 +52,129 @@ def fetch_entry_from_db(entry_id):
     return entry
 
 
-def merge_and_save(disambiguated_blocks_file):
-
-    with open(disambiguated_blocks_file, 'r') as f:
-        disambiguated_blocks = f.read()
 
 
-    print('Grouped entries loaded.')
+def prepare_for_db(entry, entries_ids):
+    """
+    WARNING: this function inserts the entries in the db even if the entry is already there.
+    This is because it is for the first time we are merging the entries.
 
-    # loop disambiguated blocks and merge the entries in 'merged_entries'
-    final_instances_groups = []
-    for key, value in disambiguated_blocks.items():
-        instances_ids = value.get("merged_entries", [])
-        if len(value.get('unmerged_entries')) < 1:
-            instances_ids += value.get('unmerged_entries')
-        else:
-            print(f"Group {key} has only one instance. Skipping.")
-        final_instances_groups.append(instances_ids)
+    TODO: adapt this function to check if the entry is already in the db and if so,
+    update it instead of inserting it again. Add metadata to reflect updates in it. 
+    """
+    # make suere entries_ids is a list
+    if not isinstance(entries_ids, list):
+        entries_ids = [entries_ids]
     
-    print('Final instances groups loaded.')
+    db_entry = {
+        'source': entries_ids,
+        "timestamp": datetime.now().isoformat()
+    }
 
-    # Merge entries in each group
-    print('-----------------------------------')
-    print("Merging process starting. Group by group.")
-    count = 0
-    for group in final_instances_groups:
+    db_entry['data'] = entry
 
-        count += 1
-        print(f"Group {count}:")
-        print('-----------------------------------')
+    return db_entry
 
+
+
+def merge_entries(entries_ids):
+    # retrieve full entries from db
+    instances = [fetch_entry_from_db(entry) for entry in entries_ids]
+    instances = [item['data'] for item in instances if item is not None]
+
+    # Put type in list and validate entries as multitype_instance
+    instances = [convert_to_multi_type_instance(entry) for entry in entries_ids]
+    print('Instances in entries_ids converted to multitype_instance.')
+
+    # merge entries
+    if len(instances) > 1:
+        # merge instances
+        print(f"Merging {len(instances)} entries in entries_ids...")
+        merged_instances = merge_instances(instances)
+        print('Entries in entries_ids merged.')
+    else:
+        merged_instances = instances[0]
+        print(f"Only one entry in entries_ids. No merging needed.")
+
+    merged_entries = merged_instances.model_dump(mode="json")   
+
+    return merged_entries
+
+
+def save_entry(metadata):
+    try:
+        id = mongo_adapter.insert_one(
+            collection_name='toolsDev',
+            document=metadata
+        )
+
+    except Exception as e:
+        print(f"Error saving entry {metadata['_id']}.")
+        pretty_print_model(metadata)
+        raise
+
+    else:
+        return id
+    
+
+def merge_and_save_blocks(disambiguated_blocks_file):
+    '''
+    Merge entries if:
+        - resolution == merged or resolution == no_conflict:
+            - merge “merged entries”
+        - resolution == partial:
+            - merge “merged entries”
+            - save entry in “unmerge_entry” if len == 1
+    '''
+
+    disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_file)
+    print('Disambiguated blocks loaded.')
+
+    n = 0
+    n_inserted_entries = 0
+
+    for key, value in disambiguated_blocks.items():
         try:
-            # retrieve full entries from db
-            # TODO: use the mongo_adapter to retrieve the entries
-            instances = [fetch_entry_from_db(entry) for entry in group]
-            instances = [item['data'] for item in instances if item is not None]
+            if value.get("resolution") == "no_conflict" or value.get("resolution") == "merged":
+                entry = merge_entries(value.get("merged_entries"))
+                db_entry = prepare_for_db(entry, value.get("merged_entries"))
+                db_id = save_entry(db_entry)
+                print(f"Entry {key} saved in db with id {db_id}.")
+                n += 1
+                n_inserted_entries += 1
 
-            # Put type in list and validate entries as multitype_instance
-            instances = [convert_to_multi_type_instance(entry) for entry in group]
-            print('Instances in group converted to multitype_instance.')
+            elif value.get("resolution") == "partial":
+                entry = merge_entries(value.get("merged_entries"))
+                db_entry = prepare_for_db(entry, value.get("merged_entries"))
+                db_id = save_entry(db_entry)
+                print(f"Entry {key} saved in db with id {db_id}.")
+                n_inserted_entries += 1
 
-            # merge entries
-            print(f"Merging {len(instances)} entries in group...")
-            merged_instances = merge_instances(instances)
-
-            print('Entries in group merged.')
-
-            metadata = {
-                'source': group,
-                'timestamp': '2025-04-28T15:00:00.000Z',
-            }
-
-            metadata['data'] = merged_instances.model_dump(mode="json")            
-
-            # save merged entries
-            '''
-            mongo_adapter.insert_one(
-                collection_name='toolsDev',
-                document=metadata
-            )
-            '''
-            # print for now for debugging
-        except Exception as e:
-            print(f"Error merging group {count}.")            
-            pretty_print_dict(group)
+                if len(value.get("unmerged_entries"))==1:
+                    entry = merge_entries(value.get("unmerged_entries"))
+                    db_entry = prepare_for_db(entry, value.get("unmerged_entries"))
+                    db_id = save_entry(db_entry)
+                    print(f"Entry {key} saved in db with id {db_id}.")
+                    n_inserted_entries += 1
+                
+                n += 1
+            
+        except:
+            print(f"Error processing block {key}.")
             raise
 
-        print('-----------------------------------')
-
-
-    print("Integration complete.")
+    print("✨ Merging completed! ✨")
+    print('----------- Summary -------------')
+    print(f"Processed {len(disambiguated_blocks)} blocks.")
+    print(f"Processed {n} blocks.")
+    print(f"Inserted {n_inserted_entries} entries in db.")
+    print(f"Still {len(disambiguated_blocks) - n} blocks pending.")
+    print('---------------------------------')
+    
 
 
 
 
 if __name__ == '__main__':
     file_path = '/Users/evabsc/projects/software-observatory/research-software-etl/scripts/data/grouped_entries.json'
-    merge_and_save(file_path)
+    merge_and_save_blocks(file_path)
