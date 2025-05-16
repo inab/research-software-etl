@@ -1,17 +1,9 @@
-from src.application.use_cases.integration.update_disambiguation_after_human_resolution import run_disambiguation_after_human_annotation
+from src.application.use_cases.integration.update_all_disambiguation_after_human_resolution import run_disambiguation_after_human_annotation
 import argparse 
 
 def main():
     parser = argparse.ArgumentParser(
         description="""Update the disambiguation results after human resolution. The function takes the conflict ID, the path to the conflict blocks file, and the path to the disambiguated blocks file as input. The function updates the disambiguated blocks file with the new record for the given conflict ID."""
-    )
-
-    parser.add_argument(
-        "--conflict-id", "-c",
-        help=("ID of the conflict to be updated."),
-        type=str,
-        dest="conflict_id",
-        required=True,
     )
 
     parser.add_argument(
@@ -32,15 +24,13 @@ def main():
 
     args = parser.parse_args() 
 
-    conflict_id = args.conflict_id
     conflict_blocks_file = args.conflict_blocks_file
     disambiguated_blocks_file = args.disambiguated_blocks_file
 
-    print(f"Updating disambiguation results for conflict ID: {conflict_id}")
     print(f"Conflict blocks file: {conflict_blocks_file}")
     print(f"Disambiguated blocks file: {disambiguated_blocks_file}")
 
-    run_disambiguation_after_human_annotation(conflict_id, conflict_blocks_file, disambiguated_blocks_file)
+    run_disambiguation_after_human_annotation(conflict_blocks_file, disambiguated_blocks_file)
 
     print("Disambiguation process finished!")
 

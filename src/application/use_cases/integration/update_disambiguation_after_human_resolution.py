@@ -14,7 +14,6 @@ def run_disambiguation_after_human_annotation(
     # Load input data
     conflict_blocks = load_dict_from_jsonl(conflict_blocks_file)
 
-
     # Takes the decision from the human annotations file 
     human_log_path = 'human_annotations/human_conflicts_log.json'
     human_annotations = load_dict_from_jsonl(human_log_path)
@@ -32,6 +31,4 @@ def run_disambiguation_after_human_annotation(
 
     # Update the disambiguated_blocks.json file. There is already a record for this conflict, so we need to update it
     update_jsonl_record(disambiguated_blocks_file, conflict_id, record)
-
-
 

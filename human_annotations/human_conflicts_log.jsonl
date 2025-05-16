@@ -4,7 +4,6 @@
 {"roddy/cmd": {"decision": "same", "explanation": "Seems that the unreleased is an old biotools entry of the same tool", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/127"}}
 {"proteoformer/cmd": {"decision": "same", "explanation": "Old biotools entry", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/126"}}
 {"mass/app": {"decision": "same", "explanation": "Same website, similar description and one common author", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/125"}}
-{"beagle/cmd": {"decision": "unclear", "explanation": "No info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/124"}}
 {"gdsctools/*": {"decision": "same", "explanation": "Same documentation", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/123"}}
 {"sbpipe/*": {"decision": "same", "explanation": "Same documentation and repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/121"}}
 {"fastphylo/*": {"decision": "same", "explanation": "same publication and website of A referenced in repo B as old web site", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/120"}}
@@ -40,7 +39,6 @@
 {"pathoscope/cmd": {"decision": "same", "explanation": "Same publication", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/85"}}
 {"pash/cmd": {"decision": "same", "explanation": "Description of B is the title of the publication of A", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/84"}}
 {"pepnovo/cmd": {"decision": "same", "explanation": "Same documentation page", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/83"}}
-{"pyrpipe/cmd": {"decision": "same", "explanation": "Same repos in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/81"}}
 {"pyrpipe/cmd": {"decision": "same", "explanation": "Same repos in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/81"}}
 {"locarna/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/79"}}
 {"circtools/cmd": {"decision": "same", "explanation": "Different repos considered different versions. One repo is ahead of the other", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/78"}}
@@ -100,7 +98,6 @@
 {"orfipy/cmd": {"decision": "same", "explanation": "Same long description in A and in readme of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/18"}}
 {"abromics_galaxy_json_extractor/cmd": {"decision": "same", "explanation": "Little info but name seems to specific and descriptions are similar", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/16"}}
 {"htseq/cmd": {"decision": "same", "explanation": "biotools is the older version, the src moved to a different repo", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/17"}}
-{"suitor/lib": {"decision": "different", "explanation": "They seem like diverging implementations", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/115"}}
 {"pecora/lib": {"decision": "unclear", "explanation": "No clear why there are two different repositories", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/112"}}
 {"mglex/cmd": {"decision": "same", "explanation": "pypi repo is the one in the other record, so they are the same", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/82"}}
 {"wgd/lib": {"decision": "same", "explanation": "One repo is old and the other is refered to in it", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/97"}}

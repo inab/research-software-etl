@@ -64,8 +64,9 @@ async def process_conflict(key, conflict, instances_dict):
     conflict_pairs, _ = build_pairs(copy.deepcopy(conflict_full), key, more_than_two_pairs=0)
 
     pair_results = []
-
+    n = 0
     for conflict_pair in conflict_pairs:
+        n+= 1
         # Prepare minimal, enriched entry for disambiguation
         full_conflict = filter_relevant_fields(conflict_pair)
         full_conflict = await build_full_conflict(full_conflict)
@@ -88,15 +89,16 @@ async def process_conflict(key, conflict, instances_dict):
             })
         else:
             # Human fallback
+            # TODO: more than one pair may need disambiguation, so we need a way to differentiate them 
             context = generate_context(key, full_conflict)
             body = generate_github_issue(context)
             title = f"Manual resolution needed for {key}"
             labels = ['conflict', 'automated']
             #create_issue(title, body, labels)
+            key = f"{key}_pair_{n}"
             response = create_github_issue(title, body, labels)
             return build_disambiguated_record_manual(key, conflict, response["html_url"])
-
-
+        
 
     # Build final record
     return build_disambiguated_record(key, conflict, pair_results)

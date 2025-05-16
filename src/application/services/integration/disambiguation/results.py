@@ -170,7 +170,6 @@ def build_disambiguated_record_after_human(conflict_id, conflict, decision):
         note = note.strip()
 
     record = {
-        conflict_id: {
             "resolution": decision['decision'],
             "merged_entries": merged_ids,
             "unmerged_entries": unmerged_ids,
@@ -178,7 +177,6 @@ def build_disambiguated_record_after_human(conflict_id, conflict, decision):
             "confidence_scores": {},
             "timestamp": datetime.now().isoformat(),
             "notes": note
-        }
     }
     return record
 
