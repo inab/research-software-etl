@@ -108,3 +108,4 @@
 {"salsa/*": {"decision": "same", "explanation": "Same purpose", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/113"}}
 {"ifeature/*": {"decision": "different", "explanation": "Different authors and repositories", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/122"}}
 {"diseasemeth/*": {"decision": "same", "explanation": "Similar description and one shared author", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/129"}}
+{"mglex/cmd": {"decision": "same", "explanation": "pypi repo is the one in the other record, so they are the same", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/82"}}
