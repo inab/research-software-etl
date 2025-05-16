@@ -35,8 +35,22 @@ def merge_instances(instances):
     return merged_instances 
         
 
+def fetch_entry_from_db(entry_id):
+    query = {
+        "_id": entry_id
+    }
+    entry = mongo_adapter.fetch_entry(
+        collection_name='pretoolsDev',
+        query=query
+    ) 
+    if entry:
+        entry = json.loads(json_util.dumps(entry))
+    else:
+        entry = None
+    return entry
 
-def merge_and_save(disambiguated_blocks_file, instances_dict):
+
+def merge_and_save(disambiguated_blocks_file):
 
     with open(disambiguated_blocks_file, 'r') as f:
         disambiguated_blocks = f.read()
@@ -67,8 +81,9 @@ def merge_and_save(disambiguated_blocks_file, instances_dict):
         print('-----------------------------------')
 
         try:
-            # retrieve full entries from instances_dict or db
-            instances = [instances_dict.get(entry) for entry in group]
+            # retrieve full entries from db
+            # TODO: use the mongo_adapter to retrieve the entries
+            instances = [fetch_entry_from_db(entry) for entry in group]
             instances = [item['data'] for item in instances if item is not None]
 
             # Put type in list and validate entries as multitype_instance
@@ -89,10 +104,12 @@ def merge_and_save(disambiguated_blocks_file, instances_dict):
             metadata['data'] = merged_instances.model_dump(mode="json")            
 
             # save merged entries
+            '''
             mongo_adapter.insert_one(
                 collection_name='toolsDev',
                 document=metadata
             )
+            '''
             # print for now for debugging
         except Exception as e:
             print(f"Error merging group {count}.")            
@@ -103,6 +120,7 @@ def merge_and_save(disambiguated_blocks_file, instances_dict):
 
 
     print("Integration complete.")
+
 
 
 

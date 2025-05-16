@@ -1,5 +1,13 @@
 from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
 
+# ----------------------------------------------------
+# Count the number of blocks in the disambiguation process
+# 
+# Warning: will not work anymore because now the decision of issues is 'merged', 
+# 'partial' or 'unclear' in disambiguated instead of the decision of 
+# literally the human reviewer (which is 'same', 'different', 'unclear')
+# ----------------------------------------------------
+
 db_first_path = 'scripts/data/disambiguated_blocks_first_round.jsonl'
 
 db_pre_human_path = 'scripts/data/disambiguated_blocks_second_round.jsonl'

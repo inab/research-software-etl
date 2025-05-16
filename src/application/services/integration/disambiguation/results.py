@@ -169,8 +169,19 @@ def build_disambiguated_record_after_human(conflict_id, conflict, decision):
     else: 
         note = note.strip()
 
+
+    if decision['decision'] == 'same':
+        resolution = "merged"
+    elif decision['decision'] == 'different':
+        resolution = "partial"
+    elif decision['decision'] == 'unclear':
+        resolution = "unclear"
+    else:
+        resolution = "manual_review_pending"
+        print(f"WARNING: Unknown decision: {decision['decision']}. Setting resolution to 'manual_review_pending'.")
+
     record = {
-            "resolution": decision['decision'],
+            "resolution": resolution,
             "merged_entries": merged_ids,
             "unmerged_entries": unmerged_ids,
             "source": "manual",
@@ -178,6 +189,7 @@ def build_disambiguated_record_after_human(conflict_id, conflict, decision):
             "timestamp": datetime.now().isoformat(),
             "notes": note
     }
+    
     return record
 
     
