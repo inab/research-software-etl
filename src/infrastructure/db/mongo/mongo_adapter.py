@@ -99,6 +99,27 @@ class MongoDBAdapter(DatabaseAdapter):
             '_id' : identifier 
         }
         return collection.count_documents(query) > 0
+    
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10),
+    stop=stop_after_attempt(5),
+    )
+    def delete_entry(self, collection_name: str, identifier: str) -> bool:
+        """
+        Delete a document from a specified MongoDB collection by its identifier.
+
+        Args:
+            collection_name (str): The name of the MongoDB collection from which to delete the document.
+            identifier (str): The unique identifier (_id) of the document to delete.
+
+        Returns:
+            bool: True if a document was deleted, False otherwise.
+        """
+        collection = self.db[collection_name]
+        logger.info(f"Deleting entry from collection '{collection_name}' with _id: {identifier}")
+        result = collection.delete_one({'_id': identifier})
+        return result.deleted_count > 0
 
 
     @retry(

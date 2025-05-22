@@ -138,7 +138,7 @@ class toolshedStandardizer(MetadataStandardizer):
             type_ = 'cmd'
             label = [tool.get('name')]
             description = cls.description(tool)
-            test = tool.get('test', False)
+            test = tool.get('tests', False)
             input = cls.data_formats(tool, 'inputs')
             output = cls.data_formats(tool, 'outputs')
             documentation = cls.documentation(tool)

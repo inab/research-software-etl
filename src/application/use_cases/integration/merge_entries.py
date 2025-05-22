@@ -3,6 +3,7 @@ import json
 from bson import json_util
 from pydantic import BaseModel
 from datetime import datetime
+from bson import ObjectId
 from pydantic.json import pydantic_encoder
 from src.domain.models.software_instance.main import instance
 from src.domain.models.software_instance.multitype_instance import multitype_instance
@@ -46,10 +47,10 @@ def fetch_entry_from_db(entry_id):
         query=query
     ) 
     if entry:
-        entry = json.loads(json_util.dumps(entry))
+        return entry
     else:
-        entry = None
-    return entry
+        return None
+
 
 
 
@@ -76,14 +77,11 @@ def prepare_for_db(entry, entries_ids):
     return db_entry
 
 
-
 def merge_entries(entries_ids):
     # retrieve full entries from db
-    instances = [fetch_entry_from_db(entry) for entry in entries_ids]
-    instances = [item['data'] for item in instances if item is not None]
-
+    entries = [fetch_entry_from_db(entry) for entry in entries_ids]
     # Put type in list and validate entries as multitype_instance
-    instances = [convert_to_multi_type_instance(entry) for entry in entries_ids]
+    instances = [convert_to_multi_type_instance(entry) for entry in entries]
     print('Instances in entries_ids converted to multitype_instance.')
 
     # merge entries
@@ -130,8 +128,13 @@ def merge_and_save_blocks(disambiguated_blocks_file):
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_file)
     print('Disambiguated blocks loaded.')
 
-    n = 0
-    n_inserted_entries = 0
+    summary = {
+        "N": len(disambiguated_blocks),
+        "n_processed": 0,
+        "n_inserted_entries": 0,
+        "n_pending": 0,
+        "n_unclear": 0
+    }
 
     for key, value in disambiguated_blocks.items():
         try:
@@ -140,37 +143,37 @@ def merge_and_save_blocks(disambiguated_blocks_file):
                 db_entry = prepare_for_db(entry, value.get("merged_entries"))
                 db_id = save_entry(db_entry)
                 print(f"Entry {key} saved in db with id {db_id}.")
-                n += 1
-                n_inserted_entries += 1
+                summary['n_processed'] += 1
+                summary['n_inserted_entries'] += 1
 
             elif value.get("resolution") == "partial":
                 entry = merge_entries(value.get("merged_entries"))
                 db_entry = prepare_for_db(entry, value.get("merged_entries"))
                 db_id = save_entry(db_entry)
                 print(f"Entry {key} saved in db with id {db_id}.")
-                n_inserted_entries += 1
+                summary['n_inserted_entries'] += 1
 
                 if len(value.get("unmerged_entries"))==1:
                     entry = merge_entries(value.get("unmerged_entries"))
                     db_entry = prepare_for_db(entry, value.get("unmerged_entries"))
                     db_id = save_entry(db_entry)
                     print(f"Entry {key} saved in db with id {db_id}.")
-                    n_inserted_entries += 1
+                    summary['n_inserted_entries'] += 1
                 
-                n += 1
+                summary['n_processed'] += 1
+            
+            else:
+                if value.get("resolution") == "unclear":
+                    summary['n_unclear'] += 1
+                elif value.get("resolution") == "manual_review_pending":
+                    summary['n_pending'] += 1
             
         except:
             print(f"Error processing block {key}.")
             raise
 
-    print("✨ Merging completed! ✨")
-    print('----------- Summary -------------')
-    print(f"Processed {len(disambiguated_blocks)} blocks.")
-    print(f"Processed {n} blocks.")
-    print(f"Inserted {n_inserted_entries} entries in db.")
-    print(f"Still {len(disambiguated_blocks) - n} blocks pending.")
-    print('---------------------------------')
-    
+    return summary
+
 
 
 

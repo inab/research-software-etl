@@ -135,17 +135,29 @@ class multitype_instance(instance):
         information is retained.
         """
         # Dictionary to track licenses by their name
-        license_map = {lic.name: lic for lic in self.license}
 
-        for lic in other_licenses:
-            if lic.name in license_map:
-                # Merge with the existing license item
-                license_map[lic.name] = license_map[lic.name].merge(lic)
+        if not self.license:
+            if not other_licenses:
+                return []
             else:
-                # Add the new license item if not already present
-                license_map[lic.name] = lic
+                return other_licenses
+        
+        else:
 
-        resulting_licenses = list(license_map.values())
+            license_map = {lic.name: lic for lic in self.license}
+
+            if not other_licenses:
+                return self.license
+            
+            for lic in other_licenses:
+                if lic.name in license_map:
+                    # Merge with the existing license item
+                    license_map[lic.name] = license_map[lic.name].merge(lic)
+                else:
+                    # Add the new license item if not already present
+                    license_map[lic.name] = lic
+
+            resulting_licenses = list(license_map.values())
 
         return resulting_licenses
     

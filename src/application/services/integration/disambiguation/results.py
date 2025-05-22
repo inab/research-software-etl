@@ -149,7 +149,18 @@ def build_disambiguated_record_manual(block_id, block, issue_url, model_name="au
 
 
 def build_disambiguated_record_after_human(conflict_id, conflict, decision):
-    merged_ids =  [entry["id"] for entry in conflict.get("remaining", [])]
+
+    if len(conflict.get("remaining")) == 0:
+        if len(conflict.get("disconnected")) == 2:
+            conflict['remaining'] = [conflict.get("disconnected")[1]]
+            conflict["disconnected"] = [conflict.get("disconnected")[0]]
+
+
+    if len(conflict.get("remaining", [])) > 0:
+        merged_ids =  [entry["id"] for entry in conflict.get("remaining", [])]
+    else:
+        merged_ids = []
+
     unmerged_ids = []
     issue_url = decision.get('issue_url', None)
     
@@ -189,7 +200,7 @@ def build_disambiguated_record_after_human(conflict_id, conflict, decision):
             "timestamp": datetime.now().isoformat(),
             "notes": note
     }
-    
+
     return record
 
     
