@@ -4,6 +4,7 @@ from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 # Ensure the environment variables are correctly mocked
+
 @pytest.fixture
 def mock_env_vars(mocker):
     env_vars = {

@@ -2,6 +2,8 @@
 # If database changes, for example to SQL, then only this file will change, while
 # the repositories (in adpaters/db) will remain the same.
 
+from dotenv import load_dotenv
+load_dotenv(dotenv_path='/Users/evabsc/projects/software-observatory/research-software-etl/.env', override=True)
 
 import os
 import pymongo
@@ -10,65 +12,95 @@ from typing import Dict
 from pymongo.errors import NetworkTimeout, AutoReconnect, CursorNotFound
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
+from sshtunnel import SSHTunnelForwarder
+
+
 
 logger = logging.getLogger("rs-etl-pipeline")
 
 class MongoDBAdapter(DatabaseAdapter):
-    _client = None  # Class variable to hold the single MongoClient instance
+    _client = None
+    _tunnel = None  # Keep tunnel alive
+    logger.debug("Initializing MongoDBAdapter 1")
 
     def __init__(self, database=None):
-
-        # avoid creating multiple connections
+        logger.debug("Initializing MongoDBAdapter")
         if MongoDBAdapter._client is None:
             MongoDBAdapter._client = self._initialize_client()
 
-        # Reuse the existing connection
         self.client = MongoDBAdapter._client
-
-        # Use the provided database name or default
         self.db = self.client[self._get_database_name(database)]
 
     def _initialize_client(self):
-        """Initialize MongoDB Client"""
+        """Initialize MongoDB Client (optionally via SSH tunnel)"""
+
+        logger.info("Initializing MongoDB client")
+
         mongo_host = os.getenv('MONGO_HOST', 'localhost')
-        mongo_port = os.getenv('MONGO_PORT', '27017')
+        mongo_port = int(os.getenv('MONGO_PORT', '27018'))
         mongo_user = os.getenv('MONGO_USER')
-        print(f"Mongo user from singleton: {mongo_user}")
         mongo_pass = os.getenv('MONGO_PWD')
         mongo_auth_src = os.getenv('MONGO_AUTH_SRC', 'admin')
 
-        logger.info(f"Connecting to MongoDB at {mongo_host}:{mongo_port}")
+        '''
+        print(f"USE_SSH_TUNNEL is {use_ssh_tunnel}")
+        if use_ssh_tunnel:
+            print("Using SSH tunnel to connect to MongoDB")
 
-        # Initialize MongoDB Client with AutoReconnect handling
+            ssh_host = os.getenv('SSH_HOST')
+            ssh_port = int(os.getenv('SSH_PORT', '22'))
+            ssh_user = os.getenv('SSH_USER')
+            ssh_key = os.getenv('SSH_KEY')  # Or use SSH_PASSWORD
+
+            if not all([ssh_host, ssh_user, ssh_key]):
+                raise ValueError("Missing SSH connection details (SSH_HOST, SSH_USER, SSH_KEY)")
+
+            tunnel = SSHTunnelForwarder(
+                (ssh_host, ssh_port),
+                ssh_username=ssh_user,
+                ssh_private_key=ssh_key,
+                remote_bind_address=(mongo_host, mongo_port),
+                local_bind_address=('127.0.0.1', 0)  # Let OS pick an available port
+            )
+            tunnel.start()
+            MongoDBAdapter._tunnel = tunnel  # Keep reference to prevent garbage collection
+            local_port = tunnel.local_bind_port
+            print(f"SSH tunnel established on local port {local_port}")
+
+            mongo_uri = f'mongodb://127.0.0.1:{local_port}/'
+        else:
+        '''
+        logger.info(f"Connecting directly to MongoDB at {mongo_host}:{mongo_port}")
+        mongo_uri = f'mongodb://{mongo_host}:{mongo_port}/'
+
         try:
-            if mongo_user is None or mongo_pass is None:
-                # If no credentials are provided, connect without authentication
-                logger.debug('Connecting to local MongoDB without authentication')
+            if mongo_user and mongo_pass:
                 client = pymongo.MongoClient(
-                    host=[f'localhost:27017'],
-                    maxPoolSize=100,
-                    serverSelectionTimeoutMS=5000  # Avoid indefinite hanging
-                )
-                logger.info("Connected to local MongoDB")
-            else:
-                logging.debug('Connecting to MongoDB with authentication')
-                client = pymongo.MongoClient(
-                    host=[f'{mongo_host}:{mongo_port}'],
+                    'mongodb://127.0.0.1:27018',
                     username=mongo_user,
                     password=mongo_pass,
                     authSource=mongo_auth_src,
                     authMechanism='SCRAM-SHA-256',
                     maxPoolSize=100,
-                    serverSelectionTimeoutMS=5000  # Avoid indefinite hanging
+                    serverSelectionTimeoutMS=5000
                 )
-                logger.info(f"Connected to MongoDB at {mongo_host}:{mongo_port} with authentication")
-            # Test connection
+            else:
+                logger.debug("No MongoDB credentials provided. Connecting without authentication.")
+                client = pymongo.MongoClient(
+                    mongo_uri,
+                    maxPoolSize=100,
+                    serverSelectionTimeoutMS=5000
+                )
+
             client.admin.command('ping')
+            logger.info("MongoDB connection established successfully")
             return client
+
         except Exception as e:
             logger.error(f"MongoDB connection failed: {e}")
+            if MongoDBAdapter._tunnel:
+                MongoDBAdapter._tunnel.stop()
             raise
-        
 
     def _get_database_name(self, database):
         """Get database name from parameter or environment variable"""

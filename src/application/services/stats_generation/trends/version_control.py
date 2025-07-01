@@ -32,6 +32,7 @@ def version_control(tools: List[Dict[str, Any]], collection: str):
         'gitlab': 0,
         'bitbucket': 0,
         'sourceforge': 0,
+        'bioconductor': 0
     }
     tools_with_repo = 0
     tools_without_repo = 0
