@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import List, Dict, Any
 from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from collections import Counter
 
 
 '''
@@ -13,19 +14,18 @@ dependencies(tools, collection_name)
 def count_dependencies(tools: List[Dict[str, Any]]):
     """
     Computes dependencies statistics from software entries and prepares data for storage/plotting.
+    Returns only the top 10 most common dependencies.
     """
-    dependencies_stats = {}
+    dependencies_counter = Counter()
 
     for entry in tools:
         entry = entry.get('data', {})
         dependencies = entry.get('dependencies', [])
-        for dependency in dependencies:
-            if dependency not in dependencies_stats:
-                dependencies_stats[dependency] = 0
-            dependencies_stats[dependency] += 1
+        dependencies_counter.update(dependencies)
 
-    
-    return dependencies_stats 
+    # Get the 10 most common dependencies
+    top_20 = dict(dependencies_counter.most_common(20))
+    return top_20
 
 
 def dependencies_count(dependencies_stats: Dict[str, int], collection: str):

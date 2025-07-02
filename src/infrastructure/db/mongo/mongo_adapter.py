@@ -8,11 +8,11 @@ load_dotenv(dotenv_path='/Users/evabsc/projects/software-observatory/research-so
 import os
 import pymongo
 import logging
-from typing import Dict
+from typing import Dict, Optional
 from pymongo.errors import NetworkTimeout, AutoReconnect, CursorNotFound
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
-from sshtunnel import SSHTunnelForwarder
+#from sshtunnel import SSHTunnelForwarder
 
 
 
@@ -159,7 +159,7 @@ class MongoDBAdapter(DatabaseAdapter):
     wait=wait_exponential(multiplier=1, min=1, max=10), 
     stop=stop_after_attempt(5),
     )
-    def get_entry_metadata(self, collection_name: str, identifier: str) -> bool:
+    def get_entry_metadata(self, collection_name: str, identifier: str) -> Optional[dict]:
         """
         Retrieve metadata for an entry from the specified collection, excluding the 'data' field.
 
@@ -169,7 +169,7 @@ class MongoDBAdapter(DatabaseAdapter):
 
         Returns:
             dict or None: A dictionary containing the metadata of the entry, excluding the 'data' field if the entry is found.
-                        Returns None if no entry is found.
+            Returns None if no entry is found.
         """
         collection = self.db[collection_name]
         query = {
@@ -317,4 +317,15 @@ class MongoDBAdapter(DatabaseAdapter):
         id_inserted_doc =  collection.insert_one(document)
         logger.debug(f"Inserted document into collection {collection_name}")
         return id_inserted_doc.inserted_id
+    
+
+    def fetch_all_tags(self):
+        """
+        Fetch all unique tags from the 'toolsDev' collection.
+        Returns:
+            List[str]: A list of unique tag strings.
+        """
+        collection = self.db['toolsDev']
+        tags = collection.distinct('data.tags')
+        return [tag for tag in tags if tag]  # filter out empty/null tags
     
