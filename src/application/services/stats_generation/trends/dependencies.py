@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import List, Dict, Any
 from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from collections import Counter
-
+import re
 
 '''
 USAGE:
@@ -10,20 +10,27 @@ USAGE:
 dependencies(tools, collection_name)
 '''
 
+def clean_dependency(dep: str) -> str:
+    # Remove version specifiers like '>= 1.2', '<= 2.0', '==1.0', etc.
+    dep = re.split(r'\s*[<>=!~]+\s*', dep)[0]
+    # Remove anything like '(' or trailing spaces
+    return re.sub(r'\s*\(.*$', '', dep).strip()
 
 def count_dependencies(tools: List[Dict[str, Any]]):
     """
-    Computes dependencies statistics from software entries and prepares data for storage/plotting.
-    Returns only the top 10 most common dependencies.
+    Computes cleaned dependency statistics from software entries and prepares data for storage/plotting.
+    Returns only the top 20 most common dependencies.
     """
     dependencies_counter = Counter()
 
     for entry in tools:
         entry = entry.get('data', {})
         dependencies = entry.get('dependencies', [])
-        dependencies_counter.update(dependencies)
 
-    # Get the 10 most common dependencies
+        cleaned_deps = [clean_dependency(dep) for dep in dependencies]
+        dependencies_counter.update(cleaned_deps)
+
+    # Get the 20 most common cleaned dependencies
     top_20 = dict(dependencies_counter.most_common(20))
     return top_20
 

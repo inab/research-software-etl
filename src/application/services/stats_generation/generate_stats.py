@@ -25,7 +25,7 @@ def generate_stats_for_collections(collections):
 
         tools = mongo_adapter.fetch_entries("toolsDev", query)
 
-        
+        '''
         licenses_stats(tools, collection=collection)
         print('Licenses stats done')
         semantic_versioning(tools, collection=collection)
@@ -50,6 +50,7 @@ def generate_stats_for_collections(collections):
         print('Fair distributions done')
         publications_journals_IF(collection=collection)
         print('Publications journals IF done')
+        '''
         dependencies(tools, collection=collection)
         print('Dependencies done')
 
