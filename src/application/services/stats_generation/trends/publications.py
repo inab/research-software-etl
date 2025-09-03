@@ -68,62 +68,93 @@ def number_of_tools(publication_ids, tools):
                 n += 1
 
     return n
-    
+
+def tools_w_publication(tools):
+    n=0
+    for entry in tools:
+        publications = entry['data'].get("publication", [])
+        if len(publications) > 0:
+            n += 1
+
+    return n
+
+
+
+def _to_oid(x):
+    """Coerce x into an ObjectId if possible, else return None."""
+    if isinstance(x, ObjectId):
+        return x
+    if isinstance(x, str):
+        try:
+            return ObjectId(x)
+        except Exception:
+            return None
+    if isinstance(x, dict):
+        # Common JSON export shape: {"$oid": "..."} or {"oid": "..."}
+        for k in ("$oid", "oid", "_id"):
+            if k in x and isinstance(x[k], str):
+                try:
+                    return ObjectId(x[k])
+                except Exception:
+                    return None
+    return None
 
 def publications_journals_IF(collection):
-
+    # 1) Fetch tools (materialize)
     if collection == 'tools':
-        tools = mongo_adapter.fetch_entries("toolsDev", {})
+        tools = list(mongo_adapter.fetch_entries("toolsDev", {}))
     else:
-        tools = mongo_adapter.fetch_entries("toolsDev", { 'data.tags': collection })
+        tools = list(mongo_adapter.fetch_entries("toolsDev", { 'data.tags': collection }))
 
-    docs = []
+    # 2) Build publications doc list robustly
     if collection != 'tools':
+        docs = []
         for tool in tools:
-            if tool.get("data"):
-                if tool['data'].get("publication"):
-                    for publication_id in tool['data']['publication']:
-                        doc = mongo_adapter.fetch_entry("publicationsMetadataDev", {"_id": ObjectId(publication_id)})
-                        if doc:
-                            docs.append(doc)
+            data = tool.get("data") or {}
+            pubs = data.get("publication") or []
+            for p in pubs:
+                oid = _to_oid(p)
+                if not oid:
+                    continue
+                doc = mongo_adapter.fetch_entry("publicationsMetadataDev", {"_id": oid})
+                if doc:
+                    docs.append(doc)
     else:
-        docs = mongo_adapter.fetch_entries("publicationsMetadataDev", {})
-        
+        docs = list(mongo_adapter.fetch_entries("publicationsMetadataDev", {}))
 
-    journal_impact = compute_journal_impact(docs)
+    # 3) Compute & report
+    journal_impact = compute_journal_impact(docs, years=['2022','2023','2024','2025'])
     top_journals = get_top_journals(journal_impact)
 
-    
     print('----------------- Top Journals -------------------')
-
     for journal, data in top_journals:
         print(f"Journal: {journal}, Impact: {data['impact']}, Number of publications: {len(data['ids'])}")
-
     print('-----------------------------------------------')
 
-    #  generating percentage_tools
-    _tools = {
-        'y': [],
-        'x': []
-    }
-
-    _publications = {
-        'y': [],
-        'x': []
-    }
-
-    citations = {
-        'y': [],
-        'x': []
-    }
-
+    _tools = {'y': [], 'x': []}
+    _publications = {'y': [], 'x': []}
+    citations = {'y': [], 'x': []}
 
     for journal, data in top_journals:
         _publications['x'].append(journal)
         _publications['y'].append(len(data['ids']))
 
+        # count each tool at most once per journal
+        n_tools = 0
+        pub_ids_set = set(data['ids'])
+        for entry in tools:
+            pubs = (entry.get('data') or {}).get("publication", []) or []
+            # if any publication of this tool is in the set, count it once
+            found = False
+            for p in pubs:
+                oid = _to_oid(p)
+                if oid and oid in pub_ids_set:
+                    found = True
+                    break
+            if found:
+                n_tools += 1
+
         _tools['x'].append(journal)
-        n_tools = number_of_tools(data['ids'], tools)
         _tools['y'].append(n_tools)
 
         citations['x'].append(journal)
@@ -132,14 +163,17 @@ def publications_journals_IF(collection):
     result = {
         'variable': 'publications_journals_IF',
         'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-        'data': {
-            'tools': _tools,
-            'publications': _publications,
-            'citations': citations
-        },
+        'data': {'tools': _tools, 'publications': _publications, 'citations': citations},
         'collection': collection
     }
-
     mongo_adapter.insert_one("computationsDev", result)
 
-
+    tools_w_pubs = sum(1 for t in tools if (t.get('data') or {}).get('publication'))
+    denom = len(tools) or 1
+    result_count = {
+        'variable': 'publications_coverage',
+        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'data': {'count': tools_w_pubs, 'percentage': tools_w_pubs / denom},
+        'collection': collection
+    }
+    mongo_adapter.insert_one("computationsDev", result_count)

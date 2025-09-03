@@ -13,7 +13,11 @@ def generate_stats_for_collections(collections):
     from src.application.services.stats_generation.data.coverage import coverage_sources
     from src.application.services.stats_generation.FAIR.fair_calculation import compute_fair_distributions
     from src.application.services.stats_generation.trends.dependencies import dependencies
+    from src.application.services.stats_generation.trends.documentation import documentation
+    from src.application.services.stats_generation.trends.formats import formats
     from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+    
+
 
     for collection in collections:
         print(f'Processing collection: {collection}')
@@ -28,31 +32,52 @@ def generate_stats_for_collections(collections):
         '''
         licenses_stats(tools, collection=collection)
         print('Licenses stats done')
+        
         semantic_versioning(tools, collection=collection)
         print('Semantic versioning done')
+        
         count_tools_per_source(tools, collection=collection)
         print('Count tools per source done')
+        
         count_tools(tools, collection=collection)
         print('Count tools done')
+        
         version_control(tools, collection=collection)
         print('Version control done')
+        
         coverage_sources(tools, collection=collection)
         print('Coverage sources done')
+        
         features_overview(tools, collection=collection)
         print('Features overview done')
+        
         features_cummulative(tools, collection=collection)
         print('Features cummulative done')
+        
         features_xy(tools, collection=collection)
         print('Features xy done')
+        
         count_types_tools(tools, collection=collection)
         print('Count types tools done')
+        
         compute_fair_distributions(tools, collection=collection)
         print('Fair distributions done')
-        publications_journals_IF(collection=collection)
-        print('Publications journals IF done')
-        '''
+        
         dependencies(tools, collection=collection)
         print('Dependencies done')
+        
+        documentation(tools, collection=collection)
+        print('Documentation done')
+        '''
+        
+        publications_journals_IF(collection=collection)
+        print('Publications journals IF done')
+
+        '''
+        formats(tools, collection=collection)
+        print('Input and otput data formats done')
+        '''
+        
 
 
 # Default collections if run as a script

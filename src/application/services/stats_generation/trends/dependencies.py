@@ -22,17 +22,21 @@ def count_dependencies(tools: List[Dict[str, Any]]):
     Returns only the top 20 most common dependencies.
     """
     dependencies_counter = Counter()
-
+    tools_w_deps = 0
     for entry in tools:
         entry = entry.get('data', {})
         dependencies = entry.get('dependencies', [])
+
+        if len(dependencies) > 0:
+            tools_w_deps += 1
 
         cleaned_deps = [clean_dependency(dep) for dep in dependencies]
         dependencies_counter.update(cleaned_deps)
 
     # Get the 20 most common cleaned dependencies
     top_20 = dict(dependencies_counter.most_common(20))
-    return top_20
+
+    return top_20, tools_w_deps
 
 
 def dependencies_count(dependencies_stats: Dict[str, int], collection: str):
@@ -49,13 +53,31 @@ def dependencies_count(dependencies_stats: Dict[str, int], collection: str):
     return dependencies_summary
 
 
+def dependencies_coverage(tools, tools_w_deps, collection):
+
+    data = {
+        'count': tools_w_deps,
+        'percentage': tools_w_deps/len(list(tools))
+    }
+
+    doc = {
+        'variable':'dependencies_coverage',
+        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'data': data,
+        'collection': collection
+    }
+
+    return doc
+
 
 def dependencies(tools: List[Dict[str, Any]], collection: str):
-    dependencies_stats = count_dependencies(tools)
-    dependencies_summary = dependencies_count(dependencies_stats, collection)
+    dependencies_stats, tools_w_deps = count_dependencies(tools)
 
-    # Save or return this object for further processing
+    dependencies_summary = dependencies_count(dependencies_stats, collection)
     mongo_adapter.insert_one("computationsDev", dependencies_summary)
+
+    dependencies_coverage_doc = dependencies_coverage(tools, tools_w_deps, collection)
+    mongo_adapter.insert_one("computationsDev", dependencies_coverage_doc)
 
 
 

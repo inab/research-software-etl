@@ -137,7 +137,7 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
             if 'datatype' in data:
                 datatype = {
                     'vocabulary': 'EDAM',
-                    'term': EDAMDict[data['datatype']],
+                    'term': EDAMDict.get(data['datatype']),
                     'uri': data['datatype']
                 }
             else:
@@ -147,7 +147,7 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
                 for format in data['formats']:
                     new_format = {
                         'vocabulary': 'EDAM',
-                        'term': EDAMDict[format],
+                        'term': EDAMDict.get(format),
                         'uri': format,
                         'datatype': datatype
                     }

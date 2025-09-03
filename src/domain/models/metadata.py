@@ -40,7 +40,7 @@ class Metadata(BaseModel):
     created_logs: str = Field(..., description="Link to the logs of the creation process", alias='created_logs')
     last_updated_at: str = Field(..., description="Last update of the entry", alias='last_updated_at')
     updated_by: str = Field(..., description="User or task that updated the entry", alias='updated_by')
-    updated_logs: str = Field(..., description="Link to the logs of the last update", alias='updated_logs')
+    updated_logs: Optional[str] = Field(..., description="Link to the logs of the last update", alias='updated_logs')
     source: List[source_item] = Field(..., description="Sources of the entry", alias='source') # only one source!
     
 

@@ -126,8 +126,8 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
                     except Exception as e:
                         print(f"Error processing conflict {key}")
                         logging.error(f"Error processing conflict {key}: {e}")
-                        raise e
-                        
+                        print(e)
+                                                
                     
             else:
                 record = build_no_conflict_record(key, blocks[key])

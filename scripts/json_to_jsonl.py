@@ -15,11 +15,11 @@ def json_to_jsonl(json_path, jsonl_path):
 
 if __name__ == "__main__":
     files = [
-    'tests/application/use_cases/integration/data/blocks.json',
-    'tests/application/use_cases/integration/data/conflict_blocks.json',
+    #'tests/application/use_cases/integration/data/blocks.json',
+    #'tests/application/use_cases/integration/data/conflict_blocks.json',
     #'tests/application/use_cases/integration/data/disambiguated_blocks.json',
-    #'scripts/data/blocks.json',
-    #'scripts/data/conflict_blocks.json',
+    'scripts/data/blocks_0.2.json'
+    #'scripts/data/conflict_blocks_0.2.json'
     #'scripts/data/disambiguated_blocks.json'
     ]
     
