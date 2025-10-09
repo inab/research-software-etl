@@ -62,7 +62,7 @@ This step adds metadata from Europe PMC and Semantic Scholar to the records in t
 
 Full integration requires the execution of the following steps: 
 
-- Blocking.
+1. Blocking.
   - Script: `adapters/cli/integration/group_and_recovery.py`
   - Example of script of real execution: `scripts/group_and_recovery.sh`.
   - This step performs the blocking of records (see `blocking_criteria.md` for details on blocking). 
@@ -72,25 +72,25 @@ Full integration requires the execution of the following steps:
     - MONGO_HOST, MONGO_PORT, MONGO_USER, MONGO_PWD, MONGO_AUTH_SRC, MONGO_DB
   - Blocks are stored in a file (`--grouped-entries-file`)
 
-- Removal of useless records (optional). 
+2. Removal of useless records (optional). 
   - Script: `scripts/remove_opeb_metrics.py` 
   - This step removes records from OpenEBench "metrics". This step is not necessary but speeds up the pocess. 
   - Why removing these records? Becasue these records are very numerous but provide no information, since their value lies in the publications data, that is saved in a difeferent database collection at the normalization step. These records remain as part as the dataset for *historical* reasons and should be removed from the normalized dataset in future development. 
   - Input and output paths are hardcoded in the script. Manually modify it to process the correct file of blocks and output to the desired path.
 
-- Conflict detection 
+3. Conflict detection 
   - Script: `adapters/cli/integration/conflict_detection.py`
   - Example of script of real execution: `scripts/conflict_detection.sh`.
   - Potentially wrong blocks using the criteria in `conflict_detection.md`
   - This steps generates a file of conflicts to be disambiguate in next steps. 
 
-- Simplification of blocks.
+4. Simplification of blocks.
   - Script: `script/simplify_grouped_entries.py`
   - Modify the script to process your bocks file. 
   - This step is needed to prepare the blocks file for next steps. 
   - This step will be incorporated in the blocking step in future developments.
 
-- Convert to JSONL.
+5. Convert to JSONL.
   - Script: `script/json_to_jsonl.py`
   - Modify the script to process your files. 
   - Files that need conversion are: 
@@ -98,7 +98,7 @@ Full integration requires the execution of the following steps:
     - simplified blocks
   - This step will be incorporated in the appropriate steps in future developments.
 
-- Disambiguation.
+6. Disambiguation.
   - Script: `adapters/cli/integration/disambiguation.py`
   - Example of script of real execution: `script/disambiguation.sh`.
   - In this step, the conflicts identified in the previous "conflict detection" stage are resolved through a combination of automated and manual procedures.
@@ -108,7 +108,12 @@ Full integration requires the execution of the following steps:
   - This step requires GitHub and Gitlab tokens as well as OpenRouter and HuggingFace API keys. These are provided as enviroment variables.
     - GITHUB_TOKEN, GITLAB_TOKEN, OPENROUTER_API_KEY and HUGGINGFACE_API_KEY
 
-- Merge.
+7. Add human disambiguation. 
+  - Script: `adapters/cli/integration/update_disambiguation_after_human_resoltion.py`
+  - Pull from git before running this step so `human_annotations/human_conflicts_log.jsonl` is updated eith annotators decisions.
+  - Example of script of real execution: `scripts/update_disambiguation_after_human_resoltion.sh`.
+
+8. Merge.
   - Script: `adapters/cli/integration/merge_entries.py`
   - Example of script of real execution: `script/merge_entries.sh`
   - Records in blocks are merged and pushed to the database. Records pushed to the database are of the form of `domain.models.software_instance.database_entries.ToolsEntryModel`.

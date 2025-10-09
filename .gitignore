@@ -12,3 +12,4 @@ FAIRsoft/
 *json
 *csv
 *.txt
+rs-etl/*
