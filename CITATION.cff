@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Research Software ETL"
+authors:
+  - family-names: "Martin del Pico"
+    given-names: "Eva"
+    affiliation: "Barcelona Supercomputing Center (BSC), Spanish National Bioinformatics Institute (INB), ELIXIR-ES"
+repository-code: "https://github.com/inab/research-software-etl"
+url: "https://github.com/inab/research-software-etl"
+license: "AGPL-3.0-only"
+keywords:
+  - research software
+  - life sciences
+  - metadata
+  - ETL
+  - FAIRsoft
+version: "0.1.0"
+date-released: "2025-10-09"
+preferred-citation:
+  type: software
+  title: "Research Software ETL"
+  version: "0.1.0"
+  authors:
+    - family-names: "Martin del Pico"
+      given-names: "Eva"
+  institution: "Barcelona Supercomputing Center (BSC) — INB"
+  license: "AGPL-3.0-only"
+  repository-code: "https://github.com/inab/research-software-etl"
