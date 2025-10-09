@@ -18,8 +18,8 @@ if __name__ == "__main__":
     #'tests/application/use_cases/integration/data/blocks.json',
     #'tests/application/use_cases/integration/data/conflict_blocks.json',
     #'tests/application/use_cases/integration/data/disambiguated_blocks.json',
-    'scripts/data/blocks_0.2.json'
-    #'scripts/data/conflict_blocks_0.2.json'
+    'scripts/data/blocks_0.4.json',
+    'scripts/data/conflict_blocks_0.4.json'
     #'scripts/data/disambiguated_blocks.json'
     ]
     

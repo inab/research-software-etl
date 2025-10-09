@@ -44,12 +44,12 @@ def remove_opeb_metrics_entries_verbose(grouped_entries):
 
 if __name__ == "__main__":
     # Load your grouped entries
-    with open("scripts/data/grouped_entries_0.2.json", "r") as f:
+    with open("scripts/data/grouped_entries_0.4.json", "r") as f:
         grouped_entries = json.load(f)
 
     # Clean them
     cleaned_entries = remove_opeb_metrics_entries_verbose(grouped_entries)
 
     # Save to a new file
-    with open("scripts/data/grouped_entries_no_opeb_0.2.json", "w") as f:
+    with open("scripts/data/grouped_entries_no_opeb_0.4.json", "w") as f:
         json.dump(cleaned_entries, f, indent=2)

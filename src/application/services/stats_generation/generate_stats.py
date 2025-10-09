@@ -29,7 +29,6 @@ def generate_stats_for_collections(collections):
 
         tools = mongo_adapter.fetch_entries("toolsDev", query)
 
-        '''
         licenses_stats(tools, collection=collection)
         print('Licenses stats done')
         
@@ -60,23 +59,21 @@ def generate_stats_for_collections(collections):
         count_types_tools(tools, collection=collection)
         print('Count types tools done')
         
-        compute_fair_distributions(tools, collection=collection)
-        print('Fair distributions done')
-        
         dependencies(tools, collection=collection)
         print('Dependencies done')
         
         documentation(tools, collection=collection)
         print('Documentation done')
-        '''
-        
-        publications_journals_IF(collection=collection)
-        print('Publications journals IF done')
 
-        '''
+        compute_fair_distributions(tools, collection=collection)
+        print('Fair distributions done')
+        
+        #publications_journals_IF(collection=collection)
+        #print('Publications journals IF done')
+
         formats(tools, collection=collection)
         print('Input and otput data formats done')
-        '''
+
         
 
 

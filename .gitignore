@@ -7,3 +7,8 @@
 FAIRsoft/
 .qodo
 *.log.*
+*pem
+*jsonl
+*json
+*csv
+*.txt

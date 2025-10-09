@@ -104,7 +104,7 @@ def compute_fair_score_means(results: List[Dict[str, Any]]) -> Dict[str, float]:
     score_sums = defaultdict(float)
     score_counts = defaultdict(int)
 
-    indicators = ['F1', 'F2', 'F3', 'A1', 'A3', 'I1', 'I2', 'I3', 'R1', 'R2', 'R3', 'R4']
+    indicators = ['F','F1', 'F2', 'F3', 'A', 'A1', 'A3', 'I', 'I1', 'I2', 'I3','R', 'R1', 'R2', 'R3', 'R4']
     for result in results:
         for key, value in result.items():
             if key not in indicators:

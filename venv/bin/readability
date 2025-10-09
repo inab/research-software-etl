@@ -1,0 +1,3 @@
+#!/Users/evabsc/projects/software-observatory/research-software-etl/venv/bin/python3.10
+import readability
+readability.main()

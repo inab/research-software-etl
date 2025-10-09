@@ -21,7 +21,7 @@ class RawSoftwareMetadataRepository:
         Returns:
             Generator.
         """
-        raw_data = self.db_adapter.fetch_paginated_entries(self.collection_name, {'@data_source': source})
+        raw_data = self.db_adapter.fetch_paginated_entries(self.collection_name, {'@data_source': source })
 
         return raw_data
     
