@@ -47,7 +47,7 @@ In addition, publication metadata is pulled into a different database collection
 This step can be executed from the [CLI](/src/adapters/cli/transformation.py) in the following way:
 
 ```
-python3 src/adapters/cli/transformation.py -l INFO
+PYTHONPATH=$(pwd) python3 src/adapters/cli/transformation.py -l INFO
 ```
 
 Example of real script for this step: `scripts/transformation/transform_bioconductor.sh`. 
