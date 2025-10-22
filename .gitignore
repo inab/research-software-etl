@@ -13,3 +13,10 @@ FAIRsoft/
 *csv
 *.txt
 rs-etl/*
+.DS_Store
+.pytest_cache
+.vscode
+venv/
+
+Pipfile
+Pipfile.lock
