@@ -1,0 +1,50 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "CCAT is a software package for the analysis of ChIP-seq data with negative control.",
+        "id": "bioconda_recipes/ccat/cmd/3.0",
+        "name": "ccat",
+        "repository": [],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "cmb.gis.a-star.edu.sg/ChIPSeq/paperCCAT.htm"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "A software package for the analysis of ChIP-seq data with negative control.",
+        "id": "biotools/ccat/cmd/3.0",
+        "name": "ccat",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.comp.nus.edu.sg/~bioinfo/CCAT3.0"
+        ]
+      },
+      {
+        "description": "A software package for the analysis of ChIP-seq data with negative control.",
+        "id": "biotools/ccat/cmd/none",
+        "name": "ccat",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.comp.nus.edu.sg/~bioinfo/CCAT3.0"
+        ]
+      }
+    ]
+  },
+  "conflict_id": "ccat/cmd_pair_1_2389668542525397458",
+  "conflict_name": "ccat/cmd_pair_1",
+  "date": ""
+}
