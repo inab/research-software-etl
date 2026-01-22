@@ -1,0 +1,46 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Determining Bacteriophage Termini and Packaging using NGS data.",
+        "id": "biotools/phageterm/cmd/None",
+        "name": "phageterm",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "sourceforge.net/projects/phageterm"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "",
+        "id": "galaxy_metadata/phageterm/cmd/1.0.11",
+        "name": "phageterm",
+        "repository": [],
+        "source": [
+          "galaxy_metadata"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Determine Bacteriophage Termini and Packaging Mode using randomly fragmented NGS data.",
+        "id": "toolshed/phageterm/cmd/1.0.11",
+        "name": "phageterm",
+        "repository": [],
+        "source": [
+          "toolshed"
+        ],
+        "types": "cmd",
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "phageterm/cmd_pair_1_-7445177946255142122",
+  "conflict_name": "phageterm/cmd_pair_1",
+  "date": ""
+}
