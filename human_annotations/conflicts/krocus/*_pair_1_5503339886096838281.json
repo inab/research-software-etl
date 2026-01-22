@@ -1,0 +1,52 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Predict MLST directly from uncorrected long reads.",
+        "id": "biotools/krocus/cmd/1.0.1",
+        "name": "krocus",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/quadram-institute-bioscience/krocus"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "Krocus can predict a sequence type directly from uncorrected long reads, \nand was designed to consume read data as it is produced, providing results \nin minutes.",
+        "id": "bioconda_recipes/krocus/cmd/1.0.3",
+        "name": "krocus",
+        "repository": [
+          "github.com/andrewjpage/krocus"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/andrewjpage/krocus"
+        ]
+      },
+      {
+        "description": "Predict MLST directly from uncorrected long reads.",
+        "id": "github/krocus/None/v1.0.3",
+        "name": "krocus",
+        "repository": [
+          "github.com/andrewjpage/krocus"
+        ],
+        "source": [
+          "github"
+        ],
+        "types": null,
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "krocus/*_pair_1_5503339886096838281",
+  "conflict_name": "krocus/*_pair_1",
+  "date": ""
+}
