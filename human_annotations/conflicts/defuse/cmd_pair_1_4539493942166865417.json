@@ -1,0 +1,46 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "A software package for gene fusion discovery using RNA-Seq data. The software uses clusters of discordant paired end alignments to inform a split read alignment analysis for finding fusion boundaries.",
+        "id": "biotools/defuse/cmd/None",
+        "name": "defuse",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "shahlab.ca/projects/defuse"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "",
+        "id": "galaxy_metadata/defuse/cmd/1.5",
+        "name": "defuse",
+        "repository": [],
+        "source": [
+          "galaxy_metadata"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Identify fusion transcripts.",
+        "id": "toolshed/defuse/cmd/1.5",
+        "name": "defuse",
+        "repository": [],
+        "source": [
+          "toolshed"
+        ],
+        "types": "cmd",
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "defuse/cmd_pair_1_4539493942166865417",
+  "conflict_name": "defuse/cmd_pair_1",
+  "date": ""
+}
