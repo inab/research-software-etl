@@ -1,0 +1,139 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Gene Set Enrichment Analysis (GSEA).",
+        "id": "bioconda_recipes/gsea/cmd/4.3.2",
+        "name": "gsea",
+        "repository": [],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.gsea-msigdb.org/gsea"
+        ]
+      },
+      {
+        "description": "Computational method that determines whether an a priori defined set of genes shows statistically significant, concordant differences between two biological states (e.g. phenotypes).",
+        "id": "biotools/gsea/cmd/None",
+        "name": "gsea",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.broadinstitute.org/gsea/index.jsp"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "",
+        "id": "galaxy_metadata/gsea/cmd/0.1.0",
+        "name": "gsea",
+        "repository": [],
+        "source": [
+          "galaxy_metadata"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "",
+        "id": "toolshed/gsea/cmd/0.1.0",
+        "name": "gsea",
+        "repository": [
+          "github.com/dktanwar/Galaxy_Tools"
+        ],
+        "source": [
+          "toolshed"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "",
+        "id": "toolshed/csaw/cmd/0.1.0",
+        "name": "csaw",
+        "repository": [
+          "github.com/dktanwar/Galaxy_Tools"
+        ],
+        "source": [
+          "toolshed"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Detection of differentially bound regions in ChIP-seq data with sliding windows, with methods for normalization and proper FDR control.",
+        "id": "biotools/csaw/lib/1.8.0",
+        "name": "csaw",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "lib",
+        "webpage": [
+          "bioconductor.org/packages/csaw"
+        ]
+      },
+      {
+        "description": "",
+        "id": "galaxy_metadata/csaw/cmd/0.1.0",
+        "name": "csaw",
+        "repository": [],
+        "source": [
+          "galaxy_metadata"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Detection of differentially bound regions in ChIP-seq data with sliding windows, with methods for normalization and proper FDR control.",
+        "id": "biotools/csaw/cmd/1.8.0",
+        "name": "csaw",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "bioconductor.org/packages/csaw"
+        ]
+      },
+      {
+        "description": "Detection of differentially bound regions in ChIP-seq data with sliding windows, with methods for normalization and proper FDR control.",
+        "id": "bioconda_recipes/bioconductor-csaw/lib/1.36.0",
+        "name": "bioconductor-csaw",
+        "repository": [],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "lib",
+        "webpage": [
+          "bioconductor.org/packages/csaw"
+        ]
+      },
+      {
+        "description": "Detection of differentially bound regions in ChIP-seq data with sliding windows, with methods for normalization and proper FDR control.",
+        "id": "bioconductor/csaw/lib/1.41.2",
+        "name": "csaw",
+        "repository": [
+          "bioconductor.org/packages/csaw"
+        ],
+        "source": [
+          "bioconductor"
+        ],
+        "types": "lib",
+        "webpage": [
+          "bioconductor.org/packages/csaw"
+        ]
+      }
+    ]
+  },
+  "conflict_id": "csaw/*_pair_2_-4757189064816371967",
+  "conflict_name": "csaw/*_pair_2",
+  "date": ""
+}
