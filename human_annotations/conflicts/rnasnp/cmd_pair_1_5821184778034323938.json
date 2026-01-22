@@ -1,0 +1,59 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Efficient detection of local RNA secondary structure changes induced by SNPs.",
+        "id": "bioconda_recipes/rnasnp/cmd/1.2",
+        "name": "rnasnp",
+        "repository": [],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "rth.dk/resources/rnasnp/software"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "",
+        "id": "galaxy_metadata/rnasnp/cmd/1.2.0",
+        "name": "rnasnp",
+        "repository": [],
+        "source": [
+          "galaxy_metadata"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Efficient detection of local RNA secondary structure changes induced by SNPs.",
+        "id": "toolshed/rnasnp/cmd/1.2.0",
+        "name": "rnasnp",
+        "repository": [],
+        "source": [
+          "toolshed"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Efficient detection of local RNA secondary structure changes induced by SNPs.",
+        "id": "galaxy/rnasnp/cmd/1.2.0",
+        "name": "rnasnp",
+        "repository": [],
+        "source": [
+          "galaxy"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "galaxy.bi.uni-freiburg.de/tool_runner"
+        ]
+      }
+    ]
+  },
+  "conflict_id": "rnasnp/cmd_pair_1_5821184778034323938",
+  "conflict_name": "rnasnp/cmd_pair_1",
+  "date": ""
+}

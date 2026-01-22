@@ -1,0 +1,52 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Efficient and scalable inference of gene regulatory networks.\n\nUsage Example \u2014 arboreto 0.1.5 documentation.\n\nFree document hosting provided by Read the Docs.",
+        "id": "biotools/arboreto/undefined/0.1.5",
+        "name": "arboreto",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "undefined",
+        "webpage": [
+          "arboreto.readthedocs.io"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "A scalable python-based framework for gene regulatory network inference using tree-based ensemble regressors.",
+        "id": "github/arboreto/None/None",
+        "name": "arboreto",
+        "repository": [
+          "github.com/tmoerman/arboreto"
+        ],
+        "source": [
+          "github"
+        ],
+        "types": null,
+        "webpage": []
+      },
+      {
+        "description": "Scalable gene regulatory network inference using tree-based ensemble regressors.",
+        "id": "bioconda_recipes/arboreto/lib/0.1.6",
+        "name": "arboreto",
+        "repository": [
+          "github.com/tmoerman/arboreto"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "lib",
+        "webpage": [
+          "github.com/tmoerman/arboreto"
+        ]
+      }
+    ]
+  },
+  "conflict_id": "arboreto/*_pair_1_-1772892513699259697",
+  "conflict_name": "arboreto/*_pair_1",
+  "date": ""
+}

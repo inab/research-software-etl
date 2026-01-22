@@ -1,0 +1,38 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "MAGeCK (Model-based Analysis of Genome-wide CRISPR-Cas9 Knockout), an algorithm to process, QC, analyze and visualize CRISPR screening data.",
+        "id": "bioconda_recipes/mageck/cmd/0.5.9.5",
+        "name": "mageck",
+        "repository": [
+          "bitbucket.org/liulab/mageck"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "mageck.sourceforge.net"
+        ]
+      },
+      {
+        "description": "Computational tool to identify important genes from the recent genome-scale CRISPR-Cas9 knockout screens technology.",
+        "id": "biotools/mageck/cmd/None",
+        "name": "mageck",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "bitbucket.org/johanneskoester/mageck"
+        ]
+      }
+    ],
+    "remaining": []
+  },
+  "conflict_id": "mageck/cmd_pair_1_4019258095379709344",
+  "conflict_name": "mageck/cmd_pair_1",
+  "date": ""
+}

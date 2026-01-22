@@ -1,0 +1,76 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Command line NoD (clinod), for  predicting nucleolar localization sequences.",
+        "id": "bioconda_recipes/effectivet3/cmd/1.0.1",
+        "name": "effectivet3",
+        "repository": [],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.compbio.dundee.ac.uk/nod"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "",
+        "id": "galaxy_metadata/effectivet3/cmd/0.0.18",
+        "name": "effectivet3",
+        "repository": [],
+        "source": [
+          "galaxy_metadata"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Prediction of putative Type-III secreted proteins.",
+        "id": "biotools/effectivet3/cmd/2.0.1",
+        "name": "effectivet3",
+        "repository": [
+          "www.effectivedb.org/method/effectivet3"
+        ],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.effectivedb.org/method/effectivet3"
+        ]
+      },
+      {
+        "description": "Prediction of putative Type-III secreted proteins.",
+        "id": "biotools/effectivet3/web/2.0.1",
+        "name": "effectivet3",
+        "repository": [
+          "www.effectivedb.org/method/effectivet3"
+        ],
+        "source": [
+          "biotools"
+        ],
+        "types": "web",
+        "webpage": [
+          "www.effectivedb.org/method/effectivet3"
+        ]
+      },
+      {
+        "description": "Find bacterial effectors in protein sequences.",
+        "id": "toolshed/effectivet3/cmd/0.0.18",
+        "name": "effectivet3",
+        "repository": [],
+        "source": [
+          "toolshed"
+        ],
+        "types": "cmd",
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "effectivet3/*_pair_1_-5761621062928417477",
+  "conflict_name": "effectivet3/*_pair_1",
+  "date": ""
+}

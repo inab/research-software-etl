@@ -1,0 +1,52 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Integrated tool for annotation and ranking of structural variations.",
+        "id": "biotools/annotsv/cmd/None",
+        "name": "annotsv",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "lbgi.fr/AnnotSV"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "Annotation and Ranking of Structural Variation.",
+        "id": "bioconda_recipes/annotsv/cmd/3.4",
+        "name": "annotsv",
+        "repository": [
+          "github.com/lgmgeo/AnnotSV"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/lgmgeo/AnnotSV"
+        ]
+      },
+      {
+        "description": "Annotation and Ranking of Structural Variation.",
+        "id": "github/AnnotSV/None/v3.4.4",
+        "name": "AnnotSV",
+        "repository": [
+          "github.com/lgmgeo/AnnotSV"
+        ],
+        "source": [
+          "github"
+        ],
+        "types": null,
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "annotsv/*_pair_1_-4602287583466619064",
+  "conflict_name": "annotsv/*_pair_1",
+  "date": ""
+}

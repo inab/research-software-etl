@@ -1,0 +1,46 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "MaxQuant is a quantitative proteomics software package designed for analyzing large mass-spectrometric data sets. License restricted.",
+        "id": "bioconda_recipes/maxquant/cmd/2.0.3.0",
+        "name": "maxquant",
+        "repository": [],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.coxdocs.org/doku.php"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "",
+        "id": "galaxy_metadata/maxquant/cmd/1.6.10.43+galaxy3",
+        "name": "maxquant",
+        "repository": [],
+        "source": [
+          "galaxy_metadata"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "",
+        "id": "toolshed/maxquant/cmd/1.6.10.43+galaxy3",
+        "name": "maxquant",
+        "repository": [],
+        "source": [
+          "toolshed"
+        ],
+        "types": "cmd",
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "maxquant/cmd_pair_1_-5495333761342473785",
+  "conflict_name": "maxquant/cmd_pair_1",
+  "date": ""
+}

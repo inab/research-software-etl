@@ -1,0 +1,50 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "MSMS is a program written in the C programming language to compute molecular surfaces.",
+        "id": "bioconda_recipes/msms/cmd/2.6.1",
+        "name": "msms",
+        "repository": [],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "mgltools.scripps.edu/packages/MSMS"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "MSMS is a coalescent simulator that and permits the full range of demographic models provided by ms, in particular, it allows for multiple demes with arbitrary migration patterns, population growth and decay, and for population splits and merges. Applications include power studies, analytical comparisons, approximated Bayesian computation among others.",
+        "id": "biotools/msms/cmd/none",
+        "name": "msms",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.mabs.at/ewing/msms/index.shtml"
+        ]
+      },
+      {
+        "description": "MSMS is a coalescent simulator that and permits the full range of demographic models provided by ms, in particular, it allows for multiple demes with arbitrary migration patterns, population growth and decay, and for population splits and merges. Applications include power studies, analytical comparisons, approximated Bayesian computation among others.",
+        "id": "biotools/msms/cmd/None",
+        "name": "msms",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "www.mabs.at/ewing/msms/index.shtml"
+        ]
+      }
+    ]
+  },
+  "conflict_id": "msms/cmd_pair_1_-2620312213920896525",
+  "conflict_name": "msms/cmd_pair_1",
+  "date": ""
+}
