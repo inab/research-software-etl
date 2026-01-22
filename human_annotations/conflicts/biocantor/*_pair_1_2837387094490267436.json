@@ -1,0 +1,54 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Python library for genomic feature arithmetic in arbitrarily related coordinate systems.",
+        "id": "biotools/biocantor/lib/None",
+        "name": "biocantor",
+        "repository": [
+          "pypi.org/project/BioCantor"
+        ],
+        "source": [
+          "biotools"
+        ],
+        "types": "lib",
+        "webpage": [
+          "github.com/InscriptaLabs/BioCantor"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "Coordinate Maniuplation and Genome Annotation Data Model.",
+        "id": "bioconda_recipes/biocantor/lib/1.1.0",
+        "name": "biocantor",
+        "repository": [
+          "github.com/ifiddes/BioCantor"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "lib",
+        "webpage": [
+          "github.com/ifiddes/BioCantor"
+        ]
+      },
+      {
+        "description": "",
+        "id": "github/BioCantor/None/1.3.0",
+        "name": "BioCantor",
+        "repository": [
+          "github.com/ifiddes/BioCantor"
+        ],
+        "source": [
+          "github"
+        ],
+        "types": null,
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "biocantor/*_pair_1_2837387094490267436",
+  "conflict_name": "biocantor/*_pair_1",
+  "date": ""
+}
