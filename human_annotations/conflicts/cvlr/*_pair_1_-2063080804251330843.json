@@ -1,0 +1,54 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Clustering and Visualization of Long Reads.",
+        "id": "bioconda_recipes/cvlr/cmd/1.0",
+        "name": "cvlr",
+        "repository": [
+          "github.com/EmanueleRaineri/releases"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/EmanueleRaineri/releases"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "A tool for finding heterogeneously methylated genomic regions using ONT reads.",
+        "id": "biotools/cvlr/cmd/None",
+        "name": "cvlr",
+        "repository": [
+          "github.com/EmanueleRaineri/cvlr"
+        ],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/EmanueleRaineri/cvlr"
+        ]
+      },
+      {
+        "description": "",
+        "id": "github/cvlr/None/None",
+        "name": "cvlr",
+        "repository": [
+          "github.com/EmanueleRaineri/cvlr"
+        ],
+        "source": [
+          "github"
+        ],
+        "types": null,
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "cvlr/*_pair_1_-2063080804251330843",
+  "conflict_name": "cvlr/*_pair_1",
+  "date": ""
+}
