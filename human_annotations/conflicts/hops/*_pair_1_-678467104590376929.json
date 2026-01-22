@@ -1,0 +1,65 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "A quantitative score reveals pervasive horizontal pleiotropy in human genetic variation is driven by extreme polygenicity of human traits and diseases.\n\nAllows to compute the HOrizontal Pleiotropy Score (HOPS) from summary statistics.\n\nHOPS (HOrizontal Pleiotropy Score).\n\nThe HOPS package allows to compute the horizontal pleiotropy score (HOrizontal Pleiotropy Score) from summary statistics. The package includes a shiny visualization tool to visualize and download the full set of HOPS results computed using UK Biobank summary statistics.",
+        "id": "biotools/hops/cmd/None",
+        "name": "hops",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/rondolab/HOPS"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "Java tool to work with ancient metagenomics.",
+        "id": "bioconda_recipes/hops/cmd/0.35",
+        "name": "hops",
+        "repository": [
+          "github.com/rhuebler/HOPS"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/rhuebler/HOPS"
+        ]
+      },
+      {
+        "description": "Automated detection and authentication of pathogen DNA in archaeological remains.\n\nHOPS is a java pipeline which focuses on screening MALT data (see Table of Contents) for the presence of a user-specified list of target species. The pipeline essentially exists to make it easier to use MALT and MaltExtract in unison. To use HOPS you will need a config file, which specifies some key parameters for MALT and MaltExtract. You can have multiple config files to quickly redo a previous analysis or archive them to remember parameters you used in an analysis. HOPS will in every case create a log that tells you which command was sent to Slurm, in case you encounter problems, that log file is a very good place to start looking for the problem.",
+        "id": "biotools/hops_malt/cmd/None",
+        "name": "hops_malt",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/rhuebler/HOPS"
+        ]
+      },
+      {
+        "description": "",
+        "id": "github/HOPS/None/0.35",
+        "name": "HOPS",
+        "repository": [
+          "github.com/rhuebler/HOPS"
+        ],
+        "source": [
+          "github"
+        ],
+        "types": null,
+        "webpage": []
+      }
+    ]
+  },
+  "conflict_id": "hops/*_pair_1_-678467104590376929",
+  "conflict_name": "hops/*_pair_1",
+  "date": ""
+}
