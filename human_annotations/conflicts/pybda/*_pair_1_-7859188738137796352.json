@@ -1,0 +1,69 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "A command-line tool for analysis of big biological data sets for distributed HPC clusters.",
+        "id": "biotools/pybda/cmd/None",
+        "name": "pybda",
+        "repository": [],
+        "source": [
+          "biotools"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "pybda.readthedocs.io/en/latest"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "Big biological data analytics powered by Apache Spark.",
+        "id": "bioconda_recipes/pybda/cmd/0.1.0",
+        "name": "pybda",
+        "repository": [
+          "github.com/cbg-ethz/pybda"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/cbg-ethz/pybda"
+        ]
+      },
+      {
+        "description": "Big biological data analytics powered by Apache Spark.",
+        "id": "bioconda_recipes/pybda/lib/0.1.0",
+        "name": "pybda",
+        "repository": [
+          "github.com/cbg-ethz/pybda"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "lib",
+        "webpage": [
+          "github.com/cbg-ethz/pybda"
+        ]
+      },
+      {
+        "description": ":computer::computer::computer: A commandline tool for analysis of big biological data sets for distributed HPC clusters.",
+        "id": "github/pybda/None/v0.1.0",
+        "name": "pybda",
+        "repository": [
+          "github.com/cbg-ethz/pybda"
+        ],
+        "source": [
+          "github"
+        ],
+        "types": null,
+        "webpage": [
+          "pybda.rtfd.io"
+        ]
+      }
+    ]
+  },
+  "conflict_id": "pybda/*_pair_1_-7859188738137796352",
+  "conflict_name": "pybda/*_pair_1",
+  "date": ""
+}
