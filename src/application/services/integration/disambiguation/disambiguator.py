@@ -3,8 +3,11 @@ from src.application.services.integration.disambiguation.conflict_builder import
 from src.application.services.integration.disambiguation.prompts import build_prompt
 from src.application.services.integration.disambiguation.proxy import decision_agreement_proxy
 from src.application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
-from src.application.services.integration.disambiguation.issues import create_github_issue, generate_github_issue, generate_context
+from src.application.services.integration.disambiguation.issues import create_github_issue, generate_github_body, generate_context, generate_conflict_file, commit_conflict_json
 from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record
+from src.application.services.integration.disambiguation.manual_annotation_lookup import find_previous_annotation_for_conflict
+from src.application.services.integration.disambiguation.results import build_disambiguated_record_after_human
+
 import json 
 import logging 
 import os
@@ -89,15 +92,30 @@ async def process_conflict(key, conflict, instances_dict):
             })
         else:
             # Human fallback
+            HUMAN_LOG_PATH = "/Users/evabsc/projects/software-observatory/research-software-etl/human_annotations/human_conflicts_log.jsonl"
+            decision = find_previous_annotation_for_conflict(conflict, HUMAN_LOG_PATH)
+
             # TODO: more than one pair may need disambiguation, so we need a way to differentiate them 
-            context = generate_context(key, full_conflict)
-            body = generate_github_issue(context)
-            title = f"Manual resolution needed for {key}"
-            labels = ['conflict', 'automated']
-            #create_issue(title, body, labels)
-            key = f"{key}_pair_{n}"
-            response = create_github_issue(title, body, labels)
-            return build_disambiguated_record_manual(key, conflict, response["html_url"])
+            if decision:
+                decision.pop("conflict", None)
+                record = build_disambiguated_record_after_human(key, conflict, decision)
+                pair_results.append(record)
+
+            else:
+                ## conflict file creation
+                content, filename = generate_conflict_file(conflict, key)
+                conflict_url = commit_conflict_json(content, filename)
+
+                ## issue creation
+                context = generate_context(key, full_conflict, conflict_url)
+                body = generate_github_body(context)
+                key = f"{key}_pair_{n}"
+                title = f"Manual resolution needed for {key}"
+                labels = ['conflict', 'automated']
+                response = create_github_issue(title, body, labels)
+
+                # record event to results
+                return build_disambiguated_record_manual(key, conflict, response["html_url"])
         
 
     # Build final record
@@ -118,6 +136,7 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
             print(f"Processing block: {key}")
             if key in conflict_blocks:
                 print(f"{key} is a conflict block")
+
                 if key not in disambiguated_blocks:
                     print(f"{key} not in disambiguated blocks")
                     try:

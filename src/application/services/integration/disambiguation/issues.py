@@ -1,15 +1,63 @@
 import requests
 import json
+import copy
 import os
+import base64
+import requests
 from jinja2 import Environment, FileSystemLoader
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+
+REPO = "inab/research-software-etl"
+GITHUB_API = "https://api.github.com"
+BRANCH = "main"
+
+def commit_conflict_json(conflict: dict, filename: str) -> str:
+    """
+    Commit a conflict JSON file to human_annotations/conflicts/.
+
+    Args:
+        conflict (dict): Conflict data
+        filename (str): e.g. "conflict_123.json"
+
+    Returns:
+        str: GitHub URL to the committed file
+    """
+    path = f"human_annotations/conflicts/{filename}"
+    url = f"{GITHUB_API}/repos/{REPO}/contents/{path}"
+
+    # prepare content
+    content = json.dumps(conflict, indent=2, sort_keys=True)
+    encoded = base64.b64encode(content.encode("utf-8")).decode("utf-8")
+
+    payload = {
+        "message": f"Add conflict annotation: {filename}",
+        "content": encoded,
+        "branch": BRANCH,
+    }
+
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json",
+    }
+
+    response = requests.put(url, headers=headers, json=payload)
+
+    # Handle overwrite explicitly (important for re-runs)
+    if response.status_code == 422:
+        raise RuntimeError(
+            f"Conflict file already exists: {path}. "
+            "Decide whether overwrite or reuse is intended."
+        )
+
+    response.raise_for_status()
+    return response.json()["content"]["html_url"]
 
 def create_issue(issue):
     with open('data/issues.json', 'a') as f:
         f.write(json.dumps(issue, indent=4))
 
-def generate_github_issue(context, template_path='src/application/services/integration/disambiguation/github_issue.jinja2'):
+def generate_github_body(context, template_path='src/application/services/integration/disambiguation/github_issue.jinja2'):
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template(template_path)
     return template.render(context)
@@ -175,41 +223,82 @@ def preprocess_entry(entry):
         "documentation": prepare_documentation(entry.get("documentation")),   
     }
 
-def generate_context(key, full_conflict):
+def generate_context(key, full_conflict, conflict_url):
     return {
         "id": key,
         "entry_a": preprocess_entry(full_conflict["disconnected"][0]),
-        "entry_b": preprocess_entry(full_conflict["remaining"][0])
+        "entry_b": preprocess_entry(full_conflict["remaining"][0]),
+        'conflict_url': conflict_url
     }
+
+
+def make_hash(o):
+
+  """
+  Makes a hash from a dictionary, list, tuple or set to any level, that contains
+  only other hashable types (including any lists, tuples, sets, and
+  dictionaries).
+  """
+
+  if isinstance(o, (set, tuple, list)):
+
+    return tuple([make_hash(e) for e in o])    
+
+  elif not isinstance(o, dict):
+
+    return hash(o)
+
+  new_o = copy.deepcopy(o)
+  for k, v in new_o.items():
+    new_o[k] = make_hash(v)
+
+  return hash(tuple(frozenset(sorted(new_o.items()))))
+
+
+def generate_conflict_file(conflict, conflict_name):
+    conflict_id = f"{conflict_name}_{make_hash(conflict)}"
+    content = {
+        'date': '',
+        'conflict_name': conflict_name,
+        'conflict_id': conflict_id,
+        'conflict': conflict
+    }
+
+    filename = f"{conflict_id}.json"
+    
+    return content, filename
+
 
 
 def create_github_issue(title, body, labels=None):
     """
-    Create a GitHub issue.
+    Create a GitHub issue and commit associated conflict JSON.
 
     Args:
-        title (str): Issue title.
-        body (str): Markdown body (pre-rendered).
-        token (str): GitHub personal access token.
-        labels (list[str], optional): List of labels.
+        title (str)
+        body (str)
+        conflict (dict, optional)
+        conflict_id (str, optional): stable identifier for filename
+        labels (list[str], optional)
 
     Returns:
-        dict: The GitHub API response as a dict.
+        dict: GitHub API response
     """
-    url = f"https://api.github.com/repos/inab/research-software-etl/issues"
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json"
-    }
 
-    payload = {
-        "title": title,
-        "body": body
-    }
-
+    payload = {"title": title, "body": body}
+    
     if labels:
         payload["labels"] = labels
 
+    print(f"Making Github issue ... ")
+
+    url = f"{GITHUB_API}/repos/{REPO}/issues"
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json",
+    }
+
     response = requests.post(url, headers=headers, json=payload)
-    response.raise_for_status()  # raise if request failed
+    response.raise_for_status()
+    
     return response.json()

@@ -1,6 +1,7 @@
 from bson import ObjectId
 import json
 import os
+from pathlib import Path
 from pprint import pprint 
 
 def build_instances_keys_dict():
@@ -40,9 +41,20 @@ def get_pub(object_id):
         return None
 
 def load_dict_from_jsonl(path):
+    path = Path(path)
     result = {}
-    with open(path, 'r') as f:
+
+    # Create the file if it does not exist
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.touch()
+        return result
+
+    with path.open("r", encoding="utf-8") as f:
         for line in f:
+            line = line.strip()
+            if not line:
+                continue
             try:
                 entry = json.loads(line)
                 if not isinstance(entry, dict):
@@ -50,6 +62,7 @@ def load_dict_from_jsonl(path):
                 result.update(entry)
             except json.JSONDecodeError as e:
                 print(f"Skipping invalid line: {e}")
+
     return result
 
 

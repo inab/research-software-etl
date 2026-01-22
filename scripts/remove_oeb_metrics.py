@@ -1,6 +1,8 @@
 # OPEB metrics contribute nothing to the model and are not used in any way. Publications are already in other entries from OEB. 
 # this script removes them from the blocks
 import json
+import sys 
+import argparse
 
 def remove_opeb_metrics_entries_verbose(grouped_entries):
     """
@@ -27,11 +29,11 @@ def remove_opeb_metrics_entries_verbose(grouped_entries):
 
         if not filtered_instances:
             fully_removed_groups += 1
-            print(f"❌ Group '{group_key}' removed entirely (only 'opeb_metrics' entries).")
+            #print(f"❌ Group '{group_key}' removed entirely (only 'opeb_metrics' entries).")
         else:
             if len(filtered_instances) < len(instances):
                 partially_cleaned_groups += 1
-                print(f"⚠️ Group '{group_key}' partially cleaned: {len(instances) - len(filtered_instances)} entries removed.")
+                #print(f"⚠️ Group '{group_key}' partially cleaned: {len(instances) - len(filtered_instances)} entries removed.")
             cleaned_grouped[group_key] = {"instances": filtered_instances}
 
     print("\n✅ Cleaning summary:")
@@ -42,7 +44,53 @@ def remove_opeb_metrics_entries_verbose(grouped_entries):
 
     return cleaned_grouped
 
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Remove 'opeb_metrics' instances from grouped software entries"
+    )
+    parser.add_argument(
+        "--in",
+        dest="input_file",
+        required=True,
+        help="Input JSON file with grouped entries",
+    )
+    parser.add_argument(
+        "--out",
+        dest="output_file",
+        required=True,
+        help="Output JSON file for cleaned grouped entries",
+    )
+
+    args = parser.parse_args()
+
+    # Load input
+    try:
+        with open(args.input_file, "r", encoding="utf-8") as f:
+            grouped_entries = json.load(f)
+    except Exception as e:
+        print(f"❌ Failed to read input file: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    # Process
+    cleaned_grouped = remove_opeb_metrics_entries_verbose(grouped_entries)
+
+    # Write output
+    try:
+        with open(args.output_file, "w", encoding="utf-8") as f:
+            json.dump(cleaned_grouped, f, indent=2)
+    except Exception as e:
+        print(f"❌ Failed to write output file: {e}", file=sys.stderr)
+        sys.exit(1) 
+
+
+
 if __name__ == "__main__":
+    main()
+
+
+    '''old
     # Load your grouped entries
     with open("scripts/data/grouped_entries_0.4.json", "r") as f:
         grouped_entries = json.load(f)
@@ -53,3 +101,4 @@ if __name__ == "__main__":
     # Save to a new file
     with open("scripts/data/grouped_entries_no_opeb_0.4.json", "w") as f:
         json.dump(cleaned_entries, f, indent=2)
+    '''

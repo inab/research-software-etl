@@ -1,30 +1,48 @@
-import json
-import sys
+#!/usr/bin/env python3
 
-def json_to_jsonl(json_path, jsonl_path):
-    with open(json_path, 'r') as infile:
+import json
+import argparse
+from pathlib import Path
+
+
+def json_to_jsonl(json_path: Path, jsonl_path: Path):
+    with json_path.open("r", encoding="utf-8") as infile:
         data = json.load(infile)
 
     if not isinstance(data, dict):
         raise ValueError("Top-level JSON must be a dictionary.")
 
-    with open(jsonl_path, 'w') as outfile:
+    with jsonl_path.open("w", encoding="utf-8") as outfile:
         for key, value in data.items():
             json.dump({key: value}, outfile)
-            outfile.write('\n')
+            outfile.write("\n")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Convert a JSON dictionary to JSONL (one key-value pair per line)."
+    )
+    parser.add_argument(
+        "--in",
+        dest="input_file",
+        required=True,
+        help="Input JSON file (top-level must be a dictionary)",
+    )
+    parser.add_argument(
+        "--out",
+        dest="output_file",
+        required=True,
+        help="Output JSONL file",
+    )
+
+    args = parser.parse_args()
+
+    input_path = Path(args.input_file)
+    output_path = Path(args.output_file)
+
+    json_to_jsonl(input_path, output_path)
+    print(f"Converted {input_path} to {output_path}")
+
 
 if __name__ == "__main__":
-    files = [
-    #'tests/application/use_cases/integration/data/blocks.json',
-    #'tests/application/use_cases/integration/data/conflict_blocks.json',
-    #'tests/application/use_cases/integration/data/disambiguated_blocks.json',
-    'scripts/data/blocks_0.4.json',
-    'scripts/data/conflict_blocks_0.4.json'
-    #'scripts/data/disambiguated_blocks.json'
-    ]
-    
-    for file in files:
-        output_file = file.replace('.json', '.jsonl')
-        json_to_jsonl(file, output_file)
-        print(f"Converted {file} to {output_file}")
-    
+    main()

@@ -4,7 +4,7 @@ from typing import Dict, Any, Optional, List
 from src.application.services.publications.metadata import create_new_metadata
 from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from src.infrastructure.db.mongo.publications_repository import PublicationsMetadataRepository
-from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
+from src.infrastructure.db.database_adapter import DatabaseAdapter
 from src.application.services.publications.publication_standardizer_factory import StandardizerFactory
 from src.application.services.publications.publication_extractor_factory import ExtractorFactory
 

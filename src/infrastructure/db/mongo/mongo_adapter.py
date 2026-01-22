@@ -3,7 +3,7 @@
 # the repositories (in adpaters/db) will remain the same.
 
 from dotenv import load_dotenv
-load_dotenv(dotenv_path='/Users/evabsc/projects/software-observatory/research-software-etl/.env', override=True)
+load_dotenv()
 
 import os
 import pymongo
@@ -11,7 +11,7 @@ import logging
 from typing import Dict, Optional
 from pymongo.errors import NetworkTimeout, AutoReconnect, CursorNotFound
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
-from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
+from src.infrastructure.db.database_adapter import DatabaseAdapter
 #from sshtunnel import SSHTunnelForwarder
 
 

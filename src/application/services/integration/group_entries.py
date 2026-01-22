@@ -120,6 +120,37 @@ def group_by_key_with_links(instances):
             name_type_to_key[key] = key
             key_to_main_key[key] = key  # Initialize root
 
-    return grouped_instances
+
+    # Use shortest name in group as ID
+    new_grouped_instances = {}
+    N = 0
+    for group in grouped_instances.keys():
+        names = [item['data']['name'].lower() for item in grouped_instances[group]['instances']]
+        types = [item['data']['type'] for item in grouped_instances[group]['instances']]
+        
+        unique_names = set(names)
+        unique_types = set(types)
+
+    
+        if len(unique_names) > 1 or len(unique_types) > 1:
+            # choose the shortest: 
+            name_id = min(list(unique_names), key=len)
+            
+            if len(unique_types) > 1:
+                type_id = "*"
+            else:
+                type_id = list(unique_types)[0]
+
+            new_id = f"{name_id}/{type_id}"
+            N += 1 
+
+        else: 
+            new_id = group 
+
+        new_grouped_instances[new_id] = grouped_instances[group]
+
+    print(f"Fixed blocks: {N}")
+
+    return new_grouped_instances
 
 

@@ -2,7 +2,7 @@ import os
 import pytest
 from dotenv import load_dotenv
 from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
-from src.infrastructure.db.mongo.database_adapter import DatabaseAdapter
+from src.infrastructure.db.database_adapter import DatabaseAdapter
 import logging
 from sshtunnel import SSHTunnelForwarder
 import pymongo

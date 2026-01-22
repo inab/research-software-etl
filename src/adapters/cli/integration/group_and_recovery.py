@@ -24,7 +24,7 @@ def main():
 
     parser.add_argument(
         "--env-file", "-e",
-        help=("File containing environment variables to be set before running "),
+        help=("File containing environment variables to be set before running"),
         type=str,
         dest="env_file",
         default=".env",

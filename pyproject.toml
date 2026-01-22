@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "research-software-observatory-pipeline"
+version = "0.1.0"
+description = "Data integration and enrichment pipeline powering the Research Software Observatory."
+readme = "README.md"
+license = { text = "AGPL-3.0" }
+authors = [
+    { name = "Eva Martín del Pico", email = "eva.martin@bsc.es" }
+]
+maintainers = [
+    { name = "Eva Martín del Pico", email = "eva.martin@bsc.es"  }
+]
+keywords = [
+    "FAIRsoft",
+    "research software",
+    "metadata",
+    "data integration",
+    "observatory",
+    "bioinformatics",
+]
+requires-python = ">=3.9"
+
+dependencies = [
+    "pymongo>=4.5.0",
+    "requests>=2.31.0",
+    "tqdm>=4.65.0",
+    "numpy>=1.26.0",
+    "python-dotenv>=1.0.0",
+]
+
+# optional dependencies for development and docs
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+docs = [
+    "mkdocs>=1.5.3",
+    "mkdocs-material>=9.5.3",
+    "pymdown-extensions>=10.4",
+]
+
+# CLI entry points
+[project.scripts]
+rsetl = "adapters.cli.main:main"
+
+[project.urls]
+"Homepage" = "https://github.com/inab/research-software-etl"
+"Documentation" = "https://inab.github.io/research-software-etl/"
+"Issues" = "https://github.com/inab/research-software-etl/issues"
+
+[tool.setuptools]
+# Assuming you’re using a `src/` layout
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["adapters*", "domain*", "scripts*"]
+exclude = ["tests*", "data*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+skip-string-normalization = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+extend-select = ["B", "C", "E", "F", "W"]
+ignore = ["E203", "E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=src --cov-report=term-missing"
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true
+warn_unused_ignores = true
+strict_optional = true
+
+[tool.mkdocs]
+site_name = "Research Software Observatory – Data Pipeline"
+site_url = "https://inab.github.io/research-software-etl"
+theme.name = "material"

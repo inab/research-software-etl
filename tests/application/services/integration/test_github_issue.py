@@ -332,11 +332,12 @@ full_conflict ={
 }
 
 
-def test_github_issue_context_issue():
+def test_github_issue_context_and_issue():
 
-    conflict_id = "ale/cmd"
+    conflict_name = "ale/cmd"
+    conflict_url = "https://github.com/inab/research-software-etl/human_annotation/conflicts/test.jsonl"
    
-    context = generate_context(conflict_id, full_conflict)
+    context = generate_context(conflict_name, full_conflict, conflict_url)
 
     issue = generate_github_issue(context)
 
@@ -344,6 +345,16 @@ def test_github_issue_context_issue():
     assert "- **Name**: ale" in issue
     assert "- **ID**: bioconda_recipes/ale/cmd/20180904" in issue
     assert "- **ID**: biotools/ale/cmd/None" in issue
+    assert "- JSON file: [https://github.com/inab/research-software-etl/human_annotation/conflicts/test.jsonl](https://github.com/inab/research-software-etl/human_annotation/conflicts/test.jsonl)"
 
 
     
+# generate conflict file 
+## content and filename
+
+# Push issue
+## In a test branch
+
+# commit JSON file -> This requiresmking changes to the code
+## commit to a test branch
+## assert the URL is correct

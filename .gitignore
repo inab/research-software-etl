@@ -17,6 +17,6 @@ rs-etl/*
 .pytest_cache
 .vscode
 venv/
-
 Pipfile
 Pipfile.lock
+.gitlab-ci.yml
