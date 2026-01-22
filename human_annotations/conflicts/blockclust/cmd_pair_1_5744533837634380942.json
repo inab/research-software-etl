@@ -1,0 +1,61 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "description": "Efficient clustering and classification of non-coding RNAs from short read RNA-seq profiles.",
+        "id": "bioconda_recipes/blockclust/cmd/1.1.1",
+        "name": "blockclust",
+        "repository": [
+          "github.com/pavanvidem/blockclust"
+        ],
+        "source": [
+          "bioconda_recipes"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "github.com/pavanvidem/blockclust"
+        ]
+      }
+    ],
+    "remaining": [
+      {
+        "description": "",
+        "id": "galaxy_metadata/blockclust/cmd/1.1.1",
+        "name": "blockclust",
+        "repository": [],
+        "source": [
+          "galaxy_metadata"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Efficient clustering and classification of non-coding RNAs from short read RNA-seq profiles.",
+        "id": "toolshed/blockclust/cmd/1.1.1",
+        "name": "blockclust",
+        "repository": [],
+        "source": [
+          "toolshed"
+        ],
+        "types": "cmd",
+        "webpage": []
+      },
+      {
+        "description": "Efficient clustering and classification of non-coding RNAs from short read RNA-seq profiles.",
+        "id": "galaxy/blockclust/cmd/1.0.0",
+        "name": "blockclust",
+        "repository": [],
+        "source": [
+          "galaxy"
+        ],
+        "types": "cmd",
+        "webpage": [
+          "galaxy.bi.uni-freiburg.de/tool_runner"
+        ]
+      }
+    ]
+  },
+  "conflict_id": "blockclust/cmd_pair_1_5744533837634380942",
+  "conflict_name": "blockclust/cmd_pair_1",
+  "date": ""
+}
