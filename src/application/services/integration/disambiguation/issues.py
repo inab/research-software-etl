@@ -12,7 +12,7 @@ REPO = "inab/research-software-etl"
 GITHUB_API = "https://api.github.com"
 BRANCH = "main"
 
-def commit_conflict_json(conflict: dict, filename: str) -> str:
+def commit_conflict_json(conflict: dict, path: str, branch=BRANCH, repo=REPO) -> str:
     """
     Commit a conflict JSON file to human_annotations/conflicts/.
 
@@ -23,19 +23,18 @@ def commit_conflict_json(conflict: dict, filename: str) -> str:
     Returns:
         str: GitHub URL to the committed file
     """
-    path = f"human_annotations/conflicts/{filename}"
-    url = f"{GITHUB_API}/repos/{REPO}/contents/{path}"
+    
+    url = f"{GITHUB_API}/repos/{repo}/contents/{path}"
 
     # prepare content
     content = json.dumps(conflict, indent=2, sort_keys=True)
     encoded = base64.b64encode(content.encode("utf-8")).decode("utf-8")
 
     payload = {
-        "message": f"Add conflict annotation: {filename}",
+        "message": f"Add conflict annotation: {path}",
         "content": encoded,
-        "branch": BRANCH,
+        "branch": branch,
     }
-
     headers = {
         "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Accept": "application/vnd.github+json",
@@ -259,7 +258,7 @@ def generate_conflict_file(conflict, conflict_name):
 
 
 
-def create_github_issue(title, body, labels=None):
+def create_github_issue(title, body, labels=None, repo=REPO):
     """
     Create a GitHub issue and commit associated conflict JSON.
 
@@ -281,7 +280,7 @@ def create_github_issue(title, body, labels=None):
 
     print(f"Making Github issue ... ")
 
-    url = f"{GITHUB_API}/repos/{REPO}/issues"
+    url = f"{GITHUB_API}/repos/{repo}/issues"
     headers = {
         "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Accept": "application/vnd.github+json",

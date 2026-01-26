@@ -104,7 +104,8 @@ async def process_conflict(key, conflict, instances_dict):
             else:
                 ## conflict file creation
                 content, filename = generate_conflict_file(conflict, key)
-                conflict_url = commit_conflict_json(content, filename)
+                path = f"human_annotations/conflicts/{filename}"
+                conflict_url = commit_conflict_json(content, path)
 
                 ## issue creation
                 context = generate_context(key, full_conflict, conflict_url)

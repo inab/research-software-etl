@@ -1,8 +1,10 @@
 import json
 import random
 import pytest
+import uuid
+
 from pprint import pprint
-from src.application.services.integration.disambiguation.issues import generate_context, generate_conflict_file, generate_github_body, stable_hash
+from src.application.services.integration.disambiguation.issues import generate_context, generate_conflict_file, commit_conflict_json, generate_github_body, stable_hash, create_github_issue
 
 
 full_conflict ={
@@ -364,7 +366,8 @@ def test_stable_hash_list_order_matters_by_default():
 # --------------------------------------------------------------------------------
 
 def test_generate_conflict_file(): 
-    # This function requires "conflict" and "conflict name". conflict is the original conflict, without any processing
+    # The function "generate_conflict_file" requires "conflict" and "conflict name" as arguments.
+    # "conflict" is the full conflict, without any processing
     conflict_name = "ale/cmd" 
 
     content, filename = generate_conflict_file(full_conflict, conflict_name) 
@@ -374,12 +377,33 @@ def test_generate_conflict_file():
 
     assert "ale/cmd_" in filename  
     assert type(content) == dict
+
+
+# --------------- Full Integration Test --------------------------------------------
+#
+# Run with: PYTHONPATH=$(pwd) pytest -v -s -m manual tests/application/services/integration/test_github_issue.py 
+#
+# It creates an issue and adds the conflict file to https://github.com/EvaMart/test-integrations/ 
+
+@pytest.mark.manual
+def test_create_github_issue():
+    # Push issue
+    conflict_name = "ale/cmd"
+    REPO = 'EvaMart/test-integrations'
+    GITHUB_API = "https://api.github.com"
+    # -------- generating URL --------
+    content, filename = generate_conflict_file(full_conflict, conflict_name) 
     
+    random_suffix = uuid.uuid4().hex
+    filename = f"human_annotations/conflicts/test_{random_suffix}.json"
+    
+    conflict_url = commit_conflict_json(content, filename, 'main', REPO)
+    context = generate_context(conflict_name, full_conflict, conflict_url)
+    body = generate_github_body(context)
+    
+    title = f"Manual resolution needed for {conflict_name}"
+    labels = ['test']
+    repo = 'evamart/test-integrations'
+    response = create_github_issue(title, body, labels, repo)
+  
 
-
-# Push issue
-## In a test branch
-
-# commit JSON file -> This requires making changes to the code
-## commit to a test branch
-## assert the URL is correct
