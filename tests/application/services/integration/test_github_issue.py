@@ -2,12 +2,7 @@ import json
 import random
 import pytest
 from pprint import pprint
-from src.application.services.integration.disambiguation.issues import generate_context, generate_github_issue
-
-from tests.application.services.integration.data.data_disambiguation_original import conflicts_blocks_sets
-
-with open('tests/application/services/integration/data/grouped_entries_no_opeb_test.json') as f:
-    blocks = json.load(f)
+from src.application.services.integration.disambiguation.issues import generate_context, generate_conflict_file, generate_github_body, stable_hash
 
 
 full_conflict ={
@@ -339,7 +334,7 @@ def test_github_issue_context_and_issue():
    
     context = generate_context(conflict_name, full_conflict, conflict_url)
 
-    issue = generate_github_issue(context)
+    issue = generate_github_body(context)
 
     assert context["id"] == "ale/cmd"
     assert "- **Name**: ale" in issue
@@ -348,13 +343,43 @@ def test_github_issue_context_and_issue():
     assert "- JSON file: [https://github.com/inab/research-software-etl/human_annotation/conflicts/test.jsonl](https://github.com/inab/research-software-etl/human_annotation/conflicts/test.jsonl)"
 
 
+# --------------------------------------------------------------------------------
+# Testing of the function that creates unique persistent IDs for conflicts
+# --------------------------------------------------------------------------------
+
+def test_stable_hash_same_object_is_same():
+    obj = {"b": 2, "a": 1, "nested": {"x": [3, 2, 1]}}
+    assert stable_hash(obj) == stable_hash(obj)
+
+def test_stable_hash_dict_key_order_does_not_matter():
+    obj1 = {"a": 1, "b": 2}
+    obj2 = {"b": 2, "a": 1}
+    assert stable_hash(obj1) == stable_hash(obj2)
+
+def test_stable_hash_list_order_matters_by_default():
+    obj1 = {"x": [1, 2, 3]}
+    obj2 = {"x": [3, 2, 1]}
+    assert stable_hash(obj1) != stable_hash(obj2)
+
+# --------------------------------------------------------------------------------
+
+def test_generate_conflict_file(): 
+    # This function requires "conflict" and "conflict name". conflict is the original conflict, without any processing
+    conflict_name = "ale/cmd" 
+
+    content, filename = generate_conflict_file(full_conflict, conflict_name) 
+
+    print(f"\nFile name is: {filename}\n")
+    #print(f"\nContent is {content}\n")
+
+    assert "ale/cmd_" in filename  
+    assert type(content) == dict
     
-# generate conflict file 
-## content and filename
+
 
 # Push issue
 ## In a test branch
 
-# commit JSON file -> This requiresmking changes to the code
+# commit JSON file -> This requires making changes to the code
 ## commit to a test branch
 ## assert the URL is correct

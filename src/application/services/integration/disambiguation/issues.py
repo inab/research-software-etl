@@ -1,6 +1,6 @@
 import requests
 import json
-import copy
+import hashlib
 import os
 import base64
 import requests
@@ -232,31 +232,20 @@ def generate_context(key, full_conflict, conflict_url):
     }
 
 
-def make_hash(o):
 
-  """
-  Makes a hash from a dictionary, list, tuple or set to any level, that contains
-  only other hashable types (including any lists, tuples, sets, and
-  dictionaries).
-  """
 
-  if isinstance(o, (set, tuple, list)):
-
-    return tuple([make_hash(e) for e in o])    
-
-  elif not isinstance(o, dict):
-
-    return hash(o)
-
-  new_o = copy.deepcopy(o)
-  for k, v in new_o.items():
-    new_o[k] = make_hash(v)
-
-  return hash(tuple(frozenset(sorted(new_o.items()))))
+def stable_hash(obj) -> str:
+    canonical = json.dumps(
+        obj,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 def generate_conflict_file(conflict, conflict_name):
-    conflict_id = f"{conflict_name}_{make_hash(conflict)}"
+    conflict_id = f"{conflict_name}_{stable_hash(conflict)}"
     content = {
         'date': '',
         'conflict_name': conflict_name,
