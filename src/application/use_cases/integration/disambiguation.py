@@ -7,7 +7,8 @@ from pprint import pprint
 
 async def run_full_disambiguation(blocks_file, 
                          conflict_blocks_file, 
-                         disambiguated_blocks_file):
+                         disambiguated_blocks_file,
+                         run_id):
 
     # 1. Load input data
 
@@ -15,18 +16,19 @@ async def run_full_disambiguation(blocks_file,
     conflict_blocks = load_dict_from_jsonl(conflict_blocks_file)
 
 
-    # 2. Run first round of disambiguation
+    # 3. Run first round of disambiguation
 
     disambiguated_blocks = await disambiguate_blocks(
         conflict_blocks=conflict_blocks,
         blocks=blocks,
-        disambiguated_blocks_path=disambiguated_blocks_file
+        disambiguated_blocks_path=disambiguated_blocks_file,
+        run_id=run_id
     )
 
     print("First disambiguation round done")
 
 
-    # 3. Repeat second-round disambiguation until everything is resolved
+    # 4. Repeat second-round disambiguation until everything is resolved
     while True:
         # Run a second (or N-th) round
         # conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, disambiguate_blocks_func
@@ -35,6 +37,7 @@ async def run_full_disambiguation(blocks_file,
             disambiguated_blocks_path=disambiguated_blocks_file,
             blocks=blocks,
             blocks_path=blocks_file,
+            run_id=run_id,
             disambiguate_blocks_func=disambiguate_blocks
         )
 
@@ -47,5 +50,5 @@ async def run_full_disambiguation(blocks_file,
             print("✨All conflicts resolved.")
             break
         else:
-            print(f"🔁 {len(unresolved_keys)} unresolved blocks remain. Continuing...")
+            print(f"{len(unresolved_keys)} unresolved blocks remain. Continuing...")
 

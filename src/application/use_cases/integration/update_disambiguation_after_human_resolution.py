@@ -23,7 +23,7 @@ def run_disambiguation_after_human_annotation(
     print(decision)
 
     # Generate record for disambiguated_blocks.json
-    conflict = conflict_blocks.get(conflict_id)
+    conflict = conflict_blocks.get(conflict_id) # latest
     print("Conflict:")
     print(conflict)
 

@@ -199,6 +199,7 @@ def run_full(
         "--conflict-blocks-file", str(conflicts_jsonl),
         "--blocks-file", str(simplified_blocks_jsonl),
         "--disambiguated-blocks-file", str(disambiguation_out_dir),
+        "--run-id", run_id
     ], cwd=wd)
 
     '''

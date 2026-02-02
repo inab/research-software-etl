@@ -370,7 +370,7 @@ def test_generate_conflict_file():
     # "conflict" is the full conflict, without any processing
     conflict_name = "ale/cmd" 
 
-    content, filename = generate_conflict_file(full_conflict, conflict_name) 
+    content, conflict_id, filename = generate_conflict_file(full_conflict, conflict_name) 
 
     print(f"\nFile name is: {filename}\n")
     #print(f"\nContent is {content}\n")
@@ -381,24 +381,29 @@ def test_generate_conflict_file():
 
 # --------------- Full Integration Test --------------------------------------------
 #
-# Run with: PYTHONPATH=$(pwd) pytest -v -s -m manual tests/application/services/integration/test_github_issue.py 
+# Run with: 
+#   PYTHONPATH=$(pwd) pytest -v -s -m manual tests/application/services/integration/test_github_issue.py 
 #
-# It creates an issue and adds the conflict file to https://github.com/EvaMart/test-integrations/ 
+# This test creates an issue and adds the conflict file to https://github.com/EvaMart/test-integrations/ 
+# 
+# --------------------------------------------------------------------------------
+
 
 @pytest.mark.manual
 def test_create_github_issue():
     # Push issue
     conflict_name = "ale/cmd"
     REPO = 'EvaMart/test-integrations'
-    GITHUB_API = "https://api.github.com"
+
     # -------- generating URL --------
-    content, filename = generate_conflict_file(full_conflict, conflict_name) 
+    content, conflict_id, filename = generate_conflict_file(full_conflict, conflict_name) 
     
+    # a suffix in the filename is necessary so new tests do not try to create already existing files
     random_suffix = uuid.uuid4().hex
-    filename = f"human_annotations/conflicts/test_{random_suffix}.json"
+    filename = f"human_annotations/conflicts/test_{random_suffix}.json" 
     
     conflict_url = commit_conflict_json(content, filename, 'main', REPO)
-    context = generate_context(conflict_name, full_conflict, conflict_url)
+    context = generate_context(conflict_name, conflict_id,  full_conflict, conflict_url)
     body = generate_github_body(context)
     
     title = f"Manual resolution needed for {conflict_name}"

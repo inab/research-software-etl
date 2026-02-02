@@ -31,6 +31,7 @@ def run_disambiguation_after_human_annotation(
         # FUTUTRE> get ids of the human annotation from the disambiguated block, bc there may be more than 1 pair
 
         # Check if the conflict ID exists in the human annotations
+        # Use the full stable id, not just the name
         decision = human_annotations.get(conflict_id)
 
         if decision:

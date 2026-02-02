@@ -18,6 +18,7 @@ from __future__ import annotations
 import json
 import sys
 import copy
+import hashlib
 import datetime
 from typing import Any, Dict, Iterable
 
@@ -38,6 +39,15 @@ OUTPUT_PATH = "/Users/evabsc/projects/software-observatory/research-software-etl
 # ---------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------
+def stable_hash(obj) -> str:
+    canonical = json.dumps(
+        obj,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
 
 def load_conflict_blocks(paths: Iterable[str]) -> Dict[str, Any]:
     """
@@ -153,20 +163,20 @@ def fill_human_conflicts() -> None:
                     f"not found in conflict blocks; setting conflict=null",
                     file=sys.stderr,
                 )
-                payload["conflict"] = None
-                payload["conflict"] = conflict_block
-                payload['date'] = datetime.datetime.now()
-                payload['conflict_name'] = conflict_id
-                payload['conflict_id'] = f"{conflict_id}_NONE"
+                
+                #payload['date'] = datetime.datetime.now()
+                #payload['conflict_name'] = conflict_id
+                #payload['conflict_id'] = f"{conflict_id}_NONE"
+                #payload["conflict"] = None
+                #payload["conflict"] = conflict_block
 
             else:
-                payload["conflict"] = conflict_block
                 payload['date'] = datetime.datetime.now()
                 payload['conflict_name'] = conflict_id
-                payload['conflict_id'] = f"{conflict_id}_{make_hash(conflict_block)}"
+                payload['conflict_id'] = f"{conflict_id}_{stable_hash(conflict_block)}"
                 payload['conflict'] = conflict_block
 
-            json.dump({conflict_id: payload}, fout, ensure_ascii=False, default=str)
+            json.dump(payload, fout, ensure_ascii=False, default=str)
             fout.write("\n")
 
     print(

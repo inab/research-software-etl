@@ -1,10 +1,11 @@
 import requests
 import json
-import hashlib
 import os
 import base64
 import requests
 from jinja2 import Environment, FileSystemLoader
+from datetime import datetime, timezone
+
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
@@ -222,33 +223,26 @@ def preprocess_entry(entry):
         "documentation": prepare_documentation(entry.get("documentation")),   
     }
 
-def generate_context(key, full_conflict, conflict_url):
+def generate_context(key, conflict_id, full_conflict, conflict_url, run_id):
     return {
-        "id": key,
+        "name": key,
+        "id": conflict_id,
         "entry_a": preprocess_entry(full_conflict["disconnected"][0]),
         "entry_b": preprocess_entry(full_conflict["remaining"][0]),
-        'conflict_url': conflict_url
+        'conflict_url': conflict_url,
+        'run_id': run_id
     }
 
 
 
 
-def stable_hash(obj) -> str:
-    canonical = json.dumps(
-        obj,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=False,
-    )
-    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
-
-
-def generate_conflict_file(conflict, conflict_name):
-    conflict_id = f"{conflict_name}_{stable_hash(conflict)}"
+def generate_conflict_file(conflict, conflict_name, conflict_id, run_id):
+    
     content = {
-        'date': '',
+        'date': datetime.now(timezone.utc).isoformat(),
         'conflict_name': conflict_name,
         'conflict_id': conflict_id,
+        'run_id': run_id,
         'conflict': conflict
     }
 

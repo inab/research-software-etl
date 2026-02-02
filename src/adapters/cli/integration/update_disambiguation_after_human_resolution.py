@@ -27,6 +27,7 @@ def main():
     conflict_blocks_file = args.conflict_blocks_file
     disambiguated_blocks_file = args.disambiguated_blocks_file
 
+
     print(f"Conflict blocks file: {conflict_blocks_file}")
     print(f"Disambiguated blocks file: {disambiguated_blocks_file}")
 

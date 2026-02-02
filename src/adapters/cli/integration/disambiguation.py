@@ -5,7 +5,7 @@ The command-line interface for the disambiguation step of the integration
 import argparse
 import logging
 import asyncio
-
+from datetime import datetime
 
 from dotenv import load_dotenv
 
@@ -40,6 +40,14 @@ async def main():
     )
 
     parser.add_argument(
+        "--run-id", "-r",
+        help=("ID to identify the run. If not set, the datetime of the run will be used. It is added to conflict files."),
+        type=str,
+        dest="run_id",
+        default=None
+        )
+
+    parser.add_argument(
         "--env-file", "-e",
         help=("File containing environment variables to be set before running "),
         default=".env",
@@ -59,11 +67,16 @@ async def main():
     logger.info(f"Conflict blocks file: {args.conflict_blocks_file}")
     logger.info(f"Disambiguated blocks file: {args.disambiguated_blocks_file}")
 
+    if args.run_id == None:
+        run_id = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+
+
     logger.info("Disambiguating entries...")
     await run_full_disambiguation(
         blocks_file=args.blocks_file,
         conflict_blocks_file=args.conflict_blocks_file,
-        disambiguated_blocks_file=args.disambiguated_blocks_file
+        disambiguated_blocks_file=args.disambiguated_blocks_file,
+        run_id = run_id
     )
 
     logger.info("Disambiguation finished!")

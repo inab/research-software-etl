@@ -12,6 +12,8 @@ import json
 import logging 
 import os
 import copy
+import hashlib
+
 from pprint import pprint
 
 
@@ -52,8 +54,18 @@ def load_solved_conflict_keys(jsonl_path):
                     logging.warning(f"Could not parse line: {line[:100]}...\n{e}")
     return solved_keys
 
+def stable_hash(obj) -> str:
+    canonical = json.dumps(
+        obj,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
-async def process_conflict(key, conflict, instances_dict):
+
+
+async def process_conflict(conflict_name, conflict, instances_dict, run_id):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
@@ -64,68 +76,84 @@ async def process_conflict(key, conflict, instances_dict):
     conflict_full = replace_with_full_entries(conflict, instances_dict)
 
     # Build disambiguation pairs
-    conflict_pairs, _ = build_pairs(copy.deepcopy(conflict_full), key, more_than_two_pairs=0)
+    conflict_pairs, _ = build_pairs(copy.deepcopy(conflict_full), conflict_name, more_than_two_pairs=0)
 
     pair_results = []
     n = 0
     for conflict_pair in conflict_pairs:
+        
+        # ------------- ID ----------------
         n+= 1
-        # Prepare minimal, enriched entry for disambiguation
+        pair_stable_id = f"p:{conflict_name}_{stable_hash(conflict_pair)}"
+
+        # Prepare enriched entry for disambiguation
         full_conflict = filter_relevant_fields(conflict_pair)
         full_conflict = await build_full_conflict(full_conflict)
 
+        # ---- LLM-based decison ----------
+ 
         # Generate prompt and run model
         messages = build_prompt(full_conflict["disconnected"], full_conflict["remaining"])
-    
-        
         result = decision_agreement_proxy(messages)
 
         # Log the result
-        add_jsonl_record("scripts/data/results_proxy.jsonl", { key: result })
+        # TODO LATER: better logs of model decisions: machine_annotations/...
+        add_jsonl_record("scripts/data/results_proxy.jsonl", { conflict_name: result })
 
+
+        # Model made a decision 
         if result.get("verdict") != "disagreement":
             pair_results.append({
                 "remaining_id": full_conflict["remaining"][0]["id"],
                 "disconnected_id": full_conflict["disconnected"][0]["id"],
                 "same_as_remaining": result["verdict"].lower() == "same",
-                "confidence": result.get("confidence", None)
+                "confidence": result.get("confidence", None),
+                "conflict_id": pair_stable_id
             })
-        else:
-            # Human fallback
-            HUMAN_LOG_PATH = "/Users/evabsc/projects/software-observatory/research-software-etl/human_annotations/human_conflicts_log.jsonl"
-            decision = find_previous_annotation_for_conflict(conflict, HUMAN_LOG_PATH)
 
-            # TODO: more than one pair may need disambiguation, so we need a way to differentiate them 
+        # ------------------------------------
+
+        else:
+
+            # ----------------------- Human-based decision ------------------------
+
+            # this log file will be replaced by pair_wise_cache.jsonl
+            HUMAN_LOG_PATH = "/Users/evabsc/projects/software-observatory/research-software-etl/human_annotations/human_conflicts_log.jsonl"
+            decision = find_previous_annotation_for_conflict(conflict_pair, HUMAN_LOG_PATH)
+
+            # TODO LATER: more than one pair may need disambiguation, so we need a way to differentiate them 
             if decision:
                 decision.pop("conflict", None)
-                record = build_disambiguated_record_after_human(key, conflict, decision)
+                record = build_disambiguated_record_after_human(conflict_name, conflict_pair, decision)
                 pair_results.append(record)
+                
 
             else:
                 ## conflict file creation
-                content, filename = generate_conflict_file(conflict, key)
+                content, filename = generate_conflict_file(conflict_pair, conflict_name, pair_stable_id, run_id)
                 path = f"human_annotations/conflicts/{filename}"
                 conflict_url = commit_conflict_json(content, path)
 
                 ## issue creation
-                context = generate_context(key, full_conflict, conflict_url)
+                context = generate_context(conflict_name, pair_stable_id, full_conflict, conflict_url, run_id)
                 body = generate_github_body(context)
-                key = f"{key}_pair_{n}"
-                title = f"Manual resolution needed for {key}"
+                
+                title = f"Manual resolution needed for {conflict_name}_pair_{n}"
                 labels = ['conflict', 'automated']
                 response = create_github_issue(title, body, labels)
 
                 # record event to results
-                return build_disambiguated_record_manual(key, conflict, response["html_url"])
+                # add conflict id to disambiguated record (disambiguated_blocks file)
+                return build_disambiguated_record_manual(conflict_name, conflict, response["html_url"])
         
 
     # Build final record
-    return build_disambiguated_record(key, conflict, pair_results)
+    return build_disambiguated_record(conflict_name, conflict, pair_results)
 
 
 
 
-async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path):
+async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path, run_id):
     '''
     Disambiguated blocks can be empty at the beginning.
     The function will fill it with the disambiguated entries.
@@ -141,7 +169,7 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
                 if key not in disambiguated_blocks:
                     print(f"{key} not in disambiguated blocks")
                     try:
-                        record = await process_conflict(key, conflict_blocks[key], instances_dict)
+                        record = await process_conflict(key, conflict_blocks[key], instances_dict, run_id)
                         disambiguated_blocks.update(record)
                     except Exception as e:
                         print(f"Error processing conflict {key}")
