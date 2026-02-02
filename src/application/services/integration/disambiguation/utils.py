@@ -2,9 +2,44 @@ from bson import ObjectId
 import json
 import os
 from datetime import datetime
-
+import hashlib
 from pathlib import Path
+from typing import Any
 from pprint import pprint 
+
+
+def _canonical_dumps(obj: Any) -> str:
+    # Canonical JSON string used only for sorting + hashing
+    return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+
+def _normalize(obj: Any) -> Any:
+    """
+    Normalize JSON-like data so that:
+      - dict keys are sorted (handled by canonical dumps)
+      - list order is ignored (lists treated as multisets)
+    """
+    if isinstance(obj, dict):
+        # normalize values; keep keys as-is (sorting happens in dumps)
+        return {k: _normalize(v) for k, v in obj.items()}
+
+    if isinstance(obj, list):
+        norm_items = [_normalize(x) for x in obj]
+
+        # Sort by (type, canonical-json) to make ordering deterministic even for mixed types.
+        # Using type name avoids comparing unlike Python objects directly.
+        return sorted(
+            norm_items,
+            key=lambda x: (type(x).__name__, _canonical_dumps(x))
+        )
+
+    # JSON scalars (str/int/float/bool/None) are already stable
+    return obj
+
+def stable_hash(obj: Any) -> str:
+    normalized = _normalize(obj)
+    canonical = _canonical_dumps(normalized)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
 
 def build_instances_keys_dict():
     from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
@@ -251,7 +286,7 @@ def load_pair_decisions(path: str | Path):
             if row.get("kind") != "pair":
                 continue
 
-            key = row["pair_key"]
+            key = row["pair_id"]
             if key not in best_pair:
                 best_pair[key] = row
             else:

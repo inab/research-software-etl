@@ -4,7 +4,7 @@ from src.application.services.integration.disambiguation.prompts import build_pr
 from src.application.services.integration.disambiguation.proxy import decision_agreement_proxy
 from src.application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
 from src.application.services.integration.disambiguation.issues import create_github_issue, generate_github_body, generate_context, generate_conflict_file, commit_conflict_json
-from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions
+from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash
 from src.application.services.integration.disambiguation.manual_annotation_lookup import find_previous_annotation_for_conflict
 from src.application.services.integration.disambiguation.results import build_disambiguated_record_after_human
 
@@ -12,9 +12,11 @@ import json
 import logging 
 import os
 import copy
-import hashlib
+
 
 from pprint import pprint
+from datetime import datetime, timezone
+
 
 
 def log_error(conflict):
@@ -54,14 +56,7 @@ def load_solved_conflict_keys(jsonl_path):
                     logging.warning(f"Could not parse line: {line[:100]}...\n{e}")
     return solved_keys
 
-def stable_hash(obj) -> str:
-    canonical = json.dumps(
-        obj,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=False,
-    )
-    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
 
 
 def build_record_from_legacy():
@@ -94,13 +89,7 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
         # ----- check for best pair --------
         if pair_stable_id in best_pair:
             decision = best_pair[pair_stable_id]
-            pair_results.append({
-                "remaining_id": full_conflict["remaining"][0]["id"],
-                "disconnected_id": full_conflict["disconnected"][0]["id"],
-                "same_as_remaining": decision["label"].lower() == "same",
-                "confidence": result.get("confidence", None),
-                "pair_id": pair_stable_id
-            })
+            pair_results.append(decision)
             continue
 
 
@@ -124,11 +113,13 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
         # Model made a decision 
         if result.get("verdict") != "disagreement":
             pair_results.append({
-                "remaining_id": full_conflict["remaining"][0]["id"],
-                "disconnected_id": full_conflict["disconnected"][0]["id"],
+                "remaining_id": full_conflict["remaining"][0]["id"], # replace with conflict_pair["remaining"][0]["id"]
+                "disconnected_id": full_conflict["disconnected"][0]["id"], # replace with conflict_pair["disconnected"][0]["id"]
                 "same_as_remaining": result["verdict"].lower() == "same",
                 "confidence": result.get("confidence", None),
-                "conflict_id": pair_stable_id
+                "conflict_id": pair_stable_id,
+                "source":"llm",
+                'ts':  datetime.now(timezone.utc).isoformat()
             })
 
         # ------------------------------------
