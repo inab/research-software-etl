@@ -40,6 +40,13 @@ async def main():
     )
 
     parser.add_argument(
+        "--pair_wise_decisions_file", "-p",
+        help=(""),
+        type=str,
+        dest="pair_wise_decisions_file"
+    )
+
+    parser.add_argument(
         "--run-id", "-r",
         help=("ID to identify the run. If not set, the datetime of the run will be used. It is added to conflict files."),
         type=str,
@@ -66,6 +73,7 @@ async def main():
     logger.info(f"Blocks file: {args.blocks_file}")
     logger.info(f"Conflict blocks file: {args.conflict_blocks_file}")
     logger.info(f"Disambiguated blocks file: {args.disambiguated_blocks_file}")
+    logger.info(f"Pair-wise deicisions file: {args.pair_wise_decisions_file}")
 
     if args.run_id == None:
         run_id = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")

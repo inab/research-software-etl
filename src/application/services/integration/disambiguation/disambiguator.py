@@ -4,7 +4,7 @@ from src.application.services.integration.disambiguation.prompts import build_pr
 from src.application.services.integration.disambiguation.proxy import decision_agreement_proxy
 from src.application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
 from src.application.services.integration.disambiguation.issues import create_github_issue, generate_github_body, generate_context, generate_conflict_file, commit_conflict_json
-from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record
+from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions
 from src.application.services.integration.disambiguation.manual_annotation_lookup import find_previous_annotation_for_conflict
 from src.application.services.integration.disambiguation.results import build_disambiguated_record_after_human
 
@@ -64,8 +64,12 @@ def stable_hash(obj) -> str:
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
+def build_record_from_legacy():
+    "Buils the record to put in disambiguted_blocks if this disambiguation was already done"
+    pass 
 
-async def process_conflict(conflict_name, conflict, instances_dict, run_id):
+
+async def process_conflict(conflict_name, conflict, instances_dict, run_id, best_pair):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
@@ -85,6 +89,22 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id):
         # ------------- ID ----------------
         n+= 1
         pair_stable_id = f"p:{conflict_name}_{stable_hash(conflict_pair)}"
+        # ---------------------------------
+
+        # ----- check for best pair --------
+        if pair_stable_id in best_pair:
+            decision = best_pair[pair_stable_id]
+            pair_results.append({
+                "remaining_id": full_conflict["remaining"][0]["id"],
+                "disconnected_id": full_conflict["disconnected"][0]["id"],
+                "same_as_remaining": decision["label"].lower() == "same",
+                "confidence": result.get("confidence", None),
+                "pair_id": pair_stable_id
+            })
+            continue
+
+
+        # -----------------------------------
 
         # Prepare enriched entry for disambiguation
         full_conflict = filter_relevant_fields(conflict_pair)
@@ -153,13 +173,16 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id):
 
 
 
-async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path, run_id):
+async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path, pair_wise_decisions_path, run_id):
     '''
     Disambiguated blocks can be empty at the beginning.
     The function will fill it with the disambiguated entries.
     '''
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_path)
     instances_dict = build_instances_keys_dict()
+    # best_pair maps each pair_key to the single highest-priority decision (human > LLM, otherwise most informed / recent).
+    best_pair = load_pair_decisions(pair_wise_decisions_path)  
+
     for key in blocks:
         if key not in disambiguated_blocks:
             print(f"Processing block: {key}")
@@ -169,7 +192,7 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
                 if key not in disambiguated_blocks:
                     print(f"{key} not in disambiguated blocks")
                     try:
-                        record = await process_conflict(key, conflict_blocks[key], instances_dict, run_id)
+                        record = await process_conflict(key, conflict_blocks[key], instances_dict, run_id, best_pair)
                         disambiguated_blocks.update(record)
                     except Exception as e:
                         print(f"Error processing conflict {key}")

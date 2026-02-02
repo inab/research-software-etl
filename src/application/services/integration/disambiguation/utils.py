@@ -1,6 +1,8 @@
 from bson import ObjectId
 import json
 import os
+from datetime import datetime
+
 from pathlib import Path
 from pprint import pprint 
 
@@ -204,3 +206,56 @@ def filter_relevant_fields(conflict):
         filtered_conflict["remaining"].append(filtered_entry)
 
     return filtered_conflict
+
+
+
+SOURCE_PRIORITY = {
+    "human": 2,
+    "llm": 1,
+}
+
+def parse_ts(ts: str) -> float:
+    """Parse ISO timestamp to sortable float."""
+    return datetime.fromisoformat(ts.replace("Z", "+00:00")).timestamp()
+
+def is_better(new, old):
+    """Return True if `new` decision should replace `old`.
+       For now, there should be no conflicts solvd by humans and LLMs, but it may be the case in the future
+    """
+    # 1. Source priority
+    if SOURCE_PRIORITY[new["source"]] != SOURCE_PRIORITY[old["source"]]:
+        return SOURCE_PRIORITY[new["source"]] > SOURCE_PRIORITY[old["source"]]
+
+    # 2. Confidence (only meaningful for LLM)
+    if new.get("confidence", 0) != old.get("confidence", 0):
+        return new.get("confidence", 0) > old.get("confidence", 0)
+
+    # 3. Recency
+    return parse_ts(new["ts"]) > parse_ts(old["ts"])
+
+def load_pair_decisions(path: str | Path):
+    """
+    Load pair decisions from JSONL and return best decision per pair_key.
+    """
+    best_pair = {}
+
+    path = Path(path)
+    if not path.exists():
+        return best_pair  # empty cache is fine
+
+    with path.open() as f:
+        for line in f:
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            if row.get("kind") != "pair":
+                continue
+
+            key = row["pair_key"]
+            if key not in best_pair:
+                best_pair[key] = row
+            else:
+                if is_better(row, best_pair[key]):
+                    best_pair[key] = row
+
+    return best_pair

@@ -131,6 +131,8 @@ def run_full(
     simplified_blocks_json      = run_dir / f"grouped_entries.simplified.{run_id}.json"
     conflicts_jsonl             = run_dir / f"conflicts.{run_id}.jsonl"
     simplified_blocks_jsonl     = run_dir / f"grouped_entries.simplified.{run_id}.jsonl"
+    # for now the pair_wise_decisions_file is hardcoded
+    pair_wise_decisions_file    = "/Users/evabsc/projects/software-observatory/research-software-etl/src/application/services/integration/disambiguation"
     disambiguation_out_dir      = run_dir / f"disambiguation.{run_id}.jsonl"
     #disambiguation_out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -199,6 +201,7 @@ def run_full(
         "--conflict-blocks-file", str(conflicts_jsonl),
         "--blocks-file", str(simplified_blocks_jsonl),
         "--disambiguated-blocks-file", str(disambiguation_out_dir),
+        "--pair_wise_decisions_file", str(pair_wise_decisions_file)
         "--run-id", run_id
     ], cwd=wd)
 

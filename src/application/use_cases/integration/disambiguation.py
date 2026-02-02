@@ -8,6 +8,7 @@ from pprint import pprint
 async def run_full_disambiguation(blocks_file, 
                          conflict_blocks_file, 
                          disambiguated_blocks_file,
+                         pair_wise_decisions_file,
                          run_id):
 
     # 1. Load input data
@@ -22,6 +23,7 @@ async def run_full_disambiguation(blocks_file,
         conflict_blocks=conflict_blocks,
         blocks=blocks,
         disambiguated_blocks_path=disambiguated_blocks_file,
+        pair_wise_decisions_path=pair_wise_decisions_file,
         run_id=run_id
     )
 
