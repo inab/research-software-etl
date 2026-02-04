@@ -39,14 +39,39 @@ OUTPUT_PATH = "/Users/evabsc/projects/software-observatory/research-software-etl
 # ---------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------
-def stable_hash(obj) -> str:
-    canonical = json.dumps(
-        obj,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=False,
-    )
+def _canonical_dumps(obj: Any) -> str:
+    # Canonical JSON string used only for sorting + hashing
+    return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+
+
+def _normalize(obj: Any) -> Any:
+    """
+    Normalize JSON-like data so that:
+      - dict keys are sorted (handled by canonical dumps)
+      - list order is ignored (lists treated as multisets)
+    """
+    if isinstance(obj, dict):
+        # normalize values; keep keys as-is (sorting happens in dumps)
+        return {k: _normalize(v) for k, v in obj.items()}
+
+    if isinstance(obj, list):
+        norm_items = [_normalize(x) for x in obj]
+
+        # Sort by (type, canonical-json) to make ordering deterministic even for mixed types.
+        # Using type name avoids comparing unlike Python objects directly.
+        return sorted(
+            norm_items,
+            key=lambda x: (type(x).__name__, _canonical_dumps(x))
+        )
+
+    # JSON scalars (str/int/float/bool/None) are already stable
+    return obj
+
+def stable_hash(obj: Any) -> str:
+    normalized = _normalize(obj)
+    canonical = _canonical_dumps(normalized)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
 
 
 def load_conflict_blocks(paths: Iterable[str]) -> Dict[str, Any]:
@@ -94,28 +119,6 @@ def load_conflict_blocks(paths: Iterable[str]) -> Dict[str, Any]:
     return blocks
 
 
-def make_hash(o):
-
-  """
-  Makes a hash from a dictionary, list, tuple or set to any level, that contains
-  only other hashable types (including any lists, tuples, sets, and
-  dictionaries).
-  """
-
-  if isinstance(o, (set, tuple, list)):
-
-    return tuple([make_hash(e) for e in o])    
-
-  elif not isinstance(o, dict):
-
-    return hash(o)
-
-  new_o = copy.deepcopy(o)
-  for k, v in new_o.items():
-    new_o[k] = make_hash(v)
-
-  return hash(tuple(frozenset(sorted(new_o.items()))))
-
 
 # ---------------------------------------------------------------------
 # Main logic
@@ -147,34 +150,31 @@ def fill_human_conflicts() -> None:
                     f"[human] Expected exactly one top-level key on line {lineno}, got: {obj!r}"
                 )
 
-            conflict_id, payload = next(iter(obj.items()))
+            pair_id, payload = next(iter(obj.items()))
 
             if not isinstance(payload, dict):
                 raise ValueError(
-                    f"[human] Expected object value for '{conflict_id}' "
+                    f"[human] Expected object value for '{pair_id}' "
                     f"on line {lineno}, got: {type(payload)}"
                 )
 
-            conflict_block = blocks.get(conflict_id)
+            conflict_block = blocks.get(pair_id)
             if conflict_block is None:
                 missing += 1
                 print(
-                    f"[human] WARNING: conflict id '{conflict_id}' "
+                    f"[human] WARNING: conflict pair id '{pair_id}' "
                     f"not found in conflict blocks; setting conflict=null",
                     file=sys.stderr,
                 )
-                
-                #payload['date'] = datetime.datetime.now()
-                #payload['conflict_name'] = conflict_id
-                #payload['conflict_id'] = f"{conflict_id}_NONE"
-                #payload["conflict"] = None
-                #payload["conflict"] = conflict_block
 
             else:
-                payload['date'] = datetime.datetime.now()
-                payload['conflict_name'] = conflict_id
-                payload['conflict_id'] = f"{conflict_id}_{stable_hash(conflict_block)}"
+                payload['ts'] = datetime.datetime.now()
+                payload['conflict_name'] = pair_id
+                payload['pair_id'] = f"p:{pair_id}_{stable_hash(conflict_block)}"
                 payload['conflict'] = conflict_block
+                payload['kind'] = 'pair'
+                payload['source'] = 'human'
+
 
             json.dump(payload, fout, ensure_ascii=False, default=str)
             fout.write("\n")
