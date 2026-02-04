@@ -1,0 +1,186 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/t_coffee/cmd/13.45.0.4846264",
+        "created_at": "2025-08-26T15:39:16.332151",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "T-Coffee is a multiple sequence alignment package. You can use T-Coffee to align sequences or to combine the output of your favorite alignment methods (Clustal, Mafft, Probcons, Muscle...) into one unique alignment (M-Coffee).\n\nT-Coffee can align Protein, DNA and RNA sequences. It is also able to combine sequence information with protein structural information (3D-Coffee/Expresso), profile information (PSI-Coffee) or RNA secondary structures (R-Coffee)."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "t_coffee"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Freeware",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "t_coffee",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Multiple sequence alignment",
+              "uri": "http://edamontology.org/operation_0492",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/operation_2403",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": null,
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://tcoffee.org/Projects/tcoffee/index.html#DOWNLOAD"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Microbiology",
+              "uri": "http://edamontology.org/topic_3301",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "13.45.0.4846264"
+          ],
+          "webpage": [
+            "http://www.tcoffee.org/"
+          ]
+        },
+        "id": "biotools/t_coffee/cmd/13.45.0.4846264",
+        "last_updated_at": "2025-09-18T13:13:15.944150",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/t_coffee/cmd/13.45.0.4846264",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/t_coffee/cmd/13.45.0.4846264,galaxy_metadata/t_coffee/cmd/10.00.r1613,toolshed/t_coffee/cmd/13.45.0.4846264,toolshed/t_coffee/cmd/10.00.r1613,galaxy/t_coffee/cmd/11.0.8_1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Multiple aligment.",
+            "Multiple sequence alignment."
+          ],
+          "documentation": [
+            {
+              "content": "\n    \n    **Requeriments**\n   \n    You must install T_coffee version \"10.00.r1613\" in your computer.\n   \n-----\n   \n    **What it does**\n\n    This tool is a wrapper for the T-Coffee multiple alignment suite. The input is a set of sequences in FASTA format that must be uploaded to Galaxy if not obtained using Galaxy tools.\n   \n    This wrapper offers selected advanced T-Coffee options like the selection of the alignment methods to use: ''Pairwise Structual Method'', ''Multiple Sequence Alignment\n    Methods'' or ''Pairwise Sequence Alignment Methods''.\n   \n     The T-Coffee documentation can be found at http://www.tcoffee.org/Projects/tcoffee/documentation\n   \n-----\n\n    **Example**\n\n    Suppose you have five sequences in FASTA format:\n\n      >1aboA\n      NLFVALYDFVASGDNTLSITKGEKLRVLGYNHNGEWCEAQTKNGQGWVPS\n      NYITPVN\n     \n      >1ycsB\n      KGVIYALWDYEPQNDDELPMKEGDCMTIIHREDEDEIEWWWARLNDKEGY\n      VPRNLLGLYP\n     \n      >1pht\n      GYQYRALYDYKKEREEDIDLHLGDILTVNKGSLVALGFSDGQEARPEEIG\n      WLNGYNETTGERGDFPGTYVEYIGRKKISP\n     \n      >1vie\n      DRVRKKSGAAWQGQIVGWYCTNLTPEGYAVESEAHPGSVQIYPVAALERI\n      N\n     \n      >1ihvA\n      NFRVYYRDSRDPVWKGPAKLLWKGEGAVVIQDNSDIKVVPRRKAKIIRD\n   \n    By selecting \"yes\" in output fasta_aln in the wrapper, the user will obtain the multiple alignment in FASTA format:\n\n      >1aboA\n      NL-FVA---LYDFVASGDNTLSITKGEKLR-------VLGYN-------H\n      NGEWCEA--QTKN-GQGWVPSNYIT------PVN\n      >1ycsB\n      KGVIYA---LWDYEPQNDDELPMKEGDCMT-------IIHREDE-----D\n      EIEWWWA--RLND-KEGYVPRNLLG------LYP\n      >1pht\n      GYQYRA---LYDYKKEREEDIDLHLGDILTVNKGSLVALGFSDGQEARPE\n      EIGWLNGYNETTG-ERGDFPGTYVEYIGRKKISP\n      >1vie\n      DR-----------VRK--KSGAAWQGQIVGWYCTNLTPEGYAVE------\n      ------S--EAHPGSVQIYPVAALE------RIN\n      >1ihvA\n      NF-RVYYRDSRDPVWKGPA-KLLWKGEGAV-------VIQDN-------S\n      DI--------------KVVPRRKAK-----IIRD\n      \n  ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "t_coffee",
+            "T-Coffee",
+            "T-COFFEE"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "t_coffee",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c7a580d3b8acd1a2f9b5bb"
+          ],
+          "repository": [],
+          "source": [
+            "galaxy",
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "10.00.r1613",
+            "11.0.8_1",
+            "13.45.0.4846264"
+          ],
+          "webpage": [
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fearlhaminst%2Ft_coffee%2Ft_coffee%2F11.0.8_1"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:t_coffee/cmd",
+  "conflict_name": "t_coffee/cmd",
+  "date": "2026-02-04T16:11:16.760704+00:00",
+  "run_id": "20260204T154610Z-8c2d90e-test_1_0"
+}
