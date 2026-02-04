@@ -1,0 +1,174 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/allegro/cmd/3",
+        "created_at": "2025-04-02T11:44:24.824264",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zlib"
+          ],
+          "description": [
+            "A fast linkage and haplotype analysis utility making use of MTBDD to reduce complexity."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/allegro/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/allegro/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/BioTools-Tek/packages/raw/master/allegro2/allegro2-2017-10-11.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "allegro"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "INDIVIDUAL",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "allegro",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/BioTools-Tek/packages"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/BioTools-Tek/packages/raw/master/allegro2/allegro2-2017-10-11.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "3"
+          ],
+          "webpage": [
+            "http://www.nature.com/ng/journal/v37/n10/full/ng1005-1015.html?foxtrotcallback=true"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:44:24.824264",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/allegro/cmd/3",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/allegro/cmd/2.0,toolshed/allegro/cmd/2.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Linkage and Haplotype analysis."
+          ],
+          "documentation": [
+            {
+              "content": "\nAllegro is a computer program for multipoint genetic linkage analysis and related calculations. Allegro can do both classical parametric linkage analysis and analysis based on allele sharing models. In addition, Allegro estimates total number of recombinations between markers, computes posterior IBD sharing probabilities, re-constructs haplotypes and does two types of simulation. Thus Allegro includes the basic functionality of the well known Genehunter program (Kruglyak et al. 1996). It can analyse pedigrees of moderate size,and it can handle many markers. The biggest advantages of Allegro over Genehunterar the allele sharing models that it provides and a much shorter execution time.\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Allegro"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "allegro",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e571b57d85c6cb37dd318f",
+            "67e571b57d85c6cb37dd318e"
+          ],
+          "repository": [],
+          "source": [
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.0"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:allegro/cmd_b871a3e8331a8c48d06b6555e2f65fe2587b8b8c61a32dd6047043151fa751fa",
+  "conflict_name": "allegro/cmd",
+  "date": "2026-02-04T14:29:43.948940+00:00",
+  "run_id": "20260204T142336Z-b3d9b46-test_1_0"
+}
