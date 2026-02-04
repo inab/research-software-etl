@@ -75,16 +75,14 @@ async def main():
     logger.info(f"Disambiguated blocks file: {args.disambiguated_blocks_file}")
     logger.info(f"Pair-wise deicisions file: {args.pair_wise_decisions_file}")
 
-    if args.run_id == None:
-        run_id = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-
 
     logger.info("Disambiguating entries...")
     await run_full_disambiguation(
         blocks_file=args.blocks_file,
         conflict_blocks_file=args.conflict_blocks_file,
         disambiguated_blocks_file=args.disambiguated_blocks_file,
-        run_id = run_id
+        pair_wise_decisions_file=args.pair_wise_decisions_file,
+        run_id = args.run_id,
     )
 
     logger.info("Disambiguation finished!")

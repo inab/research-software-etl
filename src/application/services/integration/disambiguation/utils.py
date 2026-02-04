@@ -7,7 +7,18 @@ from pathlib import Path
 from typing import Any
 from pprint import pprint 
 
+def append_dict_to_jsonl(path, data: dict) -> None:
+    """
+    Appends a dictionary as a single JSON line to a .jsonl file.
+    Creates the file and parent directories if they don't exist.
+    """
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
 
+    with path.open("a", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False)
+        f.write("\n")
+                
 def _canonical_dumps(obj: Any) -> str:
     # Canonical JSON string used only for sorting + hashing
     return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False)

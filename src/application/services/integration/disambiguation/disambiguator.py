@@ -4,7 +4,7 @@ from src.application.services.integration.disambiguation.prompts import build_pr
 from src.application.services.integration.disambiguation.proxy import decision_agreement_proxy
 from src.application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
 from src.application.services.integration.disambiguation.issues import create_github_issue, generate_github_body, generate_context, generate_conflict_file, commit_conflict_json
-from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash
+from src.application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash, append_dict_to_jsonl
 from src.application.services.integration.disambiguation.manual_annotation_lookup import find_previous_annotation_for_conflict
 from src.application.services.integration.disambiguation.results import build_disambiguated_record_after_human
 
@@ -63,6 +63,7 @@ def build_record_from_legacy():
     "Buils the record to put in disambiguted_blocks if this disambiguation was already done"
     pass 
 
+PAIR_DECISIONS_PATH = "/Users/evabsc/projects/software-observatory/research-software-etl/src/application/services/integration/disambiguation/pair_decisions.jsonl"
 
 async def process_conflict(conflict_name, conflict, instances_dict, run_id, best_pair):
     """
@@ -106,12 +107,24 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
         result = decision_agreement_proxy(messages)
 
         # Log the result
-        # TODO LATER: better logs of model decisions: machine_annotations/...
         add_jsonl_record("scripts/data/results_proxy.jsonl", { conflict_name: result })
-
-
+        
         # Model made a decision 
         if result.get("verdict") != "disagreement":
+            # ----- Add to pair decisions file -----------
+            payload = {
+                "pair_id": pair_stable_id,
+                "kind": 'pair',
+                "same_as_remainging": result["verdict"].lower() == "same",
+                "confidence": "",
+                "source": 'llm',
+                "ts": datetime.now(timezone.utc).isoformat()
+            }
+            append_dict_to_jsonl(PAIR_DECISIONS_PATH, payload)
+
+
+            # ----- Add to results -----------
+
             pair_results.append({
                 "remaining_id": full_conflict["remaining"][0]["id"], # replace with conflict_pair["remaining"][0]["id"]
                 "disconnected_id": full_conflict["disconnected"][0]["id"], # replace with conflict_pair["disconnected"][0]["id"]
