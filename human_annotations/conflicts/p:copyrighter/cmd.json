@@ -1,0 +1,224 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/copyrighter/cmd/None",
+        "created_at": "2025-04-02T12:54:12.391667",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "f.angly@uq.edu.au",
+              "maintainer": false,
+              "name": "Florent E Angly",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Gene W Tyson",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Philip Hugenholtz",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Inka Vanwonterghem",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Adam Skarshewski",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Paul G Dennis",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Correct trait bias in microbial profiles."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "copyrighter"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "copyrighter",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8348c10e2f3aa0b3bbe33"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA",
+              "uri": "http://edamontology.org/topic_0099",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbiology",
+              "uri": "http://edamontology.org/topic_3301",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metatranscriptomics",
+              "uri": "http://edamontology.org/topic_3941",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbial ecology",
+              "uri": "http://edamontology.org/topic_3697",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/fangly/AmpliCopyrighter"
+          ]
+        },
+        "id": "biotools/copyrighter/cmd/None",
+        "last_updated_at": "2025-09-18T13:06:10.728806",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/copyrighter/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/copyrighter/cmd/0.45,toolshed/copyrighter/cmd/0.45",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Trait bias corrector for microbial profiles."
+          ],
+          "documentation": [
+            {
+              "content": "\n**What CopyRighter does**\n\nThe genome of Bacteria and Archaea often contains several copies of the\n16S rRNA gene. This can lead to significant biases when estimating the\ncomposition of microbial communities using 16S rRNA amplicons or\nmicroarrays or their total abundance using 16S rRNA quantitative PCR,\nsince species with a large number of copies will contribute\ndisproportionally more 16S amplicons than species with a unique copy.\nFortunately, it is possible to infer the copy number of unsequenced\nmicrobial species, based on that of close relatives that have been fully\nsequenced. Using this information, CopyRigher corrects microbial\nrelative abundance by applying a weight proportional to the inverse of\nthe estimated copy number to each species.\n\nIn metagenomic surveys, a similar problem arises due to genome length\nvariations between species, and can be corrected by CopyRighter as well.\n\nIn all cases, a community file is used as input and a corrected community\nfile with trait-corrected (16S rRNA gene copy number or genome length)\nrelative abundances is generated. Total abundance can optionally be\nprovided, corrected and combined with relative abundance estimates to\nget the absolute abundance of each species. Also the average trait value\nin each community is reported on standard output.\n  ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CopyRighter"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "copyrighter",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.45"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:copyrighter/cmd",
+  "conflict_name": "copyrighter/cmd",
+  "date": "2026-02-05T18:48:28.579970+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}
