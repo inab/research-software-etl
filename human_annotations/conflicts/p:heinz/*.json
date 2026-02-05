@@ -1,0 +1,233 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/heinz/cmd/None",
+        "created_at": "2025-04-02T12:00:54.313929",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "gunnar.klau@cwi.nl",
+              "maintainer": false,
+              "name": "Gunnar W. Klau",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://homepages.cwi.nl/~klau/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Tool for single-species active module discovery."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/ls-cwi/heinz/blob/master/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Heinz"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "heinz",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Pathway or network analysis",
+              "uri": "http://edamontology.org/operation_2497",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c827da10e2f3aa0b3b7689"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genetics",
+              "uri": "http://edamontology.org/topic_3053",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://software.cwi.nl/software/heinz"
+          ]
+        },
+        "id": "biotools/heinz/cmd/None",
+        "last_updated_at": "2025-09-18T12:46:21.204072",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/heinz/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/heinz/cmd/1.0,bioconda_recipes/heinz/cmd/2.0.1,toolshed/heinz/cmd/1.0,github/heinz/None/None",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Using Heinz.",
+            "The algorithm for identification of the optimal scoring subnetwork.",
+            "Single species module discovery."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/heinz/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/heinz/README.html"
+            },
+            {
+              "content": "\n**Note**: You are currently using a version of Heinz based on IBM CPLEX Community version,\nwhich is limiting the capacity of Heinz in handling big networks. For an unlimited version of Heinz,\nyou need to get a license of IBM CPLEX and compile Heinz from scratch from here https://github.com/ls-cwi/heinz.\nWe are currently looking for an alternative to IBM CPLEX in Heinz to make an unlimited version of Heinz available\nto the public as soon as possible.\n\nScore file --- the output file of the tool \"Calculate Heinz scores\": two columns delimited\nby a tab without headers, the first column is node identifier (e.g., genes, KEGG ORTHOLOGY (KO));\nthe second, Heinz score.\n\n========= ===================\nBRCA2     -6.991782933819368\n--------- -------------------\nBRCA1     -5.206139799106934\n--------- -------------------\nAACS      -0.9299868303078357\n--------- -------------------\nABCC11    -5.845009850430119\n========= ===================\n\nEdge file: the background network Heinz uses in the form of a list of edges; each line is made up of\ntwo node identifiers (e.g., genes, KEGG ORTHOLOGY (KO)) delimited by a tab. In practice, we could\nprepare this file using different pathway databases, such as Reactome, STRING and KEGG. Which database\nto choose depends on the question to solve.\n\n========= =========\nACTR1B    ACVR2B\n--------- ---------\nZSWIM9    FOXP3\n--------- ---------\nLGALS4    PRKX\n--------- ---------\nNPTX1     CIAO1\n========= =========\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/ls-cwi/heinz/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ls-cwi/heinz/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/ls-cwi/heinz/blob/main/TODO.md"
+            }
+          ],
+          "download": [
+            "https://gitlab.com/ibivu/galaxy/conda-heinz/-/archive/v2.0.1/conda-heinz-v2.0.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "heinz",
+            "Identify optimal scoring subnetwork"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": "https://spdx.org/licenses/MIT.html"
+            }
+          ],
+          "links": [],
+          "name": "heinz",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e6c2244737f097793370be"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/ls-cwi/heinz"
+            }
+          ],
+          "source": [
+            "toolshed",
+            "github",
+            "bioconda_recipes",
+            "galaxy_metadata"
+          ],
+          "source_code": [
+            "https://gitlab.com/ibivu/galaxy/conda-heinz/-/archive/v2.0.1/conda-heinz-v2.0.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.0.1",
+            "1.0"
+          ],
+          "webpage": [
+            "https://github.com/ls-cwi/heinz"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:heinz/*",
+  "conflict_name": "heinz/*",
+  "date": "2026-02-05T16:15:27.780414+00:00",
+  "run_id": "20260205T155807Z-8c2d90e-test_8_0"
+}
