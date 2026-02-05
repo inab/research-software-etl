@@ -1,0 +1,271 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/debreak/cmd/None",
+        "created_at": "2025-04-02T11:55:23.748510",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Yu Chen",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Amy Wang",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "zchong@uab.edu",
+              "maintainer": false,
+              "name": "Zechen Chong",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Courtney Barkley",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Deciphering the exact breakpoints of structural variations using long sequencing reads."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DeBreak"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "debreak",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "De-novo assembly",
+              "uri": "http://edamontology.org/operation_0524",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sorting",
+              "uri": "http://edamontology.org/operation_3802",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "PCR primer design",
+              "uri": "http://edamontology.org/operation_0308",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2bdc0b57beba26405ce70"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Structural variation",
+              "uri": "http://edamontology.org/topic_3175",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA immunoprecipitation",
+              "uri": "http://edamontology.org/topic_3794",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/Maggi-Chen/DeBreak"
+          ]
+        },
+        "id": "biotools/debreak/cmd/None",
+        "last_updated_at": "2025-09-18T12:42:15.810984",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/debreak/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/debreak/cmd/1.3,github/DeBreak/None/v1.3",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "wtdbg =2.5",
+            "minimap2 =2.15",
+            "samtools =1.9",
+            "python >=3",
+            "pysam =0.19.0"
+          ],
+          "description": [
+            "Structural variant caller for real-time long-read sequencing data.",
+            "DeBreak, Deciphering the exact breakpoints of structural variations using long sequencing reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/debreak/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/debreak/README.html"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/ChongLab/DeBreak/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ChongLab/DeBreak/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/ChongLab/DeBreak/archive/refs/tags/v1.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DeBreak",
+            "debreak"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": "https://spdx.org/licenses/MIT.html"
+            }
+          ],
+          "links": [],
+          "name": "debreak",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "DeBreak"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/ChongLab/DeBreak"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/ChongLab/DeBreak/archive/refs/tags/v1.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.3",
+            "1.3",
+            "debreak-v1.0.2"
+          ],
+          "webpage": [
+            "https://github.com/ChongLab/DeBreak"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:debreak/*",
+  "conflict_name": "debreak/*",
+  "date": "2026-02-05T20:06:09.394293+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}
