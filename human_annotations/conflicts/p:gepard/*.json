@@ -1,0 +1,246 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/gepard/cmd/1",
+        "created_at": "2025-04-02T11:59:59.997766",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Jan Krumsiek",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "AT-CUBE",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "contact.cube@univie.ac.at",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "r.arnold.2@bham.ac.uk",
+              "maintainer": false,
+              "name": "Roland Arnold",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Genome pair rapid dotter."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.helmholtz-muenchen.de/icb/gepard"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Gepard"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "gepard",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Dot plot plotting",
+              "uri": "http://edamontology.org/operation_0490",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8281a10e2f3aa0b3b7927"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Comparative genomics",
+              "uri": "http://edamontology.org/topic_0797",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1"
+          ],
+          "webpage": [
+            "http://www.helmholtz-muenchen.de/icb/gepard"
+          ]
+        },
+        "id": "biotools/gepard/cmd/1",
+        "last_updated_at": "2025-09-18T12:46:37.508793",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/gepard/cmd/1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/gepard/cmd/2.1.0,github/gepard/None/v2.1.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "openjdk"
+          ],
+          "description": [
+            "Genome Pair Rapid Dotter (gepard).",
+            "Genome Pair Rapid Dotter."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gepard/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gepard/README.html"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/univieCUBE/gepard/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/univieCUBE/gepard/blob/main/README%20run%20without%20JAR.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/univieCUBE/gepard/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/univieCUBE/gepard/blob/main/README.txt"
+            }
+          ],
+          "download": [
+            "https://github.com/univieCUBE/gepard/archive/v2.1.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gepard"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": "https://spdx.org/licenses/MIT.html"
+            }
+          ],
+          "links": [],
+          "name": "gepard",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/univieCUBE/gepard"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/univieCUBE/gepard/archive/v2.1.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v2.1.0",
+            "2.1.0",
+            "v1.40.0"
+          ],
+          "webpage": [
+            "https://cube.univie.ac.at/gepard",
+            "http://cube.univie.ac.at/gepard"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:gepard/*",
+  "conflict_name": "gepard/*",
+  "date": "2026-02-05T17:52:16.664126+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}
