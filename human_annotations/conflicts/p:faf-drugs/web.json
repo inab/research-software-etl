@@ -1,0 +1,289 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/faf-drugs/web/4.0",
+        "created_at": "2025-04-02T11:57:32.466409",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "david.lagorce@inserm.fr",
+              "maintainer": false,
+              "name": "David Lagorce",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bruno.villoutreix@inserm.fr",
+              "maintainer": false,
+              "name": "Bruno Villoutreix",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Process compound collections via simple absorption, distribution, metabolism, excretion and toxicity (ADME/tox) filtering rules to aid in the drug discovery process."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://fafdrugs4.rpbs.univ-paris-diderot.fr/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Small molecule structure",
+                "uri": "http://edamontology.org/data_1463",
+                "vocabulary": "EDAM"
+              },
+              "term": "SDF",
+              "uri": "http://edamontology.org/format_3814",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "FAF-Drugs"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Freeware",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "faf-drugs",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Annotation",
+              "uri": "http://edamontology.org/operation_0226",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Small molecule structure",
+                "uri": "http://edamontology.org/data_1463",
+                "vocabulary": "EDAM"
+              },
+              "term": "SDF",
+              "uri": "http://edamontology.org/format_3814",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Molecular property",
+                "uri": "http://edamontology.org/data_2087",
+                "vocabulary": "EDAM"
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c8278810e2f3aa0b3b738d"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Drug discovery",
+              "uri": "http://edamontology.org/topic_3336",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "4.0"
+          ],
+          "webpage": []
+        },
+        "id": "biotools/faf-drugs/web/4.0",
+        "last_updated_at": "2025-09-18T12:41:37.351243",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/faf-drugs/web/4.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/faf-drugs/web/None",
+        "created_at": "2025-04-02T11:57:32.419170",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "david.lagorce@inserm.fr",
+              "maintainer": false,
+              "name": "David Lagorce",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bruno.villoutreix@inserm.fr",
+              "maintainer": false,
+              "name": "Bruno Villoutreix",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Process compound collections via simple absorption, distribution, metabolism, excretion and toxicity (ADME/tox) filtering rules to aid in the drug discovery process."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://fafdrugs4.mti.univ-paris-diderot.fr/faf_more.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://fafdrugs4.mti.univ-paris-diderot.fr/mobyle.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "FAF-Drugs"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "faf-drugs",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Service discovery",
+              "uri": "http://edamontology.org/operation_3761",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data handling",
+              "uri": "http://edamontology.org/operation_2409",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Molecular surface calculation",
+              "uri": "http://edamontology.org/operation_0387",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Filtering",
+              "uri": "http://edamontology.org/operation_3695",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein-ligand docking",
+              "uri": "http://edamontology.org/operation_0482",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8278810e2f3aa0b3b738d"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Medicine",
+              "uri": "http://edamontology.org/topic_3303",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Drug discovery",
+              "uri": "http://edamontology.org/topic_3336",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Medicinal chemistry",
+              "uri": "http://edamontology.org/topic_0209",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Endocrinology and metabolism",
+              "uri": "http://edamontology.org/topic_3407",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://fafdrugs4.mti.univ-paris-diderot.fr/"
+          ]
+        },
+        "id": "biotools/faf-drugs/web/None",
+        "last_updated_at": "2025-09-18T12:43:11.238960",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/faf-drugs/web/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:faf-drugs/web",
+  "conflict_name": "faf-drugs/web",
+  "date": "2026-02-05T20:11:26.192571+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}
