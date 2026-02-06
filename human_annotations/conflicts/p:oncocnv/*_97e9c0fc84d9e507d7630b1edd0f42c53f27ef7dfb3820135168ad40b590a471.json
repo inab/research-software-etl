@@ -1,0 +1,239 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/oncocnv/cmd/None",
+        "created_at": "2025-04-02T12:08:33.932987",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "infos@oncodna.com",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.oncodna.com/"
+            },
+            {
+              "email": "valentina.boeva@curie.fr",
+              "maintainer": false,
+              "name": "Valentina Boeva",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Package to detect copy number changes in Deep Sequencing data developed by OncoDNA."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/BoevaLab/ONCOCNV/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ONCOCNV"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "oncocnv",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8299d10e2f3aa0b3b86da"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data quality management",
+              "uri": "http://edamontology.org/topic_3572",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://oncocnv.curie.fr/"
+          ]
+        },
+        "id": "biotools/oncocnv/cmd/None",
+        "last_updated_at": "2025-09-18T12:52:59.796185",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/oncocnv/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/oncocnv/cmd/7.0,github/ONCOCNV/None/v7.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "perl",
+            "bioconductor-dnacopy",
+            "r-remotes",
+            "r-base",
+            "r-fastica",
+            "r-mass",
+            "r-scales",
+            "bedtools >=2.27.1",
+            "r-mclust",
+            "r-pscbs",
+            "r-digest",
+            "samtools >=1.16.1"
+          ],
+          "description": [
+            "ONCOCNV - a package to detect copy number changes in Targeted Deep Sequencing and Exome-seq data.",
+            "A package to detect copy number changes in Deep Sequencing data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/oncocnv/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/oncocnv/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/BoevaLab/ONCOCNV/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/BoevaLab/ONCOCNV/archive/refs/tags/v7.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "oncocnv",
+            "ONCOCNV"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "oncocnv",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "ONCOCNV"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/BoevaLab/ONCOCNV"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/BoevaLab/ONCOCNV/archive/refs/tags/v7.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v7.0",
+            "7.0",
+            "v6.7",
+            "v6.6",
+            "v6.9",
+            "v6.8"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:oncocnv/*_97e9c0fc84d9e507d7630b1edd0f42c53f27ef7dfb3820135168ad40b590a471",
+  "conflict_name": "oncocnv/*",
+  "date": "2026-02-06T19:55:11.842184+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
