@@ -1,0 +1,273 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/liquorice/cmd/None",
+        "created_at": "2025-04-02T12:02:52.102702",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "eleni.tomazou@ccri.at",
+              "maintainer": false,
+              "name": "Eleni M Tomazou",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Peter Peneder",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Christoph Bock",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Detection of epigenetic signatures in liquid biopsies based on whole-genome sequencing data."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "LIQUORICE"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "liquorice",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence motif recognition",
+              "uri": "http://edamontology.org/operation_0239",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2bf33b57beba26405d0af"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Epigenetics",
+              "uri": "http://edamontology.org/topic_3295",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Whole genome sequencing",
+              "uri": "http://edamontology.org/topic_3673",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "ChIP-seq",
+              "uri": "http://edamontology.org/topic_3169",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://liquorice.computational-epigenetics.org/"
+          ]
+        },
+        "id": "biotools/liquorice/cmd/None",
+        "last_updated_at": "2025-09-18T12:49:26.383804",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/liquorice/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/liquorice/cmd/0.5.6,bioconda_recipes/liquorice/lib/0.5.6,github/LIQUORICE/None/v0.5.6",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "pybedtools ==0.8.2",
+            "matplotlib-base ==3.1.1",
+            "parallel",
+            "lmfit ==1.0.2",
+            "pandas ==1.1.4",
+            "scipy ==1.7.1",
+            "swifter ==1.0.9",
+            "numpy ==1.21.2",
+            "seaborn ==0.11.2",
+            "modin  ==0.8.2",
+            "python >=3.7.9",
+            "scikit-learn ==0.24.2",
+            "joblib ==1.0.1",
+            "pybigwig ==0.3.18",
+            "pysam ==0.16.0.1",
+            "deeptools ==3.5.1",
+            "biopython ==1.79"
+          ],
+          "description": [
+            "See https://liquorice.readthedocs.io for more information.",
+            "A tool to detect tissue- and cancer- specific epigenetic signatures in WGS data of liquid biopsies."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/liquorice/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/liquorice/README.html"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/epigen/LIQUORICE/blob/main/CHANGES.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/epigen/LIQUORICE/blob/main/docs/requirements.txt"
+            }
+          ],
+          "download": [
+            "https://github.com/epigen/LIQUORICE/archive/refs/tags/v0.5.6.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "liquorice",
+            "LIQUORICE"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "liquorice",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "LIQUORICE"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/epigen/LIQUORICE"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/epigen/LIQUORICE/archive/refs/tags/v0.5.6.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "v0.5.0",
+            "0.5.6",
+            "v0.5.1",
+            "v0.5.6",
+            "v0.5.5",
+            "v0.5.2",
+            "v0.5.4",
+            "v0.5.3"
+          ],
+          "webpage": [
+            "https://liquorice.readthedocs.io/",
+            "https://github.com/epigen/LIQUORICE"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:liquorice/*_dc67e8d37f74656f3174d2636cbf794380ea98fa0596bdc7f2e1db4ab262c0aa",
+  "conflict_name": "liquorice/*",
+  "date": "2026-02-06T19:51:48.298419+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
