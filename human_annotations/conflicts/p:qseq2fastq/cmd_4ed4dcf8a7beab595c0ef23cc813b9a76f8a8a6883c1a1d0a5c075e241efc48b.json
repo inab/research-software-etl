@@ -1,0 +1,173 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/qseq2fastq/cmd/3.0",
+        "created_at": "2025-04-02T12:58:15.147120",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.cip.ifi.lmu.de/~hauser/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Converst Illumina Deep Sequencing Qseq files to more commonly used FastQ format."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.splashground.de/~andy/programs/qseq2fastq-andy/README.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "qseq2fastq"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "qseq2fastq",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Formatting",
+              "uri": "http://edamontology.org/operation_0335",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "68cbe8a7fb439d34b767035c"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Biological databases",
+              "uri": "http://edamontology.org/topic_3071",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "3.0"
+          ],
+          "webpage": [
+            "http://www.splashground.de/~andy/programs/qseq2fastq-andy/README.html"
+          ]
+        },
+        "id": "biotools/qseq2fastq/cmd/3.0",
+        "last_updated_at": "2025-09-18T13:10:31.958050",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/qseq2fastq/cmd/3.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/qseq2fastq/cmd/0.2,toolshed/qseq2fastq/cmd/0.2",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Illumina HiSeq QSEQ output to FASTQ format."
+          ],
+          "documentation": [
+            {
+              "content": "\n**What it does**\n\nThis tool converts Illumina QSEQ files into Phred FASTQ files.\n\nConvert an Illumina QSEQ file into Phred FASTQ format in your Galaxy history for downstream tools that require fastq.\nTypically the output would be aligned with BWA or handled other Galaxy SRS tools.\n\n--------------\n\n**Examples**\n\n- The following data in QSEQ file format::\n\t\n\tHWI-EAS431\t1\t3\t100\t1792\t1317\t0\t1\t................................A...G..............A..GG....G...............\tBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\t0\n\n- Will be converted to FASTQ file format::\n\n\t@3:100:1792:1317:N\n\tNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNANNNGNNNNNNNNNNNNNNANNGGNNNNGNNNNNNNNNNNNNNN\n\t+3:100:1792:1317:N\n\t############################################################################\n\n--------------\n\n**About formats**\n\n**QSEQ format** QSEQ files are the output of the Illumina pipeline. These files contain the sequence, corresponding qualities, as well as lane, tile and X/Y position of clusters.\n\nAccording to Illumina manual qseq files have the following format:\n\n(1) Machine name: (hopefully) unique identifier of the sequencer.\n(2) Run number: (hopefully) unique number to identify the run on the sequencer.\n(3) Lane number: positive integer (currently 1-8).\n(4) Tile number: positive integer.\n(5) X: x coordinate of the spot. Integer (can be negative).\n(6) Y: y coordinate of the spot. Integer (can be negative).\n(7) Index: positive integer. No indexing should have a value of 1.\n(8) Read Number: 1 for single reads; 1 or 2 for paired ends.\n(9) Sequence\n(10) Quality: the calibrated quality string.\n(11) Filter: Did the read pass filtering? 0 - No, 1 - Yes.\n\n\n**FASTQ format** A FASTQ file normally uses four lines per sequence. Line 1 begins with a '@' character and is followed by a sequence identifier and an optional  description (like a FASTA title line). Line 2 is the raw sequence letters. Line 3 begins with a '+' character and is optionally followed by the same sequence identifier (and any description) again. Line 4 encodes the quality values for the sequence in Line 2, and must contain the same number of symbols as letters in the sequence.\n\t",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "qseq_to_fastq"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "qseq2fastq",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.2"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:qseq2fastq/cmd_4ed4dcf8a7beab595c0ef23cc813b9a76f8a8a6883c1a1d0a5c075e241efc48b",
+  "conflict_name": "qseq2fastq/cmd",
+  "date": "2026-02-06T19:53:55.590861+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
