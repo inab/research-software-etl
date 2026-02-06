@@ -1,0 +1,274 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/dsk/cmd/1.6906",
+        "created_at": "2025-04-02T11:55:14.466663",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "GenOuest",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "chikhi@psu.edu",
+              "maintainer": false,
+              "name": "Rayan Chikhi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "guillaume.rizk@irisa.fr",
+              "maintainer": false,
+              "name": "Guillaume Rizk",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lavenier@irisa.fr",
+              "maintainer": false,
+              "name": "Dominique Lavenier",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "K-mer counting software, similar to Jellyfish. Jellyfish is very fast but limited to large-memory servers and k 32. This software supports large values of k, and runs with (almost-)arbitrarily low memory usage and reasonably low temporary disk usage. It can count k-mers of large Illumina datasets on laptops and desktop computers."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://minia.genouest.org/dsk/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence (raw)",
+                "uri": "http://edamontology.org/data_2975",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ-like format (text)",
+              "uri": "http://edamontology.org/format_2182",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "DSK"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "CECILL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "dsk",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence composition calculation",
+              "uri": "http://edamontology.org/operation_0236",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Sequence composition report",
+                "uri": "http://edamontology.org/data_1261",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "67c79f8ed3b8acd1a2f9b447"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "GATB"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1.6906"
+          ],
+          "webpage": [
+            "http://minia.genouest.org/dsk/"
+          ]
+        },
+        "id": "biotools/dsk/cmd/1.6906",
+        "last_updated_at": "2025-09-18T12:39:51.702935",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/dsk/cmd/1.6906",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/dsk/cmd/2.3.3,github/dsk/None/v0.0.100",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zlib"
+          ],
+          "description": [
+            "K-mer counting software.",
+            "DSK is a k-mer counter for reads or genomes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/dsk/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/dsk/README.html"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/GATB/dsk/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GATB/dsk/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/GATB/dsk/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/GATB/dsk/archive/v2.3.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "dsk"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "AGPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "dsk",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c79f8ed3b8acd1a2f9b447"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/GATB/dsk"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/GATB/dsk/archive/v2.3.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v2.2.0",
+            "2.3.3",
+            "v2.3.3",
+            "v2.3.1",
+            "v2.3.0",
+            "v1.0.6",
+            "v0.0.100"
+          ],
+          "webpage": [
+            "https://gatb.inria.fr/software/dsk/",
+            "https://github.com/GATB/dsk/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:dsk/*_abf263bedbbd59cdceb56351e790528da42b7f070e3affa1bf3247bf1a05d0f6",
+  "conflict_name": "dsk/*",
+  "date": "2026-02-06T19:48:14.650447+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
