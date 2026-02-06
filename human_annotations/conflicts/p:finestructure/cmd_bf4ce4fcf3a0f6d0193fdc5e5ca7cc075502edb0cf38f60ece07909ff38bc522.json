@@ -1,0 +1,205 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/finestructure/cmd/4.1.1",
+        "created_at": "2025-04-02T11:54:56.794421",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "perl",
+            "clang",
+            "r-xml",
+            "r-ape"
+          ],
+          "description": [
+            "FineSTRUCTURE is a fast and powerful algorithm for identifying population structure using dense sequencing data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/finestructure/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/finestructure/README.html"
+            }
+          ],
+          "download": [
+            "https://people.maths.bris.ac.uk/~madjl/finestructure/fs_4.1.1.zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "finestructure"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "OTHER",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "finestructure",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c79f5cd3b8acd1a2f9b439"
+          ],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://people.maths.bris.ac.uk/~madjl/finestructure/fs_4.1.1.zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "4.1.1"
+          ],
+          "webpage": [
+            "https://people.maths.bris.ac.uk/~madjl/finestructure/finestructure.html"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:54:56.794421",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/finestructure/cmd/4.1.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/finestructure/cmd/None,biotools/finestructure/cmd/none",
+        "data": {
+          "authors": [
+            {
+              "email": "dan.lawson@bristol.ac.uk",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "FineSTRUCTURE is an algorithm for identifying population structure using dense sequencing data. By using the output of ChromoPainter as a (nearly) sufficient summary statistic, it is able to perform model-based Bayesian clustering on large datasets, including full resequencing data, and can handle up to 1000s of individuals. Full assignment uncertainty is given."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://paintmychromosomes.com/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "fineSTRUCTURE"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "finestructure",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c79f5cd3b8acd1a2f9b439"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Population genetics",
+              "uri": "http://edamontology.org/topic_3056",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "None",
+            "none"
+          ],
+          "webpage": [
+            "http://paintmychromosomes.com/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:finestructure/cmd_bf4ce4fcf3a0f6d0193fdc5e5ca7cc075502edb0cf38f60ece07909ff38bc522",
+  "conflict_name": "finestructure/cmd",
+  "date": "2026-02-06T19:53:29.131181+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
