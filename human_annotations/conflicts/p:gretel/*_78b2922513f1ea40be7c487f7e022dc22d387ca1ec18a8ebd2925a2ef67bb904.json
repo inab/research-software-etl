@@ -1,0 +1,252 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/gretel/cmd/None",
+        "created_at": "2025-04-02T12:00:16.269523",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "sam@samnicholls.net",
+              "maintainer": false,
+              "name": "Samuel M. Nicholls",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "On the complexity of haplotyping a microbial community.\n\nAn algorithm for recovering haplotypes from metagenomes. Sister to Hansel.\n\nGretel is a Python package providing a command line tool for the recovery of haplotypes from metagenomic data sets. Gretel parses an alignment of reads into a Hansel matrix and uses the evidence of SNP pairs observed to appear on the same reads to probabilistically reconstruct the most likely haplotypes."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Gretel"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "gretel",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Haplotype mapping",
+              "uri": "http://edamontology.org/operation_0487",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Parsing",
+              "uri": "http://edamontology.org/operation_1812",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82d7d10e2f3aa0b3b9df4"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbial ecology",
+              "uri": "http://edamontology.org/topic_3697",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metatranscriptomics",
+              "uri": "http://edamontology.org/topic_3941",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://github.com/samstudio8/gretel"
+          ]
+        },
+        "id": "biotools/gretel/cmd/None",
+        "last_updated_at": "2025-09-18T12:47:13.982657",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/gretel/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/gretel/cmd/0.0.94,bioconda_recipes/gretel/lib/0.0.94,github/gretel/None/None",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "numpy",
+            "pysam",
+            "hanselx 0.0.92",
+            "pyvcf"
+          ],
+          "description": [
+            "An algorithm for recovering haplotypes from metagenomes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gretel/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gretel/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/SamStudio8/gretel/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/SamStudio8/gretel/archive/v0.0.94.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gretel"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": "https://spdx.org/licenses/MIT.html"
+            }
+          ],
+          "links": [],
+          "name": "gretel",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c82f5c10e2f3aa0b3ba927"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/SamStudio8/gretel"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/SamStudio8/gretel/archive/v0.0.94.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "haplotypes",
+              "uri": "https://github.com/topics/haplotypes",
+              "vocabulary": ""
+            },
+            {
+              "term": "metagenomes",
+              "uri": "https://github.com/topics/metagenomes",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "0.0.94"
+          ],
+          "webpage": [
+            "https://github.com/SamStudio8/gretel",
+            "https://gretel.readthedocs.io/en/latest/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:gretel/*_78b2922513f1ea40be7c487f7e022dc22d387ca1ec18a8ebd2925a2ef67bb904",
+  "conflict_name": "gretel/*",
+  "date": "2026-02-06T20:03:45.861699+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
