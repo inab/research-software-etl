@@ -1,0 +1,291 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/ivar/cmd/None",
+        "created_at": "2025-04-02T12:55:52.001791",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Interpretation-oriented tool to manage the update and revision of variant annotation and classification.\n\niVar - DataBase of Genomics Variants."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "iVar"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "AGPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "ivar",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Variant classification",
+              "uri": "http://edamontology.org/operation_3225",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Text annotation",
+              "uri": "http://edamontology.org/operation_3778",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2c3d6b57beba26405d64d"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Biological databases",
+              "uri": "http://edamontology.org/topic_3071",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Evolutionary biology",
+              "uri": "http://edamontology.org/topic_3299",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/CGR-UNIMORE/iVar"
+          ]
+        },
+        "id": "biotools/ivar/cmd/None",
+        "last_updated_at": "2025-09-18T13:07:54.551839",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/ivar/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/ivar/cmd/1.4.2,github/ivar/None/v1.4.3,biotools/andersen-lab_ivar/suite/1.4.3",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "htslib",
+            "samtools"
+          ],
+          "description": [
+            "IVar is a computational package that contains functions broadly useful for viral amplicon-based sequencing."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/ivar/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/ivar/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/andersen-lab/ivar/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/andersen-lab/ivar/blob/main/docs/COOKBOOK.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/andersen-lab/ivar/blob/main/docs/INSTALLATION.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/andersen-lab/ivar/blob/main/docs/MANUAL.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/andersen-lab/ivar/blob/main/docs/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/andersen-lab/ivar/archive/v1.4.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence alignment",
+                "uri": "http://edamontology.org/data_1383",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "ivar",
+            "iVar"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "ivar",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Primer removal",
+              "uri": "http://edamontology.org/operation_3237",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "andersen-lab_ivar"
+          ],
+          "output": [],
+          "publication": [
+            "67e572007d85c6cb37dd3215"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/andersen-lab/ivar"
+            }
+          ],
+          "source": [
+            "biotools",
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/andersen-lab/ivar/archive/v1.4.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "COVID-19"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "variant-calling",
+              "uri": "https://github.com/topics/variant-calling",
+              "vocabulary": ""
+            },
+            {
+              "term": "amplicon-sequencing",
+              "uri": "https://github.com/topics/amplicon-sequencing",
+              "vocabulary": ""
+            },
+            {
+              "term": "Virology",
+              "uri": "http://edamontology.org/topic_0781",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "suite"
+          ],
+          "version": [
+            "1.4.2",
+            "v1.4.3",
+            "v1.4.1",
+            "v1.2.2",
+            "v1.2.1",
+            "v1.2.3",
+            "v1.2",
+            "v1.0",
+            "v1.3",
+            "1.4.3",
+            "v1.4.2",
+            "v1.3.2",
+            "v1.3.1",
+            "v1.4",
+            "v1.0.1",
+            "v1.1-beta"
+          ],
+          "webpage": [
+            "https://andersen-lab.github.io/ivar/html/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:ivar/*_e3cb8fc9ce6b51b9aa89db8a14f8e14544b38f43f2684572772ccfe0d280c4e6",
+  "conflict_name": "ivar/*",
+  "date": "2026-02-06T19:53:51.660665+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
