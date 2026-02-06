@@ -1,0 +1,202 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/phageterm/cmd/None",
+        "created_at": "2025-04-02T12:20:09.849218",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "julian.garneau@usherbrooke.ca",
+              "maintainer": false,
+              "name": "Julian Garneau",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "marc.monot@pasteur.fr",
+              "maintainer": false,
+              "name": "Marc Monot",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "david.bikard@pasteur.fr",
+              "maintainer": false,
+              "name": "David Bikard",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Determining Bacteriophage Termini and Packaging using NGS data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://sourceforge.net/projects/phageterm/files/?source=navbar"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PhageTerm"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "CC-BY-4.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "phageterm",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Nucleic acid feature detection",
+              "uri": "http://edamontology.org/operation_0415",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c829e110e2f3aa0b3b8908"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbiology",
+              "uri": "http://edamontology.org/topic_3301",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://sourceforge.net/projects/phageterm/"
+          ]
+        },
+        "id": "biotools/phageterm/cmd/None",
+        "last_updated_at": "2025-09-18T12:54:02.401333",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/phageterm/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/phageterm/cmd/1.0.11,toolshed/phageterm/cmd/1.0.11",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Determine Bacteriophage Termini and Packaging Mode using randomly fragmented NGS data."
+          ],
+          "documentation": [
+            {
+              "content": "\n\n**What it does**\n\nPhageTerm software is a tool to determine phage termini and packaging mode from high throughput sequences\nthat rely on the random fragmentation of DNA (e.g. Illumina TruSeq, but NOT Nextera).\n\n-----\n\n**Methods**\n\nOur methods is based on the detection of biases in the number of reads that start at natural DNA termini compared to elsewhere along the phage genome.\nPreprint manuscript: http://biorxiv.org/content/early/2017/02/16/108100\nSource Code: https://sourceforge.net/projects/phageterm.\n\n-----\n\n**Inputs**\n\n- Raw reads file in fastq format\n- Phage genome in fasta format\n- Raw paired-ends reads file in fastq format (optional)\n- Host genome in fasta format (optional)\n\n-----\n\n**Options**\n\nName of the phage being analyzed by the user (Default: my_phage)\nLength of the seed used for reads in the mapping process (Default: 20)\nLength of the surrounding used to merge close peaks in the analysis process (Default: 20)\nDefine phage target mean coverage (Default: 250)\n\n-----\n\n**Outputs**\n\n- Report (.pdf)\n- Statistical table (.csv)\n- Phage Sequence (.fasta)\n- Cohesive or DTR sequence (.fasta)\n\n\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PhageTerm"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "phageterm",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e6c2834737f09779337160"
+          ],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0.11"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:phageterm/cmd_9166720285bb8fce9db7bd0b58944467292e662945e069b5ec1ab71f6a30717e",
+  "conflict_name": "phageterm/cmd",
+  "date": "2026-02-06T19:44:07.361713+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
