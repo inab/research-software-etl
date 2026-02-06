@@ -1,0 +1,292 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/minia/cmd/1.6906",
+        "created_at": "2025-04-02T12:05:46.130922",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "GenOuest",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "chikhi@psu.edu",
+              "maintainer": false,
+              "name": "Rayan Chikhi",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://rayan.chikhi.name/"
+            },
+            {
+              "email": "guillaume.rizk@irisa.fr",
+              "maintainer": false,
+              "name": "Guillaume Rizk",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Short-read assembler based on a de Bruijn graph, capable of assembling a human genome on a desktop computer in a day."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://minia.genouest.org/files/minia.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence (raw)",
+                "uri": "http://edamontology.org/data_2975",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ-like format (text)",
+              "uri": "http://edamontology.org/format_2182",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence (raw)",
+                "uri": "http://edamontology.org/data_2975",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Minia"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "CECILL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "minia",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "de Novo sequencing",
+              "uri": "http://edamontology.org/operation_3644",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Sequence assembly",
+                "uri": "http://edamontology.org/data_0925",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c828fb10e2f3aa0b3b8121"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "GATB"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1.6906"
+          ],
+          "webpage": [
+            "http://minia.genouest.org/"
+          ]
+        },
+        "id": "biotools/minia/cmd/1.6906",
+        "last_updated_at": "2025-09-18T12:52:55.848694",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/minia/cmd/1.6906",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/minia/cmd/3.2.6,bioconda_recipes/minia/cmd/3.2.6,toolshed/minia/cmd/3.2.6,github/minia/None/v0.0.102",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zlib"
+          ],
+          "description": [
+            "Minia is a short-read assembler based on a de Bruijn graph.",
+            "Minia is a short-read assembler based on a de Bruijn graph, capable of assembling a human genome on a desktop computer in a day.",
+            "Short-read assembler based on a de Bruijn graph."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/minia/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/minia/README.html"
+            },
+            {
+              "content": "\nMinia is a short-read assembler based on a de Bruijn graph, capable of assembling a human genome on a desktop computer in a day.\nThe output of Minia is a set of contigs.\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GATB/minia/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/GATB/minia/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/GATB/minia/releases/download/v3.2.6/minia-v3.2.6-Source.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Minia",
+            "minia"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "minia",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e6c2534737f0977933711f"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/GATB/minia"
+            }
+          ],
+          "source": [
+            "toolshed",
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/GATB/minia/releases/download/v3.2.6/minia-v3.2.6-Source.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v3.2.1",
+            "v3.2.6",
+            "v3.2.2",
+            "v3.2.4",
+            "3.2.6",
+            "v2.0.7",
+            "v3.2.0",
+            "v0.0.102",
+            "v3.2.3"
+          ],
+          "webpage": [
+            "https://gatb.inria.fr/software/minia",
+            "https://github.com/GATB/minia"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:minia/*_6c6b8325cbd8e4f1ef234e0cd3454f7ff5322d069d0a4b0982f5b21c6f9e2a8a",
+  "conflict_name": "minia/*",
+  "date": "2026-02-06T19:36:52.497080+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
