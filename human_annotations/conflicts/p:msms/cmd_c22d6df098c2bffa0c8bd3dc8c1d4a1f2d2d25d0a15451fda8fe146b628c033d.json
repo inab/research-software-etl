@@ -1,0 +1,193 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/msms/cmd/2.6.1",
+        "created_at": "2025-04-02T11:50:10.125556",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "MSMS is a program written in the C programming language to compute molecular surfaces."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/msms/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/msms/README.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "msms"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Free for academic use",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "msms",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "2.6.1"
+          ],
+          "webpage": [
+            "http://mgltools.scripps.edu/packages/MSMS/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:50:10.125556",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/msms/cmd/2.6.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/msms/cmd/none,biotools/msms/cmd/None",
+        "data": {
+          "authors": [
+            {
+              "email": "gregory.ewine@univie.ac.at",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "MSMS is a coalescent simulator that and permits the full range of demographic models provided by ms, in particular, it allows for multiple demes with arbitrary migration patterns, population growth and decay, and for population splits and merges. Applications include power studies, analytical comparisons, approximated Bayesian computation among others."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://www.mabs.at/ewing/msms/manual.shtml"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "msms"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "LGPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "msms",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Modelling and simulation",
+              "uri": "http://edamontology.org/operation_2426",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c828e710e2f3aa0b3b8066"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Population genetics",
+              "uri": "http://edamontology.org/topic_3056",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Systems biology",
+              "uri": "http://edamontology.org/topic_2259",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "None",
+            "none"
+          ],
+          "webpage": [
+            "http://www.mabs.at/ewing/msms/index.shtml"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:msms/cmd_c22d6df098c2bffa0c8bd3dc8c1d4a1f2d2d25d0a15451fda8fe146b628c033d",
+  "conflict_name": "msms/cmd",
+  "date": "2026-02-06T19:58:04.356285+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
