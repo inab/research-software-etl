@@ -1,0 +1,369 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/molligen/db/4",
+        "created_at": "2025-04-02T12:05:59.970358",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Aurelien Barr\u00e9",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Alain Blanchard",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Pascal Sirand-Pugnet",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Centre de Bioinformatique de Bordeaux (CBiB)",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Universit\u00e9 de Bordeaux",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "INRA",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "u-bordeaux.fr",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "aurelien.barre@u-bordeaux.fr",
+              "maintainer": false,
+              "name": "Aurelien Barr\u00e9",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "aurelien.barre@u-bordeaux.fr",
+              "maintainer": false,
+              "name": "Aur\u00e9lien Barr\u00e9",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Database dedicated to the comparative genomics of bacteria belonging to the class Mollicutes. It provides annotated sequence data and analysis for 72 genomes belonging to 51 species. The database provides genome and genetic element pages, homology relationship defined by various methods, pre-computed statistics, metabolic pathways, and a huge collection of tools for exploring and comparing genomes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "https://services.cbib.u-bordeaux.fr/molligen4/"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://services.cbib.u-bordeaux.fr/molligen/CREDITS/data/MolliGen_Tutorial_2012.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Molligen"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "molligen",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome comparison",
+              "uri": "http://edamontology.org/operation_3209",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8291810e2f3aa0b3b8235"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Comparative genomics",
+              "uri": "http://edamontology.org/topic_0797",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbiology",
+              "uri": "http://edamontology.org/topic_3301",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "db",
+          "version": [
+            "4"
+          ],
+          "webpage": [
+            "https://services.cbib.u-bordeaux.fr/molligen4/"
+          ]
+        },
+        "id": "biotools/molligen/db/4",
+        "last_updated_at": "2025-09-18T12:52:10.497143",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/molligen/db/4",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/molligen/db/None",
+        "created_at": "2025-04-02T12:05:59.917356",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Aurelien Barr\u00e9",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Alain Blanchard",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Pascal Sirand-Pugnet",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Centre de Bioinformatique de Bordeaux (CBiB)",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Universit\u00e9 de Bordeaux",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "INRA",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "u-bordeaux.fr",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "aurelien.barre@u-bordeaux.fr",
+              "maintainer": false,
+              "name": "Aurelien Barr\u00e9",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "aurelien.barre@u-bordeaux.fr",
+              "maintainer": false,
+              "name": "Aur\u00e9lien Barr\u00e9",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Database dedicated to the comparative genomics of bacteria belonging to the class Mollicutes. It provides annotated sequence data and analysis for 72 genomes belonging to 51 species. The database provides genome and genetic element pages, homology relationship defined by various methods, pre-computed statistics, metabolic pathways, and a huge collection of tools for exploring and comparing genomes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "http://services.cbib.u-bordeaux2.fr/molligen/"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://services.cbib.u-bordeaux2.fr/molligen/CREDITS/data/MolliGen_Tutorial_2012.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Molligen"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "molligen",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome comparison",
+              "uri": "http://edamontology.org/operation_3209",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8291810e2f3aa0b3b8235"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Comparative genomics",
+              "uri": "http://edamontology.org/topic_0797",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbiology",
+              "uri": "http://edamontology.org/topic_3301",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "db",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://services.cbib.u-bordeaux2.fr/molligen/"
+          ]
+        },
+        "id": "biotools/molligen/db/None",
+        "last_updated_at": "2025-09-18T12:52:10.449932",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/molligen/db/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:molligen/db_23cec8f64460df450fd41ce98f7cff31e781ab81dcb1b820364f1ca513f288da",
+  "conflict_name": "molligen/db",
+  "date": "2026-02-10T12:17:20.829795+00:00",
+  "run_id": "20260210T105019Z-17128c9-test_11_0"
+}
