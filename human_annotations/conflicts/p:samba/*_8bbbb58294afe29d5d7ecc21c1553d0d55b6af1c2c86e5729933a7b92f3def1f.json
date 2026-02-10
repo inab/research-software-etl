@@ -1,0 +1,359 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/masurca/cmd/None",
+        "created_at": "2025-04-02T12:04:52.183753",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "alekseyz@ipst.umd.edu",
+              "maintainer": false,
+              "name": "Aleksey Zimin",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.genome.umd.edu/contact.html"
+            },
+            {
+              "email": "gmarcais@umd.edu",
+              "maintainer": false,
+              "name": "Guillaume Mar\u00e7ais",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.genome.umd.edu/contact.html"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Whole genome assembly software. It combines the efficiency of the de\u00a0Bruijn graph and Overlap-Layout-Consensus (OLC) approaches. MaSuRCA can assemble data sets containing only short reads from Illumina sequencing or a mixture of short reads and long reads (Sanger, 454)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.genome.umd.edu/masurca_compile.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MaSuRCA"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "masurca",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a112d3b8acd1a2f9b4c2"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Whole genome sequencing",
+              "uri": "http://edamontology.org/topic_3673",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.genome.umd.edu/masurca.html"
+          ]
+        },
+        "id": "biotools/masurca/cmd/None",
+        "last_updated_at": "2025-09-18T12:50:59.208291",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/masurca/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/masurca/cmd/4.1.1,galaxy_metadata/masurca/cmd/4.0.6+galaxy0,biotools/samba/cmd/None,toolshed/masurca/cmd/4.0.6+galaxy0,github/masurca/None/v4.1.2",
+        "data": {
+          "authors": [
+            {
+              "email": "aleksey.zimin@gmail.com",
+              "maintainer": false,
+              "name": "Aleksey V. Zimin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Steven L. Salzberg",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "minimap2",
+            "grep",
+            "flye",
+            "boost-cpp",
+            "bwa",
+            "perl",
+            "zlib"
+          ],
+          "description": [
+            "MaSuRCA (Maryland Super-Read Celera Assembler) genome assembly software. MaSuRCA requires Illumina data, and supports third-generation PacBio/Nanopore MinION reads for hybrid assembly.",
+            "The MaSuRCA (Maryland Super Read Cabog Assembler) genome assembly and analysis toolkit with config.",
+            "The SAMBA tool uses long reads to improve the contiguity of genome assemblies."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/masurca/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/masurca/README.html"
+            },
+            {
+              "content": "\n\n**MaSuRCA**\n\nThis implementation of MaSuRCA uses a config file for more complicated assemblies and to change default settings. Illumina reads (mandatory) and long reads from PACBIO or Oxford Nanopore or both can be included.  It is written by `Aleksey Zimin`_ at Johns Hopkins University. Included below is relevant notes from MaSuRCA's `github page`_.\n\n.. _`Aleksey Zimin`: https://github.com/alekseyzimin\n.. _`github page`: https://github.com/alekseyzimin/masurca\n\n-----\n\n**Input data**\n\nThe following types of data are supported:\n\n  * Illumina paired end (or single end) reads -- MANDATORY. The mean and stdev parameters are the library insert average length and standard deviation. If the standard deviation is not known, set it to approximately 15% of the mean.If the second (reverse) read set is not available, do not specify it and just specify the forward reads. Files must be in fastq format and can be gzipped.\n  * PacBio/MinION data are supported. Note that you have to have 50x + coverage in Illumina Paired End reads to use PacBio of Oxford Nanopore MinION data. Supply PacBio or MinION reads in a single fasta or fastq file (can be gzipped).\n\n**Parameters**\n\nThe following parameter is mandatory:\n\n  * jellyfish hash size, set this to about 10x the genome size.\n\nOptional parameters:\n\n  * linking mates: Most of the paired end reads end up in the same super read and thus are not passed to the assembler. Those that do not end up in the same super read are called \u201dlinking mates\u201d . The best assembly results are achieved by setting this parameter to 1 for Illumina-only assemblies. If you have more than 2x coverage by long (454, Sanger, etc) reads, set this to 0.\n  \n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/alekseyzimin/masurca/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/alekseyzimin/masurca/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/alekseyzimin/masurca/blob/main/code_of_conduct.md"
+            }
+          ],
+          "download": [
+            "https://github.com/alekseyzimin/masurca/releases/download/v4.1.1/MaSuRCA-4.1.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MaSuRCA",
+            "SAMBA",
+            "masurca"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "masurca",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Scaffolding",
+              "uri": "http://edamontology.org/operation_3216",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sample comparison",
+              "uri": "http://edamontology.org/operation_3731",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "samba"
+          ],
+          "output": [],
+          "publication": [
+            "67c834a610e2f3aa0b3bbed3",
+            "67c7a112d3b8acd1a2f9b4c2"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/alekseyzimin/masurca"
+            }
+          ],
+          "source": [
+            "biotools",
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "github",
+            "toolshed"
+          ],
+          "source_code": [
+            "https://github.com/alekseyzimin/masurca/releases/download/v4.1.1/MaSuRCA-4.1.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "masurca",
+              "uri": "https://github.com/topics/masurca",
+              "vocabulary": ""
+            },
+            {
+              "term": "genome",
+              "uri": "https://github.com/topics/genome",
+              "vocabulary": ""
+            },
+            {
+              "term": "assembly",
+              "uri": "https://github.com/topics/assembly",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v4.1.0",
+            "4.0.6+galaxy0",
+            "v3.4.2",
+            "None",
+            "v4.0.3",
+            "v3.3.7",
+            "3.2.7",
+            "v4.0.6",
+            "v3.3.5",
+            "3.2.6",
+            "v4.0.2",
+            "v3.4.1",
+            "v3.3.3",
+            "3.2.4.1",
+            "v3.3.1",
+            "3.2.8",
+            "v3.3.0",
+            "v3.3.8",
+            "v4.1.1",
+            "v4.1.2",
+            "v3.4.0",
+            "3.2.4",
+            "v4.0.9",
+            "3.3.2",
+            "v3.3.6",
+            "v4.0.5",
+            "v4.0.8",
+            "v4.0.4",
+            "v3.3.4",
+            "v3.3.9",
+            "v4.0.1",
+            "v4.0.7",
+            "3.2.9",
+            "4.1.1"
+          ],
+          "webpage": [
+            "https://github.com/alekseyzimin/masurca",
+            "http://masurca.blogspot.co.uk/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:samba/*_8bbbb58294afe29d5d7ecc21c1553d0d55b6af1c2c86e5729933a7b92f3def1f",
+  "conflict_name": "samba/*",
+  "date": "2026-02-10T11:05:25.074162+00:00",
+  "run_id": "20260210T105019Z-17128c9-test_11_0"
+}
