@@ -1,0 +1,243 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/gaas/None/None",
+        "created_at": "2025-04-02T15:44:05.037201",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "GAAS (Genome relative Abundance and Average Size) is a bioinformatic tool to calculate accurate community composition and average genome size in metagenomes by using BLAST, advanced parsing of hits and correction of genome length bias."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/gaas"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gaas"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "gaas",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/gaas"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://gaas.sourceforge.io/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T15:44:05.037201",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/gaas//",
+            "source_url": "https://sourceforge.net/projects/gaas"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/GAAS/None/v1.2.0,bioconda_recipes/gaas/cmd/1.2.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "libdb",
+            "perl-bioperl >=1.7",
+            "perl-statistics-r",
+            "perl-sort-naturally",
+            "perl-lwp-simple",
+            "perl-extutils-makemaker",
+            "perl-file-share",
+            "perl-bio-eutilities",
+            "perl >=5.8",
+            "perl-file-sharedir-install",
+            "perl-graph",
+            "perl-clone",
+            "r-base"
+          ],
+          "description": [
+            "Genome Assembly and Annotation Service code.",
+            "Suite of tools related to Genome Assembly Annotation Service tasks at NBIS."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/NBISweden/GAAS/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/NBISweden/GAAS/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/NBISweden/GAAS/blob/main/how_to_release.txt"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gaas/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gaas/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/NBISweden/GAAS/archive/v1.2.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gaas",
+            "GAAS"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "GAAS",
+          "operating_system": [
+            "Windows",
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "gaas"
+          ],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/NBISweden/GAAS"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/NBISweden/GAAS/archive/v1.2.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "annotation",
+              "uri": "https://github.com/topics/annotation",
+              "vocabulary": ""
+            },
+            {
+              "term": "assembly",
+              "uri": "https://github.com/topics/assembly",
+              "vocabulary": ""
+            },
+            {
+              "term": "knowledge",
+              "uri": "https://github.com/topics/knowledge",
+              "vocabulary": ""
+            },
+            {
+              "term": "scripts",
+              "uri": "https://github.com/topics/scripts",
+              "vocabulary": ""
+            },
+            {
+              "term": "cheatsheet",
+              "uri": "https://github.com/topics/cheatsheet",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.2.0",
+            "v1.2.0",
+            "v1.0.0",
+            "v0.1",
+            "v1.1.0",
+            "v0.1.1",
+            "v1.0.1"
+          ],
+          "webpage": [
+            "https://github.com/NBISweden/GAAS"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:gaas/*_1e1193eb424d40c04a84d968652abb641b688a2289000177d1f630edb00bd159",
+  "conflict_name": "gaas/*",
+  "date": "2026-02-10T12:43:53.649725+00:00",
+  "run_id": "20260210T105019Z-17128c9-test_11_0"
+}
