@@ -1,0 +1,171 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/spectral_hk/cmd/0.1",
+        "created_at": "2025-04-02T11:51:41.432269",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "NCGC Spectral HashKey."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/spectral_hk/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/spectral_hk/README.html"
+            }
+          ],
+          "download": [
+            "https://bitbucket.org/ncgc/spectral_hk/get/cb39dca4c40d.tar.bz2"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "spectral_hk"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "PUBLIC DOMAIN",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "spectral_hk",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bitbucket",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://bitbucket.org/ncgc/spectral_hk"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bitbucket.org/ncgc/spectral_hk/get/cb39dca4c40d.tar.bz2"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "0.1"
+          ],
+          "webpage": [
+            "https://bitbucket.org/ncgc/spectral_hk"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:51:41.432269",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/spectral_hk/cmd/0.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/spectral_hk/cmd/0.1.0,toolshed/spectral_hk/cmd/0.1.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "- convert InChIs to spectral hashkeys."
+          ],
+          "documentation": [
+            {
+              "content": "\n\n**What it does**\n\nThis tool converts InChIs into spectral hash codes. A spectral hash code is a 30-character (150-bit) alphanumeric hash string that uniquely encodes an InChI. See the following example:\n\n.. image:: $PATH_TO_IMAGES/bild.png\n\nDMLC7QBAS17P7JKN43WHM2J1VA67GL\n\n**References**\n\n - https://bitbucket.org/ncgc/spectral_hk/overview\n - http://tripod.nih.gov/\n\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Spectral hashkey"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "spectral_hk",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c79778d3b8acd1a2f9b380"
+          ],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.1.0"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:spectral_hk/cmd_2c2dce80c847c41c1a726409f555a2ce7541bf7b546d182f6e93409ba1fd3c8a",
+  "conflict_name": "spectral_hk/cmd",
+  "date": "2026-02-06T20:01:56.936667+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

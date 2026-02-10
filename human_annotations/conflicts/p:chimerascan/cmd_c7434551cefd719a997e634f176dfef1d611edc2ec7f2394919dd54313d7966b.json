@@ -1,0 +1,194 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/chimerascan/cmd/None",
+        "created_at": "2025-04-02T11:53:18.303884",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "cmaher@dom.wustl.edu",
+              "maintainer": false,
+              "name": "Christopher A. Maher",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Identifies chimaeric transcripts in RNA-Seq data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://code.google.com/archive/p/chimerascan/wikis"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ChimeraScan"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "chimerascan",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Chimera detection",
+              "uri": "http://edamontology.org/operation_0450",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq analysis",
+              "uri": "http://edamontology.org/operation_3680",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7ab26d3b8acd1a2f9bda2"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://code.google.com/archive/p/chimerascan/"
+          ]
+        },
+        "id": "biotools/chimerascan/cmd/None",
+        "last_updated_at": "2025-09-18T12:38:38.734997",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/chimerascan/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/chimerascan/cmd/1.0.0,toolshed/chimerascan/cmd/None",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A tool for identifying chimeric transcription in sequencing data."
+          ],
+          "documentation": [
+            {
+              "content": "\n\tBowtie index files must be placed inside 'myindex folder'\n        A tool for identifying chimeric transcription in sequencing data.\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ChimeraScan"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "chimerascan",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0.0",
+            "None"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:chimerascan/cmd_c7434551cefd719a997e634f176dfef1d611edc2ec7f2394919dd54313d7966b",
+  "conflict_name": "chimerascan/cmd",
+  "date": "2026-02-06T20:01:39.285262+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

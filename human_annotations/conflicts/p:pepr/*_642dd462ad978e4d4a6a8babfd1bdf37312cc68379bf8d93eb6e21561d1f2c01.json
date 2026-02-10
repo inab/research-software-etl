@@ -1,0 +1,241 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/pepr/cmd/None",
+        "created_at": "2025-04-02T12:19:22.264537",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "sartorma@umich.edu",
+              "maintainer": false,
+              "name": "Maureen A. Sartor",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://sartorlab.ccmb.med.umich.edu/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Analysis pipeline for ChIP-Seq experiments with biological replicates, written and available as python scripts."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://sartorlab.ccmb.med.umich.edu/node/6"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PePr"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "pepr",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Peak calling",
+              "uri": "http://edamontology.org/operation_3222",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8297810e2f3aa0b3b858b"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "ChIP-seq",
+              "uri": "http://edamontology.org/topic_3169",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA binding sites",
+              "uri": "http://edamontology.org/topic_3125",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Nucleic acid sites",
+              "uri": "http://edamontology.org/topic_3511",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://sartorlab.ccmb.med.umich.edu/node/6"
+          ]
+        },
+        "id": "biotools/pepr/cmd/None",
+        "last_updated_at": "2025-09-18T12:55:39.243253",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pepr/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/pepr/cmd/1.0.0,bioconda_recipes/pepr/cmd/1.1.24,bioconda_recipes/pepr/lib/1.1.24,toolshed/pepr/cmd/None,github/PePr/None/1.1.24",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "scipy >=0.14.0",
+            "python",
+            "pysam",
+            "sharedmem",
+            "numpy >=1.6.0",
+            "PePr/bf9e356ddc03baae25f291acf9463d7ae0821b93"
+          ],
+          "description": [
+            "Peak-calling and Prioritization pipeline for replicated ChIP-Seq data.",
+            "ChIP-Seq Peak-calling and Prioritization pipeline (PePr).",
+            "A peak-calling and differential analysis tool for replicated ChIP-Seq data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pepr/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pepr/README.html"
+            },
+            {
+              "content": "\n\nFor transcription factors, we recommend the following options:\npython path/PePr.py -i inputFiles -c chipFiles -n ExperimentName -f format --peaktype=sharp --remove_artefacts\n\nFor histone modifications that are expected to cover large genomic regions, we recommend the following options:\npython path/PePr.py -i inputFiles -c chipFiles -n ExperimentName -f format --peaktype=broad  --remove_artefacts\n\nFor differential binding analysis of transcription factors:\npython path/PePr.py -i inputFiles_group1 --input2 inputFiles_group2 -c chipFiles_group1 --chip2 chipFiles_group2 -n ExperrrimentName -f format --peaktype=sharp --diff --remove_artefacts\n\nExample of exact command for a transcription factor with two input files and two ChIP files:\n\n\npython ../PePr.py -i input_rep1.bed,input_rep2.bed -c chip_rep1.bed,chip_rep2.bed -f bed -s 48,46 -w 180 -n my_test_run\n",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/shawnzhangyx/PePr/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/p/pepr/PePr-1.1.24.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Run PePr",
+            "pepr",
+            "PePr"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "pepr",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "PePr"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/shawnzhangyx/PePr"
+            }
+          ],
+          "source": [
+            "toolshed",
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "github"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/p/pepr/PePr-1.1.24.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "1.1.24",
+            "1.0.0",
+            "1.1.9",
+            "1.1.5",
+            "1.1.10",
+            "1.1.8",
+            "1.1.18",
+            "None",
+            "1.1.12",
+            "1.1.14"
+          ],
+          "webpage": [
+            "https://github.com/shawnzhangyx/PePr/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pepr/*_642dd462ad978e4d4a6a8babfd1bdf37312cc68379bf8d93eb6e21561d1f2c01",
+  "conflict_name": "pepr/*",
+  "date": "2026-02-06T19:43:49.731074+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

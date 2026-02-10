@@ -1,0 +1,277 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/tag/cmd/None",
+        "created_at": "2025-04-02T12:49:44.426473",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "yye@indiana.edu",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://mendel.informatics.indiana.edu/~yye/lab/index.php"
+            },
+            {
+              "email": "hatang@indiana.edu",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A tool for metatranscriptome assembly using de Bruijn graph of matched metagenome as the reference."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/YuzhenYe/TAG"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TAG"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "tag",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Transcriptome assembly",
+              "uri": "http://edamontology.org/operation_3258",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82b7310e2f3aa0b3b957e"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://omics.informatics.indiana.edu/TAG/"
+          ]
+        },
+        "id": "biotools/tag/cmd/None",
+        "last_updated_at": "2025-09-18T13:01:25.480370",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/tag/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/tag/cmd/0.1.0,bioconda_recipes/tag/cmd/0.5.1,bioconda_recipes/tag/lib/0.5.1,toolshed/tag/cmd/0.1.0,github/tag/None/0.5.1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python >=3",
+            "intervaltree >=3.0",
+            "networkx >=2.0"
+          ],
+          "description": [
+            "Substituir nome por tags em sequ\u00eancias FASTA.",
+            "Genome annotation data analysis and management implemented in pure Python."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/tag/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/tag/README.html"
+            },
+            {
+              "content": "\n**Funcionamento**\n\nSubstitui o nome completo da sequ\u00eancia por uma tag (informada) e o id da sequ\u00eancia (mantido)\n\n----\n\n**Output - Exemplo:**\n\n**Entrada:**\n\n\t**>CDI73658.1 hypothetical protein EPH_0011120 [Eimeria praecox]**\n\tMGHPDSGFQGSANMTVVASELYNSIAAGKGETGELNFVFSPFSILSVFKMAQMGARGATRAEMDRHLSSSAPLDVPALRG\n\tPAAPWETEPPIELETANRMYVKSSLASDAQFLHFASEVLAKLKCEAVTADFTDSEATAASINAFVEEKTKGHIKELVPAS\n\tLLTSYTRMVLVNALYFKGPWAFPFSPESTSLGSFCMKDGETGCIHEQQVKFMRQRLDMGFGYYEGETAKVLSLPYADYRF\n\tSLYVFLPQDISQFEQQLLQRPEAIEELVSRVDSSSSSGLVLDLSMPLVKLPAEQNQVDLVEVYKRLGVRLMFDADEADFS\n\tGISRNETLYVSSFLHQADLTWNEEGTEAAAATAMMIAAASAFIPKREISLAVDRPFLFQVRVRDTTNSHSLVLLAGRVID\n\tAKAAQ\n\n**Sa\u00edda:** (tag = EPRA)\n\n\t**>EPRA|CDI73658.1**\n\tMGHPDSGFQGSANMTVVASELYNSIAAGKGETGELNFVFSPFSILSVFKMAQMGARGATRAEMDRHLSSSAPLDVPALRG\n\tPAAPWETEPPIELETANRMYVKSSLASDAQFLHFASEVLAKLKCEAVTADFTDSEATAASINAFVEEKTKGHIKELVPAS\n\tLLTSYTRMVLVNALYFKGPWAFPFSPESTSLGSFCMKDGETGCIHEQQVKFMRQRLDMGFGYYEGETAKVLSLPYADYRF\n\tSLYVFLPQDISQFEQQLLQRPEAIEELVSRVDSSSSSGLVLDLSMPLVKLPAEQNQVDLVEVYKRLGVRLMFDADEADFS\n\tGISRNETLYVSSFLHQADLTWNEEGTEAAAATAMMIAAASAFIPKREISLAVDRPFLFQVRVRDTTNSHSLVLLAGRVID\n\tAKAAQ\n\n",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/standage/tag/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/standage/tag/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/standage/tag/archive/0.5.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "tag",
+            "TAG in FASTA"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD License",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "tag",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/standage/tag"
+            }
+          ],
+          "source": [
+            "toolshed",
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/standage/tag/archive/0.5.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "gff3",
+              "uri": "https://github.com/topics/gff3",
+              "vocabulary": ""
+            },
+            {
+              "term": "genome-annotation",
+              "uri": "https://github.com/topics/genome-annotation",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "hacktoberfest",
+              "uri": "https://github.com/topics/hacktoberfest",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "0.1.1",
+            "0.3.0",
+            "0.5",
+            "0.3.1",
+            "0.4",
+            "0.2.0",
+            "0.5.1",
+            "0.1.0",
+            "0.3.2",
+            "0.3.3"
+          ],
+          "webpage": [
+            "http://tag.readthedocs.io/",
+            "https://github.com/standage/tag/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:tag/*_40bc0244b79e4c99a37b3eed3872489623054172a02d8a458339051a7420d522",
+  "conflict_name": "tag/*",
+  "date": "2026-02-06T19:59:52.961330+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

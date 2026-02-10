@@ -1,0 +1,218 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/fastqe/undefined/None",
+        "created_at": "2025-04-02T11:57:37.132378",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Compute quality stats for FASTQ files and print those stats as emoji... for some reason."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/fastqe/fastqe/blob/master/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "FASTQE"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "fastqe",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequencing quality control",
+              "uri": "http://edamontology.org/operation_3218",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "68ad875fb94758ef79db031b"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://fastqe.com/"
+          ]
+        },
+        "id": "biotools/fastqe/undefined/None",
+        "last_updated_at": "2025-09-18T12:41:37.819842",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/fastqe/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/fastqe/None/None,galaxy_metadata/fastqe/cmd/0.3.1+galaxy0,bioconda_recipes/fastqe/cmd/0.3.1,bioconda_recipes/fastqe/lib/0.3.1,toolshed/fastqe/cmd/0.3.1+galaxy0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "pyemojify",
+            "python",
+            "biopython >=1.66"
+          ],
+          "description": [
+            "Visualize fastq files with emoji's \ud83e\uddec\ud83d\ude0e.",
+            "The program reads one or more input FASTQ files.\nFor each file it computes the minimum, maximum and mean FASTQ quality score at each position across all reads in a file.\n\nFor some reason, it then represents these as emoji.",
+            "Redirection to the new FASTQE repo."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/lonsbio/fastqe/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/fastqe/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/fastqe/README.html"
+            },
+            {
+              "content": "\nFASTQ + Emoji = FASTQE \ud83e\udd14\n=========================\n\nCompute quality stats for FASTQ files and print those stats as emoji... for some reason.\n\nScores can also be binned:\n\n+-------+-------+\n| Bin   | Emoji |\n+=======+=======+\n| N     | \ud83d\udeab    |\n+-------+-------+\n| 2-9   | \ud83d\udc80    |\n+-------+-------+\n| 10\u201319 | \ud83d\udca9    |\n+-------+-------+\n| 20\u201324 | \u26a0\ufe0f    |\n+-------+-------+\n| 25\u201329 | \ud83d\ude04    |\n+-------+-------+\n| 30\u201334 | \ud83d\ude06    |\n+-------+-------+\n| 35\u201339 | \ud83d\ude0e    |\n+-------+-------+\n| \u2265 40  | \ud83d\ude0d    |\n+-------+-------+\n\n\n",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/f/fastqe/fastqe-0.3.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "FASTQE",
+            "fastqe"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": "https://spdx.org/licenses/MIT.html"
+            }
+          ],
+          "links": [],
+          "name": "fastqe",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/lonsbio/fastqe"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/fastqe/fastqe"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/f/fastqe/fastqe-0.3.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "0.3.1+galaxy0",
+            "0.3.1"
+          ],
+          "webpage": [
+            "https://github.com/lonsbio/fastqe"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:fastqe/*",
+  "conflict_name": "fastqe/*",
+  "date": "2026-02-05T17:56:34.649369+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}

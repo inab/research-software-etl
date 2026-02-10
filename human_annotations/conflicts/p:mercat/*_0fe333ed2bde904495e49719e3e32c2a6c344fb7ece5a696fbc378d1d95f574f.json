@@ -1,0 +1,312 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/mercat/cmd/None",
+        "created_at": "2025-04-02T12:03:52.036676",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Visualising molecular epidemiology data combining genetic markers and drug resistance profiles.\n\nMolecular epidemiology uses genetic information from bacterial isolates to shed light on the population structure and dynamics of pathogens. Bacterial pathogens can now be studied by whole genome sequencing, but for some well-studied pathogens such as Mycobacterium tuberculosis a wealth of information is also available from other sources such as spoligotyping and multi-locus variable-number-tandem-repeats (VNTR). Isolates are also frequently tested for susceptibility to antibiotics. Methods of analysis are available for each type of data but it would be informative to combine multiple sources of information into a single analysis or visualisation. Here, we propose and implement a simple way to visualise genotypes along with drug resistance profiles for multiple drugs."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MERCAT"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mercat",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Antimicrobial resistance prediction",
+              "uri": "http://edamontology.org/operation_3482",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82cf610e2f3aa0b3b9a2f"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Public health and epidemiology",
+              "uri": "http://edamontology.org/topic_3305",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/zaandahl/mercat"
+          ]
+        },
+        "id": "biotools/mercat/cmd/None",
+        "last_updated_at": "2025-09-18T12:50:03.464795",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mercat/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/mercat/cmd/0.2,github/mercat/None/0.2",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "scikit-bio ==0.2.3",
+            "humanize",
+            "python",
+            "numpy",
+            "psutil",
+            "trimmomatic",
+            "dask",
+            "plotly",
+            "pandas",
+            "joblib",
+            "prodigal"
+          ],
+          "description": [
+            "MerCat: python code for versatile k-mer counting and diversity estimation for database independent property analysis for meta -ome data.",
+            "Mercat: a versatile counter and diversity estimator for data base independent property analysis obtained from whole community sequencing data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/mercat/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/mercat/README.html"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/pnnl/mercat/blob/main/DISCLAIMER.txt"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/pnnl/mercat/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/pnnl/mercat/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/pnnl/mercat/blob/main/dependencies.txt"
+            }
+          ],
+          "download": [
+            "https://github.com/pnnl/mercat/archive/0.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "mercat"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "mercat",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/pnnl/mercat"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/pnnl/mercat/archive/0.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "metagenomic-analysis",
+              "uri": "https://github.com/topics/metagenomic-analysis",
+              "vocabulary": ""
+            },
+            {
+              "term": "metatranscriptomic-analysis",
+              "uri": "https://github.com/topics/metatranscriptomic-analysis",
+              "vocabulary": ""
+            },
+            {
+              "term": "kmer-frequency-count",
+              "uri": "https://github.com/topics/kmer-frequency-count",
+              "vocabulary": ""
+            },
+            {
+              "term": "plotly",
+              "uri": "https://github.com/topics/plotly",
+              "vocabulary": ""
+            },
+            {
+              "term": "diversity",
+              "uri": "https://github.com/topics/diversity",
+              "vocabulary": ""
+            },
+            {
+              "term": "divideandconquer",
+              "uri": "https://github.com/topics/divideandconquer",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "dask",
+              "uri": "https://github.com/topics/dask",
+              "vocabulary": ""
+            },
+            {
+              "term": "k-mer-counting",
+              "uri": "https://github.com/topics/k-mer-counting",
+              "vocabulary": ""
+            },
+            {
+              "term": "k-mer-frequency",
+              "uri": "https://github.com/topics/k-mer-frequency",
+              "vocabulary": ""
+            },
+            {
+              "term": "protein",
+              "uri": "https://github.com/topics/protein",
+              "vocabulary": ""
+            },
+            {
+              "term": "nucleotides",
+              "uri": "https://github.com/topics/nucleotides",
+              "vocabulary": ""
+            },
+            {
+              "term": "fastq",
+              "uri": "https://github.com/topics/fastq",
+              "vocabulary": ""
+            },
+            {
+              "term": "diversity-estimation",
+              "uri": "https://github.com/topics/diversity-estimation",
+              "vocabulary": ""
+            },
+            {
+              "term": "database-independent-analysis",
+              "uri": "https://github.com/topics/database-independent-analysis",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.2",
+            "0.1"
+          ],
+          "webpage": [
+            "https://github.com/pnnl/mercat"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:mercat/*_0fe333ed2bde904495e49719e3e32c2a6c344fb7ece5a696fbc378d1d95f574f",
+  "conflict_name": "mercat/*",
+  "date": "2026-02-06T19:58:25.812329+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

@@ -1,0 +1,164 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/rmlst_api/cmd/0.1.5",
+        "created_at": "2025-04-02T11:53:57.057437",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "requests 2.28.1",
+            "click",
+            "python"
+          ],
+          "description": [
+            "API to perform rMLST on PubMLST.org."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/rmlst_api/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/rmlst_api/README.html"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/r/rmlst_api/rmlst_api-0.1.5.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "rmlst_api"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": "https://spdx.org/licenses/MIT.html"
+            }
+          ],
+          "links": [],
+          "name": "rmlst_api",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/r/rmlst_api/rmlst_api-0.1.5.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "0.1.5"
+          ],
+          "webpage": []
+        },
+        "last_updated_at": "2025-04-02T11:53:57.057437",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/rmlst_api/cmd/0.1.5",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/rmlst_api/undefined/0.1.3,biotools/rmlst_api/cmd/0.1.3",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Run rmlst API through python script for species identification of a bacterial assembly."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "rmlst_api"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "rmlst_api",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "undefined",
+            "cmd"
+          ],
+          "version": [
+            "0.1.3"
+          ],
+          "webpage": [
+            "https://github.com/domenico-simone/rmlst_api"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:rmlst_api/*",
+  "conflict_name": "rmlst_api/*",
+  "date": "2026-02-05T20:34:35.845066+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}

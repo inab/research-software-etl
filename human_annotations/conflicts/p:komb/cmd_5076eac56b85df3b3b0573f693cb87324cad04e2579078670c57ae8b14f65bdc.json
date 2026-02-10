@@ -1,0 +1,222 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/komb/cmd/None",
+        "created_at": "2025-04-02T12:02:29.460676",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "treangen@rice.edu",
+              "maintainer": false,
+              "name": "Todd J. Treangen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Taxonomy-oblivious Characterization of Metagenome Dynamics via K-core Decomposition.\n\nRevealing repeats using K-core on unitig graphs."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "KOMB"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "komb",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Taxonomic classification",
+              "uri": "http://edamontology.org/operation_3460",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA barcoding",
+              "uri": "http://edamontology.org/operation_3200",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "k-mer counting",
+              "uri": "http://edamontology.org/operation_3472",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82dde10e2f3aa0b3ba0b9"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbial ecology",
+              "uri": "http://edamontology.org/topic_3697",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomic sequencing",
+              "uri": "http://edamontology.org/topic_3837",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://gitlab.com/treangenlab/komb.git"
+          ]
+        },
+        "id": "biotools/komb/cmd/None",
+        "last_updated_at": "2025-09-18T12:48:42.468189",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/komb/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/komb/cmd/1.0",
+        "created_at": "2025-04-02T11:49:24.046481",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "abyss 2.0.2",
+            "bowtie2 >=2.3.5.1",
+            "bifrost >=1.0.5",
+            "igraph 0.8.*",
+            "zlib"
+          ],
+          "description": [
+            "Characterizing metagenomes using K-Core decomposition."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/komb/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/komb/README.html"
+            }
+          ],
+          "download": [
+            "https://gitlab.com/treangenlab/komb/-/archive/v1.0/komb-v1.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "komb"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-or-later",
+              "url": "https://spdx.org/licenses/GPL-3.0-or-later.html"
+            }
+          ],
+          "links": [],
+          "name": "komb",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "gitlab",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://gitlab.com/treangenlab/komb"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://gitlab.com/treangenlab/komb/-/archive/v1.0/komb-v1.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.0"
+          ],
+          "webpage": [
+            "https://gitlab.com/treangenlab/komb"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:49:24.046481",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/komb/cmd/1.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:komb/cmd_5076eac56b85df3b3b0573f693cb87324cad04e2579078670c57ae8b14f65bdc",
+  "conflict_name": "komb/cmd",
+  "date": "2026-02-06T19:56:53.150334+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

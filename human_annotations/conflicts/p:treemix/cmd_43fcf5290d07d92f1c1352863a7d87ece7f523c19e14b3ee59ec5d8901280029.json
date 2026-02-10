@@ -1,0 +1,213 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/treemix/cmd/1.13",
+        "created_at": "2025-04-02T11:52:05.057703",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zlib",
+            "gsl",
+            "boost-cpp",
+            "r-base >=3.6",
+            "r-rcolorbrewer"
+          ],
+          "description": [
+            "TreeMix is a method for inferring the patterns of population splits and mixtures in the history of a set of populations."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/treemix/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/treemix/README.html"
+            }
+          ],
+          "download": [
+            "https://bitbucket.org/nygcresearch/treemix/downloads/treemix-1.13.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "treemix"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "treemix",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c7a59ed3b8acd1a2f9b5c2"
+          ],
+          "repository": [
+            {
+              "kind": "bitbucket",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://bitbucket.org/nygcresearch/treemix"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bitbucket.org/nygcresearch/treemix/downloads/treemix-1.13.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.13"
+          ],
+          "webpage": [
+            "http://pritchardlab.stanford.edu/software.html"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:52:05.057703",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/treemix/cmd/1.13",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/treemix/cmd/None,biotools/treemix/cmd/none",
+        "data": {
+          "authors": [
+            {
+              "email": "joseph_pickrell@hms.harvard.edu",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Method for inferring the patterns of population splits and mixtures in the history of a set of populations. In the underlying model, the modern-day populations in a species are related to a common ancestor via a graph of ancestral populations. The allele frequencies in the modern populations are used to infer the structure of this graph."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bitbucket.org/nygcresearch/treemix/wiki/Home"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TreeMix"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "treemix",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Phylogenetic inference",
+              "uri": "http://edamontology.org/operation_0323",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c7a59ed3b8acd1a2f9b5c2"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Population genetics",
+              "uri": "http://edamontology.org/topic_3056",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "None",
+            "none"
+          ],
+          "webpage": [
+            "https://bitbucket.org/nygcresearch/treemix/wiki/Home"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:treemix/cmd_43fcf5290d07d92f1c1352863a7d87ece7f523c19e14b3ee59ec5d8901280029",
+  "conflict_name": "treemix/cmd",
+  "date": "2026-02-06T20:01:11.711588+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

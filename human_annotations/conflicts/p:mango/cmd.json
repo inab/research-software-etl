@@ -1,0 +1,236 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/mango/cmd/None",
+        "created_at": "2025-04-02T12:04:56.194089",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "dphansti@email.unc.edu",
+              "maintainer": false,
+              "name": "PHANSTIEL LAB",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://github.com/dphansti/mango"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Complete ChIA-PET (Chromatin Interaction Analysis by Paired-End Tag sequencing) data analysis pipeline that provides statistical confidence estimates for interactions and corrects for major sources of bias including differential peak enrichment and genomic proximity."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/dphansti/mango/blob/master/README.rst"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Mango"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mango",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Statistical calculation",
+              "uri": "http://edamontology.org/operation_2238",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Analysis",
+              "uri": "http://edamontology.org/operation_2945",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c828d110e2f3aa0b3b7f9a"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Data architecture",
+              "uri": "http://edamontology.org/topic_3365",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structural genomics",
+              "uri": "http://edamontology.org/topic_0122",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/dphansti/mango"
+          ]
+        },
+        "id": "biotools/mango/cmd/None",
+        "last_updated_at": "2025-09-18T12:51:44.075851",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mango/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/mango/cmd/0.0.5",
+        "created_at": "2025-04-02T11:46:15.993367",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "dask",
+            "distributed",
+            "modin",
+            "openjdk >=8,<9",
+            "pyspark ==2.4.4",
+            "psutil",
+            "python >3",
+            "cigar ==0.1.3",
+            "ipython ==7.8.0",
+            "ipywidgets ==7.0.0",
+            "matplotlib ==2.0.2",
+            "ipykernel >=5.1.2",
+            "widgetsnbextension >=3.5.0",
+            "traitlets >=4.3.0,<5.0",
+            "traittypes >=0.0.6"
+          ],
+          "description": [
+            "A scalable genomic visualization tool."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/mango/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/mango/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/bdgenomics/mango"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "mango"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": "https://spdx.org/licenses/Apache-2.0.html"
+            }
+          ],
+          "links": [],
+          "name": "mango",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/bdgenomics/mango"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "0.0.5"
+          ],
+          "webpage": [
+            "https://github.com/bdgenomics/mango"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:46:15.993367",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/mango/cmd/0.0.5",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:mango/cmd",
+  "conflict_name": "mango/cmd",
+  "date": "2026-02-05T16:30:30.369944+00:00",
+  "run_id": "20260205T155807Z-8c2d90e-test_8_0"
+}

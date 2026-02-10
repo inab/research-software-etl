@@ -1,0 +1,268 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/metabcombiner/lib/None",
+        "created_at": "2025-04-02T12:56:32.163264",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "akarnovs@med.umich.edu",
+              "maintainer": false,
+              "name": "Alla Karnovsky",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "chevans@med.umich.edu",
+              "maintainer": false,
+              "name": "Charles R. Evans",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "MetabCombiner is a R package for paired untargeted LC-HR-MS metabolomics feature matching and concatenation of disparately acquired datasets."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "metabCombiner"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "metabcombiner",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Retention time prediction",
+              "uri": "http://edamontology.org/operation_3633",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Chromatographic alignment",
+              "uri": "http://edamontology.org/operation_3628",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c831bb10e2f3aa0b3bab15"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metabolomics",
+              "uri": "http://edamontology.org/topic_3172",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/hhabra/metabCombiner"
+          ]
+        },
+        "id": "biotools/metabcombiner/lib/None",
+        "last_updated_at": "2025-09-18T13:08:46.719480",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/metabcombiner/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-metabcombiner/lib/1.12.0,bioconductor/metabcombiner/lib/1.17.0",
+        "data": {
+          "authors": [
+            {
+              "email": "hhabra1@gmail.com",
+              "maintainer": false,
+              "name": "Hani Habra",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "akarnovs@med.umich.edu",
+              "maintainer": false,
+              "name": "Alla Karnovsky",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "R (>= 4.0)",
+            "r-caret",
+            "caret",
+            "stats",
+            "utils",
+            "graphics",
+            "matrixStats",
+            "r-tidyr",
+            "methods",
+            "rlang",
+            "dplyr (>= 1.0)",
+            "mgcv",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "r-rlang",
+            "tidyr",
+            "r-mgcv",
+            "r-matrixstats",
+            "S4Vectors",
+            "r-base",
+            "r-dplyr >=1.0"
+          ],
+          "description": [
+            "This package aligns LC-HRMS metabolomics datasets acquired from biologically similar specimens analyzed under similar, but not necessarily identical, conditions. Peak-picked and simply aligned metabolomics feature tables (consisting of m/z, rt, and per-sample abundance measurements, plus optional identifiers & adduct annotations) are accepted as input. The package outputs a combined table of feature pair alignments, organized into groups of similar m/z, and ranked by a similarity score. Input tables are assumed to be acquired using similar (but not necessarily identical) analytical methods."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-metabcombiner/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-metabcombiner/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/metabCombiner_1.12.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/metabCombiner/metabCombiner_1.12.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-metabcombiner/bioconductor-metabcombiner_1.12.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/metabCombiner_1.12.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "metabCombiner",
+            "bioconductor-metabcombiner"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-metabcombiner",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "metabcombiner"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/metabCombiner"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/metabCombiner_1.12.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/metabCombiner_1.12.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-metabcombiner/bioconductor-metabcombiner_1.12.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/metabCombiner/metabCombiner_1.12.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.17.0",
+            "1.12.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/metabCombiner",
+            "https://bioconductor.org/packages/3.18/bioc/html/metabCombiner.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:metabcombiner/lib_9e0fc952e0c86aeeff5227d1306e4ca4c78cc9601fb027e42351f04a4856a0ec",
+  "conflict_name": "metabcombiner/lib",
+  "date": "2026-02-09T15:16:52.217755+00:00",
+  "run_id": "20260209T150740Z-8c2d90e-test_11_0"
+}

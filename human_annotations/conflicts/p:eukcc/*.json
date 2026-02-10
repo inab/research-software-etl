@@ -1,0 +1,231 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/eukcc/cmd/None",
+        "created_at": "2025-09-18T13:13:19.554109",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "EukCC is a completeness and contamination estimator for metagenomic assembled microbial eukaryotic genomes."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "DNA sequence",
+                "uri": "http://edamontology.org/data_3494",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            },
+            {
+              "datatype": {
+                "term": "Protein sequence record",
+                "uri": "http://edamontology.org/data_2886",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "EukCC"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "eukcc",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence assembly validation",
+              "uri": "http://edamontology.org/operation_3180",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Sequence report",
+                "uri": "http://edamontology.org/data_2955",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "68cbe94ffb439d34b7670370"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/EBI-Metagenomics/EukCC"
+          ]
+        },
+        "last_updated_at": "2025-09-18T13:13:19.554109",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/eukcc/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/eukcc/cmd/2.1.0,bioconda_recipes/eukcc/lib/2.1.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bwa",
+            "pplacer",
+            "pysam",
+            "hmmer=3.3",
+            "epa-ng=0.3.8",
+            "numpy",
+            "samtools>=1.12",
+            "jsonpickle",
+            "python>=3.6",
+            "metaeuk=4.a0f584d",
+            "configargparse",
+            "ete3"
+          ],
+          "description": [
+            "Check eukaryotic genomes or MAGs for completeness and contamination."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/eukcc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/eukcc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/Finn-Lab/EukCC/"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/e/eukcc/eukcc-2.1.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "eukcc"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "eukcc",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Finn-Lab/EukCC"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/e/eukcc/eukcc-2.1.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "2.1.0"
+          ],
+          "webpage": [
+            "https://github.com/Finn-Lab/EukCC/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:eukcc/*",
+  "conflict_name": "eukcc/*",
+  "date": "2026-02-05T17:45:29.335093+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}

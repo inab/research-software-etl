@@ -1,0 +1,231 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/pindel/cmd/None",
+        "created_at": "2025-04-02T12:21:58.492220",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Support Forum",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://www.biostars.org/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A pattern growth approach to detect break points of large deletions and medium sized insertions from paired end short reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://gmt.genome.wustl.edu/packages/pindel/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Pindel"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "pindel",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Localised reassembly",
+              "uri": "http://edamontology.org/operation_3183",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Split read mapping",
+              "uri": "http://edamontology.org/operation_3199",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c829a710e2f3aa0b3b872e"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Structural variation",
+              "uri": "http://edamontology.org/topic_3175",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://trac.nbic.nl/pindel"
+          ]
+        },
+        "id": "biotools/pindel/cmd/None",
+        "last_updated_at": "2025-09-18T12:54:07.273811",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pindel/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/pindel/cmd/0.2.5b8,galaxy_metadata/pindel/cmd/0.2.5b9+galaxy0,bioconda_recipes/pindel/cmd/0.2.5b9,toolshed/pindel/cmd/0.2.5b8,toolshed/pindel/cmd/0.2.5b9+galaxy0,github/pindel/None/None",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "htslib"
+          ],
+          "description": [
+            "Pindel can detect breakpoints of large deletions, medium sized insertions, inversions, tandem duplications and other structural variants at single-based resolution from next-gen sequence data.",
+            "Pindel can detect breakpoints of large deletions, medium sized insertions, inversions, tandem duplications and other structural variants at single-based resolution from next-gen sequence data. It uses a pattern growth approach to identify the breakpoints of these variants from paired-end short reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pindel/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pindel/README.html"
+            },
+            {
+              "content": " \n\nPindel can detect breakpoints of large deletions, medium sized insertions, inversions, tandem duplications and other structural variants at single-based resolution from next-generation sequencing data. It uses a pattern growth approach to identify the breakpoints of these variants from paired-end short reads.\n\nThe following inputs/parameters are required:\n- One or more BAM alignment files produced by BWA\n- Expected Insert Size for each alignment file\n- Sample label for each alignment file\n- Reference genome in fasta format (the same one used in alignment)\n- Which chromosome to operate on\n\nThe following output files are produced by Pindel:\n- Deletions\n- Short Insertions\n- Long Insertions\n- Inversions\n- Tandom Duplications\n- Breakpoints\n- Read Pair Evidence\n- INT_final\n- Close End Mapped\n\n\n     ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/genome/pindel/blob/main/COPYING.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/genome/pindel/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/genome/pindel/archive/b706fba.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Pindel",
+            "pindel"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "pindel",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e6c2874737f09779337161"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/genome/pindel"
+            }
+          ],
+          "source": [
+            "toolshed",
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/genome/pindel/archive/b706fba.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.2.5b9+galaxy0",
+            "0.2.5b8",
+            "0.2.5b9"
+          ],
+          "webpage": [
+            "http://gmt.genome.wustl.edu/packages/pindel/index.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pindel/*_383fad2cc822cde9787954935674f00ce07cc7783f09586154320e5279fd3f3d",
+  "conflict_name": "pindel/*",
+  "date": "2026-02-06T19:47:16.994066+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

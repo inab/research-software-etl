@@ -1,0 +1,231 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/traitar/cmd/None",
+        "created_at": "2025-04-02T12:50:44.117231",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "Alice.McHardy@helmholtz-hzi.de",
+              "maintainer": false,
+              "name": "Alice McHardy",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Traitar is a fully automated software package for deriving phenotypes from a genome sequence."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/hzi-bifo/traitar/blob/master/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Traitar"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "traitar",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82b2110e2f3aa0b3b9334"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Microbiology",
+              "uri": "http://edamontology.org/topic_3301",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenetics",
+              "uri": "http://edamontology.org/topic_3293",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/hzi-bifo/traitar"
+          ]
+        },
+        "id": "biotools/traitar/cmd/None",
+        "last_updated_at": "2025-09-18T13:02:21.299332",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/traitar/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/traitar/cmd/3.0.1,bioconda_recipes/traitar/lib/3.0.1,github/traitar3/None/3.0.1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "scipy",
+            "hmmer",
+            "numpy",
+            "matplotlib-base",
+            "pandas >1.2,<2",
+            "python >=3.7,<3.11"
+          ],
+          "description": [
+            "Traitar is a software for characterizing microbial samples from nucleotide or protein sequences.",
+            "From genomes to phenotypes: Traitar3, the microbial trait analyzer (for Python3)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/traitar/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/traitar/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/nick-youngblut/traitar3"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/nick-youngblut/traitar3/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/nick-youngblut/traitar3/archive/refs/tags/3.0.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "traitar",
+            "traitar3"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "traitar",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "traitar3"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/nick-youngblut/traitar3"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/nick-youngblut/traitar3/archive/refs/tags/3.0.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "3.0.1"
+          ],
+          "webpage": [
+            "https://github.com/nick-youngblut/traitar3"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:traitar/*",
+  "conflict_name": "traitar/*",
+  "date": "2026-02-05T16:22:37.668530+00:00",
+  "run_id": "20260205T155807Z-8c2d90e-test_8_0"
+}

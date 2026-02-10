@@ -1,0 +1,700 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/channelsdb/db/2.0",
+        "created_at": "2025-08-26T15:30:40.178759",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "xpravda@ncbr.muni.cz",
+              "maintainer": false,
+              "name": "Luk\u00e1\u0161 Pravda",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "david.sehnal@mail.muni.cz",
+              "maintainer": false,
+              "name": "David Sehnal",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "karel.berka@upol.cz",
+              "maintainer": false,
+              "name": "Karel Berka",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "radka.svobodova@ceitec.muni.cz",
+              "maintainer": false,
+              "name": "Radka Svobodov\u00e1",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "222755@mail.muni.cz",
+              "maintainer": false,
+              "name": "David Bedn\u00e1\u0159",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Palacky University Olomouc",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://www.upol.cz/en/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Masaryk University Brno",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://www.muni.cz/en"
+            },
+            {
+              "email": "vaclav.bazgier@upol.cz",
+              "maintainer": false,
+              "name": "V\u00e1clav Bazgier",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "anna.spackova@upol.cz",
+              "maintainer": false,
+              "name": "Anna \u0160pa\u010dkov\u00e1",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vavra@enantis.com",
+              "maintainer": false,
+              "name": "Ond\u0159ej V\u00e1vra",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "324965@mail.muni.cz",
+              "maintainer": false,
+              "name": "Tom\u00e1\u0161 Ra\u010dek",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jiri@chemi.muni.cz",
+              "maintainer": false,
+              "name": "Ji\u0159\u00ed Damborsk\u00fd",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A comprehensive resource of channels, pores and tunnels found in biomacromolecular structures deposited in the Protein Data Bank."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "api",
+              "url": "https://channelsdb2.biodata.ceitec.cz/api"
+            },
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "https://channelsdb2.biodata.ceitec.cz/about.html"
+            },
+            {
+              "content": null,
+              "type": "contributions_policy",
+              "url": "https://channelsdb2.biodata.ceitec.cz/about.html"
+            },
+            {
+              "content": null,
+              "type": "faq",
+              "url": "https://channelsdb2.biodata.ceitec.cz/methods.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://channelsdb2.biodata.ceitec.cz/methods.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://channelsdb2.biodata.ceitec.cz/documentation.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "UniProt accession",
+                "uri": "http://edamontology.org/data_3021",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "PDB ID",
+                "uri": "http://edamontology.org/data_1127",
+                "vocabulary": "EDAM"
+              },
+              "term": "mmCIF",
+              "uri": "http://edamontology.org/format_1477",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "PDB ID",
+                "uri": "http://edamontology.org/data_1127",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDB",
+              "uri": "http://edamontology.org/format_1476",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "ChannelsDB 2.0"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Freeware",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "channelsdb",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure visualisation",
+              "uri": "http://edamontology.org/operation_0570",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein property calculation",
+              "uri": "http://edamontology.org/operation_0250",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structural motif discovery",
+              "uri": "http://edamontology.org/operation_0245",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Database search results",
+                "uri": "http://edamontology.org/data_2080",
+                "vocabulary": "EDAM"
+              },
+              "term": "JSON",
+              "uri": "http://edamontology.org/format_3464",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Database search results",
+                "uri": "http://edamontology.org/data_2080",
+                "vocabulary": "EDAM"
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Database search results",
+                "uri": "http://edamontology.org/data_2080",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDB",
+              "uri": "http://edamontology.org/format_1476",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Protein structural motif",
+                "uri": "http://edamontology.org/data_2878",
+                "vocabulary": "EDAM"
+              },
+              "term": "XML",
+              "uri": "http://edamontology.org/format_2332",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Protein structural motif",
+                "uri": "http://edamontology.org/data_2878",
+                "vocabulary": "EDAM"
+              },
+              "term": "JSON",
+              "uri": "http://edamontology.org/format_3464",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7aa6bd3b8acd1a2f9bc6b",
+            "68adb6ffb94758ef79db059d"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "LCC NCBR",
+            "ELIXIR-CZ"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Structural biology",
+              "uri": "http://edamontology.org/topic_1317",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Biophysics",
+              "uri": "http://edamontology.org/topic_3306",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein properties",
+              "uri": "http://edamontology.org/topic_0123",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein interactions",
+              "uri": "http://edamontology.org/topic_0128",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Enzymes",
+              "uri": "http://edamontology.org/topic_0821",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Membrane and lipoproteins",
+              "uri": "http://edamontology.org/topic_0820",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteins",
+              "uri": "http://edamontology.org/topic_0078",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Literature and language",
+              "uri": "http://edamontology.org/topic_3068",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "db",
+          "version": [
+            "2.0"
+          ],
+          "webpage": [
+            "https://channelsdb2.biodata.ceitec.cz/"
+          ]
+        },
+        "id": "biotools/channelsdb/db/2.0",
+        "last_updated_at": "2025-09-18T13:12:07.786925",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/channelsdb/db/2.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/channelsdb/db/1.0",
+        "created_at": "2025-04-02T11:53:10.951331",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "xpravda@ncbr.muni.cz",
+              "maintainer": false,
+              "name": "Luk\u00e1\u0161 Pravda",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "david.sehnal@mail.muni.cz",
+              "maintainer": false,
+              "name": "David Sehnal",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "karel.berka@upol.cz",
+              "maintainer": false,
+              "name": "Karel Berka",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "michal.otyepka@upol.cz",
+              "maintainer": false,
+              "name": "Michal Otyepka",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "radka.svobodova@ceitec.muni.cz",
+              "maintainer": false,
+              "name": "Radka Svobodov\u00e1 Va\u0159ekov\u00e1",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jaroslav.koca@ceitec.muni.cz",
+              "maintainer": false,
+              "name": "Jaroslav Ko\u010da",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tousekdominik@gmail.com",
+              "maintainer": false,
+              "name": "Dominik Tou\u0161ek",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nancyblueberry@gmail.com",
+              "maintainer": false,
+              "name": "Veronika Navr\u00e1tilov\u00e1",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "karel.berka@upol.cz",
+              "maintainer": false,
+              "name": "Karel Berka",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Palacky University Olomouc",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://www.upol.cz/en/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Masaryk University Brno",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://www.muni.cz/en"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A comprehensive resource of channels, pores and tunnels found in biomacromolecular structures deposited in the Protein Data Bank."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "https://webchemdev.ncbr.muni.cz/ChannelsDB/contribute.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://webchemdev.ncbr.muni.cz/ChannelsDB/methods.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://webchemdev.ncbr.muni.cz/ChannelsDB/documentation.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "mmCIF",
+              "uri": "http://edamontology.org/format_1477",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "PDB",
+              "uri": "http://edamontology.org/format_1476",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "ChannelsDB"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Freeware",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "channelsdb",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure visualisation",
+              "uri": "http://edamontology.org/operation_0570",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein property calculation",
+              "uri": "http://edamontology.org/operation_0250",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structural motif discovery",
+              "uri": "http://edamontology.org/operation_0245",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "JSON",
+              "uri": "http://edamontology.org/format_3464",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "PDB",
+              "uri": "http://edamontology.org/format_1476",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "XML",
+              "uri": "http://edamontology.org/format_2332",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "JSON",
+              "uri": "http://edamontology.org/format_3464",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7aa6bd3b8acd1a2f9bc6b"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "LCC NCBR",
+            "ELIXIR-CZ"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Structural biology",
+              "uri": "http://edamontology.org/topic_1317",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Biophysics",
+              "uri": "http://edamontology.org/topic_3306",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein properties",
+              "uri": "http://edamontology.org/topic_0123",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein interactions",
+              "uri": "http://edamontology.org/topic_0128",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Enzymes",
+              "uri": "http://edamontology.org/topic_0821",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Membrane and lipoproteins",
+              "uri": "http://edamontology.org/topic_0820",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Enzymes",
+              "uri": "http://edamontology.org/topic_0821",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Literature and language",
+              "uri": "http://edamontology.org/topic_3068",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "db",
+          "version": [
+            "1.0"
+          ],
+          "webpage": [
+            "http://ncbr.muni.cz/ChannelsDB/"
+          ]
+        },
+        "id": "biotools/channelsdb/db/1.0",
+        "last_updated_at": "2025-09-18T12:38:06.687071",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/channelsdb/db/1.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:channelsdb/db",
+  "conflict_name": "channelsdb/db",
+  "date": "2026-02-05T17:43:16.393218+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}

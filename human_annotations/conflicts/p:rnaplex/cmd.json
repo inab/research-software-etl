@@ -1,0 +1,179 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/rnaplex/cmd/0.2",
+        "created_at": "2025-04-02T12:31:28.639410",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.bioinf.uni-leipzig.de/~htafer/index.html"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Rapidly search for short interactions between two long RNAs."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.bioinf.uni-leipzig.de/Software/RNAplex/RNAplex_tutorial.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "RNAplex"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "rnaplex",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Database search",
+              "uri": "http://edamontology.org/operation_2421",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82a5a10e2f3aa0b3b8cf9"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA",
+              "uri": "http://edamontology.org/topic_0099",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "0.2"
+          ],
+          "webpage": [
+            "http://www.bioinf.uni-leipzig.de/Software/RNAplex/"
+          ]
+        },
+        "id": "biotools/rnaplex/cmd/0.2",
+        "last_updated_at": "2025-09-18T12:57:09.720563",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/rnaplex/cmd/0.2",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/rnaplex/cmd/2.1.6.0,toolshed/rnaplex/cmd/2.1.6.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "vienna_rna/2.1"
+          ],
+          "description": [
+            "Find targets of a query RNA."
+          ],
+          "documentation": [
+            {
+              "content": "\n\n\n**RNAplex**\n\nComputes optimal and suboptimal secondary structures for their hybridization. The calculation is simplified by allowing only inter-molecular base pairs.\n\n\n-----\n\n**Input format**\n\nRNALplex requires either one Fasta file or two Clustal files as input\n\n------\n\n**Outputs**\n\nThe computed optimal and suboptimal structure are given, one structure per line. Each line consist of: The structure in dot bracket format with a \"&\" separating the two strands. The range of the structure in the two sequences in the format  \"from,to : from,to\"; the energy of duplex structure in kcal/mol.\n\n\n\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "RNAplex"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "rnaplex",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c79fb2d3b8acd1a2f9b452"
+          ],
+          "repository": [],
+          "source": [
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.1.6.0"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:rnaplex/cmd",
+  "conflict_name": "rnaplex/cmd",
+  "date": "2026-02-05T19:39:58.796401+00:00",
+  "run_id": "20260205T170527Z-8c2d90e-test_9_0"
+}

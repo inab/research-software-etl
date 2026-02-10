@@ -1,0 +1,267 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/cobra/undefined/None",
+        "created_at": "2025-04-02T11:53:40.899553",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "Henry_Long@dfci.harvard.edu",
+              "maintainer": false,
+              "name": "Henry W. Long",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "CoBRA is a comprehensive ChIP/ATAC\u2010seq analysis tool built using snakemake and Docker which allows for escalable, reproducible, portable and easy-to-use workflows.\n\nCoBRA combines the use of several dozen ChIP/ATAC\u2010seq tools, suites, and packages to create a complete pipeline that takes ChIP/ATAC\u2010seq analysis from unsupervised analyses, differential peak calling, and downstream pathway analysis. In addition, CoBRA has been outfitted with several recently published tools that allow for better normalziation and CNV correction. The results are compiled in a simple and highly visual report containing the key figures to explain the analysis, and then compiles all of the relevant files, tables, and pictures into an easy to navigate folder."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://cfce-cobra.readthedocs.io/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CoBRA"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "cobra",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Peak calling",
+              "uri": "http://edamontology.org/operation_3222",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein-nucleic acid interaction analysis",
+              "uri": "http://edamontology.org/operation_0389",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2bd76b57beba26405cdfe"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "ChIP-on-chip",
+              "uri": "http://edamontology.org/topic_3179",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "ChIP-seq",
+              "uri": "http://edamontology.org/topic_3169",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein interactions",
+              "uri": "http://edamontology.org/topic_0128",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Chromosome conformation capture",
+              "uri": "http://edamontology.org/topic_3940",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://bitbucket.org/cfce/cobra"
+          ]
+        },
+        "id": "biotools/cobra/undefined/None",
+        "last_updated_at": "2025-09-18T12:39:09.166304",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/cobra/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/cobra-meta/cmd/1.2.3,github/cobra/None/v1.2.3",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "numpy",
+            "pysam",
+            "python >=3.7",
+            "biopython",
+            "blast >=2.14.0,<3.0.0"
+          ],
+          "description": [
+            "A tool to raise the quality of viral genomes assembled from short-read metagenomes via resolving and joining of contigs fragmented during de novo assembly.",
+            "COBRA is a tool to get higher quality viral genomes assembled from metagenomes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/cobra-meta/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/cobra-meta/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/linxingchen/cobra/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/linxingchen/cobra/archive/refs/tags/v1.2.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "cobra-meta",
+            "cobra"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": "https://spdx.org/licenses/MIT.html"
+            }
+          ],
+          "links": [],
+          "name": "cobra-meta",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "cobra"
+          ],
+          "output": [],
+          "publication": [
+            "67e2dcddac7ee6cb57891340"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/linxingchen/cobra"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/linxingchen/cobra/archive/refs/tags/v1.2.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "metagenomics",
+              "uri": "https://github.com/topics/metagenomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "viral-metagenomics",
+              "uri": "https://github.com/topics/viral-metagenomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "genome-assembly",
+              "uri": "https://github.com/topics/genome-assembly",
+              "vocabulary": ""
+            },
+            {
+              "term": "manual-curation",
+              "uri": "https://github.com/topics/manual-curation",
+              "vocabulary": ""
+            },
+            {
+              "term": "short-read-sequencing",
+              "uri": "https://github.com/topics/short-read-sequencing",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.2.3",
+            "v1.2.2",
+            "v1.2.3"
+          ],
+          "webpage": [
+            "https://github.com/linxingchen/cobra"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:cobra/*_49d4f6dec794041fa39f035329d324d0d15ca0c2760e5140c6b56e33fb3f9a5c",
+  "conflict_name": "cobra/*",
+  "date": "2026-02-06T20:01:51.974797+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}

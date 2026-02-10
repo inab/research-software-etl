@@ -1,0 +1,284 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/discosnp/cmd/1.2.5",
+        "created_at": "2025-04-02T11:56:11.918576",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "GenOuest",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "pierre.peterlongo@inria.fr",
+              "maintainer": false,
+              "name": "Pierre Peterlongo",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://colibread.inria.fr/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "This software is designed for discovering Single Nucleotide Polymorphism (SNP) from raw set(s) of reads obtained with Next Generation Sequencers (NGS)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://colibread.inria.fr/software/discosnp/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence (raw)",
+                "uri": "http://edamontology.org/data_2975",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ-like format (text)",
+              "uri": "http://edamontology.org/format_2182",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "DiscoSNP"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "CECILL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "discosnp",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "SNP detection",
+              "uri": "http://edamontology.org/operation_0484",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Sequence variations",
+                "uri": "http://edamontology.org/data_3498",
+                "vocabulary": "EDAM"
+              },
+              "term": "VCF",
+              "uri": "http://edamontology.org/format_3016",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c827b010e2f3aa0b3b74e9"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "GATB"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetics",
+              "uri": "http://edamontology.org/topic_3053",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation",
+              "uri": "http://edamontology.org/topic_0199",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1.2.5"
+          ],
+          "webpage": [
+            "https://colibread.inria.fr/software/discosnp/"
+          ]
+        },
+        "id": "biotools/discosnp/cmd/1.2.5",
+        "last_updated_at": "2025-09-18T12:42:33.113465",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/discosnp/cmd/1.2.5",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/discosnp/cmd/2.6.2,github/DiscoSnp/None/v2.6.2",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python >=3.0",
+            "zlib",
+            "short-read-connector",
+            "bwa"
+          ],
+          "description": [
+            "Reference-free small variant caller for short read sequencing data.",
+            "DiscoSnp is designed for discovering all kinds of SNPs (not only isolated ones),  as well as insertions and deletions, from raw set(s) of reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/discosnp/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/discosnp/README.html"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/GATB/DiscoSnp/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GATB/DiscoSnp/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/GATB/DiscoSnp/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/GATB/DiscoSnp/releases/download/v2.6.2/DiscoSNP.-v2.6.2-Source.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "discosnp",
+            "DiscoSnp"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU Affero General Public License v3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "discosnp",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "DiscoSnp"
+          ],
+          "output": [],
+          "publication": [
+            "67e2dcedac7ee6cb57891348"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/GATB/DiscoSnp"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/GATB/DiscoSnp/releases/download/v2.6.2/DiscoSNP.-v2.6.2-Source.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v2.2.7",
+            "v0.0.101",
+            "v2.4.4",
+            "v2.4.2",
+            "v2.5.4",
+            "v2.3.0",
+            "v2.2.8",
+            "v2.6.2",
+            "2.6.2",
+            "v2.6.1",
+            "v2.2.9",
+            "v2.4.3",
+            "v2.2.10"
+          ],
+          "webpage": [
+            "https://gatb.inria.fr/software/discosnp/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:discosnp/*",
+  "conflict_name": "discosnp/*",
+  "date": "2026-02-05T16:34:01.646012+00:00",
+  "run_id": "20260205T155807Z-8c2d90e-test_8_0"
+}

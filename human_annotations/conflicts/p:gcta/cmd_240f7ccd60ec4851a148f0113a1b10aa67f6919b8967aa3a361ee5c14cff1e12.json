@@ -1,0 +1,195 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/gcta/cmd/1.94.1",
+        "created_at": "2025-04-02T11:51:39.287436",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "GCTA (Genome-wide Complex Trait Analysis) estimates the proportion of phenotypic variance explained by all genome-wide SNPs for complex traits."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gcta/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gcta/README.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gcta"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "gcta",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c8280910e2f3aa0b3b787f"
+          ],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.94.1"
+          ],
+          "webpage": [
+            "https://yanglab.westlake.edu.cn/software/gcta"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:51:39.287436",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/gcta/cmd/1.94.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/gcta/cmd/none,biotools/gcta/cmd/1.91.7beta",
+        "data": {
+          "authors": [
+            {
+              "email": "jian.yang@uq.edu.au",
+              "maintainer": false,
+              "name": "Jian Yang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Was originally designed to estimate the proportion of phenotypic variance explained by genome- or chromosome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits.",
+            "Genome-wide Complex Trait Analysis. Estimate the proportion of phenotypic variance explained by genome- or chromosome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://cnsgenomics.com/software/gcta/tutorial.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://gcta.freeforums.net/board/2/gcta-user-manual"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "GCTA"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "gcta",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c8280910e2f3aa0b3b787f"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "GWAS study",
+              "uri": "http://edamontology.org/topic_3517",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "none",
+            "1.91.7beta"
+          ],
+          "webpage": [
+            "http://cnsgenomics.com/software/gcta/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:gcta/cmd_240f7ccd60ec4851a148f0113a1b10aa67f6919b8967aa3a361ee5c14cff1e12",
+  "conflict_name": "gcta/cmd",
+  "date": "2026-02-06T20:03:22.137472+00:00",
+  "run_id": "20260206T184714Z-8c2d90e-test_10_0"
+}
