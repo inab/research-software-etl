@@ -32,10 +32,10 @@ def merge_remaining(entries):
         metadata = entry["data"]
         entries_remaining_dict[id] = convert_to_multi_type_instance(metadata)
     
-    print('Instances in group converted to multitype_instance.')
+    #print('Instances in group converted to multitype_instance.')
     ids_remaining = [entry["_id"] for entry in entries]
     # merge entries
-    print(f"Merging {len(entries_remaining_dict)} entries in group...")
+    #print(f"Merging {len(entries_remaining_dict)} entries in group...")
     instances = [entries_remaining_dict[id] for id in ids_remaining]
     merged_instances = merge_instances(instances)
 
@@ -59,7 +59,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
 
     if len(disconnected) == 0:
         # No conflict to resolve
-        logging.info(f"Conflict {key} has no disconnected entries. Skipping.")
+        #logging.info(f"Conflict {key} has no disconnected entries. Skipping.")
         return pairs, more_than_two_pairs
 
     elif len(disconnected) > 1:
@@ -97,8 +97,8 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
             more_than_two_pairs += 1
             # Merge remaining entries into one, and pair each disconnected with the merged remaining
             merged, merged_ids = merge_remaining(remaining)
-            print('Merged:')
-            pprint(merged)
+            #print('Merged:')
+            #pprint(merged)
             for disc in disconnected:
                 pair = {
                     "remaining": [{"_id": ','.join(merged_ids) ,"data": merged}],
@@ -111,7 +111,7 @@ def build_pairs(full_conflict, key, more_than_two_pairs):
         # Only one disconnected entry
         if len(remaining) == 0:
             # Not enough context to make a pair
-            logging.info(f"Conflict {key} has only one disconnected and no remaining entries. Skipping.")
+            #logging.info(f"Conflict {key} has only one disconnected and no remaining entries. Skipping.")
             return pairs, more_than_two_pairs
 
         elif len(remaining) == 1:

@@ -213,9 +213,6 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
     This assumes all entries are already grouped (e.g., they share a repo or author).
     """
 
-    print("BLOCK:")
-    pprint(block)
-
     merged_ids = block.get("instances", [])
 
     note = generate_merge_note_if_needed(merged_ids)

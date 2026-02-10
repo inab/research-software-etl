@@ -35,7 +35,7 @@ def request_github_metadata(owner, repo_name):
         return response.json().get('data')
     except Exception as e:
         #raise
-        logging.warning(f"Metadata fetch failed for {owner}/{repo_name}: {e}")
+        #logging.warning(f"Metadata fetch failed for {owner}/{repo_name}: {e}")
         return None
 
 def request_github_content(owner, repo_name, file_path):
@@ -51,7 +51,7 @@ def request_github_content(owner, repo_name, file_path):
         return response.json().get('content')
     except Exception as e:
         #raise
-        logging.warning(f"README fetch failed for {owner}/{repo_name}: {e}")
+        #logging.warning(f"README fetch failed for {owner}/{repo_name}: {e}")
         return None
 
 def request_github_readme(owner, repo_name):
@@ -69,7 +69,7 @@ def request_github_readme(owner, repo_name):
         )
 
         if not readme_file:
-            logging.info(f"No README found for {owner}/{repo_name}")
+            #logging.info(f"No README found for {owner}/{repo_name}")
             return None
 
         # Step 3: Fetch the content of the README file
@@ -77,13 +77,13 @@ def request_github_readme(owner, repo_name):
         readme_path = readme_file["path"]
         content = request_github_content(owner, repo_name, readme_path)
         if not content:
-            logging.info(f"README content not found for {owner}/{repo_name}")
+            #logging.info(f"README content not found for {owner}/{repo_name}")
             return None
         
         return content
     
     except Exception as e:
-        logging.warning(f"README fetch failed for {owner}/{repo_name}: {e}")
+        #logging.warning(f"README fetch failed for {owner}/{repo_name}: {e}")
         return None
     
 # -------------------------------
@@ -134,7 +134,7 @@ def get_gitlab_repo_readme(readme_url: str, repo_url: str) -> str:
 
     Returns the content of the first found README file. Raises an error if none are found.
     """
-    logging.info(f"Fetching README from GitLab: {readme_url}")
+    #logging.info(f"Fetching README from GitLab: {readme_url}")
     try:
         readme_fields = readme_url.split("/")
         default_branch = readme_fields[-2]
@@ -155,11 +155,11 @@ def get_gitlab_repo_readme(readme_url: str, repo_url: str) -> str:
         if response.status_code == 200:
             return response.text  # Return first successful content
         else:
-            logging.warning(f"README not found at {api_url}. Trying other common filenames.")
+            #logging.warning(f"README not found at {api_url}. Trying other common filenames.")
             return None
     
     except Exception as e:
-        logging.warning(f"Error fetching README from GitLab: {e}")
+        #logging.warning(f"Error fetching README from GitLab: {e}")
         return None
 
 
@@ -243,7 +243,7 @@ def extract_main_text_from_html(html: str) -> str:
 
 
 def extract_sourceforge_project_info(html: str) -> dict:
-    logging.info("Extracting SourceForge project info")
+    #logging.info("Extracting SourceForge project info")
 
     result = {
         "description": None,
@@ -306,7 +306,7 @@ def extract_sourceforge_project_info(html: str) -> dict:
 
 def get_pypi_project_info(package_name):
     url = f"https://pypi.org/pypi/{package_name}/json"
-    logging.info(f"Fetching PyPI metadata for {package_name}")
+    #logging.info(f"Fetching PyPI metadata for {package_name}")
 
     try:
         response = requests.get(url, timeout=10)
@@ -326,7 +326,7 @@ def get_pypi_project_info(package_name):
         return info
 
     except Exception as e:
-        logging.warning(f"Error fetching PyPI data: {e}")
+        #logging.warning(f"Error fetching PyPI data: {e}")
         return None
     
 def get_bitbucket_metadata(user, repo):
@@ -339,7 +339,7 @@ def get_bitbucket_metadata(user, repo):
             logging.warning(f"Failed to fetch metadata for {user}/{repo}: {response.status_code}")
             return {"error": f"Failed to fetch metadata: {response.status_code}"}
         data = response.json()
-        logging.info(f"Metadata fetched successfully for {user}/{repo}")
+        #logging.info(f"Metadata fetched successfully for {user}/{repo}")
 
         return data 
     
@@ -358,10 +358,10 @@ def get_bitbucket_readme(user, repo, metadata):
             raw_url = f"https://bitbucket.org/{user}/{repo}/raw/{main_branch}/{filename}"
             response = requests.get(raw_url, timeout=10)
             if response.status_code == 200 and response.text.strip():
-                logging.info(f"README found at {raw_url}: {response.text}")
+                #logging.info(f"README found at {raw_url}: {response.text}")
                 return response.text
             
-        logging.warning(f"No README found for {user}/{repo} in common locations.")
+        #logging.warning(f"No README found for {user}/{repo} in common locations.")
 
         return None  # No readme found
     except Exception as e:
@@ -435,7 +435,7 @@ async def enrich_link(link):
     if link:
         processed = False
         if "github.com" in link:
-            print(f"Processing GitHub link: {link}")
+            #print(f"Processing GitHub link: {link}")
             try:
                 parts = link.split('/')
                 if len(parts) >= 5:

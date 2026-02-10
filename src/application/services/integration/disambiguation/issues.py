@@ -11,7 +11,7 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
 REPO = "inab/research-software-etl"
 GITHUB_API = "https://api.github.com"
-BRANCH = "main"
+BRANCH = "pair_wise_cache"
 
 def commit_conflict_json(conflict: dict, path: str, branch=BRANCH, repo=REPO) -> str:
     """
@@ -28,7 +28,7 @@ def commit_conflict_json(conflict: dict, path: str, branch=BRANCH, repo=REPO) ->
     url = f"{GITHUB_API}/repos/{repo}/contents/{path}"
 
     # prepare content
-    content = json.dumps(conflict, indent=2, sort_keys=True)
+    content = json.dumps(conflict, indent=2, sort_keys=True, default=str)
     encoded = base64.b64encode(content.encode("utf-8")).decode("utf-8")
 
     payload = {

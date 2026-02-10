@@ -1,5 +1,6 @@
 from tests.application.services.integration.data.data_disambiguation_build_pairs import conflict_full_entries_one_two, conflict_full_entries_one_one, conflict_full_entries_two_one, original_key
 from src.application.services.integration.disambiguation.utils import stable_hash, load_pair_decisions
+from src.application.services.integration.disambiguation.pairing import build_pairs
 from datetime import datetime, timezone
 from random import  uniform
 
@@ -22,9 +23,6 @@ def append_pair_decision(path, decision: dict):
 def test_create_test_data():
 
     PAIRS_PATH = '/Users/evabsc/projects/software-observatory/research-software-etl/tests/application/services/integration/data/test_pair_decisions.jsonl'
-
-    conflicts = [conflict_full_entries_one_two, conflict_full_entries_one_one, conflict_full_entries_two_one]   
-    # 
     '''
     conflicts = []
 
@@ -43,8 +41,10 @@ def test_create_test_data():
             conflicts.append(conflict_pair)
         
     assert conflicts[0] == conflicts[1]
-    '''
-'''
+    
+
+    conflicts = [conflict_full_entries_one_two, conflict_full_entries_one_one, conflict_full_entries_two_one]   
+
     for conflict in conflicts:
         conflict_name = original_key
         conflict_pairs, _  = build_pairs(copy.deepcopy(conflict), conflict_name, more_than_two_pairs=0)
@@ -66,11 +66,8 @@ def test_create_test_data():
             }
 
             append_pair_decision(PAIRS_PATH, decision)
-'''
+    '''
 
-
-
-        
 
 def test_basic_cache_hit(): 
 
@@ -79,14 +76,14 @@ def test_basic_cache_hit():
     best_pair = load_pair_decisions(PAIRS_PATH)
     #print(f"\n{best_pair}\n")
 
-    test_pair_id = "p:antarna/cmd_29b5b1ef512f8a7757dbcfd548621f63c8502e16cc661a8a8d4e42480b078f7d"
+    test_pair_id = "p:antarna/cmd_3c869e64bce3da9b19c8669124eed04be0aedcf2e6a816c4fe144fd6876e21a9"
 
     assert test_pair_id in best_pair
 
 
 def test_override_human():
     'Human decision is preferred'
-    pair_id = 'p:antarna/cmd_71e0720995929eb2c1adc11525c5de27969813e710337254cb96e70ac851834f'
+    pair_id = 'p:antarna/cmd_a9cc22f1a14ff7b28a01fbd6ffbca27d54a8f1370b5091f72ae43a591cdd5e08'
     PAIRS_PATH = '/Users/evabsc/projects/software-observatory/research-software-etl/tests/application/services/integration/data/test_pair_decisions.jsonl'
 
     best_pair = load_pair_decisions(PAIRS_PATH)
@@ -95,12 +92,12 @@ def test_override_human():
 
 
 def test_latest_preferred():
-    pair_id = 'p:antarna/cmd_bb865b4321428526d1a23d4f1d630a33cf6945a76267eddd0f70dbf2e1f1a193'
+    pair_id = 'p:antarna/cmd_8fab3505670c69befd6d97f3f8ab64606f113b78eec3ab45aeead8fbee9df71d'
     PAIRS_PATH = '/Users/evabsc/projects/software-observatory/research-software-etl/tests/application/services/integration/data/test_pair_decisions.jsonl'
     best_pair = load_pair_decisions(PAIRS_PATH)
 
     assert best_pair[pair_id]['source'] == 'llm'
-    assert best_pair[pair_id]['ts'] == '2026-02-02T16:12:40Z'
+    assert best_pair[pair_id]['ts'] == '2026-02-06T14:21:24Z'
 
 
 

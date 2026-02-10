@@ -95,19 +95,19 @@ def query_huggingface(messages, model):
     }
      
     URL = f"{HF_API_URL}/{model}"
-    logging.info(f"Sending request to Hugging Face Inference API: {URL} with key {HF_API_KEY[:4]}...")
+    #logging.info(f"Sending request to Hugging Face Inference API: {URL} with key {HF_API_KEY[:4]}...")
     
     response = requests.post(URL, headers=headers, json=payload)
-    logging.info(f"API response: {response.json()}")
+    #logging.info(f"API response: {response.json()}")
     if response.status_code == 200:
         try:
-            print(f"Whole response: {response.json()}")
+            #print(f"Whole response: {response.json()}")
             output_text = response.json()[0]["generated_text"].strip()
             return output_text, {}  
         except Exception as e:
             logging.warning(f"Parsing error: {e} | Response: {response.json()}")
         
-    logging.warning("API response was empty after 3 attempts.")
+    #logging.warning("API response was empty after 3 attempts.")
     return None
 
 
@@ -117,7 +117,8 @@ def decision_agreement_proxy(messages: str) -> str:
     It uses the `decision_agreement` function from the `decision_agreement` module.
     """
     # model 1: Llama 4 Scout
-    model = "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+    #model = "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+    model = "meta-llama/Llama-3.3-70B-Instruct-Turbo"
     provider = "together"
     result_llama_4, meta_llama_4 = query_huggingface_new(messages, model=model, provider=provider)
     try:

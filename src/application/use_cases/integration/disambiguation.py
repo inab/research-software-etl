@@ -40,6 +40,7 @@ async def run_full_disambiguation(blocks_file,
             blocks=blocks,
             blocks_path=blocks_file,
             run_id=run_id,
+            pair_wise_decisions_path=pair_wise_decisions_file,
             disambiguate_blocks_func=disambiguate_blocks
         )
 

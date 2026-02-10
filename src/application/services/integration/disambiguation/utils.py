@@ -46,7 +46,17 @@ def _normalize(obj: Any) -> Any:
     # JSON scalars (str/int/float/bool/None) are already stable
     return obj
 
+
+def extract_ids(obj):
+    new_obj = {
+        'remaining' : [ item['_id'] for item in obj['remaining'] ],
+        'disconnected': [ item['_id'] for item in obj['disconnected'] ]
+    }
+    return new_obj
+
+
 def stable_hash(obj: Any) -> str:
+    obj = extract_ids(obj)
     normalized = _normalize(obj)
     canonical = _canonical_dumps(normalized)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
@@ -115,7 +125,7 @@ def load_dict_from_jsonl(path):
 
 
 def remove_jsonl_record(path, target_key):
-    print(f'Removing record(s) with key: {target_key}')
+    #print(f'Removing record(s) with key: {target_key}')
     temp_path = path + '.tmp'
     removed = False
 
@@ -140,7 +150,7 @@ def remove_jsonl_record(path, target_key):
 
 
 def update_jsonl_record(path, updated_key, new_value):
-    print(f'Updating record with key: {updated_key}')
+    #print(f'Updating record with key: {updated_key}')
     updated = False
     temp_path = path + '.tmp'
 
@@ -220,7 +230,7 @@ def filter_relevant_fields(conflict):
     }
 
     for entry in conflict["disconnected"]:
-        print('Entry:', entry)
+        #print('Entry:', entry)
         filtered_entry = {
             "id": entry["_id"],
             "name": entry["data"].get("name"),
@@ -236,7 +246,7 @@ def filter_relevant_fields(conflict):
         filtered_conflict["disconnected"].append(filtered_entry)
 
     for entry in conflict["remaining"]:
-        print('Entry:', entry)
+        #print('Entry:', entry)
         filtered_entry = {
             "id": entry["_id"],
             "name": entry["data"].get("name"),

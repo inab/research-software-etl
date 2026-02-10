@@ -170,7 +170,8 @@ def fill_human_conflicts() -> None:
             else:
                 payload['ts'] = datetime.datetime.now()
                 payload['conflict_name'] = pair_id
-                payload['pair_id'] = f"p:{pair_id}_{stable_hash(conflict_block)}"
+                #payload['pair_id'] = f"p:{pair_id}_{stable_hash(conflict_block)}"
+                payload['pair_id'] = f"p:{pair_id}"
                 payload['conflict'] = conflict_block
                 payload['kind'] = 'pair'
                 payload['source'] = 'human'

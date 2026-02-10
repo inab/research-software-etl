@@ -55,8 +55,8 @@ def build_chat_messages_with_disconnected(
             if entry['publication']:
                 new_pubs.append(get_pub(entry['publication']))
             entry['publication'] = new_pubs
-            print('Entry')
-            pprint(entry)
+            #print('Entry')
+            #pprint(entry)
             entry_json = json.dumps(entry, ensure_ascii=False)
             entry_tokens = len(enc.encode(entry_json))
 
@@ -107,7 +107,7 @@ def build_chat_messages_with_disconnected(
 
     # Token budget check
     total_tokens = estimate_total_tokens(messages, model=model)
-    logging.info(f"Total tokens: {total_tokens}")
+    #logging.info(f"Total tokens: {total_tokens}")
     if total_tokens > MAX_TOTAL_TOKENS:
         raise ValueError(f"Prompt too long: {total_tokens} tokens. Limit is {MAX_TOTAL_TOKENS}.")
 
