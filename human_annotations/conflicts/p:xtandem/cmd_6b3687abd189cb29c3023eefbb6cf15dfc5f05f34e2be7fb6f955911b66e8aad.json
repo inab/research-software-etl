@@ -1,0 +1,343 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/xtandem/cmd/None",
+        "created_at": "2025-04-02T12:52:11.489472",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "contact@thegpm.org",
+              "maintainer": false,
+              "name": "contact@thegpm.org",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "contact@thegpm.org",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Matches tandem mass spectra with peptide sequences."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.thegpm.org/TANDEM/tandem_install_faq.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "dta",
+              "uri": "http://edamontology.org/format_3652",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "pkl",
+              "uri": "http://edamontology.org/format_3653",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzXML",
+              "uri": "http://edamontology.org/format_3654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzData",
+              "uri": "http://edamontology.org/format_3834",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "MGF",
+              "uri": "http://edamontology.org/format_3651",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "X!Tandem XML",
+              "uri": "http://edamontology.org/format_3711",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzML",
+              "uri": "http://edamontology.org/format_3244",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence set",
+                "uri": "http://edamontology.org/data_0850",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "XTandem"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "xtandem",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Blind peptide database search",
+              "uri": "http://edamontology.org/operation_3647",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Spectral analysis",
+              "uri": "http://edamontology.org/operation_3214",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein identification",
+              "uri": "http://edamontology.org/operation_3767",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "PTM identification",
+              "uri": "http://edamontology.org/operation_3645",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Peptide identification",
+              "uri": "http://edamontology.org/operation_3631",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Peptide database search",
+              "uri": "http://edamontology.org/operation_3646",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "X!Tandem XML",
+              "uri": "http://edamontology.org/format_3711",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzIdentML",
+              "uri": "http://edamontology.org/format_3247",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7a6c8d3b8acd1a2f9b634"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "ms-utils",
+            "Proteomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.thegpm.org/TANDEM/"
+          ]
+        },
+        "id": "biotools/xtandem/cmd/None",
+        "last_updated_at": "2025-09-18T13:04:07.335475",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/xtandem/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/xtandem/cmd/15.12.15.2",
+        "created_at": "2025-04-02T11:54:05.221575",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zlib",
+            "expat"
+          ],
+          "description": [
+            "X! Tandem open source is software that can match tandem mass spectra with peptide sequences, in a process that has come to be known as protein identification."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/xtandem/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/xtandem/README.html"
+            }
+          ],
+          "download": [
+            "https://depot.galaxyproject.org/software/xtandem/xtandem_15.12.15.2_src_all.zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "xtandem"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic License",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "xtandem",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c7a6c8d3b8acd1a2f9b634"
+          ],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://depot.galaxyproject.org/software/xtandem/xtandem_15.12.15.2_src_all.zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "15.12.15.2"
+          ],
+          "webpage": [
+            "http://www.thegpm.org/TANDEM/index.html"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:54:05.221575",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/xtandem/cmd/15.12.15.2",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:xtandem/cmd_6b3687abd189cb29c3023eefbb6cf15dfc5f05f34e2be7fb6f955911b66e8aad",
+  "conflict_name": "xtandem/cmd",
+  "date": "2026-02-10T11:54:01.996187+00:00",
+  "run_id": "20260210T105019Z-17128c9-test_11_0"
+}
