@@ -1,0 +1,244 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/gentle-m/None/None",
+        "created_at": "2025-04-02T15:43:22.364888",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "GENtle is a free multipurpose tool for genetics and biochemistry. It manages DNA and amino acid sequences, does PCR, restriction, ligation, sequence annotation etc."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/gentle-m"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gentle-m"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "gentle-m",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/gentle-m"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://gentle-m.sourceforge.net/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T15:43:22.364888",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/gentle-m//",
+            "source_url": "https://sourceforge.net/projects/gentle-m"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/gentle/cmd/1.9.5.alpha1,biotools/gentle/undefined/1.9.4,github/gentle-m/None/None",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "mysql",
+            "wxwidgets",
+            "tinyxml",
+            "sqlite"
+          ],
+          "description": [
+            "GENtle provides a GUI for amino acid editing, plasmid maps,\nrestriction and ligation, alignments, sequencer data import,\ncalculators, gel image display, PCR, and much more.",
+            "Software for DNA and amino acid editing, database management, plasmid maps, restriction and ligation, alignments, sequencer data import, calculators, gel image display, PCR, and much more."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gentle/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gentle/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://en.wikibooks.org/wiki/GENtle"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GENtle-persons/gentle-m/blob/main/MySQL%20enzymes.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GENtle-persons/gentle-m/blob/main/MySQL%20template.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/GENtle-persons/gentle-m/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GENtle-persons/gentle-m/blob/main/RELEASE-NOTES.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GENtle-persons/gentle-m/blob/main/gpl.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GENtle-persons/gentle-m/blob/main/tips_de.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/GENtle-persons/gentle-m/blob/main/tips_en.txt"
+            }
+          ],
+          "download": [
+            "https://github.com/GENtle-persons/gentle-m/archive/refs/tags/1.9.5.alpha1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gentle",
+            "GENtle",
+            "gentle-m"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0-or-later",
+              "url": "https://spdx.org/licenses/GPL-2.0-or-later.html"
+            },
+            {
+              "name": "GPL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "gentle",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "gentle-m"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/GENtle-persons/gentle-m"
+            }
+          ],
+          "source": [
+            "biotools",
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/GENtle-persons/gentle-m/archive/refs/tags/1.9.5.alpha1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genetic engineering",
+              "uri": "http://edamontology.org/topic_3912",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "PCR experiment",
+              "uri": "http://edamontology.org/topic_3519",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "undefined"
+          ],
+          "version": [
+            "1.9.5.alpha1",
+            "1.9.4"
+          ],
+          "webpage": [
+            "http://gentle.magnusmanske.de/",
+            "https://github.com/GENtle-persons/gentle-m"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:gentle/*_8578c55255f44187c5e9e5ba9c8b37f0c55ddb759e672ac51684fc41ba33c740",
+  "conflict_name": "gentle/*",
+  "date": "2026-02-10T21:59:20.583489+00:00",
+  "run_id": "20260210T212115Z-aae5ffc-test_12_0"
+}
