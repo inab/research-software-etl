@@ -1,0 +1,327 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/sqtlseeker/cmd/1.0.0",
+        "created_at": "2025-04-02T12:58:35.594902",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "R. Guig\u00f3 Lab: Computational Biology of RNA processing @ CRG, Barcelona.",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "diego.garrido@crg.eu",
+              "maintainer": false,
+              "name": "Diego Garrido",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Nextflow pipeline for splicing quantitative trait loci (sQTL) mapping based on sQTLseekeR2.\nThe pipeline performs the following analysis steps: 1) Index the genotype file, 2) Preprocess the transcript expression data, 3) Test for association between splicing ratios (a multivariate phenotype) and genetic variants in cis (nominal pass), 4) Obtain an empirical P-value for each phenotype (permutation pass, optional), 5) Control for multiple testing."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Expression data",
+                "uri": "http://edamontology.org/data_2603",
+                "vocabulary": "EDAM"
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence variations",
+                "uri": "http://edamontology.org/data_3498",
+                "vocabulary": "EDAM"
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Annotation track",
+                "uri": "http://edamontology.org/data_3002",
+                "vocabulary": "EDAM"
+              },
+              "term": "BED",
+              "uri": "http://edamontology.org/format_3003",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "sqtlseeker2-nf"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "sqtlseeker",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Analysis",
+              "uri": "http://edamontology.org/operation_2945",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression QTL analysis",
+              "uri": "http://edamontology.org/operation_3232",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Alternative splicing prediction",
+              "uri": "http://edamontology.org/operation_0264",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Statistical estimate score",
+                "uri": "http://edamontology.org/data_0951",
+                "vocabulary": "EDAM"
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c82d5510e2f3aa0b3b9cec",
+            "67c82b1210e2f3aa0b3b92bf"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/guigolab/sqtlseeker2-nf"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "RIS3CAT VEIS"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Computational biology",
+              "uri": "http://edamontology.org/topic_3307",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA splicing",
+              "uri": "http://edamontology.org/topic_3320",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation",
+              "uri": "http://edamontology.org/topic_0199",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1.0.0"
+          ],
+          "webpage": [
+            "https://github.com/guigolab/sqtlseeker2-nf"
+          ]
+        },
+        "id": "biotools/sqtlseeker/cmd/1.0.0",
+        "last_updated_at": "2025-09-18T13:10:35.732010",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/sqtlseeker/cmd/1.0.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/sqtlseeker/cmd/2.0",
+        "created_at": "2025-04-02T12:58:35.521498",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Jean Monlong",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "R.Guigo Group: Computational Biology of RNA processing @ CRG, Barcelona.",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "crg.eu",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "diego.garrido@crg.eu",
+              "maintainer": false,
+              "name": "Diego Garrido",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "SQTLseekeR consists of a pipeline for splicing quantitative trait loci (sQTL) mapping.\nThe pipeline performs the following analysis steps:\n1) Index the genotype file, 2) Preprocess the transcript expression data, 3) Test for association between splicing ratios and genetic variants in cis (nominal pass)\n4) Obtain an empirical P-value for each phenotype (permutation pass, optional)\n5) Control for multiple testing."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/jmonlong/sQTLseekeR"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "sQTLseekeR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "sqtlseeker",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/operation_2403",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82b1210e2f3aa0b3b92bf"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jmonlong/sQTLseekeR"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Computational biology",
+              "uri": "http://edamontology.org/topic_3307",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "2.0"
+          ],
+          "webpage": [
+            "https://github.com/dgarrimar/sqtlseeker2-nf"
+          ]
+        },
+        "id": "biotools/sqtlseeker/cmd/2.0",
+        "last_updated_at": "2025-09-18T13:10:35.629299",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/sqtlseeker/cmd/2.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:sqtlseeker/cmd_4f6c7568d5dd86679ed6b4151d981e46d263f8bc05fd873c0d9a154d69bc7d17",
+  "conflict_name": "sqtlseeker/cmd",
+  "date": "2026-02-10T12:28:57.693562+00:00",
+  "run_id": "20260210T105019Z-17128c9-test_11_0"
+}
