@@ -1,0 +1,213 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/sortmerna/cmd/4.3.6",
+        "created_at": "2025-04-02T11:53:06.128534",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "SortMeRNA is a biological sequence analysis tool for filtering, mapping and OTU-picking NGS reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/sortmerna/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/sortmerna/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/biocore/sortmerna/releases/download/v4.3.6/sortmerna-4.3.6-Linux.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "sortmerna"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "LGPL",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "sortmerna",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c7a5edd3b8acd1a2f9b5d7"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/biocore/sortmerna"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/biocore/sortmerna/releases/download/v4.3.6/sortmerna-4.3.6-Linux.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "4.3.6"
+          ],
+          "webpage": [
+            "http://bioinfo.lifl.fr/RNA/sortmerna"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:53:06.128534",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/sortmerna/cmd/4.3.6",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/sortmerna/cmd/None,biotools/sortmerna/web/None",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "https://github.com/sortmerna/sortmerna/issues"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Sequence analysis tool for filtering, mapping and OTU-picking NGS reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/sortmerna/sortmerna/wiki/User-manual-v4.3.2"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SortMeRNA"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "sortmerna",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence similarity search",
+              "uri": "http://edamontology.org/operation_0346",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence comparison",
+              "uri": "http://edamontology.org/operation_2451",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence alignment analysis",
+              "uri": "http://edamontology.org/operation_0258",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c7a5edd3b8acd1a2f9b5d7"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "ELIXIR Trainer Tools"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metatranscriptomics",
+              "uri": "http://edamontology.org/topic_3941",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "web"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://bioinfo.cristal.univ-lille.fr/RNA/sortmerna/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:sortmerna/*_58f67c790c590a15cadb192d211957aeb45f19c20c3aa8e449dc95ecd890a64b",
+  "conflict_name": "sortmerna/*",
+  "date": "2026-02-10T12:48:27.055032+00:00",
+  "run_id": "20260210T105019Z-17128c9-test_11_0"
+}
