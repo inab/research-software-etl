@@ -1,0 +1,311 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/fasta/web/1",
+        "created_at": "2025-04-02T11:57:35.961018",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Web Production",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Bill Pearson",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "EMBL-EBI",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "University of Virginia",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.ebi.ac.uk/support/"
+            },
+            {
+              "email": "es-request@ebi.ac.uk",
+              "maintainer": false,
+              "name": "Web Production",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Sequence similarity searching against protein databases. FASTX and FASTY translate a DNA query. Optimal searches with SSEARCH (local), GGSEARCH (global) and GLSEARCH (global query, local database)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.ebi.ac.uk/Tools/sss/FASTA/"
+            },
+            {
+              "content": null,
+              "type": "terms_of_use",
+              "url": "http://www.ebi.ac.uk/about/terms-of-use"
+            },
+            {
+              "content": null,
+              "type": "help",
+              "url": "https://www.ebi.ac.uk/Tools/sss/fasta/help/index-genomes.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "FASTA"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "fasta",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence similarity search",
+              "uri": "http://edamontology.org/operation_0346",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2be2ab57beba26405cf2e",
+            "67c7a721d3b8acd1a2f9b694"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "1"
+          ],
+          "webpage": [
+            "http://www.ebi.ac.uk/Tools/sss/fasta"
+          ]
+        },
+        "id": "biotools/fasta/web/1",
+        "last_updated_at": "2025-09-18T12:43:12.192108",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/fasta/web/1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/fasta/web/None",
+        "created_at": "2025-04-02T11:57:35.827280",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "wrp@virginia.edu",
+              "maintainer": false,
+              "name": "Support",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Bill Pearson",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The FASTA programs find regions of local or global similarity between protein or DNA sequences, either by searching protein or DNA databases, or by identifying local duplications within a sequence. Like BLAST, FASTA can be used to infer functional and evolutionary relationships between sequences as well as help identify members of gene families."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://fasta.bioch.virginia.edu/fasta_www2/fasta_intro.shtml"
+            },
+            {
+              "content": null,
+              "type": "release_notes",
+              "url": "http://faculty.virginia.edu/wrpearson/fasta/changes_v36.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence",
+                "uri": "http://edamontology.org/data_2044",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "FASTA"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "fasta",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence comparison",
+              "uri": "http://edamontology.org/operation_2451",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence similarity search",
+              "uri": "http://edamontology.org/operation_0346",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Sequence search results",
+                "uri": "http://edamontology.org/data_0857",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "67c7abdbd3b8acd1a2f9bebd",
+            "67c7abdad3b8acd1a2f9bebc"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "FASTA"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Sequence composition",
+              "uri": "http://edamontology.org/topic_0157",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://fasta.bioch.virginia.edu/"
+          ]
+        },
+        "id": "biotools/fasta/web/None",
+        "last_updated_at": "2025-09-18T12:41:37.757673",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/fasta/web/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:fasta/web_8859e55400e1a7e10b1e435549aefffc7fce68a88304855b37a4ae1c5979e5f5",
+  "conflict_name": "fasta/web",
+  "date": "2026-02-10T12:09:40.551778+00:00",
+  "run_id": "20260210T105019Z-17128c9-test_11_0"
+}
