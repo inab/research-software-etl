@@ -19,6 +19,7 @@ import json
 import sys
 import copy
 import hashlib
+from pprint import pprint
 import datetime
 from typing import Any, Dict, Iterable
 
@@ -43,7 +44,6 @@ def _canonical_dumps(obj: Any) -> str:
     # Canonical JSON string used only for sorting + hashing
     return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
-
 def _normalize(obj: Any) -> Any:
     """
     Normalize JSON-like data so that:
@@ -67,12 +67,20 @@ def _normalize(obj: Any) -> Any:
     # JSON scalars (str/int/float/bool/None) are already stable
     return obj
 
+
+def extract_ids(obj):
+    new_obj = {
+        'remaining' : [ item['id'] for item in obj['remaining'] ],
+        'disconnected': [ item['id'] for item in obj['disconnected'] ]
+    }
+    return new_obj
+
+
 def stable_hash(obj: Any) -> str:
+    obj = extract_ids(obj)
     normalized = _normalize(obj)
     canonical = _canonical_dumps(normalized)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
-
-
 
 def load_conflict_blocks(paths: Iterable[str]) -> Dict[str, Any]:
     """
@@ -168,10 +176,11 @@ def fill_human_conflicts() -> None:
                 )
 
             else:
+                #pprint(conflict_block)
                 payload['ts'] = datetime.datetime.now()
                 payload['conflict_name'] = pair_id
-                #payload['pair_id'] = f"p:{pair_id}_{stable_hash(conflict_block)}"
-                payload['pair_id'] = f"p:{pair_id}"
+                payload['pair_id'] = f"p:{pair_id}_{stable_hash(conflict_block)}"
+                #payload['pair_id'] = f"p:{pair_id}"
                 payload['conflict'] = conflict_block
                 payload['kind'] = 'pair'
                 payload['source'] = 'human'
