@@ -1,0 +1,421 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/idconvert/cmd/1",
+        "created_at": "2025-04-02T12:55:52.944475",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "lumc.nl",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "support@proteowizard.org",
+              "maintainer": false,
+              "name": "SourceForge team",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://proteowizard.sourceforge.net/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A converter between pepXML and mzIdentML formats for peptide identifications from tandem mass spectrometry. Developed by the ProteoWizard team."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://proteowizard.sourceforge.net/tools.shtml"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "protXML",
+              "uri": "http://edamontology.org/format_3747",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "pepXML",
+              "uri": "http://edamontology.org/format_3655",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "mzIdentML",
+              "uri": "http://edamontology.org/format_3247",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "idconvert"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "idconvert",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence coordinate conversion",
+              "uri": "http://edamontology.org/operation_3267",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Conversion",
+              "uri": "http://edamontology.org/operation_3434",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Parsing",
+              "uri": "http://edamontology.org/operation_1812",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Formatting",
+              "uri": "http://edamontology.org/operation_0335",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "pepXML",
+              "uri": "http://edamontology.org/format_3655",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "mzIdentML",
+              "uri": "http://edamontology.org/format_3247",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7a459d3b8acd1a2f9b57f"
+          ],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "http://proteowizard.sourceforge.net/downloads.shtml"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Proteomics",
+            "ProteoWizard"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1"
+          ],
+          "webpage": [
+            "http://proteowizard.sourceforge.net/tools/idconvert.html"
+          ]
+        },
+        "id": "biotools/idconvert/cmd/1",
+        "last_updated_at": "2025-09-18T13:08:00.407497",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/idconvert/cmd/1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy/msgfplus/cmd/0.5,galaxy_metadata/msgfplus/cmd/0.5,biotools/msgfplus/cmd/1.8.0,biotools/msgfplus/lib/1.8.0,toolshed/msgfplus/cmd/0.5,galaxy/msconvert_nix/cmd/3.0.0,galaxy/msconvert_nix/cmd/3.0.9992.0,galaxy_metadata/msconvert_nix/cmd/3.0.0,galaxy_metadata/msconvert_nix/cmd/3.0.9992.0,toolshed/msconvert_nix/cmd/3.0.0,galaxy/idpassemble/cmd/3.0.11579.0,galaxy_metadata/idpassemble/cmd/3.0.21142.0,toolshed/idpassemble/cmd/3.0.21142.0,toolshed/idpqonvertembedder/cmd/3.0.20163.0,galaxy/idpqonvertembedder/cmd/3.0.11579.0,galaxy_metadata/idpqonvertembedder/cmd/3.0.20163.0,toolshed/idpqonvert/cmd/3.0.20163.0,galaxy/idpqonvert/cmd/3.0.11579.0,galaxy_metadata/idpqonvert/cmd/3.0.20163.0,toolshed/idpquery/cmd/3.0.21142.0,galaxy/idpquery/cmd/3.0.11392.0,galaxy/idpquery/cmd/3.0.11579.0,galaxy_metadata/idpquery/cmd/3.0.21142.0,toolshed/myrimatch/cmd/3.0.21142.0,galaxy/myrimatch/cmd/3.0.11579.0,galaxy_metadata/myrimatch/cmd/3.0.21142.0,toolshed/idconvert/cmd/3.0.0,galaxy/idconvert/cmd/3.0.0,galaxy_metadata/idconvert/cmd/@VERSION@.0,galaxy_metadata/idconvert/cmd/3.0.0,toolshed/idconvert/cmd/@VERSION@.0,toolshed/msconvert_win/cmd/3.0.0,galaxy/msconvert_win/cmd/3.0.0,galaxy_metadata/msconvert_win/cmd/3.0.0,toolshed/msconvert_win/cmd/None,toolshed/msconvert_nix/cmd/3.0.9992.0,toolshed/custom_pro_db/cmd/1.22.0,galaxy_metadata/custom_pro_db/cmd/1.22.0,toolshed/custom_pro_db_annotation_data_manager/cmd/1.16.1.0,galaxy_metadata/custom_pro_db_annotation_data_manager/cmd/1.16.1.0,bioconductor/msgfplus/lib/1.29.0",
+        "data": {
+          "authors": [
+            {
+              "email": "thomasp85@gmail.com",
+              "maintainer": false,
+              "name": "Thomas Lin Pedersen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "methods",
+            "mzID",
+            "ProtGenerics"
+          ],
+          "description": [
+            "This package contains function to perform peptide identification using MS-GF+.",
+            "Merge IDPicker databases from single files into a merged database, and filters the result at PSM/spectrum/peptide/protein/gene levels.",
+            "Creates text reports from idpDB files.",
+            "Builder.",
+            "Embed human/mouse gene metadata into IDPicker files.",
+            "Generate protein FASTAs from exosome or transcriptome data.",
+            "Convert and/or filter mass spectrometry files (with vendor support on Windows).",
+            "Convert and/or filter mass spectrometry files.",
+            "Convert mass spectrometry identification files.",
+            "Identifies peptides in tandem mass spectra using the MS-GF+ search engine.",
+            "This package contains function to perform peptide identification using the MS-GF+ algorithm. The package contains functionality for building up a parameter set both in code and through a simple GUI, as well as running the algorithm in batches, potentially asynchronously.",
+            "Identify peptides in tandem mass spectra.",
+            "Prepare identification results for IDPicker."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/MSGFplus.html"
+            },
+            {
+              "content": "\n\n**What it does**\n\nMerges and filters one or more IDPicker 3 idpDB files into a combined idpDB file. Protein assembly (e.g. parsimony) is conducted on the combined set of proteins.\n\n====\n\n**AssignSourceHierarchy**\n\nThe assembly file is a tab-delimited file with two columns that organizes the sources (individual runs) into a hierarchy.\nThe first column is the name of a source group, the second column is the source path or name to assign to that group.\nA forward slash in the group name adds another level to the hierarchy (just like a directory path).\n\n*A simple example:*\n\n::\n\n/repA\trepA1.idpDB\n/repA\trepA2.idpDB\n/repB\trepB1.idpDB\n/repB\trepB2.idpDB\n\n\n*A multi-level example:*\n\n::\n\n/A/1\tA1_f1\n/A/1\tA1_f2\n/A/2\tA2_f1\n/A/2\tA2_f2\n/B/1\tB1_f1\n/B/1\tB1_f2\n/B/2\tB2_f1\n/B/2\tB2_f2\n\n====\n\n**IsobaricSampleMapping**\n\nThe mapping file is a tab-delimited file with two columns. The first column is the full path to a source group,\nthe second column is a comma-delimited list of sample names, in ascending order of reporter ion mass. The special\nsample name *Reference*, if present, will be used to normalize the other channels. Samples named *Empty* will be\nignored.\n\n\n*iTRAQ-4plex example:*\n\n::\n\n/Case/Group1_A123_B456_C789\tA123,B456,C789,Reference\n/Case/Group2_D123_E456_F789\tD123,E456,F789,Reference\n/Ctrl/Group3_X123_Y456_Z789\tReference,X123,Y456,Z789\n/Ctrl/Group4_U123_V456_None\tU123,Reference,V456,Empty\n\n\n*TMT-10plex example:*\n\n::\n\n/Group1_Cases1-4_Controls1-4\tCase1,Case2,Case3,Case4,Reference,Control1,Control2,Control3,Control4,Reference\n/Group2_Cases5-8_Controls5-8\tCase5,Case6,Case7,Case8,Reference,Control5,Control6,Control7,Control8,Reference\n\n\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "idpQuery",
+            "MSGFplus",
+            "idpqonvert",
+            "myrimatch",
+            "msconvert (vendor support)",
+            "msconvert_nix",
+            "idpQonvert",
+            "idconvert",
+            "msconvert",
+            "CustomProDB Annotation",
+            "idpqonvertEmbedder",
+            "MS-GF+",
+            "MyriMatch",
+            "msgfplus",
+            "idpassemble",
+            "msconvert_win",
+            "idpAssemble",
+            "CustomProDB",
+            "idpEmbedder",
+            "idpquery"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0",
+              "url": null
+            },
+            {
+              "name": "GPL-2.0-or-later",
+              "url": "https://spdx.org/licenses/GPL-2.0-or-later.html"
+            }
+          ],
+          "links": [],
+          "name": "msgfplus",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operating_systems": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Peptide identification",
+              "uri": "http://edamontology.org/operation_3631",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "msconvert_win",
+            "idpassemble",
+            "myrimatch",
+            "custom_pro_db",
+            "msconvert_nix",
+            "custom_pro_db_annotation_data_manager",
+            "idpquery",
+            "idconvert",
+            "idpqonvert",
+            "idpqonvertembedder"
+          ],
+          "output": [],
+          "publication": [
+            "67c828f310e2f3aa0b3b80d0",
+            "67c79eaed3b8acd1a2f9b411",
+            "67c82b9e10e2f3aa0b3b966b",
+            "67c8291210e2f3aa0b3b81fa",
+            "67c828f310e2f3aa0b3b80d1",
+            "67c828f410e2f3aa0b3b80dc",
+            "67c828e210e2f3aa0b3b8032"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/galaxyproteomics/tools-galaxyp"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/MSGFplus"
+            }
+          ],
+          "source": [
+            "biotools",
+            "galaxy_metadata",
+            "bioconductor",
+            "galaxy",
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor",
+            "Proteomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein expression",
+              "uri": "http://edamontology.org/topic_0108",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "1.29.0",
+            "3.0.11579.0",
+            "1.8.0",
+            "0.5",
+            "3.0.0",
+            "3.0.9992.0",
+            "1.16.1.0",
+            "3.0.21142.0",
+            "None",
+            "3.0.11392.0",
+            "@VERSION@.0",
+            "1.22.0",
+            "3.0.20163.0"
+          ],
+          "webpage": [
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fmsconvert_nix%2Fmsconvert_nix%2F3.0.9992.0",
+            "http://bioconductor.org/packages/release/bioc/html/MSGFplus.html",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fmsconvert%2Fmsconvert_nix%2F3.0.0",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fidpqonvert%2Fidpqonvert%2F3.0.11579.0",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fidpassemble%2Fidpassemble%2F3.0.11579.0",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fmsgfplus%2Fmsgfplus%2F0.5",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fidpquery%2Fidpquery%2F3.0.11579.0",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fmsconvert%2Fmsconvert_win%2F3.0.0",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fidconvert%2Fidconvert%2F3.0.0",
+            "https://bioconductor.org/packages/MSGFplus",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fidpqonvert%2FidpqonvertEmbedder%2F3.0.11579.0",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fmyrimatch%2Fmyrimatch%2F3.0.11579.0",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Fidpquery%2Fidpquery%2F3.0.11392.0"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:idpquery/*_fec22e247665215f200a58fec65df80eb7bc8c3a94a8661c4ee48a5f36fccb17",
+  "conflict_name": "idpquery/*",
+  "date": "2026-02-10T12:51:50.480820+00:00",
+  "run_id": "20260210T105019Z-17128c9-test_11_0"
+}
