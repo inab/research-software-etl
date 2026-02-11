@@ -1,0 +1,251 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/htseq/None/None",
+        "created_at": "2025-04-02T15:44:09.142660",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "This SourceForge page is outdated! \n\nHTSeq has been moved to github: https://github.com/simon-anders/htseq\n\nGeneral information and documentation on HTSeq; http://www-huber.embl.de/users/anders/HTSeq."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/htseq"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "htseq"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "htseq",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/htseq"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://www-huber.embl.de/users/anders/HTSeq"
+          ]
+        },
+        "last_updated_at": "2025-04-02T15:44:09.142660",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/htseq//",
+            "source_url": "https://sourceforge.net/projects/htseq"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/htseq/cmd/2.0.5,bioconda_recipes/htseq/lib/2.0.5,biotools/h4htseq/lib/None,biotools/h4htseq/workbench/None,github/htseq/None/release_0.12.3",
+        "data": {
+          "authors": [
+            {
+              "email": "fabio.zanini@unsw.edu.au",
+              "maintainer": false,
+              "name": "Fabio Zanini",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "matplotlib-base >=1.4",
+            "scipy >=1.5.0",
+            "pandas >=1.1.0",
+            "python",
+            "numpy",
+            "pysam >=0.15.1"
+          ],
+          "description": [
+            "HTSeq is a Python library to facilitate processing and analysis of data from high-throughput sequencing (HTS) experiments.",
+            "A Python library to facilitate programmatic analysis of data from high-throughput sequencing (HTS) experiments.",
+            "HTSeq is a Python library to facilitate processing and analysis of data from  high-throughput sequencing (HTS) experiments."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/htseq/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/htseq/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/htseq/htseq/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/htseq/htseq/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/htseq/htseq/blob/main/todo.txt"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/H/HTSeq/HTSeq-2.0.5.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "htseq",
+            "h4HTSeq"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "htseq",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "h4htseq"
+          ],
+          "output": [],
+          "publication": [
+            "67c8354810e2f3aa0b3bc241",
+            "67c7a06bd3b8acd1a2f9b495"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/htseq/htseq"
+            },
+            {
+              "kind": null,
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://htseq.readthedocs.io/en/master/"
+            }
+          ],
+          "source": [
+            "biotools",
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/H/HTSeq/HTSeq-2.0.5.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "workbench",
+            "cmd"
+          ],
+          "version": [
+            "release_0.12.3",
+            "2.0.5",
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/htseq/htseq",
+            "https://pypi.python.org/pypi/HTSeq",
+            "http://htseq.readthedocs.io/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:htseq/*_d0d2470c20fe896275202dd03dea03cef8962cb0fdac0608410ea123f9d5be93",
+  "conflict_name": "htseq/*",
+  "date": "2026-02-11T14:10:17.410683+00:00",
+  "run_id": "20260211T140543Z-54dd9b3-test_13_0"
+}
