@@ -208,6 +208,7 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
             print(f"Processed {n} blocks.\n")
         if key not in disambiguated_blocks:
             #print(f"Processing block: {key}")
+            record = {}
             if key in conflict_blocks:
                 #print(f"{key} is a conflict block")
 
@@ -220,14 +221,13 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
                         print(f"Error processing conflict {key}")
                         logging.error(f"Error processing conflict {key}: {e}")
                         
-                                                
-                    
             else:
                 record = build_no_conflict_record(key, blocks[key])
                 disambiguated_blocks.update(record)
                 #print(f"{key} is not a conflict block")
 
-            add_jsonl_record(disambiguated_blocks_path, record)
+            if record:
+                add_jsonl_record(disambiguated_blocks_path, record)
 
         else:
             #print(f"Record {key} already exists in disambiguated blocks, skipping...")
