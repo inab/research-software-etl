@@ -1,0 +1,248 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/percolator/cmd/None",
+        "created_at": "2025-04-02T12:19:53.385804",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "webmaster@ms-utils.org",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://ms-utils.org/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Semi-supervised learning for peptide identification from MS/MS data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/percolator/percolator/wiki/example"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "XML",
+              "uri": "http://edamontology.org/format_2332",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Percolator"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "percolator",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Blind peptide database search",
+              "uri": "http://edamontology.org/operation_3647",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein fragment weight comparison",
+              "uri": "http://edamontology.org/operation_2929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein identification",
+              "uri": "http://edamontology.org/operation_3767",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Peptide identification",
+              "uri": "http://edamontology.org/operation_3631",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Target-Decoy",
+              "uri": "http://edamontology.org/operation_3649",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Validation of peptide-spectrum matches",
+              "uri": "http://edamontology.org/operation_3648",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "XML",
+              "uri": "http://edamontology.org/format_2332",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c829ed10e2f3aa0b3b8961"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "ms-utils",
+            "Proteomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://noble.gs.washington.edu/proj/percolator/"
+          ]
+        },
+        "id": "biotools/percolator/cmd/None",
+        "last_updated_at": "2025-09-18T12:55:39.531196",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/percolator/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "sourceforge/percolator/None/None",
+        "created_at": "2025-04-02T15:44:28.902916",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Binary download site for the proteomics data post processor percolator. The source code is hosted on git hub, https://github.com/percolator/percolator."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/percolator"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "percolator"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "percolator",
+          "operating_system": [
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/percolator"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://per-colator.com/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T15:44:28.902916",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/percolator//",
+            "source_url": "https://sourceforge.net/projects/percolator"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:percolator/*_secondary_12_79ca9432d21b5934c346a4462671d9fb4cea6143c7d314a68411d73880960dda",
+  "conflict_name": "percolator/*_secondary_12",
+  "date": "2026-02-11T12:08:13.520194+00:00",
+  "run_id": "20260211T111408Z-b436c9b-test_13_0"
+}
