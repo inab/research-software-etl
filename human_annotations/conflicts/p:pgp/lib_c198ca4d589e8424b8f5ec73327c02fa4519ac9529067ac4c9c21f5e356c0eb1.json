@@ -1,0 +1,417 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/pgp/lib/1.0.0",
+        "created_at": "2025-04-02T12:14:06.633505",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Jinbo Chen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Astrid Junker",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Uwe Scholz",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Leibniz Institute of Plant Genetics and Crop Plant Research (IPK) Gatersleben",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Leibniz Institute of Plant Genetics and Crop Plant Research as infrastructural service",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "European Commission within the transPlant project",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "German Federal Ministry of Education and Research within the German-Plant-Phenotyping Network",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "ipk",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "lange@ipk-gatersleben.de",
+              "maintainer": false,
+              "name": "Dr. Matthias Lange",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "arendd@ipk-gatersleben.de",
+              "maintainer": false,
+              "name": "Daniel Arend",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Infrastructure to comprehensively publish plant research data. This covers in particular cross-domain datasets that are not being published in central repositories because of its volume or unsupported data scope, like image collections from plant phenotyping and microscopy, unfinished genomes, genotyping data, visualizations of morphological plant models, data from mass spectrometry as well as software and documents."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "http://edal.ipk-gatersleben.de/pgp"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://edal.ipk-gatersleben.de/pgp"
+            },
+            {
+              "content": null,
+              "type": "terms_of_use",
+              "url": "https://edal.ipk-gatersleben.de/document/PGP-contract.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PGP"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "CC-BY-4.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "pgp",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7aa99d3b8acd1a2f9bcb8",
+            "67c7aa9ad3b8acd1a2f9bcb9"
+          ],
+          "repository": [
+            {
+              "kind": "bitbucket",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://bitbucket.org/account/user/ipk_bit_team/projects/ED_PUB"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Biological databases",
+              "uri": "http://edamontology.org/topic_3071",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "1.0.0"
+          ],
+          "webpage": [
+            "https://edal.ipk-gatersleben.de/repos/pgp/"
+          ]
+        },
+        "id": "biotools/pgp/lib/1.0.0",
+        "last_updated_at": "2025-09-18T12:55:23.753766",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pgp/lib/1.0.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/pgp/lib/None",
+        "created_at": "2025-04-02T12:14:06.506756",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Astrid Junker",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Uwe Scholz",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Leibniz Institute of Plant Genetics and Crop Plant Research (IPK) Gatersleben",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Leibniz Institute of Plant Genetics and Crop Plant Research as infrastructural service",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "European Commission within the transPlant project",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "German Federal Ministry of Education and Research within the German-Plant-Phenotyping Network",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "ipk",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "lange@ipk-gatersleben.de",
+              "maintainer": false,
+              "name": "Matthias Lange",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "arendd@ipk-gatersleben.de",
+              "maintainer": false,
+              "name": "Daniel Arend",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "lange@ipk-gatersleben.de",
+              "maintainer": false,
+              "name": "Matthias Lange",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "arendd@ipk-gatersleben.de",
+              "maintainer": false,
+              "name": "Daniel Arend",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Plant Genomics and Phenomics Research Data Repository (e!DAL-PGP) as infrastructure to comprehensively publish plant research data. This covers in particular cross-domain datasets that are not being published in central repositories because of its volume or unsupported data scope, like image collections from plant phenotyping and microscopy, unfinished genomes, genotyping data, visualizations of morphological plant models, data from mass spectrometry as well as software and documents. PGP is registered as research data repository at BioSharing.org, re3data.org and OpenAIRE as valid EU Horizon 2020 open data archive. Above features, the programmatic interface and the support of standard metadata formats, enable PGP to fulfil the FAIR data principles - findable, accessible, interoperable, reusable."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "https://edal-pgp.ipk-gatersleben.de/"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://edal-pgp.ipk-gatersleben.de/"
+            },
+            {
+              "content": null,
+              "type": "terms_of_use",
+              "url": "https://edal-pgp.ipk-gatersleben.de/document/PGP-contract.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Plant Genomics and Phenomics Research Data Repository (PGP)"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Not licensed",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "pgp",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7aa99d3b8acd1a2f9bcb8",
+            "67c7aa9ad3b8acd1a2f9bcb9"
+          ],
+          "repository": [
+            {
+              "kind": null,
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://doi.ipk-gatersleben.de/report"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "denbi-gcbn",
+            "de.NBI"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Biological databases",
+              "uri": "http://edamontology.org/topic_3071",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://edal-pgp.ipk-gatersleben.de/"
+          ]
+        },
+        "id": "biotools/pgp/lib/None",
+        "last_updated_at": "2025-09-18T12:54:18.720765",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pgp/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:pgp/lib_c198ca4d589e8424b8f5ec73327c02fa4519ac9529067ac4c9c21f5e356c0eb1",
+  "conflict_name": "pgp/lib",
+  "date": "2026-02-11T14:21:50.767090+00:00",
+  "run_id": "20260211T140543Z-54dd9b3-test_13_0"
+}
