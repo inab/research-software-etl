@@ -1,0 +1,252 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/civicpy/lib/None",
+        "created_at": "2025-04-02T11:51:34.835138",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A Python software development and analysis toolkit for the CIViC knowledgebase | Clinical Interpretations of Variants in Cancer | CIViCpy \u2014 civicpy 1.0.0-rc1 documentation | A python interface for the CIViC db application | Sorry, something went wrong. Reload? | Sorry, we cannot display this file | CIViCpy is an analysis toolkit and SDK for extracting and analyzing knowledge from the CIViC knowledgebase | You have reached the code repository for CIViCpy, a python client and analysis toolkit for the Clinical Interpretations of Variants in Cancer knowledgebase (CIViC) | Sorry, this file is invalid so it cannot be displayed | CIViCpy lets you pull data from CIViC using the civic module and interact with records as dynamic objects. With the aid of caching, it is easy to explore relationships between CIViC records (e.g. assertions, genes, variants) without worrying about querying CIViC more than once for the same data."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CIViCpy"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "civicpy",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Data retrieval",
+              "uri": "http://edamontology.org/operation_2422",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Parsing",
+              "uri": "http://edamontology.org/operation_1812",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82cdc10e2f3aa0b3b9963",
+            "67e2bd24b57beba26405cd70"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Preclinical and clinical studies",
+              "uri": "http://edamontology.org/topic_3379",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Allergy",
+              "uri": "http://edamontology.org/topic_3400",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://docs.civicpy.org/en/1.1/"
+          ]
+        },
+        "id": "biotools/civicpy/lib/None",
+        "last_updated_at": "2025-09-18T12:37:16.371675",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/civicpy/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/civicpy/cmd/3.0.0,bioconda_recipes/civicpy/lib/3.0.0,github/civicpy/None/4.0.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "requests",
+            "vcfpy",
+            "pandas",
+            "networkx",
+            "backports-datetime-fromisoformat =2.0.0",
+            "python >=3.5",
+            "pysam",
+            "obonet =0.2.3",
+            "click",
+            "deprecation"
+          ],
+          "description": [
+            "CIViC variant knowledgebase analysis toolkit.",
+            "A python interface for the CIViC db application."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/civicpy/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/civicpy/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://civicpy.org/"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/griffithlab/civicpy/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/griffithlab/civicpy/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/griffithlab/civicpy/blob/main/requirements_dev.txt"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/c/civicpy/civicpy-3.0.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "civicpy"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": "https://spdx.org/licenses/MIT.html"
+            }
+          ],
+          "links": [],
+          "name": "civicpy",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/griffithlab/civicpy"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/c/civicpy/civicpy-3.0.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "civic",
+              "uri": "https://github.com/topics/civic",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "1.0.1",
+            "4.0.0",
+            "v0.0.2",
+            "3.1.0",
+            "v2.0.dev0",
+            "3.1.2",
+            "1.0.0",
+            "v0.0.3",
+            "2.0.0",
+            "3.0.0",
+            "3.1.1"
+          ],
+          "webpage": [
+            "http://civicpy.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:civicpy/*_b42771288ffbf1173617da0c9bf9f622fc8c07e0df98225613e9374b46a77acc",
+  "conflict_name": "civicpy/*",
+  "date": "2026-02-11T14:18:22.456377+00:00",
+  "run_id": "20260211T140543Z-54dd9b3-test_13_0"
+}
