@@ -1,0 +1,311 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/genomicsupersignature/lib/None",
+        "created_at": "2025-04-02T11:59:57.009476",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "seandavi@gmail.com",
+              "maintainer": false,
+              "name": "Sean Davis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "GenomicSuperSignature is a package for the interpretation of RNA-seq experiments through robust, efficient comparison to public databases."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "GenomicSuperSignature"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "genomicsupersignature",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Essential dynamics",
+              "uri": "http://edamontology.org/operation_3891",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Principal component visualisation",
+              "uri": "http://edamontology.org/operation_2939",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Dimensionality reduction",
+              "uri": "http://edamontology.org/operation_3935",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c831b310e2f3aa0b3baaf4"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/shbrief/GenomicSuperSignaturePaper/issues"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbial ecology",
+              "uri": "http://edamontology.org/topic_3697",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microarray experiment",
+              "uri": "http://edamontology.org/topic_3518",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/shbrief/GenomicSuperSignaturePaper/"
+          ]
+        },
+        "id": "biotools/genomicsupersignature/lib/None",
+        "last_updated_at": "2025-09-18T12:47:05.557624",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/genomicsupersignature/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/genomicsupersignature/lib/1.15.0,bioconda_recipes/bioconductor-genomicsupersignature/lib/1.10.0",
+        "data": {
+          "authors": [
+            {
+              "email": "shbrief@gmail.com",
+              "maintainer": false,
+              "name": "Sehyun Oh",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Levi Waldron",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "seandavi@gmail.com",
+              "maintainer": false,
+              "name": "Sean Davis",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "bioconductor-biobase >=2.62.0,<2.63.0",
+            "ggpubr",
+            "ggplot2",
+            "methods",
+            "flextable",
+            "r-flextable",
+            "bioconductor-complexheatmap >=2.18.0,<2.19.0",
+            "r-dplyr",
+            "irlba",
+            "r-ggplot2",
+            "r-irlba",
+            "Biobase",
+            "dplyr",
+            "r-plotly",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "grid",
+            "R (>= 4.1.0)",
+            "r-ggpubr",
+            "r-base",
+            "SummarizedExperiment",
+            "BiocFileCache",
+            "bioconductor-biocfilecache >=2.10.0,<2.11.0",
+            "ComplexHeatmap",
+            "plotly",
+            "S4Vectors"
+          ],
+          "description": [
+            "This package provides a novel method for interpreting new transcriptomic datasets through near-instantaneous comparison to public archives without high-performance computing requirements. Through the pre-computed index, users can identify public resources associated with their dataset such as gene sets, MeSH term, and publication. Functions to identify interpretable annotations and intuitive visualization options are implemented in this package."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-genomicsupersignature/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-genomicsupersignature/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/GenomicSuperSignature/GenomicSuperSignature_1.10.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/GenomicSuperSignature_1.10.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-genomicsupersignature/bioconductor-genomicsupersignature_1.10.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/GenomicSuperSignature_1.10.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "GenomicSuperSignature",
+            "bioconductor-genomicsupersignature"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": "https://spdx.org/licenses/Artistic-2.0.html"
+            }
+          ],
+          "links": [],
+          "name": "genomicsupersignature",
+          "operating_system": [
+            "Windows",
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-genomicsupersignature"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/GenomicSuperSignature"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/shbrief/GenomicSuperSignature"
+            }
+          ],
+          "source": [
+            "bioconductor",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/GenomicSuperSignature/GenomicSuperSignature_1.10.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-genomicsupersignature/bioconductor-genomicsupersignature_1.10.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/GenomicSuperSignature_1.10.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/GenomicSuperSignature_1.10.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.10.0",
+            "1.15.0"
+          ],
+          "webpage": [
+            "https://github.com/shbrief/GenomicSuperSignature",
+            "https://bioconductor.org/packages/3.18/bioc/html/GenomicSuperSignature.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:genomicsupersignature/lib_6365683c514489b7d97f36e4f6f8b91cfba47abcd47ddd9fa82f07c95dc24ce4",
+  "conflict_name": "genomicsupersignature/lib",
+  "date": "2026-02-11T11:34:44.353850+00:00",
+  "run_id": "20260211T111408Z-b436c9b-test_13_0"
+}
