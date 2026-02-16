@@ -175,11 +175,8 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
                 
                 title = f"Manual resolution needed for {conflict_name}_pair_{n}"
                 labels = ['conflict', 'automated']
-                #response = create_github_issue(title, body, labels)
-                print(f'Github issue for {conflict_name}_pair_{n}')
-                response = {
-                    'html_url' : 'dry_run'
-                }
+                response = create_github_issue(title, body, labels)
+
                 # record event to results
                 # add conflict id to disambiguated record (disambiguated_blocks file)
                 return build_disambiguated_record_manual(conflict_name, conflict, response["html_url"])
