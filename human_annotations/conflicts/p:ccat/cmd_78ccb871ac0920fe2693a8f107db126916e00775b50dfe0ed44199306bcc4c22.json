@@ -1,0 +1,182 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/ccat/cmd/3.0",
+        "created_at": "2025-04-02T11:43:15.843582",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "CCAT is a software package for the analysis of ChIP-seq data with negative control."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/ccat/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/ccat/README.html"
+            }
+          ],
+          "download": [
+            "http://www.comp.nus.edu.sg/~bioinfo/CCAT3.0/CCAT3.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ccat"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "unknown",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "ccat",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c79d35d3b8acd1a2f9b3d1"
+          ],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "http://www.comp.nus.edu.sg/~bioinfo/CCAT3.0/CCAT3.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "3.0"
+          ],
+          "webpage": [
+            "http://cmb.gis.a-star.edu.sg/ChIPSeq/paperCCAT.htm"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:43:15.843582",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/ccat/cmd/3.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/ccat/cmd/3.0,biotools/ccat/cmd/none",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A software package for the analysis of ChIP-seq data with negative control."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "http://www.comp.nus.edu.sg/~bioinfo/CCAT3.0/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CCAT"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "ccat",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Peak detection",
+              "uri": "http://edamontology.org/operation_3215",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c79d35d3b8acd1a2f9b3d1"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "ChIP-seq",
+              "uri": "http://edamontology.org/topic_3169",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA packaging",
+              "uri": "http://edamontology.org/topic_3176",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "3.0",
+            "none"
+          ],
+          "webpage": [
+            "http://www.comp.nus.edu.sg/~bioinfo/CCAT3.0/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:ccat/cmd_78ccb871ac0920fe2693a8f107db126916e00775b50dfe0ed44199306bcc4c22",
+  "conflict_name": "ccat/cmd",
+  "date": "2026-02-16T11:28:15.562119+00:00",
+  "run_id": "20260216T111434Z-fbcb4f3-test_14_0"
+}
