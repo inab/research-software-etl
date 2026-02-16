@@ -88,10 +88,6 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
         # ------------- ID ----------------
         n+= 1
         pair_stable_id = f"p:{conflict_name}_{stable_hash(conflict_pair)}"
-        print(f"# -------------------------------------------------------------------------------------------------- #")
-        print(f"conflict_pair: \n - remaining: {conflict_pair['remaining'][0]['_id']} \n - disconnected: {conflict_pair['disconnected'][0]['_id']}")
-        print(f"Pair ID: {pair_stable_id}")
-        print(f"# -------------------------------------------------------------------------------------------------- #")
 
 
         #pair_stable_id = f"p:{conflict_name}"
@@ -206,8 +202,7 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
     best_pair = load_pair_decisions(pair_wise_decisions_path)  
     n=0
 
-    #for key in blocks:
-    for key in {"arboreto/*":blocks["arboreto/*"]}:
+    for key in blocks:
         n+=1
         if n%5000==0:
             print(f"Processed {n} blocks.")
@@ -239,7 +234,6 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
             #print(f"Record {key} already exists in disambiguated blocks, skipping...")
             pass
 
-    exit(0)
 
     return disambiguated_blocks
 
