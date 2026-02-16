@@ -49,10 +49,19 @@ def _normalize(obj: Any) -> Any:
 
 def extract_ids(obj):
     new_obj = {
-        'remaining' : [ item['_id'] for item in obj['remaining'] ],
-        'disconnected': [ item['_id'] for item in obj['disconnected'] ]
+        'remaining' : normalize_ids(obj['remaining'][0]['_id']),
+        'disconnected': obj['disconnected'][0]['_id']
     }
     return new_obj
+
+
+def normalize_ids(original_id):
+    individual_ids = original_id.split(',')
+    individual_ids.sort()
+    result = ",".join(individual_ids)
+    return result
+
+
 
 
 def stable_hash(obj: Any) -> str:

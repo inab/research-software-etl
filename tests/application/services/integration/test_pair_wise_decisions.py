@@ -100,6 +100,3 @@ def test_latest_preferred():
     assert best_pair[pair_id]['ts'] == '2026-02-06T14:21:24Z'
 
 
-
-
-
