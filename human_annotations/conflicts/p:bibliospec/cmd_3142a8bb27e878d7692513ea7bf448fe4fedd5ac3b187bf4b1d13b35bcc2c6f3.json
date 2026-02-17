@@ -1,0 +1,201 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/bibliospec/cmd/None",
+        "created_at": "2025-04-02T11:45:26.557815",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "info@maccosslab.org",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "https://sites.google.com/a/uw.edu/maccoss/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "This software enables the identification of peptides from tandem mass spectra by searching against a database of previously identified spectra."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://skyline.ms/project/home/software/BiblioSpec/begin.view"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BiblioSpec"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "bibliospec",
+          "operating_system": [
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Peptide database search",
+              "uri": "http://edamontology.org/operation_3646",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a72cd3b8acd1a2f9b6ab"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database management",
+              "uri": "http://edamontology.org/topic_3489",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://skyline.gs.washington.edu/labkey/project/home/software/BiblioSpec/begin.view"
+          ]
+        },
+        "id": "biotools/bibliospec/cmd/None",
+        "last_updated_at": "2025-09-18T12:36:03.539649",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/bibliospec/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bibliospec/cmd/1.0",
+        "created_at": "2025-04-02T11:43:42.692247",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The BiblioSpec Spetral Library tool suite."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bibliospec/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bibliospec/README.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bibliospec"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": "https://spdx.org/licenses/Apache-2.0.html"
+            }
+          ],
+          "links": [],
+          "name": "bibliospec",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.0"
+          ],
+          "webpage": [
+            "https://skyline.ms/project/home/software/BiblioSpec/begin.view?"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:43:42.692247",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/bibliospec/cmd/1.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:bibliospec/cmd_3142a8bb27e878d7692513ea7bf448fe4fedd5ac3b187bf4b1d13b35bcc2c6f3",
+  "conflict_name": "bibliospec/cmd",
+  "date": "2026-02-17T10:32:00.420081+00:00",
+  "run_id": "20260217T102243Z-08b96ca-test_15_0"
+}
