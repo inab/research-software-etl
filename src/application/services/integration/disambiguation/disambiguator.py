@@ -79,7 +79,6 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
 
     pair_results = []
     n = 0
-    print(f"Number of pairs: {len(conflict_pairs)}")
     for conflict_pair in conflict_pairs:
 
         #print("Processing conflict pair:")

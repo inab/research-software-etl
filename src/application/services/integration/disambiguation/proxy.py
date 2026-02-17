@@ -58,7 +58,7 @@ def query_huggingface_new(messages, model, provider):
     URL = f"https://router.huggingface.co/{provider}/v1/chat/completions"
     logging.info(f"Sending request to Hugging Face Inference API: {URL} with key {HF_API_KEY[:4]}...")
     
-    response = requests.post(URL, headers=headers, json=payload, verify=False)
+    response = requests.post(URL, headers=headers, json=payload)
     response.raise_for_status()
 
     if response.status_code == 200:
