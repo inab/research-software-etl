@@ -1,0 +1,225 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/orientagraph/cmd/None",
+        "created_at": "2025-04-02T12:11:09.504773",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "ekmolloy@cs.ucla.edu",
+              "maintainer": false,
+              "name": "Erin K. Molloy",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Advancing admixture graph estimation via maximum likelihood network orientation.\n\nOrientAGraph enables Maximum Likelihood Network Orientation (MNLO) to be utilized as a search heuristic within TreeMix, a popular package for estimating admixture graphs. We found that MLNO improved (or else did not impact) the accuracy of the original TreeMix method in an experimental study."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "OrientAGraph"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "orientagraph",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Phylogenetic inference (maximum likelihood and Bayesian methods)",
+              "uri": "http://edamontology.org/operation_0547",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenetic tree topology analysis",
+              "uri": "http://edamontology.org/operation_0551",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenetic reconstruction",
+              "uri": "http://edamontology.org/operation_3478",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82ea910e2f3aa0b3ba6a2"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Phylogenetics",
+              "uri": "http://edamontology.org/topic_3293",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Population genetics",
+              "uri": "http://edamontology.org/topic_3056",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/ekmolloy/OrientAGraph"
+          ]
+        },
+        "id": "biotools/orientagraph/cmd/None",
+        "last_updated_at": "2025-09-18T12:53:30.815172",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/orientagraph/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/orientagraph/cmd/1.1,github/OrientAGraph/None/1.2",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "gsl"
+          ],
+          "description": [
+            "OrientAGraph enables Maximum Likelihood Network Orientation (MNLO), as a standalone routine or as a search heuristic within TreeMix, a popular package for estimating admixture graphs from f-statistics (or related quantities)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/orientagraph/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/orientagraph/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/sriramlab/OrientAGraph/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/sriramlab/OrientAGraph/archive/0f81b2604993285a56fbf83384481274f7c89883.zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "OrientAGraph",
+            "orientagraph"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "orientagraph",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "OrientAGraph"
+          ],
+          "output": [],
+          "publication": [
+            "67c82ea910e2f3aa0b3ba6a2"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/sriramlab/OrientAGraph"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/sriramlab/OrientAGraph/archive/0f81b2604993285a56fbf83384481274f7c89883.zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0",
+            "1.2",
+            "1.1"
+          ],
+          "webpage": [
+            "https://github.com/sriramlab/OrientAGraph"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:orientagraph/*_9fdde3a0fcdbaa4d6ca205d52cccfce0384f4718b1875b72ea6ad13135f571f1",
+  "conflict_name": "orientagraph/*",
+  "date": "2026-02-17T11:36:26.313022+00:00",
+  "run_id": "20260217T105741Z-1356260-test_15_0"
+}
