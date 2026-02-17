@@ -1,0 +1,244 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/mapseq/cmd/None",
+        "created_at": "2025-04-02T12:03:34.058786",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "mering@imls.uzh.ch",
+              "maintainer": false,
+              "name": "Christian von Mering",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Highly efficient k-mer search with confidence estimates, for rRNA sequence analysis ."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/jfmrod/mapseq"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MAPseq"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mapseq",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "k-mer counting",
+              "uri": "http://edamontology.org/operation_3472",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c828cc10e2f3aa0b3b7f6e"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Sequence sites",
+              "uri": "http://edamontology.org/topic_0160",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/jfmrod/mapseq"
+          ]
+        },
+        "id": "biotools/mapseq/cmd/None",
+        "last_updated_at": "2025-09-18T12:49:34.054382",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mapseq/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/mapseq/cmd/2.1.1+galaxy0,bioconda_recipes/mapseq/cmd/2.1.1,toolshed/mapseq/cmd/2.1.1+galaxy0,github/MAPseq/None/v2.1.1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "openssl",
+            "ncurses",
+            "blis",
+            "gsl",
+            "curl",
+            "readline",
+            "libopenblas",
+            "zlib"
+          ],
+          "description": [
+            "Highthroughput rRNA sequence classification and OTU mapping for metagenomic samples.",
+            "Open source metagenomic 16S/18S read classifier enabling comparative metagenomics.",
+            "Sequence read classification designed to assign taxonomy and OTU classifications."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/mapseq/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/mapseq/README.html"
+            },
+            {
+              "content": "\nMAPseq\n======\nMAPseq is a set of fast and accurate sequence read classification tools \ndesigned to assign taxonomy and OTU classifications to ribosomal RNA sequences. \nThis is done by using a reference set of full-length ribosomal RNA sequences\nfor which known taxonomies are known, and for which a set of high quality\nOTU clusters has been previously generated. For each read, the best guess\nand correspoding confidence in the assignment is shown at each taxonomic and OTU level.\n\nMapseq2biom\n===========\nThis downstream script summaries the mapseq output as an OTU table \n(including taxon information) as reads per OTU. This requires as input \nan OTU to taxon mapping, for the taxonomy used to run the mapseq tool.\n\n\nExample\n-------\n\nMapseq output:\n\n::\n\n\t# mapseq v1.2.3 (Oct  2 2018)\n\t#query\tdbhit\tbitscore\tidentity\tmatches\tmismatches\tgaps\tquery_start\tquery_end\tdbhit_start\tdbhit_end\tstrand\t\tITS2\n\ttest.1\t355527192\t204\t0.9863636493682861\t217\t1\t2\t0\t218\t0\t220\t-\t\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales;f__Didymellaceae;g__Ectophoma;s__Ectophoma_multirostrata\n\ttest.2\t555948006\t248\t0.8478803038597107\t340\t42\t19\t200\t582\t192\t593\t-\t\tsk__Eukaryota;k__Fungi\n\ttest.4\t406352048\t217\t0.9127272963523865\t251\t22\t2\t106\t381\t169\t442\t-\t\tsk__Eukaryota;k__Fungi;p__\n\nOTU to taxon mapping:\n\n::\n\n\t1\tsk__Eukaryota;k__Fungi\n\t2\tsk__Eukaryota;k__Fungi;p__;c__;o__;f__;g__;s__uncultured_fungus\n\t3\tsk__Eukaryota;k__Fungi;p__Ascomycota\n\t4\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales\n\t5\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales;f__Astrosphaeriellaceae;g__Pithomyces\n\t6\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales;f__Coniothyriaceae;g__Coniothyrium\n\t7\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales;f__Didymellaceae\n\t8\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales;f__Didymellaceae;g__Ectophoma\n\t9\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales;f__Didymellaceae;g__Ectophoma;s__Ectophoma_multirostrata\n\t10\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales;f__Didymosphaeriaceae;g__Paraconiothyrium;s__Paraconiothyrium_cyclothyrioides\n\nOTU output:\n\n::\n\n\t# Constructed from biom file\n\t# OTU ID\tlabel\ttaxonomy\n\t1\t2.0\tsk__Eukaryota;k__Fungi\n\t9\t1.0\tsk__Eukaryota;k__Fungi;p__Ascomycota;c__Dothideomycetes;o__Pleosporales;f__Didymellaceae;g__Ectophoma;s__Ectophoma_multirostrata\n\nTaxon output for Krona:\n\n::\n\n\t2\tsk__Eukaryota\tk__Fungi\n\t1\tsk__Eukaryota\tk__Fungi\tp__Ascomycota\tc__Dothideomycetes\to__Pleosporales\tf__Didymellaceae\tg__Ectophoma\ts__Ectophoma_multirostrata\n\nSource\n------\n* `GitHub <https://github.com/EBI-Metagenomics/pipeline-v5/blob/master/tools/RNA_prediction/mapseq2biom/mapseq2biom.pl>`_\n\nLicense\n-------\n* `Apache-2.0 license <https://raw.githubusercontent.com/EBI-Metagenomics/pipeline-v5/master/LICENSE>`_\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jfmrod/MAPseq/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/jfmrod/MAPseq/archive/v2.1.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "mapseq",
+            "MAPseq"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "dual-licensed under GPL-3.0 or BSD 2-clause",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "mapseq",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "MAPseq"
+          ],
+          "output": [],
+          "publication": [
+            "67e6c2454737f09779337106",
+            "67e6c2454737f09779337105",
+            "67c828cc10e2f3aa0b3b7f6e"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jfmrod/MAPseq"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github",
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [
+            "https://github.com/jfmrod/MAPseq/archive/v2.1.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.2.2",
+            "v2.1",
+            "v1.2",
+            "v2.1.1",
+            "v1.2.5",
+            "v2.0alpha",
+            "v1.2.3",
+            "2.1.1+galaxy0",
+            "2.1.1",
+            "v1.2.6"
+          ],
+          "webpage": [
+            "https://github.com/jfmrod/MAPseq"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:mapseq/*_2a5469e9def3ebb8766bc6b895ad5616fc1d56d107b516a31b40e10c45e858f7",
+  "conflict_name": "mapseq/*",
+  "date": "2026-02-17T11:41:49.293913+00:00",
+  "run_id": "20260217T105741Z-1356260-test_15_0"
+}
