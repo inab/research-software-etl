@@ -1,0 +1,180 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/plasmidfinder/cmd/2.1.6",
+        "created_at": "2025-04-02T11:42:52.731890",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python >=3",
+            "kma",
+            "biopython",
+            "tabulate",
+            "cgecore",
+            "blast"
+          ],
+          "description": [
+            "PlasmidFinder allows identification of plasmids in total or partial sequenced isolates of bacteria."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/plasmidfinder/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/plasmidfinder/README.html"
+            }
+          ],
+          "download": [
+            "https://bitbucket.org/genomicepidemiology/plasmidfinder/get/2.1.6.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "plasmidfinder"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": "https://spdx.org/licenses/Apache-2.0.html"
+            }
+          ],
+          "links": [],
+          "name": "plasmidfinder",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67e2dc45ac7ee6cb578912ce"
+          ],
+          "repository": [
+            {
+              "kind": "bitbucket",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://bitbucket.org/genomicepidemiology/plasmidfinder"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bitbucket.org/genomicepidemiology/plasmidfinder/get/2.1.6.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "2.1.6"
+          ],
+          "webpage": [
+            "https://bitbucket.org/genomicepidemiology/plasmidfinder"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:42:52.731890",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/plasmidfinder/cmd/2.1.6",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/plasmidfinder/cmd/2.1.6+galaxy1,toolshed/plasmidfinder/cmd/2.1.6+galaxy1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Plasmid identification in bacteria."
+          ],
+          "documentation": [
+            {
+              "content": "\n      **What it does**\n      PlasmidFinder characterize plasmid sequences into whole genome sequencing.\n      It is based on the [plasmidfinder database](https://bitbucket.org/genomicepidemiology/plasmidfinder_db/) with hundreds sequences.\n      **Input**\n      PlasmidFinder takes raw data (with a k-mer analysisi) as reads or genome assembly (blastn analysis) to search plasmids.\n      **Output**\n      Some output files are availables\n      - A fasta file with all available sequences detected in the genome\n      - A fasta file with all plasmid sequences from the database\n      - A summary of the analysis in tabular format\n      - A Raw result file in text format\n      - A JSON file could be use for other boinformatic analysis\n      - A log file with analysis parameters\n\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PlasmidFinder"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "plasmidfinder",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c832ca10e2f3aa0b3bb472"
+          ],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.1.6+galaxy1"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:plasmidfinder/cmd_64eda000f87cc5380fcb13243ab51cdec275b3cd2ad6d58be3fe70f4e23ba596",
+  "conflict_name": "plasmidfinder/cmd",
+  "date": "2026-02-18T16:18:44.877049+00:00",
+  "run_id": "20260218T153807Z-9c11cc6-test_15_0"
+}
