@@ -1,0 +1,289 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/ngsreports/lib/None",
+        "created_at": "2025-04-02T12:57:18.930788",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A Bioconductor package for managing FastQC reports and other NGS related log files.\n\nThe shiny app that accompanies the ngsReports R package."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ngsReports"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "ngsreports",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82d2d10e2f3aa0b3b9bea"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database management",
+              "uri": "http://edamontology.org/topic_3489",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/UofABioinformaticsHub/shinyNgsreports"
+          ]
+        },
+        "id": "biotools/ngsreports/lib/None",
+        "last_updated_at": "2025-09-18T13:09:08.404672",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/ngsreports/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-ngsreports/lib/2.4.0,bioconductor/ngsreports/lib/2.9.0",
+        "data": {
+          "authors": [
+            {
+              "email": "stephen.pederson.au@gmail.com",
+              "maintainer": false,
+              "name": "Stevie Pederson",
+              "orcid": "https://orcid.org/0000-0001-8197-3303",
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "christopher.ward@adelaide.edu.au",
+              "maintainer": false,
+              "name": "Christopher Ward",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "tothuhien@gmail.com",
+              "maintainer": false,
+              "name": "Thu-Hien To",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zoo",
+            "rmarkdown",
+            "r-base",
+            "lubridate",
+            "r-dt",
+            "r-rmarkdown",
+            "r-tidyr",
+            "r-zoo",
+            "r-dplyr >=1.1.0",
+            "grDevices (>= 3.6.0)",
+            "stats",
+            "bioconductor-biostrings >=2.70.0,<2.71.0",
+            "R (>= 4.2.0)",
+            "dplyr (>= 1.1.0)",
+            "r-tibble >=1.3.1",
+            "r-rlang",
+            "r-plotly >=4.9.4",
+            "BiocGenerics",
+            "r-pander",
+            "Biostrings",
+            "r-lifecycle",
+            "methods",
+            "r-patchwork >=1.1.1",
+            "tidyselect (>= 0.2.3)",
+            "patchwork (>= 1.1.1)",
+            "grid",
+            "lifecycle",
+            "utils",
+            "checkmate",
+            "ggplot2 (>= 3.5.0)",
+            "stringr",
+            "jsonlite",
+            "r-ggdendro",
+            "r-forcats",
+            "plotly (>= 4.9.4)",
+            "tibble (>= 1.3.1)",
+            "reshape2",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "r-readr",
+            "scales",
+            "forcats",
+            "r-tidyselect >=0.2.3",
+            "r-stringr",
+            "r-scales",
+            "ggdendro",
+            "rlang",
+            "r-jsonlite",
+            "tidyr",
+            "r-reshape2",
+            "r-ggplot2 >=3.4.0",
+            "r-checkmate",
+            "r-lubridate"
+          ],
+          "description": [
+            "This package provides methods and object classes for parsing FastQC reports and output summaries from other NGS tools into R. As well as parsing files, multiple plotting methods have been implemented for visualising the parsed data. Plots can be generated as static ggplot objects or interactive plotly objects.",
+            "This package provides methods and object classes for parsing FastQC reports and output summaries from other NGS tools into R.  As well as parsing files, multiple plotting methods have been implemented for visualising the parsed data.  Plots can be generated as static ggplot objects or interactive plotly objects."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-ngsreports/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-ngsreports/README.html"
+            }
+          ],
+          "download": [
+            "https://depot.galaxyproject.org/software/bioconductor-ngsreports/bioconductor-ngsreports_2.4.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/ngsReports/ngsReports_2.4.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/ngsReports_2.4.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/ngsReports_2.4.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-ngsreports",
+            "ngsReports"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "",
+              "url": null
+            },
+            {
+              "name": "LGPL-3.0-only",
+              "url": "https://spdx.org/licenses/LGPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-ngsreports",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "ngsreports"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/ngsReports"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/smped/ngsReports"
+            }
+          ],
+          "source": [
+            "bioconductor",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://depot.galaxyproject.org/software/bioconductor-ngsreports/bioconductor-ngsreports_2.4.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/ngsReports/ngsReports_2.4.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/ngsReports_2.4.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/ngsReports_2.4.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "2.9.0",
+            "2.4.0"
+          ],
+          "webpage": [
+            "https://github.com/smped/ngsReports",
+            "https://bioconductor.org/packages/3.18/bioc/html/ngsReports.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:ngsreports/lib_433d3581b262ddfdcc477b02f2c1fcf0bf0ee3a6acc94466d239e5d1d1e88ab1",
+  "conflict_name": "ngsreports/lib",
+  "date": "2026-02-18T15:53:56.146689+00:00",
+  "run_id": "20260218T153807Z-9c11cc6-test_15_0"
+}
