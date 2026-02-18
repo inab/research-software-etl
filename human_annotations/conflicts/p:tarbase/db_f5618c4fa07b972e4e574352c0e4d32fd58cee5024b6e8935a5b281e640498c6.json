@@ -1,0 +1,274 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/tarbase/db/8",
+        "created_at": "2025-04-02T12:50:17.514069",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Contact Form",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://diana.imis.athena-innovation.gr/DianaTools/index.php?r=site/contact"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Reference database devoted to the indexing of experimentally supported microRNA (miRNA) targets. Comprehensive cataloging of the miRNA interactome that enables the browsing of interactions through different filtering combinations."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://carolina.imis.athena-innovation.gr/diana_tools/web/index.php?r=tarbasev8%2Fhelp"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TarBase v8"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "tarbase",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "miRNA target prediction",
+              "uri": "http://edamontology.org/operation_0463",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Validation",
+              "uri": "http://edamontology.org/operation_2428",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Prediction and recognition",
+              "uri": "http://edamontology.org/operation_2423",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82b3910e2f3aa0b3b93ec",
+            "67c82b1f10e2f3aa0b3b9324"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microarray experiment",
+              "uri": "http://edamontology.org/topic_3518",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Data submission",
+              "uri": "http://edamontology.org/topic_0219",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "db",
+          "version": [
+            "8"
+          ],
+          "webpage": [
+            "http://www.microrna.gr/tarbase"
+          ]
+        },
+        "id": "biotools/tarbase/db/8",
+        "last_updated_at": "2025-09-18T13:02:06.521795",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/tarbase/db/8",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/tarbase/db/None",
+        "created_at": "2025-04-02T12:50:17.552052",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "TarBase hosts detailed information for each miRNA:gene interaction, ranging from miRNA-and gene-related facts to information specific to their interaction, the experimental validation methodologies and their outcomes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://diana.imis.athena-innovation.gr/DianaTools/index.php?r=tarbase/index"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TarBase"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "tarbase",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "miRNA target prediction",
+              "uri": "http://edamontology.org/operation_0463",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Validation",
+              "uri": "http://edamontology.org/operation_2428",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Prediction and recognition",
+              "uri": "http://edamontology.org/operation_2423",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82b1f10e2f3aa0b3b9324"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microarray experiment",
+              "uri": "http://edamontology.org/topic_3518",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Data submission",
+              "uri": "http://edamontology.org/topic_0219",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "db",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://diana.imis.athena-innovation.gr/DianaTools/index.php?r=tarbase/index"
+          ]
+        },
+        "id": "biotools/tarbase/db/None",
+        "last_updated_at": "2025-09-18T13:02:06.570120",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/tarbase/db/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:tarbase/db_f5618c4fa07b972e4e574352c0e4d32fd58cee5024b6e8935a5b281e640498c6",
+  "conflict_name": "tarbase/db",
+  "date": "2026-02-18T17:30:10.370983+00:00",
+  "run_id": "20260218T153807Z-9c11cc6-test_15_0"
+}
