@@ -1,0 +1,665 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/mason/cmd/None",
+        "created_at": "2025-04-02T12:05:00.689703",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "manuel.holtgrewe@fu-berlin.de",
+              "maintainer": false,
+              "name": "Manuel Holtgrewe",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A fast, feature-rich and hackable read simulator for the simulation of NGS and Sanger data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/seqan/seqan/tree/master/apps/mason2"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Mason"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "mason",
+          "operating_system": [
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Modelling and simulation",
+              "uri": "http://edamontology.org/operation_2426",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/operation_2429",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a106d3b8acd1a2f9b4bb"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.seqan.de/apps/mason/"
+          ]
+        },
+        "id": "biotools/mason/cmd/None",
+        "last_updated_at": "2025-09-18T12:51:45.333922",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mason/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/seqan/workbench/2.0.1,bioconda_recipes/yara/cmd/1.0.2,bioconda_recipes/gustaf/cmd/1.0.8,bioconda_recipes/micro_razers/cmd/1.0.6,bioconda_recipes/mason/cmd/2.0.9,bioconda_recipes/sak/cmd/0.4.6,bioconda_recipes/seqan_tcoffee/cmd/1.13.8,bioconda_recipes/stellar/cmd/1.4.9,biotools/seqan/workbench/2.4.0,biotools/seqan/workbench/3.0.2,biotools/seqan/workbench/3.0.3,biotools/seqan/workbench/3.1.0,github/seqan/None/seqan-v2.5.0rc3,sourceforge/seqan/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Freie Universit\u00e4t Berlin",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Center for Integrative Bioinformatics (CiBi)",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "cibi",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "seqan-dev@lists.fu-berlin.de",
+              "maintainer": false,
+              "name": "Mailing list answered by the developers",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bzip2",
+            "zlib"
+          ],
+          "description": [
+            "Seqan is a C++ template library of efficient data structures and algorithms for sequence analysis.",
+            "Gustaf is a tool primarily designed for multi-split mapping of sequencing reads.",
+            "SeqAn::T-Coffee - Multiple Sequence Alignment.",
+            "Mason is a collection of tools for the simulation of biological sequences.",
+            "An open source C++ library of efficient algorithms and data structures for the analysis of sequences with the focus on biological data. Our library applies a unique generic design that guarantees high performance, generality, extensibility, and integration with other libraries. The library is easy to use and simplifies the development of new software tools with a minimal loss of performance. Additionally, it includes several ready-made command line tools for common tasks in sequence analysis.",
+            "This tool allows one to cut sequences and parts of sequences out of sequence files.",
+            "SeqAn's official repository.",
+            "Yara is an exact tool for aligning DNA sequencing reads to reference genomes.",
+            "MicroRazerS - Rapid Alignment of Small RNA Reads.",
+            "STELLAR is a tool for finding pairwise local alignments between long genomic or very many short sequences."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "http://www.seqan.de/"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://seqan.readthedocs.org/en/master/index.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/yara/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/yara/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gustaf/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gustaf/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/micro_razers/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/micro_razers/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/mason/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/mason/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/sak/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/sak/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/seqan_tcoffee/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/seqan_tcoffee/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.seqan.de/apps/seqan-t-coffee/"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/stellar/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/stellar/README.html"
+            },
+            {
+              "content": null,
+              "type": "api",
+              "url": "https://docs.seqan.de/"
+            },
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "https://www.seqan.de/"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://seqan.readthedocs.org/en/master/index.html"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/seqan/seqan/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/seqan/seqan/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/seqan/seqan/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/seqan/seqan/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "http://packages.seqan.de/seqan-src/seqan-src-2.1.1.tar.gz",
+            "https://sourceforge.net/projects/seqan",
+            "https://github.com/seqan/seqan/archive/seqan-v2.4.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "SAM",
+              "uri": "http://edamontology.org/format_2573",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence",
+                "uri": "http://edamontology.org/data_2044",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence",
+                "uri": "http://edamontology.org/data_2044",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ-like format (text)",
+              "uri": "http://edamontology.org/format_2182",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence",
+                "uri": "http://edamontology.org/data_2044",
+                "vocabulary": "EDAM"
+              },
+              "term": "EMBL-like (text)",
+              "uri": "http://edamontology.org/format_2181",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence",
+                "uri": "http://edamontology.org/data_2044",
+                "vocabulary": "EDAM"
+              },
+              "term": "GenBank-like format (text)",
+              "uri": "http://edamontology.org/format_2205",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "yara",
+            "stellar",
+            "seqan_tcoffee",
+            "gustaf",
+            "mason",
+            "sak",
+            "SeqAn",
+            "seqan",
+            "micro_razers"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause",
+              "url": null
+            },
+            {
+              "name": "https://raw.githubusercontent.com/seqan/seqan/develop/apps/yara/",
+              "url": null
+            },
+            {
+              "name": "https://github.com/seqan/seqan/tree/master/apps/gustaf/",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            },
+            {
+              "name": "https://github.com/seqan/seqan/tree/master/apps/mason2/",
+              "url": null
+            },
+            {
+              "name": "https://github.com/seqan/seqan/tree/master/apps/sak/",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0-or-later",
+              "url": "https://spdx.org/licenses/GPL-3.0-or-later.html"
+            },
+            {
+              "name": "LGPLv3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "seqan",
+          "operating_system": [
+            "BSD",
+            "macOS",
+            "ChromeOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/operation_2403",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Nucleic acid sequence analysis",
+              "uri": "http://edamontology.org/operation_2478",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence alignment",
+              "uri": "http://edamontology.org/operation_0292",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "yara",
+            "seqan_tcoffee",
+            "gustaf",
+            "mason",
+            "sak",
+            "stellar",
+            "micro_razers"
+          ],
+          "output": [],
+          "publication": [
+            "67c7a106d3b8acd1a2f9b4bb",
+            "67c7a6a1d3b8acd1a2f9b60f",
+            "67c82abd10e2f3aa0b3b9024",
+            "67c82c8a10e2f3aa0b3b9788",
+            "67c82c4010e2f3aa0b3b9728"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/seqan/seqan"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/seqan"
+            },
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/seqan"
+            }
+          ],
+          "source": [
+            "sourceforge",
+            "github",
+            "bioconda_recipes",
+            "biotools"
+          ],
+          "source_code": [
+            "http://packages.seqan.de/seqan-src/seqan-src-2.1.1.tar.gz",
+            "https://github.com/seqan/seqan/archive/seqan-v2.4.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "de.NBI",
+            "SeqAn",
+            "KNIME"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Comparative genomics",
+              "uri": "http://edamontology.org/topic_0797",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Software engineering",
+              "uri": "http://edamontology.org/topic_3372",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "cpp14",
+              "uri": "https://github.com/topics/cpp14",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinfomatics",
+              "uri": "https://github.com/topics/bioinfomatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "high-performance",
+              "uri": "https://github.com/topics/high-performance",
+              "vocabulary": ""
+            },
+            {
+              "term": "simd",
+              "uri": "https://github.com/topics/simd",
+              "vocabulary": ""
+            },
+            {
+              "term": "sequence-alignments",
+              "uri": "https://github.com/topics/sequence-alignments",
+              "vocabulary": ""
+            },
+            {
+              "term": "alignment",
+              "uri": "https://github.com/topics/alignment",
+              "vocabulary": ""
+            },
+            {
+              "term": "bwt",
+              "uri": "https://github.com/topics/bwt",
+              "vocabulary": ""
+            },
+            {
+              "term": "indexing",
+              "uri": "https://github.com/topics/indexing",
+              "vocabulary": ""
+            },
+            {
+              "term": "suffixarray",
+              "uri": "https://github.com/topics/suffixarray",
+              "vocabulary": ""
+            },
+            {
+              "term": "htslib",
+              "uri": "https://github.com/topics/htslib",
+              "vocabulary": ""
+            },
+            {
+              "term": "sam-bam",
+              "uri": "https://github.com/topics/sam-bam",
+              "vocabulary": ""
+            },
+            {
+              "term": "fasta",
+              "uri": "https://github.com/topics/fasta",
+              "vocabulary": ""
+            },
+            {
+              "term": "fastq-format",
+              "uri": "https://github.com/topics/fastq-format",
+              "vocabulary": ""
+            },
+            {
+              "term": "blast",
+              "uri": "https://github.com/topics/blast",
+              "vocabulary": ""
+            },
+            {
+              "term": "seqan",
+              "uri": "https://github.com/topics/seqan",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd",
+            "workbench"
+          ],
+          "version": [
+            "seqan-v2.3.0",
+            "3.1.0",
+            "seqan-v2.1.1",
+            "seqan-v2.5.0rc3",
+            "seqan-v2.5.0rc1",
+            "0.4.6",
+            "seqan-v2.1.0",
+            "seqan-v2.0.1",
+            "seqan-v2.3.1",
+            "seqan-v2.5.0rc2",
+            "2.0.9",
+            "seqan-v1.4.2",
+            "2.0.1",
+            "seqan-v2.2.0",
+            "3.0.3",
+            "1.0.6",
+            "2.4.0",
+            "seqan-v2.0.0",
+            "3.0.2",
+            "1.0.8",
+            "seqan-v2.0.2",
+            "seqan-v2.3.2",
+            "1.0.2",
+            "1.4.9",
+            "seqan-v2.0.0-rc1",
+            "1.13.8",
+            "seqan-v2.4.0"
+          ],
+          "webpage": [
+            "https://github.com/seqan/seqan/tree/seqan-v2.1.1/apps/micro_razers",
+            "https://github.com/seqan/seqan/tree/master/apps/gustaf/README.rst",
+            "http://www.seqan.de/",
+            "https://github.com/seqan/seqan/tree/master/apps/mason2/README",
+            "https://github.com/seqan/seqan/tree/master/apps/stellar/README",
+            "https://github.com/seqan/seqan/blob/develop/apps/yara/README.rst",
+            "http://www.seqan.de/apps/seqan-t-coffee/",
+            "https://github.com/seqan/seqan/tree/master/apps/sak/README",
+            "https://www.seqan.de/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:sak/*_39f8da7351f89e7bc22c3fe64f7ef61e280049d863a748bcbdfcae60891949e2",
+  "conflict_name": "sak/*",
+  "date": "2026-02-18T17:28:09.619735+00:00",
+  "run_id": "20260218T153807Z-9c11cc6-test_15_0"
+}
