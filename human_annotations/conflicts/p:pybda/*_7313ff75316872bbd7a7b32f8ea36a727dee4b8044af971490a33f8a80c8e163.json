@@ -1,0 +1,287 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/pybda/cmd/None",
+        "created_at": "2025-04-02T12:26:07.281322",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A command-line tool for analysis of big biological data sets for distributed HPC clusters."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "faq",
+              "url": "https://pybda.readthedocs.io/en/latest/faq.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "PyBDA"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "pybda",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Analysis",
+              "uri": "http://edamontology.org/operation_2945",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Principal component visualisation",
+              "uri": "http://edamontology.org/operation_2939",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82a2610e2f3aa0b3b8b39"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Omics",
+              "uri": "http://edamontology.org/topic_3391",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pybda.readthedocs.io/en/latest/#"
+          ]
+        },
+        "id": "biotools/pybda/cmd/None",
+        "last_updated_at": "2025-09-18T12:56:34.848541",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pybda/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/pybda/cmd/0.1.0,bioconda_recipes/pybda/lib/0.1.0,github/pybda/None/v0.1.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "snakemake >=5.2.2",
+            "pyspark 2.4.0",
+            "python 3.6",
+            "click >=6.7",
+            "sparkhpc >=0.3.post4",
+            "numpy >=1.15.0",
+            "seaborn",
+            "matplotlib",
+            "joypy >=0.1.10",
+            "pandas >=0.23.3",
+            "scipy >=1.0.0"
+          ],
+          "description": [
+            ":computer::computer::computer: A commandline tool for analysis of big biological data sets for distributed HPC clusters.",
+            "Big biological data analytics powered by Apache Spark."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pybda/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pybda/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/cbg-ethz/pybda"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/cbg-ethz/pybda/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/cbg-ethz/pybda/blob/main/VERSIONS.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/cbg-ethz/pybda/blob/main/code-of-conduct.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/cbg-ethz/pybda/blob/main/docs/requirements.txt"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/p/pybda/pybda-0.1.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pybda"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "pybda",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/cbg-ethz/pybda"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/p/pybda/pybda-0.1.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "apache-spark",
+              "uri": "https://github.com/topics/apache-spark",
+              "vocabulary": ""
+            },
+            {
+              "term": "big-data",
+              "uri": "https://github.com/topics/big-data",
+              "vocabulary": ""
+            },
+            {
+              "term": "machine-learning",
+              "uri": "https://github.com/topics/machine-learning",
+              "vocabulary": ""
+            },
+            {
+              "term": "snakemake",
+              "uri": "https://github.com/topics/snakemake",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "v0.0.6",
+            "v0.0.4",
+            "v0.0.5",
+            "0.1.0",
+            "v0.1.0"
+          ],
+          "webpage": [
+            "https://github.com/cbg-ethz/pybda",
+            "https://pybda.rtfd.io/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pybda/*_7313ff75316872bbd7a7b32f8ea36a727dee4b8044af971490a33f8a80c8e163",
+  "conflict_name": "pybda/*",
+  "date": "2026-02-18T16:46:23.928480+00:00",
+  "run_id": "20260218T153807Z-9c11cc6-test_15_0"
+}
