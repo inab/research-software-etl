@@ -69,18 +69,32 @@ def _normalize(obj: Any) -> Any:
 
 
 def extract_ids(obj):
-    new_obj = {
-        'remaining' : [ item['id'] for item in obj['remaining'] ],
-        'disconnected': [ item['id'] for item in obj['disconnected'] ]
-    }
+    if len(obj['remaining'])>0:
+        new_obj = {
+            'remaining' : normalize_ids(obj['remaining'][0]['id']),
+            'disconnected': obj['disconnected'][0]['id']
+        }
+    else:
+        new_obj = {
+            'remaining' : obj['disconnected'][0]['id'],
+            'disconnected': obj['disconnected'][1]['id']
+        }
+        
     return new_obj
 
+def normalize_ids(original_id):
+    individual_ids = original_id.split(',')
+    individual_ids.sort()
+    result = ",".join(individual_ids)
+    return result
 
 def stable_hash(obj: Any) -> str:
     obj = extract_ids(obj)
     normalized = _normalize(obj)
     canonical = _canonical_dumps(normalized)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
 
 def load_conflict_blocks(paths: Iterable[str]) -> Dict[str, Any]:
     """

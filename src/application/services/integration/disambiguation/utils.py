@@ -54,15 +54,11 @@ def extract_ids(obj):
     }
     return new_obj
 
-
 def normalize_ids(original_id):
     individual_ids = original_id.split(',')
     individual_ids.sort()
     result = ",".join(individual_ids)
     return result
-
-
-
 
 def stable_hash(obj: Any) -> str:
     obj = extract_ids(obj)
