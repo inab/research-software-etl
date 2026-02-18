@@ -1,0 +1,325 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/metacoag/cmd/None",
+        "created_at": "2025-04-02T12:05:22.705976",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Vijini Mallawaarachchi",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Yu Lin",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "MetaCoAG is a metagenomic contig binning tool that makes use of the connectivity information found in assembly graphs, apart from the composition and coverage information. MetaCoAG makes use of single-copy marker genes along with a graph matching technique and a label propagation technique to bin contigs. MetaCoAG is tested on contigs obtained from next-generation sequencing (NGS) data. Currently MetaCoAG supports contigs assembled using metaSPAdes and MEGAHIT."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MetaCoAG"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "metacoag",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Essential dynamics",
+              "uri": "http://edamontology.org/operation_3891",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8346510e2f3aa0b3bbd84"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/Vini2/MetaCoAG"
+          ]
+        },
+        "id": "biotools/metacoag/cmd/None",
+        "last_updated_at": "2025-09-18T12:51:24.392326",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/metacoag/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/metacoag/cmd/1.1.4,github/MetaCoAG/None/v1.2.2",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "click",
+            "cairocffi",
+            "hmmer",
+            "biopython",
+            "fraggenescan",
+            "tqdm",
+            "python-igraph",
+            "scipy",
+            "pandas",
+            "numpy",
+            "networkx",
+            "python"
+          ],
+          "description": [
+            "\ud83d\udea6\ud83e\uddec Binning Metagenomic Contigs via Composition, Coverage and Assembly Graphs.",
+            "MetaCoAG is a metagenomic contig binning tool that makes use of the connectivity information found in assembly graphs."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/metacoag/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/metacoag/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/metagentools/MetaCoAG"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "citation",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/docs/citation.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "installation",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/docs/install.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/docs/preprocess.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/docs/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "usage",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/docs/usage.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/metagentools/MetaCoAG/blob/main/docs/workflow.md"
+            }
+          ],
+          "download": [
+            "https://github.com/metagentools/MetaCoAG/archive/v1.1.4.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MetaCoAG",
+            "metacoag"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "metacoag",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "MetaCoAG"
+          ],
+          "output": [],
+          "publication": [
+            "67e2dc02ac7ee6cb5789128f"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/metagentools/MetaCoAG"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/metagentools/MetaCoAG/archive/v1.1.4.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "binning",
+              "uri": "https://github.com/topics/binning",
+              "vocabulary": ""
+            },
+            {
+              "term": "metagenomics",
+              "uri": "https://github.com/topics/metagenomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "contigs",
+              "uri": "https://github.com/topics/contigs",
+              "vocabulary": ""
+            },
+            {
+              "term": "assembly-graphs",
+              "uri": "https://github.com/topics/assembly-graphs",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.1.4",
+            "v1.1.1",
+            "v1.1.2",
+            "v1.1",
+            "v1.0",
+            "v1.2.0",
+            "v1.1.3",
+            "v0.1",
+            "v0.2",
+            "v1.2.2",
+            "1.1.4",
+            "v1.2.1"
+          ],
+          "webpage": [
+            "https://github.com/metagentools/MetaCoAG",
+            "https://metacoag.readthedocs.io/en/stable/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:metacoag/*_8707ae15c9c2477adb8ba6457a8aaa3ade5c0824f79940ab3b0af7f468eb7051",
+  "conflict_name": "metacoag/*",
+  "date": "2026-02-18T16:57:46.473727+00:00",
+  "run_id": "20260218T153807Z-9c11cc6-test_15_0"
+}
