@@ -1,0 +1,307 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/longstitch/cmd/None",
+        "created_at": "2025-04-02T12:03:21.099272",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "lcoombe@bcgsc.ca",
+              "maintainer": false,
+              "name": "Lauren Coombe",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Inanc Birol",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Janet X Li",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Theodora Lo",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Johnathan Wong",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Vladimir Nikolic",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Ren\u00e9 L Warren",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A genome assembly correction and scaffolding pipeline using long reads."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "LongStitch"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "longstitch",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Scaffolding",
+              "uri": "http://edamontology.org/operation_3216",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "De-novo assembly",
+              "uri": "http://edamontology.org/operation_0524",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping assembly",
+              "uri": "http://edamontology.org/operation_0523",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8335110e2f3aa0b3bb8d0"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/bcgsc/longstitch"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/bcgsc/longstitch"
+          ]
+        },
+        "id": "biotools/longstitch/cmd/None",
+        "last_updated_at": "2025-09-18T12:49:48.877767",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/longstitch/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/longstitch/cmd/1.0.5,github/LongStitch/None/v1.0.5",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "samtools",
+            "ntlink",
+            "links ==1.8.7",
+            "tigmint >=1.2.4",
+            "python",
+            "arcs >=1.2.2",
+            "make"
+          ],
+          "description": [
+            "Correct and scaffold assemblies using long reads.",
+            "A genome assembly correction and scaffolding pipeline using long reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/longstitch/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/longstitch/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bcgsc.ca/resources/software/longstitch"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/bcgsc/LongStitch/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/bcgsc/LongStitch/releases/download/v1.0.5/longstitch-1.0.5.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "LongStitch",
+            "longstitch"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "longstitch",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "LongStitch"
+          ],
+          "output": [],
+          "publication": [
+            "67c8335110e2f3aa0b3bb8d0"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/bcgsc/LongStitch"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/bcgsc/LongStitch/releases/download/v1.0.5/longstitch-1.0.5.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.0.4",
+            "v1.0.5",
+            "v1.0.0",
+            "v1.0.1",
+            "v1.0.3",
+            "1.0.5",
+            "v1.0.2"
+          ],
+          "webpage": [
+            "https://bcgsc.ca/resources/software/longstitch"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:longstitch/*_bd0a0006998b819d0325dd9f5b8e2c00c920926a7fb42b1c6db8d15466c42039",
+  "conflict_name": "longstitch/*",
+  "date": "2026-02-18T17:00:15.702496+00:00",
+  "run_id": "20260218T153807Z-9c11cc6-test_15_0"
+}
