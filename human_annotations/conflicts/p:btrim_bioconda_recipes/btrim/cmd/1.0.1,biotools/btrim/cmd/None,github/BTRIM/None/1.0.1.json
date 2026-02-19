@@ -1,0 +1,204 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/btrim/cmd/None",
+        "created_at": "2025-04-02T11:48:54.002212",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "yong.kong@yale.edu",
+              "maintainer": false,
+              "name": "Yong Kong",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Fast and lightweight software to trim adapters and low quality regions in reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://graphics.med.yale.edu/trim/readme"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Btrim"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "btrim",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a779d3b8acd1a2f9b73d"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://graphics.med.yale.edu/trim/"
+          ]
+        },
+        "id": "biotools/btrim/cmd/None",
+        "last_updated_at": "2025-09-18T12:36:35.717348",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/btrim/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/btrim/cmd/1.0.1,github/BTRIM/None/1.0.1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "De Bruijn graph TRIMming tool.",
+            "This tool is made to remove \"tips\" (short dead ends) from a compacted de Bruijn graph and more generally to remove sequencing errors. Used in Bcool a short read corrector (https://arxiv.org/abs/1711.03336)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/btrim/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/btrim/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Malfoy/BTRIM/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/Malfoy/BTRIM/archive/1.0.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BTRIM",
+            "btrim"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "AGPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "btrim",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "BTRIM"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Malfoy/BTRIM"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/Malfoy/BTRIM/archive/1.0.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0.0",
+            "1.0.1"
+          ],
+          "webpage": [
+            "https://github.com/Malfoy/BTRIM"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:btrim_bioconda_recipes/btrim/cmd/1.0.1,biotools/btrim/cmd/None,github/BTRIM/None/1.0.1",
+  "conflict_name": "btrim",
+  "date": "2026-02-19T16:41:13.542588+00:00",
+  "run_id": "20260219T160856Z-4c70822-test_16_0"
+}
