@@ -86,6 +86,7 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
         
         # ------------- ID ----------------
         n+= 1
+        conflict_name=conflict_name.split('/')[0]
         pair_stable_id = f"p:{conflict_name}_{stable_hash(conflict_pair)}"
 
 

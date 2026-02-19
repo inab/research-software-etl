@@ -163,6 +163,7 @@ def fill_human_conflicts() -> None:
                 #pprint(conflict_block)
                 payload['ts'] = datetime.datetime.now()
                 payload['conflict_name'] = pair_id
+                pair_id = pair_id.split('/')[0]
                 payload['pair_id'] = f"p:{pair_id}_{stable_hash(conflict_block)}"
                 #payload['pair_id'] = f"p:{pair_id}"
                 payload['conflict'] = conflict_block
