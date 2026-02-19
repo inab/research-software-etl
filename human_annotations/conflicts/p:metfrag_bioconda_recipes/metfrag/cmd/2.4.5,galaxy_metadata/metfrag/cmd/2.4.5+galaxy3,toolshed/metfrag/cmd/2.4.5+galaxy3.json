@@ -1,0 +1,167 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/metfrag/cmd/2.4.5",
+        "created_at": "2025-04-02T11:54:17.526268",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "openjdk >=7",
+            "zip",
+            "unzip",
+            "parallel"
+          ],
+          "description": [
+            "MetFrag is a freely available software for the annotation of high precision tandem mass spectra of metabolites which is a first and critical step for the identification of a molecular structure. Candidate molecules of different databases are fragmented in silico and matched against mass to charge values. A score calculated using the fragment peak matches gives hints to the quality of the candidate spectrum assignment."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/metfrag/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/metfrag/README.html"
+            }
+          ],
+          "download": [
+            "http://msbi.ipb-halle.de/~cruttkie/metfrag/MetFrag2.4.5-CL.jar"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "metfrag"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "LGPL-2.1-or-later",
+              "url": "https://spdx.org/licenses/LGPL-2.1-or-later.html"
+            }
+          ],
+          "links": [],
+          "name": "metfrag",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "http://msbi.ipb-halle.de/~cruttkie/metfrag/MetFrag2.4.5-CL.jar"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "2.4.5"
+          ],
+          "webpage": [
+            "http://c-ruttkies.github.io/MetFrag/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:54:17.526268",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/metfrag/cmd/2.4.5",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/metfrag/cmd/2.4.5+galaxy3,toolshed/metfrag/cmd/2.4.5+galaxy3",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "In silico fragmentor for compound annotation of mass spectrometry fragmentation spectra."
+          ],
+          "documentation": [
+            {
+              "content": "\n-------\nMetFrag\n-------\n\nDescription\n-----------\n\nMetFrag is a freely available software for the annotation of high precision tandem mass spectra of metabolites which is\na first and critical step for the identification of a molecule's structure. Candidate molecules of different databases\nare fragmented \"in silico\" and matched against mass to charge values. A score calculated using the fragment peak\nmatches gives hints to the quality of the candidate spectrum assignment.\n\nWebsite: http://ipb-halle.github.io/MetFrag/\n\nParameters\n----------\n\n**\\1. MSP file**\n\nMSP file created using *Create MSP* tool\n\n**\\2a. MetFragDatabaseType (public databases)**\n\n* PubChem\n\n* KEGG\n\n\n**\\2b. MetFragDatabaseType (local CSV file database)**\n\n\nCustom database file in CSV format with the following structure:\n\n+-------------+------------------+----------+---------------------------------------------+----------------------+---+\n| Identifier  | MonoisotopicMass | SMILES   | InChI                                       | Name                 |...|\n+-------------+------------------+----------+---------------------------------------------+----------------------+---+\n| HMDB0000123 | 75.03202841      | NCC(O)=O | InChI=1S/C2H5NO2/c3-1-2(4)5/h1,3H2,(H,4,5)  | Glycine              |...|\n+-------------+------------------+----------+---------------------------------------------+----------------------+---+\n| HMDB0002151 | 78.0139355       | CS(C)=O  | InChI=1S/C2H6OS/c1-4(2)3/h1-2H3             | Dimethyl sulfoxide   |...|\n+-------------+------------------+----------+---------------------------------------------+----------------------+---+\n| ...         | ...              | ...      | ...                                         | ...                  |...|\n+-------------+------------------+----------+---------------------------------------------+----------------------+---+\n\n\nTable continued:\n\n+---+------------------+-----------------------------+------------------+------------+-------------+\n|...| MolecularFormula | InChIKey                    | InChIKey1        | InChIKey2  | InChIKey3   |\n+---+------------------+-----------------------------+------------------+------------+-------------+\n|...| C2H5NO2          | DHMQDGOQFOQNFH-UHFFFAOYSA-N | DHMQDGOQFOQNFH   | UHFFFAOYSA | N           |\n+---+------------------+-----------------------------+------------------+------------+-------------+\n|...| C2H6OS           | IAZDPXIOMUYVGZ-UHFFFAOYSA-N | IAZDPXIOMUYVGZ   | UHFFFAOYSA | N           |\n+---+------------------+-----------------------------+------------------+------------+-------------+\n|...| ...              | ...                         | ...              | ...        | ...         |\n+---+------------------+-----------------------------+------------------+------------+-------------+\n\n\n\n**\\2b. MetFragDatabaseType MetChem**\n\nMetChem is a modified PubChem database and can be used in replace of PubChem\nfor performing API calls to the public PubChem instance.\n\n**\\3. Database Search Relative Mass Deviation - ppm**\n\nA value in ppm that defines the deviation of theoretical masses in the database vs. the measured masses.\n\n**\\4. Fragment Peak Match Relative Mass Deviation - ppm**\n\nRelative mass deviation in ppm of theoretical fragment peaks vs. measured fragment peaks.\n\n**\\5. Fragment Peak Match Absolute Mass Deviation (Da)**\n\nAbsolute mass deviation in Dalton of theoretical fragment peaks vs. measured fragment peaks.\n\n**\\6. Polarity**\n\nThe polarity used for the mode of acquisition.\n\n**\\7. Schema**\n\nThe Schema used by the MSP file (e.g. generic MSP format or MassBank format)\n\n**\\8. Suspect list**\n\nChoose whether to include a file containing a list of suspects.\n\n**\\9. MetFrag Score Types**\n\nThe type of scores MetFrac is using for the calculations. Please do not change the values unless you know what you are doing!\n\n**\\10. MetFrag Score Weights**\n\nThe weights of the different score types, separated with a comma and without whitespaces. 1.0 means 100%.\n\n**\\11. MetFrag Database Type**\n\nDatabase to choose from.\n\n**\\12. minMSMSpeaks**\n\nMinimum MS/MS peaks within a MS/MS spectra to be used for the MetFrag calculation\n\n**\\13. PreProcessFilter**\n\nVarious filters can be performed on the potential compounds prior to predicting the in silico spectra\n\n**\\14. PostProcessFilter**\n\nTo make the output more manageble results below certain criteria can be removed from the various filters can be\nperformed on the potential compounds prior to predicting the in silico spectra\n\nOutput\n-------\n\nThese columns are derived from any metadata in the MSP input file (additional columns can included if they are recorded in the MSP file)\n\n+-------------+--------------------------------------------+---+\n| adduct      | name                                       |...|\n+-------------+--------------------------------------------+---+\n| [M-H]-      | D-Glucose; LC-ESI-QTOF; MS2; CE: 10; R=;   |...|\n+-------------+--------------------------------------------+---+\n| [M-H]-      | D-Glucose; LC-ESI-QTOF; MS2; CE: 10; R=;   |...|\n+-------------+--------------------------------------------+---+\n| ...         | ...                                        |...|\n+-------------+--------------------------------------------+---+\n\nTable continued (these columns are derived from the MetFrag result):\n\n+---+------------------+----------------------------------------------------------+-------------------------------------------------------------------------------------+-----+\n|...| sample_name      | ExplPeaks                                                | FormulasOfExplPeaks                                                                 | ... |\n+---+------------------+----------------------------------------------------------+-------------------------------------------------------------------------------------+-----+\n|...| 1_metfrag_result | 59.0138_715.8;71.014_679.7;89.0251_999.0;101.0234_103.0  | 59.0138:[C2H4O2]-H-;71.014:[C3H5O2-H]-H-;89.0251:[C3H6O3]-H-;101.0234:[C4H7O3-H]-H- | ... |\n+---+------------------+----------------------------------------------------------+-------------------------------------------------------------------------------------+-----+\n|...| 1_metfrag_result | 59.0138_715.8;71.014_679.7;89.0251_999.0;101.0234_103.0  | 59.0138:[C2H4O2]-H-;71.014:[C3H5O2-H]-H-;89.0251:[C3H6O3]-H-;101.0234:[C4H7O3-H]-H- | ... |\n+---+------------------+----------------------------------------------------------+-------------------------------------------------------------------------------------+-----+\n|...| ...              | ...                                                      | ...                                                                                 | ... |\n+---+------------------+----------------------------------------------------------+-------------------------------------------------------------------------------------+-----+\n\n\nTable continued (columns are derived from the MetFrag result):\n\n+---+------------------+----------------------------+------------------------------------------------------+------------+---------------------------------------------------------------------------------+---+\n|...| FragmenterScore  | FragmenterScore_Values     | FormulasOfExplPeaks                                  | Identifier | InChI                                                                           |...|\n+---+------------------+----------------------------+------------------------------------------------------+------------+---------------------------------------------------------------------------------+---+\n|...| 105.844569063138 | 696.0;1156.0;696.0;1156.0  | 6-(hydroxymethyl)oxane-2,3,4,5-tetrol                |  206       | InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H                        |...|\n+---+------------------+----------------------------+------------------------------------------------------+------------+---------------------------------------------------------------------------------+---+\n|...| 105.844569063138 | 696.0;1156.0;696.0;1156.0  | (3R,4S,5S,6R)-6-(hydroxymethyl)oxane-2,3,4,5-tetrol  |  5793      | InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6?/m1/s1 |...|\n+---+------------------+----------------------------+------------------------------------------------------+------------+---------------------------------------------------------------------------------+---+\n|...| ...              | ...                        | ...                                                  | ...        | ...                                                                             |...|\n+---+------------------+----------------------------+------------------------------------------------------+------------+---------------------------------------------------------------------------------+---+\n\nTable continued (columns are derived from the MetFrag result):\n\n\n+---+-------------+-----------------+-----------------------+----------------------------------------------+------------------+------------------+--------+\n|...| NoExplPeaks | NumberPeaksUsed | OfflineMetFusionScore | SMILES\t                                   | Score            | SuspectListScore | XlogP3 |\n+---+-------------+-----------------+-----------------------+----------------------------------------------+------------------+------------------+--------+\n|...| 4           | 5\t            | 2.84566828424078\t    | C(C1C(C(C(C(O1)O)O)O)O)O                     | 1.82678219603441 | 1                | -2.6   |\n+---+-------------+-----------------+-----------------------+----------------------------------------------+------------------+------------------+--------+\n|...| 4           | 5               | 2.84566828424078      | C([C@@H]1[C@H]([C@@H]([C@H](C(O1)O)O)O)O)O   | 1.82678219603441 | 1                | -2.6   |\n+---+-------------+-----------------+-----------------------+----------------------------------------------+------------------+------------------+--------+\n|...| ...         | ...             | ...                   | ...                                          | ...              | ...              | ...    |\n+---+-------------+-----------------+-----------------------+----------------------------------------------+------------------+------------------+--------+\n\n\nAdditional notes\n--------------------\n\nThe following adducts (and format) are currently supported in the MSP file. The neutral mass is automatically\n calculated for the precursor m/z by subtracting the adduct mass\n\n- '[M+H]+': 1.007276,\n- '[M+NH4]+': 18.034374,\n- '[M+Na]+': 22.989218,\n- '[M+K]+': 38.963158,\n- '[M+CH3OH+H]+': 33.033489,\n- '[M+ACN+H]+': 42.033823,\n- '[M+ACN+Na]+': 64.015765,\n- '[M+2ACN+H]+': 83.06037,\n- '[M-H]-': -1.007276,\n- '[M+Cl]-': 34.969402,\n- '[M+HCOO]-': 44.99819,\n- '[M-H+HCOOH]-': 44.99819,\n- '[M+CH3COO]-': 59.01385,\n- '[M-H+CH3COOH]-': 59.01385\n\nDevelopers and contributors\n---------------------------\n- **Jordi Capellades (j.capellades.to@gmail.com) - Universitat Rovira i Virgili (SP)**\n- **Julien Saint-Vanne (julien.saint-vanne@sb-roscoff.fr) - ABiMS (France)**\n- **Tom Lawson (t.n.lawson@bham.ac.uk) - University of Birmingham (UK)**\n- **Ralf Weber (r.j.weber@bham.ac.uk) - University of Birmingham (UK)**\n- **Kristian Peters (kpeters@ipb-halle.de) - IPB Halle (Germany)**\n- **Payam Emami (payam.emami@medsci.uu.se) - Uppsala Universitet (Sweden)**\n- **Christoph Ruttkies (christoph.ruttkies@ipb-halle.de) - IPB Halle (Germany)**\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MetFrag"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "metfrag",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c828c610e2f3aa0b3b7f38"
+          ],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.4.5+galaxy3"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:metfrag_bioconda_recipes/metfrag/cmd/2.4.5,galaxy_metadata/metfrag/cmd/2.4.5+galaxy3,toolshed/metfrag/cmd/2.4.5+galaxy3",
+  "conflict_name": "metfrag",
+  "date": "2026-02-19T16:43:52.427713+00:00",
+  "run_id": "20260219T160856Z-4c70822-test_16_0"
+}
