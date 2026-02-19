@@ -22,12 +22,12 @@ def append_dict_to_jsonl(path, data: dict) -> None:
 def extract_ids(obj):
     all_ids = []
     for record in obj['remaining']:
-        id = record['id'].split(',')
+        id = record['_id'].split(',')
         for i in id:
             all_ids.append(i)
 
     for record in obj['disconnected']:
-        id = record['id'].split(',')
+        id = record['_id'].split(',')
         for i in id:
             all_ids.append(i)
 
