@@ -40,59 +40,29 @@ OUTPUT_PATH = "/Users/evabsc/projects/software-observatory/research-software-etl
 # ---------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------
-def _canonical_dumps(obj: Any) -> str:
-    # Canonical JSON string used only for sorting + hashing
-    return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
-
-def _normalize(obj: Any) -> Any:
-    """
-    Normalize JSON-like data so that:
-      - dict keys are sorted (handled by canonical dumps)
-      - list order is ignored (lists treated as multisets)
-    """
-    if isinstance(obj, dict):
-        # normalize values; keep keys as-is (sorting happens in dumps)
-        return {k: _normalize(v) for k, v in obj.items()}
-
-    if isinstance(obj, list):
-        norm_items = [_normalize(x) for x in obj]
-
-        # Sort by (type, canonical-json) to make ordering deterministic even for mixed types.
-        # Using type name avoids comparing unlike Python objects directly.
-        return sorted(
-            norm_items,
-            key=lambda x: (type(x).__name__, _canonical_dumps(x))
-        )
-
-    # JSON scalars (str/int/float/bool/None) are already stable
-    return obj
-
 
 def extract_ids(obj):
-    if len(obj['remaining'])>0:
-        new_obj = {
-            'remaining' : normalize_ids(obj['remaining'][0]['id']),
-            'disconnected': obj['disconnected'][0]['id']
-        }
-    else:
-        new_obj = {
-            'remaining' : obj['disconnected'][0]['id'],
-            'disconnected': obj['disconnected'][1]['id']
-        }
-        
-    return new_obj
+    all_ids = []
+    for record in obj['remaining']:
+        id = record['id'].split(',')
+        for i in id:
+            all_ids.append(i)
 
-def normalize_ids(original_id):
-    individual_ids = original_id.split(',')
-    individual_ids.sort()
-    result = ",".join(individual_ids)
-    return result
+    for record in obj['disconnected']:
+        id = record['id'].split(',')
+        for i in id:
+            all_ids.append(i)
 
+    all_ids.sort()
+    final_id = ','.join(all_ids)
+
+    return final_id
+
+    
 def stable_hash(obj: Any) -> str:
-    obj = extract_ids(obj)
-    normalized = _normalize(obj)
-    canonical = _canonical_dumps(normalized)
-    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    # actually, it is not a hash anymore
+    stable_id = extract_ids(obj)
+    return stable_id
 
 
 
