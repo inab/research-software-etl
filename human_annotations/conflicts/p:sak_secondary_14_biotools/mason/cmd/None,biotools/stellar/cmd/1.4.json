@@ -1,0 +1,230 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/stellar/cmd/1.4",
+        "created_at": "2025-04-02T12:49:22.116386",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.seqan.de/contact-us/birte-kehr/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A local pairwise aligner\u00a0that has full sensitivity, i.e. guarantees to report all matches of a given minimal length and maximal error rate. The aligner is composed of two steps, filtering and verification. For filtering it applies the SWIFT algorithm, for which we have developed a new, exact verification strategy."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/seqan/seqan/tree/master/apps/stellar"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Stellar"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "stellar",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Filtering",
+              "uri": "http://edamontology.org/operation_3695",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Alignment",
+              "uri": "http://edamontology.org/operation_2928",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2c229b57beba26405d443"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Data quality management",
+              "uri": "http://edamontology.org/topic_3572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1.4"
+          ],
+          "webpage": [
+            "http://www.seqan.de/projects/stellar/"
+          ]
+        },
+        "id": "biotools/stellar/cmd/1.4",
+        "last_updated_at": "2025-09-18T13:01:17.983441",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/stellar/cmd/1.4",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/mason/cmd/None",
+        "created_at": "2025-04-02T12:05:00.689703",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "manuel.holtgrewe@fu-berlin.de",
+              "maintainer": false,
+              "name": "Manuel Holtgrewe",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A fast, feature-rich and hackable read simulator for the simulation of NGS and Sanger data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/seqan/seqan/tree/master/apps/mason2"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Mason"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "mason",
+          "operating_system": [
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Modelling and simulation",
+              "uri": "http://edamontology.org/operation_2426",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/operation_2429",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a106d3b8acd1a2f9b4bb"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.seqan.de/apps/mason/"
+          ]
+        },
+        "id": "biotools/mason/cmd/None",
+        "last_updated_at": "2025-09-18T12:51:45.333922",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mason/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:sak_secondary_14_biotools/mason/cmd/None,biotools/stellar/cmd/1.4",
+  "conflict_name": "sak_secondary_14",
+  "date": "2026-02-22T22:04:55.598246+00:00",
+  "run_id": "20260222T180405Z-6b27d5f-test_17_0"
+}
