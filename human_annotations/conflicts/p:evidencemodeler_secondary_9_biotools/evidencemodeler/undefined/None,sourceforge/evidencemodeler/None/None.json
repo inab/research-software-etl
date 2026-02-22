@@ -1,0 +1,188 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/evidencemodeler/None/None",
+        "created_at": "2025-04-02T15:43:25.121751",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "EVidenceModeler (aka EVM) combines ab initio gene predictions and spliced protein and transcript alignments into weighted consensus gene structure predictions."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/evidencemodeler"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "evidencemodeler"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "evidencemodeler",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/evidencemodeler"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://evidencemodeler.sourceforge.net/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T15:43:25.121751",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/evidencemodeler//",
+            "source_url": "https://sourceforge.net/projects/evidencemodeler"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/evidencemodeler/undefined/None",
+        "created_at": "2025-04-02T11:57:22.212615",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The EVidenceModeler (aka EVM) software combines ab intio gene predictions and protein and transcript alignments into weighted consensus gene structures. EVM provides a flexible and intuitive framework for combining diverse evidence types into a single automated gene structure annotation system."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Evidence",
+                "uri": "http://edamontology.org/data_2042",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            },
+            {
+              "datatype": {
+                "term": "Gene report",
+                "uri": "http://edamontology.org/data_0916",
+                "vocabulary": "EDAM"
+              },
+              "term": "consensus",
+              "uri": "http://edamontology.org/format_1209",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "EvidenceModeler"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "evidencemodeler",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene prediction",
+              "uri": "http://edamontology.org/operation_2454",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene structure",
+              "uri": "http://edamontology.org/topic_0114",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/EVidenceModeler/EVidenceModeler.github.io"
+          ]
+        },
+        "id": "biotools/evidencemodeler/undefined/None",
+        "last_updated_at": "2025-09-18T12:43:08.785720",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/evidencemodeler/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:evidencemodeler_secondary_9_biotools/evidencemodeler/undefined/None,sourceforge/evidencemodeler/None/None",
+  "conflict_name": "evidencemodeler_secondary_9",
+  "date": "2026-02-22T22:04:12.729600+00:00",
+  "run_id": "20260222T180405Z-6b27d5f-test_17_0"
+}
