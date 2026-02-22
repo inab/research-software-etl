@@ -1,0 +1,255 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/ssake/cmd/None",
+        "created_at": "2025-04-02T12:42:56.788618",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "rwarren@bcgsc.ca",
+              "maintainer": false,
+              "name": "Rene Warren",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A program for assemblying short DNA sequences. The program cycles through sequence data stored in a hash table and progressively searches through a prefix tree for the longest possible k-mer between any two sequencis."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence",
+                "uri": "http://edamontology.org/data_2977",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA-like",
+              "uri": "http://edamontology.org/format_2546",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "SSAKE"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "ssake",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence generation",
+              "uri": "http://edamontology.org/operation_0230",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "De-novo assembly",
+              "uri": "http://edamontology.org/operation_0524",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Sequence assembly report",
+                "uri": "http://edamontology.org/data_3181",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence",
+                "uri": "http://edamontology.org/data_2977",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7a694d3b8acd1a2f9b605"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.bcgsc.ca/platform/bioinfo/software/ssake"
+          ]
+        },
+        "id": "biotools/ssake/cmd/None",
+        "last_updated_at": "2025-09-18T12:58:28.765035",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/ssake/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/ssake/cmd/4.0",
+        "created_at": "2025-04-02T11:53:19.901250",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "perl-statistics-descriptive",
+            "perl",
+            "python <3"
+          ],
+          "description": [
+            "SSAKE is a genomics application for de novo assembly of millions of very short DNA sequences."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/ssake/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/ssake/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/warrenlr/SSAKE/archive/v4.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ssake"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0-only",
+              "url": "https://spdx.org/licenses/GPL-2.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "ssake",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c7a694d3b8acd1a2f9b605"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/warrenlr/SSAKE"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/warrenlr/SSAKE/archive/v4.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "4.0"
+          ],
+          "webpage": [
+            "https://github.com/warrenlr/SSAKE"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:53:19.901250",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/ssake/cmd/4.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:ssake_secondary_2_bioconda_recipes/ssake/cmd/4.0,biotools/ssake/cmd/None",
+  "conflict_name": "ssake_secondary_2",
+  "date": "2026-02-22T19:30:37.736025+00:00",
+  "run_id": "20260222T180405Z-6b27d5f-test_17_0"
+}
