@@ -1,0 +1,268 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/hgc/lib/None",
+        "created_at": "2025-04-02T12:00:28.996753",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "zhangxg@tsinghua.edu.cn",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Fast hierarchical clustering for large-scale single-cell data.\n\nThe core function of HGC takes a graph G as the input. Here G is the adjacency matrix of a graph of cells, where the element in G are the weights of edges in the graph, and zero means no link between the corresponding node pairs. G should be a dgCMatrix supported by the R package Matrix."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "HGC"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "hgc",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Treemap visualisation",
+              "uri": "http://edamontology.org/operation_2942",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Dendrogram visualisation",
+              "uri": "http://edamontology.org/operation_2938",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82eb610e2f3aa0b3ba6f4"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Cell biology",
+              "uri": "http://edamontology.org/topic_2229",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://www.github.com/XuegongLab/HGC"
+          ]
+        },
+        "id": "biotools/hgc/lib/None",
+        "last_updated_at": "2025-09-18T12:46:34.463482",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/hgc/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/hgc/lib/1.15.0,bioconda_recipes/bioconductor-hgc/lib/1.10.0",
+        "data": {
+          "authors": [
+            {
+              "email": "zouzh14@gmail.com",
+              "maintainer": false,
+              "name": "Zou Ziheng",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Hua Kui",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "xglab@mail.tsinghua.edu.cn",
+              "maintainer": false,
+              "name": "XGlab",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "ape",
+            "r-dplyr",
+            "Matrix",
+            "r-rann",
+            "stats",
+            "Rcpp (>= 1.0.0)",
+            "grDevices",
+            "ggplot2",
+            "r-rcppeigen >=0.3.2.0",
+            "dendextend",
+            "dplyr",
+            "RANN",
+            "r-ape",
+            "r-ggplot2",
+            "r-matrix",
+            "r-mclust",
+            "r-rcpp >=1.0.0",
+            "methods",
+            "r-patchwork",
+            "r-base",
+            "RcppEigen(>= 0.3.2.0)",
+            "R (>= 4.1.0)",
+            "mclust",
+            "r-dendextend",
+            "patchwork"
+          ],
+          "description": [
+            "HGC (short for Hierarchical Graph-based Clustering) is an R package for conducting hierarchical clustering on large-scale single-cell RNA-seq (scRNA-seq) data. The key idea is to construct a dendrogram of cells on their shared nearest neighbor (SNN) graph. HGC provides functions for building graphs and for conducting hierarchical clustering on the graph. The users with old R version could visit https://github.com/XuegongLab/HGC/tree/HGC4oldRVersion to get HGC package built for R 3.6."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-hgc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-hgc/README.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/HGC_1.10.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-hgc/bioconductor-hgc_1.10.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/HGC/HGC_1.10.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/HGC_1.10.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "HGC",
+            "bioconductor-hgc"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            }
+          ],
+          "links": [],
+          "name": "hgc",
+          "operating_system": [
+            "Windows",
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-hgc"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/HGC"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/HGC_1.10.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/HGC/HGC_1.10.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/HGC_1.10.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-hgc/bioconductor-hgc_1.10.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.15.0",
+            "1.10.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/HGC.html",
+            "https://bioconductor.org/packages/HGC"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:hgc_bioconda_recipes/bioconductor-hgc/lib/1.10.0,bioconductor/hgc/lib/1.15.0,biotools/hgc/lib/None",
+  "conflict_name": "hgc",
+  "date": "2026-02-22T18:44:18.820270+00:00",
+  "run_id": "20260222T180405Z-6b27d5f-test_17_0"
+}
