@@ -1,0 +1,171 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/pbccs/cmd/6.4.0",
+        "created_at": "2025-04-02T11:42:32.707565",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Pbccs - Generate Highly Accurate Single-Molecule Consensus Reads (HiFi Reads)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbccs/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbccs/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/PacificBiosciences/unanimity/releases/download/v6.4.0/ccs.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pbccs"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause-Clear",
+              "url": "https://spdx.org/licenses/BSD-3-Clause-Clear.html"
+            }
+          ],
+          "links": [],
+          "name": "pbccs",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/PacificBiosciences/unanimity"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/PacificBiosciences/unanimity/releases/download/v6.4.0/ccs.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "6.4.0"
+          ],
+          "webpage": [
+            "https://ccs.how/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:42:32.707565",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/pbccs/cmd/6.4.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/pbccs/cmd/0.1.0,toolshed/pbccs/cmd/0.1.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Generate accurate consensus sequences from subreads."
+          ],
+          "documentation": [
+            {
+              "content": "\n**Generate Highly Accurate Single-Molecule Consensus Reads (CCS) Overview**\n\nCCS combines multiple subreads of the same SMRTbell molecule using a statistical model to produce one highly accurate consensus sequence, also called a HiFi read, along with base quality values. This tool powers the Circular Consensus Sequencing workflow in SMRT Link.\n\n\nCCS works with PacBio subreads bam (subreads.bam) files. For more information about this file format, see here_\n\n.. _here: https://ccs.how/how-does-ccs-work.html\n    \n\nFor detailed information on psp-gen, click here_, or view the license_.\n\n.. _here: https://github.com/nlhepler/pbccs\n.. _license: https://github.com/nlhepler/pbccs/blob/master/LICENSE\n\n**Command Documentation**\n\nCCS will generate consensus sequence.\n\n\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CCS"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "pbccs",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e6c27e4737f0977933715b"
+          ],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.1.0"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pbccs_bioconda_recipes/pbccs/cmd/6.4.0,galaxy_metadata/pbccs/cmd/0.1.0,toolshed/pbccs/cmd/0.1.0",
+  "conflict_name": "pbccs",
+  "date": "2026-02-22T18:21:16.339693+00:00",
+  "run_id": "20260222T180405Z-6b27d5f-test_17_0"
+}
