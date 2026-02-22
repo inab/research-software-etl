@@ -1,0 +1,294 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/sires/web/3.0",
+        "created_at": "2025-08-26T15:36:08.141480",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "msanchezfe@uic.es",
+              "maintainer": false,
+              "name": "Mayka Sanchez (For questions regarding IREs)",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "SIREs is an iron responsive element prediction tool. From input data, SIREs produces structure analysis, predicted RNA folds, folding energy data and overall quality flags."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.sires-webserver.eu/static/html/docs.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SIREs"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "sires",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "RNA secondary structure prediction",
+              "uri": "http://edamontology.org/operation_0278",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA inverse folding",
+              "uri": "http://edamontology.org/operation_0483",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Fold recognition",
+              "uri": "http://edamontology.org/operation_0303",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptional regulatory element prediction",
+              "uri": "http://edamontology.org/operation_0438",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82ab310e2f3aa0b3b8fd5"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Structure prediction",
+              "uri": "http://edamontology.org/topic_0082",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein folds and structural domains",
+              "uri": "http://edamontology.org/topic_0736",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA",
+              "uri": "http://edamontology.org/topic_0099",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "3.0"
+          ],
+          "webpage": [
+            "http://www.sires-webserver.eu/"
+          ]
+        },
+        "id": "biotools/sires/web/3.0",
+        "last_updated_at": "2025-09-18T13:12:51.017631",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/sires/web/3.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/sires/web/None",
+        "created_at": "2025-04-02T12:40:08.718941",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "msanchez@imppc.org",
+              "maintainer": false,
+              "name": "Mayka Sanchez (For questions regarding IREs)",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "msanchez@imppc.org",
+              "maintainer": false,
+              "name": "Ildefonso Cases (For questions regarding IREs prediction Algorithm or the Web Server)",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "SIREs is an iron responsive element prediction tool. From input data, SIREs produces structure analysis, predicted RNA folds, folding energy data and overall quality flags."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "faq",
+              "url": "http://ccbg.imppc.org/sires/faqs.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://ccbg.imppc.org/sires/docs.html"
+            },
+            {
+              "content": null,
+              "type": "help",
+              "url": "http://ccbg.imppc.org/sires/index.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SIREs"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "sires",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "RNA secondary structure prediction",
+              "uri": "http://edamontology.org/operation_0278",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA inverse folding",
+              "uri": "http://edamontology.org/operation_0483",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Fold recognition",
+              "uri": "http://edamontology.org/operation_0303",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptional regulatory element prediction",
+              "uri": "http://edamontology.org/operation_0438",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82ab310e2f3aa0b3b8fd5"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Structure prediction",
+              "uri": "http://edamontology.org/topic_0082",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein folds and structural domains",
+              "uri": "http://edamontology.org/topic_0736",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA",
+              "uri": "http://edamontology.org/topic_0099",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://ccbg.imppc.org/sires/index.html"
+          ]
+        },
+        "id": "biotools/sires/web/None",
+        "last_updated_at": "2025-09-18T12:59:06.728537",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/sires/web/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:sires_biotools/sires/web/3.0,biotools/sires/web/None",
+  "conflict_name": "sires",
+  "date": "2026-02-22T18:54:06.508715+00:00",
+  "run_id": "20260222T180405Z-6b27d5f-test_17_0"
+}
