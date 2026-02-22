@@ -1,0 +1,288 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/trinityrnaseq/None/None",
+        "created_at": "2025-04-02T15:43:21.434219",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The Trinity RNA-Seq Assembly project provides software solutions targeted to the reconstruction of full-length transcripts and alternatively spliced isoforms from Illumina RNA-Seq data."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/trinityrnaseq"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "trinityrnaseq"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "trinityrnaseq",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/trinityrnaseq"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://trinityrnaseq.sourceforge.net/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T15:43:21.434219",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/trinityrnaseq//",
+            "source_url": "https://sourceforge.net/projects/trinityrnaseq"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/trinityrnaseq/None/Trinity-v2.15.2,galaxy_metadata/trinity/cmd/2.1.1.1,bioconda_recipes/trinity/cmd/2.15.1,toolshed/trinity/cmd/2.1.1.1,galaxy/trinity/cmd/2.6.6",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bowtie/1.1.2",
+            "r-gplots",
+            "bioconductor-qvalue",
+            "bowtie2/2.2.6",
+            "bioconductor-go.db",
+            "eXpress/1.5.1",
+            "trinity/2.2.0",
+            "set_environment",
+            "deseq2/1.10.0",
+            "bioconductor-dexseq",
+            "rsem/1.2.28",
+            "bioconductor-edger",
+            "samtools >=1.14",
+            "openjdk >=17",
+            "bioconductor-goseq",
+            "r-phangorn",
+            "perl",
+            "trimmomatic >=0.39",
+            "kmer-jellyfish >=2.3",
+            "bioconductor-edger/3.14.0",
+            "bioconductor-ctc",
+            "r-ape",
+            "r-argparse",
+            "samtools/1.2",
+            "numpy",
+            "bioconductor-limma/3.28.10",
+            "r-fastcluster",
+            "perl-db_file",
+            "bowtie2 >=2.3.0",
+            "r-base",
+            "r-cluster",
+            "r-vioplot",
+            "kallisto",
+            "r-sm",
+            "salmon",
+            "r-tidyverse",
+            "python >=3.7"
+          ],
+          "description": [
+            "Trinity assembles transcript sequences from Illumina RNA-Seq data.",
+            "De novo assembly of RNA-Seq data.",
+            "Trinity RNA-Seq de novo transcriptome assembly."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/trinityrnaseq/trinityrnaseq/blob/main/Changelog.txt"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/trinityrnaseq/trinityrnaseq/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/trinityrnaseq/trinityrnaseq/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/trinity/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/trinity/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/trinityrnaseq/trinityrnaseq/"
+            },
+            {
+              "content": "\n        Trinity_ assembles transcript sequences from Illumina RNA-Seq data.\n\n        .. _Trinity: http://trinityrnaseq.github.io\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [
+            "https://github.com/trinityrnaseq/trinityrnaseq/releases/download/Trinity-v2.15.1/trinityrnaseq-v2.15.1.FULL.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "trinityrnaseq",
+            "trinity",
+            "Trinity"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause",
+              "url": "https://spdx.org/licenses/BSD-3-Clause.html"
+            }
+          ],
+          "links": [],
+          "name": "trinityrnaseq",
+          "operating_system": [
+            "Windows",
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "trinity"
+          ],
+          "output": [],
+          "publication": [
+            "67c79e15d3b8acd1a2f9b404",
+            "67c82aac10e2f3aa0b3b8f95"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/trinityrnaseq/trinityrnaseq"
+            }
+          ],
+          "source": [
+            "github",
+            "galaxy_metadata",
+            "bioconda_recipes",
+            "galaxy",
+            "toolshed"
+          ],
+          "source_code": [
+            "https://github.com/trinityrnaseq/trinityrnaseq/releases/download/Trinity-v2.15.1/trinityrnaseq-v2.15.1.FULL.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "Trinity-v2.13.1",
+            "Trinity-v2.5.1",
+            "2.6.6",
+            "2.1.1.1",
+            "v2.11.0",
+            "v2.3.0_PRERELEASE",
+            "v2.2.0",
+            "v2.9.0",
+            "v2.13.0",
+            "v2.1.1",
+            "Trinity-v2.15.1",
+            "Trinity-v2.13.2",
+            "Trinity-v2.15.0",
+            "Trinity-v2.14.0",
+            "Trinity-v2.8.5",
+            "Trinity-v2.8.1",
+            "Trinity-v2.3.1_PRERELEASE",
+            "v2.12.0",
+            "Trinity-v2.7.0-PRERELEASE",
+            "v2.0.6",
+            "v2.0.5",
+            "Trinity-v2.6.6",
+            "2.15.1",
+            "Trinity-v2.5.0",
+            "Trinity-v2.15.2",
+            "Trinity-v2.3.2",
+            "v2.1.0",
+            "v2.0.4",
+            "Trinity-v2.4.0",
+            "v2.10.0",
+            "Trinity-v2.8.4",
+            "v2.0.2",
+            "Trinity-v2.6.5",
+            "v2.8.6",
+            "Trinity-v2.8.3",
+            "Trinity-v2.8.2",
+            "v2.0.3",
+            "v2.9.1",
+            "v2.6.4-prerelease"
+          ],
+          "webpage": [
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Ftrinity%2Ftrinity%2F2.6.6",
+            "https://github.com/trinityrnaseq/trinityrnaseq/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:trinity_bioconda_recipes/trinity/cmd/2.15.1,galaxy/trinity/cmd/2.6.6,galaxy_metadata/trinity/cmd/2.1.1.1,github/trinityrnaseq/None/Trinity-v2.15.2,sourceforge/trinityrnaseq/None/None,toolshed/trinity/cmd/2.1.1.1",
+  "conflict_name": "trinity",
+  "date": "2026-02-22T19:03:54.509439+00:00",
+  "run_id": "20260222T180405Z-6b27d5f-test_17_0"
+}
