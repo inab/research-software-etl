@@ -1,0 +1,184 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/ngs.plot/cmd/None",
+        "created_at": "2025-04-02T12:07:08.332783",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "li.shen@mssm.edu",
+              "maintainer": false,
+              "name": "Li Shen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Ngs.plot discussion forum",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://groups.google.com/forum/#!forum/ngsplot-discuss"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Program that allows you to easily visualize your next-generation sequencing (NGS) samples at functional genomic regions. The signature advantage of this tool is that it collects a large database of functional elements for many genomes. A user can ask for a functionally important region to be displayed in one command. It handles large sequencing data efficiently and has only modest memory requirement."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/shenlab-sinai/ngsplot/blob/develop/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Ngs.plot"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "ngs.plot",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Epigenomics",
+              "uri": "http://edamontology.org/topic_3173",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://code.google.com/p/ngsplot/"
+          ]
+        },
+        "id": "biotools/ngs.plot/cmd/None",
+        "last_updated_at": "2025-09-18T12:52:25.991514",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/ngs.plot/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/ngs.plot/cmd/1.0.0,toolshed/ngs.plot/cmd/None",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [
+            {
+              "content": "---TEST---",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ngs.plot"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "ngs.plot",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "None",
+            "1.0.0"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:ngs.plot_biotools/ngs.plot/cmd/None,galaxy_metadata/ngs.plot/cmd/1.0.0,toolshed/ngs.plot/cmd/None",
+  "conflict_name": "ngs.plot/cmd",
+  "date": "2026-02-23T11:25:16.348854+00:00",
+  "run_id": "20260223T112111Z-a762cf4-test_unprocessed_blocks"
+}
