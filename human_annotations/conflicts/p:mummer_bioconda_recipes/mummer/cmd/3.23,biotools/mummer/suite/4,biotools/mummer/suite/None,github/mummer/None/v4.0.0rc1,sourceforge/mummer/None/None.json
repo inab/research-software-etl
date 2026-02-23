@@ -1,0 +1,271 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/mummer/None/v4.0.0rc1",
+        "created_at": "2025-04-02T15:48:33.780644",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Mummer alignment tool."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation",
+              "url": "https://github.com/mummer4/mummer/blob/main/INSTALL.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/mummer4/mummer/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/mummer4/mummer/blob/main/OBSOLETE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/mummer4/mummer/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/mummer4/mummer/blob/main/code_of_conduct.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "mummer"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mummer",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/mummer4/mummer"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [
+            "v4.0.0rc1",
+            "v4.0.0.beta5",
+            "v4.0.0.beta3",
+            "v4.0.0beta2",
+            "v4.0.0beta1",
+            "v4.0.0beta",
+            "v3.9.4alpha",
+            "v3.9.3alpha",
+            "v3.9.2alpha",
+            "v3.9.1alpha",
+            "v3.9.0alpha"
+          ],
+          "webpage": []
+        },
+        "last_updated_at": "2025-04-02T15:48:33.780644",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/mummer",
+            "source_url": "https://github.com/mummer4/mummer"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/mummer/cmd/3.23,biotools/mummer/suite/None,biotools/mummer/suite/4,sourceforge/mummer/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "mummer-help@lists.sourceforge.net",
+              "maintainer": false,
+              "name": "Help list",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "perl"
+          ],
+          "description": [
+            "MUMmer is a system for rapidly aligning entire genomes.",
+            "MUMmer is a modular system for the rapid whole genome alignment of finished or draft sequence. Basically it is a ultra-fast alignment of large-scale DNA and protein sequences.",
+            "MUMmer is a modular system for the rapid whole genome alignment of finished or draft sequence. This package provides an efficient suffix tree library, seed-and-extend alignment, SNP detection, repeat detection, and visualization tools."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/mummer/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/mummer/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://mummer.sourceforge.net/manual/"
+            }
+          ],
+          "download": [
+            "https://downloads.sourceforge.net/project/mummer/mummer/3.23/MUMmer3.23.tar.gz",
+            "https://sourceforge.net/projects/mummer"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "mummer",
+            "MUMmer"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "The Artistic License",
+              "url": null
+            },
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "mummer",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence alignment",
+              "uri": "http://edamontology.org/operation_0292",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c8294c10e2f3aa0b3b83ef",
+            "67c828ed10e2f3aa0b3b809f",
+            "67c8294c10e2f3aa0b3b83f0",
+            "67c8293810e2f3aa0b3b8348"
+          ],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/mummer"
+            }
+          ],
+          "source": [
+            "biotools",
+            "sourceforge",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://downloads.sourceforge.net/project/mummer/mummer/3.23/MUMmer3.23.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "suite"
+          ],
+          "version": [
+            "3.23",
+            "None",
+            "4"
+          ],
+          "webpage": [
+            "http://mummer.sourceforge.net/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:mummer_bioconda_recipes/mummer/cmd/3.23,biotools/mummer/suite/4,biotools/mummer/suite/None,github/mummer/None/v4.0.0rc1,sourceforge/mummer/None/None",
+  "conflict_name": "mummer/*",
+  "date": "2026-02-23T11:36:18.284859+00:00",
+  "run_id": "20260223T113324Z-25a2e43-1.0"
+}
