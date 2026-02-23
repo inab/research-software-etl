@@ -239,12 +239,12 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
             #print(f"Record {key} already exists in disambiguated blocks, skipping...")
             pass
 
-    print('#-------------------------------------------------#')
+    print('#---------------- After first round ---------------------------------#')
     print(f"{errors_n} errors in first round of disambiguation")
-    print('#-------------------------------------------------#')
-    print(f"Examples of error blocks:")
-    for item in errors:
-        print(item)
+    if errors_n:
+        print(f"Examples of error blocks:")
+        for item in errors:
+            print(item)
 
     return disambiguated_blocks
 
