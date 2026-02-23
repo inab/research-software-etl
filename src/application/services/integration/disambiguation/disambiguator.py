@@ -204,6 +204,8 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
     # best_pair maps each pair_key to the single highest-priority decision (human > LLM, otherwise most informed / recent).
     best_pair = load_pair_decisions(pair_wise_decisions_path)  
     n=0
+    errors_n=0
+    errors=[]
 
     for key in blocks:
         n+=1
@@ -222,6 +224,8 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
                         record = await process_conflict(key, conflict_blocks[key], instances_dict, run_id, best_pair)
                         disambiguated_blocks.update(record)
                     except Exception as e:
+                        errors_n += 1
+                        errors.append(key)
                         print(f"Error processing conflict {key}")
                         logging.error(f"Error processing conflict {key}: {e}")
                         
@@ -237,6 +241,15 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
             #print(f"Record {key} already exists in disambiguated blocks, skipping...")
             pass
 
+    print('#-------------------------------------------------#')
+    print(f"{errors_n} errors in first round of disambiguation")
+    print('#-------------------------------------------------#')
+    print(f"Examples of error blocks:")
+    for item in errors[:10]:
+        print(item)
+
+    print('Exiting execution...')
+    exit(0)
 
     return disambiguated_blocks
 
