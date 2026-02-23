@@ -1,0 +1,364 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/gsea/cmd/4.3.2",
+        "created_at": "2025-04-02T11:42:07.428958",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "openjdk"
+          ],
+          "description": [
+            "Gene Set Enrichment Analysis (GSEA)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gsea/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gsea/README.html"
+            }
+          ],
+          "download": [
+            "https://data.broadinstitute.org/gsea-msigdb/gsea/software/desktop/4.3/GSEA_4.3.2.zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gsea"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause",
+              "url": "https://spdx.org/licenses/BSD-3-Clause.html"
+            }
+          ],
+          "links": [],
+          "name": "gsea",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://data.broadinstitute.org/gsea-msigdb/gsea/software/desktop/4.3/GSEA_4.3.2.zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "4.3.2"
+          ],
+          "webpage": [
+            "https://www.gsea-msigdb.org/gsea"
+          ]
+        },
+        "last_updated_at": "2025-04-02T11:42:07.428958",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/gsea/cmd/4.3.2",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-csaw/lib/1.36.0,biotools/csaw/cmd/1.8.0,galaxy_metadata/csaw/cmd/0.1.0,biotools/csaw/lib/1.8.0,toolshed/csaw/cmd/0.1.0,galaxy_metadata/gsea/cmd/0.1.0,toolshed/gsea/cmd/0.1.0,bioconductor/csaw/lib/1.41.2",
+        "data": {
+          "authors": [
+            {
+              "email": "alun@wehi.edu.au",
+              "maintainer": false,
+              "name": "Aaron Lun",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Gordon Smyth",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "r-matrix",
+            "Matrix",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "bioconductor-limma >=3.58.0,<3.59.0",
+            "GenomeInfoDb",
+            "Rsamtools",
+            "bioconductor-genomicranges >=1.54.0,<1.55.0",
+            "S4Vectors",
+            "bioconductor-rsamtools >=2.18.0,<2.19.0",
+            "BiocParallel",
+            "bioconductor-biocparallel >=1.36.0,<1.37.0",
+            "r-rcpp",
+            "metapod",
+            "methods",
+            "IRanges",
+            "SummarizedExperiment",
+            "limma",
+            "bioconductor-rhtslib >=2.4.0,<2.5.0",
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "bioconductor-zlibbioc >=1.48.0,<1.49.0",
+            "r-base",
+            "bioconductor-iranges >=2.36.0,<2.37.0",
+            "bioconductor-genomeinfodb >=1.38.0,<1.39.0",
+            "edgeR",
+            "bioconductor-edger >=4.0.0,<4.1.0",
+            "Rcpp",
+            "bioconductor-metapod >=1.10.0,<1.11.0",
+            "utils",
+            "BiocGenerics",
+            "GenomicRanges",
+            "stats"
+          ],
+          "description": [
+            "Detection of differentially bound regions in ChIP-seq data with sliding windows, with methods for normalization and proper FDR control."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-csaw/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-csaw/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/csaw.html"
+            },
+            {
+              "content": "\n        Write the tool help section here.\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/csaw/csaw_1.36.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-csaw/bioconductor-csaw_1.36.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/csaw_1.36.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/csaw_1.36.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "BAI",
+              "uri": "http://edamontology.org/format_3327",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-csaw",
+            "CSAW",
+            "csaw",
+            "Gene Set Enrichment Analysis"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": "https://spdx.org/licenses/GPL-3.0-only.html"
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-csaw",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Read depth analysis",
+              "uri": "http://edamontology.org/operation_3230",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "gsea",
+            "csaw"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "BED",
+              "uri": "http://edamontology.org/format_3003",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "",
+                "uri": null,
+                "vocabulary": ""
+              },
+              "term": "Image format",
+              "uri": "http://edamontology.org/format_3547",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7abacd3b8acd1a2f9be70"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/dktanwar/Galaxy_Tools"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/csaw"
+            }
+          ],
+          "source": [
+            "toolshed",
+            "galaxy_metadata",
+            "biotools",
+            "bioconductor",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/csaw/csaw_1.36.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-csaw/bioconductor-csaw_1.36.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/csaw_1.36.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/csaw_1.36.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Data visualisation",
+              "uri": "http://edamontology.org/topic_0092",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "ChIP-seq",
+              "uri": "http://edamontology.org/topic_3169",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Nucleic acid sites",
+              "uri": "http://edamontology.org/topic_3511",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "0.1.0",
+            "1.36.0",
+            "1.8.0",
+            "1.41.2"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/csaw.html",
+            "http://bioconductor.org/packages/release/bioc/html/csaw.html",
+            "https://bioconductor.org/packages/csaw"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:csaw_bioconda_recipes/bioconductor-csaw/lib/1.36.0,bioconda_recipes/gsea/cmd/4.3.2,bioconductor/csaw/lib/1.41.2,biotools/csaw/cmd/1.8.0,biotools/csaw/lib/1.8.0,galaxy_metadata/csaw/cmd/0.1.0,galaxy_metadata/gsea/cmd/0.1.0,toolshed/csaw/cmd/0.1.0,toolshed/gsea/cmd/0.1.0",
+  "conflict_name": "csaw",
+  "date": "2026-02-23T11:13:17.319090+00:00",
+  "run_id": "20260223T110855Z-28fb630-test_unprocessed_blocks"
+}
