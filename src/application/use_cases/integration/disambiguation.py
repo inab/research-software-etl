@@ -29,9 +29,19 @@ async def run_full_disambiguation(blocks_file,
 
     print("First disambiguation round done")
 
+    unresolved_keys = [k for k in conflict_blocks if k not in disambiguated_blocks]
+
+    print("# -------------------------------------")
+    print(f"{len(unresolved_keys)} unresoled keys.")
+    print(f"om examples:")
+    for item in unresolved_keys:
+        print(item)
+    print("# -------------------------------------")
+
+    exit(0)
 
     # 4. Repeat second-round disambiguation until everything is resolved
-    while True:
+    while len(unresolved_keys)>0:
         # Run a second (or N-th) round
         # conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, disambiguate_blocks_func
         disambiguated_blocks = await run_second_round(

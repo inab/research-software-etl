@@ -86,8 +86,7 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
         
         # ------------- ID ----------------
         n+= 1
-        conflict_name=conflict_name.split('/')[0]
-        pair_stable_id = f"p:{conflict_name}_{stable_hash(conflict_pair)}"
+        pair_stable_id = f"p:{conflict_name.split('/')[0]}_{stable_hash(conflict_pair)}"
 
 
         #pair_stable_id = f"p:{conflict_name}"
@@ -216,24 +215,23 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
             #print(f"Processing block: {key}")
             record = {}
             if key in conflict_blocks:
-                #print(f"{key} is a conflict block")
+                # key is a conflict block
+                
+                try:
+                    record = await process_conflict(key, conflict_blocks[key], instances_dict, run_id, best_pair)
+                    disambiguated_blocks.update(record)
 
-                if key not in disambiguated_blocks:
-                    #print(f"{key} not in disambiguated blocks")
-                    try:
-                        record = await process_conflict(key, conflict_blocks[key], instances_dict, run_id, best_pair)
-                        disambiguated_blocks.update(record)
-                    except Exception as e:
-                        errors_n += 1
-                        errors.append(key)
-                        print(f"Error processing conflict {key}")
-                        logging.error(f"Error processing conflict {key}: {e}")
+                except Exception as e:
+                    errors_n += 1
+                    errors.append(key)
+                    print(f"Error processing conflict {key}")
+                    logging.error(f"Error processing conflict {key}: {e}")
                         
             else:
+                # key is not a conflict block"
                 record = build_no_conflict_record(key, blocks[key])
                 disambiguated_blocks.update(record)
-                #print(f"{key} is not a conflict block")
-
+                
             if record:
                 add_jsonl_record(disambiguated_blocks_path, record)
 
@@ -245,11 +243,8 @@ async def disambiguate_blocks(conflict_blocks, blocks, disambiguated_blocks_path
     print(f"{errors_n} errors in first round of disambiguation")
     print('#-------------------------------------------------#')
     print(f"Examples of error blocks:")
-    for item in errors[:10]:
+    for item in errors:
         print(item)
-
-    print('Exiting execution...')
-    exit(0)
 
     return disambiguated_blocks
 
