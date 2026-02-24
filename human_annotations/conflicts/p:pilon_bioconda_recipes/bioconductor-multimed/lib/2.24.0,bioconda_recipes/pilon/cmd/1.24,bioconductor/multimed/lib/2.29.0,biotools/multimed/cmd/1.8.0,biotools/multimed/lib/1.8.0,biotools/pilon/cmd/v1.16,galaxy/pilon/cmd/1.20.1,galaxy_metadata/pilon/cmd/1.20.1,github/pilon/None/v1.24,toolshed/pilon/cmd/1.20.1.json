@@ -1,0 +1,394 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/pilon/cmd/v1.16",
+        "created_at": "2025-04-02T12:57:51.188622",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.broadinstitute.org/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Read alignment analysis to diagnose, report, and automatically improve de novo genome assemblies."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/broadinstitute/pilon/wiki"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pilon"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "pilon",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Alignment",
+              "uri": "http://edamontology.org/operation_2928",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Analysis",
+              "uri": "http://edamontology.org/operation_2945",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8297c10e2f3aa0b3b85b9"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "v1.16"
+          ],
+          "webpage": [
+            "http://www.broadinstitute.org/software/pilon/"
+          ]
+        },
+        "id": "biotools/pilon/cmd/v1.16",
+        "last_updated_at": "2026-02-23T21:43:49.583423",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pilon/cmd/v1.16",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-multimed/lib/2.24.0,biotools/multimed/lib/1.8.0,biotools/multimed/cmd/1.8.0,bioconductor/multimed/lib/2.29.0,galaxy_metadata/pilon/cmd/1.20.1,bioconda_recipes/pilon/cmd/1.24,toolshed/pilon/cmd/1.20.1,github/pilon/None/v1.24,galaxy/pilon/cmd/1.20.1",
+        "data": {
+          "authors": [
+            {
+              "email": "smb310@georgetown.edu",
+              "maintainer": false,
+              "name": "Simina M. Boca",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bruce@quidnet.com",
+              "maintainer": false,
+              "name": "Bruce Walker",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bw@ai.co",
+              "maintainer": false,
+              "name": "bruce",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "langhorst@neb.com",
+              "maintainer": false,
+              "name": "Brad Langhorst",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "openjdk",
+            "r-base",
+            "python",
+            "R (>= 3.1.0)"
+          ],
+          "description": [
+            "Pilon is an automated genome assembly improvement and variant detection tool.",
+            "An automated genome assembly improvement and variant detection tool.",
+            "Implements permutation method with joint correction for testing multiple mediators.",
+            "Implements methods for testing multiple mediators."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-multimed/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-multimed/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/MultiMed.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pilon/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pilon/README.html"
+            },
+            {
+              "content": "\n  Pilon is a software tool which can be used to:\n\n  * Automatically improve draft assemblies\n\n  * Find variation among strains, including large event detection\n\n  Pilon requires as input a FASTA file of the genome along with one or more BAM files of reads aligned to the input FASTA file. Pilon uses read alignment analysis to identify inconsistencies between the input genome and the evidence in the reads. It then attempts to make improvements to the input genome, including:\n\n  * Single base differences\n\n  * Small indels\n\n  * Larger indel or block substitution events\n\n  * Gap filling\n\n  * Identification of local misassemblies, including optional opening of new gaps\n\n  Pilon then outputs a FASTA file containing an improved representation of the genome from the read data and an optional VCF file detailing variation seen between the read data and the input genome.\n\n  To aid manual inspection and improvement by an analyst, Pilon can optionally produce tracks that can be displayed in genome viewers such as IGV and GenomeView, and it reports other events (such as possible large collapsed repeat regions) in its standard output.\n\n  Note on **mindepth**:\n\n  Variants (snps and indels) will only be called if there is coverage of good pairs\n  at the value set for *mindepth* depth or more; if this value is >= 1, it is an absolute depth, if it is a\n  fraction < 1, then minimum depth is computed by multiplying this value by the mean\n  coverage for the region, with a minumum value of 5 (default 0.1: min depth to call\n  is 10% of mean coverage or 5, whichever is greater).\n\n  Note on **stray read filtering**\n\n  By default a pass is made through the input BAM files to identify stray pairs, that is,\n  those pairs in which both reads are aligned but not marked valid because they have\n  inconsistent orientation or separation. Identifying stray pairs can help fill gaps\n  and assemble larger insertions, especially of repeat content.  However, doing so\n  sometimes consumes considerable memory.\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/broadinstitute/pilon/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/MultiMed/MultiMed_2.24.0.tar.gz",
+            "https://github.com/broadinstitute/pilon/releases/download/v1.24/pilon-1.24.jar",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/MultiMed_2.24.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-multimed/bioconductor-multimed_2.24.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/MultiMed_2.24.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Matrix",
+                "uri": "http://edamontology.org/data_2082",
+                "vocabulary": "EDAM"
+              },
+              "term": "Matrix format",
+              "uri": "http://edamontology.org/format_3033",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-multimed",
+            "pilon",
+            "MultiMed"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL (>= 2)",
+              "url": null
+            },
+            {
+              "name": "GPL-2.0",
+              "url": null
+            },
+            {
+              "name": "GPLv2",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v2.0",
+              "url": "http://choosealicense.com/licenses/gpl-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-multimed",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Statistical inference",
+              "uri": "http://edamontology.org/operation_3658",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "multimed",
+            "pilon"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "P-value",
+                "uri": "http://edamontology.org/data_1669",
+                "vocabulary": "EDAM"
+              },
+              "term": "Matrix format",
+              "uri": "http://edamontology.org/format_3033",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7a1f0d3b8acd1a2f9b510",
+            "67c8297c10e2f3aa0b3b85b9"
+          ],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/MultiMed"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/broadinstitute/pilon"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "galaxy",
+            "github",
+            "bioconductor",
+            "toolshed",
+            "biotools"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/MultiMed/MultiMed_2.24.0.tar.gz",
+            "https://github.com/broadinstitute/pilon/releases/download/v1.24/pilon-1.24.jar",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/MultiMed_2.24.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-multimed/bioconductor-multimed_2.24.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/MultiMed_2.24.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "v1.8",
+            "1.8.0",
+            "v1.5",
+            "v1.16",
+            "2.24.0",
+            "v1.0",
+            "v1.21",
+            "v1.6",
+            "v1.13",
+            "v1.22",
+            "1.24",
+            "v1.14",
+            "v1.24",
+            "v1.10",
+            "v1.3",
+            "v1.11",
+            "v1.9",
+            "v1.15",
+            "v1.19",
+            "v1.18",
+            "v1.4",
+            "v1.20",
+            "1.20.1",
+            "v1.12",
+            "v1.2",
+            "v1.23",
+            "v1.7",
+            "v0.9",
+            "v1.17",
+            "v1.1",
+            "2.29.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/MultiMed.html",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fpilon%2Fpilon%2F1.20.1",
+            "http://bioconductor.org/packages/release/bioc/html/MultiMed.html",
+            "https://bioconductor.org/packages/MultiMed",
+            "https://github.com/broadinstitute/pilon/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pilon_bioconda_recipes/bioconductor-multimed/lib/2.24.0,bioconda_recipes/pilon/cmd/1.24,bioconductor/multimed/lib/2.29.0,biotools/multimed/cmd/1.8.0,biotools/multimed/lib/1.8.0,biotools/pilon/cmd/v1.16,galaxy/pilon/cmd/1.20.1,galaxy_metadata/pilon/cmd/1.20.1,github/pilon/None/v1.24,toolshed/pilon/cmd/1.20.1",
+  "conflict_name": "pilon/*",
+  "date": "2026-02-24T10:35:44.103181+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
