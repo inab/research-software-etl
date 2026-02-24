@@ -1,0 +1,247 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/metassembler/cmd/None",
+        "created_at": "2025-04-02T12:05:34.045685",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "mschatz@cs.jhu.edu",
+              "maintainer": false,
+              "name": "Michael Schatz",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://schatzlab.cshl.edu/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Software package for reconciling assemblies produced by de novo short-read assemblers such as SOAPdenovo and ALLPATHS-LG. The goal of assembly reconciliation, or \u201cmetassembly,\u201d is to combine multiple assemblies into a single genome that is superior to all of its constituents."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://schatzlab.cshl.edu/research/metassembler/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Metassembler"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "metassembler",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c828d410e2f3aa0b3b7fb5"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://schatzlab.cshl.edu/research/metassembler/"
+          ]
+        },
+        "id": "biotools/metassembler/cmd/None",
+        "last_updated_at": "2026-02-23T21:06:03.136274",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/metassembler/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-synmut/lib/1.18.0,bioconductor/synmut/lib/1.23.0",
+        "data": {
+          "authors": [
+            {
+              "email": "hggu@connect.hku.hk",
+              "maintainer": false,
+              "name": "Haogao Gu",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "llmpoon@hku.hk",
+              "maintainer": false,
+              "name": "Leo L.M. Poon",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-seqinr",
+            "r-base",
+            "stringr",
+            "Biostrings",
+            "bioconductor-biostrings >=2.70.0,<2.71.0",
+            "methods",
+            "seqinr",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "BiocGenerics",
+            "r-stringr"
+          ],
+          "description": [
+            "There are increasing demands on designing virus mutants with specific dinucleotide or codon composition.  This tool can take both dinucleotide preference and/or codon usage bias into account while designing mutants.  It is a powerful tool for in silico designs of DNA sequence mutants.",
+            "There are increasing demands on designing virus mutants with specific dinucleotide or codon composition. This tool can take both dinucleotide preference and/or codon usage bias into account while designing mutants. It is a powerful tool for in silico designs of DNA sequence mutants."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-synmut/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-synmut/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/SynMut/SynMut_1.18.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/SynMut_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/SynMut_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-synmut/bioconductor-synmut_1.18.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-synmut",
+            "SynMut"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-synmut",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "synmut"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/SynMut"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Koohoko/SynMut"
+            }
+          ],
+          "source": [
+            "bioconductor",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/SynMut/SynMut_1.18.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/SynMut_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/SynMut_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-synmut/bioconductor-synmut_1.18.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.18.0",
+            "1.23.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/SynMut.html",
+            "https://github.com/Koohoko/SynMut"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:synmut_bioconda_recipes/bioconductor-synmut/lib/1.18.0,bioconductor/synmut/lib/1.23.0,biotools/metassembler/cmd/None",
+  "conflict_name": "synmut/*",
+  "date": "2026-02-24T10:57:50.687408+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
