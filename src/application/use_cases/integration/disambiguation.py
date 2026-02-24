@@ -32,7 +32,7 @@ async def run_full_disambiguation(blocks_file,
 
     print(f"{len(unresolved_keys)} unresolved keys.")
     print(f"Unresolved keys :")
-    if unresolved_keys:
+    if len(unresolved_keys)>0:
         for item in unresolved_keys:
             print(item)
     print("# -------------------------------------")
@@ -66,8 +66,8 @@ async def run_full_disambiguation(blocks_file,
 
     print(' ----------- Disambiguation ended ----------------------')
     print(f"Disambiguation exited unfinished after {rounds_n} second rounds.")
-    print(f"Number of unresolved keys: {unresolved_keys}")
-    if unresolved_keys:
+    print(f"Number of unresolved keys: {len(unresolved_keys)}")
+    if len(unresolved_keys)>0:
         print(f"Unresolved keys: {','.join(unresolved_keys)}")
     print('--------------------------------------------------------')
 

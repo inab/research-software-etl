@@ -56,13 +56,7 @@ def fetch_entry_from_db(entry_id):
 
 
 def prepare_for_db(entry, entries_ids):
-    """
-    WARNING: this function inserts the entries in the db even if the entry is already there.
-    This is because it is for the first time we are merging the entries.
 
-    TODO: adapt this function to check if the entry is already in the db and if so,
-    update it instead of inserting it again. Add metadata to reflect updates in it. 
-    """
     # make suere entries_ids is a list
     if not isinstance(entries_ids, list):
         entries_ids = [entries_ids]
@@ -99,10 +93,17 @@ def merge_entries(entries_ids):
     return merged_entries
 
 
-def save_entry(metadata):
+def save_entry(metadata):    
+    """
+    WARNING: this function inserts the entries in the db even if the entry is already there.
+    This is because it is for the first time we are merging the entries.
+
+    TODO: adapt this function to check if the entry is already in the db and if so,
+    update it instead of inserting it again. Add metadata to reflect updates in it. 
+    """
     try:
         id = mongo_adapter.insert_one(
-            collection_name='toolsDev',
+            collection_name='toolsDevTest',
             document=metadata
         )
 

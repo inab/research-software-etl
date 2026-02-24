@@ -138,9 +138,16 @@ def run_full(
 
     manifest_path               = run_dir / "manifest.json"
 
-    # ── Stage 1 ──────────────────────────────────────────────────────────────────
-    # This step should be the TRANSFORMATION
+    print("=== Stage 0/8: Transformation ===")
+    _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+    _run([
+        python_exe, "-m", "src.adapters.cli.transformation.transformation",
+        "--sources", "all",
+    ], cwd=wd)
     
+
+    # ── Stage 1 ──────────────────────────────────────────────────────────────────
+    '''
     print("=== Stage 1/8: Blocking + recovery ===")
     _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
     _run([
@@ -205,7 +212,7 @@ def run_full(
         "--run-id", run_id
     ], cwd=wd)
 
-    '''
+    
     # ── Stage 7 ──────────────────────────────────────────────────────────────────
     if human_updates:
         print("=== Stage 7/8: Update disambiguation after human resolution ===")
@@ -217,21 +224,28 @@ def run_full(
             python_exe, "-m", "src.adapters.cli.integration.update_disambiguation_after_human_resoltion",
             "--disambiguation-dir", str(disambiguation_out_dir),
         ], cwd=wd)
-
     # ── Stage 8 ──────────────────────────────────────────────────────────────────
     if do_merge_to_db:
         print("=== Stage 8/8: Merge entries into DB ===")
+        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        # --- testing this!! 
+        disambiguation_out_dir = 'data/integration/runs/20260223T113324Z-25a2e43-1.0/disambiguation.20260223T113324Z-25a2e43-1.0.jsonl'
+        # ------------
         _run([
             python_exe, "-m", "src.adapters.cli.integration.merge_entries",
-            "--disambiguation-dir", str(disambiguation_out_dir),
+            "--disambiguated-blocks-file", str(disambiguation_out_dir),
         ], cwd=wd)
 
     # -- Stage 9 ------------------------------------------------------------------
-    # Calculation of statistics and FAIRness
-
-    # TODO
-
+    TODO: test this
+    print("=== Stage 9/9: Merge entries into DB ===")
+    _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+    _run([
+            python_exe, "-m", "src.adapters.cli.generate_stats",
+            "--collections", "all",
+        ], cwd=wd)
     '''
+    
     # ── Manifest ─────────────────────────────────────────────────────────────────
     manifest = {
         "run_id": run_id,
