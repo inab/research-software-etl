@@ -106,8 +106,6 @@ class MongoDBAdapter(DatabaseAdapter):
         """Get database name from parameter or environment variable"""
         return database or os.getenv('MONGO_DB', 'oeb-research-software')
 
-
-    
     @retry(
     retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
     wait=wait_exponential(multiplier=1, min=1, max=10), 

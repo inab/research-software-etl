@@ -138,17 +138,18 @@ def run_full(
 
     manifest_path               = run_dir / "manifest.json"
 
-    print("=== Stage 0/8: Transformation ===")
+    '''
+    print("=== Stage 0/9: Transformation ===")
     _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
     _run([
         python_exe, "-m", "src.adapters.cli.transformation.transformation",
         "--sources", "all",
     ], cwd=wd)
-    
+    '''
 
     # ── Stage 1 ──────────────────────────────────────────────────────────────────
-    '''
-    print("=== Stage 1/8: Blocking + recovery ===")
+    
+    print("=== Stage 1/9: Blocking + recovery ===")
     _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
     _run([
         python_exe, "-m", "src.adapters.cli.integration.group_and_recovery",
@@ -159,7 +160,7 @@ def run_full(
     # ── Stage 2 (optional) ──────────────────────────────────────────────────────
     effective_blocks_in = grouped_entries_file
     if remove_opeb_metrics:
-        print("=== Stage 2/8: Remove OpenEBench 'metrics' (optional) ===")
+        print("=== Stage 2/9: Remove OpenEBench 'metrics' (optional) ===")
         _run([
             python_exe, "scripts/remove_oeb_metrics.py",
             "--in", str(grouped_entries_file),
@@ -169,7 +170,7 @@ def run_full(
 
     
     # ── Stage 3 ──────────────────────────────────────────────────────────────────
-    print("=== Stage 3/8: Conflict detection ===")
+    print("=== Stage 3/9: Conflict detection ===")
     _run([
         python_exe, "-m", "src.adapters.cli.integration.conflict_detection",
         "--grouped-entries-file", str(effective_blocks_in),
@@ -178,7 +179,7 @@ def run_full(
 
     
     # ── Stage 4 ──────────────────────────────────────────────────────────────────
-    print("=== Stage 4/8: Simplify blocks ===")
+    print("=== Stage 4/9: Simplify blocks ===")
     _run([
         python_exe, "scripts/simplify_grouped_entries.py",
         "--in", str(grouped_entries_file),
@@ -187,7 +188,7 @@ def run_full(
 
     
     # ── Stage 5 ──────────────────────────────────────────────────────────────────
-    print("=== Stage 5/8: Convert JSON → JSONL (conflicts & simplified blocks) ===")
+    print("=== Stage 5/9: Convert JSON → JSONL (conflicts & simplified blocks) ===")
     _run([
         python_exe, "scripts/json_to_jsonl.py",
         "--in", str(conflicts_json),
@@ -201,7 +202,7 @@ def run_full(
 
     
     # ── Stage 6 ──────────────────────────────────────────────────────────────────
-    print("=== Stage 6/8: Disambiguation (LLM + heuristics + GH issues) ===")
+    print("=== Stage 6/9: Disambiguation (LLM + heuristics + GH issues) ===")
     _require_env(["GITHUB_TOKEN", "GITLAB_TOKEN", "OPENROUTER_API_KEY", "HUGGINGFACE_API_KEY"])
     _run([
         python_exe, "-m", "src.adapters.cli.integration.disambiguation",
@@ -215,7 +216,7 @@ def run_full(
     
     # ── Stage 7 ──────────────────────────────────────────────────────────────────
     if human_updates:
-        print("=== Stage 7/8: Update disambiguation after human resolution ===")
+        print("=== Stage 7/9: Update disambiguation after human resolution ===")
         try:
             _run(["git", "pull"], cwd=wd)
         except PipelineError:
@@ -224,9 +225,10 @@ def run_full(
             python_exe, "-m", "src.adapters.cli.integration.update_disambiguation_after_human_resoltion",
             "--disambiguation-dir", str(disambiguation_out_dir),
         ], cwd=wd)
+    
     # ── Stage 8 ──────────────────────────────────────────────────────────────────
     if do_merge_to_db:
-        print("=== Stage 8/8: Merge entries into DB ===")
+        print("=== Stage 8/9: Merge entries into DB ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
         # --- testing this!! 
         disambiguation_out_dir = 'data/integration/runs/20260223T113324Z-25a2e43-1.0/disambiguation.20260223T113324Z-25a2e43-1.0.jsonl'
@@ -237,14 +239,14 @@ def run_full(
         ], cwd=wd)
 
     # -- Stage 9 ------------------------------------------------------------------
-    TODO: test this
-    print("=== Stage 9/9: Merge entries into DB ===")
+   
+    print("=== Stage 9/9: Generate statistics ===")
     _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
     _run([
             python_exe, "-m", "src.adapters.cli.generate_stats",
             "--collections", "all",
         ], cwd=wd)
-    '''
+    
     
     # ── Manifest ─────────────────────────────────────────────────────────────────
     manifest = {
