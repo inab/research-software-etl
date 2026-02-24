@@ -1,0 +1,232 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/bioconductor-bsgenome.hsapiens.ucsc.hg38/lib/1.4.5",
+        "created_at": "2025-04-02T11:34:54.770325",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-bsgenome >=1.70.0,<1.71.0",
+            "bioconductor-genomeinfodb >=1.38.0,<1.39.0",
+            "r-base",
+            "curl",
+            "bioconductor-data-packages >=20231203"
+          ],
+          "description": [
+            "Full genomic sequences for Homo sapiens as provided by UCSC (genome hg38, based on assembly GRCh38.p14 since 2023/01/31). The sequences are stored in DNAString objects."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-bsgenome.hsapiens.ucsc.hg38/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-bsgenome.hsapiens.ucsc.hg38/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/data/annotation/src/contrib/BSgenome.Hsapiens.UCSC.hg38_1.4.5.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/BSgenome.Hsapiens.UCSC.hg38/BSgenome.Hsapiens.UCSC.hg38_1.4.5.tar.gz",
+            "https://bioarchive.galaxyproject.org/BSgenome.Hsapiens.UCSC.hg38_1.4.5.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-bsgenome.hsapiens.ucsc.hg38/bioconductor-bsgenome.hsapiens.ucsc.hg38_1.4.5_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-bsgenome.hsapiens.ucsc.hg38"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-bsgenome.hsapiens.ucsc.hg38",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/BSgenome.Hsapiens.UCSC.hg38_1.4.5.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/BSgenome.Hsapiens.UCSC.hg38/BSgenome.Hsapiens.UCSC.hg38_1.4.5.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-bsgenome.hsapiens.ucsc.hg38/bioconductor-bsgenome.hsapiens.ucsc.hg38_1.4.5_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/data/annotation/src/contrib/BSgenome.Hsapiens.UCSC.hg38_1.4.5.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "lib",
+          "version": [
+            "1.4.5"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/data/annotation/html/BSgenome.Hsapiens.UCSC.hg38.html"
+          ]
+        },
+        "id": "bioconda_recipes/bioconductor-bsgenome.hsapiens.ucsc.hg38/lib/1.4.5",
+        "last_updated_at": "2026-02-23T20:11:26.147089",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/bioconductor-bsgenome.hsapiens.ucsc.hg38/lib/1.4.5",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/tedna/cmd/1.2.2,biotools/tedna/cmd/None",
+        "data": {
+          "authors": [
+            {
+              "email": "urgi-contact@versailles.inra.fr",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "https://urgi.versailles.inra.fr/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Tedna is a lightweight de novo transposable element assembler.",
+            "A lightweight de novo transposable element assembler. It assembles the transposable elements directly from the raw reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/tedna/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/tedna/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://urgi.versailles.inra.fr/content/download/2962/25436/file/tedna_doc.pdf"
+            }
+          ],
+          "download": [
+            "https://urgi.versailles.inra.fr/content/download/3481/29402/file/tedna_1.2.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "tedna",
+            "Tedna"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU Affero General Public License",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "tedna",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c82b3910e2f3aa0b3b93e9"
+          ],
+          "repository": [],
+          "source": [
+            "bioconda_recipes",
+            "biotools"
+          ],
+          "source_code": [
+            "https://urgi.versailles.inra.fr/content/download/3481/29402/file/tedna_1.2.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "None",
+            "1.2.2"
+          ],
+          "webpage": [
+            "https://urgi.versailles.inra.fr/Tools/Tedna",
+            "http://urgi.versailles.inra.fr/Tools/Tedna"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:tedna_bioconda_recipes/bioconductor-bsgenome.hsapiens.ucsc.hg38/lib/1.4.5,bioconda_recipes/tedna/cmd/1.2.2,biotools/tedna/cmd/None",
+  "conflict_name": "tedna/*",
+  "date": "2026-02-24T10:02:41.031152+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
