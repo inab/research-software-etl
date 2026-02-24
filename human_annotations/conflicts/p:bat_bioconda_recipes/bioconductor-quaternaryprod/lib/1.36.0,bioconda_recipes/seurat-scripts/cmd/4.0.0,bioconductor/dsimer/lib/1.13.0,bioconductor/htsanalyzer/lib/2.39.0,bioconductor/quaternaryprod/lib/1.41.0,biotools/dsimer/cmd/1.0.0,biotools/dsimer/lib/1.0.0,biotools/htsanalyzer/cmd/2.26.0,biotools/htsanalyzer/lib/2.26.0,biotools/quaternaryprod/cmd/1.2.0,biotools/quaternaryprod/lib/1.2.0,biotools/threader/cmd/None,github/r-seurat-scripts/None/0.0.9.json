@@ -1,0 +1,583 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/threader/cmd/None",
+        "created_at": "2025-04-02T12:49:56.897292",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "d.jones@cs.ucl.ac.uk",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://bioinf.cs.ucl.ac.uk/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A software of threading which is an approach to fold recognition which used a detailed 3-D representation of protein structure. The idea was to physically \u201cthread\u201d a sequence of amino acid side chains onto a backbone structure (a fold) and to evaluate this proposed 3-D structure using a set of pair potentials and (importantly) a separate solvation potential."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioinfadmin.cs.ucl.ac.uk/downloads/threader/manual.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "THREADER"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "threader",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Fold recognition",
+              "uri": "http://edamontology.org/operation_0303",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82aba10e2f3aa0b3b9005"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Molecular modelling",
+              "uri": "http://edamontology.org/topic_2275",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein structure analysis",
+              "uri": "http://edamontology.org/topic_2814",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure prediction",
+              "uri": "http://edamontology.org/topic_0082",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Protein folding",
+              "uri": "http://edamontology.org/topic_0130",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein folds and structural domains",
+              "uri": "http://edamontology.org/topic_0736",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://bioinf.cs.ucl.ac.uk/?id=747"
+          ]
+        },
+        "id": "biotools/threader/cmd/None",
+        "last_updated_at": "2026-02-23T21:28:35.042973",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/threader/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/seurat-scripts/cmd/4.0.0,github/r-seurat-scripts/None/0.0.9,biotools/htsanalyzer/cmd/2.26.0,biotools/htsanalyzer/lib/2.26.0,bioconductor/htsanalyzer/lib/2.39.0,bioconda_recipes/bioconductor-quaternaryprod/lib/1.36.0,biotools/quaternaryprod/lib/1.2.0,biotools/quaternaryprod/cmd/1.2.0,bioconductor/quaternaryprod/lib/1.41.0,biotools/dsimer/cmd/1.0.0,biotools/dsimer/lib/1.0.0,bioconductor/dsimer/lib/1.13.0",
+        "data": {
+          "authors": [
+            {
+              "email": "pablo.moreno@astrazeneca.com",
+              "maintainer": false,
+              "name": "Pablo Moreno",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "a.solovyev39@gmail.com",
+              "maintainer": false,
+              "name": "Andrey Solovyev",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jmanning@ebi.ac.uk",
+              "maintainer": false,
+              "name": "Jonathan Manning",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lix930701@gmail.com",
+              "maintainer": false,
+              "name": "Li Xing",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "43669368+racoonrocket@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Guilhem Marnier",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "xinwang2hms@gmail.com",
+              "maintainer": false,
+              "name": "Xin Wang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cfakhry@cs.umb.edu",
+              "maintainer": false,
+              "name": "Carl Tony Fakhry",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Ping Chen",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Kourosh Zarringhalam",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "nipeng@csu.edu.cn",
+              "maintainer": false,
+              "name": "Peng Ni",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "limin@mail.csu.edu.cn",
+              "maintainer": false,
+              "name": "Min Li",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "379666774@qq.com",
+              "maintainer": false,
+              "name": "Zhihui Fei",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "1615809243@qq.com",
+              "maintainer": false,
+              "name": "Ping Huang",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "RankProd",
+            "igraph (>= 1.0.1)",
+            "R (>= 3.2.0)",
+            "r-loom",
+            "pandoc",
+            "graph",
+            "yaml (>= 2.1.18)",
+            "libpng",
+            "stats",
+            "BioNet",
+            "bioconductor-multtest",
+            "mscorefonts",
+            "graphics",
+            "bioconductor-scater",
+            "org.Hs.eg.db",
+            "r-workflowscriptscommon >=0.0.8",
+            "r-seuratdisk",
+            "r-seurat =4.0.0",
+            "methods",
+            "biomaRt",
+            "r-rcpp >=0.11.3",
+            "igraph",
+            "R (>= 3.3.0)",
+            "r-metap",
+            "cellHTS2",
+            "GO.db",
+            "r-optparse",
+            "r-svglite",
+            "Rcpp (>= 0.11.3)",
+            "r-dplyr",
+            "AnnotationDbi",
+            "R (>= 2.15)",
+            "r-base",
+            "r-yaml >=2.1.18",
+            "dplyr",
+            "reshape2",
+            "GSEABase",
+            "r-uwot <0.1.11",
+            "ggplot2",
+            "r-cairo"
+          ],
+          "description": [
+            "Scripts to install as a Bioconda package for making workflows.",
+            "R package which provides computation of nine methods for measuring disease-disease similarity, including a standard cosine similarity measure and eight function-based methods. The disease similarity matrix obtained from these nine methods can be visualized through heatmap and network. Biological data widely used in disease-disease associations study are also provided.",
+            "A set of wrappers for individual components of the Seurat package.",
+            "This package provides classes and methods for gene set over-representation, enrichment and network analyses on high-throughput screens. The over-representation analysis is performed based on hypergeometric tests. The enrichment analysis is based on the GSEA algorithm (Subramanian et al.  PNAS 2005). The network analysis identifies enriched subnetworks based on algorithms from the BioNet package (Beisser et al., Bioinformatics 2010). A pipeline is also specifically designed for cellHTS2 object to perform integrative network analyses of high-throughput RNA interference screens. The users can build their own analysis pipeline for their own data set based on this package.",
+            "R package that performs causal reasoning on biological networks, including publicly available networks such as String-db. It is a free alternative to commercial products such as Quiagen and Inginuity pathway analysis. For a given a set of differentially expressed genes, it computes the significance of upstream regulators in the network by performing causal reasoning using the Quaternary Dot Product Scoring Statistic, Ternary Dot product Scoring Statistic and Fisher's exact test.",
+            "DSimer is an R package which provides computation of nine methods for measuring disease-disease similarity, including a standard cosine similarity measure and eight function-based methods. The disease similarity matrix obtained from these nine methods can be visualized through heatmap and network. Biological data widely used in disease-disease associations study are also provided by dSimer.",
+            "This package provides classes and methods for gene set over-representation, enrichment and network analyses on high-throughput screens. A pipeline is also specifically designed for cellHTS2 object to perform integrative network analyses of high-throughput RNA interference screens. The users can build their own analysis pipeline for their own data set based on this package.",
+            "QuaternaryProd is an R package that performs causal reasoning on biological networks, including publicly available networks such as STRINGdb. QuaternaryProd is an open-source alternative to commercial products such as Inginuity Pathway Analysis. For a given a set of differentially expressed genes, QuaternaryProd computes the significance of upstream regulators in the network by performing causal reasoning using the Quaternary Dot Product Scoring Statistic (Quaternary Statistic), Ternary Dot product Scoring Statistic (Ternary Statistic) and Fisher's exact test (Enrichment test). The Quaternary Statistic handles signed, unsigned and ambiguous edges in the network. Ambiguity arises when the direction of causality is unknown, or when the source node (e.g., a protein) has edges with conflicting signs for the same target gene. On the other hand, the Ternary Statistic provides causal reasoning using the signed and unambiguous edges only. The Vignette provides more details on the Quaternary Statistic and illustrates an example of how to perform causal reasoning using STRINGdb."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/seurat-scripts/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/seurat-scripts/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ebi-gene-expression-group/r-seurat-scripts/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/HTSanalyzeR.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-quaternaryprod/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-quaternaryprod/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/QuaternaryProd.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/dSimer.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/QuaternaryProd/QuaternaryProd_1.36.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/QuaternaryProd_1.36.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/QuaternaryProd_1.36.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-quaternaryprod/bioconductor-quaternaryprod_1.36.0_src_all.tar.gz",
+            "https://github.com/ebi-gene-expression-group/r-seurat-scripts/archive/4.0.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "ID list",
+                "uri": "http://edamontology.org/data_2872",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "r-seurat-scripts",
+            "dSimer",
+            "QuaternaryProd",
+            "HTSanalyzeR",
+            "bioconductor-quaternaryprod",
+            "seurat-scripts"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": null
+            },
+            {
+              "name": "Apache License 2.0",
+              "url": "http://choosealicense.com/licenses/apache-2.0/"
+            },
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            },
+            {
+              "name": "GPL (>=3)",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GPL-2.0",
+              "url": null
+            },
+            {
+              "name": "GPL (>= 2)",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "seurat-scripts",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene set testing",
+              "uri": "http://edamontology.org/operation_3224",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression profile pathway mapping",
+              "uri": "http://edamontology.org/operation_0533",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathway or network analysis",
+              "uri": "http://edamontology.org/operation_2497",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sample comparison",
+              "uri": "http://edamontology.org/operation_3731",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Heat map generation",
+              "uri": "http://edamontology.org/operation_0531",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "r-seurat-scripts",
+            "quaternaryprod",
+            "dsimer",
+            "htsanalyzer",
+            "bioconductor-quaternaryprod"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Image format",
+              "uri": "http://edamontology.org/format_3547",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c79b54d3b8acd1a2f9b394",
+            "67c829fd10e2f3aa0b3b89e0",
+            "67c8281410e2f3aa0b3b78f0"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/ebi-gene-expression-group/r-seurat-scripts"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/HTSanalyzeR"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/QuaternaryProd"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/dSimer"
+            }
+          ],
+          "source": [
+            "bioconductor",
+            "github",
+            "bioconda_recipes",
+            "biotools"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/QuaternaryProd/QuaternaryProd_1.36.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/QuaternaryProd_1.36.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/QuaternaryProd_1.36.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-quaternaryprod/bioconductor-quaternaryprod_1.36.0_src_all.tar.gz",
+            "https://github.com/ebi-gene-expression-group/r-seurat-scripts/archive/4.0.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Functional genomics",
+              "uri": "http://edamontology.org/topic_0085",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNAi experiment",
+              "uri": "http://edamontology.org/topic_3523",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "2.26.0",
+            "1.13.0",
+            "1.2.0",
+            "1.41.0",
+            "1.0.0",
+            "4.0.0",
+            "0.0.8",
+            "2.39.0",
+            "1.36.0",
+            "0.0.9"
+          ],
+          "webpage": [
+            "http://bioconductor.org/packages/release/bioc/html/QuaternaryProd.html",
+            "https://bioconductor.org/packages/3.18/bioc/html/QuaternaryProd.html",
+            "http://bioconductor.org/packages/release/bioc/html/HTSanalyzeR.html",
+            "https://bioconductor.org/packages/QuaternaryProd",
+            "https://bioconductor.org/packages/dSimer",
+            "https://github.com/ebi-gene-expression-group/r-seurat-scripts",
+            "http://bioconductor.org/packages/release/bioc/html/dSimer.html",
+            "https://bioconductor.org/packages/HTSanalyzeR"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:bat_bioconda_recipes/bioconductor-quaternaryprod/lib/1.36.0,bioconda_recipes/seurat-scripts/cmd/4.0.0,bioconductor/dsimer/lib/1.13.0,bioconductor/htsanalyzer/lib/2.39.0,bioconductor/quaternaryprod/lib/1.41.0,biotools/dsimer/cmd/1.0.0,biotools/dsimer/lib/1.0.0,biotools/htsanalyzer/cmd/2.26.0,biotools/htsanalyzer/lib/2.26.0,biotools/quaternaryprod/cmd/1.2.0,biotools/quaternaryprod/lib/1.2.0,biotools/threader/cmd/None,github/r-seurat-scripts/None/0.0.9",
+  "conflict_name": "bat/*",
+  "date": "2026-02-24T10:08:10.994495+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
