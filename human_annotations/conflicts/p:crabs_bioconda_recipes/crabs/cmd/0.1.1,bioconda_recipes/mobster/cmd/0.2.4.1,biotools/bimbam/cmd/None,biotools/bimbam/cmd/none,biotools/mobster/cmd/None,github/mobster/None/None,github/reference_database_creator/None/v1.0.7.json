@@ -1,0 +1,444 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/mobster/cmd/None",
+        "created_at": "2025-04-02T12:05:54.611320",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "Jayne.Hehir-Kwa@radboudumc.nl",
+              "maintainer": false,
+              "name": "Jayne Y Hehir-Kwa",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://sourceforge.net/projects/mobster/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Used to detect novel (non-reference) Mobile Element Insertion (MEI) events in BAM files and uses both a discordant read pair method and a split-read method."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://sourceforge.net/projects/mobster/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Mobster"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mobster",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence feature detection",
+              "uri": "http://edamontology.org/operation_0253",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8294910e2f3aa0b3b83df"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Nucleic acid sites",
+              "uri": "http://edamontology.org/topic_3511",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://sourceforge.net/projects/mobster/"
+          ]
+        },
+        "id": "biotools/mobster/cmd/None",
+        "last_updated_at": "2026-02-23T21:06:05.477903",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mobster/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/crabs/cmd/0.1.1,github/reference_database_creator/None/v1.0.7,bioconda_recipes/mobster/cmd/0.2.4.1,github/mobster/None/None,biotools/bimbam/cmd/none,biotools/bimbam/cmd/None",
+        "data": {
+          "authors": [
+            {
+              "email": "gjeunen@gmail.com",
+              "maintainer": false,
+              "name": "gjeunen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hughbcross@gmail.com",
+              "maintainer": false,
+              "name": "Hugh Cross",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hughcross@yahoo.com",
+              "maintainer": false,
+              "name": "hughcross",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jyhehir@yahoo.com.au",
+              "maintainer": false,
+              "name": "jyhehir",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "veronique.geoffroy@inserm.fr",
+              "maintainer": false,
+              "name": "Geoffroy V\u00e9ronique",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "71556548+hevmarriott@users.noreply.github.com",
+              "maintainer": false,
+              "name": "hevmarriott",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49699333+dependabot[bot]@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dependabot[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jhehir-kwa@gmail.com",
+              "maintainer": false,
+              "name": "jhehir-kwa",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "shuang@broadinstitute.org",
+              "maintainer": false,
+              "name": "Steve Huang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "dthung@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dthung",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "johannes.koester@tu-dortmund.de",
+              "maintainer": false,
+              "name": "Johannes K\u00f6ster",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jayne.hehir-kwa@radboudumc.nl",
+              "maintainer": false,
+              "name": "Jayne",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nobody@example.org",
+              "maintainer": false,
+              "name": "git-svn-migrate",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "DjieTjwan.Thung@radboudumc.nl",
+              "maintainer": false,
+              "name": "Djie Twjan Thung",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "yongtaog@bcm.edu",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python >=3.6.10",
+            "vsearch >=2.13.3",
+            "numpy",
+            "tqdm",
+            "argparse",
+            "cutadapt >=3.4",
+            "pandas >=0.23.4",
+            "muscle >=3.8.31",
+            "openjdk",
+            "python",
+            "matplotlib-base",
+            "wget",
+            "mosaik",
+            "biopython =1.78"
+          ],
+          "description": [
+            "Crabs (Creating Reference databases for Amplicon-Based Sequencing) is a program to download and curate reference databases for eDNA metabarcoding analyses.",
+            "NGS tool for detecting MEI and gene retrotransposition events in WGS and WES data, see Thung et al. Genome Biol. 2014 for more information.",
+            "Creating reference databases for amplicon sequencing.",
+            "The software performs genotype imputation and statistical tests for disease association, including single SNP tests and regional multi-SNP tests.",
+            "For more details about Mobster please see.",
+            "Baysian Imputation Based Association Mapping. Genotype imputation and statistical tests for disease association, including single SNP tests and regional multi-SNP tests."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/crabs/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/crabs/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/gjeunen/reference_database_creator/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/mobster/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/mobster/README.html"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/jyhehir/mobster/blob/main/License.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jyhehir/mobster/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://www.haplotype.org/download/bimbam-manual.pdf"
+            }
+          ],
+          "download": [
+            "https://github.com/jyhehir/mobster/archive/v0.2.4.1.tar.gz",
+            "https://github.com/gjeunen/reference_database_creator/files/8028374/crabs_v0.1.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BIMBAM",
+            "mobster",
+            "reference_database_creator",
+            "crabs"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            },
+            {
+              "name": "GPL3",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "crabs",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Imputation",
+              "uri": "http://edamontology.org/operation_3557",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistical calculation",
+              "uri": "http://edamontology.org/operation_2238",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "mobster",
+            "bimbam",
+            "reference_database_creator"
+          ],
+          "output": [],
+          "publication": [
+            "67c7a713d3b8acd1a2f9b67d"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/gjeunen/reference_database_creator"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jyhehir/mobster"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "biotools"
+          ],
+          "source_code": [
+            "https://github.com/jyhehir/mobster/archive/v0.2.4.1.tar.gz",
+            "https://github.com/gjeunen/reference_database_creator/files/8028374/crabs_v0.1.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v0.1.7",
+            "v1.0.3",
+            "None",
+            "v1.0.6",
+            "v0.1.1",
+            "v1.0.2",
+            "v0.1.2",
+            "v1.0.0",
+            "v0.1.9",
+            "v1.0.1",
+            "0.1.1",
+            "v1.0.7",
+            "v1.0.4",
+            "0.2.4.1",
+            "none",
+            "v1.0.5"
+          ],
+          "webpage": [
+            "https://github.com/jyhehir/mobster",
+            "http://www.haplotype.org/bimbam.html",
+            "https://github.com/gjeunen/reference_database_creator",
+            "https://jyhehir.github.io/mobster/index.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:crabs_bioconda_recipes/crabs/cmd/0.1.1,bioconda_recipes/mobster/cmd/0.2.4.1,biotools/bimbam/cmd/None,biotools/bimbam/cmd/none,biotools/mobster/cmd/None,github/mobster/None/None,github/reference_database_creator/None/v1.0.7",
+  "conflict_name": "crabs/*",
+  "date": "2026-02-24T10:47:09.340072+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
