@@ -1,0 +1,356 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/kma/cmd/1.4.14",
+        "created_at": "2025-04-02T11:55:50.096425",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zlib"
+          ],
+          "description": [
+            "KMA is mapping a method designed to map raw reads directly against redundant databases, in an ultra-fast manner using seed and extend."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/kma/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/kma/README.html"
+            }
+          ],
+          "download": [
+            "https://bitbucket.org/genomicepidemiology/kma/get/1.4.14.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "kma"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "kma",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67e2dc01ac7ee6cb5789128d"
+          ],
+          "repository": [
+            {
+              "kind": "bitbucket",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://bitbucket.org/genomicepidemiology/kma"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bitbucket.org/genomicepidemiology/kma/get/1.4.14.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.4.14"
+          ],
+          "webpage": [
+            "https://bitbucket.org/genomicepidemiology/kma"
+          ]
+        },
+        "id": "bioconda_recipes/kma/cmd/1.4.14",
+        "last_updated_at": "2026-02-23T20:23:05.679707",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/kma/cmd/1.4.14",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/cytofkit/cmd/1.6.1,biotools/cytofkit/lib/1.6.1,bioconductor/cytofkit/lib/1.15.0",
+        "data": {
+          "authors": [
+            {
+              "email": "Chen_Jinmiao@immunol.a-star.edu.sg",
+              "maintainer": false,
+              "name": "Jinmiao Chen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "chen_hao@immunol.a-star.edu.sg",
+              "maintainer": false,
+              "name": "Hao Chen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "enewell@fredhutch.org",
+              "maintainer": false,
+              "name": "Evan Newell",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "a0124008@u.nus.edu",
+              "maintainer": false,
+              "name": "Matthew Myint",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "e1071",
+            "Rtsne",
+            "grDevices",
+            "flowCore",
+            "stats",
+            "shinyFiles",
+            "graphics",
+            "ggrepel",
+            "tcltk",
+            "doParallel",
+            "methods",
+            "VGAM",
+            "igraph(>= 1.1.2)",
+            "plyr",
+            "Rcpp (>= 0.12.0)",
+            "vegan",
+            "shiny",
+            "destiny",
+            "R (>= 3.4.0)",
+            "gplots",
+            "colourpicker",
+            "FlowSOM(>= 1.4.0)",
+            "parallel",
+            "RANN(>= 2.5)",
+            "reshape2",
+            "pdist",
+            "ggplot2",
+            "utils",
+            "Biobase"
+          ],
+          "description": [
+            "An integrated mass cytometry data analysis pipeline that enables simultaneous illustration of cellular diversity and progression."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/cytofkit.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Mass spectrometry data",
+                "uri": "http://edamontology.org/data_2536",
+                "vocabulary": "EDAM"
+              },
+              "term": "Binary format",
+              "uri": "http://edamontology.org/format_2333",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "cytofkit"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "cytofkit",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Spectral analysis",
+              "uri": "http://edamontology.org/operation_3214",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Matrix format",
+              "uri": "http://edamontology.org/format_3033",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Image format",
+              "uri": "http://edamontology.org/format_3547",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Binary format",
+              "uri": "http://edamontology.org/format_2333",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c78cd7d3b8acd1a2f9b27a",
+            "67c78cd7d3b8acd1a2f9b27b",
+            "67c78cd8d3b8acd1a2f9b27c",
+            "67c7abdfd3b8acd1a2f9bec2"
+          ],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/cytofkit"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/JinmiaoChenLab/cytofkit"
+            }
+          ],
+          "source": [
+            "bioconductor",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Laboratory techniques",
+              "uri": "http://edamontology.org/topic_3361",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data visualisation",
+              "uri": "http://edamontology.org/topic_0092",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data mining",
+              "uri": "http://edamontology.org/topic_3473",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "1.6.1",
+            "1.15.0"
+          ],
+          "webpage": [
+            "https://github.com/JinmiaoChenLab/cytofkit",
+            "http://bioconductor.org/packages/release/bioc/html/cytofkit.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:kma_bioconda_recipes/kma/cmd/1.4.14,bioconductor/cytofkit/lib/1.15.0,biotools/cytofkit/cmd/1.6.1,biotools/cytofkit/lib/1.6.1",
+  "conflict_name": "kma/*",
+  "date": "2026-02-24T10:57:27.939744+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
