@@ -1,0 +1,232 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/crosswork/cmd/None",
+        "created_at": "2025-04-02T11:54:15.673693",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "support@massai.dk",
+              "maintainer": false,
+              "name": "Morten Rasmussen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Software-assisted identification of cross-linked peptides."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CrossWork"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "crosswork",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Spectral analysis",
+              "uri": "http://edamontology.org/operation_3214",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8279a10e2f3aa0b3b7427"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Proteomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://doi.org/10.1016/j.jprot.2011.04.019"
+          ]
+        },
+        "id": "biotools/crosswork/cmd/None",
+        "last_updated_at": "2026-02-23T20:43:37.796643",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/crosswork/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/insurveyor/cmd/1.1.2,github/INSurVeyor/None/1.1.3",
+        "data": {
+          "authors": [
+            {
+              "email": "ramesh.rajaby@gmail.com",
+              "maintainer": false,
+              "name": "ramesh",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "decosterwouter@gmail.com",
+              "maintainer": false,
+              "name": "Wouter De Coster",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "numpy",
+            "pyfaidx >=0.5.9.1, <0.8",
+            "pysam >=0.16.0.1, <0.21"
+          ],
+          "description": [
+            "An insertion caller for Illumina paired-end WGS data.",
+            "INSurVeyor is a fast and accurate SV insertion caller for Illumina paired-end WGS data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/insurveyor/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/insurveyor/README.html"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/kensung-lab/INSurVeyor/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/kensung-lab/INSurVeyor/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/kensung-lab/INSurVeyor/archive/refs/tags/1.1.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "INSurVeyor",
+            "insurveyor"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "insurveyor",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "INSurVeyor"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/kensung-lab/INSurVeyor"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/kensung-lab/INSurVeyor/archive/refs/tags/1.1.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0",
+            "1.1",
+            "1.1.1",
+            "1.1.2",
+            "1.1.3",
+            "1.0.2"
+          ],
+          "webpage": [
+            "https://github.com/kensung-lab/INSurVeyor"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:crosswork_bioconda_recipes/insurveyor/cmd/1.1.2,biotools/crosswork/cmd/None,github/INSurVeyor/None/1.1.3",
+  "conflict_name": "crosswork/*",
+  "date": "2026-02-24T10:52:15.718074+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
