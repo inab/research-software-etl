@@ -1,0 +1,314 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/bioconductor-go.db/lib/3.18.0",
+        "created_at": "2025-04-02T11:53:48.056977",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-annotationdbi >=1.64.0,<1.65.0",
+            "r-base",
+            "curl",
+            "bioconductor-data-packages >=20231203"
+          ],
+          "description": [
+            "A set of annotation maps describing the entire Gene Ontology assembled using data from GO."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-go.db/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-go.db/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/data/annotation/src/contrib/GO.db_3.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/GO.db/GO.db_3.18.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/GO.db_3.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-go.db/bioconductor-go.db_3.18.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-go.db"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-go.db",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/GO.db/GO.db_3.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-go.db/bioconductor-go.db_3.18.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/GO.db_3.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/data/annotation/src/contrib/GO.db_3.18.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "lib",
+          "version": [
+            "3.18.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/data/annotation/html/GO.db.html"
+          ]
+        },
+        "id": "bioconda_recipes/bioconductor-go.db/lib/3.18.0",
+        "last_updated_at": "2026-02-23T20:21:57.538950",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/bioconductor-go.db/lib/3.18.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-meshr/lib/2.8.0,biotools/meshr/cmd/1.10.0,biotools/meshr/lib/1.10.0,bioconductor/meshr/lib/2.13.0",
+        "data": {
+          "authors": [
+            {
+              "email": "k.t.the-answer@hotmail.co.jp",
+              "maintainer": false,
+              "name": "Koki Tsuyuzaki",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-meshdbi >=1.38.0,<1.39.0",
+            "stats",
+            "BiocGenerics",
+            "knitr",
+            "BiocStyle",
+            "r-markdown",
+            "methods",
+            "bioconductor-biocstyle >=2.30.0,<2.31.0",
+            "fdrtool",
+            "MeSHDbi",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "S4Vectors",
+            "bioconductor-category >=2.68.0,<2.69.0",
+            "RSQLite",
+            "r-base",
+            "r-rsqlite",
+            "markdown",
+            "r-knitr",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "Category",
+            "r-fdrtool",
+            "rmarkdown",
+            "r-rmarkdown",
+            "utils",
+            "R (>= 4.1.0)"
+          ],
+          "description": [
+            "A set of annotation maps describing the entire MeSH assembled using data from MeSH."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-meshr/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-meshr/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/meshr.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/meshr/meshr_2.8.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-meshr/bioconductor-meshr_2.8.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/meshr_2.8.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/meshr_2.8.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Gene ID",
+                "uri": "http://edamontology.org/data_2295",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Gene ID",
+                "uri": "http://edamontology.org/data_2295",
+                "vocabulary": "EDAM"
+              },
+              "term": "Ontology format",
+              "uri": "http://edamontology.org/format_2195",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "meshr",
+            "bioconductor-meshr"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-meshr",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "meshr"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Ontology mapping",
+                "uri": "http://edamontology.org/data_3509",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7a1b3d3b8acd1a2f9b504"
+          ],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/meshr"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/rikenbit/meshr"
+            }
+          ],
+          "source": [
+            "bioconductor",
+            "bioconda_recipes",
+            "biotools"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/meshr/meshr_2.8.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-meshr/bioconductor-meshr_2.8.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/meshr_2.8.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/meshr_2.8.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Data quality management",
+              "uri": "http://edamontology.org/topic_3572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Medical informatics",
+              "uri": "http://edamontology.org/topic_3063",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "1.10.0",
+            "2.8.0",
+            "2.13.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/meshr.html",
+            "http://bioconductor.org/packages/release/bioc/html/meshr.html",
+            "https://bioconductor.org/packages/meshr"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:meshr_bioconda_recipes/bioconductor-go.db/lib/3.18.0,bioconda_recipes/bioconductor-meshr/lib/2.8.0,bioconductor/meshr/lib/2.13.0,biotools/meshr/cmd/1.10.0,biotools/meshr/lib/1.10.0",
+  "conflict_name": "meshr/*",
+  "date": "2026-02-24T10:23:01.856326+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
