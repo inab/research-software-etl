@@ -1,0 +1,310 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/snap6764/cmd/None",
+        "created_at": "2025-04-02T12:41:13.294643",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "zaki@cs.rpi.edu",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.cs.rpi.edu/~zaki/www-new/pmwiki.php/Main/HomePage"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The tool finds non-sequential 3D protein structure alignments."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.cs.rpi.edu/~zaki/www-new/pmwiki.php/Software/Software#toc31"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SNAP"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "snap6764",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein structure analysis",
+              "uri": "http://edamontology.org/operation_2406",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82ab910e2f3aa0b3b8ffc"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Protein structure analysis",
+              "uri": "http://edamontology.org/topic_2814",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure analysis",
+              "uri": "http://edamontology.org/topic_0081",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure prediction",
+              "uri": "http://edamontology.org/topic_0082",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.cs.rpi.edu/~zaki/www-new/pmwiki.php/Software/Software#toc31"
+          ]
+        },
+        "id": "biotools/snap6764/cmd/None",
+        "last_updated_at": "2026-02-23T21:19:43.905489",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/snap6764/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/r-msqrob/cmd/0.7.7,github/MSqRob/None/MSqRob_standalone_Win_0.7.7",
+        "data": {
+          "authors": [
+            {
+              "email": "ludgergoeminne@gmail.com",
+              "maintainer": false,
+              "name": "Ludger Goeminne",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lieven.clement@gmail.com",
+              "maintainer": false,
+              "name": "lievenclement",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "magallania@gmail.com",
+              "maintainer": false,
+              "name": "Dar\u00edo Here\u00f1\u00fa",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "laurent.gatto@gmail.com",
+              "maintainer": false,
+              "name": "Laurent Gatto",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-mzr",
+            "r-shiny",
+            "r-lazyeval",
+            "r-reshape2",
+            "r-rcolorbrewer",
+            "r-gtable",
+            "r-miniui",
+            "r-openxlsx",
+            "bioconductor-msnbase",
+            "r-scales",
+            "r-htmlwidgets",
+            "r-labeling",
+            "r-maldiquant",
+            "r-colorspace",
+            "r-magrittr",
+            "bioconductor-protgenerics",
+            "bioconductor-mzid",
+            "bioconductor-biocinstaller",
+            "r-nloptr",
+            "r-tibble",
+            "r-shinyjs",
+            "r-statmod",
+            "bioconductor-affyio",
+            "r-minqa",
+            "bioconductor-biocgenerics",
+            "r-yaml",
+            "r-xml",
+            "r-plyr",
+            "r-stringi",
+            "bioconductor-Biobase",
+            "r-base",
+            "r-httpuv",
+            "r-rcpp",
+            "r-dt",
+            "r-numderiv",
+            "r-fdrtool",
+            "r-dichromat",
+            "r-shinythemes",
+            "bioconductor-biocparallel",
+            "r-xtable",
+            "bioconductor-limma",
+            "r-munsell",
+            "r-ggplot2",
+            "r-lme4",
+            "r-stringr",
+            "r-svdialogs",
+            "r-snow"
+          ],
+          "description": [
+            "Robust statistical inference for quantitative LC-MS proteomics."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/r-msqrob/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/r-msqrob/README.html"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/statOmics/MSqRob/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/statOmics/MSqRob/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/statOmics/MSqRob/archive/refs/tags/MSqRob_standalone_Win_0.7.7.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "r-msqrob",
+            "MSqRob"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL (>= 2)",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "r-msqrob",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "MSqRob"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/statOmics/MSqRob"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/statOmics/MSqRob/archive/refs/tags/MSqRob_standalone_Win_0.7.7.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.6.5",
+            "0.6.3",
+            "MSqRob_standalone_Win_0.7.7",
+            "MSqRob_standalone_Win_0.7.5",
+            "MSqRob_standalone_Win_0.7.6",
+            "MSqRob_standalone_Win_0.7.0",
+            "0.6.4",
+            "0.7.7"
+          ],
+          "webpage": [
+            "https://github.com/statOmics/MSqRob"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:msqrob_bioconda_recipes/r-msqrob/cmd/0.7.7,biotools/snap6764/cmd/None,github/MSqRob/None/MSqRob_standalone_Win_0.7.7",
+  "conflict_name": "msqrob/*",
+  "date": "2026-02-24T11:09:57.291301+00:00",
+  "run_id": "20260224T094912Z-037b39f-1.1-integration"
+}
