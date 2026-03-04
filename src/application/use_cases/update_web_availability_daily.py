@@ -215,7 +215,7 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
                     {"_id": url},
                     {
                         "$set": {
-                            RELEVANCE_TAG_FIELD: True,           # <-- tag relevant
+                            RELEVANCE_TAG_FIELD: True,           
                             "relevance.source": "ToolsDev",
                             "relevance.tagged_at": now,
                             "last_updated_at": now,
@@ -228,7 +228,7 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
                             "created_by": cfg.created_by,
                             "created_logs": "ensure-relevant-url",
                             "data.url": url,
-                            "data.availability": [],            # <-- empty availability on insert
+                            "data.availability": [],
                         },
                     },
                     upsert=True,
