@@ -16,6 +16,7 @@ import sys
 from pathlib import Path
 from src.adapters.cli import check_environment
 from src.adapters.cli.pipeline_full import run_full  
+from src.adapters.cli import web_availability
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -41,12 +42,20 @@ def main(argv: list[str] | None = None) -> None:
     # --- check-env subcommand ---------------------------------------------------
     subparsers.add_parser("check-env", help="Check environment variables and API connectivity")
 
+     # --- run-webavailability subcommand ----------------------------------------
+    wa_p = subparsers.add_parser(
+        "run-webavailability",
+        help="Run daily web availability update (and ensure ToolsDev URLs exist)",
+    )
+
+    wa_p.add_argument("wa_args", nargs=argparse.REMAINDER, help="Arguments passed to the web availability job")
+
     # --- parse -----------------------------------------------------------------
     args = parser.parse_args(argv)
 
     if args.command == "check-env":
         check_environment.main()
-        return
+        return 0
 
     if args.command == "run":
         run_full(
@@ -58,8 +67,13 @@ def main(argv: list[str] | None = None) -> None:
             do_merge_to_db=args.do_merge_to_db,
             python_exe=args.python_exe,
         )
-        return
+        return 0
     
+    if args.command == "run-webavailability":
+        # args.wa_args includes leading '--' items, exactly as typed
+        return web_availability.main(args.wa_args)
+
+    return 0
     ## Add `rsetl integrate-human`
     ## Add `rsetl run-publications`
     ## Add `rsetl run-webavailability`
