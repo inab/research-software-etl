@@ -1,0 +1,190 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/mendelscan/None/None",
+        "created_at": "2025-04-02T15:44:19.372280",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "MendelScan is a tool for prioritizing candidate variants in family-based studies of inherited disease."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/mendelscan"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "mendelscan"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mendelscan",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/mendelscan"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://mendelscan.sourceforge.io/"
+          ]
+        },
+        "last_updated_at": "2025-04-02T15:44:19.372280",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/mendelscan//",
+            "source_url": "https://sourceforge.net/projects/mendelscan"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/mendelscan/None/1.2.2,bioconda_recipes/mendelscan/cmd/1.2.2",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "openjdk"
+          ],
+          "description": [
+            "Analyze exome data for Mendelian disorders.",
+            "Analyze exome data for Mendelian disorders. Still in alpha-testing."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/genome/mendelscan/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/mendelscan/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/mendelscan/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/genome/mendelscan/releases/download/1.2.2/MendelScan.v1.2.2.jar"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "mendelscan"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Unknown",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "mendelscan",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/genome/mendelscan"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/genome/mendelscan/releases/download/1.2.2/MendelScan.v1.2.2.jar"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.2.1",
+            "1.2.2",
+            "v1.2.0",
+            "v1.1.1.0"
+          ],
+          "webpage": [
+            "https://github.com/genome/mendelscan",
+            "http://gmt.genome.wustl.edu/mendelscan/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:mendelscan/*_7f4c5b5ee029b7e8dd41cdcf4cec600a3489159728104e926944cddcbb9ba4a4",
+  "conflict_name": "mendelscan/*",
+  "date": "2026-02-04T15:14:29.809461+00:00",
+  "run_id": "20260204T145548Z-8c2d90e-test_1_0"
+}
