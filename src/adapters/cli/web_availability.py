@@ -68,3 +68,6 @@ def main(argv: list[str] | None = None) -> int:
     except Exception as e:
         print(f"[FATAL] Unexpected error: {e}", file=sys.stderr)
         return 1
+    
+if __name__ == "__main__":
+    raise SystemExit(main())
