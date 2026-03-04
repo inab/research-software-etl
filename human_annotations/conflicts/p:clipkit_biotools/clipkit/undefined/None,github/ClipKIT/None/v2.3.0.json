@@ -1,0 +1,335 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/clipkit/undefined/None",
+        "created_at": "2026-02-23T16:07:47.065926",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "jlsteenwyk@berkeley.edu",
+              "maintainer": false,
+              "name": "Jacob L Steenwyk",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "ClipKIT in the browser provides a web-based application for fast online trimming of multiple sequence alignments, enhancing accessibility for phylogenetics research. It uses cloud-based resources to efficiently trim alignments while retaining phylogenetically informative sites."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://clipkit.genomelybio.com/#/help"
+            },
+            {
+              "content": null,
+              "type": "terms_of_use",
+              "url": "https://clipkit.genomelybio.com/#/terms"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ClipKIT in the browser"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "clipkit",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Multiple sequence alignment",
+              "uri": "http://edamontology.org/operation_0492",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6d434393fdfaf890bc2a"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Phylogenomics",
+              "uri": "http://edamontology.org/topic_0194",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenetics",
+              "uri": "http://edamontology.org/topic_3293",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure analysis",
+              "uri": "http://edamontology.org/topic_0081",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://clipkit.genomelybio.com/"
+          ]
+        },
+        "id": "biotools/clipkit/undefined/None",
+        "last_updated_at": "2026-02-23T21:52:48.856007",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/clipkit/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/ClipKIT/None/v2.3.0",
+        "created_at": "2025-04-02T15:49:30.380985",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "jlsteenwyk@gmail.com",
+              "maintainer": false,
+              "name": "Jacob L. Steenwyk",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49699333+dependabot[bot]@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dependabot[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "TJBIII@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Thomas Buida",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "thomasbuida@gmail.com",
+              "maintainer": false,
+              "name": "Thomas Buida",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A multiple sequence alignment-trimming algorithm for accurate phylogenomic inference."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/change_log.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/docs/DOCS.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/docs/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/docs/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/docs/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/jlsteenwyk/clipkit/blob/main/docs/requirements_manual.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ClipKIT"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "ClipKIT",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/JLSteenwyk/ClipKIT"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "evolution",
+              "uri": "https://github.com/topics/evolution",
+              "vocabulary": ""
+            },
+            {
+              "term": "evolutionary-biology",
+              "uri": "https://github.com/topics/evolutionary-biology",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "phylogenetics",
+              "uri": "https://github.com/topics/phylogenetics",
+              "vocabulary": ""
+            },
+            {
+              "term": "phylogenomics",
+              "uri": "https://github.com/topics/phylogenomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "systematics",
+              "uri": "https://github.com/topics/systematics",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "v2.3.0",
+            "v2.2.5",
+            "v2.2.4",
+            "v2.2.1",
+            "v2.2.0",
+            "v2.1.3",
+            "v2.1.1",
+            "v1.4.0",
+            "v1.3.0",
+            "v1.2.0",
+            "v1.1.6",
+            "v1.1.5"
+          ],
+          "webpage": [
+            "https://jlsteenwyk.com/ClipKIT/"
+          ]
+        },
+        "id": "github/ClipKIT/None/v2.3.0",
+        "last_updated_at": "2026-02-23T20:30:06.253241",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/ClipKIT",
+            "source_url": "https://github.com/jlsteenwyk/clipkit"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:clipkit_biotools/clipkit/undefined/None,github/ClipKIT/None/v2.3.0",
+  "conflict_name": "clipkit/*",
+  "date": "2026-02-24T11:36:57.141148+00:00",
+  "run_id": "20260224T113355Z-021f741-1.1-integration"
+}
