@@ -74,7 +74,7 @@ class MongoDBAdapter(DatabaseAdapter):
         try:
             if mongo_user and mongo_pass:
                 client = pymongo.MongoClient(
-                    'mongodb://127.0.0.1:27018',
+                    f'mongodb://{mongo_host}:{mongo_port}',
                     username=mongo_user,
                     password=mongo_pass,
                     authSource=mongo_auth_src,
