@@ -1,0 +1,116 @@
+{"beagle/cmd": {"decision": "unclear", "explanation": "No info", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/131"}}
+{"responsenet/*": {"decision": "same", "explanation": "Same description", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/130"}}
+{"sina/*": {"decision": "unclear", "explanation": "no information in entry A", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/128"}}
+{"roddy/cmd": {"decision": "same", "explanation": "Seems that the unreleased is an old biotools entry of the same tool", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/127"}}
+{"proteoformer/cmd": {"decision": "same", "explanation": "Old biotools entry", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/126"}}
+{"mass/app": {"decision": "same", "explanation": "Same website, similar description and one common author", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/125"}}
+{"gdsctools/*": {"decision": "same", "explanation": "Same documentation", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/123"}}
+{"sbpipe/*": {"decision": "same", "explanation": "Same documentation and repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/121"}}
+{"fastphylo/*": {"decision": "same", "explanation": "same publication and website of A referenced in repo B as old web site", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/120"}}
+{"oligomap/*": {"decision": "different", "explanation": "Different purpose and no common links", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/119"}}
+{"mendelscan/*": {"decision": "same", "explanation": "Same readme in websites. Same programming language.", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/118"}}
+{"vadr/*": {"decision": "same", "explanation": "Repo A redirects to repo B", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/117"}}
+{"sparsedossa2/lib": {"decision": "same", "explanation": "Common name including number, one common author and similar description", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/116"}}
+{"sbgn/*": {"decision": "different", "explanation": "Different purposes", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/114"}}
+{"potamos/soap": {"decision": "same", "explanation": "Same author and identical description", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/111"}}
+{"methylsig/lib": {"decision": "same", "explanation": "same repository and very similar descriptions", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/110"}}
+{"hgca/web": {"decision": "same", "explanation": "One is an older version of the other", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/109"}}
+{"agotool/soap": {"decision": "same", "explanation": "Same metadata", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/108"}}
+{"gnet2/lib": {"decision": "same", "explanation": "One repository is an up-to-date fork of the other", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/107"}}
+{"fasta/web": {"decision": "different", "explanation": "Different biotools entries, entry A is the EBI web service of the tool. They have different publications and EBI uses the other. ", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/106"}}
+{"faf-drugs/web": {"decision": "same", "explanation": "Same description, same authors, same documentation", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/105"}}
+{"expressionview/lib": {"decision": "same", "explanation": "B is a bioconductor package according to documentation", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/104"}}
+{"enterotyping/cmd": {"decision": "same", "explanation": "Same metadata", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/103"}}
+{"sambamba/cmd": {"decision": "same", "explanation": "Documentation of A is repo of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/102"}}
+{"rodeo/cmd": {"decision": "same", "explanation": "It seems like an abandoned tool from mitchells lab", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/101"}}
+{"trnascan-se/cmd": {"decision": "same", "explanation": "both from bioconda and identical descriptions", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/100"}}
+{"weeder/cmd": {"decision": "same", "explanation": "Very similar descriptions. Authors of A are authors of publications in docs of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/99"}}
+{"gepard/cmd": {"decision": "same", "explanation": "Same publication and organization", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/98"}}
+{"debreak/cmd": {"decision": "same", "explanation": "Repo B redirects of repo A", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/96"}}
+{"soapdenovo2/cmd": {"decision": "same", "explanation": "Same purpose", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/95"}}
+{"r-cdseq/cmd": {"decision": "different", "explanation": "Different implementations: R and MATLAB", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/94"}}
+{"prosolo/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/93"}}
+{"bioconductor-cbnplot/lib": {"decision": "same", "explanation": "Same repo in both (in biotools)", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/92"}}
+{"cytotree/lib": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/90"}}
+{"crossicc/lib": {"decision": "same", "explanation": "Bioconductor reference in biotools.", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/89"}}
+{"mustang/cmd": {"decision": "same", "explanation": "Same description and page", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/88"}}
+{"velvet/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/87"}}
+{"hypercluster/lib": {"decision": "same", "explanation": "Repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/86"}}
+{"pathoscope/cmd": {"decision": "same", "explanation": "Same publication", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/85"}}
+{"pash/cmd": {"decision": "same", "explanation": "Description of B is the title of the publication of A", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/84"}}
+{"pepnovo/cmd": {"decision": "same", "explanation": "Same documentation page", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/83"}}
+{"pyrpipe/cmd": {"decision": "same", "explanation": "Same repos in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/81"}}
+{"locarna/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/79"}}
+{"circtools/cmd": {"decision": "same", "explanation": "Different repos considered different versions. One repo is ahead of the other", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/78"}}
+{"prosampler/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/77"}}
+{"bioconductor-multicrispr/lib": {"decision": "same", "explanation": "Same publication, same readme, new releases in github and old ones in gitlab", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/76"}}
+{"telescope/cmd": {"decision": "different", "explanation": "Different purpose and repositories", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/75"}}
+{"transgenescan/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/74"}}
+{"viga/cmd": {"decision": "different", "explanation": "Different repos, galaxy tool seems to be https://github.com/EGTortuero/viga", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/73"}}
+{"gapfiller/cmd": {"decision": "different", "explanation": "Different purposes", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/71"}}
+{"scitrack/cmd": {"decision": "same", "explanation": "repo in A moved to B", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/70"}}
+{"saspector/cmd": {"decision": "same", "explanation": "repo in A is the continuation of repo in B", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/69"}}
+{"mir-prefer/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/67"}}
+{"hichipper/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/66"}}
+{"smap_design/cmd": {"decision": "unclear", "explanation": "No info from galaxy", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/64"}}
+{"oncocnv/cmd": {"decision": "same", "explanation": "Same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/63"}}
+{"exparna/cmd": {"decision": "different", "explanation": "Different purposes", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/62"}}
+{"liquorice/cmd": {"decision": "same", "explanation": "Same purpose, authors (included in publication from biotools) are the same and same repo (from eradthedocs of A).", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/61"}}
+{"r-vision/cmd": {"decision": "different", "explanation": "Different descriptions and preprints", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/60"}}
+{"discosnp/cmd": {"decision": "same", "explanation": "Same publication and descriptions", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/59"}}
+{"bioconductor-lipidr/lib": {"decision": "same", "explanation": "same repo in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/58"}}
+{"vibrant/cmd": {"decision": "same", "explanation": "Same repository in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/57"}}
+{"pindel/cmd": {"decision": "same", "explanation": "Same documentation and similar descriptions", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/56"}}
+{"biocantor/lib": {"decision": "same", "explanation": "One repo is the continuation of the other", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/55"}}
+{"pgap/cmd": {"decision": "same", "explanation": "Same description", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/54"}}
+{"percolator/cmd": {"decision": "same", "explanation": "Same repository (in description)", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/53"}}
+{"rna-seqc/cmd": {"decision": "different", "explanation": "One is a reimplementation of the other with an independent publication", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/52"}}
+{"uropa/cmd": {"decision": "same", "explanation": "Same documentation and purpose", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/51"}}
+{"rfmix/cmd": {"decision": "unclear", "explanation": "Broken link, insufficient description in entry A", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/50"}}
+{"minia/cmd": {"decision": "same", "explanation": "Common authors, same purpose and description. Same github repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/48"}}
+{"traitar/cmd": {"decision": "same", "explanation": "The different repos correspond to different python versions", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/47"}}
+{"mapseq/cmd": {"decision": "same", "explanation": "Descriptions defer, but both entries end up pointing to the same repository", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/46"}}
+{"cvlr/cmd": {"decision": "same", "explanation": "There seems to be a typo in the repo of A", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/45"}}
+{"pegs/cmd": {"decision": "same", "explanation": "Common authors and same description", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/44"}}
+{"bowtie/cmd": {"decision": "same", "explanation": "Same description, same repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/43"}}
+{"xxmotif/cmd": {"decision": "different", "explanation": "The first record is a webserver that use XXmotif", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/42"}}
+{"suppa/cmd": {"decision": "same", "explanation": "Same description and respository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/41"}}
+{"masurca/cmd": {"decision": "same", "explanation": "Same description and repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/40"}}
+{"manorm/cmd": {"decision": "different", "explanation": "Different implementations of the same model", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/39"}}
+{"sidr/cmd": {"decision": "same", "explanation": "Same documentation, description and repository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/38"}}
+{"ectyper/cmd": {"decision": "different", "explanation": "Related, but the first is a plugin written in Java", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/37"}}
+{"bedgraphtobigwig/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/36"}}
+{"jvarkit-wgscoverageplotter/cmd": {"decision": "same", "explanation": "Same repository", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/35"}}
+{"copyrighter/cmd": {"decision": "unclear", "explanation": "Not enough info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/34"}}
+{"bioconductor-ngsreports/lib": {"decision": "different", "explanation": "Related, but A is a shiny app that uses the other tool", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/33"}}
+{"preseq/cmd": {"decision": "same", "explanation": "Same description and resspository", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/32"}}
+{"bibliospec/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/31"}}
+{"stringmlst/cmd": {"decision": "same", "explanation": "Same lab", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/30"}}
+{"cap3/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/29"}}
+{"express/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/28"}}
+{"compalignp/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/27"}}
+{"leehom/cmd": {"decision": "same", "explanation": "Same repository with description that contains the descriptions of the two records", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/26"}}
+{"axiome/cmd": {"decision": "different", "explanation": "Different implementations, B is newer using only Python", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/25"}}
+{"transtermhp/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/24"}}
+{"bayescan/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/23"}}
+{"sailfish/cmd": {"decision": "unclear", "explanation": "Not enough information", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/22"}}
+{"rnashapes/cmd": {"decision": "same", "explanation": "colection of tools", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/21"}}
+{"orfipy/cmd": {"decision": "same", "explanation": "Same long description in A and in readme of B", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/18"}}
+{"abromics_galaxy_json_extractor/cmd": {"decision": "same", "explanation": "Little info but name seems to specific and descriptions are similar", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/16"}}
+{"htseq/cmd": {"decision": "same", "explanation": "biotools is the older version, the src moved to a different repo", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/17"}}
+{"pecora/lib": {"decision": "unclear", "explanation": "No clear why there are two different repositories", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/112"}}
+{"mglex/cmd": {"decision": "same", "explanation": "pypi repo is the one in the other record, so they are the same", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/82"}}
+{"wgd/lib": {"decision": "same", "explanation": "One repo is old and the other is refered to in it", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/97"}}
+{"msgfplus/cmd": {"decision": "unclear", "explanation": "The blocking seems wrong, since it is the protomics communiy repo", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/20"}}
+{"suitor/lib": {"decision": "different", "explanation": "They seem like diverging implementations", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/115"}}
+{"flash/cmd": {"decision": "unclear", "explanation": "Not enough info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/19"}}
+{"msstats/cmd": {"decision": "unclear", "explanation": "Not enough info in entry B", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/49"}}
+{"salsa/*": {"decision": "same", "explanation": "Same purpose", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/113"}}
+{"ifeature/*": {"decision": "different", "explanation": "Different authors and repositories", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/122"}}
+{"diseasemeth/*": {"decision": "same", "explanation": "Similar description and one shared author", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/129"}}
+{"mglex/cmd": {"decision": "same", "explanation": "pypi repo is the one in the other record, so they are the same", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/82"}}
+{"gcluster/cmd": {"decision": "same", "explanation": "Same repos, Repo  A in biotools", "confidence": "high", "issue_url": "https://github.com/inab/research-software-etl/issues/91"}}
+{"sspace/cmd": {"decision": "unclear", "explanation": "No info from toolshed", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/65"}}
+{"hmmcopy/cmd": {"decision": "different", "explanation": "A references B as a different software in its description", "confidence": "medium", "issue_url": "https://github.com/inab/research-software-etl/issues/68"}}
+{"rnaplex/cmd": {"decision": "different", "explanation": "Different purposes", "confidence": "low", "issue_url": "https://github.com/inab/research-software-etl/issues/72"}}
+{"cellml/*": {"decision": "unclear", "explanation": "Too little info", "confidence": "", "issue_url": "https://github.com/inab/research-software-etl/issues/80"}}
