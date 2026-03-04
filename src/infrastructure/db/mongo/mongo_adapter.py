@@ -8,14 +8,12 @@ load_dotenv()
 import os
 import pymongo
 import logging
-from typing import Dict, Optional
+from typing import Any, Dict, Iterable, List, Optional
 from pymongo.errors import NetworkTimeout, AutoReconnect, CursorNotFound
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from src.infrastructure.db.database_adapter import DatabaseAdapter
+
 #from sshtunnel import SSHTunnelForwarder
-
-
-
 logger = logging.getLogger("rs-etl-pipeline")
 
 class MongoDBAdapter(DatabaseAdapter):
@@ -105,6 +103,62 @@ class MongoDBAdapter(DatabaseAdapter):
     def _get_database_name(self, database):
         """Get database name from parameter or environment variable"""
         return database or os.getenv('MONGO_DB', 'oeb-research-software')
+    
+    def get_collection(self, collection_name: str):
+        """Return the raw PyMongo collection (escape hatch for advanced ops)."""
+        return self.db[collection_name]
+
+    @retry(
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
+    )
+    def bulk_write(self, collection_name: str, operations: List[Any], ordered: bool = False):
+        """Run a PyMongo bulk_write against a collection."""
+        if not operations:
+            return None
+        collection = self.db[collection_name]
+        return collection.bulk_write(operations, ordered=ordered)
+
+    @retry(
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
+    )
+    def distinct(self, collection_name: str, key: str, query: Optional[Dict] = None):
+        """Wrapper around collection.distinct."""
+        collection = self.db[collection_name]
+        return collection.distinct(key, filter=query or {})
+
+    @retry(
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect, CursorNotFound)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
+    )
+    def find(
+        self,
+        collection_name: str,
+        query: Dict,
+        projection: Optional[Dict] = None,
+        limit: int = 0,
+        batch_size: int = 100,
+        no_cursor_timeout: bool = True,
+    ):
+        """
+        Return a PyMongo cursor (caller must close it).
+        Use this when you need streaming iteration (avoid loading everything into memory).
+        """
+        collection = self.db[collection_name]
+        cursor = collection.find(
+            query,
+            projection=projection,
+            no_cursor_timeout=no_cursor_timeout,
+        ).batch_size(batch_size)
+
+        if limit and limit > 0:
+            cursor = cursor.limit(limit)
+
+        return cursor
 
     @retry(
     retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
@@ -202,6 +256,27 @@ class MongoDBAdapter(DatabaseAdapter):
             {'_id': identifier},  # Query matching the document to update
             {'$set': data}  # Fields to update
         )
+
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10), 
+    stop=stop_after_attempt(5),
+    )
+    def update_custom(self, collection_name: str, criteria: str, data: dict):
+        collection = self.db[collection_name]
+        collection.update_one(
+            criteria,  
+            {'$set': data}  # Fields to update
+        )
+
+    @retry(
+    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+    wait=wait_exponential(multiplier=1, min=1, max=10), 
+    stop=stop_after_attempt(5),
+    )
+    def update_custom_upsert(self, collection_name: str, criteria: dict, data: dict):
+        collection = self.db[collection_name]
+        collection.update_one(criteria, {'$set': data}, upsert=True)
 
 
     @retry(

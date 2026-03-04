@@ -162,7 +162,7 @@ def publications_journals_IF(collection):
 
     result = {
         'variable': 'publications_journals_IF',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': {'tools': _tools, 'publications': _publications, 'citations': citations},
         'collection': collection
     }
@@ -172,7 +172,7 @@ def publications_journals_IF(collection):
     denom = len(tools) or 1
     result_count = {
         'variable': 'publications_coverage',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': {'count': tools_w_pubs, 'percentage': tools_w_pubs / denom},
         'collection': collection
     }

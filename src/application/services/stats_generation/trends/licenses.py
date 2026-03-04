@@ -152,7 +152,7 @@ def licenses_summary_sunburst(license_summary: Dict[str, int], count_unambiguous
 
     data_sunburst = {
         'variable': 'licenses_summary_sunburst',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
         'collection': collection
     }
@@ -194,7 +194,7 @@ def licenses_open_source(count_unambiguous: Dict[str, int], collection: str):
 
     data_open_source = {
         'variable': 'licenses_open_source',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': result_data,
         'collection': collection
     }

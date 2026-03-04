@@ -378,7 +378,7 @@ def compute_fair_distributions(tools, collection):
 
     data = {
         'variable': 'FAIR_scores_summary',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': summary,
         'collection': collection
     }
@@ -387,7 +387,7 @@ def compute_fair_distributions(tools, collection):
 
     data_2 = {
         'variable': 'FAIR_scores_means',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': means,
         'collection': collection
     }

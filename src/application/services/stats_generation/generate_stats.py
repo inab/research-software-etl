@@ -28,6 +28,8 @@ def generate_stats_for_collections(collections):
 
         tools = mongo_adapter.fetch_entries("toolsDev", query)
 
+        '''
+
         licenses_stats(tools, collection=collection)
         print('Licenses stats done')
         
@@ -63,6 +65,7 @@ def generate_stats_for_collections(collections):
         
         documentation(tools, collection=collection)
         print('Documentation done')
+        '''
 
         compute_fair_distributions(tools, collection=collection)
         print('Fair distributions done')

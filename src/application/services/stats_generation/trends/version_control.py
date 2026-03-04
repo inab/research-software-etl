@@ -75,7 +75,7 @@ def version_control(tools: List[Dict[str, Any]], collection: str):
 
     data_vs_count = {
         'variable': 'version_control_count',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data_count,
         'collection': collection
     }
@@ -85,7 +85,7 @@ def version_control(tools: List[Dict[str, Any]], collection: str):
     # --- Output 2: repository type distribution ---
     data_vs_repos = {
         'variable': 'version_control_repositories',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': repo_counts,
         'collection': collection
     }

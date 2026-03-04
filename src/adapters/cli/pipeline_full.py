@@ -138,15 +138,13 @@ def run_full(
 
     manifest_path               = run_dir / "manifest.json"
 
-    '''
     print("=== Stage 0/9: Transformation ===")
     _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
     _run([
         python_exe, "-m", "src.adapters.cli.transformation.transformation",
         "--sources", "all",
     ], cwd=wd)
-    '''
-
+   
     # ── Stage 1 ──────────────────────────────────────────────────────────────────
     
     print("=== Stage 1/9: Blocking + recovery ===")
@@ -226,12 +224,14 @@ def run_full(
             "--disambiguation-dir", str(disambiguation_out_dir),
         ], cwd=wd)
     
+
     # ── Stage 8 ──────────────────────────────────────────────────────────────────
     if do_merge_to_db:
         print("=== Stage 8/9: Merge entries into DB ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
         # --- testing this!! 
-        disambiguation_out_dir = 'data/integration/runs/20260223T113324Z-25a2e43-1.0/disambiguation.20260223T113324Z-25a2e43-1.0.jsonl'
+        #disambiguation_out_dir = 'data/integration/runs/20260223T113324Z-25a2e43-1.0/disambiguation.20260223T113324Z-25a2e43-1.0.jsonl'
+        disambiguation_out_dir = 'data/integration/runs/20260224T113355Z-021f741-1.1-integration/disambiguation.20260224T113355Z-021f741-1.1-integration.jsonl'
         # ------------
         _run([
             python_exe, "-m", "src.adapters.cli.integration.merge_entries",
@@ -239,12 +239,11 @@ def run_full(
         ], cwd=wd)
 
     # -- Stage 9 ------------------------------------------------------------------
-   
     print("=== Stage 9/9: Generate statistics ===")
     _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
     _run([
             python_exe, "-m", "src.adapters.cli.generate_stats",
-            "--collections", "all",
+            "--collections", "tools",
         ], cwd=wd)
     
     

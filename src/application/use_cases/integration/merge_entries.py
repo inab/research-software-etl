@@ -75,18 +75,21 @@ def merge_entries(entries_ids):
     # retrieve full entries from db
     entries = [fetch_entry_from_db(entry) for entry in entries_ids]
     # Put type in list and validate entries as multitype_instance
+    if bool(entries) == False:
+        print("No entries")
+        print(f"ids: {entries_ids}")
     instances = [convert_to_multi_type_instance(entry) for entry in entries]
-    print('Instances in entries_ids converted to multitype_instance.')
+    #print('Instances in entries_ids converted to multitype_instance.')
 
     # merge entries
     if len(instances) > 1:
         # merge instances
-        print(f"Merging {len(instances)} entries in entries_ids...")
+        #print(f"Merging {len(instances)} entries in entries_ids...")
         merged_instances = merge_instances(instances)
-        print('Entries in entries_ids merged.')
+        #print('Entries in entries_ids merged.')
     else:
         merged_instances = instances[0]
-        print(f"Only one entry in entries_ids. No merging needed.")
+        #print(f"Only one entry in entries_ids. No merging needed.")
 
     merged_entries = merged_instances.model_dump(mode="json")   
 
@@ -143,7 +146,7 @@ def merge_and_save_blocks(disambiguated_blocks_file):
                 entry = merge_entries(value.get("merged_entries"))
                 db_entry = prepare_for_db(entry, value.get("merged_entries"))
                 db_id = save_entry(db_entry)
-                print(f"Entry {key} saved in db with id {db_id}.")
+                #print(f"Entry {key} saved in db with id {db_id}.")
                 summary['n_processed'] += 1
                 summary['n_inserted_entries'] += 1
 
@@ -151,14 +154,14 @@ def merge_and_save_blocks(disambiguated_blocks_file):
                 entry = merge_entries(value.get("merged_entries"))
                 db_entry = prepare_for_db(entry, value.get("merged_entries"))
                 db_id = save_entry(db_entry)
-                print(f"Entry {key} saved in db with id {db_id}.")
+                #print(f"Entry {key} saved in db with id {db_id}.")
                 summary['n_inserted_entries'] += 1
 
                 if len(value.get("unmerged_entries"))==1:
                     entry = merge_entries(value.get("unmerged_entries"))
                     db_entry = prepare_for_db(entry, value.get("unmerged_entries"))
                     db_id = save_entry(db_entry)
-                    print(f"Entry {key} saved in db with id {db_id}.")
+                    #print(f"Entry {key} saved in db with id {db_id}.")
                     summary['n_inserted_entries'] += 1
                 
                 summary['n_processed'] += 1

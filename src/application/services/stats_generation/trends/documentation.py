@@ -65,7 +65,7 @@ def count_documentation(tools: List[Dict[str, Any]]):
 def documentation_stats(doc_format_counts, collection):
     summary = {
         'variable': 'documentation',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': doc_format_counts,
         'collection': collection
     }
@@ -82,7 +82,7 @@ def documentation_coverage(tools, tools_w_docs, collection):
 
     doc = {
         'variable': 'documentation_coverage',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
         'collection': collection
     }

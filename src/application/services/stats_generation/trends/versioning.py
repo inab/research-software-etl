@@ -59,7 +59,7 @@ def semantic_versioning(tools: List[Dict[str, Any]], collection: str):
 
     data_versioning = {
         'variable': 'semantic_versioning',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
         'collection': collection
     }

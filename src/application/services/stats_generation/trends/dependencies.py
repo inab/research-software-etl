@@ -45,7 +45,7 @@ def dependencies_count(dependencies_stats: Dict[str, int], collection: str):
     """
     dependencies_summary = {
         'variable': 'dependencies_count',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': dependencies_stats,
         'collection': collection
     }
@@ -62,7 +62,7 @@ def dependencies_coverage(tools, tools_w_deps, collection):
 
     doc = {
         'variable':'dependencies_coverage',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
         'collection': collection
     }

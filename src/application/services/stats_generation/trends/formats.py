@@ -57,7 +57,7 @@ def coverage_doc(tools, tools_w_format, collection):
 
     doc = {
         'variable': 'formats_coverage',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data, 
         'collection': collection
     }
@@ -69,7 +69,7 @@ def coverage_doc(tools, tools_w_format, collection):
 def formats_stats(format_counts, variable_name, collection):
     summary = {
         'variable' : variable_name,
-        'version' : datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version' : datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data' : format_counts,
         'collection': collection 
     }
