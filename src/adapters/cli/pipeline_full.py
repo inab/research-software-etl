@@ -134,7 +134,7 @@ def run_full(
     # for now the pair_wise_decisions_file is hardcoded
     pair_wise_decisions_file    = "/Users/evabsc/projects/software-observatory/research-software-etl/src/application/services/integration/disambiguation/pair_decisions.jsonl"
     disambiguation_out_dir      = run_dir / f"disambiguation.{run_id}.jsonl"
-    #disambiguation_out_dir.mkdir(parents=True, exist_ok=True)
+    disambiguation_out_dir.mkdir(parents=True, exist_ok=True)
 
     manifest_path               = run_dir / "manifest.json"
 
@@ -160,7 +160,7 @@ def run_full(
     if remove_opeb_metrics:
         print("=== Stage 2/9: Remove OpenEBench 'metrics' (optional) ===")
         _run([
-            python_exe, "scripts/remove_oeb_metrics.py",
+            python_exe, "scripts/scripts/remove_oeb_metrics.py",
             "--in", str(grouped_entries_file),
             "--out", str(grouped_entries_no_opeb),
         ], cwd=wd)
@@ -179,7 +179,7 @@ def run_full(
     # ── Stage 4 ──────────────────────────────────────────────────────────────────
     print("=== Stage 4/9: Simplify blocks ===")
     _run([
-        python_exe, "scripts/simplify_grouped_entries.py",
+        python_exe, "scripts/utils/simplify_grouped_entries.py",
         "--in", str(grouped_entries_file),
         "--out", str(simplified_blocks_json),
     ], cwd=wd)
@@ -188,12 +188,12 @@ def run_full(
     # ── Stage 5 ──────────────────────────────────────────────────────────────────
     print("=== Stage 5/9: Convert JSON → JSONL (conflicts & simplified blocks) ===")
     _run([
-        python_exe, "scripts/json_to_jsonl.py",
+        python_exe, "scripts/utils/json_to_jsonl.py",
         "--in", str(conflicts_json),
         "--out", str(conflicts_jsonl),
     ], cwd=wd)
     _run([
-        python_exe, "scripts/json_to_jsonl.py",
+        python_exe, "scripts/utils/json_to_jsonl.py",
         "--in", str(simplified_blocks_json),
         "--out", str(simplified_blocks_jsonl),
     ], cwd=wd)
@@ -229,10 +229,7 @@ def run_full(
     if do_merge_to_db:
         print("=== Stage 8/9: Merge entries into DB ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
-        # --- testing this!! 
-        #disambiguation_out_dir = 'data/integration/runs/20260223T113324Z-25a2e43-1.0/disambiguation.20260223T113324Z-25a2e43-1.0.jsonl'
-        disambiguation_out_dir = 'data/integration/runs/20260224T113355Z-021f741-1.1-integration/disambiguation.20260224T113355Z-021f741-1.1-integration.jsonl'
-        # ------------
+                # ------------
         _run([
             python_exe, "-m", "src.adapters.cli.integration.merge_entries",
             "--disambiguated-blocks-file", str(disambiguation_out_dir),

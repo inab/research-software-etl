@@ -1,3 +1,5 @@
+# Compute the number of installations of the GitHub API github app. 
+
 import jwt
 import time
 import requests

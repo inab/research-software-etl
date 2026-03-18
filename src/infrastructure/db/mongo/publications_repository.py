@@ -1,9 +1,13 @@
 # This adapter translates DB logic into domain logic 
 from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+from typing import Any, Iterable
 
-class PublicationsMetadataRepository:
-    def __init__(self, db_adapter: MongoDBAdapter):
-        self.db_adapter = db_adapter
+from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+
+
+class MongoPublicationRepository:
+    def __init__(self, mongo_db=mongo_adapter):
+        self.mongo_db = mongo_db
         self.collection_name = "publicationsMetadataDev"
 
     def find_by_doi(self, doi: str):
@@ -39,3 +43,23 @@ class PublicationsMetadataRepository:
 
     def save_entry(self, document: dict):
         return self.db_adapter.insert_one(self.collection_name, document)
+    
+    def fetch_with_doi(self, collection_name: str) -> Iterable[dict[str, Any]]:
+        query = {"data.doi": {"$exists": True}}
+        return self.mongo_db.fetch_entries(collection_name, query)
+
+    def update_publication_data(
+        self,
+        collection_name: str,
+        document_id: Any,
+        data: dict[str, Any],
+        last_updated_at: str,
+    ) -> None:
+        self.mongo_db.update_entry(
+            collection_name,
+            document_id,
+            {
+                "data": data,
+                "last_updated_at": last_updated_at,
+            },
+        )

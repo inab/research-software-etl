@@ -1,3 +1,6 @@
+# Delete all records from bioconda (from OEB, containing errors) and oeb-metrics in the collection 
+# 
+
 #!/usr/bin/env python3
 import argparse
 import os
