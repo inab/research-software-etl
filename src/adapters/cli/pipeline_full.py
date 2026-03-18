@@ -138,6 +138,9 @@ def run_full(
 
     manifest_path               = run_dir / "manifest.json"
 
+    started_at = datetime.now(timezone.utc)
+    
+    # -- Stage 0 ──────────────────────────────────────────────────────────────────
     print("=== Stage 0/9: Transformation ===")
     _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
     _run([
@@ -249,7 +252,8 @@ def run_full(
         "run_id": run_id,
         "run_dir": str(run_dir),
         "git_short_sha": _git_short_sha(wd),
-        "utc_started": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "utc_started": started_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "utc_finished": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "paths": {
             "grouped_entries_file": str(grouped_entries_file),
             "grouped_entries_no_opeb": str(grouped_entries_no_opeb),
