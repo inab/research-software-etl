@@ -19,8 +19,10 @@ theme:
     - scheme: default
       primary: indigo
       accent: indigo
-  logo: static/OEB-logo.png 
-  
+  logo: static/OEB-logo.png
+  extra_css: 
+    - assets/css/extra.css
+
 markdown_extensions:
   - admonition
   - attr_list
