@@ -1,3 +1,17 @@
+"""
+Application use case: enrich the publications collection from DOI metadata.
+
+This module defines the collection-level enrichment workflow for publication
+records. Given a publications collection, the use case scans records with a
+DOI, normalizes and validates each DOI, skips already seen identifiers when
+configured, retrieves enriched metadata from an external service, and updates
+the corresponding database records.
+
+Its role is to ensure that stored publication entries can be progressively
+completed and refreshed from DOI-based metadata sources, while remaining safe
+to rerun through the use of a seen-DOI cache.
+"""
+
 from __future__ import annotations
 
 from datetime import datetime

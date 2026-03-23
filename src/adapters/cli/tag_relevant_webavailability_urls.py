@@ -12,7 +12,7 @@ import sys
 
 from pymongo.errors import PyMongoError
 
-from src.application.use_cases.tag_relevant_webavailability_urls import (
+from src.application.use_cases.utils.tag_relevant_webavailability_urls import (
     TagRelevantWebAvailabilityConfig,
     run_tag_relevant_webavailability_urls,
 )

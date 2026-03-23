@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 import shlex
 import subprocess
 from datetime import datetime, timezone
@@ -178,3 +179,6 @@ def main(argv: list[str] | None = None) -> int:
         python_exe=args.python_exe,
     )
     return 0
+
+if __name__ == "__main__":
+    sys.exit(main())

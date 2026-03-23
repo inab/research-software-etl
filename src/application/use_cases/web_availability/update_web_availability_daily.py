@@ -1,3 +1,13 @@
+"""
+Application use case: update daily URL availability and maintain the relevant URL set.
+
+This use case performs the daily web availability update by checking already tracked 
+relevant URLs and ensuring that newly discovered relevant tool URLs are added to the tracking collection.
+
+When to run:
+- Periodically (at least daily)
+"""
+
 from __future__ import annotations
 
 import time

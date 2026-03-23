@@ -1,9 +1,23 @@
+"""
+Application use case support: process publication metadata during transformation.
+
+This module contains the publication-specific part of the transformation
+workflow. It extracts publication references from raw source entries,
+standardizes them into the internal publication representation, checks whether
+matching publication records already exist, and creates new publication entries
+when needed.
+
+Its role is to ensure that transformed software metadata can be linked to
+normalized publication records without duplicating publications already stored
+in the database.
+"""
+
 import os
 import logging
 from typing import Dict, Any, Optional, List
 from src.application.services.publications.metadata import create_new_metadata
 from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from src.infrastructure.db.mongo.publications_repository import PublicationsMetadataRepository
+from src.infrastructure.db.mongo.publications_repository import MongoPublicationRepository
 from src.infrastructure.db.database_adapter import DatabaseAdapter
 from src.application.services.publications.publication_standardizer_factory import StandardizerFactory
 from src.application.services.publications.publication_extractor_factory import ExtractorFactory
@@ -71,7 +85,7 @@ def add_publication(publication: Dict[str, Any], publications_repo: DatabaseAdap
 
 
 def standardize_publications(source_name : str, publications_ids, raw_publication_dict: Dict[str, Any]) -> List[str]:
-    publications_repo = PublicationsMetadataRepository(mongo_adapter)
+    publications_repo = MongoPublicationRepository()
 
     # Parse the entry 
     publication_standardizer = StandardizerFactory.get_standardizer(source_name)

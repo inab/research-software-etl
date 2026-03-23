@@ -5,7 +5,7 @@ import os
 import sys
 from pymongo.errors import PyMongoError
 
-from src.application.use_cases.update_web_availability_daily import (
+from src.application.use_cases.web_availability.update_web_availability_daily import (
     WebAvailabilityDailyConfig,
     run_update_web_availability_daily,
 )

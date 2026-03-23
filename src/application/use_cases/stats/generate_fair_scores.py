@@ -1,3 +1,17 @@
+"""
+Use case: generate and persist FAIR scores for tools stored in MongoDB.
+
+This module retrieves tool entries from the tools collection, computes their
+individual FAIR scores, and stores the results in the computations collection.
+
+Behavior:
+- If `"tools"` is passed, all tools are processed; otherwise, tools are filtered by tag.
+- For each tool, the use case recomputes and upserts the FAIR score only if the
+  stored result is missing or outdated; otherwise, it skips the tool. 
+
+---> This module should be re-run every time the metadata collection is updated.
+"""
+
 from datetime import datetime
 from dotenv import load_dotenv
 import argparse

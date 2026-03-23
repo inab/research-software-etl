@@ -1,5 +1,20 @@
+"""
+Application use case: orchestrate statistics generation for selected tool collections.
+
+This module defines the application-level workflow that runs the complete
+statistics-generation process over one or more selected tool collections.
+
+Each collection identifier represents either the entire tools dataset or a
+tag-based subset of tools. For every requested collection, the workflow fetches
+the corresponding tool records and executes the available statistics services.
+
+when to run:
+- Every time the metadata collection is updated.
+- AFTER the generation of FAIR scores so the FAIR scores distributions are up-to-date
+
+"""
+
 from dotenv import load_dotenv
-import os
 
 def generate_stats_for_collections(collections):
     from src.application.services.stats_generation.trends.licenses import licenses_stats
@@ -27,8 +42,6 @@ def generate_stats_for_collections(collections):
             query = {'data.tags': collection}
 
         tools = mongo_adapter.fetch_entries("toolsDev", query)
-
-        '''
 
         licenses_stats(tools, collection=collection)
         print('Licenses stats done')
@@ -65,7 +78,7 @@ def generate_stats_for_collections(collections):
         
         documentation(tools, collection=collection)
         print('Documentation done')
-        '''
+
 
         compute_fair_distributions(tools, collection=collection)
         print('Fair distributions done')

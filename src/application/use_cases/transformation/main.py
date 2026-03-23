@@ -1,3 +1,18 @@
+"""
+Application use case: transform a raw software entry into standardized records.
+
+This module defines the main transformation workflow for a raw source entry.
+Given a raw entry and its source, the use case coordinates the processing of
+publication metadata and software metadata, links the resulting publication
+identifiers to the standardized software records, and persists the transformed
+data.
+
+Its responsibility is orchestration rather than normalization: the detailed
+publication and software metadata transformation logic is delegated to the
+corresponding helper modules and specialized services.
+""" 
+
+
 import os
 import logging 
 from typing import List, Dict
@@ -115,7 +130,6 @@ def process_source(source: str):
                 process_raw_entry(raw_entry, source)
  
     except Exception as e:
-        raise e
         logger.error(f"An error occurred while processing source {source}: {e}")
 
     return

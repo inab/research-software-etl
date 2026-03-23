@@ -7,7 +7,7 @@ logger = logging.getLogger("rs-etl-pipeline")
 class MetadataStandardizer(ABC):
     def __init__(self, source):
         self.source = source
-        logger.debug('Generator for ' + self.source + ' initialized') 
+        #logger.debug('Generator for ' + self.source + ' initialized') 
 
     @classmethod
     def process_transformation(self, tool):

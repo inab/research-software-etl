@@ -1,3 +1,16 @@
+# NOTE:
+# The webAvailability collection was initially populated from a broader dataset
+# that included both relevant (web-based/deployable) and non-relevant (cmd, etc) 
+# URL records (from OEB tools monitoring). Because some of the non-relevant 
+# records could still have future value, they were not removed.
+#
+# Instead, relevance is modeled explicitly through the `is_relevant` flag. This
+# makes it possible to preserve the full imported dataset while restricting the
+# daily monitoring workflow to the subset of URLs that correspond to relevant
+# tool webpages.
+# 
+# ---> This use case was used once and is not meant to be executed periodically
+
 from __future__ import annotations
 
 from dataclasses import dataclass
