@@ -1,0 +1,349 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/singlecellsignalr/undefined/None",
+        "created_at": "2025-04-02T12:47:18.182873",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Inference of intercellular networks from single-cell transcriptomics."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SingleCellSignalR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "singlecellsignalr",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathway or network visualisation",
+              "uri": "http://edamontology.org/operation_3083",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c832bb10e2f3aa0b3bb3e9"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/SCA-IRCM"
+          ]
+        },
+        "id": "biotools/singlecellsignalr/undefined/None",
+        "last_updated_at": "2026-03-19T01:44:56.829099",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/singlecellsignalr/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-singlecellsignalr/lib/1.14.0,bioconductor/singlecellsignalr/lib/1.19.0,bioconda_recipes/bioconductor-singlecellsignalr/lib/1.18.0,bioconductor/singlecellsignalr/lib/2.1.1,github/SingleCellSignalR/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "jacques.colinge@umontpellier.fr",
+              "maintainer": false,
+              "name": "Jacques Colinge Developer",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "simon.cabelloaguilar@gmail.com",
+              "maintainer": false,
+              "name": "Simon Cabello-Aguilar",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jacques.colinge@umontpellier.fr",
+              "maintainer": false,
+              "name": "Jacques Colinge",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "jpvillemin@gmail.com",
+              "maintainer": false,
+              "name": "Jean-Philippe Villemin",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "65902924+jcolinge@users.noreply.github.com",
+              "maintainer": false,
+              "name": "jcolinge",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jpvillemin@gmail.com",
+              "maintainer": false,
+              "name": "Ubuntu 18.04",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "105852225+loanedns@users.noreply.github.com",
+              "maintainer": false,
+              "name": "loanedns",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "R (>= 4.0)",
+            "BulkSignalR",
+            "bioconductor-edger >=4.0.0,<4.1.0",
+            "r-pheatmap",
+            "stringr",
+            "graphics",
+            "stats",
+            "BiocManager",
+            "bioconductor-edger >=4.4.0,<4.5.0",
+            "edgeR",
+            "igraph",
+            "limma",
+            "utils",
+            "bioconductor-scran >=1.30.0,<1.31.0",
+            "r-rtsne",
+            "bioconductor-scran >=1.34.0,<1.35.0",
+            "r-gplots",
+            "gplots",
+            "bioconductor-multtest >=2.62.0,<2.63.0",
+            "multtest",
+            "grDevices",
+            "bioconductor-limma >=3.58.0,<3.59.0",
+            "Rtsne",
+            "r-biocmanager",
+            "bioconductor-limma >=3.62.0,<3.63.0",
+            "r-foreach",
+            "matrixStats",
+            "r-igraph",
+            "bioconductor-multtest >=2.58.0,<2.59.0",
+            "R (>= 4.5)",
+            "data.table",
+            "r-circlize",
+            "matrixTests",
+            "r-data.table",
+            "r-base",
+            "r-stringr",
+            "pheatmap",
+            "scran",
+            "ggplot2",
+            "methods",
+            "foreach",
+            "circlize"
+          ],
+          "description": [
+            "Allows single cell RNA seq data analysis, clustering, creates internal network and infers cell-cell interactions.",
+            "Inference of ligand-receptor (L-R) interactions from single-cell expression (transcriptomics/proteomics) data. SingleCellSignalR v2 inferences rely on the statistical model we introduced in the BulkSignalR package as well as the original SingleCellSignalR LR-score (both are available).  SingleCellSignalR v2 can be regarded as a wrapper to BulkSignalR fundamental classes. This also enables v2 users to work with any species, whereas only Mus musculus & Homo sapiens were available before in SingleCellSignalR v1."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-singlecellsignalr/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-singlecellsignalr/README.html"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/jcolinge/SingleCellSignalR/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jcolinge/SingleCellSignalR/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/SingleCellSignalR_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-singlecellsignalr/bioconductor-singlecellsignalr_1.14.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/SingleCellSignalR_1.14.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-singlecellsignalr/bioconductor-singlecellsignalr_1.18.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/SingleCellSignalR_1.14.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/SingleCellSignalR/SingleCellSignalR_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/SingleCellSignalR/SingleCellSignalR_1.14.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/SingleCellSignalR_1.18.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-singlecellsignalr",
+            "SingleCellSignalR"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3",
+              "url": null
+            },
+            {
+              "name": "CeCILL |",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-singlecellsignalr",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "singlecellsignalr",
+            "SingleCellSignalR"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/SingleCellSignalR"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jcolinge/SingleCellSignalR"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://depot.galaxyproject.org/software/bioconductor-singlecellsignalr/bioconductor-singlecellsignalr_1.14.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/SingleCellSignalR_1.18.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/SingleCellSignalR_1.14.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-singlecellsignalr/bioconductor-singlecellsignalr_1.18.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/SingleCellSignalR_1.14.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/SingleCellSignalR/SingleCellSignalR_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/SingleCellSignalR/SingleCellSignalR_1.14.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/SingleCellSignalR_1.18.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "2.1.1",
+            "1.14.0",
+            "1.18.0",
+            "1.19.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/SingleCellSignalR",
+            "https://bioconductor.org/packages/3.20/bioc/html/SingleCellSignalR.html",
+            "https://bioconductor.org/packages/3.18/bioc/html/SingleCellSignalR.html",
+            "https://github.com/jcolinge/SingleCellSignalR"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:singlecellsignalr_bioconda_recipes/bioconductor-singlecellsignalr/lib/1.14.0,bioconda_recipes/bioconductor-singlecellsignalr/lib/1.18.0,bioconductor/singlecellsignalr/lib/1.19.0,bioconductor/singlecellsignalr/lib/2.1.1,biotools/singlecellsignalr/undefined/None,github/SingleCellSignalR/None/None",
+  "conflict_name": "singlecellsignalr/*",
+  "date": "2026-03-25T18:25:27.514247+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
