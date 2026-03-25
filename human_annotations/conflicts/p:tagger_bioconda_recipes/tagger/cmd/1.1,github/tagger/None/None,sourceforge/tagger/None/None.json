@@ -1,0 +1,257 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/tagger/None/None",
+        "created_at": "2025-04-02T15:44:43.498559",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Tagger is a tool which allows searching fixed-sequence tags (or sequence branches) against entire genomes or mRNA reference sequence databases."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/tagger"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "tagger"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "tagger",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/tagger"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://tagger.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/tagger/None/None",
+        "last_updated_at": "2026-03-19T03:40:01.250465",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/tagger//",
+            "source_url": "https://sourceforge.net/projects/tagger"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/tagger/None/None,bioconda_recipes/tagger/cmd/1.1",
+        "data": {
+          "authors": [
+            {
+              "email": "lars.juhl.jensen@gmail.com",
+              "maintainer": false,
+              "name": "Lars Juhl Jensen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "katnastou@biol.uoa.gr",
+              "maintainer": false,
+              "name": "Katerina Nastou",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "larsjuhljensen@localhost",
+              "maintainer": false,
+              "name": "larsjuhljensen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "helen.cook@gmail.com",
+              "maintainer": false,
+              "name": "Helen Cook",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "alexander.junge@gmail.com",
+              "maintainer": false,
+              "name": "Alexander Junge",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "i@juanmi.rocks",
+              "maintainer": false,
+              "name": "Juan Miguel Cejuela",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "helencook@localhost",
+              "maintainer": false,
+              "name": "helencook",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ljj@purple.cbs.dtu.dk",
+              "maintainer": false,
+              "name": "ljj",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "boost-cpp",
+            "python"
+          ],
+          "description": [
+            "Tagger allows you to tag a corpus of documents with search terms that you provide. It is often used to find mentions of proteins, species, diseases, tissues, chemicals and drugs, GO terms, and so forth, in articles in the Medline corpus."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/larsjuhljensen/tagger/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/tagger/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/tagger/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/larsjuhljensen/tagger"
+            }
+          ],
+          "download": [
+            "https://github.com/larsjuhljensen/tagger/archive/refs/tags/1.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "tagger"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD 2-Clause \"Simplified\" License",
+              "url": "http://choosealicense.com/licenses/bsd-2-clause/"
+            },
+            {
+              "name": "BSD-2-Clause",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "tagger",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/larsjuhljensen/tagger"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/larsjuhljensen/tagger/archive/refs/tags/1.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.1"
+          ],
+          "webpage": [
+            "https://github.com/larsjuhljensen/tagger"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:tagger_bioconda_recipes/tagger/cmd/1.1,github/tagger/None/None,sourceforge/tagger/None/None",
+  "conflict_name": "tagger/*",
+  "date": "2026-03-25T21:19:31.764212+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
