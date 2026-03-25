@@ -1,0 +1,293 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/titan/undefined/None",
+        "created_at": "2025-04-02T12:49:59.969060",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A Code for Modeling and Generating Electric Fields-Features and Applications to Enzymatic Reactivity.\n\nTITAN (elecTric fIeld generaTion And maNipulation) is being developed by:."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TITAN"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "titan",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein dipole moment calculation",
+              "uri": "http://edamontology.org/operation_0386",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Molecular dynamics",
+              "uri": "http://edamontology.org/operation_2476",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c832e610e2f3aa0b3bb576"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Molecular dynamics",
+              "uri": "http://edamontology.org/topic_0176",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Enzymes",
+              "uri": "http://edamontology.org/topic_0821",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Chemistry",
+              "uri": "http://edamontology.org/topic_3314",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://titan-code.github.io/"
+          ]
+        },
+        "id": "biotools/titan/undefined/None",
+        "last_updated_at": "2026-03-19T01:49:59.908297",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/titan/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/TITAN/None/None,biotools/tcr_epitope_bimodal_attention_networks/lib/None",
+        "data": {
+          "authors": [
+            {
+              "email": "jannis.born@gmx.de",
+              "maintainer": false,
+              "name": "Jannis Born",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "wbr@zurich.ibm.com",
+              "maintainer": false,
+              "name": "Anna Weber",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "a92.weber@t-online.de",
+              "maintainer": false,
+              "name": "annaweber209",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Mar\u00eda Rodriguez Mart\u00ednez",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "T-cell receptor specificity prediction with bimodal attention networks.",
+            "Code for \"T Cell Receptor Specificity Prediction with Bimodal Attention Networks\" (https://doi.org/10.1093/bioinformatics/btab294, ISMB 2021)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/PaccMann/TITAN/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/PaccMann/TITAN/blob/main/requirements.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TITAN"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "TITAN",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Epitope mapping",
+              "uri": "http://edamontology.org/operation_0416",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Network analysis",
+              "uri": "http://edamontology.org/operation_3927",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Splitting",
+              "uri": "http://edamontology.org/operation_3359",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "tcr_epitope_bimodal_attention_networks"
+          ],
+          "output": [],
+          "publication": [
+            "67c833a410e2f3aa0b3bb90d"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/PaccMann/TITAN"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "deep-learning",
+              "uri": "https://github.com/topics/deep-learning",
+              "vocabulary": ""
+            },
+            {
+              "term": "immunology",
+              "uri": "https://github.com/topics/immunology",
+              "vocabulary": ""
+            },
+            {
+              "term": "tcr-epitope",
+              "uri": "https://github.com/topics/tcr-epitope",
+              "vocabulary": ""
+            },
+            {
+              "term": "compound-protein-interaction",
+              "uri": "https://github.com/topics/compound-protein-interaction",
+              "vocabulary": ""
+            },
+            {
+              "term": "protein-ligand",
+              "uri": "https://github.com/topics/protein-ligand",
+              "vocabulary": ""
+            },
+            {
+              "term": "Immunoproteins and antigens",
+              "uri": "http://edamontology.org/topic_2830",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Immunogenetics",
+              "uri": "http://edamontology.org/topic_3930",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/PaccMann/TITAN"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:titan_biotools/tcr_epitope_bimodal_attention_networks/lib/None,biotools/titan/undefined/None,github/TITAN/None/None",
+  "conflict_name": "titan/*",
+  "date": "2026-03-25T20:28:34.282825+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
