@@ -1,0 +1,243 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/RNASeqR/None/None",
+        "created_at": "2026-03-25T15:18:49.455662",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "kuanhao.chao@gmail.com",
+              "maintainer": false,
+              "name": "Kuan-Hao Chao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ntueeb05howard@gmail.com",
+              "maintainer": false,
+              "name": "HowardChao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vobencha@gmail.com",
+              "maintainer": false,
+              "name": "vobencha",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "\ud83d\udcca An R package of RNA-seq workflow."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/HowardChao/RNASeqR/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "RNASeqR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "RNASeqR",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Kuanhao-Chao/RNASeqR"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "alignment",
+              "uri": "https://github.com/topics/alignment",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioconductor",
+              "uri": "https://github.com/topics/bioconductor",
+              "vocabulary": ""
+            },
+            {
+              "term": "differential-gene-expression",
+              "uri": "https://github.com/topics/differential-gene-expression",
+              "vocabulary": ""
+            },
+            {
+              "term": "enrichment-analysis",
+              "uri": "https://github.com/topics/enrichment-analysis",
+              "vocabulary": ""
+            },
+            {
+              "term": "quality-control",
+              "uri": "https://github.com/topics/quality-control",
+              "vocabulary": ""
+            },
+            {
+              "term": "r",
+              "uri": "https://github.com/topics/r",
+              "vocabulary": ""
+            },
+            {
+              "term": "rnq-seq",
+              "uri": "https://github.com/topics/rnq-seq",
+              "vocabulary": ""
+            },
+            {
+              "term": "pipeline",
+              "uri": "https://github.com/topics/pipeline",
+              "vocabulary": ""
+            },
+            {
+              "term": "workflow",
+              "uri": "https://github.com/topics/workflow",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://doi.ieeecomputersociety.org/10.1109/TCBB.2019.2956708"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:18:49.455662",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/RNASeqR",
+            "source_url": "https://github.com/HowardChao/RNASeqR"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "sourceforge/rnaseqr/None/None",
+        "created_at": "2025-04-02T15:44:33.801792",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "RNAseqR is designed for expression analysis of RNA-seq data, and is best suited for analysis of multiple, unreplicated libraries.  It is a C++ coded program currently compiled for Linux systems.\n\nWith GUI and command line interfaces, it can do log, PPM, and/or RPKM (if lengths provided) transformations, as well as, statistical analysis for differential expression, using the negative binomial cumulative distribution function (CDF) or the R test statistic introduced for EST analysis by Stekel, et al.\n\nOutput allows for decisions based on CDF probabilities,  top R values, or comparison of R values with randomized data.  Comparisons are the believability metric of Stekel et al, or observed vs expected R at a given mean expression.  Randomization is through Poisson or negative binomial distributions, or column shuffling."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/rnaseqr"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "rnaseqr"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "rnaseqr",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/rnaseqr"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://rnaseqr.sourceforge.io/"
+          ]
+        },
+        "id": "sourceforge/rnaseqr/None/None",
+        "last_updated_at": "2026-03-19T03:38:08.712598",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/rnaseqr//",
+            "source_url": "https://sourceforge.net/projects/rnaseqr"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:rnaseqr_github/RNASeqR/None/None,sourceforge/rnaseqr/None/None",
+  "conflict_name": "rnaseqr/*",
+  "date": "2026-03-25T20:13:42.101593+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
