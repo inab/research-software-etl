@@ -1,0 +1,281 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/enrichdo/lib/1.1.1",
+        "created_at": "2025-08-26T15:31:48.218487",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A Global Weighted Model for Disease Ontology Enrichment Analysis. EnrichDO was based on the latest annotations of the human genome with DO terms, and double weighted the annotated genes. On one hand, to reinforce the saliency of direct gene-DO annotations, different initial weights were assigned to directly annotated genes and indirectly annotated genes, respectively. On the other hand, to detect locally most significant node between the parent and its children, less significant nodes were dynamically down-weighted."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://www.bioconductor.org/packages/devel/bioc/html/EnrichDO.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Gene ID (NCBI)",
+                "uri": "http://edamontology.org/data_1027",
+                "vocabulary": "EDAM"
+              },
+              "term": "Document format",
+              "uri": "http://edamontology.org/format_3507",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "EnrichDO"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "enrichdo",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Enrichment analysis",
+              "uri": "http://edamontology.org/operation_3501",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Ontology data",
+                "uri": "http://edamontology.org/data_2353",
+                "vocabulary": "EDAM"
+              },
+              "term": "Document format",
+              "uri": "http://edamontology.org/format_3507",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "enrichdo"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "1.1.1"
+          ],
+          "webpage": [
+            "https://github.com/liangcheng-hrbmu/EnrichDO"
+          ]
+        },
+        "id": "biotools/enrichdo/lib/1.1.1",
+        "last_updated_at": "2026-03-19T02:22:30.150607",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/enrichdo/lib/1.1.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/enrichdo/lib/1.1.1,bioconda_recipes/bioconductor-enrichdo/lib/1.0.0,bioconductor/enrichdo/lib/1.5.0",
+        "data": {
+          "authors": [
+            {
+              "email": "liangcheng@hrbmu.edu.cn",
+              "maintainer": false,
+              "name": "Liang Cheng",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "yanghaixiu@ems.hrbmu.edu.cn",
+              "maintainer": false,
+              "name": "Haixiu Yang",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "2287531995@qq.com",
+              "maintainer": false,
+              "name": "Hongyu Fu",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-graph >=1.84.0,<1.85.0",
+            "r-pheatmap",
+            "r-tidyr",
+            "r-magrittr",
+            "purrr",
+            "r-ggplot2",
+            "bioconductor-s4vectors >=0.44.0,<0.45.0",
+            "graphics",
+            "BiocGenerics",
+            "stats",
+            "r-hash",
+            "hash",
+            "r-rcolorbrewer",
+            "r-purrr",
+            "utils",
+            "magrittr",
+            "bioconductor-biocgenerics >=0.52.0,<0.53.0",
+            "clusterProfiler",
+            "dplyr",
+            "Rgraphviz",
+            "r-dplyr",
+            "S4Vectors",
+            "R (>= 4.0.0)",
+            "bioconductor-rgraphviz >=2.50.0,<2.51.0",
+            "bioconductor-clusterprofiler >=4.14.0,<4.15.0",
+            "r-readr",
+            "tidyr",
+            "r-base",
+            "r-stringr",
+            "pheatmap",
+            "ggplot2",
+            "graph",
+            "methods"
+          ],
+          "description": [
+            "To implement disease ontology (DO) enrichment analysis, this package is designed and presents a double weighted model based on the latest annotations of the human genome with DO terms, by integrating the DO graph topology on a global scale. This package exhibits high accuracy that it can identify more specific DO terms, which alleviates the over enriched problem. The package includes various statistical models and visualization schemes for discovering the associations between genes and diseases from biological big data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-enrichdo/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-enrichdo/README.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/EnrichDO_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-enrichdo/bioconductor-enrichdo_1.0.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/EnrichDO_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/EnrichDO/EnrichDO_1.0.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "EnrichDO",
+            "bioconductor-enrichdo"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "enrichdo",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-enrichdo"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/EnrichDO"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/EnrichDO_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-enrichdo/bioconductor-enrichdo_1.0.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/EnrichDO_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/EnrichDO/EnrichDO_1.0.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.1.1",
+            "1.0.0",
+            "1.5.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.20/bioc/html/EnrichDO.html",
+            "https://bioconductor.org/packages/EnrichDO"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:enrichdo_bioconda_recipes/bioconductor-enrichdo/lib/1.0.0,bioconductor/enrichdo/lib/1.1.1,bioconductor/enrichdo/lib/1.5.0,biotools/enrichdo/lib/1.1.1",
+  "conflict_name": "enrichdo/lib",
+  "date": "2026-03-25T20:51:53.381879+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
