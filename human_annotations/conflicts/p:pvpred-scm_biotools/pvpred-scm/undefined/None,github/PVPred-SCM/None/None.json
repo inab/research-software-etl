@@ -1,0 +1,242 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/PVPred-SCM/None/None",
+        "created_at": "2026-03-25T15:19:13.858639",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "33542325+Shoombuatong2527@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Shoombuatong2527",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "All codes and datasets used in the construction of PVPred-SCM."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Shoombuatong2527/PVPred-SCM/blob/main/Ind-negative.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Shoombuatong2527/PVPred-SCM/blob/main/Ind-positive.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Shoombuatong2527/PVPred-SCM/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Shoombuatong2527/PVPred-SCM/blob/main/TR-negative.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Shoombuatong2527/PVPred-SCM/blob/main/TR-positive.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PVPred-SCM"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "PVPred-SCM",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Shoombuatong/PVPred-SCM"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:19:13.858639",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/PVPred-SCM",
+            "source_url": "https://github.com/Shoombuatong2527/PVPred-SCM"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/pvpred-scm/undefined/None",
+        "created_at": "2025-04-02T12:18:01.175618",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "watshara.sho@mahidol.ac.th",
+              "maintainer": false,
+              "name": "Watshara Shoombuatong",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Improved Prediction and Analysis of Phage Virion Proteins Using a Scoring Card Method.\n\nIn this work, we developed a novel PVP predictor named PVPred-SCM which is an efficient and interpretable method for predicting and analyzing PVPs."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PVPred-SCM"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "pvpred-scm",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein feature detection",
+              "uri": "http://edamontology.org/operation_3092",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein structure validation",
+              "uri": "http://edamontology.org/operation_0321",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Side chain modelling",
+              "uri": "http://edamontology.org/operation_0480",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8328c10e2f3aa0b3bb21c"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Shoombuatong2527/PVPred-SCM"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Biophysics",
+              "uri": "http://edamontology.org/topic_3306",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteins",
+              "uri": "http://edamontology.org/topic_0078",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Chemistry",
+              "uri": "http://edamontology.org/topic_3314",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://camt.pythonanywhere.com/PVPred-SCM"
+          ]
+        },
+        "id": "biotools/pvpred-scm/undefined/None",
+        "last_updated_at": "2026-03-19T01:27:10.729666",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pvpred-scm/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:pvpred-scm_biotools/pvpred-scm/undefined/None,github/PVPred-SCM/None/None",
+  "conflict_name": "pvpred-scm/*",
+  "date": "2026-03-25T20:08:24.417717+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
