@@ -1,0 +1,445 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/evidencemodeler/None/None",
+        "created_at": "2025-04-02T15:43:25.121751",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "EVidenceModeler (aka EVM) combines ab initio gene predictions and spliced protein and transcript alignments into weighted consensus gene structure predictions."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/evidencemodeler"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "evidencemodeler"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "evidencemodeler",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/evidencemodeler"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://evidencemodeler.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/evidencemodeler/None/None",
+        "last_updated_at": "2026-03-19T03:37:46.798359",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/evidencemodeler//",
+            "source_url": "https://sourceforge.net/projects/evidencemodeler"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/evidencemodeler/cmd/2.1.0,github/EVidenceModeler/None/EVidenceModeler-v2.1.0,galaxy_metadata/evidencemodeler/cmd/2.1.0+galaxy0,biotools/clusterflow/cmd/0.5,biotools/clusterflow/workflow/0.5,github/clusterflow/None/v0.5",
+        "data": {
+          "authors": [
+            {
+              "email": "brianjohnhaas@gmail.com",
+              "maintainer": false,
+              "name": "Brian Haas",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "12579814+starskyzheng@users.noreply.github.com",
+              "maintainer": false,
+              "name": "StarSkyZheng",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "phil.ewels@seqera.io",
+              "maintainer": false,
+              "name": "Phil Ewels",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://phil.ewels.co.uk/"
+            },
+            {
+              "email": "simon@proteo.me.uk",
+              "maintainer": false,
+              "name": "s-andrews",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "git@iansealy.com",
+              "maintainer": false,
+              "name": "Ian Sealy",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "darogan@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Russell Hamilton",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "javier.herrero@ucl.ac.uk",
+              "maintainer": false,
+              "name": "Javier Herrero",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "felix.krueger@babraham.ac.uk",
+              "maintainer": false,
+              "name": "FelixKrueger",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jtravis@tgen.org",
+              "maintainer": false,
+              "name": "Jason Travis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "perl-uri",
+            "perl",
+            "libgomp",
+            "perl-db_file",
+            "perl-dbi",
+            "llvm-openmp",
+            "perl-carp"
+          ],
+          "description": [
+            "Source code for EVM.",
+            "Simple and flexible bioinformatics pipeline that automates and standardizes bioinformatics analyses on high-performance cluster environments.",
+            "Evidence Modeler combines ab intio gene predictions, protein alignments, and transcript alignments into weighted consensus gene structures.",
+            "A pipelining tool to automate and standardise bioinformatics analyses on cluster environments."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/evidencemodeler/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/evidencemodeler/README.html"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/EVidenceModeler/EVidenceModeler/blob/main/Changelog.txt"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/EVidenceModeler/EVidenceModeler/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/EVidenceModeler/EVidenceModeler/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/ewels/clusterflow/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/ewels/clusterflow/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ewels/clusterflow/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/ewels/clusterflow/blob/main/license.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/command_line.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/configuration.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/installation.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/module_options.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/modules.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/pipelines.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/troubleshooting.md"
+            },
+            {
+              "content": null,
+              "type": "usage",
+              "url": "https://github.com/ewels/clusterflow/blob/main/docs/usage.md"
+            }
+          ],
+          "download": [
+            "https://github.com/EVidenceModeler/EVidenceModeler/releases/download/EVidenceModeler-v2.1.0/EVidenceModeler-v2.1.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "clusterflow",
+            "EVidenceModeler",
+            "ClusterFlow",
+            "evidencemodeler"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause",
+              "url": null
+            },
+            {
+              "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+              "url": "http://choosealicense.com/licenses/bsd-3-clause/"
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "evidencemodeler",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence alignment",
+              "uri": "http://edamontology.org/operation_0292",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "EVidenceModeler",
+            "clusterflow"
+          ],
+          "output": [],
+          "publication": [
+            "67c7aa73d3b8acd1a2f9bc79"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/EVidenceModeler/EVidenceModeler"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/ewels/clusterflow"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "github",
+            "biotools"
+          ],
+          "source_code": [
+            "https://github.com/EVidenceModeler/EVidenceModeler/releases/download/EVidenceModeler-v2.1.0/EVidenceModeler-v2.1.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "clusterflow",
+              "uri": "https://github.com/topics/clusterflow",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "pipeline",
+              "uri": "https://github.com/topics/pipeline",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinfomatics-pipeline",
+              "uri": "https://github.com/topics/bioinfomatics-pipeline",
+              "vocabulary": ""
+            },
+            {
+              "term": "perl",
+              "uri": "https://github.com/topics/perl",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "workflow",
+            "cmd"
+          ],
+          "version": [
+            "2.1.0",
+            "v1.1.0",
+            "v0.2",
+            "EVidenceModeler-v2.1.0",
+            "0.5",
+            "v0.1",
+            "v0.5",
+            "v1.1.1",
+            "EVidenceModeler-v2.0.0",
+            "v0.3",
+            "2.1.0+galaxy0",
+            "v0.3docs",
+            "v0.4"
+          ],
+          "webpage": [
+            "https://github.com/EVidenceModeler/EVidenceModeler",
+            "https://ewels.github.io/clusterflow/",
+            "http://clusterflow.io/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:alphapart_bioconda_recipes/evidencemodeler/cmd/2.1.0,biotools/clusterflow/cmd/0.5,biotools/clusterflow/workflow/0.5,galaxy_metadata/evidencemodeler/cmd/2.1.0+galaxy0,github/EVidenceModeler/None/EVidenceModeler-v2.1.0,github/clusterflow/None/v0.5,sourceforge/evidencemodeler/None/None",
+  "conflict_name": "alphapart/*",
+  "date": "2026-03-25T18:49:56.100504+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
