@@ -1,0 +1,297 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/sequoia/undefined/None",
+        "created_at": "2025-04-02T12:46:17.055044",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "giselle@cmu.edu",
+              "maintainer": false,
+              "name": "Giselle Reis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A Playground for Logicians.\n\nSequent calculus proof construction tool.\n\ngit clone git@github.com:meta-logic/sequoia.git.\n\nThese instructions will get you a copy of the project up and running on your local machine for development and testing purposes.\n\nDesign, play with, and analyze sequent calculus proof systems.\n\nInvestigate meta-theoretical properties for your calculus systems (such as identity expansion, weakening admissibility, and permutability of rules). Sequoia is able to infer most of the trivial cases automatically.\n\nCreate, save, modify, and manage your own calculi.\n\nBower (note that Bower can be installed via npm once Node.js is installed)."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Sequoia"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "sequoia",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8321310e2f3aa0b3bad77"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/meta-logic/sequoia"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/meta-logic/sequoia"
+          ]
+        },
+        "id": "biotools/sequoia/undefined/None",
+        "last_updated_at": "2026-03-19T01:40:37.304041",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/sequoia/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/Sequoia/None/None,biotools/sequoia_visual/web/None,biotools/sequoia_visual/cmd/None",
+        "data": {
+          "authors": [
+            {
+              "email": "rkoonch@iu.edu",
+              "maintainer": false,
+              "name": "Koonchanok, Ratanond",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ratanond@Ratanonds-MacBook-Air.local",
+              "maintainer": false,
+              "name": "Ratanond Koonchanok",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "redak@iu.edu",
+              "maintainer": false,
+              "name": "Khairi Reda",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "scjanga@iupui.edu",
+              "maintainer": false,
+              "name": "Sarath Chandra Janga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Quoseena Mir",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Swapna Vidhur Daulatabad",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An interactive visual analytics platform for interpretation and feature extraction from nanopore sequencing datasets."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/dnonatar/Sequoia/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "https://khreda.com/sequoia_demo/index.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Sequoia"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Not licensed",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "Sequoia",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Filtering",
+              "uri": "http://edamontology.org/operation_3695",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Feature extraction",
+              "uri": "http://edamontology.org/operation_3937",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sorting",
+              "uri": "http://edamontology.org/operation_3802",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Base-calling",
+              "uri": "http://edamontology.org/operation_3185",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "sequoia_visual"
+          ],
+          "output": [],
+          "publication": [
+            "67c833ae10e2f3aa0b3bb949"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/dnonatar/Sequoia"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioengineering",
+              "uri": "http://edamontology.org/topic_3398",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "web",
+            "cmd"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/dnonatar/Sequoia"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:sequoia_biotools/sequoia/undefined/None,biotools/sequoia_visual/cmd/None,biotools/sequoia_visual/web/None,github/Sequoia/None/None",
+  "conflict_name": "sequoia/*",
+  "date": "2026-03-25T20:20:26.649786+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
