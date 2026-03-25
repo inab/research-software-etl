@@ -1,0 +1,214 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/aplcms/None/None",
+        "created_at": "2025-04-02T15:44:49.697697",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The package generates a feature table from a batch of LC/MS spectra in .cdf format. \n\nInstructions: http://www.sph.emory.edu/apLCMS/\n\nReferences\n\nBioinformatics. 25(15):1930-36. \nBMC Bioinformatics. 11:559."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/aplcms"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "aplcms"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "aplcms",
+          "operating_system": [
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/aplcms"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://aplcms.sourceforge.io/"
+          ]
+        },
+        "id": "sourceforge/aplcms/None/None",
+        "last_updated_at": "2026-03-19T03:38:59.956378",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/aplcms//",
+            "source_url": "https://sourceforge.net/projects/aplcms"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/apLCMS/None/None,biotools/aplcms/lib/None",
+        "data": {
+          "authors": [
+            {
+              "email": "65949207+tianwei-yu@users.noreply.github.com",
+              "maintainer": false,
+              "name": "tianwei-yu",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "yutianwei@cuhk.edu.cn",
+              "maintainer": false,
+              "name": "Tianwei Yu",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The R package apLCMS is designed for the processing of LC/MS based metabolomics data. It starts with a group of LC/MS files in the same folder, and generates a table with features in the rows and intensities in the columns.\nThere are two major routes of data analysis. The first, which we call unsupervised analysis, doesn't use existing knowledge. It detects peaks de novo from the data based on the data itself. The second, which we call hybrid analysis, combines de novo peak detection with existing knowledge. The existing knowledge can come from two sources - known metabolites and historically detected features from the same machinery."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "apLCMS"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "apLCMS",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Peak detection",
+              "uri": "http://edamontology.org/operation_3215",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "aplcms"
+          ],
+          "output": [],
+          "publication": [
+            "67c82d7810e2f3aa0b3b9dd7"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/tianwei-yu/apLCMS"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metabolomics",
+              "uri": "http://edamontology.org/topic_3172",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Endocrinology and metabolism",
+              "uri": "http://edamontology.org/topic_3407",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://mypage.cuhk.edu.cn/academics/yutianwei/apLCMS/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:aplcms_biotools/aplcms/lib/None,github/apLCMS/None/None,sourceforge/aplcms/None/None",
+  "conflict_name": "aplcms/*",
+  "date": "2026-03-25T21:21:33.065869+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
