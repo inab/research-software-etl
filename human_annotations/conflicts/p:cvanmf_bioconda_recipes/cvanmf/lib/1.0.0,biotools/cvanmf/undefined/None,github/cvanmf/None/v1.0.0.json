@@ -1,0 +1,357 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/cvanmf/undefined/None",
+        "created_at": "2026-02-23T16:10:27.998118",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "Anthony.Duncan@earlham.ac.uk",
+              "maintainer": false,
+              "name": "Anthony Duncan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "Falk.Hildebrand@quadram.ac.uk",
+              "maintainer": false,
+              "name": "Falk Hildebrand",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "CvaNMF is a software package for decomposing large compositional data sets to capture gradients in co-occurring features, or 'signatures.' It leverages non-negative matrix factorization (NMF) for biological data analysis across diverse applications."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "cvaNMF"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "cvanmf",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Essential dynamics",
+              "uri": "http://edamontology.org/operation_3891",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6de34393fdfaf890c253"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microbial ecology",
+              "uri": "http://edamontology.org/topic_3697",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Plant biology",
+              "uri": "http://edamontology.org/topic_0780",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Biodiversity",
+              "uri": "http://edamontology.org/topic_3050",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://cvanmf.readthedocs.io/"
+          ]
+        },
+        "id": "biotools/cvanmf/undefined/None",
+        "last_updated_at": "2026-03-19T02:33:18.988460",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/cvanmf/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/cvanmf/None/v1.0.0,bioconda_recipes/cvanmf/lib/1.0.0",
+        "data": {
+          "authors": [
+            {
+              "email": "action@github.com",
+              "maintainer": false,
+              "name": "github-actions",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "anthony.duncan@quadram.ac.uk",
+              "maintainer": false,
+              "name": "Anthony Duncan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nicola.soranzo@gmail.com",
+              "maintainer": false,
+              "name": "Nicola Soranzo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "semantic-release",
+              "maintainer": false,
+              "name": "semantic-release",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "anthonypaulduncan@gmail.com",
+              "maintainer": false,
+              "name": "apduncan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "scikit-bio >=0.6.0,<0.7.0",
+            "pandas >=2.1.4,<3.0.0",
+            "scikit-learn >=1.3.2,<2.0.0",
+            "python >=3.12.0,<4.0.0",
+            "tqdm >=4.66.1,<5.0.0",
+            "multimethod >=1.12.0,<2.0.0",
+            "kneed >=0.8.5,<0.9.0",
+            "marsilea >=0.4.3,<0.5.0",
+            "scikit-posthocs >=0.9.0,<0.10.0",
+            "click >=8.1.7,<9.0.0",
+            "setuptools >=69.1.1,<70.0.0",
+            "plotnine >=0.13.0,<0.14.0",
+            "pyyaml >=6.0.1,<7.0.0"
+          ],
+          "description": [
+            "Bi-cross validation of NMF and signature generation and analysis.",
+            "(bi)crossvalidation for NMF rank selection, and visualisation/analysis tools."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/changelog.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/conduct.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/contributing.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/docker.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "installation",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/install.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/nextflow.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/apduncan/cvanmf/blob/main/docs/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/cvanmf/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/cvanmf/README.html"
+            }
+          ],
+          "download": [
+            "https://pypi.org/packages/source/c/cvanmf/cvanmf-1.0.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "cvanmf"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v2.0",
+              "url": "http://choosealicense.com/licenses/gpl-2.0/"
+            },
+            {
+              "name": "GPL-2.0-only",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "cvanmf",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/apduncan/cvanmf"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://pypi.org/packages/source/c/cvanmf/cvanmf-1.0.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "v0.5.1",
+            "v0.5.0",
+            "v0.1.0",
+            "v0.3.1",
+            "v1.0.0",
+            "1.0.0",
+            "v0.2.0",
+            "v0.3.0"
+          ],
+          "webpage": [
+            "https://github.com/apduncan/cvanmf"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:cvanmf_bioconda_recipes/cvanmf/lib/1.0.0,biotools/cvanmf/undefined/None,github/cvanmf/None/v1.0.0",
+  "conflict_name": "cvanmf/*",
+  "date": "2026-03-25T21:30:07.125921+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
