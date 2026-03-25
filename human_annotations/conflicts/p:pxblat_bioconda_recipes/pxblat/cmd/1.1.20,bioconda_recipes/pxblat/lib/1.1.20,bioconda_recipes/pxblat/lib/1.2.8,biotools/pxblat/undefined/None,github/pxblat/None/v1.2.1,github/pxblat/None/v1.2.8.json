@@ -1,0 +1,381 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/pxblat/undefined/None",
+        "created_at": "2026-02-23T16:09:35.877126",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "rendong.yang@northwestern.edu",
+              "maintainer": false,
+              "name": "Rendong Yang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "PxBLAT is a Python binding library for the BLAT sequence alignment tool, designed to improve efficiency and usability. It addresses the overhead associated with repeated server initialization and shutdown, providing a more streamlined workflow for large-scale sequence analysis."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://pxblat.readthedocs.io/en/latest/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PxBLAT"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "pxblat",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Database search",
+              "uri": "http://edamontology.org/operation_2421",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence alignment",
+              "uri": "http://edamontology.org/operation_0292",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6daf4393fdfaf890c059"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Software engineering",
+              "uri": "http://edamontology.org/topic_3372",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Informatics",
+              "uri": "http://edamontology.org/topic_0605",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pxblat.readthedocs.io/en"
+          ]
+        },
+        "id": "biotools/pxblat/undefined/None",
+        "last_updated_at": "2026-03-19T02:31:26.150355",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pxblat/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/pxblat/cmd/1.1.20,bioconda_recipes/pxblat/lib/1.1.20,github/pxblat/None/v1.2.1,bioconda_recipes/pxblat/lib/1.2.8,github/pxblat/None/v1.2.8",
+        "data": {
+          "authors": [
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Yang Yang Li",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Ren Dong Yang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "biopython",
+            "pybind11 >=2.10.4",
+            "python",
+            "loguru",
+            "typer",
+            "mashumaro",
+            "pysimdjson >=6.0.2",
+            "deprecated",
+            "rich",
+            "pysimdjson",
+            "urllib3"
+          ],
+          "description": [
+            "PxBLAT: An Efficient and Ergonomic Python Binding Library for BLAT.",
+            "PxBLAT: An Efficient and Ergonomics Python Binding Library for BLAT."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pxblat/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pxblat/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/ylab-hi/pxblat"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/cli.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/codeofconduct.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/contributing.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/installation.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/license.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/reference.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "tutorial",
+              "url": "https://github.com/ylab-hi/pxblat/blob/main/docs/tutorial.md"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/P/PxBLAT/pxblat-1.1.20.tar.gz",
+            "https://pypi.org/packages/source/P/PxBLAT/pxblat-1.2.8.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PxBLAT: an efficient python binding library for BLAT",
+            "pxblat"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "OTHER",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "pxblat",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e2dc3fac7ee6cb578912c4"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/ylab-hi/pxblat"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/P/PxBLAT/pxblat-1.1.20.tar.gz",
+            "https://pypi.org/packages/source/P/PxBLAT/pxblat-1.2.8.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "alignment",
+              "uri": "https://github.com/topics/alignment",
+              "vocabulary": ""
+            },
+            {
+              "term": "blat",
+              "uri": "https://github.com/topics/blat",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "sequence-analysis",
+              "uri": "https://github.com/topics/sequence-analysis",
+              "vocabulary": ""
+            },
+            {
+              "term": "cpp",
+              "uri": "https://github.com/topics/cpp",
+              "vocabulary": ""
+            },
+            {
+              "term": "c",
+              "uri": "https://github.com/topics/c",
+              "vocabulary": ""
+            },
+            {
+              "term": "pybind11",
+              "uri": "https://github.com/topics/pybind11",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "v1.1.10",
+            "v1.1.0",
+            "1.1.20",
+            "v1.1.8",
+            "v1.1.18",
+            "v1.1.7",
+            "v1.1.2",
+            "v1.1.5",
+            "v0.3.10",
+            "v1.1.19",
+            "v1.1.9",
+            "v1.1.20",
+            "v1.1.1",
+            "v1.0.3",
+            "v1.0.0",
+            "v1.2.1",
+            "1.2.8",
+            "v1.2.8"
+          ],
+          "webpage": [
+            "https://pxblat.readthedocs.io/en/latest/",
+            "https://github.com/ylab-hi/pxblat"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pxblat_bioconda_recipes/pxblat/cmd/1.1.20,bioconda_recipes/pxblat/lib/1.1.20,bioconda_recipes/pxblat/lib/1.2.8,biotools/pxblat/undefined/None,github/pxblat/None/v1.2.1,github/pxblat/None/v1.2.8",
+  "conflict_name": "pxblat/*",
+  "date": "2026-03-25T17:10:41.176175+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
