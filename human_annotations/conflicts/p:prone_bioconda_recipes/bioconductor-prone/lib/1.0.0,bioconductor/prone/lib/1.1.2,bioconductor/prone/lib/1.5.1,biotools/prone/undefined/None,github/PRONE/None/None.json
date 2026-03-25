@@ -1,0 +1,375 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/prone/undefined/None",
+        "created_at": "2025-08-26T15:34:59.507411",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "PRONE is an R Package for preprocessing, normalizing, and analyzing proteomics data."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PRONE"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "prone",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Filtering",
+              "uri": "http://edamontology.org/operation_3695",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/lisiarend/PRONE"
+          ]
+        },
+        "id": "biotools/prone/undefined/None",
+        "last_updated_at": "2026-03-19T02:23:54.303280",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/prone/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/PRONE/None/None,bioconductor/prone/lib/1.1.2,bioconda_recipes/bioconductor-prone/lib/1.0.0,bioconductor/prone/lib/1.5.1",
+        "data": {
+          "authors": [
+            {
+              "email": "55484713+lisiarend@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Arend Lis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lisiarend@me.com",
+              "maintainer": false,
+              "name": "lisiarend",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "andres.wokaty@sph.cuny.edu",
+              "maintainer": false,
+              "name": "A Wokaty",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jennifer.wokaty@sph.cuny.edu",
+              "maintainer": false,
+              "name": "J Wokaty",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "peter.hickey@gmail.com",
+              "maintainer": false,
+              "name": "PeteHaitch",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lis.arend@tum.de",
+              "maintainer": false,
+              "name": "Lis Arend",
+              "orcid": "https://orcid.org/0000-0001-7990-8385",
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "POMA",
+            "r-plotroc",
+            "vegan",
+            "ComplexUpset",
+            "UpSetR",
+            "r-tidyr",
+            "preprocessCore",
+            "r-ggtext",
+            "r-magrittr",
+            "purrr",
+            "r-ggplot2",
+            "reshape2",
+            "bioconductor-s4vectors >=0.44.0,<0.45.0",
+            "stringr",
+            "bioconductor-normalyzerde >=1.24.0,<1.25.0",
+            "stats",
+            "gprofiler2",
+            "bioconductor-edger >=4.4.0,<4.5.0",
+            "edgeR",
+            "tibble",
+            "Biobase",
+            "SummarizedExperiment",
+            "MASS",
+            "bioconductor-summarizedexperiment >=1.36.0,<1.37.0",
+            "r-gtools",
+            "r-rcolorbrewer",
+            "r-dendsort",
+            "limma",
+            "r-purrr",
+            "r-upsetr",
+            "magrittr",
+            "r-reshape2",
+            "r-matrixstats",
+            "bioconductor-deqms >=1.24.0,<1.25.0",
+            "ggtext",
+            "bioconductor-poma >=1.16.0,<1.17.0",
+            "dplyr",
+            "bioconductor-preprocesscore >=1.68.0,<1.69.0",
+            "r-gprofiler2",
+            "r-dplyr",
+            "bioconductor-biobase >=2.66.0,<2.67.0",
+            "ROTS",
+            "S4Vectors",
+            "DEqMS",
+            "vsn",
+            "matrixStats",
+            "bioconductor-limma >=3.62.0,<3.63.0",
+            "bioconductor-rots >=1.34.0,<1.35.0",
+            "bioconductor-msnbase >=2.32.0,<2.33.0",
+            "r-scales",
+            "data.table",
+            "r-circlize",
+            "r-mass",
+            "scales",
+            "r-tibble",
+            "r-data.table",
+            "dendsort",
+            "NormalyzerDE",
+            "tidyr",
+            "MSnbase",
+            "r-base",
+            "r-stringr",
+            "gtools",
+            "bioconductor-complexheatmap >=2.22.0,<2.23.0",
+            "bioconductor-vsn >=3.74.0,<3.75.0",
+            "ComplexHeatmap",
+            "ggplot2",
+            "plotROC",
+            "R (>= 4.4.0)",
+            "r-complexupset",
+            "RColorBrewer",
+            "methods",
+            "circlize"
+          ],
+          "description": [
+            "High-throughput omics data are often affected by systematic biases introduced throughout all the steps of a clinical study, from sample collection to quantification.  Normalization methods aim to adjust for these biases to make the actual biological signal more prominent.  However, selecting an appropriate normalization method is challenging due to the wide range of available approaches.  Therefore, a comparative evaluation of unnormalized and normalized data is essential in identifying an appropriate normalization strategy for a specific data set.  This R package provides different functions for preprocessing, normalizing, and evaluating different normalization approaches.  Furthermore, normalization methods can be evaluated on downstream steps, such as differential expression analysis and statistical enrichment analysis.  Spike-in data sets with known ground truth and real-world data sets of biological experiments acquired by either tandem mass tag (TMT) or label-free quantification (LFQ) can be analyzed.",
+            "R Package for preprocessing, normalizing, and analyzing proteomics data.",
+            "High-throughput omics data are often affected by systematic biases introduced throughout all the steps of a clinical study, from sample collection to quantification.  Normalization methods aim to adjust for these biases to make the actual biological signal more prominent.  However, selecting an appropriate normalization method is challenging due to the wide range of available approaches.  Therefore, a comparative evaluation of unnormalized and normalized data is essential in identifying an appropriate normalization strategy for a specific data set.  This R package provides different functions for preprocessing, normalizing, and evaluating different normalization approaches.  Furthermore, normalization methods can be evaluated on downstream steps, such as differential expression analysis and statistical enrichment analysis. Spike-in data sets with known ground truth and real-world data sets of biological experiments acquired by either tandem mass tag (TMT) or label-free quantification (LFQ) can be analyzed.",
+            "High-throughput omics data are often affected by systematic biases introduced throughout all the steps of a clinical study, from sample collection to quantification. Normalization methods aim to adjust for these biases to make the actual biological signal more prominent. However, selecting an appropriate normalization method is challenging due to the wide range of available approaches. Therefore, a comparative evaluation of unnormalized and normalized data is essential in identifying an appropriate normalization strategy for a specific data set. This R package provides different functions for preprocessing, normalizing, and evaluating different normalization approaches. Furthermore, normalization methods can be evaluated on downstream steps, such as differential expression analysis and statistical enrichment analysis. Spike-in data sets with known ground truth and real-world data sets of biological experiments acquired by either tandem mass tag (TMT) or label-free quantification (LFQ) can be analyzed."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/daisybio/PRONE/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/daisybio/PRONE/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/daisybio/PRONE/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-prone/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-prone/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/PRONE/PRONE_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/PRONE_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/PRONE_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-prone/bioconductor-prone_1.0.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-prone",
+            "PRONE"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+              "name": "GPL (>= 3)",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "PRONE",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "prone",
+            "bioconductor-prone"
+          ],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/daisybio/PRONE"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/PRONE"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/PRONE/PRONE_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/PRONE_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/PRONE_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-prone/bioconductor-prone_1.0.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "data-analysis",
+              "uri": "https://github.com/topics/data-analysis",
+              "vocabulary": ""
+            },
+            {
+              "term": "evaluation",
+              "uri": "https://github.com/topics/evaluation",
+              "vocabulary": ""
+            },
+            {
+              "term": "normalization",
+              "uri": "https://github.com/topics/normalization",
+              "vocabulary": ""
+            },
+            {
+              "term": "proteomics",
+              "uri": "https://github.com/topics/proteomics",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.5.1",
+            "1.1.2",
+            "1.0.0"
+          ],
+          "webpage": [
+            "https://github.com/daisybio/PRONE",
+            "https://bioconductor.org/packages/3.20/bioc/html/PRONE.html",
+            "https://daisybio.github.io/PRONE/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:prone_bioconda_recipes/bioconductor-prone/lib/1.0.0,bioconductor/prone/lib/1.1.2,bioconductor/prone/lib/1.5.1,biotools/prone/undefined/None,github/PRONE/None/None",
+  "conflict_name": "prone/*",
+  "date": "2026-03-25T21:23:28.049848+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
