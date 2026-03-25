@@ -1,0 +1,387 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/screpertoire/undefined/None",
+        "created_at": "2025-04-02T12:58:52.552556",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "nicholas-borcherding@uiowa.edu",
+              "maintainer": false,
+              "name": "Nicholas Borcherding",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An R-based toolkit for single-cell immune receptor analysis.\n\nA toolkit for single-cell immune profiling.\n\nSingle-cell sequencing is an emerging technology in the field of immunology and oncology that allows researchers to couple RNA quantification and other modalities, like immune cell receptor profiling at the level of an individual cell."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "scRepertoire"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "screpertoire",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Dimensionality reduction",
+              "uri": "http://edamontology.org/operation_3935",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8325e10e2f3aa0b3bb057"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Immunology",
+              "uri": "http://edamontology.org/topic_0804",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/ncborcherding/scRepertoire"
+          ]
+        },
+        "id": "biotools/screpertoire/undefined/None",
+        "last_updated_at": "2026-03-19T02:18:37.465304",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/screpertoire/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/scRepertoire/None/v2.6.0,bioconda_recipes/bioconductor-screpertoire/lib/1.12.0,bioconductor/screpertoire/lib/2.3.2,bioconductor/screpertoire/lib/2.7.1",
+        "data": {
+          "authors": [
+            {
+              "email": "ncborch@gmail.com",
+              "maintainer": false,
+              "name": "theHumanBorch",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "andres.wokaty@sph.cuny.edu",
+              "maintainer": false,
+              "name": "A Wokaty",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "qile0317@gmail.com",
+              "maintainer": false,
+              "name": "Qile0317",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ncborch@gmail.com",
+              "maintainer": false,
+              "name": "Nick Borcherding",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "qile.yang@berkeley.edu",
+              "maintainer": false,
+              "name": "Qile Yang",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "safina@broadinstitute.org",
+              "maintainer": false,
+              "name": "Ksenia Safina",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "justin.reimertz@childrens.harvard.edu",
+              "maintainer": false,
+              "name": "Justin Reimertz",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "assertthat",
+            "r-seuratobject",
+            "truncdist",
+            "r-ggraph",
+            "plyr",
+            "R (>= 4.0)",
+            "ggalluvial",
+            "r-ggalluvial",
+            "purrr",
+            "r-ggplot2",
+            "reshape2",
+            "stringr",
+            "stringdist",
+            "evmix",
+            "lifecycle",
+            "SummarizedExperiment",
+            "igraph",
+            "rlang",
+            "r-tidygraph",
+            "SeuratObject",
+            "r-reshape2",
+            "SingleCellExperiment",
+            "rjson",
+            "dplyr",
+            "grDevices",
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "r-doparallel",
+            "r-dplyr",
+            "Matrix",
+            "cubature",
+            "S4Vectors",
+            "bioconductor-singlecellexperiment >=1.24.0,<1.25.0",
+            "bioconductor-powertcr >=1.22.0,<1.23.0",
+            "quantreg",
+            "r-igraph",
+            "Rcpp",
+            "r-stringdist",
+            "ggraph",
+            "immApex",
+            "ggdendro",
+            "tidygraph",
+            "r-rlang",
+            "iNEXT",
+            "r-base",
+            "r-stringr",
+            "ggplot2",
+            "r-plyr",
+            "VGAM",
+            "methods",
+            "r-vegan"
+          ],
+          "description": [
+            "ScRepertoire is a toolkit for processing and analyzing single-cell T-cell receptor (TCR) and immunoglobulin (Ig). The scRepertoire framework supports use of 10x, AIRR, BD, MiXCR, TRUST4, and WAT3R single-cell formats. The functionality includes basic clonal analyses, repertoire summaries, distance-based clustering and interaction with the popular Seurat and SingleCellExperiment/Bioconductor R single-cell workflows.",
+            "A toolkit for single-cell immune profiling.",
+            "ScRepertoire is a toolkit for processing and analyzing single-cell T-cell receptor (TCR) and immunoglobulin (Ig). The scRepertoire framework supports use of 10x, AIRR, BD, MiXCR, Omniscope, TRUST4, and WAT3R single-cell formats. The functionality includes basic clonal analyses, repertoire summaries, distance-based clustering and interaction with the popular Seurat and SingleCellExperiment/Bioconductor R workflows.",
+            "ScRepertoire was built to process data derived from the 10x Genomics Chromium Immune Profiling for both T-cell receptor (TCR) and immunoglobulin (Ig) enrichment workflows and subsequently interacts with the popular Seurat and SingleCellExperiment R packages. It also allows for general analysis of single-cell clonotype information without the use of expression information. The package functions as a wrapper for Startrac and powerTCR R packages."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/BorchLab/scRepertoire/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/BorchLab/scRepertoire/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/BorchLab/scRepertoire/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/BorchLab/scRepertoire/blob/main/index.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-screpertoire/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-screpertoire/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/scRepertoire_1.12.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/scRepertoire/scRepertoire_1.12.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-screpertoire/bioconductor-screpertoire_1.12.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/scRepertoire_1.12.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-screpertoire",
+            "scRepertoire"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "GPL-2",
+              "url": null
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "scRepertoire",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "screpertoire",
+            "bioconductor-screpertoire"
+          ],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/BorchLab/scRepertoire"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/scRepertoire"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/scRepertoire_1.12.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/scRepertoire/scRepertoire_1.12.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/scRepertoire_1.12.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-screpertoire/bioconductor-screpertoire_1.12.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "v2.0.0",
+            "v2.6.0",
+            "v2.3.4",
+            "v2.2.1",
+            "v2.0.5",
+            "1.12.0",
+            "2.7.1",
+            "v2.0.3",
+            "v2.5.0",
+            "v2.0.4",
+            "2.3.2"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/scRepertoire.html",
+            "https://www.borch.dev/uploads/screpertoire/",
+            "https://www.borch.dev/uploads/scRepertoire/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:screpertoire_bioconda_recipes/bioconductor-screpertoire/lib/1.12.0,bioconductor/screpertoire/lib/2.3.2,bioconductor/screpertoire/lib/2.7.1,biotools/screpertoire/undefined/None,github/scRepertoire/None/v2.6.0",
+  "conflict_name": "screpertoire/*",
+  "date": "2026-03-25T20:46:07.615465+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
