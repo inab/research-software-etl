@@ -1,0 +1,453 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/hyphy/None/None",
+        "created_at": "2025-04-02T15:44:10.842035",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "HyPhy is a comprehensive environment for maximum likelihood statistical analysis of genetic sequence data. It includes a large collection of out of the box analyses, a feature-rich graphical user interface for custom data analysis and a scripting languag."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/hyphy"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "hyphy"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "hyphy",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/hyphy"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://hyphy.sourceforge.io/"
+          ]
+        },
+        "id": "sourceforge/hyphy/None/None",
+        "last_updated_at": "2026-03-19T03:35:52.342904",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/hyphy//",
+            "source_url": "https://sourceforge.net/projects/hyphy"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/hyphy/None/2.5.65.actual,bioconda_recipes/hyphy/cmd/2.3.11,bioconda_recipes/hyphy/cmd/2.5.59,biotools/hyphy/cmd/None,bioconda_recipes/hyphy/cmd/2.5.96,github/hyphy/None/2.5.79",
+        "data": {
+          "authors": [
+            {
+              "email": "spond@temple.edu",
+              "maintainer": false,
+              "name": "Sergei Pond",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "dmleake92@gmail.com",
+              "maintainer": false,
+              "name": "Danielle Callan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cornelius.roemer@gmail.com",
+              "maintainer": false,
+              "name": "Cornelius Roemer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "sweaver@temple.edu",
+              "maintainer": false,
+              "name": "Steven Weaver",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "spond@temple.edu",
+              "maintainer": false,
+              "name": "Sergei L Kosakovsky Pond",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "apoon@cfenet.ubc.ca",
+              "maintainer": false,
+              "name": "Art FY Poon",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hannah.kim0007@temple.edu",
+              "maintainer": false,
+              "name": "Hannah Kim",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "curl",
+            "libgomp",
+            "openssl",
+            "llvm-openmp",
+            "openmpi",
+            "libcurl"
+          ],
+          "description": [
+            "HyPhy: Hypothesis testing using Phylogenies.",
+            "HyPhy (Hypothesis Testing using Phylogenies) is an open-source software package for the analysis of genetic sequences\n(in particular the inference of natural selection) using techniques in phylogenetics, molecular evolution, and machine learning.",
+            "Software package for the analysis of genetic sequences using techniques in phylogenetics, molecular evolution, and machine learning."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/veg/hyphy/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/veg/hyphy/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/veg/hyphy/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/hyphy/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/hyphy/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/veg/hyphy"
+            },
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "https://hyphy.org/tutorials/"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://hyphy.org/"
+            }
+          ],
+          "download": [
+            "https://github.com/veg/hyphy/archive/2.5.59.tar.gz",
+            "https://github.com/veg/hyphy/archive/2.5.96.tar.gz",
+            "https://github.com/veg/hyphy/archive/2.3.11.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "HyPhy",
+            "hyphy"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "Unlicense",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "hyphy",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Statistical calculation",
+              "uri": "http://edamontology.org/operation_2238",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c8282910e2f3aa0b3b79a6",
+            "67e2dc02ac7ee6cb5789128f",
+            "67e6c22e4737f097793370cf",
+            "67c8282910e2f3aa0b3b79a5"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/veg/hyphy"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "biotools"
+          ],
+          "source_code": [
+            "https://github.com/veg/hyphy/archive/2.5.59.tar.gz",
+            "https://github.com/veg/hyphy/archive/2.5.96.tar.gz",
+            "https://github.com/veg/hyphy/archive/2.3.11.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "science",
+              "uri": "https://github.com/topics/science",
+              "vocabulary": ""
+            },
+            {
+              "term": "phylogenetics",
+              "uri": "https://github.com/topics/phylogenetics",
+              "vocabulary": ""
+            },
+            {
+              "term": "c-plus-plus",
+              "uri": "https://github.com/topics/c-plus-plus",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "comparative-genomics",
+              "uri": "https://github.com/topics/comparative-genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "evolution",
+              "uri": "https://github.com/topics/evolution",
+              "vocabulary": ""
+            },
+            {
+              "term": "statistical-methods",
+              "uri": "https://github.com/topics/statistical-methods",
+              "vocabulary": ""
+            },
+            {
+              "term": "Phylogeny",
+              "uri": "http://edamontology.org/topic_0084",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.5.20",
+            "2.5.67",
+            "2.5.73",
+            "2.5.72",
+            "2.3.0",
+            "2.3.11",
+            "2.5.19",
+            "2.5.48",
+            "2.5.60",
+            "2.5.12",
+            "2.2.6",
+            "2.5.23",
+            "2.5.0",
+            "2.5.49",
+            "2.5.96",
+            "2.5.1",
+            "2.2.2",
+            "2.5.78",
+            "2.5.56",
+            "2.5.65",
+            "2.5.14",
+            "2.5.36",
+            "2.5.25",
+            "2.5.52",
+            "2.5.69",
+            "2.5.28",
+            "2.5.62",
+            "2.5.29",
+            "2.3.12",
+            "2.5.63",
+            "2.5.18.hf1",
+            "2.2.4",
+            "2.5.53",
+            "2.3.5",
+            "2.5.24",
+            "2.5.74",
+            "2.5.3",
+            "2.5.46hf1",
+            "2.3.2",
+            "2.5.27",
+            "2.5.55",
+            "2.5.77",
+            "2.2.3",
+            "2.5.47",
+            "2.2.1",
+            "2.3.6",
+            "2.5.38",
+            "2.4.0-alpha.2",
+            "2.5.71",
+            "2.5.8",
+            "2.5.66",
+            "2.5.75",
+            "2.3.4",
+            "2.3.14",
+            "2.3.7",
+            "2.5.26",
+            "2.5.31",
+            "2.5.15",
+            "2.3.13",
+            "2.5.11",
+            "2.3.9",
+            "2.5.10",
+            "None",
+            "2.3.8",
+            "2.5.39hf1",
+            "2.5.59",
+            "2.5.76",
+            "2.5.51hf",
+            "2.5.41",
+            "2.5.4",
+            "2.5.61",
+            "2.5.70",
+            "2.5.21hf",
+            "2.5.68",
+            "2.2.5",
+            "2.5.22hf",
+            "2.5.9",
+            "2.2.0",
+            "2.5.6",
+            "2.3.10",
+            "2.5.57",
+            "2.5.58",
+            "2.5.64",
+            "2.5.7",
+            "2.5.16",
+            "2.5.42",
+            "2.5.65.actual",
+            "2.5.43rc",
+            "2.5.40",
+            "2.5.30",
+            "2.5.33",
+            "2.5.50",
+            "2.3.1",
+            "2.5.5",
+            "2.5.2",
+            "2.5.32",
+            "2.4.0-alpha.1",
+            "2.3.0-alpha",
+            "2.5.79",
+            "2.2.7",
+            "2.3.3",
+            "2.5.45hf1",
+            "2.5.17"
+          ],
+          "webpage": [
+            "http://www.hyphy.org/",
+            "https://hyphy.org/",
+            "http://hyphy.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:hyphy_bioconda_recipes/hyphy/cmd/2.3.11,bioconda_recipes/hyphy/cmd/2.5.59,bioconda_recipes/hyphy/cmd/2.5.96,biotools/hyphy/cmd/None,github/hyphy/None/2.5.65.actual,github/hyphy/None/2.5.79,sourceforge/hyphy/None/None",
+  "conflict_name": "hyphy/*",
+  "date": "2026-03-25T20:58:53.205673+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
