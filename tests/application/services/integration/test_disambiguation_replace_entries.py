@@ -1,4 +1,4 @@
-from src.application.services.integration.disambiguation.utils import build_instances_keys_dict, replace_with_full_entries
+from application.services.integration.disambiguation.utils import build_instances_keys_dict, replace_with_full_entries
 from tests.application.services.integration.data.data_disambiguation_original import original_conflict
 import pytest 
 import json

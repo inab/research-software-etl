@@ -1,8 +1,8 @@
 from typing import Dict, Any, List
-from src.application.services.publications.publication_standardizer import PublicationStandardizer
-from src.application.services.publications.publication_extractor import PublicationExtractor
-from src.domain.models.publication.publication import Publication
-from src.shared.utils import validate_and_filter
+from application.services.publications.publication_standardizer import PublicationStandardizer
+from application.services.publications.publication_extractor import PublicationExtractor
+from domain.models.publication.publication import Publication
+from shared.utils import validate_and_filter
 import logging
 
 logger = logging.getLogger("rs-etl-pipeline")

@@ -1,5 +1,5 @@
-from src.application.services.integration.disambiguation.results import build_disambiguated_record_after_human
-from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl, update_jsonl_record
+from application.services.integration.disambiguation.results import build_disambiguated_record_after_human
+from application.services.integration.disambiguation.utils import load_dict_from_jsonl, update_jsonl_record
 import json
 
 

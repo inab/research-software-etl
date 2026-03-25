@@ -1,4 +1,4 @@
-from src.application.services.integration.disambiguation.utils import stable_hash
+from application.services.integration.disambiguation.utils import stable_hash
 import pytest
 
 

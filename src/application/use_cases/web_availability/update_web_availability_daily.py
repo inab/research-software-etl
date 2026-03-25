@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import requests
 from pymongo import UpdateOne
 
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 DEFAULT_TIMEOUT = 15

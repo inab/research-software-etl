@@ -1,5 +1,5 @@
-from src.application.services.transformation.toolshed import toolshedStandardizer
-from src.domain.models.software_instance.main import software_types, operating_systems
+from application.services.transformation.toolshed import toolshedStandardizer
+from domain.models.software_instance.main import software_types, operating_systems
 from pydantic import HttpUrl
 
 class TestGalaxyStandardizer:

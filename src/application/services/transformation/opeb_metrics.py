@@ -1,5 +1,5 @@
-from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
-from src.domain.models.software_instance.main import instance
+from application.services.transformation.metadata_standardizers import MetadataStandardizer
+from domain.models.software_instance.main import instance
 
 from typing import List, Dict, Any
 

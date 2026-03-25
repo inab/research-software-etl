@@ -1,7 +1,7 @@
-from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
-from src.domain.models.software_instance.main import instance
-from src.domain.models.software_instance.EDAM_forFE import EDAMDict
-from src.shared.utils import validate_and_filter
+from application.services.transformation.metadata_standardizers import MetadataStandardizer
+from domain.models.software_instance.main import instance
+from domain.models.software_instance.EDAM_forFE import EDAMDict
+from shared.utils import validate_and_filter
 
 from pydantic import TypeAdapter, HttpUrl, BaseModel, model_validator
 from typing import List, Dict, Any

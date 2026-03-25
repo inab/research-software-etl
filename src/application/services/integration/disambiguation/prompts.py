@@ -8,7 +8,7 @@ from functools import lru_cache
 from pathlib import Path
 from pprint import pprint
 
-from src.application.services.integration.disambiguation.utils import get_pub
+from application.services.integration.disambiguation.utils import get_pub
 
 MAX_TOTAL_TOKENS = 130000  
 

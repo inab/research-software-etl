@@ -67,7 +67,7 @@ async def main():
     logger.debug(f"Env file: {args.env_file}")
     load_dotenv(args.env_file)
 
-    from src.application.use_cases.integration.disambiguation import run_full_disambiguation
+    from application.use_cases.integration.disambiguation import run_full_disambiguation
 
 
     logger.info(f"Blocks file: {args.blocks_file}")

@@ -8,7 +8,7 @@ from readability import Document
 from bs4 import BeautifulSoup
 #from playwright.sync_api import sync_playwright
 from playwright.async_api import async_playwright
-from src.application.services.integration.disambiguation.config import (
+from application.services.integration.disambiguation.config import (
     GITHUB_TOKEN,
     GITHUB_API_BASE,
     GITHUB_API_HEADERS,

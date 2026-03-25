@@ -1,6 +1,6 @@
 import logging
 from pprint import pprint
-from src.domain.models.software_instance.multitype_instance import multitype_instance
+from domain.models.software_instance.multitype_instance import multitype_instance
 
 
 def convert_to_multi_type_instance(instance_data_dict):

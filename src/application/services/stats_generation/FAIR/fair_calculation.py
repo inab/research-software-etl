@@ -1,4 +1,4 @@
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from typing import List, Dict, Any
 from datetime import datetime
 from collections import defaultdict
@@ -9,7 +9,7 @@ import requests
 import json
 
 def get_pub(object_id):
-    from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
     publication = mongo_adapter.fetch_entry( "publicationsMetadataDev", object_id)    
     if publication:

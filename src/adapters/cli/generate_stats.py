@@ -5,8 +5,8 @@ Command-line interface for generating statistics.
 import argparse
 import logging
 from dotenv import load_dotenv
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from src.application.use_cases.stats.generate_stats import generate_stats_for_collections
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from application.use_cases.stats.generate_stats import generate_stats_for_collections
 
 
 def main():

@@ -15,7 +15,6 @@ License-File: LICENSE
 Requires-Dist: pymongo>=4.5.0
 Requires-Dist: requests>=2.31.0
 Requires-Dist: tqdm>=4.65.0
-Requires-Dist: pandas>=2.2.0
 Requires-Dist: numpy>=1.26.0
 Requires-Dist: python-dotenv>=1.0.0
 Provides-Extra: dev

@@ -4,7 +4,7 @@ This is the instance model used for integrated metadata of software instances.
 The "data" in entries in the tools collection (post integration) this schema (multitype_instance.py).
 """
 
-from src.domain.models.software_instance.main import instance, software_types
+from domain.models.software_instance.main import instance, software_types
 from typing import List, Dict
 
 class multitype_instance(instance):

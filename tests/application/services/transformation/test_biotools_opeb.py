@@ -1,7 +1,7 @@
-from src.application.services.transformation.biotools_opeb import biotoolsOPEBStandardizer
-from src.domain.models.software_instance.main import software_types, operating_systems, data_sources
-from src.domain.models.software_instance.recognition import type_contributor
-from src.domain.models.software_instance.repository import repository_kind
+from application.services.transformation.biotools_opeb import biotoolsOPEBStandardizer
+from domain.models.software_instance.main import software_types, operating_systems, data_sources
+from domain.models.software_instance.recognition import type_contributor
+from domain.models.software_instance.repository import repository_kind
 
 from pydantic import HttpUrl
 

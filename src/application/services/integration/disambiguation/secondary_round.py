@@ -1,4 +1,4 @@
-from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl, add_jsonl_record, update_jsonl_record
+from application.services.integration.disambiguation.utils import load_dict_from_jsonl, add_jsonl_record, update_jsonl_record
 from datetime import datetime
 import json
 from pprint import pprint

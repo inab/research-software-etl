@@ -1,5 +1,5 @@
-from src.application.services.transformation.opeb_metrics import OPEBMetricsStandardizer
-from src.domain.models.software_instance.main import software_types, data_sources
+from application.services.transformation.opeb_metrics import OPEBMetricsStandardizer
+from domain.models.software_instance.main import software_types, data_sources
 from pydantic import HttpUrl
 
 class TestOpebMetricsStandardizer:

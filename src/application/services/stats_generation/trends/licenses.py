@@ -1,7 +1,7 @@
 from collections import Counter
 from datetime import datetime
 from typing import List, Tuple, Dict, Any
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 '''
 USAGE:

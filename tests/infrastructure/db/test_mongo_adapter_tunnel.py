@@ -1,8 +1,8 @@
 import os
 import pytest
 from dotenv import load_dotenv
-from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
-from src.infrastructure.db.database_adapter import DatabaseAdapter
+from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+from infrastructure.db.database_adapter import DatabaseAdapter
 import logging
 from sshtunnel import SSHTunnelForwarder
 import pymongo
@@ -14,7 +14,7 @@ logger = logging.getLogger("rs-etl-pipeline")
 '''
 @pytest.mark.manual
 def test_mongo_debug_constructor():
-    from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+    from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
     print("MongoDBAdapter class is:", MongoDBAdapter)
 
     MongoDBAdapter._client = None

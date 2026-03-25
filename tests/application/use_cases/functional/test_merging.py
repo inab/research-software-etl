@@ -1,8 +1,8 @@
 from bson import json_util
 from bson import ObjectId
 import copy
-from src.application.use_cases.integration.merge_entries import convert_to_multi_type_instance, merge_instances
-from src.domain.models.software_instance.main import software_types
+from application.use_cases.integration.merge_entries import convert_to_multi_type_instance, merge_instances
+from domain.models.software_instance.main import software_types
 test_entries = [
     {
         "_id": "biotools/ps2-v3/web/3.0",

@@ -6,7 +6,7 @@ Functions to create the metadata for the publication entries. To be inserted in 
 ''' 
 import os
 from datetime import datetime
-from src.domain.models.publication.metadata import Metadata
+from domain.models.publication.metadata import Metadata
 from datetime import datetime
 from typing import Dict
 

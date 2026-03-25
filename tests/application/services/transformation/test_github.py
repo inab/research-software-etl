@@ -1,4 +1,4 @@
-from src.application.services.transformation.github import githubStandardizer
+from application.services.transformation.github import githubStandardizer
 from pydantic import HttpUrl
 
 

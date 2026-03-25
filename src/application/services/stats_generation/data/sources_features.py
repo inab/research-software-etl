@@ -1,5 +1,5 @@
 from datetime import datetime
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 def build_features_dict(source):

@@ -1,4 +1,4 @@
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from collections import defaultdict
 from datetime import datetime
 

@@ -1,7 +1,7 @@
-from src.application.services.transformation.bioconductor import bioconductorStandardizer
-from src.domain.models.software_instance.main import software_types, operating_systems, data_sources
-from src.domain.models.software_instance.recognition import type_contributor
-from src.domain.models.software_instance.repository import repository_kind
+from application.services.transformation.bioconductor import bioconductorStandardizer
+from domain.models.software_instance.main import software_types, operating_systems, data_sources
+from domain.models.software_instance.recognition import type_contributor
+from domain.models.software_instance.repository import repository_kind
 from pydantic import HttpUrl
 from dotenv import load_dotenv
 

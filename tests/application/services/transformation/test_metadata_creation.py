@@ -2,8 +2,8 @@ import pytest
 from freezegun import freeze_time
 from pydantic import HttpUrl
 from unittest.mock import patch, MagicMock
-from src.application.services.transformation.metadata import create_new_metadata, update_existing_metadata,  build_commit_url
-from src.domain.models.metadata import Metadata
+from application.services.transformation.metadata import create_new_metadata, update_existing_metadata,  build_commit_url
+from domain.models.metadata import Metadata
 # Mocks for environment variables and datetime
 @pytest.fixture
 def env_setup(mocker):

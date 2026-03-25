@@ -1,7 +1,7 @@
 import pytest
 from dotenv import load_dotenv
 load_dotenv()
-from src.application.use_cases.transformation.main import process_publications 
+from application.use_cases.transformation.main import process_publications 
 
 def test_process_publications_with_publications_biotools():
     entry = {

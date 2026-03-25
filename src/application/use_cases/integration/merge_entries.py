@@ -5,10 +5,10 @@ from pydantic import BaseModel
 from datetime import datetime
 from bson import ObjectId
 from pydantic.json import pydantic_encoder
-from src.domain.models.software_instance.main import instance
-from src.domain.models.software_instance.multitype_instance import multitype_instance
-from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from domain.models.software_instance.main import instance
+from domain.models.software_instance.multitype_instance import multitype_instance
+from application.services.integration.disambiguation.utils import load_dict_from_jsonl
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 def pretty_print_model(model: BaseModel) -> None:
     print(model.model_dump_json(indent=4))

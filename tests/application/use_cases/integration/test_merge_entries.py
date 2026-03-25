@@ -1,4 +1,4 @@
-from src.application.use_cases.integration.merge_entries import merge_and_save_blocks
+from application.use_cases.integration.merge_entries import merge_and_save_blocks
 import pytest
  
 

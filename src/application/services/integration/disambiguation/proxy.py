@@ -4,7 +4,7 @@ import json
 import re
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-from src.application.services.integration.disambiguation.config import (
+from application.services.integration.disambiguation.config import (
     OR_API_URL,
     OR_API_KEY,
     HF_API_URL,

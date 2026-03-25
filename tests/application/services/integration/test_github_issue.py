@@ -4,7 +4,7 @@ import pytest
 import uuid
 
 from pprint import pprint
-from src.application.services.integration.disambiguation.issues import generate_context, generate_conflict_file, commit_conflict_json, generate_github_body, stable_hash, create_github_issue
+from application.services.integration.disambiguation.issues import generate_context, generate_conflict_file, commit_conflict_json, generate_github_body, stable_hash, create_github_issue
 
 
 full_conflict ={

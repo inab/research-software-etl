@@ -1,5 +1,3 @@
-import src.application.services.enrich_publications.europe_pmc as europe_pmc
-import src.application.services.enrich_publications.semantic_scholar as semantic_scholar
 from collections import Counter
 import re
 
@@ -20,21 +18,6 @@ def extract_doi(url: str) -> str | None:
     return match.group(0) if match else None
 
 
-def get_metadata_and_citations_semantic_scholar(doi):
-    '''
-    Fetches metadata from Europe PMC and adds citations if available
-    Input:
-    - doi: str. The DOI of the paper
-    Output:
-    - Dict. The metadata of the paper with citations added
-    '''
-    metadata = semantic_scholar.get_publication_metadata(doi)
-    if "error" in metadata:
-        return metadata
-    else:
-        citations = semantic_scholar.fetch_semanticscholar_citations(doi)
-        metadata["citations"] = citations
-        return metadata
     
 def count_citations_per_year(data):
     """
@@ -51,20 +34,6 @@ def count_citations_per_year(data):
     year_counts['total'] = sum(year_counts.values())
     return dict(year_counts)
 
-
-def get_europe_pmc_metadata(doi):
-    metadata = europe_pmc.get_publication_metadata(doi)
-
-    if "error" not in metadata:
-        metadata['citations'] = [metadata["citations"]]
-
-    else:
-        metadata = {
-            'doi': doi,
-            'citations': []
-        }
-    
-    return metadata
 
 def remove_empty_fields(d: dict) -> dict:
     """

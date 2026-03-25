@@ -1,5 +1,5 @@
-from src.application.use_cases.integration.disambiguation import run_full_disambiguation
-from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
+from application.use_cases.integration.disambiguation import run_full_disambiguation
+from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 import pytest
 import json
 

@@ -1,5 +1,5 @@
-from src.application.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
-from src.domain.models.software_instance.main import software_types, data_sources
+from application.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
+from domain.models.software_instance.main import software_types, data_sources
 from pydantic import HttpUrl
 
 

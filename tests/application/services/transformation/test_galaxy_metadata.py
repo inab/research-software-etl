@@ -1,5 +1,5 @@
-from src.application.services.transformation.galaxy_metadata import galaxyMetadataStandardizer
-from src.domain.models.software_instance.main import software_types
+from application.services.transformation.galaxy_metadata import galaxyMetadataStandardizer
+from domain.models.software_instance.main import software_types
 
 class TestGalaxyMetadataStandardizer:
     def test_transform_single_tool(self):

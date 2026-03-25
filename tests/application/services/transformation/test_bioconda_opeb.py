@@ -1,5 +1,5 @@
-from src.application.services.transformation.bioconda_opeb import biocondaOPEBStandardizer
-from src.domain.models.software_instance.main import operating_systems, data_sources
+from application.services.transformation.bioconda_opeb import biocondaOPEBStandardizer
+from domain.models.software_instance.main import operating_systems, data_sources
 
 from dotenv import load_dotenv
 from pydantic import HttpUrl

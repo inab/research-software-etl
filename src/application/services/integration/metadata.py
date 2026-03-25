@@ -4,7 +4,7 @@ Functions to create the metadata for the entries after integration. To be insert
 import os
 from typing import List
 from datetime import datetime
-from src.core.domain.entities.metadata import VersionedMetadata
+from core.domain.entities.metadata import VersionedMetadata
 from datetime import datetime
 
 def create_new_metadata(identifier: str, pretools: str, source_identifiers: List) -> VersionedMetadata:

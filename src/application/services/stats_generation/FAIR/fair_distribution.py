@@ -1,5 +1,5 @@
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from src.application.services.stats_generation.FAIR.individual_scores import evaluate_tool
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from application.services.stats_generation.FAIR.individual_scores import evaluate_tool
 from typing import List, Dict, Any
 from datetime import datetime
 from collections import defaultdict

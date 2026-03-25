@@ -6,7 +6,7 @@ Functions to create the metadata for the entries after transformation. To be ins
 ''' 
 import os
 from datetime import datetime
-from src.domain.models.metadata import Metadata
+from domain.models.metadata import Metadata
 from datetime import datetime
 
 def create_new_metadata(source_identifier, identifier, source_url: str = None,  alambique: str = 'alambiqueDev') -> Metadata:

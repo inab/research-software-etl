@@ -1,8 +1,8 @@
 
 import json 
-from src.application.services.integration.disambiguation.secondary_round import run_second_round
-from src.application.services.integration.disambiguation.disambiguator import disambiguate_blocks 
-from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
+from application.services.integration.disambiguation.secondary_round import run_second_round
+from application.services.integration.disambiguation.disambiguator import disambiguate_blocks 
+from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 from pprint import pprint
 
 async def run_full_disambiguation(blocks_file, 

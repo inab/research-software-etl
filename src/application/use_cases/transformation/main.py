@@ -16,10 +16,10 @@ corresponding helper modules and specialized services.
 import os
 import logging 
 from typing import List, Dict
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from src.application.use_cases.transformation.publications_processing import extract_publications, standardize_publications
-from src.infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
-from src.application.use_cases.transformation.software_metadata_processing import standardize_entry, save_entry
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from application.use_cases.transformation.publications_processing import extract_publications, standardize_publications
+from infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
+from application.use_cases.transformation.software_metadata_processing import standardize_entry, save_entry
 
 logger = logging.getLogger("rs-etl-pipeline")
 

@@ -1,6 +1,6 @@
-from src.application.services.transformation.bioconda_recipes import biocondaRecipesStandardizer
-from src.domain.models.software_instance.main import software_types, operating_systems, data_sources
-from src.domain.models.software_instance.recognition import type_contributor
+from application.services.transformation.bioconda_recipes import biocondaRecipesStandardizer
+from domain.models.software_instance.main import software_types, operating_systems, data_sources
+from domain.models.software_instance.recognition import type_contributor
 from pydantic import HttpUrl
 from dotenv import load_dotenv
 

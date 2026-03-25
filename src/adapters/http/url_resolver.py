@@ -1,5 +1,5 @@
 import requests
-from src.application.services.url_resolver import URLResolver
+from application.services.url_resolver import URLResolver
 
 class RequestsURLResolver(URLResolver):
     def resolve(self, url: str) -> bool:

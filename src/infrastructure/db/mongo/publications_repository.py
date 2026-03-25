@@ -1,11 +1,12 @@
-# This adapter translates DB logic into domain logic 
-from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+from __future__ import annotations
+
 from typing import Any, Iterable
 
+from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 
 
 class MongoPublicationRepository:
-    def __init__(self):
+    def __init__(self) -> None:
         self.mongo_db = MongoDBAdapter()
         self.collection_name = "publicationsMetadataDev"
 
@@ -13,7 +14,7 @@ class MongoPublicationRepository:
         """Find a publication metadata entry by DOI."""
         query = {"data.doi": doi}
         return self.mongo_db.fetch_entry(self.collection_name, query)
-    
+
     def find_by_title(self, title: str):
         """Find a publication metadata entry by title."""
         query = {"data.title": title}
@@ -42,9 +43,24 @@ class MongoPublicationRepository:
 
     def save_entry(self, document: dict):
         return self.mongo_db.insert_one(self.collection_name, document)
-    
+
     def fetch_with_doi(self, collection_name: str) -> Iterable[dict[str, Any]]:
-        query = {"data.doi": {"$exists": True}}
+        query = {
+            "data.doi": {
+                "$exists": True,
+                "$nin": [None, ""],
+            }
+        }
+        return self.mongo_db.fetch_entries(collection_name, query)
+
+    def fetch_without_doi(self, collection_name: str) -> Iterable[dict[str, Any]]:
+        query = {
+            "$or": [
+                {"data.doi": {"$exists": False}},
+                {"data.doi": None},
+                {"data.doi": ""},
+            ]
+        }
         return self.mongo_db.fetch_entries(collection_name, query)
 
     def update_publication_data(
@@ -61,4 +77,44 @@ class MongoPublicationRepository:
                 "data": data,
                 "last_updated_at": last_updated_at,
             },
+        )
+
+    def update_publication_doi(
+        self,
+        collection_name: str,
+        document_id: Any,
+        doi: str,
+        doi_resolution_source: str | None = None,
+        doi_resolution_confidence: float | None = None,
+        doi_resolution_match_title: str | None = None,
+        doi_resolution_match_journal: str | None = None,
+        doi_resolution_match_year: int | None = None,
+        last_updated_at: str | None = None,
+    ) -> None:
+        update_data: dict[str, Any] = {
+            "data.doi": doi,
+        }
+
+        if doi_resolution_source is not None:
+            update_data["meta.doi_resolution_source"] = doi_resolution_source
+
+        if doi_resolution_confidence is not None:
+            update_data["meta.doi_resolution_confidence"] = doi_resolution_confidence
+
+        if doi_resolution_match_title is not None:
+            update_data["meta.doi_resolution_match_title"] = doi_resolution_match_title
+
+        if doi_resolution_match_journal is not None:
+            update_data["meta.doi_resolution_match_journal"] = doi_resolution_match_journal
+
+        if doi_resolution_match_year is not None:
+            update_data["meta.doi_resolution_match_year"] = doi_resolution_match_year
+
+        if last_updated_at is not None:
+            update_data["last_updated_at"] = last_updated_at
+
+        self.mongo_db.update_entry(
+            collection_name,
+            document_id,
+            update_data,
         )

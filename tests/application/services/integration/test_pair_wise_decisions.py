@@ -1,6 +1,6 @@
 from tests.application.services.integration.data.data_disambiguation_build_pairs import conflict_full_entries_one_two, conflict_full_entries_one_one, conflict_full_entries_two_one, original_key
-from src.application.services.integration.disambiguation.utils import stable_hash, load_pair_decisions
-from src.application.services.integration.disambiguation.pairing import build_pairs
+from application.services.integration.disambiguation.utils import stable_hash, load_pair_decisions
+from application.services.integration.disambiguation.pairing import build_pairs
 from datetime import datetime, timezone
 from random import  uniform
 

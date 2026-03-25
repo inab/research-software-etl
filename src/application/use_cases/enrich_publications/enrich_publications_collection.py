@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from src.application.services.enrich_publications.doi_service import normalize_doi
+from application.services.enrich_publications.doi_service import normalize_doi
 
 
 class EnrichPublicationCollectionUseCase:

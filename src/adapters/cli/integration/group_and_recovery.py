@@ -4,7 +4,7 @@ The command-line interface for the group and recovery step of the integration
 import argparse
 import logging
 from dotenv import load_dotenv
-from src.application.use_cases.integration.group_and_recovery import grouping_and_recovery_process 
+from application.use_cases.integration.group_and_recovery import grouping_and_recovery_process 
 
 logger = logging.getLogger("rs-etl-pipeline")
 

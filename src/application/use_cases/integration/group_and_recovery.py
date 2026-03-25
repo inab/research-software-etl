@@ -2,10 +2,10 @@ import os
 import logging
 from bson import json_util 
 
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from src.infrastructure.db.mongo.standardized_software_repository import StdSoftwareMetaRepository
-from src.application.services.integration.group_entries import group_by_key_with_links
-from src.application.services.integration.entries_recovery import recover_shared_name_link
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.standardized_software_repository import StdSoftwareMetaRepository
+from application.services.integration.group_entries import group_by_key_with_links
+from application.services.integration.entries_recovery import recover_shared_name_link
 
 logger = logging.getLogger("rs-etl-pipeline")
 

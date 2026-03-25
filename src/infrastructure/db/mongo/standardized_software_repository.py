@@ -1,8 +1,8 @@
-# This adapter translates DB logic into domain logic from src.infrastructure.mongo_adapter import MongoDBAdapter
+# This adapter translates DB logic into domain logic from infrastructure.mongo_adapter import MongoDBAdapter
 # THis repository connects to the pretools collection and performs specific operations on it.
 
-from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
-from src.domain.models.database_entries import PretoolsEntryModel
+from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+from domain.models.database_entries import PretoolsEntryModel
 from pydantic import ValidationError
 import logging
 

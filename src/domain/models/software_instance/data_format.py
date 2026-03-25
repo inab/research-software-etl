@@ -1,7 +1,7 @@
 from pydantic import BaseModel, model_validator, HttpUrl, AnyUrl, TypeAdapter
 from typing import Optional, Any, Dict
 
-from src.domain.models.software_instance.EDAM_forFE import EDAMDict
+from domain.models.software_instance.EDAM_forFE import EDAMDict
 
 
 ###------------------------------------------------------------

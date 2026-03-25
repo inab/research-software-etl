@@ -1,5 +1,5 @@
 
-from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
+from application.services.transformation.metadata_standardizers import MetadataStandardizer
 from unittest.mock import patch
 
 

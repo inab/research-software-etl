@@ -1,14 +1,14 @@
 import pytest
-from src.application.services.transformation.standardizers_factory import MetadataStandardizerFactory
-from src.application.services.transformation.bioconda_opeb import biocondaOPEBStandardizer
-from src.application.services.transformation.bioconda_recipes import biocondaRecipesStandardizer
-from src.application.services.transformation.bioconductor import bioconductorStandardizer
-from src.application.services.transformation.biotools_opeb import biotoolsOPEBStandardizer
-from src.application.services.transformation.toolshed import toolshedStandardizer
-from src.application.services.transformation.galaxy_metadata import galaxyMetadataStandardizer
-from src.application.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
-from src.application.services.transformation.opeb_metrics import OPEBMetricsStandardizer
-from src.application.services.transformation.source_forge import sourceforgeStandardizer
+from application.services.transformation.standardizers_factory import MetadataStandardizerFactory
+from application.services.transformation.bioconda_opeb import biocondaOPEBStandardizer
+from application.services.transformation.bioconda_recipes import biocondaRecipesStandardizer
+from application.services.transformation.bioconductor import bioconductorStandardizer
+from application.services.transformation.biotools_opeb import biotoolsOPEBStandardizer
+from application.services.transformation.toolshed import toolshedStandardizer
+from application.services.transformation.galaxy_metadata import galaxyMetadataStandardizer
+from application.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
+from application.services.transformation.opeb_metrics import OPEBMetricsStandardizer
+from application.services.transformation.source_forge import sourceforgeStandardizer
 
 standardizer_tests = [
     ('bioconda', biocondaOPEBStandardizer),

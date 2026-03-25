@@ -1,9 +1,9 @@
 import json
 import random
 import pytest
-from src.application.services.integration.disambiguation.disambiguator import disambiguate_blocks
+from application.services.integration.disambiguation.disambiguator import disambiguate_blocks
 from tests.application.services.integration.data.data_disambiguation_original import conflicts_blocks_sets, expected, expected_heuristics
-from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
+from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 from pprint import pprint
 from dotenv import load_dotenv
 import os 

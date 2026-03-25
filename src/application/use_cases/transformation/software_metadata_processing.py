@@ -15,10 +15,10 @@ import os
 import logging 
 import json
 from typing import List, Dict
-from src.application.services.transformation.standardizers_factory import MetadataStandardizerFactory
-from src.application.services.transformation.metadata import create_new_metadata, update_existing_metadata
-from src.domain.models.metadata import Metadata
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from application.services.transformation.standardizers_factory import MetadataStandardizerFactory
+from application.services.transformation.metadata import create_new_metadata, update_existing_metadata
+from domain.models.metadata import Metadata
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 logger = logging.getLogger("rs-etl-pipeline")

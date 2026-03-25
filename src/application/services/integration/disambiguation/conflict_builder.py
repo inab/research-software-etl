@@ -1,5 +1,5 @@
-from src.application.services.integration.disambiguation.prompts import get_tokenizer
-from src.application.services.integration.disambiguation.enrich_links import enrich_link
+from application.services.integration.disambiguation.prompts import get_tokenizer
+from application.services.integration.disambiguation.enrich_links import enrich_link
 # -------------------------------
 # Chunking big text
 # -------------------------------

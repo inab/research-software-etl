@@ -52,7 +52,7 @@ class license_item(BaseModel, validate_assignment=True):
         '''Map to SPDX license if possible.
         TODO: This needs to be moved to a service, it does not belong to a model.
         '''
-        from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+        from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
         if data.get('url') is None:
             # Map to SPDX

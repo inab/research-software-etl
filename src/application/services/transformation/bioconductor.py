@@ -1,6 +1,6 @@
-from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
-from src.domain.models.software_instance.main import instance
-from src.shared.utils import validate_and_filter
+from application.services.transformation.metadata_standardizers import MetadataStandardizer
+from domain.models.software_instance.main import instance
+from shared.utils import validate_and_filter
 
 from pydantic import TypeAdapter, HttpUrl, EmailStr, ValidationError, BaseModel
 from typing import Dict, Any, Optional, List

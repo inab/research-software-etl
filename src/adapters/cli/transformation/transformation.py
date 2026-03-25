@@ -20,7 +20,7 @@ python src/adapters/cli/transformation/transformation.py -e .env -s all
 import argparse
 import logging
 from dotenv import load_dotenv
-from src.infrastructure.logging_config import setup_logging
+from infrastructure.logging_config import setup_logging
 
 # assuming loglevel is bound to the string value obtained from the
 # command line argument. Convert to upper case to allow the user to
@@ -67,7 +67,7 @@ def main():
     load_dotenv(args.env_file)
 
     # import here so the env variables are loaded before the initialization of the db client (which uses them to connect)
-    from src.application.use_cases.transformation.main import transform_sources
+    from application.use_cases.transformation.main import transform_sources
     
     # Transform the sources ---------------------------------------------------
     if 'all' in args.sources:

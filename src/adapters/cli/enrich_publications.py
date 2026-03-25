@@ -1,8 +1,8 @@
 '''
-python -m src.adapters.cli.enrich_publications_cli
-python -m src.adapters.cli.enrich_publications_cli --limit 100
-python -m src.adapters.cli.enrich_publications_cli --progress-every 100
-python -m src.adapters.cli.enrich_publications_cli --no-update-db
+python -m adapters.cli.enrich_publications
+python -m adapters.cli.enrich_publications --limit 100
+python -m adapters.cli.enrich_publications --progress-every 100
+python -m adapters.cli.enrich_publications --no-update-db
 '''
 
 from __future__ import annotations
@@ -10,18 +10,18 @@ from __future__ import annotations
 import argparse
 import sys
 
-from src.application.services.enrich_publications.publication_enrichment_service import (
+from application.services.enrich_publications.publication_enrichment_service import (
     PublicationEnrichmentService,
 )
-from src.application.use_cases.enrich_publications.enrich_publications_collection import (
+from application.use_cases.enrich_publications.enrich_publications_collection import (
     EnrichPublicationCollectionUseCase,
 )
-from src.infrastructure.db.mongo.publications_repository import (
+from infrastructure.db.mongo.publications_repository import (
     MongoPublicationRepository,
 )
-from src.infrastructure.external.europe_pmc import EuropePmcClient
-from src.infrastructure.external.semantic_scholar import SemanticScholarClient
-from src.infrastructure.storage.jsonl import JsonlPublicationEnrichmentCache
+from infrastructure.external.europe_pmc import EuropePmcClient
+from infrastructure.external.semantic_scholar import SemanticScholarClient
+from infrastructure.storage.jsonl import JsonlPublicationEnrichmentCache
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -35,7 +35,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--jsonl-path",
-        default="scripts/data/publications_enrichment.jsonl",
+        default="data/cache/publications_enrichment.jsonl",
         help="Path to JSONL cache/output file.",
     )
     parser.add_argument(

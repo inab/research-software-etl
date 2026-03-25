@@ -4,7 +4,7 @@ The command-line interface for the conflict detection step of the integration
 import argparse
 import logging
 from dotenv import load_dotenv
-from src.application.use_cases.integration.conflict_detection import detect_conflicts 
+from application.use_cases.integration.conflict_detection import detect_conflicts 
 
 logger = logging.getLogger("rs-etl-pipeline")
 

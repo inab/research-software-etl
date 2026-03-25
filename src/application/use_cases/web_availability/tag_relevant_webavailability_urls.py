@@ -19,7 +19,7 @@ from typing import Any, Dict, List, Set
 
 from pymongo import UpdateOne
 
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 RELEVANT_TYPES = {"rest", "web", "app", "suite", "workbench", "db", "soap", "sparql"}

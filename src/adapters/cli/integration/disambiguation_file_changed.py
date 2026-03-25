@@ -1,4 +1,4 @@
-from src.application.use_cases.integration.disambiguation_file_changed import run_disambiguation
+from application.use_cases.integration.disambiguation_file_changed import run_disambiguation
 from dotenv import load_dotenv
 import argparse
 

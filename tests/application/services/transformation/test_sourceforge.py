@@ -1,6 +1,6 @@
-from src.application.services.transformation.source_forge import sourceforgeStandardizer
-from src.domain.models.software_instance.main import operating_systems
-from src.domain.models.software_instance.repository import repository_kind
+from application.services.transformation.source_forge import sourceforgeStandardizer
+from domain.models.software_instance.main import operating_systems
+from domain.models.software_instance.repository import repository_kind
 from pydantic import HttpUrl
 
 class TestSourceForgeStandardizer:

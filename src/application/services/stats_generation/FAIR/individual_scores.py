@@ -1,11 +1,11 @@
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from bson import ObjectId
 from pprint import pprint
 import requests 
 
 
 def get_pub(object_id):
-    from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
     publication = mongo_adapter.fetch_entry( "publicationsMetadataDev", object_id)    
     if publication:

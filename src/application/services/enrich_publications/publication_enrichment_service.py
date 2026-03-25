@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from src.application.services.enrich_publications.helpers import (
+from application.services.enrich_publications.helpers import (
     count_citations_per_year,
     remove_empty_fields,
 )

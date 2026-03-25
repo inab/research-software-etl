@@ -1,6 +1,6 @@
-from src.application.services.transformation.metadata_standardizers import MetadataStandardizer
-from src.domain.models.software_instance.main import instance
-from src.shared.utils import validate_and_filter
+from application.services.transformation.metadata_standardizers import MetadataStandardizer
+from domain.models.software_instance.main import instance
+from shared.utils import validate_and_filter
 
 from typing import List, Dict, Any
 

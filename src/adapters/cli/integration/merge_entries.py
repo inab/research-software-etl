@@ -49,7 +49,7 @@ def main():
     logger.debug(f"Env file: {args.env_file}")
     load_dotenv(args.env_file)
 
-    from src.application.use_cases.integration.merge_entries import merge_and_save_blocks
+    from application.use_cases.integration.merge_entries import merge_and_save_blocks
 
     logger.info(f"Disambiguated blocks file: {args.disambiguated_blocks_file}")
     logger.info("Merging entries...")

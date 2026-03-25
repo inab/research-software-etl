@@ -14,12 +14,12 @@ from bson import ObjectId
 import re
 import logging
 
-from src.domain.models.software_instance.data_format import data_format
-from src.domain.models.software_instance.documentation import documentation_item
-from src.domain.models.software_instance.license import license_item
-from src.domain.models.software_instance.recognition import contributor
-from src.domain.models.software_instance.topic_operation import vocabulary_topic, vocabulary_operation
-from src.domain.models.software_instance.repository import repository_item
+from domain.models.software_instance.data_format import data_format
+from domain.models.software_instance.documentation import documentation_item
+from domain.models.software_instance.license import license_item
+from domain.models.software_instance.recognition import contributor
+from domain.models.software_instance.topic_operation import vocabulary_topic, vocabulary_operation
+from domain.models.software_instance.repository import repository_item
 
 class setOfInstances(object):
 

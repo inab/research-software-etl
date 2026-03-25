@@ -44,7 +44,7 @@ def stable_hash(obj: Any) -> str:
 
 
 def build_instances_keys_dict():
-    from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
     # Step 1: Build a publication lookup dict with stringified ObjectIds
     publication_dict = {
@@ -69,7 +69,7 @@ def build_instances_keys_dict():
 
 
 def get_pub(object_id):
-    from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
     publication = mongo_adapter.fetch_entry( "publicationsMetadataDev", object_id)
     # Step 2: Build the main document dictionary and replace data.publication
@@ -181,7 +181,7 @@ def process_publications(publications):
 
 
 def replace_with_full_entries(conflict, instances_dict):
-    from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
     new_conflict = {
         "disconnected": [],
         "remaining": [],

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from src.application.services.enrich_publications.helpers import extract_doi
+from application.services.enrich_publications.helpers import extract_doi
 
 
 def normalize_doi(raw_doi: Any) -> str | None:

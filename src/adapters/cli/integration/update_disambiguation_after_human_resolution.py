@@ -1,4 +1,4 @@
-from src.application.use_cases.integration.update_all_disambiguation_after_human_resolution import run_disambiguation_after_human_annotation
+from application.use_cases.integration.update_all_disambiguation_after_human_resolution import run_disambiguation_after_human_annotation
 import argparse 
 
 def main():

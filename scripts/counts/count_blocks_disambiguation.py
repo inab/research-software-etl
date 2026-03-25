@@ -1,4 +1,4 @@
-from src.application.services.integration.disambiguation.utils import load_dict_from_jsonl
+from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 import json
 # ----------------------------------------------------
 # Count the number of blocks in the disambiguation process

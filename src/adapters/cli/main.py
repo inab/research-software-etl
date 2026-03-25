@@ -16,10 +16,10 @@ import argparse
 import sys
 from pathlib import Path
 
-from src.adapters.cli import check_environment
-from src.adapters.cli import web_availability
-from src.adapters.cli.pipeline_full import run_full
-from src.adapters.cli.run_transformation import run_transformation
+from adapters.cli import check_environment
+from adapters.cli import web_availability
+from adapters.cli.pipeline_full import run_full
+from adapters.cli.run_transformation import run_transformation
 
 
 def main(argv: list[str] | None = None) -> int:

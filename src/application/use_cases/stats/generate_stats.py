@@ -17,20 +17,20 @@ when to run:
 from dotenv import load_dotenv
 
 def generate_stats_for_collections(collections):
-    from src.application.services.stats_generation.trends.licenses import licenses_stats
-    from src.application.services.stats_generation.trends.versioning import semantic_versioning
-    from src.application.services.stats_generation.trends.version_control import version_control
-    from src.application.services.stats_generation.trends.publications import publications_journals_IF
-    from src.application.services.stats_generation.data.counts_source import count_tools_per_source, count_tools
-    from src.application.services.stats_generation.data.features import features_overview
-    from src.application.services.stats_generation.data.metadata_completeness import features_cummulative, features_xy
-    from src.application.services.stats_generation.data.type import count_types_tools
-    from src.application.services.stats_generation.data.coverage import coverage_sources
-    from src.application.services.stats_generation.FAIR.fair_calculation import compute_fair_distributions
-    from src.application.services.stats_generation.trends.dependencies import dependencies
-    from src.application.services.stats_generation.trends.documentation import documentation
-    from src.application.services.stats_generation.trends.formats import formats
-    from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+    from application.services.stats_generation.trends.licenses import licenses_stats
+    from application.services.stats_generation.trends.versioning import semantic_versioning
+    from application.services.stats_generation.trends.version_control import version_control
+    from application.services.stats_generation.trends.publications import publications_journals_IF
+    from application.services.stats_generation.data.counts_source import count_tools_per_source, count_tools
+    from application.services.stats_generation.data.features import features_overview
+    from application.services.stats_generation.data.metadata_completeness import features_cummulative, features_xy
+    from application.services.stats_generation.data.type import count_types_tools
+    from application.services.stats_generation.data.coverage import coverage_sources
+    from application.services.stats_generation.FAIR.fair_calculation import compute_fair_distributions
+    from application.services.stats_generation.trends.dependencies import dependencies
+    from application.services.stats_generation.trends.documentation import documentation
+    from application.services.stats_generation.trends.formats import formats
+    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
     for collection in collections:

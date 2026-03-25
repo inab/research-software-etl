@@ -1,7 +1,7 @@
 '''
 Usage:
 
-PYTHONPATH=$(pwd) python -m src.adapters.cli.tag_relevant_webavailability_urls
+PYTHONPATH=$(pwd) python -m adapters.cli.tag_relevant_webavailability_urls
 '''
 
 from __future__ import annotations
@@ -12,7 +12,7 @@ import sys
 
 from pymongo.errors import PyMongoError
 
-from src.application.use_cases.utils.tag_relevant_webavailability_urls import (
+from application.use_cases.web_availability.tag_relevant_webavailability_urls import (
     TagRelevantWebAvailabilityConfig,
     run_tag_relevant_webavailability_urls,
 )

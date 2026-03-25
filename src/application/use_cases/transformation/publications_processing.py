@@ -15,12 +15,12 @@ in the database.
 import os
 import logging
 from typing import Dict, Any, Optional, List
-from src.application.services.publications.metadata import create_new_metadata
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from src.infrastructure.db.mongo.publications_repository import MongoPublicationRepository
-from src.infrastructure.db.database_adapter import DatabaseAdapter
-from src.application.services.publications.publication_standardizer_factory import StandardizerFactory
-from src.application.services.publications.publication_extractor_factory import ExtractorFactory
+from application.services.publications.metadata import create_new_metadata
+from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
+from infrastructure.db.database_adapter import DatabaseAdapter
+from application.services.publications.publication_standardizer_factory import StandardizerFactory
+from application.services.publications.publication_extractor_factory import ExtractorFactory
 
 logger = logging.getLogger("rs-etl-pipeline")
 

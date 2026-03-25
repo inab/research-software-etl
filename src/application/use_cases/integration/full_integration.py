@@ -7,10 +7,10 @@ import logging
 from bson import json_util
 
 
-from src.application.services.integration.entries_recovery import recover_shared_name_link
-from src.application.services.integration.conflict_detection import detect_conflicts
-from src.application.services.integration.disambiguation import disambiguate_entries
-from src.application.services.integration.group_entries import group_by_key_with_links
+from application.services.integration.entries_recovery import recover_shared_name_link
+from application.services.integration.conflict_detection import detect_conflicts
+from application.services.integration.disambiguation import disambiguate_entries
+from application.services.integration.group_entries import group_by_key_with_links
 
 
 

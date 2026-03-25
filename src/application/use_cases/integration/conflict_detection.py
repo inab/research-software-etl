@@ -1,5 +1,5 @@
 import json
-from src.application.services.integration.conflict_detection import find_disconnected_entries, apply_source_name_merge
+from application.services.integration.conflict_detection import find_disconnected_entries, apply_source_name_merge
 
 
 def detect_conflicts(grouped_entries_file, disconnected_entries_file):

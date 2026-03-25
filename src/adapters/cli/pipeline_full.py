@@ -1,4 +1,4 @@
-# adapters/cli/main.py
+# adapters/cli/pipeline_full.py
 from __future__ import annotations
 
 import json
@@ -214,7 +214,7 @@ def run_full(
         "--run-id", run_id
     ], cwd=wd)
 
-    
+    '''
     # ── Stage 7 ──────────────────────────────────────────────────────────────────
     if human_updates:
         print("=== Stage 7/9: Update disambiguation after human resolution ===")
@@ -245,7 +245,7 @@ def run_full(
             python_exe, "-m", "src.adapters.cli.generate_stats",
             "--collections", "tools",
         ], cwd=wd)
-    
+    '''
     
     # ── Manifest ─────────────────────────────────────────────────────────────────
     manifest = {
