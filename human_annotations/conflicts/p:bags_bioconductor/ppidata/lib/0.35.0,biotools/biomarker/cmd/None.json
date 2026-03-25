@@ -1,0 +1,223 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconductor/ppidata/lib/0.35.0",
+        "created_at": "2025-04-02T15:41:23.981287",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "maintainer@bioconductor.org",
+              "maintainer": false,
+              "name": "Bioconductor Package Maintainer",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "graph",
+            "AnnotationDbi"
+          ],
+          "description": [
+            "This package contains the directed graphs for protein interaction data as derived from Y2H and APMS. It also includes the code used to obtain the y2h data from IntAct Repository."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ppiData"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "ppidata",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/ppiData"
+            }
+          ],
+          "source": [
+            "bioconductor"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "lib",
+          "version": [
+            "0.35.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/ppiData"
+          ]
+        },
+        "id": "bioconductor/ppidata/lib/0.35.0",
+        "last_updated_at": "2026-03-19T02:42:43.517820",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconductor/ppiData/lib/0.35.0",
+            "source_url": "https://git.bioconductor.org/packages/ppiData"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/biomarker/cmd/None",
+        "created_at": "2025-04-02T11:47:40.690742",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.liuzlab.org/?page_id=176"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Biomarker uses graph Laplacian regularized logistic regression to integrate biological networks into disease classification and pathway association problems."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/zhandong/Logit-Lapnet"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Biomarker"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "biomarker",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Classification",
+              "uri": "http://edamontology.org/operation_2990",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a7a5d3b8acd1a2f9b794"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Systems biology",
+              "uri": "http://edamontology.org/topic_2259",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.liuzlab.org/?page_id=547"
+          ]
+        },
+        "id": "biotools/biomarker/cmd/None",
+        "last_updated_at": "2026-03-19T00:29:52.050107",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/biomarker/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:bags_bioconductor/ppidata/lib/0.35.0,biotools/biomarker/cmd/None",
+  "conflict_name": "bags/*_secondary_7",
+  "date": "2026-03-25T21:59:09.304700+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
