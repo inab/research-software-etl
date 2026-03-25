@@ -1,0 +1,256 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/kimono/cmd/None",
+        "created_at": "2025-04-02T12:02:34.764624",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "christoph.ogris@helmholtz-muenchen.de",
+              "maintainer": false,
+              "name": "Christoph Ogris",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nikola.mueller@helmholtz-muenchen.de",
+              "maintainer": false,
+              "name": "Nikola S. M\u00fcller",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Knowledge guided multi-level network inference.\n\nKiMONo is a network inference tool for multi-omics datasets. The multi-omics network is calculated by sparse-group-LASSO regression and can incorporate prior biological information using protein-protein Interactions."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "KiMONo"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "kimono",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Network analysis",
+              "uri": "http://edamontology.org/operation_3927",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82de010e2f3aa0b3ba0c5"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/cellmapslab/KiMONo"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Protein interactions",
+              "uri": "http://edamontology.org/topic_0128",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Epigenetics",
+              "uri": "http://edamontology.org/topic_3295",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/cellmapslab/kimono"
+          ]
+        },
+        "id": "biotools/kimono/cmd/None",
+        "last_updated_at": "2026-03-19T01:03:36.483601",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/kimono/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/k-pax/cmd/None",
+        "created_at": "2025-04-02T12:02:22.703849",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.helsinki.fi/bsg/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "K-Pax contains an implementation of a Bayesian model-based method for simultaneously classifying aligned proteins into functionally divergent subgroups and identifying their function specific residues."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "http://www.helsinki.fi/bsg/software/K-PAX/supplement.zip"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "K-Pax"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "k-pax",
+          "operating_system": [
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein sequence analysis",
+              "uri": "http://edamontology.org/operation_2479",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Classification",
+              "uri": "http://edamontology.org/operation_2990",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8289410e2f3aa0b3b7d61"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteins",
+              "uri": "http://edamontology.org/topic_0078",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.helsinki.fi/bsg/software/K-PAX/"
+          ]
+        },
+        "id": "biotools/k-pax/cmd/None",
+        "last_updated_at": "2026-03-19T01:03:22.470386",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/k-pax/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:inpas_biotools/k-pax/cmd/None,biotools/kimono/cmd/None",
+  "conflict_name": "inpas/*_secondary_4",
+  "date": "2026-03-25T21:58:16.136107+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
