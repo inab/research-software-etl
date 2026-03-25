@@ -1,15 +1,3 @@
-"""
-Main CLI entry point for the Research Software Observatory – Data Pipeline.
-
-Usage examples:
-    rsetl run                         # run the full pipeline
-    rsetl run --tag test1            # run with custom tag
-    rsetl run --no-merge             # skip database merge
-    rsetl run-transformation         # run only transformation
-    rsetl check-env                  # check environment and API connectivity
-    rsetl --help                     # show usage
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -18,7 +6,7 @@ from pathlib import Path
 
 from adapters.cli import check_environment
 from adapters.cli import web_availability
-from adapters.cli.pipeline_full import run_full
+from adapters.cli.pipeline_full import run_full, STAGES
 from adapters.cli.run_transformation import run_transformation
 
 
@@ -33,25 +21,42 @@ def main(argv: list[str] | None = None) -> int:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # --- run subcommand ---------------------------------------------------------
-    run_p = subparsers.add_parser("run", help="Run the full integration pipeline")
+    run_p = subparsers.add_parser("run", help="Run the integration pipeline")
     run_p.add_argument("--tag", dest="run_tag", help="Optional tag appended to run ID")
     run_p.add_argument(
         "--no-merge",
         dest="do_merge_to_db",
         action="store_false",
-        help="Skip final merge to database",
+        help="Skip merge stage",
     )
     run_p.add_argument(
         "--no-human-updates",
         dest="human_updates",
         action="store_false",
-        help="Skip human update step",
+        help="Skip human update stage",
     )
     run_p.add_argument(
         "--remove-opeb-metrics",
         dest="remove_opeb_metrics",
         action="store_true",
-        help="Remove OEB metrics step",
+        help="Enable removal of OEB metrics stage",
+    )
+    run_p.add_argument(
+        "--from-stage",
+        choices=STAGES,
+        help="Start pipeline from this stage",
+    )
+    run_p.add_argument(
+        "--until",
+        dest="until_stage",
+        choices=STAGES,
+        help="Run pipeline until this stage (inclusive)",
+    )
+    run_p.add_argument(
+        "--only",
+        dest="only_stage",
+        choices=STAGES,
+        help="Run only one stage",
     )
     run_p.add_argument("--python-exe", default="python", help="Python executable for subprocesses")
     run_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
@@ -82,7 +87,6 @@ def main(argv: list[str] | None = None) -> int:
         help="Arguments passed to the web availability job",
     )
 
-    # --- parse ------------------------------------------------------------------
     args = parser.parse_args(argv)
 
     if args.command == "check-env":
@@ -98,6 +102,9 @@ def main(argv: list[str] | None = None) -> int:
             human_updates=args.human_updates,
             do_merge_to_db=args.do_merge_to_db,
             python_exe=args.python_exe,
+            from_stage=args.from_stage,
+            until_stage=args.until_stage,
+            only_stage=args.only_stage,
         )
         return 0
 
