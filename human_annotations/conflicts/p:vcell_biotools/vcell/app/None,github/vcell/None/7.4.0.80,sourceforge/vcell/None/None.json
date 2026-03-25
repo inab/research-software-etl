@@ -1,0 +1,475 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/vcell/None/None",
+        "created_at": "2025-04-02T15:43:40.540412",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "This project and all source code has moved to GitHub, see https://github.com/virtualcell."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/vcell"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "vcell"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "vcell",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/vcell"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://vcell.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/vcell/None/None",
+        "last_updated_at": "2026-03-19T03:37:06.892192",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/vcell//",
+            "source_url": "https://sourceforge.net/projects/vcell"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/vcell/None/7.4.0.80,biotools/vcell/app/None",
+        "data": {
+          "authors": [
+            {
+              "email": "drescher@uchc.edu",
+              "maintainer": false,
+              "name": "Logan Drescher",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "schaff@uchc.edu",
+              "maintainer": false,
+              "name": "Jim Schaff",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "schaff.jim@gmail.com",
+              "maintainer": false,
+              "name": "jcschaff",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vasilescu@uchc.edu",
+              "maintainer": false,
+              "name": "Dan Vasilescu",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ezq.valencia@gmail.com",
+              "maintainer": false,
+              "name": "Ezequiel Valencia",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vcell_support@uchc.edu",
+              "maintainer": false,
+              "name": "Virtual Cell team",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://vcell.org/support"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "R24 GM137787 NIH/NIGMS",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "VCell (Virtual Cell) is a software for modeling and simulation of cell biological systems.  It is built on a central database and disseminated as a web application. It includes \n deterministic (compartmental ODE or reaction-diffusion-advection PDE with support for 2D kinematics), stochastic (SSA solvers), spatial stochastic (reaction-diffusion with Smoldyn), hybrid deterministic/stochastic and network-free agent-based simulations. There is support for rule-based modeling (BioNetGen and NFSim), spatial features such as membrane flux, lateral membrane diffusion, electrophysiology, geometries from 2D or 3D microscope images or analytical expressions.",
+            "Virtual Cell Framework."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/virtualcell/vcell/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/virtualcell/vcell/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/virtualcell/vcell/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/virtualcell/vcell/blob/main/README_BioSim.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/virtualcell/vcell/blob/main/license.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/virtualcell/vcell/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://vcell.org/webstart/VCell_Tutorials/VCell_Help/index.html"
+            },
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "https://vcell.org/support"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Kinetic model",
+                "uri": "http://edamontology.org/data_3241",
+                "vocabulary": "EDAM"
+              },
+              "term": "SBML",
+              "uri": "http://edamontology.org/format_2585",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Kinetic model",
+                "uri": "http://edamontology.org/data_3241",
+                "vocabulary": "EDAM"
+              },
+              "term": "SED-ML",
+              "uri": "http://edamontology.org/format_3685",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Kinetic model",
+                "uri": "http://edamontology.org/data_3241",
+                "vocabulary": "EDAM"
+              },
+              "term": "COMBINE OMEX",
+              "uri": "http://edamontology.org/format_3686",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "VCell",
+            "vcell"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "vcell",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Modelling and simulation",
+              "uri": "http://edamontology.org/operation_2426",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Simulation",
+                "uri": "http://edamontology.org/data_3869",
+                "vocabulary": "EDAM"
+              },
+              "term": "SBML",
+              "uri": "http://edamontology.org/format_2585",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Simulation",
+                "uri": "http://edamontology.org/data_3869",
+                "vocabulary": "EDAM"
+              },
+              "term": "SED-ML",
+              "uri": "http://edamontology.org/format_3685",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Simulation",
+                "uri": "http://edamontology.org/data_3869",
+                "vocabulary": "EDAM"
+              },
+              "term": "COMBINE OMEX",
+              "uri": "http://edamontology.org/format_3686",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "68adb88ab94758ef79db079f",
+            "68adb88ab94758ef79db07a0",
+            "68adb889b94758ef79db079d",
+            "68adb889b94758ef79db079e"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/virtualcell/vcell"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "vcell-clients",
+              "uri": "https://github.com/topics/vcell-clients",
+              "vocabulary": ""
+            },
+            {
+              "term": "vcell-server",
+              "uri": "https://github.com/topics/vcell-server",
+              "vocabulary": ""
+            },
+            {
+              "term": "install4j",
+              "uri": "https://github.com/topics/install4j",
+              "vocabulary": ""
+            },
+            {
+              "term": "simulation",
+              "uri": "https://github.com/topics/simulation",
+              "vocabulary": ""
+            },
+            {
+              "term": "Computational biology",
+              "uri": "http://edamontology.org/topic_3307",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Systems biology",
+              "uri": "http://edamontology.org/topic_2259",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "app"
+          ],
+          "version": [
+            "7.4.0.69",
+            "7.3.0.09",
+            "7.4.0.02",
+            "7.3.0.01",
+            "VCell_6.2_ALPHA_60",
+            "7.4.0.32",
+            "7.4.0.80",
+            "7.4.0.39",
+            "7.4.0.05",
+            "7.4.0.76",
+            "7.3.0.04",
+            "7.4.0.22.1",
+            "7.4.0.07",
+            "7.4.0.33",
+            "7.4.0.74",
+            "7.4.0.14",
+            "7.4.0.79",
+            "7.4.0.21",
+            "7.4.0.61",
+            "7.4.0.55",
+            "7.4.0.25",
+            "7.3.0.16",
+            "7.4.0.01",
+            "7.3.0.07",
+            "7.4.0.59",
+            "v7.2.0.64",
+            "7.3.0.06",
+            "7.4.0.70",
+            "7.4.0.26",
+            "7.4.0.48",
+            "7.4.0.18",
+            "7.3.0.14",
+            "7.4.0.64",
+            "7.4.0.57",
+            "7.4.0.22",
+            "7.3.0.13",
+            "7.4.0.08",
+            "7.4.0.19",
+            "7.4.0.68",
+            "7.4.0.67",
+            "7.3.0.11",
+            "7.4.0.78",
+            "7.4.0.50",
+            "7.3.0.08",
+            "7.4.0.42",
+            "7.4.0.31",
+            "7.3.0.02",
+            "7.4.0.11",
+            "7.4.0.63",
+            "7.4.0.34",
+            "7.3.0.10",
+            "7.4.0.29",
+            "7.4.0.56",
+            "7.4.0.16",
+            "7.4.0.58",
+            "None",
+            "7.3.0.1p",
+            "7.3.0.0",
+            "7.4.0.72",
+            "7.3.0.12",
+            "7.4.0.20",
+            "7.4.0.17",
+            "7.4.0.27",
+            "7.4.0.54",
+            "7.4.0.51",
+            "7.4.0.53",
+            "7.4.0.60",
+            "7.4.0.41",
+            "7.4.0.28",
+            "7.4.0.77",
+            "7.4.0.52",
+            "7.4.0.62",
+            "7.4.0.09",
+            "7.4.0.71",
+            "7.3.0.15",
+            "7.3.0.03",
+            "7.3.0.17",
+            "7.4.0.49",
+            "7.4.0.40",
+            "7.4.0.06",
+            "7.4.0.46",
+            "7.4.0.65",
+            "7.4.0.66",
+            "7.4.0.00",
+            "7.4.0.13",
+            "7.4.0.35",
+            "sbml{Alpha,Rel}_7.2.0.{36,37}",
+            "7.4.0.10",
+            "7.4.0.30",
+            "7.4.0.38",
+            "7.4.0.03",
+            "7.4.0.23",
+            "7.4.0.36",
+            "7.4.0.12",
+            "7.3.0.05",
+            "7.3.0.18",
+            "7.4.0.47",
+            "7.4.0.24",
+            "7.4.0.04",
+            "7.4.0.75",
+            "7.4.0.37"
+          ],
+          "webpage": [
+            "http://vcell.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:vcell_biotools/vcell/app/None,github/vcell/None/7.4.0.80,sourceforge/vcell/None/None",
+  "conflict_name": "vcell/*",
+  "date": "2026-03-25T22:05:18.392228+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
