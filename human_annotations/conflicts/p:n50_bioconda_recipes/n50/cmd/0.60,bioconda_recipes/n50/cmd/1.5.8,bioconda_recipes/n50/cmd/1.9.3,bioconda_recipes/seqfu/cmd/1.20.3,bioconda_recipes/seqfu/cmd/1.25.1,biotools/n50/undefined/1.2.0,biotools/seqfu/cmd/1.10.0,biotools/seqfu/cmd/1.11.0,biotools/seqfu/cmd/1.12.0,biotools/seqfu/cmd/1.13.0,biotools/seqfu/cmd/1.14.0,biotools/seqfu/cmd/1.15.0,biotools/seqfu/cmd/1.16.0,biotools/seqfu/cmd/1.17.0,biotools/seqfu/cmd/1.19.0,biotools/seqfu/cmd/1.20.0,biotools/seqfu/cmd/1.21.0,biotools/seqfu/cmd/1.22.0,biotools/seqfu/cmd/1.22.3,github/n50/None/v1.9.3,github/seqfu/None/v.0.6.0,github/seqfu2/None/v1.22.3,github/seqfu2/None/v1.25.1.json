@@ -1,0 +1,637 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/n50/undefined/1.2.0",
+        "created_at": "2025-04-02T12:57:01.695463",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A script to calculate N50 from one or multiple FASTA/FASTQ files available via BioConda."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "DNA sequence",
+                "uri": "http://edamontology.org/data_3494",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA-like",
+              "uri": "http://edamontology.org/format_2546",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "DNA sequence",
+                "uri": "http://edamontology.org/data_3494",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ-like format",
+              "uri": "http://edamontology.org/format_2545",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "n50 calculator"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "n50",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Statistical calculation",
+              "uri": "http://edamontology.org/operation_2238",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Quality control report",
+                "uri": "http://edamontology.org/data_3914",
+                "vocabulary": "EDAM"
+              },
+              "term": "CSV",
+              "uri": "http://edamontology.org/format_3752",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Quality control report",
+                "uri": "http://edamontology.org/data_3914",
+                "vocabulary": "EDAM"
+              },
+              "term": "JSON",
+              "uri": "http://edamontology.org/format_3464",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Quality control report",
+                "uri": "http://edamontology.org/data_3914",
+                "vocabulary": "EDAM"
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "undefined",
+          "version": [
+            "1.2.0"
+          ],
+          "webpage": [
+            "https://metacpan.org/release/Proch-N50"
+          ]
+        },
+        "id": "biotools/n50/undefined/1.2.0",
+        "last_updated_at": "2026-03-19T02:12:53.096539",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/n50/undefined/1.2.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/n50/cmd/1.5.8,bioconda_recipes/n50/cmd/0.60,github/seqfu/None/v.0.6.0,bioconda_recipes/seqfu/cmd/1.20.3,biotools/seqfu/cmd/1.10.0,biotools/seqfu/cmd/1.11.0,biotools/seqfu/cmd/1.12.0,biotools/seqfu/cmd/1.13.0,biotools/seqfu/cmd/1.14.0,biotools/seqfu/cmd/1.15.0,biotools/seqfu/cmd/1.16.0,github/seqfu2/None/v1.22.3,biotools/seqfu/cmd/1.17.0,biotools/seqfu/cmd/1.19.0,biotools/seqfu/cmd/1.20.0,biotools/seqfu/cmd/1.21.0,biotools/seqfu/cmd/1.22.0,biotools/seqfu/cmd/1.22.3,bioconda_recipes/n50/cmd/1.9.3,bioconda_recipes/seqfu/cmd/1.25.1,github/seqfu2/None/v1.25.1,github/n50/None/v1.9.3",
+        "data": {
+          "authors": [
+            {
+              "email": "15690844+telatin@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Andrea Telatin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Giovanni Birolo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Piero Fariselli",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "telatina@N85984.nbi.ac.uk",
+              "maintainer": false,
+              "name": "Andrea Telatin (QIB)",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "perl-exporter",
+            "perl-fastx-reader",
+            "perl-perlio-encoding",
+            "perl",
+            "perl-pod-usage",
+            "perl-json-pp",
+            "pcre",
+            "perl-getopt-long",
+            "perl-fastx-reader >=1.8.0",
+            "zlib",
+            "perl-text-asciitable",
+            "perl-file-which"
+          ],
+          "description": [
+            "A collection of utilities to manipulate FASTA and FASTQ files, supporting Gzipped input.",
+            "Calculate N50 from FASTA and FASTX files.",
+            ":rocket: seqfu - Sequece Fastx Utilities.",
+            "Legacy repository (https://telatin.github.io/seqfu2).",
+            "A collection of utilities to work with FASTX (FASTA or FASTQ) files\nthat accept gzipped input.\nTools to interleave and deinterleave, to calculate stats, and extract\nportions of sequence datasets.",
+            "A program to calculate size metrics of a FASTA (or FASTQ) file: minimum, maximum, average length, N50, N75, N90 and the area of the Nx curve (auN).\nGzipped files are supported as input, and the output can be in compact, csv, tsv, json or screen friendly format.",
+            "Calculate N50 from FASTA/FASTQ files.",
+            "This repository provides tools for N50 calculation and dataset simulation."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/n50/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/n50/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://metacpan.org/pod/Proch::N50"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/quadram-institute-bioscience/seqfu/blob/main/PRERELEASE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/quadram-institute-bioscience/seqfu/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/seqfu/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/seqfu/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://telatin.github.io/seqfu2"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://telatin.github.io/seqfu2/"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/telatin/seqfu2/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/telatin/seqfu2/blob/main/screenshots.md"
+            },
+            {
+              "content": null,
+              "type": "installation",
+              "url": "https://github.com/telatin/seqfu2/blob/main/docs/install.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/telatin/seqfu2/blob/main/docs/intro.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/telatin/seqfu2/blob/main/docs/notes.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/telatin/seqfu2/blob/main/docs/readme.md"
+            },
+            {
+              "content": null,
+              "type": "usage",
+              "url": "https://github.com/telatin/seqfu2/blob/main/docs/usage.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/quadram-institute-bioscience/n50"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/telatin/seqfu2/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/quadram-institute-bioscience/n50/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/quadram-institute-bioscience/n50/blob/main/docs/README_BENCHMARK.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/quadram-institute-bioscience/n50/blob/main/docs/README_GEN.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/quadram-institute-bioscience/n50/blob/main/docs/README_N50.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/quadram-institute-bioscience/n50/blob/main/docs/README_N50_BINNER.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/quadram-institute-bioscience/n50/blob/main/docs/README_N50_GENERATE.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/quadram-institute-bioscience/n50/blob/main/docs/README_N50_SIMREADS.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/quadram-institute-bioscience/n50/blob/main/docs/README_N50_SIMSEQS.md"
+            }
+          ],
+          "download": [
+            "https://cpan.metacpan.org/authors/id/P/PR/PROCH/Proch-N50-0.60.tar.gz",
+            "https://github.com/telatin/seqfu2/archive/refs/tags/v1.25.1.tar.gz",
+            "https://github.com/telatin/seqfu2/archive/refs/tags/v1.20.3.tar.gz",
+            "https://cpan.metacpan.org/authors/id/P/PR/PROCH/Proch-N50-1.5.8.tar.gz",
+            "https://github.com/quadram-institute-bioscience/n50/archive/refs/tags/v1.9.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence",
+                "uri": "http://edamontology.org/data_2044",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "n50",
+            "SeqFu",
+            "seqfu2",
+            "seqfu"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "mit",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            },
+            {
+              "name": "GPL-3.0-only",
+              "url": null
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "n50",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Filtering",
+              "uri": "http://edamontology.org/operation_3695",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence contamination filtering",
+              "uri": "http://edamontology.org/operation_3187",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Nucleic acid sequence analysis",
+              "uri": "http://edamontology.org/operation_2478",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "seqfu2",
+            "seqfu"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence",
+                "uri": "http://edamontology.org/data_2977",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "67c8315410e2f3aa0b3ba964"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/quadram-institute-bioscience/seqfu"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/telatin/seqfu2"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/telatin/seqfu2/"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/quadram-institute-bioscience/n50"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github",
+            "biotools"
+          ],
+          "source_code": [
+            "https://cpan.metacpan.org/authors/id/P/PR/PROCH/Proch-N50-0.60.tar.gz",
+            "https://github.com/telatin/seqfu2/archive/refs/tags/v1.25.1.tar.gz",
+            "https://github.com/telatin/seqfu2/archive/refs/tags/v1.20.3.tar.gz",
+            "https://cpan.metacpan.org/authors/id/P/PR/PROCH/Proch-N50-1.5.8.tar.gz",
+            "https://github.com/quadram-institute-bioscience/n50/archive/refs/tags/v1.9.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "fasta",
+              "uri": "https://github.com/topics/fasta",
+              "vocabulary": ""
+            },
+            {
+              "term": "fastq",
+              "uri": "https://github.com/topics/fastq",
+              "vocabulary": ""
+            },
+            {
+              "term": "paired-end",
+              "uri": "https://github.com/topics/paired-end",
+              "vocabulary": ""
+            },
+            {
+              "term": "conda-packages",
+              "uri": "https://github.com/topics/conda-packages",
+              "vocabulary": ""
+            },
+            {
+              "term": "Nucleic acids",
+              "uri": "http://edamontology.org/topic_0077",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "bioinformatics-tool",
+              "uri": "https://github.com/topics/bioinformatics-tool",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioconda",
+              "uri": "https://github.com/topics/bioconda",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "ngs",
+              "uri": "https://github.com/topics/ngs",
+              "vocabulary": ""
+            },
+            {
+              "term": "sequencing",
+              "uri": "https://github.com/topics/sequencing",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.16.0",
+            "1.11.0",
+            "v1.9.0",
+            "v1.18.0",
+            "v0.8.5",
+            "v1.20.0",
+            "v1.3.6",
+            "v.0.6.0",
+            "v1.2.1",
+            "1.20.3",
+            "v0.8.12",
+            "1.19.0",
+            "v1.2.0",
+            "v1.15.3",
+            "v1.3.2",
+            "v1.4.0",
+            "v1.9.2",
+            "v0.9.5",
+            "v1.23.0",
+            "v1.8.3",
+            "v1.8.7",
+            "1.15.0",
+            "1.21.0",
+            "v.0.1.0",
+            "1.14.0",
+            "v1.14.0",
+            "v0.8.10",
+            "1.17.0",
+            "v1.8.1",
+            "v1.7.1",
+            "v1.25.1",
+            "1.9.3",
+            "v1.8.8",
+            "v1.6.0",
+            "v1.5.2",
+            "v1.1.0",
+            "v1.2.3",
+            "v0.9.0",
+            "v0.8.2",
+            "1.22.3",
+            "1.22.0",
+            "v1.20.1",
+            "v.0.5.0",
+            "v1.15.0",
+            "v0.9.6",
+            "1.16.0",
+            "v0.8.11",
+            "v1.8.6",
+            "v1.11.0",
+            "0.60",
+            "v1.9.1",
+            "v1.17.1",
+            "v1.5.0",
+            "v1.10.0",
+            "1.25.1",
+            "v1.8.5",
+            "v1.20.3",
+            "1.10.0",
+            "v1.12.0",
+            "v0.8.13",
+            "v1.13.1",
+            "v1.22.2",
+            "1.13.0",
+            "v.0.2.0",
+            "v0.8.8",
+            "v1.0.0",
+            "v1.7.2",
+            "v1.22.0",
+            "v1.9.3",
+            "v1.20.2",
+            "v1.3.3",
+            "v0.8.7",
+            "1.12.0",
+            "v1.8.4",
+            "v1.25.0",
+            "v1.6.3",
+            "v1.8.9",
+            "v1.22.3",
+            "v.0.5.1",
+            "v1.8.0",
+            "v1.13.2",
+            "1.20.0",
+            "v1.8.2",
+            "v1.13.0",
+            "1.5.8",
+            "v1.17.0",
+            "v0.9.1"
+          ],
+          "webpage": [
+            "https://github.com/quadram-institute-bioscience/n50",
+            "https://github.com/telatin/seqfu2",
+            "https://github.com/telatin/seqfu2/",
+            "https://telatin.github.io/seqfu2",
+            "https://telatin.github.io/seqfu2/",
+            "http://metacpan.org/pod/Proch::N50"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:n50_bioconda_recipes/n50/cmd/0.60,bioconda_recipes/n50/cmd/1.5.8,bioconda_recipes/n50/cmd/1.9.3,bioconda_recipes/seqfu/cmd/1.20.3,bioconda_recipes/seqfu/cmd/1.25.1,biotools/n50/undefined/1.2.0,biotools/seqfu/cmd/1.10.0,biotools/seqfu/cmd/1.11.0,biotools/seqfu/cmd/1.12.0,biotools/seqfu/cmd/1.13.0,biotools/seqfu/cmd/1.14.0,biotools/seqfu/cmd/1.15.0,biotools/seqfu/cmd/1.16.0,biotools/seqfu/cmd/1.17.0,biotools/seqfu/cmd/1.19.0,biotools/seqfu/cmd/1.20.0,biotools/seqfu/cmd/1.21.0,biotools/seqfu/cmd/1.22.0,biotools/seqfu/cmd/1.22.3,github/n50/None/v1.9.3,github/seqfu/None/v.0.6.0,github/seqfu2/None/v1.22.3,github/seqfu2/None/v1.25.1",
+  "conflict_name": "n50/*",
+  "date": "2026-03-25T16:54:16.469369+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
