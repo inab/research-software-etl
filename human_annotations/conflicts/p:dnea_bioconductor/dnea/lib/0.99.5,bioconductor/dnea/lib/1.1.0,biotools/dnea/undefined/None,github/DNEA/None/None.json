@@ -1,0 +1,329 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/dnea/undefined/None",
+        "created_at": "2026-02-23T16:07:55.614560",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "akarnovs@med.umich.edu",
+              "maintainer": false,
+              "name": "Alla Karnovsky",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "gmichail@ufl.edu",
+              "maintainer": false,
+              "name": "George Michailidis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "DNEA is an R package for fast and versatile data-driven network analysis of metabolomics data, enabling identification of differentially enriched metabolic modules. It builds upon the Filigree tool and provides a more flexible and powerful implementation for analyzing large metabolomics datasets."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DNEA"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "dnea",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Network visualisation",
+              "uri": "http://edamontology.org/operation_3925",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Natural product identification",
+              "uri": "http://edamontology.org/operation_3803",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathway analysis",
+              "uri": "http://edamontology.org/operation_3928",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6d4b4393fdfaf890bc81"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metabolomics",
+              "uri": "http://edamontology.org/topic_3172",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Endocrinology and metabolism",
+              "uri": "http://edamontology.org/topic_3407",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.github.com/Karnovsky-Lab/DNEA/"
+          ]
+        },
+        "id": "biotools/dnea/undefined/None",
+        "last_updated_at": "2026-03-19T02:27:51.857250",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/dnea/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/dnea/lib/0.99.5,bioconductor/dnea/lib/1.1.0,github/DNEA/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "chrispatsalis@gmail.com",
+              "maintainer": false,
+              "name": "Christopher Patsalis",
+              "orcid": "https://orcid.org/0009-0003-4585-0017",
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "griyer@umich.edu",
+              "maintainer": false,
+              "name": "Gayatri Iyer",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "akarnovs@med.umich.edu",
+              "maintainer": false,
+              "name": "Alla Karnovsky",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "gmichail@ufl.edu",
+              "maintainer": false,
+              "name": "George Michailidis",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "patsalis@umich.edu",
+              "maintainer": false,
+              "name": "chrispatsalis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "gdata",
+            "igraph (>= 2.0.3)",
+            "Matrix",
+            "BiocParallel",
+            "SummarizedExperiment",
+            "R (>= 4.2)",
+            "janitor",
+            "dplyr",
+            "utils",
+            "R (>= 4.4.0)",
+            "glasso",
+            "methods",
+            "stringr",
+            "stats",
+            "netgsa"
+          ],
+          "description": [
+            "The DNEA R package is the latest implementation of the Differential Network Enrichment Analysis algorithm and is the successor to the Filigree Java-application described in Iyer et al. (2020). The package is designed to take as input an m x n expression matrix for some -omics modality (ie. metabolomics, lipidomics, proteomics, etc.)  and jointly estimate the biological network associations of each condition using the DNEA algorithm described in Ma et al. (2019). This approach provides a framework for data-driven enrichment analysis across two experimental conditions that utilizes the underlying correlation structure of the data to determine feature-feature interactions.",
+            "DNEA is an R package to construct data-driven biological networks from -omics data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/Karnovsky-Lab/DNEA/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Karnovsky-Lab/DNEA/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Karnovsky-Lab/DNEA/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DNEA"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "dnea",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "DNEA"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/DNEA"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Karnovsky-Lab/DNEA"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconductor"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "metabolomics",
+              "uri": "https://github.com/topics/metabolomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "network-analysis",
+              "uri": "https://github.com/topics/network-analysis",
+              "vocabulary": ""
+            },
+            {
+              "term": "proteomics",
+              "uri": "https://github.com/topics/proteomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "rstudio",
+              "uri": "https://github.com/topics/rstudio",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "0.99.5",
+            "1.1.0"
+          ],
+          "webpage": [
+            "https://github.com/Karnovsky-Lab/DNEA"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:dnea_bioconductor/dnea/lib/0.99.5,bioconductor/dnea/lib/1.1.0,biotools/dnea/undefined/None,github/DNEA/None/None",
+  "conflict_name": "dnea/*",
+  "date": "2026-03-25T20:51:11.616424+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
