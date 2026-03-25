@@ -1,0 +1,401 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/winnow/None/None",
+        "created_at": "2025-04-02T15:44:48.185357",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Winnow is a graphical application for importing and organising articles from PubMed. It gives access to abstracts, full text and allows references to be saved.  It can also predict what a user will find interesting through adaptive filtering."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/winnow"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "winnow"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "winnow",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/winnow"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://winnow.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/winnow/None/None",
+        "last_updated_at": "2026-03-19T03:38:23.926618",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/winnow//",
+            "source_url": "https://sourceforge.net/projects/winnow"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/winnow/None/v1.0.3,biotools/winnow/cmd/1.0.3",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Amandla Mabona",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "j.daniel@instadeep.com",
+              "maintainer": false,
+              "name": "Jemma Daniel",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Henrik Servais Janssen Knudsen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Rachel Catzel",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Kevin Eloff",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Erwin Schoof",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Nicolas Lopez Carranza",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Timothy Jenkins",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Jeroen Van Goey",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "konka@dtu.dk",
+              "maintainer": false,
+              "name": "Konstantinos Kalogeropoulos",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "j.vangoey@instadeep.com",
+              "maintainer": false,
+              "name": "Jeroen van Goey",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A confidence rescoring and FDR estimation workflow for de novo peptide sequencing.",
+            "Confidence control and FDR estimation for de novo peptide sequencing."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/instadeepai/winnow/blob/main/.codespell-ignore.txt"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/instadeepai/winnow/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/instadeepai/winnow/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/instadeepai/winnow/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/instadeepai/winnow/blob/main/docs/cli.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/instadeepai/winnow/blob/main/docs/configuration.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/instadeepai/winnow/blob/main/docs/contributing.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/instadeepai/winnow/blob/main/docs/examples.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/instadeepai/winnow/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/instadeepai/winnow/blob/main/docs/license.md"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://instadeepai.github.io/winnow/"
+            },
+            {
+              "content": null,
+              "type": "api",
+              "url": "https://instadeepai.github.io/winnow/api/datasets/"
+            },
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "https://instadeepai.github.io/winnow/#bibtex-entry-and-citation-info"
+            },
+            {
+              "content": null,
+              "type": "commandline_options",
+              "url": "https://instadeepai.github.io/winnow/cli/"
+            },
+            {
+              "content": null,
+              "type": "contributions_policy",
+              "url": "https://instadeepai.github.io/winnow/contributing/"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://instadeepai.github.io/winnow/#installation"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "CSV",
+              "uri": "http://edamontology.org/format_3752",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "MGF",
+              "uri": "http://edamontology.org/format_3651",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Winnow",
+            "winnow"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "winnow",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "de Novo sequencing",
+              "uri": "http://edamontology.org/operation_3644",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "CSV",
+              "uri": "http://edamontology.org/format_3752",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "699c6ddd4393fdfaf890c218"
+          ],
+          "publications": [
+            {
+              "doi": "",
+              "title": "De novo peptide sequencing rescoring and FDR estimation with Winnow",
+              "url": "https://arxiv.org/abs/2509.24952",
+              "year": "2025"
+            }
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/instadeepai/winnow"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "proteomics",
+            "Proteomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.0.1",
+            "v1.0.0a",
+            "v1.0.2",
+            "v1.0.3",
+            "v1.0.0",
+            "1.0.3",
+            "1.0.0"
+          ],
+          "webpage": [
+            "https://github.com/instadeepai/winnow"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:winnow_biotools/winnow/cmd/1.0.3,github/winnow/None/v1.0.3,sourceforge/winnow/None/None",
+  "conflict_name": "winnow/*",
+  "date": "2026-03-25T21:20:57.148675+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
