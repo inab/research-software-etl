@@ -1,0 +1,302 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/minerva/cmd/None",
+        "created_at": "2025-04-02T12:05:45.910469",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "dcdanko@gmail.com",
+              "maintainer": false,
+              "name": "David C. Danko",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Alignment- and reference-free approach to deconvolve Linked-Reads for metagenomics."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Minerva"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "minerva",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Deisotoping",
+              "uri": "http://edamontology.org/operation_3629",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA barcoding",
+              "uri": "http://edamontology.org/operation_3200",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c828e410e2f3aa0b3b8049"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomic sequencing",
+              "uri": "http://edamontology.org/topic_3837",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/dcdanko/minerva_barcode_deconvolution"
+          ]
+        },
+        "id": "biotools/minerva/cmd/None",
+        "last_updated_at": "2026-03-19T01:15:13.563336",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/minerva/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/dsrc/cmd/2015.06.04,biotools/dsrc/cmd/None,github/DSRC/None/v2.0.2",
+        "data": {
+          "authors": [
+            {
+              "email": "sebastian.deorowicz@polsl.pl",
+              "maintainer": false,
+              "name": "Sebastian Deorowicz",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "sebastiandeorowicz@users.noreply.github.com",
+              "maintainer": false,
+              "name": "sebastiandeorowicz",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lucas.roguski@gmail.com",
+              "maintainer": false,
+              "name": "Lucas",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "Canoe@Zhihangs-MacBook-Air.local",
+              "maintainer": false,
+              "name": "Zhihang Fan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lroguski@pcb.ub.cat",
+              "maintainer": false,
+              "name": "lucas",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lucas",
+              "maintainer": false,
+              "name": "andrzej",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "boost-cpp"
+          ],
+          "description": [
+            "Compression algorithm for genomic data in FASTQ format.",
+            "DSRC - DNA Sequence Reads Compressor.",
+            "High-performance compression of sequencing reads stored in FASTQ format."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/dsrc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/dsrc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://sun.aei.polsl.pl/REFRESH/index.php?page=projects&project=dsrc&subpage=about"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/refresh-bio/DSRC/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/refresh-bio/DSRC/archive/5eda82cb1546b71cd3480bc0aba1d321b52bd0b4.zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DSRC",
+            "dsrc"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0-or-later",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "dsrc",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Formatting",
+              "uri": "http://edamontology.org/operation_0335",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "DSRC"
+          ],
+          "output": [],
+          "publication": [
+            "69bb373f544fe2eedb0a36fc"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/refresh-bio/DSRC"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "biotools",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/refresh-bio/DSRC/archive/5eda82cb1546b71cd3480bc0aba1d321b52bd0b4.zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Biological databases",
+              "uri": "http://edamontology.org/topic_3071",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2015.06.04",
+            "v2.0.2",
+            "None",
+            "v2.0.1",
+            "v2.0"
+          ],
+          "webpage": [
+            "http://sun.aei.polsl.pl/dsrc/",
+            "https://github.com/refresh-bio/DSRC",
+            "http://sun.aei.polsl.pl/dsrc"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:dsrc_bioconda_recipes/dsrc/cmd/2015.06.04,biotools/dsrc/cmd/None,biotools/minerva/cmd/None,github/DSRC/None/v2.0.2",
+  "conflict_name": "dsrc/*",
+  "date": "2026-03-25T20:07:32.621728+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
