@@ -1,0 +1,305 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/shinyChromosome/None/None",
+        "created_at": "2026-03-25T15:21:30.180222",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "ywhzau@gmail.com",
+              "maintainer": false,
+              "name": "venyao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An R/Shiny application for interactive creation of non-circular plots of whole genomes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/venyao/shinyChromosome/blob/main/In_Data_Format.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/venyao/shinyChromosome/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "shinyChromosome"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "shinyChromosome",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/YaoLab-Bioinfo/shinyChromosome"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "shiny",
+              "uri": "https://github.com/topics/shiny",
+              "vocabulary": ""
+            },
+            {
+              "term": "shiny-apps",
+              "uri": "https://github.com/topics/shiny-apps",
+              "vocabulary": ""
+            },
+            {
+              "term": "genome",
+              "uri": "https://github.com/topics/genome",
+              "vocabulary": ""
+            },
+            {
+              "term": "non-circular-plot",
+              "uri": "https://github.com/topics/non-circular-plot",
+              "vocabulary": ""
+            },
+            {
+              "term": "r",
+              "uri": "https://github.com/topics/r",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://venyao.xyz/shinyChromosome/"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:21:30.180222",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/shinyChromosome",
+            "source_url": "https://github.com/venyao/shinyChromosome"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/shinychromosome/undefined/None,github/shinyChromosomeR/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "yaowen@henau.edu.cn",
+              "maintainer": false,
+              "name": "Wen Yao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ywhzau@gmail.com",
+              "maintainer": false,
+              "name": "venyao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An R/Shiny Application for Interactive Creation of Non-circular Plots of Whole Genomes.\n\nShinyChromosome is an Shiny application for interactive creation of non-circular plots of whole genomes within the web browser. shinyChromosome is deployed at http://150.109.59.144:3838/shinyChromosome/, http://shinychromosome.ncpgr.cn/ and https://yimingyu.shinyapps.io/shinychromosome/, for online use.\n\ninteractive creation of non-circular whole genome diagram.",
+            "R package for the Shiny application shinyChromosome."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/venyao/shinyChromosomeR/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "shinyChromosomeR",
+            "shinyChromosome"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "shinychromosome",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome alignment",
+              "uri": "http://edamontology.org/operation_3182",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "shinyChromosomeR"
+          ],
+          "output": [],
+          "publication": [
+            "67c8325610e2f3aa0b3bb00b"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/venyao/shinyChromosome"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/venyao/shinyChromosomeR"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/YaoLab-Bioinfo/shinyChromosomeR"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Imaging",
+              "uri": "http://edamontology.org/topic_3382",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "shiny-r",
+              "uri": "https://github.com/topics/shiny-r",
+              "vocabulary": ""
+            },
+            {
+              "term": "shinychromosome",
+              "uri": "https://github.com/topics/shinychromosome",
+              "vocabulary": ""
+            },
+            {
+              "term": "r",
+              "uri": "https://github.com/topics/r",
+              "vocabulary": ""
+            },
+            {
+              "term": "r-package",
+              "uri": "https://github.com/topics/r-package",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "undefined"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://yimingyu.shinyapps.io/shinychromosome/",
+            "https://github.com/venyao/shinyChromosome"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:shinychromosome_biotools/shinychromosome/undefined/None,github/shinyChromosome/None/None,github/shinyChromosomeR/None/None",
+  "conflict_name": "shinychromosome/*",
+  "date": "2026-03-25T21:53:23.122344+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
