@@ -1,0 +1,480 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/signac/None/1.16.0",
+        "created_at": "2026-03-25T15:19:41.174683",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "4591688+timoast@users.noreply.github.com",
+              "maintainer": false,
+              "name": "timoast",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lucille.delisle@unige.ch",
+              "maintainer": false,
+              "name": "Lucille Delisle",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "562590731@qq.com",
+              "maintainer": false,
+              "name": "cmf1997",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lucille.delisle@epfl.ch",
+              "maintainer": false,
+              "name": "Lucille Delisle",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "javentanyr@gmail.com",
+              "maintainer": false,
+              "name": "JavenTyr",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "R toolkit for the analysis of single-cell chromatin data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/timoast/signac/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/timoast/signac/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/timoast/signac/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/timoast/signac/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/timoast/signac/blob/main/index.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "signac"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "signac",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [
+            {
+              "doi": "",
+              "title": "Single-cell chromatin state analysis with Signac",
+              "url": "https://www.nature.com/articles/s41592-021-01282-5",
+              "year": "2021"
+            }
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/stuart-lab/signac"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "single-cell",
+              "uri": "https://github.com/topics/single-cell",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "atac",
+              "uri": "https://github.com/topics/atac",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "1.16.0",
+            "1.15.0",
+            "1.14.0",
+            "1.13.0",
+            "1.12.0",
+            "1.11.0",
+            "1.10.0",
+            "1.9.0",
+            "1.8.0",
+            "1.7.0",
+            "1.6.0",
+            "1.5.0",
+            "1.4.0",
+            "1.3.0",
+            "1.2.1",
+            "1.2.0",
+            "1.1.1",
+            "1.1.0",
+            "1.0.0",
+            "v0.2.5",
+            "v0.2.1",
+            "v0.2.0"
+          ],
+          "webpage": [
+            "https://stuartlab.org/signac/"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:19:41.174683",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/signac",
+            "source_url": "https://github.com/timoast/signac"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/r-signac/cmd/1.16.0,biotools/signac/undefined/None,github/signac-paper/None/None,bioconda_recipes/r-signac/cmd/1.12.0,bioconda_recipes/r-signac/cmd/1.13.0",
+        "data": {
+          "authors": [
+            {
+              "email": "tstuart@nygenome.org",
+              "maintainer": false,
+              "name": "Tim Stuart",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "rsatija@nygenome.org",
+              "maintainer": false,
+              "name": "Rahul Satija",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "sonpham@bioturing.com",
+              "maintainer": false,
+              "name": "Son Pham",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "4591688+timoast@users.noreply.github.com",
+              "maintainer": false,
+              "name": "timoast",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-irlba",
+            "r-pbapply",
+            "r-dplyr >=1.0.0",
+            "r-tidyr",
+            "r-seuratobject >=5.0.2",
+            "r-tidyselect",
+            "bioconductor-biocgenerics",
+            "r-ggplot2",
+            "r-matrix",
+            "bioconductor-rsamtools",
+            "r-future",
+            "bioconductor-s4vectors",
+            "r-vctrs",
+            "r-seuratobject >=4.0.0",
+            "bioconductor-iranges",
+            "r-fastmatch",
+            "r-scales",
+            "r-stringi",
+            "r-rcpp",
+            "r-rcpproll",
+            "bioconductor-genomeinfodb >=1.29.3",
+            "r-rlang",
+            "r-data.table",
+            "r-base",
+            "bioconductor-genomicranges",
+            "r-future.apply",
+            "r-patchwork",
+            "r-matrix >=1.7"
+          ],
+          "description": [
+            "A framework for the analysis and exploration of single-cell chromatin data. The 'Signac' package contains functions for quantifying single-cell chromatin data, computing per-cell quality control metrics, dimension reduction and normalization, visualization, and DNA sequence motif analysis.",
+            "Code to reproduce analyses shown in the Signac paper.",
+            "A framework for the analysis and exploration of single-cell chromatin data. The 'Signac' package contains functions for quantifying single-cell chromatin data, computing per-cell quality control metrics, dimension reduction and normalization, visualization, and DNA sequence motif analysis. Reference: Stuart and Butler et al. (2019) <doi:10.1016/j.cell.2019.05.031>.",
+            "Multimodal single-cell chromatin analysis with Signac.\n\nA New Algorithm for Finding Marker Genes in Single-Cell Transcriptomic Data.\n\nSignac - A versatile package for Single-cell RNA-Seq analysis.\n\nWe introduce Signac, a versatile R package to facilitate the analysis workflow for single-cell data. It helps to find marker genes faster and more accurate, search for cells with similar expression profiles, integrate multiple datasets in the BioTuring Browser database (know more about BioTuring Browser), etc. For users with a limited computational resource, we provide the helper functions to exercise all analyses for the large-scale datasets from disk. Because of its speed and flexibility, it can be adapted to any existing R analysis pipeline to help explore single-cell data more efficient.\n\nSignac is an extension of Seurat for the analysis of single-cell chromatin data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/r-signac/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/r-signac/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/timoast/signac"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/timoast/signac-paper/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/stuart-lab/signac,%20https://stuartlab.org/signac"
+            }
+          ],
+          "download": [
+            "https://cloud.r-project.org/src/contrib/Signac_1.16.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/Signac/Signac_1.16.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Signac_1.12.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/Signac/Signac_1.13.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Signac_1.13.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/Signac/Signac_1.12.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "r-signac",
+            "signac-paper",
+            "Signac"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "r-signac",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Peak calling",
+              "uri": "http://edamontology.org/operation_3222",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Dimensionality reduction",
+              "uri": "http://edamontology.org/operation_3935",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Essential dynamics",
+              "uri": "http://edamontology.org/operation_3891",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "signac",
+            "signac-paper"
+          ],
+          "output": [],
+          "publication": [
+            "67c8325410e2f3aa0b3baff4",
+            "67c8325410e2f3aa0b3baff5",
+            "69bad2a12f353da541e302cd"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/timoast/signac"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/bioturing/signac"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/timoast/signac-paper"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/timoast/signac,%20https:"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/stuart-lab/signac,%20https:"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "biotools",
+            "github"
+          ],
+          "source_code": [
+            "https://cloud.r-project.org/src/contrib/Signac_1.16.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/Signac/Signac_1.16.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Signac_1.12.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/Signac/Signac_1.13.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Signac_1.13.0.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/Signac/Signac_1.12.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cell biology",
+              "uri": "http://edamontology.org/topic_2229",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "undefined"
+          ],
+          "version": [
+            "1.13.0",
+            "1.12.0",
+            "1.16.0",
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/timoast/signac,%20https://satijalab.org/signac",
+            "https://satijalab.org/signac/",
+            "https://github.com/timoast/signac",
+            "https://github.com/stuart-lab/signac,%20https://stuartlab.org/signac",
+            "https://doi.org/10.1038/s41592-021-01282-5"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:signac_bioconda_recipes/r-signac/cmd/1.12.0,bioconda_recipes/r-signac/cmd/1.13.0,bioconda_recipes/r-signac/cmd/1.16.0,biotools/signac/undefined/None,github/signac-paper/None/None,github/signac/None/1.16.0",
+  "conflict_name": "signac/*",
+  "date": "2026-03-25T17:12:21.679682+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
