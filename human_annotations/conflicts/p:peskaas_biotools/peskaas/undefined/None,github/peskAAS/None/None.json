@@ -1,0 +1,220 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/peskAAS/None/None",
+        "created_at": "2026-03-25T15:21:14.879683",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "shaunpwilkinson@gmail.com",
+              "maintainer": false,
+              "name": "Shaun Wilkinson",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "efcaguab@gmail.com",
+              "maintainer": false,
+              "name": "Fernando Cagua",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Timor-Leste fisheries automated analytics system."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/shaunpwilkinson/PeskAAS/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "peskAAS"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "peskAAS",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/shaunpwilkinson/peskAAS"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:21:14.879683",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/peskAAS",
+            "source_url": "https://github.com/shaunpwilkinson/PeskAAS"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/peskaas/undefined/None",
+        "created_at": "2025-04-02T12:19:59.760223",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "alex.tilley@gmail.com",
+              "maintainer": false,
+              "name": "Alexander Tilley",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A near-real-time, open-source monitoring and analytics system for small-scale fisheries.\n\nPESKAAS: fisheries automated analytics system."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PeskAAS"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "peskaas",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c832ad10e2f3aa0b3bb362"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/shaunpwilkinson/PeskAAS"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Model organisms",
+              "uri": "http://edamontology.org/topic_0621",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database management",
+              "uri": "http://edamontology.org/topic_3489",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://worldfish.shinyapps.io/PeskAAS/"
+          ]
+        },
+        "id": "biotools/peskaas/undefined/None",
+        "last_updated_at": "2026-03-19T01:21:03.457698",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/peskaas/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:peskaas_biotools/peskaas/undefined/None,github/peskAAS/None/None",
+  "conflict_name": "peskaas/*",
+  "date": "2026-03-25T20:09:51.991931+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
