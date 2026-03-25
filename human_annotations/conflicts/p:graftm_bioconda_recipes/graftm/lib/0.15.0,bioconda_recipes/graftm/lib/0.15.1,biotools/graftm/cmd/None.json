@@ -1,0 +1,227 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/graftm/cmd/None",
+        "created_at": "2025-04-02T12:00:11.521952",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "g.tyson@uq.edu.au",
+              "maintainer": false,
+              "name": "Gene W Tyson",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Scalable, phylogenetically informed classification of genes within metagenomes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://pypi.org/project/graftm/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "GraftM"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "graftm",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Nucleic acid feature detection",
+              "uri": "http://edamontology.org/operation_0415",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence classification",
+              "uri": "http://edamontology.org/operation_2995",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c827ca10e2f3aa0b3b75e6"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pypi.org/project/graftm/"
+          ]
+        },
+        "id": "biotools/graftm/cmd/None",
+        "last_updated_at": "2026-03-19T00:59:14.754966",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/graftm/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/graftm/lib/0.15.0,bioconda_recipes/graftm/lib/0.15.1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python >3.7",
+            "mfqe >=0.5.0",
+            "mafft >=7.22",
+            "bird_tool_utils_python",
+            "hmmer =3.2.1",
+            "pyyaml",
+            "fastalite",
+            "jinja2",
+            "diamond >=0.9",
+            "fasttree",
+            "pplacer",
+            "orfm >=0.2.0",
+            "biopython >=1.64",
+            "krona >=2.4",
+            "biom-format >=2.1.4",
+            "dendropy >=4.1.0",
+            "extern",
+            "taxtastic >=0.5.4"
+          ],
+          "description": [
+            "GraftM is a pipeline used for identifying and classifying marker gene reads from metagenomic datasets."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/graftm/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/graftm/README.html"
+            }
+          ],
+          "download": [
+            "https://files.pythonhosted.org/packages/bf/a7/283e41730d4d63c87d0fdb055357307d18bc7ca1736f6156baf46762343a/graftm-0.15.1.tar.gz",
+            "https://files.pythonhosted.org/packages/6f/dc/8c7b874a0fbeaa4ffb613aa0dcee722222ba0c06276e42881cac79048fc7/graftm-0.15.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "graftm"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "graftm",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://files.pythonhosted.org/packages/bf/a7/283e41730d4d63c87d0fdb055357307d18bc7ca1736f6156baf46762343a/graftm-0.15.1.tar.gz",
+            "https://files.pythonhosted.org/packages/6f/dc/8c7b874a0fbeaa4ffb613aa0dcee722222ba0c06276e42881cac79048fc7/graftm-0.15.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "0.15.0",
+            "0.15.1"
+          ],
+          "webpage": [
+            "http://geronimp.github.io/graftM"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:graftm_bioconda_recipes/graftm/lib/0.15.0,bioconda_recipes/graftm/lib/0.15.1,biotools/graftm/cmd/None",
+  "conflict_name": "graftm/*",
+  "date": "2026-03-25T20:01:15.073749+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
