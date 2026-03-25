@@ -1,0 +1,313 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/agtools/undefined/None",
+        "created_at": "2026-02-23T16:10:23.867188",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Agtools is a Python framework for manipulating assembly graphs, particularly in the GFA format, designed for downstream metagenomic applications. It provides a command-line interface and a Python package for analyzing and manipulating assembly graphs."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://agtools.readthedocs.io/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "agtools"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "agtools",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phasing",
+              "uri": "http://edamontology.org/operation_3454",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6ddf4393fdfaf890c22d"
+          ],
+          "repository": [
+            {
+              "kind": null,
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://pypi.org/project/agtools/"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://anaconda.org/bioconda/agtools"
+          ]
+        },
+        "id": "biotools/agtools/undefined/None",
+        "last_updated_at": "2026-03-19T02:33:09.280674",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/agtools/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/agtools/None/v1.0.2,bioconda_recipes/agtools/cmd/1.0.2",
+        "data": {
+          "authors": [
+            {
+              "email": "viji.mallawaarachchi@gmail.com",
+              "maintainer": false,
+              "name": "Vijini Mallawaarachchi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "biopython",
+            "python >=3.9",
+            "loguru",
+            "click",
+            "python-igraph",
+            "pycairo",
+            "pandas",
+            "bidict"
+          ],
+          "description": [
+            "Agtools is a Python framework for manipulating assembly graphs for downstream metagenomic applications, with a focus on the Graphical Fragment Assembly (GFA) format.",
+            "\ud83d\udee0\ufe0f\ud83e\uddec A Software Framework to Manipulate Assembly Graphs."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Vini2/agtools/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "api",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/api.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/assemblerexamples.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/changelog.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/cli.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/exampleapplications.md"
+            },
+            {
+              "content": null,
+              "type": "faq",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/faq.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/fileformats.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "installation",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/install.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/moreexamples.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/quickstart.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "tutorial",
+              "url": "https://github.com/Vini2/agtools/blob/main/docs/tutorial.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/agtools/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/agtools/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/Vini2/agtools"
+            }
+          ],
+          "download": [
+            "https://github.com/Vini2/agtools/archive/refs/tags/v1.0.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "agtools"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "agtools",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Vini2/agtools"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/Vini2/agtools/archive/refs/tags/v1.0.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.0.1",
+            "v0.1.1",
+            "v1.0.2",
+            "v0.1.0",
+            "v1.0.0",
+            "v0.1.2",
+            "1.0.2"
+          ],
+          "webpage": [
+            "https://github.com/Vini2/agtools",
+            "https://agtools.readthedocs.io/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:agtools_bioconda_recipes/agtools/cmd/1.0.2,biotools/agtools/undefined/None,github/agtools/None/v1.0.2",
+  "conflict_name": "agtools/*",
+  "date": "2026-03-25T21:29:42.570684+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
