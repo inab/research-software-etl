@@ -1,0 +1,413 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/TopoStats/None/v2.4.0",
+        "created_at": "2026-03-25T15:19:26.940317",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Alice Pyne",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Robert Turner",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Neil Shephard",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Syliva Whittle",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Max Gamill",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Mingxue Du",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Joseph Beton",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Luzie Helfmann",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Robert Gray",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Agnel Praveen Joseph",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An AFM image analysis program to batch process data and obtain statistics from images."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/contributing.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/advanced.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/configuration.md"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/contributing.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/data_dictionary.md"
+            },
+            {
+              "content": null,
+              "type": "faq",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/faq.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/glossary.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/installation.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/introduction.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/notebooks.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/related_software.md"
+            },
+            {
+              "content": null,
+              "type": "usage",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/usage.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/afm-spm/TopoStats/blob/main/docs/workflow.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TopoStats",
+            "TopoStats"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "TopoStats",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/AFM-SPM/TopoStats"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "afm",
+              "uri": "https://github.com/topics/afm",
+              "vocabulary": ""
+            },
+            {
+              "term": "image-processing",
+              "uri": "https://github.com/topics/image-processing",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "python3",
+              "uri": "https://github.com/topics/python3",
+              "vocabulary": ""
+            },
+            {
+              "term": "spm",
+              "uri": "https://github.com/topics/spm",
+              "vocabulary": ""
+            },
+            {
+              "term": "hacktoberfest",
+              "uri": "https://github.com/topics/hacktoberfest",
+              "vocabulary": ""
+            },
+            {
+              "term": "atomic-force-microscopy",
+              "uri": "https://github.com/topics/atomic-force-microscopy",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "v2.4.0",
+            "v2.3.2",
+            "v2.3.2rc2",
+            "v2.3.2rc1",
+            "v2.3.0",
+            "v2.3.1",
+            "v2.2.1",
+            "v2.2.post0",
+            "v2.2.0",
+            "v2.1.2",
+            "v2.1.1",
+            "v2.1.0",
+            "v2.0.0",
+            "2.1.0"
+          ],
+          "webpage": [
+            "https://afm-spm.github.io/TopoStats/"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:19:26.940317",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/TopoStats",
+            "source_url": "https://github.com/afm-spm/TopoStats"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/topostats/undefined/None",
+        "created_at": "2025-04-02T12:50:39.479422",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "a.l.pyne@sheffield.ac.uk",
+              "maintainer": false,
+              "name": "Alice L. B. Pyne",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An AFM image analysis program to batch process data and obtain statistics from images.\n\nImage progessing is performed using the 'pygwytracing' script.\n\nThe algorithm searches recursively for files within a user-defined directory. This search also excludes any files of the format \u2018_cs\u2019 which are cropped files exported by the Nanoscope Analysis software. AFM images are loaded using gwyddion functions and topography data is automatically selected using the choosechannels function. The pixel size and dimensions of each image are determined using the imagedetails function, which allows all inputs to be specified in real, i.e. nanometre values, in place of pixel values. This is especially important for datasets with changing resolution."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TopoStats"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "LGPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "topostats",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Image analysis",
+              "uri": "http://edamontology.org/operation_3443",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Editing",
+              "uri": "http://edamontology.org/operation_3096",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2c281b57beba26405d4b4"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/afm-spm/TopoStats"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Imaging",
+              "uri": "http://edamontology.org/topic_3382",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Molecular biology",
+              "uri": "http://edamontology.org/topic_3047",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/afmstats/TopoStats"
+          ]
+        },
+        "id": "biotools/topostats/undefined/None",
+        "last_updated_at": "2026-03-19T01:50:32.041057",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/topostats/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:topostats_biotools/topostats/undefined/None,github/TopoStats/None/v2.4.0",
+  "conflict_name": "topostats/*",
+  "date": "2026-03-25T20:31:57.047223+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
