@@ -1,0 +1,366 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/reviewer/cmd/None",
+        "created_at": "2025-04-02T12:30:05.670334",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "eberle@gmail.com",
+              "maintainer": false,
+              "name": "Michael A. Eberle",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Egor Dolzhenko",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Ben Weisburd",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Kristina Iba\u00f1ez",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Indhu-Shree Rajan-Babu",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Haplotype-resolved visualization of read alignments in and around tandem repeats."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "REViewer"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "reviewer",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Haplotype mapping",
+              "uri": "http://edamontology.org/operation_0487",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8361710e2f3aa0b3bc6e5"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Exome sequencing",
+              "uri": "http://edamontology.org/topic_3676",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Sequence composition",
+              "uri": "http://edamontology.org/topic_0157",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Whole genome sequencing",
+              "uri": "http://edamontology.org/topic_3673",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/illumina/REViewer"
+          ]
+        },
+        "id": "biotools/reviewer/cmd/None",
+        "last_updated_at": "2026-03-19T01:32:32.806011",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/reviewer/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/reviewer/cmd/0.2.7,github/REViewer/None/v0.2.7",
+        "data": {
+          "authors": [
+            {
+              "email": "sclamons@gmail.com",
+              "maintainer": false,
+              "name": "sclamons",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "canyansi@users.noreply.github.com",
+              "maintainer": false,
+              "name": "canyansi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "sclamons@illumina.com",
+              "maintainer": false,
+              "name": "Sam Clamons (Illumina)",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "fo40225@hotmail.com",
+              "maintainer": false,
+              "name": "fo40225",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "egor.dolzhenko@gmail.com",
+              "maintainer": false,
+              "name": "Egor Dolzhenko",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "csaunders@illumina.com",
+              "maintainer": false,
+              "name": "Chris Saunders",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "boost-cpp"
+          ],
+          "description": [
+            "A tool for visualizing alignments of reads in regions containing tandem repeats."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/reviewer/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/reviewer/README.html"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Illumina/REViewer/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Illumina/REViewer/blob/main/COPYRIGHT.txt"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/Illumina/REViewer/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Illumina/REViewer/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Illumina/REViewer/blob/main/docs/examples.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Illumina/REViewer/blob/main/docs/method-overview.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/Illumina/REViewer/blob/main/docs/metrics.md"
+            }
+          ],
+          "download": [
+            "https://github.com/Illumina/REViewer/archive/refs/tags/v0.2.7.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "reviewer",
+            "REViewer"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "reviewer",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "REViewer"
+          ],
+          "output": [],
+          "publication": [
+            "67e2dc10ac7ee6cb5789129c"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Illumina/REViewer"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/Illumina/REViewer/archive/refs/tags/v0.2.7.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.2.7",
+            "v0.1.1",
+            "v0.2.7",
+            "v0.2.4",
+            "v0.1.0"
+          ],
+          "webpage": [
+            "https://github.com/Illumina/REViewer"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:reviewer_bioconda_recipes/reviewer/cmd/0.2.7,biotools/reviewer/cmd/None,github/REViewer/None/v0.2.7",
+  "conflict_name": "reviewer/*",
+  "date": "2026-03-25T20:11:16.224652+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
