@@ -1,0 +1,541 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/maaslin2/undefined/None",
+        "created_at": "2025-08-26T15:33:43.408862",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "MaAsLin2 is comprehensive R package for efficiently determining multivariable association between phenotypes, environments, exposures, covariates and microbial meta\u2019omic features. MaAsLin2 relies on general linear models to accommodate most modern epidemiological study designs, including cross-sectional and longitudinal, and offers a variety of data exploration, normalization, and transformation methods."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "faq",
+              "url": "https://forum.biobakery.org/c/downstream-analysis-and-statistics/maaslin/10"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://github.com/biobakery/Maaslin2"
+            },
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "https://github.com/biobakery/biobakery/wiki/maaslin2"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MaAsLin2"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "maaslin2",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Filtering",
+              "uri": "http://edamontology.org/operation_3695",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistical calculation",
+              "uri": "http://edamontology.org/operation_2238",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "68adb7b7b94758ef79db068b"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://huttenhower.sph.harvard.edu/maaslin/"
+          ]
+        },
+        "id": "biotools/maaslin2/undefined/None",
+        "last_updated_at": "2026-03-19T02:23:21.229573",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/maaslin2/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/Maaslin2/None/1.7.3,galaxy_metadata/maaslin2/cmd/0.99.12+galaxy0,bioconda_recipes/maaslin2/cmd/0.99.12,toolshed/maaslin2/cmd/0.99.12+galaxy0,galaxy_metadata/maaslin2/cmd/1.18.0+galaxy0,bioconda_recipes/bioconductor-maaslin2/lib/1.16.0,bioconductor/maaslin2/lib/1.21.0,bioconductor/maaslin2/lib/1.25.1",
+        "data": {
+          "authors": [
+            {
+              "email": "sagun_90@hotmail.com",
+              "maintainer": false,
+              "name": "sagun",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tkuntz.hsph@gmail.com",
+              "maintainer": false,
+              "name": "Thomas Kuntz",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hutlab@hutlabs-MacBook-Pro.local",
+              "maintainer": false,
+              "name": "hutlab",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "78048944+WillNickols@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Will Nickols",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "31660222+nearinj@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Jacob T. Nearing",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lauren.j.mciver@google.com",
+              "maintainer": false,
+              "name": "ljmciver",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "kevbonham@gmail.com",
+              "maintainer": false,
+              "name": "Kevin Bonham",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jennifer.wokaty@sph.cuny.edu",
+              "maintainer": false,
+              "name": "J Wokaty",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "andghazi@gmail.com",
+              "maintainer": false,
+              "name": "Andrew Ghazi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "chuttenh@hsph.harvard.edu",
+              "maintainer": false,
+              "name": "chuttenh",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "himel.stat.iitk@gmail.com",
+              "maintainer": false,
+              "name": "Himel Mallick",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "zhangyc201211@gmail.com",
+              "maintainer": false,
+              "name": "YancongZhang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "gholamali.rahnavard@gmail.com",
+              "maintainer": false,
+              "name": "Ali Rahnavard",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "lauren.j.mciver@gmail.com",
+              "maintainer": false,
+              "name": "Lauren McIver",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "sagunmaharjann@gmail.com",
+              "maintainer": false,
+              "name": "Sagun Maharjan",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-pbapply",
+            "vegan",
+            "r-pheatmap",
+            "bioconductor-edger >=4.0.0,<4.1.0",
+            "r-ggplot2",
+            "logging",
+            "pscl",
+            "optparse",
+            "stats",
+            "r-pscl",
+            "r-hash",
+            "r-tibble",
+            "r-cplm",
+            "edgeR",
+            "hash",
+            "MASS",
+            "tibble",
+            "r-chemometrics",
+            "utils",
+            "glmmTMB",
+            "robustbase",
+            "r-robustbase",
+            "dplyr",
+            "grDevices",
+            "metagenomeSeq",
+            "r-dplyr",
+            "r-logging",
+            "bioconductor-edger",
+            "r-lmertest",
+            "cplm",
+            "R (>= 3.6)",
+            "lmerTest",
+            "bioconductor-metagenomeseq >=1.43.0,<1.44.0",
+            "data.table",
+            "r-optparse",
+            "r-pcapp",
+            "lme4",
+            "r-mass",
+            "r-car",
+            "car",
+            "r-mumin",
+            "r-data.table",
+            "bioconductor-metagenomeseq",
+            "r-base",
+            "pheatmap",
+            "r-lme4",
+            "ggplot2",
+            "r-biglm",
+            "biglm",
+            "pcaPP",
+            "chemometrics",
+            "pbapply",
+            "r-vegan",
+            "r-glmmtmb"
+          ],
+          "description": [
+            "MaAsLin2: Microbiome Multivariate Association with Linear Models.",
+            "Microbiome Multivariable Association with Linear Models.",
+            "MaAsLin2 is comprehensive R package for efficiently determining multivariable association between clinical metadata and microbial meta'omic features. MaAsLin2 relies on general linear models to accommodate most modern epidemiological study designs, including cross-sectional and longitudinal, and offers a variety of data exploration, normalization, and transformation methods. MaAsLin2 is the next generation of MaAsLin.",
+            "MaAsLin2 is comprehensive R package for efficiently determining multivariable association between microbial meta'omic features and clinical metadata."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/biobakery/maaslin2/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/maaslin2/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/maaslin2/README.html"
+            },
+            {
+              "content": "\n@HELP_HEADER@\nMaAsLin 2\n=========\nMaAsLin2 is the next generation of MaAsLin (Microbiome Multivariable Association with Linear Models).\n\nInput\n=====\nMaAsLin2 requires two input files:\n\n    - Data (or features) tabular file\n        - This file is tab-delimited.\n        - Formatted with features as columns and samples as rows.\n        - The transpose of this format is also okay.\n        - Possible features in this file include taxonomy or genes.\n    - Metadata tabular file\n        - This file is tab-delimited.\n        - Formatted with features as columns and samples as rows.\n        - The transpose of this format is also okay.\n        - Possible metadata in this file include gender or age.\n\nThe data file can contain samples not included in the metadata file (along with the reverse case). For both cases, those samples not included in both files will be removed from the analysis. Also the samples do not need to be in the same order in the two files.\n\nOutput\n======\n1- Data output files\n    - All results ordered by increasing q-value (tabular file)\n        - Full list of associations that pass MaAsLin2's significance threshold, ordered by increasing q-values\n        - This includes the same data as the data.frame returned.\n        - This file contains all results ordered by increasing q-value.\n        - The first columns are the metadata and feature names.\n        - The next two columns are the value and coefficient from the model.\n        - The next column is the standard deviation from the model.\n        - The N column is the total number of data points.\n        - The N.not.zero column is the total of non-zero data points.\n        - The pvalue from the calculation is the second to last column.\n        - The qvalue is computed with p.adjust with the correction method.\n    - Q-values smaller than or equal to the threshold (tabular file)\n        - This file is a subset of the results in the first file.\n        - It only includes associations with q-values <= to the threshold.\n    - Data frame with residuals for each feature (R data file)\n        - This file contains a data frame with residuals for each feature.\n2- Visualization output files\n    - Heatmap of the significant associations (PDF file)\n        - This file contains a heatmap of the significant associations.\n    - A plot for every significant association found (PDF file(s))\n        - A plot is generated for each significant association.\n        - Scatter plots are used for continuous metadata.\n        - Box plots are for categorical data.\n        - Data points plotted are after normalization, filtering, and transform.\n\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-maaslin2/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-maaslin2/README.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/Maaslin2_1.16.0.tar.gz",
+            "https://bitbucket.org/biobakery/maaslin2/get/0.99.12.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/Maaslin2/Maaslin2_1.16.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Maaslin2_1.16.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-maaslin2/bioconductor-maaslin2_1.16.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Maaslin2",
+            "MaAsLin 2",
+            "maaslin2",
+            "bioconductor-maaslin2"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "Custom OSS",
+              "url": null
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "Maaslin2",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "maaslin2",
+            "bioconductor-maaslin2"
+          ],
+          "output": [],
+          "publication": [
+            "67e6c2434737f09779337101"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/biobakery/Maaslin2"
+            },
+            {
+              "kind": "bitbucket",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://bitbucket.org/biobakery/maaslin2"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/Maaslin2"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/biobakery/maaslin2"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "toolshed",
+            "bioconductor",
+            "github",
+            "galaxy_metadata"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/Maaslin2_1.16.0.tar.gz",
+            "https://bitbucket.org/biobakery/maaslin2/get/0.99.12.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/Maaslin2/Maaslin2_1.16.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Maaslin2_1.16.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-maaslin2/bioconductor-maaslin2_1.16.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "biobakery",
+              "uri": "https://github.com/topics/biobakery",
+              "vocabulary": ""
+            },
+            {
+              "term": "public",
+              "uri": "https://github.com/topics/public",
+              "vocabulary": ""
+            },
+            {
+              "term": "tools",
+              "uri": "https://github.com/topics/tools",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioconductor",
+              "uri": "https://github.com/topics/bioconductor",
+              "vocabulary": ""
+            },
+            {
+              "term": "microbiome",
+              "uri": "https://github.com/topics/microbiome",
+              "vocabulary": ""
+            },
+            {
+              "term": "metagenomics",
+              "uri": "https://github.com/topics/metagenomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "differential-abundance-analysis",
+              "uri": "https://github.com/topics/differential-abundance-analysis",
+              "vocabulary": ""
+            },
+            {
+              "term": "false-discovery-rate",
+              "uri": "https://github.com/topics/false-discovery-rate",
+              "vocabulary": ""
+            },
+            {
+              "term": "repeated-measures",
+              "uri": "https://github.com/topics/repeated-measures",
+              "vocabulary": ""
+            },
+            {
+              "term": "multiple-covariates",
+              "uri": "https://github.com/topics/multiple-covariates",
+              "vocabulary": ""
+            },
+            {
+              "term": "r-tools",
+              "uri": "https://github.com/topics/r-tools",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "1.21.0",
+            "1.18.0+galaxy0",
+            "0.99.12+galaxy0",
+            "1.16.0",
+            "0.99.12",
+            "1.7.3",
+            "1.25.1"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/Maaslin2.html",
+            "http://huttenhower.sph.harvard.edu/maaslin2"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:maaslin2_bioconda_recipes/bioconductor-maaslin2/lib/1.16.0,bioconda_recipes/maaslin2/cmd/0.99.12,bioconductor/maaslin2/lib/1.21.0,bioconductor/maaslin2/lib/1.25.1,biotools/maaslin2/undefined/None,galaxy_metadata/maaslin2/cmd/0.99.12+galaxy0,galaxy_metadata/maaslin2/cmd/1.18.0+galaxy0,github/Maaslin2/None/1.7.3,toolshed/maaslin2/cmd/0.99.12+galaxy0",
+  "conflict_name": "maaslin2/*",
+  "date": "2026-03-25T21:57:26.039676+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
