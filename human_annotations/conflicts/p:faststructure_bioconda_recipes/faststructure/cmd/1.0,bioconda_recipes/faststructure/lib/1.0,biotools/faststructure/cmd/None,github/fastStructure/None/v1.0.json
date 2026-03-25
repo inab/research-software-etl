@@ -1,0 +1,242 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/faststructure/cmd/None",
+        "created_at": "2025-04-02T12:54:55.531398",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "rajanil@stanford.edu",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "FastStructure is an algorithm for inferring population structure from large SNP genotype data. It is based on a variational Bayesian framework for posterior inference and is written in Python2.x."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/rajanil/fastStructure/blob/master/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "fastSTRUCTURE"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "faststructure",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8276e10e2f3aa0b3b72b6"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Population genetics",
+              "uri": "http://edamontology.org/topic_3056",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://rajanil.github.io/fastStructure/"
+          ]
+        },
+        "id": "biotools/faststructure/cmd/None",
+        "last_updated_at": "2026-03-19T02:06:04.705762",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/faststructure/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/faststructure/cmd/1.0,bioconda_recipes/faststructure/lib/1.0,github/fastStructure/None/v1.0",
+        "data": {
+          "authors": [
+            {
+              "email": "rajanil@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Anil Raj",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "thierrygosselin@icloud.com",
+              "maintainer": false,
+              "name": "Thierry Gosselin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "gsl",
+            "matplotlib",
+            "numpy",
+            "matplotlib-base",
+            "openblas",
+            "scipy",
+            "liblapack"
+          ],
+          "description": [
+            "A variational framework for inferring population structure from SNP genotype data. Ported to python3 by @StuntsPT based on the work of @jashapiro.",
+            "A variational framework for inferring population structure from SNP genotype data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/faststructure/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/faststructure/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/rajanil/fastStructure/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/rajanil/fastStructure/archive/v1.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "faststructure",
+            "fastStructure"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "faststructure",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "fastStructure"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/rajanil/fastStructure"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/rajanil/fastStructure/archive/v1.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "v1.0",
+            "1.0"
+          ],
+          "webpage": [
+            "https://github.com/rajanil/fastStructure"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:faststructure_bioconda_recipes/faststructure/cmd/1.0,bioconda_recipes/faststructure/lib/1.0,biotools/faststructure/cmd/None,github/fastStructure/None/v1.0",
+  "conflict_name": "faststructure/*",
+  "date": "2026-03-25T16:50:39.354081+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
