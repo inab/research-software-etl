@@ -1,0 +1,281 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/rna-cpat/None/None",
+        "created_at": "2025-04-02T15:43:13.057831",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Using RNA-seq, tens of thousands of novel transcripts and isoforms have been identified (Djebali, et al Nature, 2012 , Carbili et al, Gene & Development, 2011) The discovery of these hidden transcriptome rejuvenate the need of distinguishing coding and noncoding RNA. However, Most previous coding potential prediction methods heavily rely on alignment, either pairwise alignment to search for protein evidence or multiple alignments to calculate phylogenetic conservation score (such as CPC , PhyloCSF and RNACode ). This is because most previously identified transcripts including protein coding RNA and short, housekeeping/regulatory RNAs such as snRNAs, snoRNA and tRNA are highly conserved. While still very useful, these approaches have several limitations:\n\n    Most lncRNAs are less conserved and tend to be lineage specific which greatly limit the discrimination power of alignment-based methods. For example, of 550 lncRNAs detected from zebrafish, only 29 of them had detectable sequence."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/rna-cpat"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "rna-cpat"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "rna-cpat",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/rna-cpat"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://rna-cpat.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/rna-cpat/None/None",
+        "last_updated_at": "2026-03-19T03:36:33.736849",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/rna-cpat//",
+            "source_url": "https://sourceforge.net/projects/rna-cpat"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/cpat/cmd/3.0.5+galaxy0,biotools/cpat/cmd/None,bioconda_recipes/cpat/cmd/3.0.5,toolshed/cpat/cmd/3.0.5+galaxy0,galaxy_metadata/cpat/cmd/3.0.5+galaxy1,github/cpat/None/v3.0.5,biotools/cpat/web/None",
+        "data": {
+          "authors": [
+            {
+              "email": "liguowang@users.noreply.github.com",
+              "maintainer": false,
+              "name": "liguowang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "wangliguo78@gmail.com",
+              "maintainer": false,
+              "name": "Wang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bx-python",
+            "python",
+            "r-base",
+            "pysam",
+            "numpy"
+          ],
+          "description": [
+            "Coding Potential Assessment Tool.",
+            "Coding-Potential Assessment Tool using an alignment-free logistic regression model.",
+            "CPAT (Coding-Potential Assessment Tool) is a logistic regression model-based classifier that can accurately and quickly distinguish protein-coding and noncoding RNAs using pure linguistic features calculated from the RNA sequences. CPAT takes as input the nucleotides sequences or genomic coordinates of RNAs and outputs the probabilities p (0 \u2264 p \u2264 1), which measure the likelihood of protein coding.",
+            "Coding potential assessment."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://cpat.readthedocs.io/en/latest/"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/cpat/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/cpat/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/liguowang/cpat"
+            },
+            {
+              "content": "\n\n.. class:: infomark\n\n**Purpose**\n\nCPAT is a bioinformatics tool to predict RNAs coding probability based on the RNA sequence characteristics. To achieve this goal, CPAT calculates scores of these 4 linguistic features \nfrom a set of known protein-coding genes and another set of non-coding genes.\n\n- ORF size\n- ORF coverage\n- Fickett TESTCODE\n- Hexamer usage bias\n\nCPAT will then builds a logistic regression model using these 4 features as predictor variables and the \u201cprotein-coding status\u201d as the response variable. After evaluating the performance \nand determining the probability cutoff, the model can be used to predict new RNA sequences.\n\n",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/liguowang/cpat/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/liguowang/cpat/blob/main/docs/requirements.txt"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/C/CPAT/CPAT-3.0.5.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "cpat",
+            "CPAT"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GPL-2.0-or-later",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "cpat",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Query and retrieval",
+              "uri": "http://edamontology.org/operation_0224",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e571ec7d85c6cb37dd31f2",
+            "67c82e0210e2f3aa0b3ba1bd"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/liguowang/cpat"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "toolshed",
+            "github",
+            "galaxy_metadata",
+            "biotools"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/C/CPAT/CPAT-3.0.5.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "web",
+            "cmd"
+          ],
+          "version": [
+            "3.0.5",
+            "3.0.5+galaxy1",
+            "3.0.5+galaxy0",
+            "3.0.2",
+            "None",
+            "v3.0.5",
+            "v3.0.1"
+          ],
+          "webpage": [
+            "https://github.com/liguowang/cpat",
+            "http://lilab.research.bcm.edu/cpat/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:cpat_bioconda_recipes/cpat/cmd/3.0.5,biotools/cpat/cmd/None,biotools/cpat/web/None,galaxy_metadata/cpat/cmd/3.0.5+galaxy0,galaxy_metadata/cpat/cmd/3.0.5+galaxy1,github/cpat/None/v3.0.5,sourceforge/rna-cpat/None/None,toolshed/cpat/cmd/3.0.5+galaxy0",
+  "conflict_name": "cpat/*",
+  "date": "2026-03-25T21:41:38.944224+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
