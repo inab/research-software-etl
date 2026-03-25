@@ -1,0 +1,1125 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/genomicconsensus/script/None",
+        "created_at": "2025-04-02T11:59:56.374386",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "devnet@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Pacific Biosciences",
+              "orcid": null,
+              "type": "Organization",
+              "url": "http://pacbiodevnet.com/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The GenomicConsensus package provides the variantCaller tool, which allows you to apply the Quiver or Arrow algorithm to mapped PacBio reads to get consensus and variant calls."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/PacificBiosciences/GenomicConsensus/blob/develop/doc/HowTo.rst"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "GenomicConsensus"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "genomicconsensus",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "script",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/PacificBiosciences/GenomicConsensus"
+          ]
+        },
+        "id": "biotools/genomicconsensus/script/None",
+        "last_updated_at": "2026-03-19T00:57:23.360178",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/genomicconsensus/script/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/pb-falcon/lib/2.2.4,bioconda_recipes/pbjasmine/cmd/2.0.0,bioconda_recipes/genomicconsensus/cmd/2.3.3,bioconda_recipes/pbcore/lib/2.1.2,bioconda_recipes/pbcore/lib/1.2.7,bioconda_recipes/isoseq3/cmd/4.0.0,bioconda_recipes/pblaa/cmd/2.4.2,bioconda_recipes/pbipa/cmd/1.8.0,bioconda_recipes/pbcoretools/cmd/0.8.1,bioconda_recipes/isoseq/cmd/4.0.0,bioconda_recipes/pbsv/cmd/2.9.0,bioconda_recipes/recalladapters/cmd/9.0.0,bioconda_recipes/pbgcpp/cmd/2.0.2,galaxy_metadata/pbgcpp/cmd/2.0.2+galaxy0,bioconda_recipes/pbtk/cmd/3.1.1,bioconda_recipes/minorseq/cmd/1.12.0,bioconda_recipes/pbcommand/lib/2.1.1,bioconda_recipes/python-consensuscore2/cmd/3.4.1,bioconda_recipes/pb-assembly/lib/0.0.8,bioconda_recipes/pb-falconc/cmd/1.15.0,bioconda_recipes/python-consensuscore/cmd/1.1.1,bioconda_recipes/pbmarkdup/cmd/1.0.3,bioconda_recipes/python-consensuscore2/lib/3.4.1,bioconda_recipes/python-consensuscore/lib/1.1.1,biotools/isoseq3/cmd/None,biotools/isoseq3/app/None,biotools/isoseq3/workflow/None,biotools/nf-core_isoseq/cmd/None,toolshed/pbgcpp/cmd/2.0.2+galaxy0,github/pbbioconda/None/None,github/pbcore/None/2.1.2,bioconda_recipes/isoseq/cmd/4.3.0,bioconda_recipes/pbsv/cmd/2.11.0,bioconda_recipes/pbmarkdup/cmd/1.2.0,github/IsoSeq/None/v4.3.0,github/isoseq/None/2.0.0",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "https://github.com/zkronenberg"
+            },
+            {
+              "email": "devnet@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Pacific Biosciences",
+              "orcid": null,
+              "type": "Organization",
+              "url": "http://pacbiodevnet.com/"
+            },
+            {
+              "email": "sguizard@ed.ac.uk",
+              "maintainer": false,
+              "name": "S\u00e9bastien Guizard",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Katarzyna Miedzinska",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Jacqueline Smith",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "amwenger@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Aaron Wenger",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "atoepfer@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Armin T\u00f6pfer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "zev.kronenberg@gmail.com",
+              "maintainer": false,
+              "name": "Zev Kronenberg",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "19544292+jmattick@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Jessica Mattick",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vmikk@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Vladimir Mikryukov",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "dbarnett@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Derek Barnett",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "isovic@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Ivan Sovic",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cdunn@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Christopher Dunn",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jdrake@pacb.com",
+              "maintainer": false,
+              "name": "James Drake",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "39679069+pb-dseifert@users.noreply.github.com",
+              "maintainer": false,
+              "name": "David Seifert",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nechols@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Nathaniel Echols",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jhelmert@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Jake Helmert",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mdsmith@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Martin D. Smith",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hmaeder@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Herb Maeder",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "zli@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Zihao Li",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "zli@pacb.com",
+              "maintainer": false,
+              "name": "NANOFLUIDICS\\zli",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "fhliu@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Faan-Hoan Liu",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "magdoll@gmail.com",
+              "maintainer": false,
+              "name": "Elizabeth Tseng",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "124290860+jocelyne-pacbio@users.noreply.github.com",
+              "maintainer": false,
+              "name": "jocelyne-pacbio",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "1800812+nathanweeks@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Nathan Weeks",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "atoepfer@pacificbiosciences.com",
+              "maintainer": false,
+              "name": "Armin Toepfer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "104648079+PB-DB@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Daniel",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "core@nf-co.re",
+              "maintainer": false,
+              "name": "nf-core-bot",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "pb-falcon>=2.2.2",
+            "networkx >=1.9.1",
+            "biopython >=1.74",
+            "samtools",
+            "iso8601",
+            "pbgcpp",
+            "python <3",
+            "samtools >=1.15",
+            "numpy >=1.17",
+            "python >=3.7,<3.8",
+            "mummer4",
+            "numpy <=1.10.0",
+            "python-edlib >=1.2.4",
+            "zlib",
+            "isoseq",
+            "setuptools",
+            "python-consensuscore >=1.1.1",
+            "numpy >=1.16.2",
+            "pbcommand >=1.1.1",
+            "python-consensuscore2 >=3.4.1",
+            "pysam",
+            "python",
+            "htslib",
+            "numpy",
+            "pysam >=0.15.1",
+            "pbcore >=2.1.2",
+            "pcre",
+            "requests",
+            "pbcommand >=2.1.1",
+            "minimap2",
+            "pytz",
+            "python-intervaltree",
+            "pb-falconc >=1.15",
+            "pbmm2",
+            "bedtools",
+            "pbccs",
+            "htslib>=1.13",
+            "blasr",
+            "racon",
+            "pbcore >=1.6.5",
+            "pysam ==0.8.4",
+            "htslib >=1.15",
+            "networkx",
+            "pb-falcon-phase",
+            "pb-dazzler",
+            "python-msgpack >=0.6.1",
+            "nim-falcon",
+            "avro-python3",
+            "bwa",
+            "h5py <=2.7.0",
+            "future >=0.16.0",
+            "snakemake-minimal >=7.0.4"
+          ],
+          "description": [
+            "Jasmine.",
+            "Iso-Seq - Scalable De Novo Isoform Discovery.",
+            "PacBio Quiver Consensus library for RSII data.",
+            "Pbgcpp - GenomicConsensus in C++.",
+            "Improved Phased Assembly.",
+            "Pbsv - PacBio structural variant (SV) calling and analysis tools.",
+            "Genome annotation with PacBio Iso-Seq. Takes raw subreads as input, generate Full Length Non Chemiric (FLNC) sequences and produce a bed annotation.",
+            "Pbmarkdup - Mark duplicate reads from PacBio sequencing of an amplified library.",
+            "PacBio tool to deconvolute mixtures of alleles and loci into phased consensus sequences.",
+            "Iso-Seq - Scalable De Novo Isoform Discovery from Single-Molecule PacBio Reads.",
+            "PacBio genomic consensus and variant caller for RSII and Sequel.",
+            "PacBio Secondary Analysis Tools on Bioconda. Contains list of PacBio packages available via conda.",
+            "Recalladapters - A tool to recall adapters for PacBio data.",
+            "Meta-package for Falcon/Unzip tool-suite (originally by Jason Chin).",
+            "IsoSeq v3 contains the newest tools to identify transcripts in PacBio single-molecule sequencing data. Starting in SMRT Link v6.0.0, those tools power the IsoSeq GUI-based analysis application. A composable workflow of existing tools and algorithms, combined with a new clustering technique.",
+            "FALCON/Unzip tool-suite (originally by Jason Chin).",
+            "CLI tools and add-ons for PacBio's core APIs.",
+            "Minor Variant Calling and Phasing Tools.",
+            "A Python library for reading and writing PacBio data files.",
+            "C utilities for PacBio assembly (pbipa etc.).",
+            "Pbtk - PacBio BAM toolkit.",
+            "PacBio Arrow Consensus library for Sequel data.",
+            "Simple gene and isoform annotation with PacBio Iso-Seq long-read sequencing.",
+            "Library for generating the CLI of various PacBio tools.",
+            "A Python library for reading and writing PacBio\u00ae data files.",
+            "Compute genomic consensus and call variants using PacBio reads mapped to a reference."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pb-falcon/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pb-falcon/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbjasmine/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbjasmine/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/genomicconsensus/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/genomicconsensus/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbcore/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbcore/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/isoseq3/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/isoseq3/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pblaa/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pblaa/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbipa/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbipa/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbcoretools/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbcoretools/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/isoseq/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/isoseq/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbsv/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbsv/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/recalladapters/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/recalladapters/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbgcpp/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbgcpp/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbtk/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbtk/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/minorseq/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/minorseq/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbcommand/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbcommand/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/python-consensuscore2/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/python-consensuscore2/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pb-assembly/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pb-assembly/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pb-falconc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pb-falconc/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/python-consensuscore/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/python-consensuscore/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pbmarkdup/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pbmarkdup/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/master/isoseq-clustering.md"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://isoseq.how/"
+            },
+            {
+              "content": "\n**What it does**\n\nCompute genomic consensus and call variants relative to the reference.\n\nThis tool requires a PacBio BAM file.\n\nYou can create one by mapping PacBio reads to the reference genome with\nthe `pbmm2 <root?tool_id=pbmm2>`__ tool. When doing this, you have to\ninput CLR reads to pbmm2 in [unaligned] BAM format, not fastq or fasta. This is\nbecause the pbgcpp algorithm uses additional information stored in the\nunaligned BAM format that PacBio uses.\n\n**NOTE**: The pbgcpp tool used to be called GenomicConsensus.  It works for PacBio Sequel data and RS data with the P6-C4 chemistry.\n\n--------------\n\npbgcpp is Pacific Biosciences\u2019 tool to generate accurate reference\ncontigs. It takes an alignment in the form of a BAM file and polishes\nthe references with the provided subreads from the alignment. It uses\nthe Arrow algorithm in multi-molecule consensus setting and can reach up\nto QV60 at coverage 100. pbgcpp is the successor of the venerable\nGenomicConsensus suite which has reached EOL.\n\nSee the `Pacific Biosciences GitHub\npage <https://github.com/PacificBiosciences/pbbioconda>`__ for more\ninformation.\n\n**Input**: Aligned subreads in PacBio BAM format (.bam). Compatible with PacBio Sequel data and RS data with the P6-C4 chemistry.\n\n**Output**: Polished contigs in .fasta format.\n\n**Why am I getting \u201cMissing valid chemistry from input file, is this a\nproper PBBAM input file?\u201d**\n\npbgcpp expects metadata in the bamfile that most aligners (like\nminimap2) don\u2019t include by default. Align the PacBio reads file using\npbmm2.\n\n        ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/PacificBiosciences/pbbioconda/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/PacificBiosciences/pbbioconda/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/PacificBiosciences/pbcore/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/isoseq-clustering.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/isoseq-deduplication.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/docs/changelog.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/docs/general-faq.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/docs/getting-started.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/docs/isoseq-tags.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/docs/nomenclature.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/PacificBiosciences/IsoSeq/blob/main/docs/robots.txt"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/nf-core/isoseq/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/nf-core/isoseq/blob/main/CITATIONS.md"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/nf-core/isoseq/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/nf-core/isoseq/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/nf-core/isoseq/blob/main/docs/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/nf-core/isoseq/blob/main/docs/output.md"
+            },
+            {
+              "content": null,
+              "type": "usage",
+              "url": "https://github.com/nf-core/isoseq/blob/main/docs/usage.md"
+            }
+          ],
+          "download": [
+            "https://github.com/PacificBiosciences/pbcommand/releases/download/2.1.1/pbcommand-2.1.1.tar.gz",
+            "https://github.com/PacificBiosciences/minorseq/releases/download/v1.12.0/minorseq.tar.gz",
+            "https://github.com/PacificBiosciences/pbfalconc/releases/download/v1.15.0/falconc-linux-64.tar.gz",
+            "https://github.com/PacificBiosciences/ConsensusCore/archive/1.1.1.tar.gz",
+            "https://github.com/PacificBiosciences/IsoSeq/releases/download/v4.0.0/isoseq",
+            "https://github.com/PacificBiosciences/pbmarkdup/releases/download/v1.0.3/pbmarkdup",
+            "https://github.com/PacificBiosciences/IsoSeq/releases/download/v4.3.0/isoseq",
+            "https://github.com/PacificBiosciences/pbsv/releases/download/v2.9.0/pbsv",
+            "https://github.com/PacificBiosciences/pbtk/releases/download/v3.1.1/pbtk.tar.gz",
+            "https://github.com/PacificBiosciences/pbsv/releases/download/v2.11.0/pbsv",
+            "https://github.com/PacificBiosciences/pbmarkdup/releases/download/v1.2.0/pbmarkdup",
+            "https://github.com/PacificBiosciences/jasmine/releases/download/v2.0.0/jasmine",
+            "https://github.com/PacificBiosciences/recalladapters/releases/download/v9.0.0/recalladapters",
+            "https://github.com/PacificBiosciences/pbcore/releases/download/2.1.2/pbcore-2.1.2.tar.gz",
+            "https://pypi.io/packages/source/p/pbcore/pbcore-1.2.7.tar.gz",
+            "https://github.com/PacificBiosciences/gcpp/releases/download/2.0.2/gcpp",
+            "https://github.com/PacificBiosciences/pbcoretools/releases/download/0.8.1/pbcoretools-0.8.1.tar.gz",
+            "https://github.com/PacificBiosciences/GenomicConsensus/releases/download/2.3.3/GenomicConsensus-2.3.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pbcommand",
+            "python-consensuscore",
+            "pbgcpp",
+            "recalladapters",
+            "pbmarkdup",
+            "isoseq3",
+            "isoseq",
+            "pb-falcon",
+            "IsoSeq3",
+            "pbtk",
+            "pbsv",
+            "pb-falconc",
+            "python-consensuscore2",
+            "pbipa",
+            "pbcore",
+            "IsoSeq",
+            "pb-assembly",
+            "pblaa",
+            "genomicconsensus",
+            "pbjasmine",
+            "minorseq",
+            "pbcoretools",
+            "nf-core isoseq",
+            "pbbioconda"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD 3-Clause Clear License",
+              "url": "http://choosealicense.com/licenses/bsd-3-clause-clear/"
+            },
+            {
+              "name": "BSD-3-Clause-Clear",
+              "url": null
+            },
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "pb-falcon",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Demultiplexing",
+              "uri": "http://edamontology.org/operation_3933",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Primer removal",
+              "uri": "http://edamontology.org/operation_3237",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA barcoding",
+              "uri": "http://edamontology.org/operation_3200",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptome assembly",
+              "uri": "http://edamontology.org/operation_3258",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "pbcommand",
+            "nf-core_isoseq",
+            "python-consensuscore",
+            "pbgcpp",
+            "recalladapters",
+            "pbmarkdup",
+            "isoseq3",
+            "isoseq",
+            "pbtk",
+            "pbsv",
+            "pb-falconc",
+            "python-consensuscore2",
+            "pbipa",
+            "pbcore",
+            "IsoSeq",
+            "pb-assembly",
+            "pblaa",
+            "genomicconsensus",
+            "pbjasmine",
+            "minorseq",
+            "pbcoretools",
+            "pbbioconda"
+          ],
+          "output": [],
+          "publication": [
+            "67e2c429b57beba26405d6a4"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/PacificBiosciences/pbbioconda"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/PacificBiosciences/pbcore"
+            },
+            {
+              "kind": "bioconda",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://anaconda.org/bioconda/isoseq3"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/nf-core/isoseq"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/PacificBiosciences/IsoSeq"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "toolshed",
+            "github",
+            "galaxy_metadata",
+            "biotools"
+          ],
+          "source_code": [
+            "https://github.com/PacificBiosciences/pbcommand/releases/download/2.1.1/pbcommand-2.1.1.tar.gz",
+            "https://github.com/PacificBiosciences/minorseq/releases/download/v1.12.0/minorseq.tar.gz",
+            "https://github.com/PacificBiosciences/pbfalconc/releases/download/v1.15.0/falconc-linux-64.tar.gz",
+            "https://github.com/PacificBiosciences/ConsensusCore/archive/1.1.1.tar.gz",
+            "https://github.com/PacificBiosciences/IsoSeq/releases/download/v4.0.0/isoseq",
+            "https://github.com/PacificBiosciences/pbmarkdup/releases/download/v1.0.3/pbmarkdup",
+            "https://github.com/PacificBiosciences/IsoSeq/releases/download/v4.3.0/isoseq",
+            "https://github.com/PacificBiosciences/pbsv/releases/download/v2.9.0/pbsv",
+            "https://github.com/PacificBiosciences/pbtk/releases/download/v3.1.1/pbtk.tar.gz",
+            "https://github.com/PacificBiosciences/pbsv/releases/download/v2.11.0/pbsv",
+            "https://github.com/PacificBiosciences/pbmarkdup/releases/download/v1.2.0/pbmarkdup",
+            "https://github.com/PacificBiosciences/jasmine/releases/download/v2.0.0/jasmine",
+            "https://github.com/PacificBiosciences/recalladapters/releases/download/v9.0.0/recalladapters",
+            "https://github.com/PacificBiosciences/pbcore/releases/download/2.1.2/pbcore-2.1.2.tar.gz",
+            "https://pypi.io/packages/source/p/pbcore/pbcore-1.2.7.tar.gz",
+            "https://github.com/PacificBiosciences/gcpp/releases/download/2.0.2/gcpp",
+            "https://github.com/PacificBiosciences/pbcoretools/releases/download/0.8.1/pbcoretools-0.8.1.tar.gz",
+            "https://github.com/PacificBiosciences/GenomicConsensus/releases/download/2.3.3/GenomicConsensus-2.3.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA splicing",
+              "uri": "http://edamontology.org/topic_3320",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "pacbio",
+              "uri": "https://github.com/topics/pacbio",
+              "vocabulary": ""
+            },
+            {
+              "term": "rna",
+              "uri": "https://github.com/topics/rna",
+              "vocabulary": ""
+            },
+            {
+              "term": "clustering",
+              "uri": "https://github.com/topics/clustering",
+              "vocabulary": ""
+            },
+            {
+              "term": "polishing",
+              "uri": "https://github.com/topics/polishing",
+              "vocabulary": ""
+            },
+            {
+              "term": "isoforms",
+              "uri": "https://github.com/topics/isoforms",
+              "vocabulary": ""
+            },
+            {
+              "term": "discovery",
+              "uri": "https://github.com/topics/discovery",
+              "vocabulary": ""
+            },
+            {
+              "term": "nextflow",
+              "uri": "https://github.com/topics/nextflow",
+              "vocabulary": ""
+            },
+            {
+              "term": "nf-core",
+              "uri": "https://github.com/topics/nf-core",
+              "vocabulary": ""
+            },
+            {
+              "term": "pipeline",
+              "uri": "https://github.com/topics/pipeline",
+              "vocabulary": ""
+            },
+            {
+              "term": "workflow",
+              "uri": "https://github.com/topics/workflow",
+              "vocabulary": ""
+            },
+            {
+              "term": "isoseq",
+              "uri": "https://github.com/topics/isoseq",
+              "vocabulary": ""
+            },
+            {
+              "term": "isoseq-3",
+              "uri": "https://github.com/topics/isoseq-3",
+              "vocabulary": ""
+            },
+            {
+              "term": "ultra",
+              "uri": "https://github.com/topics/ultra",
+              "vocabulary": ""
+            },
+            {
+              "term": "tama",
+              "uri": "https://github.com/topics/tama",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib",
+            "workflow",
+            "cmd",
+            "app"
+          ],
+          "version": [
+            "2.1.2",
+            "1.1.2",
+            "1.15.0",
+            "2.2.4",
+            "1.6.5",
+            "None",
+            "1.1.4",
+            "1.0.0",
+            "1.2.0",
+            "v3.7.0",
+            "v3.1.0",
+            "v3.3.0",
+            "2.0.0",
+            "2.4.2",
+            "1.12.0",
+            "3.4.1",
+            "4.3.0",
+            "1.2.7",
+            "v0.7.2",
+            "9.0.0",
+            "v4.2.0",
+            "1.1.3",
+            "v3.4.0",
+            "v0.7.0",
+            "1.8.0",
+            "1.1.5",
+            "3.1.1",
+            "0.0.8",
+            "1.1.1",
+            "v3.2.0",
+            "v3.1.2",
+            "v3.1.1",
+            "2.0.2",
+            "v3.0.0",
+            "1.0.3",
+            "v3.2.2",
+            "v3.2.1",
+            "1.1.0",
+            "2.1.1",
+            "2.0.2+galaxy0",
+            "1.5.1",
+            "v4.3.0",
+            "2.3.3",
+            "v4.0.0",
+            "v3.8.1",
+            "1.7.1",
+            "2.11.0",
+            "0.8.1",
+            "v3.8.2",
+            "2.9.0",
+            "v3.8.0",
+            "4.0.0"
+          ],
+          "webpage": [
+            "https://github.com/PacificBiosciences/pbbioconda",
+            "https://github.com/PacificBiosciences/pbcore",
+            "https://github.com/PacificBiosciences/IsoSeq",
+            "https://nf-co.re/isoseq"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pbsv_bioconda_recipes/genomicconsensus/cmd/2.3.3,bioconda_recipes/isoseq/cmd/4.0.0,bioconda_recipes/isoseq/cmd/4.3.0,bioconda_recipes/isoseq3/cmd/4.0.0,bioconda_recipes/minorseq/cmd/1.12.0,bioconda_recipes/pb-assembly/lib/0.0.8,bioconda_recipes/pb-falcon/lib/2.2.4,bioconda_recipes/pb-falconc/cmd/1.15.0,bioconda_recipes/pbcommand/lib/2.1.1,bioconda_recipes/pbcore/lib/1.2.7,bioconda_recipes/pbcore/lib/2.1.2,bioconda_recipes/pbcoretools/cmd/0.8.1,bioconda_recipes/pbgcpp/cmd/2.0.2,bioconda_recipes/pbipa/cmd/1.8.0,bioconda_recipes/pbjasmine/cmd/2.0.0,bioconda_recipes/pblaa/cmd/2.4.2,bioconda_recipes/pbmarkdup/cmd/1.0.3,bioconda_recipes/pbmarkdup/cmd/1.2.0,bioconda_recipes/pbsv/cmd/2.11.0,bioconda_recipes/pbsv/cmd/2.9.0,bioconda_recipes/pbtk/cmd/3.1.1,bioconda_recipes/python-consensuscore/cmd/1.1.1,bioconda_recipes/python-consensuscore/lib/1.1.1,bioconda_recipes/python-consensuscore2/cmd/3.4.1,bioconda_recipes/python-consensuscore2/lib/3.4.1,bioconda_recipes/recalladapters/cmd/9.0.0,biotools/genomicconsensus/script/None,biotools/isoseq3/app/None,biotools/isoseq3/cmd/None,biotools/isoseq3/workflow/None,biotools/nf-core_isoseq/cmd/None,galaxy_metadata/pbgcpp/cmd/2.0.2+galaxy0,github/IsoSeq/None/v4.3.0,github/isoseq/None/2.0.0,github/pbbioconda/None/None,github/pbcore/None/2.1.2,toolshed/pbgcpp/cmd/2.0.2+galaxy0",
+  "conflict_name": "pbsv/*",
+  "date": "2026-03-25T19:59:22.098926+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
