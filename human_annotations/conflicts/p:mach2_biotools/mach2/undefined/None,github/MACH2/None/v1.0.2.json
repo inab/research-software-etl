@@ -1,0 +1,209 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/MACH2/None/v1.0.2",
+        "created_at": "2026-03-25T15:20:02.832309",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "mrinmoy.roddur@gmail.com",
+              "maintainer": false,
+              "name": "roddur",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vikramr2@illinois.edu",
+              "maintainer": false,
+              "name": "Vikram Ramavarapu",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/elkebir-group/mach2/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MACH2"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "MACH2",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/elkebir-group/MACH2"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [
+            "v1.0.2",
+            "v1.0.1",
+            "v1.0.1.1"
+          ],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:20:02.832309",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/MACH2",
+            "source_url": "https://github.com/elkebir-group/mach2"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/mach2/undefined/None",
+        "created_at": "2026-02-23T16:08:48.152868",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "MACH2 is a method for inferring migration histories of metastatic cancer cells from clone phylogeny and the location of extant clones. It systematically enumerates all plausible migration histories and includes an interactive webtool (MACH2-viz) for visualization and exploration."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MACH2"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mach2",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Optimisation and refinement",
+              "uri": "http://edamontology.org/operation_2425",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenetic reconstruction",
+              "uri": "http://edamontology.org/operation_3478",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6d804393fdfaf890be84"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogeny",
+              "uri": "http://edamontology.org/topic_0084",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mathematics",
+              "uri": "http://edamontology.org/topic_3315",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://elkebir-group.github.io/mach2-docs/"
+          ]
+        },
+        "id": "biotools/mach2/undefined/None",
+        "last_updated_at": "2026-03-19T02:29:44.547088",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mach2/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:mach2_biotools/mach2/undefined/None,github/MACH2/None/v1.0.2",
+  "conflict_name": "mach2/*",
+  "date": "2026-03-25T21:27:22.261829+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
