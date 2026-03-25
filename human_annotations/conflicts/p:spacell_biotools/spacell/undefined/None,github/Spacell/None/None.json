@@ -1,0 +1,256 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/Spacell/None/None",
+        "created_at": "2026-03-25T15:18:31.523680",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "45161520+BiomedicalMachineLearning@users.noreply.github.com",
+              "maintainer": false,
+              "name": "BiomedicalMachineLearning",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "43783271+xiao233333@users.noreply.github.com",
+              "maintainer": false,
+              "name": "xiao233333",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "xiaotan0307@gmail.com",
+              "maintainer": false,
+              "name": "Xiao Tan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "a.su@uqconnect.edu.au",
+              "maintainer": false,
+              "name": "Andrew Su",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tranngocminh139@gmail.com",
+              "maintainer": false,
+              "name": "minhtran",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "x.tan3@uqconnect.edu.au",
+              "maintainer": false,
+              "name": "Xiao Tan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/BiomedicalMachineLearning/Spacell/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Spacell"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "Spacell",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/BiomedicalMachineLearning/Spacell"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:18:31.523680",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/Spacell",
+            "source_url": "https://github.com/BiomedicalMachineLearning/Spacell"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/spacell/undefined/None",
+        "created_at": "2025-04-02T12:48:23.345755",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Integrating tissue morphology and spatial gene expression to predict disease cells.\n\nSpaCell has been developed for analysing spatial transcriptomics (ST) data, which include imaging data of tissue sections and RNA expression data across the tissue sections. The ST data add a novel spatial dimension to the traditional gene expression data from dissociated cells. SpaCell is desinged to integrates the two histopathological imaging and sequencing fields, with the ultimate aim to discover novel biology and to improve histopathological diagnosis in a quantitative and automated way."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SpaCell"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "spacell",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene prediction",
+              "uri": "http://edamontology.org/operation_2454",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c832f610e2f3aa0b3bb60b"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/BiomedicalMachineLearning/Spacell.git"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Imaging",
+              "uri": "http://edamontology.org/topic_3382",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/BiomedicalMachineLearning/SpaCell"
+          ]
+        },
+        "id": "biotools/spacell/undefined/None",
+        "last_updated_at": "2026-03-19T01:47:10.805937",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/spacell/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:spacell_biotools/spacell/undefined/None,github/Spacell/None/None",
+  "conflict_name": "spacell/*",
+  "date": "2026-03-25T20:25:17.210468+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
