@@ -1,0 +1,355 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/vvv2_display/cmd/0.1.10",
+        "created_at": "2025-04-02T11:53:49.349269",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "pip",
+            "python >=3.9",
+            "r-ggplot2 >=3.3.6",
+            "pysam >=0.19.1",
+            "numpy >=1.23.3"
+          ],
+          "description": [
+            "Creates png image file with all [vardict] variants proportions along genome/assembly with annotations from [vadr]."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/vvv2_display/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/vvv2_display/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/ANSES-Ploufragan/vvv2_display/archive/refs/tags/0.1.10.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "vvv2_display"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "vvv2_display",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/ANSES_Ploufragan/vvv2_display"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/ANSES-Ploufragan/vvv2_display/archive/refs/tags/0.1.10.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "0.1.10"
+          ],
+          "webpage": [
+            "https://github.com/ANSES_Ploufragan/vvv2_display/"
+          ]
+        },
+        "id": "bioconda_recipes/vvv2_display/cmd/0.1.10",
+        "last_updated_at": "2026-03-18T23:54:42.121503",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/vvv2_display/cmd/0.1.10",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/vvv2_display/cmd/0.1.10,toolshed/vvv2_display/cmd/0.1.10,github/vvv2_display/None/0.2.3.3,biotools/vvv2_display/cmd/0.2.5.0,galaxy_metadata/vvv2_display/cmd/0.2.3.5,github/vvv2_display/None/0.2.5.0",
+        "data": {
+          "authors": [
+            {
+              "email": "43985838+FTouzain@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Fabrice Touzain",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://github.com/ANSES-Ploufragan/vvv2_display"
+            },
+            {
+              "email": "fabrice.touzain@anses.fr",
+              "maintainer": false,
+              "name": "f.touzain",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "fabrice.touzain@anses.fr",
+              "maintainer": false,
+              "name": "FTouzain",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Create png file of variants proportions in an assembly/reference including CDS positions using output of vadr 1.5.1 (annotation) and vardict-java 1.8.3 (variant calling).",
+            "Display SNP proportions (vardict outputs), CDS (vadr annotations) of an assembly/genome, coverage depth (samtools depth), in png image and a tsv file, filtering results to summarize analyses (alignment, variant calling, annotation)."
+          ],
+          "documentation": [
+            {
+              "content": "\n[vvv2_display.py]\nAim: Display of SNP proportions, annotations, for an assembly\nin:\n- vardict variant calling output\n- vadr assembly annotations\nout:\n- png file (image of SNP proportion alongside the assembly with CDS positions)\n- txt file with variant calling summary, location in CDS and surround DNA sequence.\n\nusage: vvv2_display.py [-h] [-p FILE] [-f FILE] [-s FILE] [-n FILE] [-r FILE]\n\noptional arguments:\n  -h, --help            show this help message and exit\n  -p FILE, --pass_tbl_f FILE\n                        in: tabular file of vadr annotations, with pass status\n  -f FILE, --fail_tbl_f FILE\n                        in: tabular file of vadr annotations, with fail status\n  -s FILE, --seq_stat_f FILE\n                        in: seq stat file of vadr annotator\n  -n FILE, --vcf_f FILE\n                        in: vcf variant file provided by vardict\n  -r FILE, --png_var_f FILE\n                        out: png file with variant proportions and annotations\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ANSES-Ploufragan/vvv2_display/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Feature table",
+                "uri": "http://edamontology.org/data_1270",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence variations",
+                "uri": "http://edamontology.org/data_3498",
+                "vocabulary": "EDAM"
+              },
+              "term": "VCF",
+              "uri": "http://edamontology.org/format_3016",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "vvv2_display: Display SNP proportions and CDS of an assembly in png image",
+            "vvv2_display"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "vvv2_display",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Base position variability plotting",
+              "uri": "http://edamontology.org/operation_0287",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly visualisation",
+              "uri": "http://edamontology.org/operation_3184",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Image",
+                "uri": "http://edamontology.org/data_2968",
+                "vocabulary": "EDAM"
+              },
+              "term": "PNG",
+              "uri": "http://edamontology.org/format_3603",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Annotated text",
+                "uri": "http://edamontology.org/data_3779",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence variations",
+                "uri": "http://edamontology.org/data_3498",
+                "vocabulary": "EDAM"
+              },
+              "term": "VCF",
+              "uri": "http://edamontology.org/format_3016",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67e6c2fc4737f0977933722a",
+            "699c6e0b4393fdfaf890c3d4"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/ANSES-Ploufragan/vvv2_display"
+            }
+          ],
+          "source": [
+            "github",
+            "galaxy_metadata",
+            "toolshed",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "annotation",
+              "uri": "https://github.com/topics/annotation",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "display",
+              "uri": "https://github.com/topics/display",
+              "vocabulary": ""
+            },
+            {
+              "term": "variant-calling",
+              "uri": "https://github.com/topics/variant-calling",
+              "vocabulary": ""
+            },
+            {
+              "term": "virus",
+              "uri": "https://github.com/topics/virus",
+              "vocabulary": ""
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Virology",
+              "uri": "http://edamontology.org/topic_0781",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.1.4-beta",
+            "0.2.3.7",
+            "0.2.3.9",
+            "0.2.3.8",
+            "0.2.3.2",
+            "0.2.3.3",
+            "0.2.0",
+            "0.2.3.1",
+            "0.1.2-alpha",
+            "0.1.9-beta",
+            "0.1.10",
+            "0.2.1",
+            "0.1.6-beta",
+            "0.1.8-beta",
+            "0.2.3.6",
+            "0.2.2",
+            "0.2.5.0",
+            "0.1.3-beta",
+            "v0.1.1-alpha",
+            "0.2.4.0",
+            "0.1.5-beta",
+            "0.2.3.4",
+            "0.1.7-beta",
+            "0.2.3.5"
+          ],
+          "webpage": [
+            "https://github.com/ANSES-Ploufragan/vvv2_display"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:vvv2_display_bioconda_recipes/vvv2_display/cmd/0.1.10,biotools/vvv2_display/cmd/0.2.5.0,galaxy_metadata/vvv2_display/cmd/0.1.10,galaxy_metadata/vvv2_display/cmd/0.2.3.5,github/vvv2_display/None/0.2.3.3,github/vvv2_display/None/0.2.5.0,toolshed/vvv2_display/cmd/0.1.10",
+  "conflict_name": "vvv2_display/*",
+  "date": "2026-03-25T21:49:48.590130+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
