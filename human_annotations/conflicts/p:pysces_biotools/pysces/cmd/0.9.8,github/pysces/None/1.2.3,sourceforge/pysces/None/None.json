@@ -1,0 +1,354 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/pysces/None/None",
+        "created_at": "2025-04-02T15:44:32.472681",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "PySCeS is the Python Simulator of Cellular Systems. For a network of coupled reactions it does a stoichiometric matrix analysis, calculates the time course and steady state, and does a complete control analysis."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/pysces"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pysces"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "pysces",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/pysces"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://pysces.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/pysces/None/None",
+        "last_updated_at": "2026-03-19T03:39:46.082117",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/pysces//",
+            "source_url": "https://sourceforge.net/projects/pysces"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/pysces/None/1.2.3,biotools/pysces/cmd/0.9.8",
+        "data": {
+          "authors": [
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Brett Olivier",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Johann Rohwer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "b.g.olivier@vu.nl",
+              "maintainer": false,
+              "name": "Brett G. Olivier",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://research.vu.nl/en/persons/bg-olivier"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Johann M Rohwer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "J.-H.S.H Hofmeyr",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The official PySCeS project source code repository.",
+            "The Python Simulator for Cellular Systems (PySCeS) is a A flexible, user friendly tool for the analysis of cellular systems. \n\nComputer modelling has become an integral tool in the analysis and understanding of the reaction networks that underlie cellular processes. PySCeS, first released in 2003, is an extremely flexible, user-extendible, open source, software actively used and developed by a community of researchers and developers."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/PySCeS/pysces/blob/main/ADDITIONAL_LICENCES.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/PySCeS/pysces/blob/main/CHANGES.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/PySCeS/pysces/blob/main/CONTRIBUTORS.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/PySCeS/pysces/blob/main/DESCRIPTION.md"
+            },
+            {
+              "content": null,
+              "type": "installation",
+              "url": "https://github.com/PySCeS/pysces/blob/main/INSTALL.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/PySCeS/pysces/blob/main/LATEST.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/PySCeS/pysces/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/PySCeS/pysces/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/PySCeS/pysces/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "http://pysces.sourceforge.net/docs/userguide.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://pysces.sourceforge.net/docs/userguide.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Kinetic model",
+                "uri": "http://edamontology.org/data_3241",
+                "vocabulary": "EDAM"
+              },
+              "term": "SBML",
+              "uri": "http://edamontology.org/format_2585",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "pysces",
+            "PySCeS",
+            "The Python Simulator for Cellular Systems: PySCeS"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "pysces",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Metabolic network modelling",
+              "uri": "http://edamontology.org/operation_3660",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Simulation",
+                "uri": "http://edamontology.org/data_3869",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "67c82c8810e2f3aa0b3b9785"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/PySCeS/pysces"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "kinetic-modeling",
+              "uri": "https://github.com/topics/kinetic-modeling",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "simulation",
+              "uri": "https://github.com/topics/simulation",
+              "vocabulary": ""
+            },
+            {
+              "term": "mca",
+              "uri": "https://github.com/topics/mca",
+              "vocabulary": ""
+            },
+            {
+              "term": "sbml",
+              "uri": "https://github.com/topics/sbml",
+              "vocabulary": ""
+            },
+            {
+              "term": "console-application",
+              "uri": "https://github.com/topics/console-application",
+              "vocabulary": ""
+            },
+            {
+              "term": "steady-state",
+              "uri": "https://github.com/topics/steady-state",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "Systems biology",
+              "uri": "http://edamontology.org/topic_2259",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0.1",
+            "1.2.3",
+            "0.9.8",
+            "1.2.2",
+            "0.9.7",
+            "0.9.5",
+            "1.0.0",
+            "0.9.3",
+            "1.1.1",
+            "1.0.3",
+            "1.0.2",
+            "0.9.6",
+            "1.2.0",
+            "1.1.0",
+            "1.2.1"
+          ],
+          "webpage": [
+            "https://pysces.github.io/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pysces_biotools/pysces/cmd/0.9.8,github/pysces/None/1.2.3,sourceforge/pysces/None/None",
+  "conflict_name": "pysces/*",
+  "date": "2026-03-25T21:18:09.267352+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
