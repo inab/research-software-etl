@@ -1,0 +1,442 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/R2DT/None/v2.2",
+        "created_at": "2026-03-25T15:21:08.736935",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "anton.i.petrov@gmail.com",
+              "maintainer": false,
+              "name": "Anton Petrov",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49699333+dependabot[bot]@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dependabot[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Visualise RNA secondary structure in consistent, reproducible and recognisable layouts."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/AGENTS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/Readme.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/about.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/annotations.md"
+            },
+            {
+              "content": null,
+              "type": "api",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/api.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/blog.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/covariation.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/docker.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/docs.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/editors.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/github-actions.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/installation.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/pdb.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/releases.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/stockholm-alignments.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/team.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/templates.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/testing.md"
+            },
+            {
+              "content": null,
+              "type": "usage",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/usage.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/viral-genomes.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/widget.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/rnacentral/R2DT/blob/main/docs/xrna-react-user-guide.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "R2DT"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache License 2.0",
+              "url": "http://choosealicense.com/licenses/apache-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "R2DT",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/r2dt-bio/R2DT"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "rna",
+              "uri": "https://github.com/topics/rna",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "python3",
+              "uri": "https://github.com/topics/python3",
+              "vocabulary": ""
+            },
+            {
+              "term": "rna-secondary-structure",
+              "uri": "https://github.com/topics/rna-secondary-structure",
+              "vocabulary": ""
+            },
+            {
+              "term": "visualisation",
+              "uri": "https://github.com/topics/visualisation",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "v2.2",
+            "v2.1",
+            "v2.0",
+            "v2.0-alpha",
+            "v1.4",
+            "v1.3",
+            "v1.2",
+            "v1.1",
+            "v1.0"
+          ],
+          "webpage": [
+            "https://r2dt.bio/"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:21:08.736935",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/R2DT",
+            "source_url": "https://github.com/rnacentral/R2DT"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/r2dt/undefined/None,github/r2dt-web/None/v1.0.3",
+        "data": {
+          "authors": [
+            {
+              "email": "apetrov@ebi.ac.uk",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "isaacjandalala@gmail.com",
+              "maintainer": false,
+              "name": "Isaac Jandalala",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "muston@ebi.ac.uk",
+              "maintainer": false,
+              "name": "pmustonebi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "caduribas@gmail.com",
+              "maintainer": false,
+              "name": "caduribas",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Web component for visualising RNA secondary structure in standard orientations.",
+            "Computational framework for template-based RNA secondary structure visualisation across non-coding RNA types.\n\nThe R2DT software (RNA 2D Templates) automatically generates RNA secondary structure in standard layouts using templates from the following sources:.\n\nThis is an embeddable component that you can include into your website to visualise RNA secondary structures.\n\nVisualise RNA secondary structure in standard orientations.\n\nVisualise RNA secondary structure using standard layouts.\n\nVisualise RNA secondary structure in standard orientations using RNA 2D Templates (R2DT)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/RNAcentral/r2dt-web/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "R2DT",
+            "r2dt-web"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": null
+            },
+            {
+              "name": "Apache License 2.0",
+              "url": "http://choosealicense.com/licenses/apache-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "r2dt",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Structure visualisation",
+              "uri": "http://edamontology.org/operation_0570",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA secondary structure alignment",
+              "uri": "http://edamontology.org/operation_0502",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA structure covariance model generation",
+              "uri": "http://edamontology.org/operation_3469",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA secondary structure prediction",
+              "uri": "http://edamontology.org/operation_0278",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein modelling",
+              "uri": "http://edamontology.org/operation_0477",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "r2dt-web"
+          ],
+          "output": [],
+          "publication": [
+            "67c8328410e2f3aa0b3bb1c9"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/rnacentral/R2DT"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/RNAcentral/r2dt-web"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Nucleic acid structure analysis",
+              "uri": "http://edamontology.org/topic_0097",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Imaging",
+              "uri": "http://edamontology.org/topic_3382",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure prediction",
+              "uri": "http://edamontology.org/topic_0082",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "undefined"
+          ],
+          "version": [
+            "v1.0.3",
+            "v1.0.2",
+            "None"
+          ],
+          "webpage": [
+            "https://rnacentral.org/r2dt",
+            "https://rnacentral.github.io/r2dt-web/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:r2dt_biotools/r2dt/undefined/None,github/R2DT/None/v2.2,github/r2dt-web/None/v1.0.3",
+  "conflict_name": "r2dt/*",
+  "date": "2026-03-25T20:12:16.235931+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
