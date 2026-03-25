@@ -1,0 +1,888 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/tabix/cmd/None",
+        "created_at": "2025-04-02T12:59:27.320366",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Heng Li",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Tabix indexes a TAB-delimited genome position file in.tab.bgz and creates an index file (in.tab.bgz.tbi or in.tab.bgz.csi) when region is absent from the command-line. The input data file must be position sorted and compressed by bgzip which has a gzip(1) like interface.\n\nAfter indexing, tabix is able to quickly retrieve data lines overlapping regions specified in the format \"chr:beginPos-endPos\". (Coordinates specified in this region format are 1-based and inclusive.)\n\nFast data retrieval also works over network if URI is given as a file name and in this case the index file will be downloaded if it is not present locally.\n\nThe tabix (.tbi) and BAI index formats can handle individual chromosomes up to 512 Mbp (2^29 bases) in length. If your input file might contain data lines with begin or end positions greater than that, you will need to use a CSI index."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "URI",
+                "uri": "http://edamontology.org/data_1047",
+                "vocabulary": "EDAM"
+              },
+              "term": "tabix",
+              "uri": "http://edamontology.org/format_3616",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "URI",
+                "uri": "http://edamontology.org/data_1047",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAI",
+              "uri": "http://edamontology.org/format_3327",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "URI",
+                "uri": "http://edamontology.org/data_1047",
+                "vocabulary": "EDAM"
+              },
+              "term": "bgzip",
+              "uri": "http://edamontology.org/format_3615",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "URI",
+                "uri": "http://edamontology.org/data_1047",
+                "vocabulary": "EDAM"
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "tabix"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "tabix",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Data handling",
+              "uri": "http://edamontology.org/operation_2409",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data retrieval",
+              "uri": "http://edamontology.org/operation_2422",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sorting",
+              "uri": "http://edamontology.org/operation_3802",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.htslib.org/doc/tabix.html"
+          ]
+        },
+        "id": "biotools/tabix/cmd/None",
+        "last_updated_at": "2026-03-19T02:20:12.315771",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/tabix/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/discasm/cmd/0.0.1,bioconda_recipes/discasm/cmd/0.1.3,toolshed/discasm/cmd/0.0.1,github/DISCASM/None/DISCASM-v0.1.3,bioconda_recipes/r-pophelper/cmd/2.3.1,github/pophelper/None/v2.3.1,bioconda_recipes/tabix/cmd/1.11,bioconda_recipes/htslib/cmd/1.19.1,galaxy_metadata/tabix/cmd/0.0.1,bioconda_recipes/htslib/cmd/1.1,bioconda_recipes/htslib/cmd/1.3.1,biotools/htslib/lib/1.11,biotools/htslib/lib/1.0,biotools/htslib/lib/1.1,biotools/htslib/lib/1.2,biotools/htslib/lib/1.2.1,biotools/htslib/lib/1.3,biotools/htslib/lib/1.3.1,biotools/htslib/lib/1.3.2,biotools/htslib/lib/1.4,biotools/htslib/lib/1.4.1,biotools/htslib/lib/1.5,biotools/htslib/lib/1.6,biotools/htslib/lib/1.7,biotools/htslib/lib/1.8,biotools/htslib/lib/1.9,biotools/htslib/lib/1.10,biotools/htslib/lib/1.10.1,biotools/htslib/lib/1.10.2,biotools/htslib/lib/1.12,biotools/htslib/lib/1.13,biotools/htslib/lib/1.14,biotools/htslib/lib/1.15,biotools/htslib/lib/1.15.1,biotools/htslib/lib/1.16,biotools/htslib/lib/1.17,biotools/htslib/lib/1.18,biotools/htslib/lib/1.19,toolshed/tabix/cmd/0.0.1,github/htslib/None/1.21,biotools/htslib/lib/1.20,biotools/htslib/lib/1.21,biotools/htslib/lib/1.22,biotools/htslib/lib/1.22.1,biotools/htslib/lib/1.23,bioconda_recipes/htslib/cmd/1.10,bioconda_recipes/htslib/cmd/1.23,github/htslib/None/1.23.1",
+        "data": {
+          "authors": [
+            {
+              "email": "brianjohnhaas@gmail.com",
+              "maintainer": false,
+              "name": "Brian Haas",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tstrnity@gmail.com",
+              "maintainer": false,
+              "name": "tstrnity",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "royfrancis@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Roy Francis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "roy.m.francis@outlook.com",
+              "maintainer": false,
+              "name": "royfrancis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "samtools@sanger.ac.uk",
+              "maintainer": false,
+              "name": "Wellcome Sanger Institute",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://www.sanger.ac.uk/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Samtools Help mailing list",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://lists.sourceforge.net/lists/listinfo/samtools-help"
+            },
+            {
+              "email": "ywang@mcw.edu",
+              "maintainer": false,
+              "name": "Yu Wang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vasudeva.sarma@sanger.ac.uk",
+              "maintainer": false,
+              "name": "vasudeva8",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jkb@sanger.ac.uk",
+              "maintainer": false,
+              "name": "James Bonfield",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "pd3@sanger.ac.uk",
+              "maintainer": false,
+              "name": "pd3",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "julian.perez@sund.ku.dk",
+              "maintainer": false,
+              "name": "Julian Regalado",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "teo@tsirpanis.gr",
+              "maintainer": false,
+              "name": "Theodore Tsirpanis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "rmd+git@sanger.ac.uk",
+              "maintainer": false,
+              "name": "daviesrob",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "brad@comstyle.com",
+              "maintainer": false,
+              "name": "Brad Smith",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jmarshall@hey.com",
+              "maintainer": false,
+              "name": "John Marshall",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "whitwham@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Andrew Whitwham",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "r.h.p.vorderman@lumc.nl",
+              "maintainer": false,
+              "name": "Ruben Vorderman",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mp15@sanger.ac.uk",
+              "maintainer": false,
+              "name": "Martin Pollard",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "rmd+git@sanger.ac.uk",
+              "maintainer": false,
+              "name": "Rob Davies",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "giles@broadinstitute.org",
+              "maintainer": false,
+              "name": "Giles Hall",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jackturpitt@gmail.com",
+              "maintainer": false,
+              "name": "Jack Turpitt",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "rmd@sanger.ac.uk",
+              "maintainer": false,
+              "name": "Robert Davies",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "chris.wright@nanoporetech.com",
+              "maintainer": false,
+              "name": "Chris Wright",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-gtable",
+            "curl",
+            "trinity >=2.4",
+            "perl",
+            "r-base",
+            "pysam >=0.10.0",
+            "r-cairo",
+            "r-gridextra",
+            "python <3",
+            "htslib >=1.9",
+            "openssl",
+            "r-tidyr",
+            "zlib",
+            "r-ggplot2",
+            "oases >=0.2",
+            "star >=2.4",
+            "r-label.switching"
+          ],
+          "description": [
+            "Source code.",
+            "DISCASM.",
+            "Generic indexer for TAB-delimited genome position files.",
+            "The main purpose of HTSlib is to provide access to genomic information files, both alignment data (SAM, BAM, and CRAM formats) and variant data (VCF and BCF formats). The library also provides interfaces to access and index genome reference data in FASTA format and tab-delimited files with genomic coordinates. It is utilized and incorporated into both SAMtools and BCFtools.",
+            "C library for high-throughput sequencing data formats.",
+            "DISCASM aims to extract reads that map to reference genomes in a discordant fashion and optionally include reads that do not map to the genome at all, and perform a de novo transcriptome assembly of these reads. DISCASM relies on the output from STAR (as run via STAR-Fusion), and supports de novo transcriptome assembly using Trinity or Oases. - https://github.com/DISCASM/DISCASM/wiki.",
+            "C library and command line tools for high-throughput sequencing data formats.",
+            "A set of useful functions for processing admixture proportion files from the population structure analysis softwares STRUCTURE, TESS, ADMIXTURE, BAPS, fastSTRUCTURE etc. The package contains functions to read runs, tabulate runs, summarise runs, plot runs, estimate K using Evanno method, export clumpp files, export distruct files and generate barplots.",
+            "An R package to analyse and visualise admixture proportions from STRUCTURE, fastSTRUCTURE, TESS, ADMIXTURE etc."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/discasm/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/discasm/README.html"
+            },
+            {
+              "content": "\n**What it does:** \n\nTabix indexes a TAB-delimited genome position file in.tab.bgz and creates an index file in.tab.bgz.tbi when region is absent from the command-line. The input data file must be position sorted and compressed by bgzip which has a gzip(1) like interface. After indexing, tabix is able to quickly retrieve data lines overlapping regions specified in the format \"chr:beginPos-endPos\". Fast data retrieval also works over network if URI is given as a file name and in this case the index file will be downloaded if it is not present locally.\n\n**Citation:**\n\nTabix was written by Heng Li. The BGZF library was originally implemented by Bob Handsaker and modified by Heng Li for remote file access and in-memory caching.\n\nhttp://samtools.sourceforge.net/tabix.shtml\n\n**Example:**\n\n(grep ^\"#\" in.gff; grep -v ^\"#\" in.gff | sort -k1,1 -k4,4n) | bgzip > sorted.gff.gz;\n\ntabix -p gff sorted.gff.gz;\n\ntabix sorted.gff.gz chr1:10,000,000-20,000,000;\n\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/DISCASM/DISCASM/blob/main/Changelog.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/DISCASM/DISCASM/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/r-pophelper/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/r-pophelper/README.html"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/royfrancis/pophelper/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/royfrancis/pophelper/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/royfrancis/pophelper/blob/main/index.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/tabix/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/tabix/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/htslib/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/htslib/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/samtools/htslib"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://www.htslib.org/doc/#manual-pages"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/samtools/htslib/blob/main/README.large_positions.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/samtools/htslib/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/DISCASM/DISCASM/archive/DISCASM-v0.1.3.tar.gz",
+            "https://github.com/samtools/htslib/releases/download/1.10/htslib-1.10.tar.bz2",
+            "https://github.com/samtools/htslib/releases/download/1.3.1/htslib-1.3.1.tar.bz2",
+            "https://github.com/samtools/htslib/archive/1.1.tar.gz",
+            "https://github.com/samtools/htslib/releases/download/1.19.1/htslib-1.19.1.tar.bz2",
+            "https://github.com/samtools/htslib/releases/download/1.23/htslib-1.23.tar.bz2",
+            "https://github.com/royfrancis/pophelper/archive/refs/tags/v2.3.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "SAM",
+              "uri": "http://edamontology.org/format_2573",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "CRAM",
+              "uri": "http://edamontology.org/format_3462",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ",
+              "uri": "http://edamontology.org/format_1930",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence variations",
+                "uri": "http://edamontology.org/data_3498",
+                "vocabulary": "EDAM"
+              },
+              "term": "VCF",
+              "uri": "http://edamontology.org/format_3016",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence variations",
+                "uri": "http://edamontology.org/data_3498",
+                "vocabulary": "EDAM"
+              },
+              "term": "BCF",
+              "uri": "http://edamontology.org/format_3020",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "tabix",
+            "htslib",
+            "r-pophelper",
+            "HTSlib",
+            "discasm",
+            "pophelper",
+            "DISCASM"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause",
+              "url": null
+            },
+            {
+              "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+              "url": "http://choosealicense.com/licenses/bsd-3-clause/"
+            },
+            {
+              "name": "GPL-3",
+              "url": null
+            },
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "discasm",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Data handling",
+              "uri": "http://edamontology.org/operation_2409",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "tabix",
+            "htslib",
+            "r-pophelper",
+            "pophelper",
+            "DISCASM"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "SAM",
+              "uri": "http://edamontology.org/format_2573",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "CRAM",
+              "uri": "http://edamontology.org/format_3462",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ",
+              "uri": "http://edamontology.org/format_1930",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence variations",
+                "uri": "http://edamontology.org/data_3498",
+                "vocabulary": "EDAM"
+              },
+              "term": "VCF",
+              "uri": "http://edamontology.org/format_3016",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence variations",
+                "uri": "http://edamontology.org/data_3498",
+                "vocabulary": "EDAM"
+              },
+              "term": "BCF",
+              "uri": "http://edamontology.org/format_3020",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c82d7910e2f3aa0b3b9dd9"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/DISCASM/DISCASM"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/royfrancis/pophelper"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/samtools/htslib"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "toolshed",
+            "github",
+            "galaxy_metadata",
+            "biotools"
+          ],
+          "source_code": [
+            "https://github.com/DISCASM/DISCASM/archive/DISCASM-v0.1.3.tar.gz",
+            "https://github.com/samtools/htslib/releases/download/1.10/htslib-1.10.tar.bz2",
+            "https://github.com/samtools/htslib/releases/download/1.3.1/htslib-1.3.1.tar.bz2",
+            "https://github.com/samtools/htslib/archive/1.1.tar.gz",
+            "https://github.com/samtools/htslib/releases/download/1.19.1/htslib-1.19.1.tar.bz2",
+            "https://github.com/samtools/htslib/releases/download/1.23/htslib-1.23.tar.bz2",
+            "https://github.com/royfrancis/pophelper/archive/refs/tags/v2.3.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "population-genetics",
+              "uri": "https://github.com/topics/population-genetics",
+              "vocabulary": ""
+            },
+            {
+              "term": "r",
+              "uri": "https://github.com/topics/r",
+              "vocabulary": ""
+            },
+            {
+              "term": "population-structure",
+              "uri": "https://github.com/topics/population-structure",
+              "vocabulary": ""
+            },
+            {
+              "term": "admixture",
+              "uri": "https://github.com/topics/admixture",
+              "vocabulary": ""
+            },
+            {
+              "term": "faststructure",
+              "uri": "https://github.com/topics/faststructure",
+              "vocabulary": ""
+            },
+            {
+              "term": "clumpp",
+              "uri": "https://github.com/topics/clumpp",
+              "vocabulary": ""
+            },
+            {
+              "term": "distruct",
+              "uri": "https://github.com/topics/distruct",
+              "vocabulary": ""
+            },
+            {
+              "term": "Biological databases",
+              "uri": "http://edamontology.org/topic_3071",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "htslib",
+              "uri": "https://github.com/topics/htslib",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "sam",
+              "uri": "https://github.com/topics/sam",
+              "vocabulary": ""
+            },
+            {
+              "term": "bam",
+              "uri": "https://github.com/topics/bam",
+              "vocabulary": ""
+            },
+            {
+              "term": "cram",
+              "uri": "https://github.com/topics/cram",
+              "vocabulary": ""
+            },
+            {
+              "term": "vcf",
+              "uri": "https://github.com/topics/vcf",
+              "vocabulary": ""
+            },
+            {
+              "term": "bcf",
+              "uri": "https://github.com/topics/bcf",
+              "vocabulary": ""
+            },
+            {
+              "term": "ngs",
+              "uri": "https://github.com/topics/ngs",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "0.0.1",
+            "1.3",
+            "v2.3.0",
+            "v2.2.2",
+            "1.14",
+            "v2.2.6",
+            "1.19.1",
+            "1.20",
+            "1.1",
+            "v2.2.7.1",
+            "v2.3.1",
+            "1.9",
+            "1.10",
+            "1.15.1",
+            "1.23",
+            "1.13",
+            "v2.2.3",
+            "1.16",
+            "1.8",
+            "v2.0.0",
+            "1.10.2",
+            "1.17",
+            "1.18",
+            "1.3.1",
+            "v2.2.5",
+            "DISCASM-v0.1.3",
+            "2.3.1",
+            "1.22.1",
+            "1.7",
+            "1.21",
+            "v2.2.4",
+            "0.1.3",
+            "1.15",
+            "v0.0.1",
+            "1.4.1",
+            "1.12",
+            "1.3.2",
+            "v0.1.1",
+            "1.19",
+            "v2.2.5.1",
+            "v0.1.0",
+            "1.4",
+            "v2.2.8",
+            "v1.2.0",
+            "1.2",
+            "1.22.2",
+            "v2.2.7",
+            "v2.2.9",
+            "1.22",
+            "1.21.1",
+            "v2.2.8.1",
+            "1.2.1",
+            "DISCASM-v0.1.2",
+            "1.10.1",
+            "v2.2.1",
+            "1.11",
+            "v2.1.0",
+            "1.5",
+            "v2.2.0",
+            "1.0",
+            "1.23.1",
+            "1.6"
+          ],
+          "webpage": [
+            "https://github.com/royfrancis/pophelper",
+            "https://github.com/DISCASM/DISCASM",
+            "http://www.htslib.org/",
+            "https://github.com/samtools/htslib",
+            "http://royfrancis.github.io/pophelper/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:aidd_bioconda_recipes/discasm/cmd/0.1.3,bioconda_recipes/htslib/cmd/1.1,bioconda_recipes/htslib/cmd/1.10,bioconda_recipes/htslib/cmd/1.19.1,bioconda_recipes/htslib/cmd/1.23,bioconda_recipes/htslib/cmd/1.3.1,bioconda_recipes/r-pophelper/cmd/2.3.1,bioconda_recipes/tabix/cmd/1.11,biotools/htslib/lib/1.0,biotools/htslib/lib/1.1,biotools/htslib/lib/1.10,biotools/htslib/lib/1.10.1,biotools/htslib/lib/1.10.2,biotools/htslib/lib/1.11,biotools/htslib/lib/1.12,biotools/htslib/lib/1.13,biotools/htslib/lib/1.14,biotools/htslib/lib/1.15,biotools/htslib/lib/1.15.1,biotools/htslib/lib/1.16,biotools/htslib/lib/1.17,biotools/htslib/lib/1.18,biotools/htslib/lib/1.19,biotools/htslib/lib/1.2,biotools/htslib/lib/1.2.1,biotools/htslib/lib/1.20,biotools/htslib/lib/1.21,biotools/htslib/lib/1.22,biotools/htslib/lib/1.22.1,biotools/htslib/lib/1.23,biotools/htslib/lib/1.3,biotools/htslib/lib/1.3.1,biotools/htslib/lib/1.3.2,biotools/htslib/lib/1.4,biotools/htslib/lib/1.4.1,biotools/htslib/lib/1.5,biotools/htslib/lib/1.6,biotools/htslib/lib/1.7,biotools/htslib/lib/1.8,biotools/htslib/lib/1.9,biotools/tabix/cmd/None,galaxy_metadata/discasm/cmd/0.0.1,galaxy_metadata/tabix/cmd/0.0.1,github/DISCASM/None/DISCASM-v0.1.3,github/htslib/None/1.21,github/htslib/None/1.23.1,github/pophelper/None/v2.3.1,toolshed/discasm/cmd/0.0.1,toolshed/tabix/cmd/0.0.1",
+  "conflict_name": "aidd/*",
+  "date": "2026-03-25T18:43:40.010469+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
