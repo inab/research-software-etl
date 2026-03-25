@@ -1,0 +1,229 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/konezumi-aid/undefined/None",
+        "created_at": "2026-02-23T16:08:42.104712",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "KOnezumi-AID is a command-line tool designed for gRNA design in Target-AID mediated genome editing, facilitating the creation of multiplex knockouts by inducing premature termination codons or exon skipping. It supports both mouse and human genomes and offers batch processing capabilities."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "KOnezumi-AID"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "konezumi-aid",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "699c6d7a4393fdfaf890be43"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genetic engineering",
+              "uri": "http://edamontology.org/topic_3912",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pypi.org/project/KOnezumiAID/"
+          ]
+        },
+        "id": "biotools/konezumi-aid/undefined/None",
+        "last_updated_at": "2026-03-19T02:29:30.983573",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/konezumi-aid/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/konezumiaid/lib/0.3.6.1,github/KOnezumi-AID/None/v0.3.6.1",
+        "data": {
+          "authors": [
+            {
+              "email": "140215747+aki2274@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Taki Taito",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "akikuno@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Akihiro Kuno",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "s2110307@s.tsukuba.ac.jp",
+              "maintainer": false,
+              "name": "aki2274",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "regex",
+            "bedtools",
+            "numpy >=1.26.0",
+            "python >=3.9.0,<4.0.0",
+            "pandas >=2.2.2",
+            "bowtie",
+            "primer3-py >=2.0.1,<3.0.0"
+          ],
+          "description": [
+            "This is used for automatically designing gRNAs for genome editing by Target-AID."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/konezumiaid/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/konezumiaid/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/aki2274/KOnezumi-AID/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/K/KOnezumiAID/konezumiaid-0.3.6.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "KOnezumi-AID",
+            "konezumiaid"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "konezumiaid",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "KOnezumi-AID"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/aki2274/KOnezumi-AID"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/K/KOnezumiAID/konezumiaid-0.3.6.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "0.3.6.1",
+            "v.0.2.2",
+            "v0.3.6.1",
+            "v0.3.5"
+          ],
+          "webpage": [
+            "https://github.com/aki2274/KOnezumi-AID"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:konezumiaid_bioconda_recipes/konezumiaid/lib/0.3.6.1,biotools/konezumi-aid/undefined/None,github/KOnezumi-AID/None/v0.3.6.1",
+  "conflict_name": "konezumiaid/*",
+  "date": "2026-03-25T21:35:26.662074+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
