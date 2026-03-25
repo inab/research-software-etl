@@ -1,0 +1,355 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/readfish/None/v2024.3.0",
+        "created_at": "2026-03-25T15:18:21.867549",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Alexander Payne",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Nadine Holmes",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Thomas Clarke",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Rory Munro",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Bisrat Debebe",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Matthew Loose",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "CLI tool for flexible and fast adaptive sampling on ONT sequencers."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/LooseLab/readfish/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "faq",
+              "url": "https://github.com/LooseLab/readfish/blob/main/docs/FAQ.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/LooseLab/readfish/blob/main/docs/basecalling-params.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/LooseLab/readfish/blob/main/docs/changelog.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/LooseLab/readfish/blob/main/docs/developers-guide.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/LooseLab/readfish/blob/main/docs/getting-started.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/LooseLab/readfish/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/LooseLab/readfish/blob/main/docs/post-analysis.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/LooseLab/readfish/blob/main/docs/toml.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "readfish",
+            "Readfish enables targeted nanopore sequencing of gigabase-sized genomes"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "readfish",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/LooseLab/readfish"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "adaptive-sampling",
+              "uri": "https://github.com/topics/adaptive-sampling",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "ont",
+              "uri": "https://github.com/topics/ont",
+              "vocabulary": ""
+            },
+            {
+              "term": "oxford-nanopore",
+              "uri": "https://github.com/topics/oxford-nanopore",
+              "vocabulary": ""
+            },
+            {
+              "term": "sequencing",
+              "uri": "https://github.com/topics/sequencing",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "v2024.3.0",
+            "2024.2.0",
+            "2024.1.0",
+            "2023.1.1",
+            "2023.1.0",
+            "BossRuns/V0.0.2",
+            "BossRuns/V0.0.1",
+            "NBT/paper-release"
+          ],
+          "webpage": [
+            "https://looselab.github.io/readfish/"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:18:21.867549",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/readfish",
+            "source_url": "http://www.github.com/LooseLab/readfish"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/readfish/undefined/None",
+        "created_at": "2025-04-02T12:58:23.366416",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Matthew Loose",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Readfish enables targeted nanopore sequencing of gigabase-sized genomes."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "readfish"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "readfish",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Base-calling",
+              "uri": "http://edamontology.org/operation_3185",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8327d10e2f3aa0b3bb194"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "http://www.github.com/LooseLab/readfish"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://www.github.com/looselab/readfish"
+          ]
+        },
+        "id": "biotools/readfish/undefined/None",
+        "last_updated_at": "2026-03-19T02:16:18.025302",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/readfish/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:readfish_biotools/readfish/undefined/None,github/readfish/None/v2024.3.0",
+  "conflict_name": "readfish/*",
+  "date": "2026-03-25T20:46:48.912645+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
