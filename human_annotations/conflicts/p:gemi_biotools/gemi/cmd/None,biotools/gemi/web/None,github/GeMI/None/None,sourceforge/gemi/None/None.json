@@ -1,0 +1,279 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/gemi/None/None",
+        "created_at": "2025-04-02T15:43:25.506303",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Please, do not hesitate to contact us if you need help.\nhttps://sites.google.com/view/hsa23/\n\nGemi, an automated, fast, and easy-to-use bioinformatics tool with a user-friendly interface to design primers and probes for polymerase chain reaction (PCR). Gemi accepts multiple aligned and long DNA and RNA sequences with degenerate nucleotide (non-A/C/G/T bases). Gemi can be used for quantitative, real-time and conventional PCR (qPCR, rt-PCR, etc.), and Sanger sequencing. Gemi can parse large dataset of sequences efficiently.\n\nPython codes can be supported upon request. \n\nArticle:\nGemi: PCR primers prediction from multiple alignments\nComparative and functional genomics 2012;2012:783138\nDOI: https://doi.org/10.1155/2012/783138\nPMID: https://www.ncbi.nlm.nih.gov/pubmed/23316117\nPMCID: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3535827/."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/gemi"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gemi"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "gemi",
+          "operating_system": [
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/gemi"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://sourceforge.net/projects/gemi/"
+          ]
+        },
+        "id": "sourceforge/gemi/None/None",
+        "last_updated_at": "2026-03-19T03:36:43.963506",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/gemi//",
+            "source_url": "https://sourceforge.net/projects/gemi"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/gemi/web/None,biotools/gemi/cmd/None,github/GeMI/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "anna.bernasconi@polimi.it",
+              "maintainer": false,
+              "name": "Anna Bernasconi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Mark J Carman",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Giuseppe Serna Garcia",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Michele Leone",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "ELIXIR-ITA",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://elixir-italy.org/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "ELIXIR-ITA-POLIMI",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://www.deib.polimi.it/eng/elixir-iib"
+            },
+            {
+              "email": "33815970+armando2603@users.noreply.github.com",
+              "maintainer": false,
+              "name": "armando2603",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "armandoinside@gmail.com",
+              "maintainer": false,
+              "name": "armando2603 deib",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Interactive interface for transformer-based Genomic Metadata Integration."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/armando2603/GeMI/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "GeMI"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Not licensed",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "gemi",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene expression profiling",
+              "uri": "http://edamontology.org/operation_0314",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database search",
+              "uri": "http://edamontology.org/operation_2421",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data retrieval",
+              "uri": "http://edamontology.org/operation_2422",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "GeMI"
+          ],
+          "output": [],
+          "publication": [
+            "67c835e110e2f3aa0b3bc596",
+            "67e2be88b57beba26405cfc4"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/armando2603/GeMI"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Natural language processing",
+              "uri": "http://edamontology.org/topic_0218",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sample collections",
+              "uri": "http://edamontology.org/topic_3277",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "web",
+            "cmd"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/armando2603/GeMI"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:gemi_biotools/gemi/cmd/None,biotools/gemi/web/None,github/GeMI/None/None,sourceforge/gemi/None/None",
+  "conflict_name": "gemi/*",
+  "date": "2026-03-25T19:57:12.358271+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
