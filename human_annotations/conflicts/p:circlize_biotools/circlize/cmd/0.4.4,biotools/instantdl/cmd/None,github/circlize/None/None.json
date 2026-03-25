@@ -1,0 +1,259 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/instantdl/cmd/None",
+        "created_at": "2025-04-02T12:01:59.631707",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "carsten.marr@helmholtz-muenchen.de",
+              "maintainer": false,
+              "name": "Carsten Marr",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An easy-to-use deep learning pipeline for image segmentation and classification.\n\nInstandDL: An easy and convenient deep learning pipeline for image segmentation and classification.\n\nInstantDL enables experts and non-experts to use state-of-the art deep learning methods on biomedical image data. InstantDL offers the four most common tasks in medical image processing: Semantic segmentation, instance segmentation, pixel-wise regression and classification. For more in depth discussion on the methods, as well as comparing the results and bechmarks using this package, please refer to our preprint on bioRxiv here."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "InstantDL"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "instantdl",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Image analysis",
+              "uri": "http://edamontology.org/operation_3443",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82dbc10e2f3aa0b3b9fb8"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Imaging",
+              "uri": "http://edamontology.org/topic_3382",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/marrlab/InstantDL"
+          ]
+        },
+        "id": "biotools/instantdl/cmd/None",
+        "last_updated_at": "2026-03-19T01:06:07.305184",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/instantdl/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/circlize/cmd/0.4.4,github/circlize/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "z.gu@dkfz.de",
+              "maintainer": false,
+              "name": "Zuguang Gu",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "z.gu@dkfz.de",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "magallania@gmail.com",
+              "maintainer": false,
+              "name": "Dar\u00edo Here\u00f1\u00fa",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Circular layout is an efficient way for the visualization of huge amounts of information. Here this package provides an implementation of circular layout generation in R as well as an enhancement of available software. The flexibility of the package is based on the usage of low-level graphics functions such that self-defined high-level graphics can be easily implemented by users for specific purposes. Together with the seamless connection between the powerful computational and visual environment in R, it gives users more convenience and freedom to design figures for better understanding complex patterns behind multiple dimensional data.",
+            "Circular visualization in R."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://jokergoo.github.io/circlize_book/book/"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/jokergoo/circlize/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jokergoo/circlize/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "circlize"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "circlize",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c7948ed3b8acd1a2f9b301"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jokergoo/circlize"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Omics",
+              "uri": "http://edamontology.org/topic_3391",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.4.4"
+          ],
+          "webpage": [
+            "http://jokergoo.github.io/circlize_book/book/",
+            "https://cran.r-project.org/package=circlize"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:circlize_biotools/circlize/cmd/0.4.4,biotools/instantdl/cmd/None,github/circlize/None/None",
+  "conflict_name": "circlize/*",
+  "date": "2026-03-25T20:38:28.994916+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
