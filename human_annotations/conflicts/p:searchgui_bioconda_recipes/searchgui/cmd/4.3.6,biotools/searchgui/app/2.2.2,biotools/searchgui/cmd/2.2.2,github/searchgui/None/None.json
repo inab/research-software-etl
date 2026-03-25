@@ -1,0 +1,379 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/searchgui/cmd/4.3.6",
+        "created_at": "2025-04-02T11:48:30.653089",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "openjdk >=17",
+            "xtandem ==15.12.15.2",
+            "metamorpheus ==1.0.5",
+            "mono >=6.0.0",
+            "fontconfig",
+            "fonts-conda-ecosystem",
+            "blast >=2.14.0"
+          ],
+          "description": [
+            "SearchGUI is a user-friendly open-source graphical user interface for configuring and running proteomics identification search engines, currently supporting X!Tandem, MS-GF+, MetaMorpheus, MS Amanda, MyriMatch, Comet, Tide, Andromeda and OMSSA."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/searchgui/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/searchgui/README.html"
+            }
+          ],
+          "download": [
+            "http://genesis.ugent.be/maven2/eu/isas/searchgui/SearchGUI/4.3.6/SearchGUI-4.3.6-mac_and_linux.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "searchgui"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "searchgui",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c7a488d3b8acd1a2f9b588"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/compomics/searchgui"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "http://genesis.ugent.be/maven2/eu/isas/searchgui/SearchGUI/4.3.6/SearchGUI-4.3.6-mac_and_linux.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "4.3.6"
+          ],
+          "webpage": [
+            "https://github.com/compomics/searchgui"
+          ]
+        },
+        "id": "bioconda_recipes/searchgui/cmd/4.3.6",
+        "last_updated_at": "2026-03-18T23:45:55.528858",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/searchgui/cmd/4.3.6",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/searchgui/app/2.2.2,biotools/searchgui/cmd/2.2.2,github/searchgui/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "ugent.be",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "lennart.martens@ugent.be",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "harald.barsnes@gmail.com",
+              "maintainer": false,
+              "name": "Harald Barsnes",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hba041@10.111.28.126",
+              "maintainer": false,
+              "name": "hba041",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mvaudel@gmail.com",
+              "maintainer": false,
+              "name": "mvaudel",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Highly adaptable common interface for proteomics search and de novo engines.",
+            "Graphical user interface for proteomics identification search engines."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://compomics.github.io/projects/searchgui.html#read-me"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/compomics/searchgui/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/compomics/searchgui/blob/main/README.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "MGF",
+              "uri": "http://edamontology.org/format_3651",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzML",
+              "uri": "http://edamontology.org/format_3244",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Protein sequence",
+                "uri": "http://edamontology.org/data_2976",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "SearchGUI",
+            "searchgui"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "searchgui",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Peptide database search",
+              "uri": "http://edamontology.org/operation_3646",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein identification",
+              "uri": "http://edamontology.org/operation_3767",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mass spectrum visualisation",
+              "uri": "http://edamontology.org/operation_3694",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Blind peptide database search",
+              "uri": "http://edamontology.org/operation_3647",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Peptide identification",
+              "uri": "http://edamontology.org/operation_3631",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Validation of peptide-spectrum matches",
+              "uri": "http://edamontology.org/operation_3648",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "de Novo sequencing",
+              "uri": "http://edamontology.org/operation_3644",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "X!Tandem XML",
+              "uri": "http://edamontology.org/format_3711",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzIdentML",
+              "uri": "http://edamontology.org/format_3247",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7a488d3b8acd1a2f9b588"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/CompOmics/searchgui"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "VIB",
+            "BIG N2N",
+            "UGent",
+            "Proteomics",
+            "Compomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data visualisation",
+              "uri": "http://edamontology.org/topic_0092",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "proteomics",
+              "uri": "https://github.com/topics/proteomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "protein-identification",
+              "uri": "https://github.com/topics/protein-identification",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "java",
+              "uri": "https://github.com/topics/java",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd",
+            "app"
+          ],
+          "version": [
+            "2.2.2"
+          ],
+          "webpage": [
+            "http://compomics.github.io/projects/searchgui.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:searchgui_bioconda_recipes/searchgui/cmd/4.3.6,biotools/searchgui/app/2.2.2,biotools/searchgui/cmd/2.2.2,github/searchgui/None/None",
+  "conflict_name": "searchgui/*",
+  "date": "2026-03-25T20:23:41.317558+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
