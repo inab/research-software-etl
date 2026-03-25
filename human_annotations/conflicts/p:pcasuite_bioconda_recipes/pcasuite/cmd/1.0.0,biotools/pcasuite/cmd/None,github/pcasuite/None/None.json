@@ -1,0 +1,250 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/pcasuite/cmd/None",
+        "created_at": "2025-04-02T12:12:35.414321",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "adam.hospital@irbbarcelona.org",
+              "maintainer": false,
+              "name": "Institute for Research in Biomedicine Barcelona",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Allows the user to compress Molecular Dynamics (MD) trajectories using Principal Component Analysis (PCA) algorithms. This technique offers a good compression ratio at the expense of losing some precision in the trajectory."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://mmb.pcb.ub.es/software/pcasuite/pcasuite.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Structure",
+                "uri": "http://edamontology.org/data_0883",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "PCASuite"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "pcasuite",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Simulation analysis",
+              "uri": "http://edamontology.org/operation_0244",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Structure",
+                "uri": "http://edamontology.org/data_0883",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "67c8295610e2f3aa0b3b8451"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioExcel",
+            "ELIXIR-ES"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Molecular dynamics",
+              "uri": "http://edamontology.org/topic_0176",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://mmb.pcb.ub.edu/software/pcasuite/"
+          ]
+        },
+        "id": "biotools/pcasuite/cmd/None",
+        "last_updated_at": "2026-03-19T01:26:07.964552",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pcasuite/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/pcasuite/cmd/1.0.0,github/pcasuite/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "andriopau@gmail.com",
+              "maintainer": false,
+              "name": "Pau Andrio",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "libnetcdf",
+            "bison",
+            "liblapack",
+            "libblas"
+          ],
+          "description": [
+            "PCAunzip recreates the original trajectory from the projection data. PCZdump analyzes the compressed trajectory and gives coefficients and values computed from the stored trajectory."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/pcasuite/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/pcasuite/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/mmb-irb/pcasuite/raw/refs/heads/master/dist/pcasuite_v1.0.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pcasuite"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache Software License",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "pcasuite",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/mmb-irb/pcasuite"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/mmb-irb/pcasuite/raw/refs/heads/master/dist/pcasuite_v1.0.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0.0"
+          ],
+          "webpage": [
+            "https://github.com/mmb-irb/pcasuite"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:pcasuite_bioconda_recipes/pcasuite/cmd/1.0.0,biotools/pcasuite/cmd/None,github/pcasuite/None/None",
+  "conflict_name": "pcasuite/*",
+  "date": "2026-03-25T17:08:56.020253+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
