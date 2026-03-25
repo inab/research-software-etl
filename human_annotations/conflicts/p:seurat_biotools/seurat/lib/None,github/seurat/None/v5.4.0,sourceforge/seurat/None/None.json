@@ -1,0 +1,418 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/seurat/None/None",
+        "created_at": "2025-04-02T15:44:39.390379",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "THIS IS NO LONGER THE HOME FOR SEURAT. PLEASE GO TO https://sites.google.com/site/seuratsomatic/ \n\n---\n\nSeurat is an sequence analysis program for somatic mutation and allelic imbalance discovery in paired tumor and normal genome and transcriptome\ndata."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/seurat"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "seurat"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "seurat",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/seurat"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://sites.google.com/site/seuratsomatic/"
+          ]
+        },
+        "id": "sourceforge/seurat/None/None",
+        "last_updated_at": "2026-03-19T03:38:51.954529",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/seurat//",
+            "source_url": "https://sourceforge.net/projects/seurat"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/seurat/lib/None,github/seurat/None/v5.4.0",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Andrew Butler",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Saket Choudhary",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Charlotte Darby",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Shiwei Zheng",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "90294056+anashen@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Anagha Shenoy",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "brianzhang25@gmail.com",
+              "maintainer": false,
+              "name": "YoukaiFromAccounting",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ljiang@nygenome.org",
+              "maintainer": false,
+              "name": "Longda Jiang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Seurat is an R package designed for QC, analysis, and exploration of single-cell RNA-seq data. Seurat aims to enable users to identify and interpret sources of heterogeneity from single-cell transcriptomic measurements, and to integrate diverse types of single-cell data.",
+            "R toolkit for single cell genomics."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://satijalab.org/seurat/articles/install.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://cloud.r-project.org/web/packages/Seurat/Seurat.pdf"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/satijalab/seurat/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/satijalab/seurat/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/satijalab/seurat/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/satijalab/seurat/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/satijalab/seurat/blob/main/cran-comments.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/satijalab/seurat/blob/main/index.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Seurat",
+            "seurat"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "seurat",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Dimensionality reduction",
+              "uri": "http://edamontology.org/operation_3935",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression data visualisation",
+              "uri": "http://edamontology.org/operation_0571",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression profile clustering",
+              "uri": "http://edamontology.org/operation_0313",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Imputation",
+              "uri": "http://edamontology.org/operation_3557",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Molecular dynamics",
+              "uri": "http://edamontology.org/operation_2476",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c834d410e2f3aa0b3bbfab"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/satijalab/seurat"
+            },
+            {
+              "kind": null,
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://cloud.r-project.org/web/packages/Seurat/index.html"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "PerMedCoE"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cell biology",
+              "uri": "http://edamontology.org/topic_2229",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "human-cell-atlas",
+              "uri": "https://github.com/topics/human-cell-atlas",
+              "vocabulary": ""
+            },
+            {
+              "term": "single-cell-rna-seq",
+              "uri": "https://github.com/topics/single-cell-rna-seq",
+              "vocabulary": ""
+            },
+            {
+              "term": "single-cell-genomics",
+              "uri": "https://github.com/topics/single-cell-genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "cran",
+              "uri": "https://github.com/topics/cran",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "v5.0.1",
+            "v2.3.0",
+            "v5.0.0",
+            "v1.3.0",
+            "v5.4.0",
+            "None",
+            "v4.1.1",
+            "v5.0.3",
+            "v2.3.1",
+            "v2.0.1",
+            "v5.0.2",
+            "v3.1.0",
+            "v2.0.0",
+            "v4.0.5",
+            "v2.3.2",
+            "v5.1.0",
+            "v3.1.5",
+            "v2.3.3",
+            "v5.3.1",
+            "v4.0.2",
+            "v2.0.0.900",
+            "v4.0.3",
+            "v4.0.1",
+            "v4.2.0",
+            "v4.0.4",
+            "v5.2.0",
+            "v3.1.4",
+            "v3.2.0",
+            "v3.1.1",
+            "v3.1.2",
+            "v3.2.3",
+            "v4.1.0",
+            "v3.2.2",
+            "v3.0.0",
+            "v4.0.6",
+            "v3.2.1",
+            "v3.0.1",
+            "v1.4.0",
+            "v3.0.2",
+            "v2.2.1",
+            "v2.1.0",
+            "v4.3.0",
+            "v4.4.0",
+            "v3.1.3",
+            "v4.0.0",
+            "v5.3.0",
+            "v5.2.1"
+          ],
+          "webpage": [
+            "https://satijalab.org/seurat/",
+            "http://www.satijalab.org/seurat"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:seurat_biotools/seurat/lib/None,github/seurat/None/v5.4.0,sourceforge/seurat/None/None",
+  "conflict_name": "seurat/*",
+  "date": "2026-03-25T20:21:29.004219+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
