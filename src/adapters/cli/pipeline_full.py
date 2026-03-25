@@ -225,7 +225,7 @@ def run_full(
     resume_run: Optional[str | Path] = None,
 ) -> None:
     
-    
+
     if resume_run and run_tag:
         raise PipelineError("--tag cannot be used together with --resume-run")
 
@@ -504,6 +504,8 @@ def run_full(
             "human_updates": human_updates,
             "do_merge_to_db": do_merge_to_db,
         },
+        "latest_execution": execution_record,
+        "latest_executed_stages": executed_stages,
         "env_used": {
             "MONGO_HOST": os.getenv("MONGO_HOST"),
             "MONGO_PORT": os.getenv("MONGO_PORT"),
