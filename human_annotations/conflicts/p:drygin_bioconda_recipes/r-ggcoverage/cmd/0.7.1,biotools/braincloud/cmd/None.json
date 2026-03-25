@@ -1,0 +1,230 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/r-ggcoverage/cmd/0.7.1",
+        "created_at": "2025-04-02T11:39:09.825617",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-base",
+            "bioconductor-bsgenome",
+            "bioconductor-biostrings",
+            "bioconductor-genomeinfodb",
+            "bioconductor-genomicalignments",
+            "bioconductor-genomicranges",
+            "bioconductor-iranges",
+            "r-rcolorbrewer",
+            "bioconductor-rsamtools",
+            "bioconductor-s4vectors",
+            "r-dplyr",
+            "bioconductor-ggbio",
+            "r-ggh4x",
+            "r-ggplot2",
+            "r-ggrepel",
+            "r-magrittr",
+            "r-patchwork",
+            "r-reshape2",
+            "r-rlang",
+            "bioconductor-rtracklayer",
+            "r-scales",
+            "r-seqinr"
+          ],
+          "description": [
+            "The goal of 'ggcoverage' is to simplify the process of visualizing genome coverage. It contains functions to load data from BAM, BigWig or BedGraph files, create genome coverage plot, add various annotations to the coverage plot, including base and amino acid annotation, GC annotation, gene annotation, transcript annotation, ideogram annotation and peak annotation."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/r-ggcoverage/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/r-ggcoverage/README.html"
+            }
+          ],
+          "download": [
+            "https://cloud.r-project.org/src/contrib/ggcoverage_0.7.1.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/ggcoverage/ggcoverage_0.7.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "r-ggcoverage"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "r-ggcoverage",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://cloud.r-project.org/src/contrib/Archive/ggcoverage/ggcoverage_0.7.1.tar.gz",
+            "https://cloud.r-project.org/src/contrib/ggcoverage_0.7.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "0.7.1"
+          ],
+          "webpage": [
+            "https://cran.r-project.org/package=ggcoverage"
+          ]
+        },
+        "id": "bioconda_recipes/r-ggcoverage/cmd/0.7.1",
+        "last_updated_at": "2026-03-18T23:40:10.880768",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/r-ggcoverage/cmd/0.7.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/braincloud/cmd/None",
+        "created_at": "2025-04-02T11:48:33.596487",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "brain.cloud@libd.org",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://braincloud.jhmi.edu/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Freely-available, biologist-friendly, stand-alone application for exploring the temporal dynamics and genetic control of transcription in the human prefrontal cortex across the lifespan. The BrainCloud applications will contain expression or methylation data, while users will have to register with dbGaP to integrate SNP data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://braincloud.jhmi.edu/braincloudPublication.htm"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BrainCloud"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "braincloud",
+          "operating_system": [
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Analysis",
+              "uri": "http://edamontology.org/operation_2945",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a8b8d3b8acd1a2f9b976"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetics",
+              "uri": "http://edamontology.org/topic_3053",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://braincloud.jhmi.edu/"
+          ]
+        },
+        "id": "biotools/braincloud/cmd/None",
+        "last_updated_at": "2026-03-19T00:34:05.479838",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/braincloud/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:drygin_bioconda_recipes/r-ggcoverage/cmd/0.7.1,biotools/braincloud/cmd/None",
+  "conflict_name": "drygin/cmd_secondary_6",
+  "date": "2026-03-25T21:58:44.738507+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
