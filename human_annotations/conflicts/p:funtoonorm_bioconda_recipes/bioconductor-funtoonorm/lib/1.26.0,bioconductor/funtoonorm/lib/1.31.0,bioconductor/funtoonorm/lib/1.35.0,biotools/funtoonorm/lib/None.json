@@ -1,0 +1,251 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/funtoonorm/lib/None",
+        "created_at": "2025-04-02T12:55:04.369569",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "celia.greenwood@mcgill.caac",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The R package which provides a function for normalization of Illumina Infinium Human Methylation 450 BeadChip (Illumina 450K) data when there are samples from multiple tissues or cell types."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/GreenwoodLab/funtooNorm/blob/master/vignettes/funtooNorm.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "funtooNorm"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "funtoonorm",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c827c710e2f3aa0b3b75c7"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Biological databases",
+              "uri": "http://edamontology.org/topic_3071",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Epigenetics",
+              "uri": "http://edamontology.org/topic_3295",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/GreenwoodLab/funtooNorm"
+          ]
+        },
+        "id": "biotools/funtoonorm/lib/None",
+        "last_updated_at": "2026-03-19T02:06:34.345195",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/funtoonorm/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/funtoonorm/lib/1.31.0,bioconda_recipes/bioconductor-funtoonorm/lib/1.26.0,bioconductor/funtoonorm/lib/1.35.0",
+        "data": {
+          "authors": [
+            {
+              "email": "kathleen.klein@mail.mcgill.ca",
+              "maintainer": false,
+              "name": "Kathleen Klein",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "grDevices",
+            "R(>= 3.4)",
+            "GenomeInfoDb",
+            "minfi",
+            "bioconductor-illuminahumanmethylation450kmanifest >=0.4.0,<0.5.0",
+            "r-base",
+            "r-pls",
+            "matrixStats",
+            "bioconductor-minfi >=1.48.0,<1.49.0",
+            "IlluminaHumanMethylation450kmanifest",
+            "IlluminaHumanMethylation450kanno.ilmn12.hg19",
+            "bioconductor-genomeinfodb >=1.38.0,<1.39.0",
+            "r-matrixstats",
+            "methods",
+            "bioconductor-illuminahumanmethylation450kanno.ilmn12.hg19 >=0.6.0,<0.7.0",
+            "graphics",
+            "stats",
+            "pls"
+          ],
+          "description": [
+            "Provides a function to normalize Illumina Infinium Human Methylation 450 BeadChip (Illumina 450K), correcting for tissue and/or cell type."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-funtoonorm/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-funtoonorm/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/funtooNorm_1.26.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/funtooNorm/funtooNorm_1.26.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/funtooNorm_1.26.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-funtoonorm/bioconductor-funtoonorm_1.26.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "funtooNorm",
+            "bioconductor-funtoonorm"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "funtoonorm",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-funtoonorm"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/funtooNorm"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/funtooNorm_1.26.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/funtooNorm/funtooNorm_1.26.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/funtooNorm_1.26.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-funtoonorm/bioconductor-funtoonorm_1.26.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.26.0",
+            "1.35.0",
+            "1.31.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/funtooNorm",
+            "https://bioconductor.org/packages/3.18/bioc/html/funtooNorm.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:funtoonorm_bioconda_recipes/bioconductor-funtoonorm/lib/1.26.0,bioconductor/funtoonorm/lib/1.31.0,bioconductor/funtoonorm/lib/1.35.0,biotools/funtoonorm/lib/None",
+  "conflict_name": "funtoonorm/lib",
+  "date": "2026-03-25T20:39:04.002153+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
