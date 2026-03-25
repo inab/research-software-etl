@@ -1,0 +1,278 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/spaniel/lib/None",
+        "created_at": "2025-04-02T12:48:28.536149",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "rachel.queen@newcastle.ac.uk",
+              "maintainer": false,
+              "name": "Rachel Queen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Spaniel Spatial Transcriptomics Analysis."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/RachelQueen1/Spaniel/blob/master/README.md"
+            },
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "https://rachelqueen1.github.io/Spaniel_Documentation/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Spaniel"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "spaniel",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptome assembly",
+              "uri": "http://edamontology.org/operation_3258",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82b0d10e2f3aa0b3b9295"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/RachelQueen1/Spaniel"
+          ]
+        },
+        "id": "biotools/spaniel/lib/None",
+        "last_updated_at": "2026-03-19T01:45:20.296401",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/spaniel/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/spaniel/lib/1.21.0,bioconda_recipes/bioconductor-spaniel/lib/1.16.0,bioconductor/spaniel/lib/1.25.0",
+        "data": {
+          "authors": [
+            {
+              "email": "rachel.queen@newcastle.ac.uk",
+              "maintainer": false,
+              "name": "Rachel Queen",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "R (>= 4.0)",
+            "r-jpeg",
+            "r-magrittr",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "r-png",
+            "r-ggplot2",
+            "jsonlite",
+            "bioconductor-dropletutils >=1.22.0,<1.23.0",
+            "jpeg",
+            "SummarizedExperiment",
+            "shiny",
+            "igraph",
+            "utils",
+            "magrittr",
+            "bioconductor-scran >=1.30.0,<1.31.0",
+            "SingleCellExperiment",
+            "dplyr",
+            "png",
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "r-dplyr",
+            "DropletUtils",
+            "S4Vectors",
+            "bioconductor-scater >=1.30.0,<1.31.0",
+            "bioconductor-singlecellexperiment >=1.24.0,<1.25.0",
+            "r-jsonlite",
+            "r-igraph",
+            "r-seurat",
+            "r-base",
+            "Seurat",
+            "scran",
+            "ggplot2",
+            "methods",
+            "r-shiny",
+            "scater (>= 1.13)"
+          ],
+          "description": [
+            "Spaniel includes a series of tools to aid the quality control and analysis of Spatial Transcriptomics data. Spaniel can import data from either the original Spatial Transcriptomics system or 10X Visium technology.  The package contains functions to create a SingleCellExperiment Seurat object and provides a method of loading a histologial image into R. The spanielPlot function allows visualisation of metrics contained within the S4 object overlaid onto the image of the tissue.",
+            "Spaniel includes a series of tools to aid the quality control and analysis of Spatial Transcriptomics data. Spaniel can import data from either the original Spatial Transcriptomics system or 10X Visium technology. The package contains functions to create a SingleCellExperiment Seurat object and provides a method of loading a histologial image into R. The spanielPlot function allows visualisation of metrics contained within the S4 object overlaid onto the image of the tissue."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-spaniel/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-spaniel/README.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/Spaniel_1.16.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/Spaniel/Spaniel_1.16.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-spaniel/bioconductor-spaniel_1.16.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Spaniel_1.16.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Spaniel",
+            "bioconductor-spaniel"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "spaniel",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-spaniel"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/Spaniel"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/Spaniel_1.16.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/Spaniel/Spaniel_1.16.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-spaniel/bioconductor-spaniel_1.16.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Spaniel_1.16.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.21.0",
+            "1.25.0",
+            "1.16.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/Spaniel",
+            "https://bioconductor.org/packages/3.18/bioc/html/Spaniel.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:spaniel_bioconda_recipes/bioconductor-spaniel/lib/1.16.0,bioconductor/spaniel/lib/1.21.0,bioconductor/spaniel/lib/1.25.0,biotools/spaniel/lib/None",
+  "conflict_name": "spaniel/lib",
+  "date": "2026-03-25T20:25:57.704538+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
