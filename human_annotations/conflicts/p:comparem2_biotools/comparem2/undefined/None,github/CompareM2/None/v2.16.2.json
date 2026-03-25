@@ -1,0 +1,393 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/CompareM2/None/v2.16.2",
+        "created_at": "2026-03-25T15:19:50.125651",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "carl.mathias.kobel@nmbu.no",
+              "maintainer": false,
+              "name": "thylakoid",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "kobel@protonmail.com",
+              "maintainer": false,
+              "name": "Carl Mathias Kobel",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "\ud83e\udda0\ud83e\uddec\ud83e\uddd1\u200d\ud83d\udcbb\ud83d\udcc7 Microbial genomes-to-report pipeline."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/CLAUDE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/CONTRIBUTORS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/changelog.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/readme-development.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/05%20quick%20start.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/10%20installation.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/20%20usage.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/30%20what%20analyses%20does%20it%20do.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/80%20future%20functionality.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/82%20contributors.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/99%20citation.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/help_text.txt"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/index.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/practical%20examples.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/cmkobel/assemblycomparator2/blob/main/docs/requirements.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CompareM2"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "CompareM2",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/cmkobel/CompareM2"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "microbial-genomics",
+              "uri": "https://github.com/topics/microbial-genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "snakemake",
+              "uri": "https://github.com/topics/snakemake",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomes-to-report",
+              "uri": "https://github.com/topics/genomes-to-report",
+              "vocabulary": ""
+            },
+            {
+              "term": "hpc",
+              "uri": "https://github.com/topics/hpc",
+              "vocabulary": ""
+            },
+            {
+              "term": "conda",
+              "uri": "https://github.com/topics/conda",
+              "vocabulary": ""
+            },
+            {
+              "term": "apptainer",
+              "uri": "https://github.com/topics/apptainer",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "pbs",
+              "uri": "https://github.com/topics/pbs",
+              "vocabulary": ""
+            },
+            {
+              "term": "slurm",
+              "uri": "https://github.com/topics/slurm",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioconda",
+              "uri": "https://github.com/topics/bioconda",
+              "vocabulary": ""
+            },
+            {
+              "term": "prokaryotes",
+              "uri": "https://github.com/topics/prokaryotes",
+              "vocabulary": ""
+            },
+            {
+              "term": "metagenomics",
+              "uri": "https://github.com/topics/metagenomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "clinical-research",
+              "uri": "https://github.com/topics/clinical-research",
+              "vocabulary": ""
+            },
+            {
+              "term": "archaea",
+              "uri": "https://github.com/topics/archaea",
+              "vocabulary": ""
+            },
+            {
+              "term": "bacteria",
+              "uri": "https://github.com/topics/bacteria",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "v2.16.2",
+            "v2.16.1",
+            "v2.15.3",
+            "v2.15.2",
+            "v2.15.1",
+            "v2.14.1",
+            "v2.13.1",
+            "v2.12.1",
+            "v2.11.2",
+            "v2.11.1",
+            "v2.10.1",
+            "v2.9.1",
+            "v2.8.2",
+            "v2.8.1",
+            "v2.7.1",
+            "v2.6.2",
+            "v2.6.1",
+            "v2.5.18",
+            "v2.5.17",
+            "v2.5.15",
+            "v2.5.14",
+            "v2.5.10",
+            "v2.5.9",
+            "v2.5.8",
+            "v2.5.7",
+            "v2.5.6",
+            "v2.5.5",
+            "v2.5.0",
+            "v2.3.0",
+            "v2.1.0",
+            "v2.0.0",
+            "v0.1"
+          ],
+          "webpage": [
+            "https://comparem2.readthedocs.io/"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:19:50.125651",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/CompareM2",
+            "source_url": "https://github.com/cmkobel/assemblycomparator2"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/comparem2/undefined/None",
+        "created_at": "2026-02-23T16:07:49.520133",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "CompareM2 is a genomes-to-report pipeline for comparative analysis of bacterial and archaeal genomes. It integrates community-adopted tools to perform genome quality control, annotation, and phylogenetic analyses, generating a portable dynamic report."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CompareM2"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "comparem2",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6d454393fdfaf890bc41"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenetics",
+              "uri": "http://edamontology.org/topic_3293",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/cmkobel/comparem2"
+          ]
+        },
+        "id": "biotools/comparem2/undefined/None",
+        "last_updated_at": "2026-03-19T02:27:37.177974",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/comparem2/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:comparem2_biotools/comparem2/undefined/None,github/CompareM2/None/v2.16.2",
+  "conflict_name": "comparem2/*",
+  "date": "2026-03-25T21:24:00.608617+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
