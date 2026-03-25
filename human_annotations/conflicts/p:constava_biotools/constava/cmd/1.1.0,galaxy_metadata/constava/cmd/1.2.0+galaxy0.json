@@ -1,0 +1,257 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/constava/cmd/1.1.0",
+        "created_at": "2026-02-23T16:07:50.197053",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "wim.vranken@vub.be",
+              "maintainer": false,
+              "name": "Wim Vranken",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://bio2byte.be/people/31"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Jos\u00e9 Gavalda-Garcia",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://bio2byte.be/people/38"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "David Bickel",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://bio2byte.be/people/47"
+            },
+            {
+              "email": "adrian.diaz@vub.be",
+              "maintainer": false,
+              "name": "Adri\u00e1n D\u00edaz",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://bio2byte.be/people/48"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Daniele Raimondi",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://orcid.org/0000-0003-1157-1899"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Gabriele Orlando",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://orcid.org/0000-0002-5935-5258"
+            },
+            {
+              "email": "bio2byte@vub.be",
+              "maintainer": false,
+              "name": "Bio2Byte",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://bio2byte.be/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Joel Roca-Martinez",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://orcid.org/0000-0002-4313-3845"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Constava calculates conformational states probability and conformational state variability from protein structure ensembles."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "commandline_options",
+              "url": "https://pypi.org/project/constava/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Protein geometry data",
+                "uri": "http://edamontology.org/data_2991",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Constava"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "constava",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein geometry calculation",
+              "uri": "http://edamontology.org/operation_0249",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Amino acid property",
+                "uri": "http://edamontology.org/data_2016",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "699c6d464393fdfaf890bc48",
+            "699c6d464393fdfaf890bc49"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/bio2byte/constava"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Protein folding",
+              "uri": "http://edamontology.org/topic_0130",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1.1.0"
+          ],
+          "webpage": [
+            "https://pypi.org/project/constava/"
+          ]
+        },
+        "id": "biotools/constava/cmd/1.1.0",
+        "last_updated_at": "2026-03-19T02:27:38.789843",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/constava/cmd/1.1.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/constava/cmd/1.2.0+galaxy0",
+        "created_at": "2026-03-19T03:06:13.346184",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Constava"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "constava",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.2.0+galaxy0"
+          ],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-19T03:06:13.346184",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy_metadata/constava/cmd/1.2.0+galaxy0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:constava_biotools/constava/cmd/1.1.0,galaxy_metadata/constava/cmd/1.2.0+galaxy0",
+  "conflict_name": "constava/cmd",
+  "date": "2026-03-25T21:24:14.630476+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
