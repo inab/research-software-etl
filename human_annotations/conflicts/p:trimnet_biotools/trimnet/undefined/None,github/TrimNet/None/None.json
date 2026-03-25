@@ -1,0 +1,270 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/TrimNet/None/None",
+        "created_at": "2026-03-25T15:21:38.209449",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "yvquan.li@gmail.com",
+              "maintainer": false,
+              "name": "leo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lucas.ramon@aluno.unb.br",
+              "maintainer": false,
+              "name": "Lucas Ramon",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "180145509@aluno.unb.br",
+              "maintainer": false,
+              "name": "Lucas Ramon",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Code for paper \"TrimNet: learning molecular representation from triplet messages for biomedicine \"."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/yvquanli/trimnet/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/yvquanli/trimnet/blob/main/requirements.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TrimNet"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "TrimNet",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [
+            {
+              "doi": "10.1093/bib/bbaa266",
+              "title": "TrimNet: learning molecular representation from triplet messages for biomedicine",
+              "url": "https://doi.org/10.1093/bib/bbaa266",
+              "year": "2020"
+            }
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/yvquanli/TrimNet"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://academic.oup.com/bib/advance-article/doi/10.1093/bib/bbaa266/5955940"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:21:38.209449",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/TrimNet",
+            "source_url": "https://github.com/yvquanli/trimnet"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/trimnet/undefined/None",
+        "created_at": "2025-04-02T12:50:52.866690",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "xjyao@lzu.edu.cn",
+              "maintainer": false,
+              "name": "Sen Song",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "songsen@tsinghua.edu.cn",
+              "maintainer": false,
+              "name": "Xiaojun Yao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "TrimNet is a lightweight message passing neural network for multiple molecular property predictions.\n\nTrimNet can accurately complete multiple molecular properties prediction tasks with significant parameter reduction, including the quantum properties, bioactivity, physiology, and compound-protein interaction (CPI) prediction tasks."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TrimNet"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "trimnet",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein property calculation",
+              "uri": "http://edamontology.org/operation_0250",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Virtual screening",
+              "uri": "http://edamontology.org/operation_3938",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8322d10e2f3aa0b3bae76"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/yvquanli/trimnet"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Physiology",
+              "uri": "http://edamontology.org/topic_3300",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Drug discovery",
+              "uri": "http://edamontology.org/topic_3336",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Preclinical and clinical studies",
+              "uri": "http://edamontology.org/topic_3379",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://moleculenet.ai/"
+          ]
+        },
+        "id": "biotools/trimnet/undefined/None",
+        "last_updated_at": "2026-03-19T01:51:00.815675",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/trimnet/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:trimnet_biotools/trimnet/undefined/None,github/TrimNet/None/None",
+  "conflict_name": "trimnet/*",
+  "date": "2026-03-25T20:33:43.987554+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
