@@ -1,0 +1,290 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/epik/cmd/0.2.0",
+        "created_at": "2025-04-02T11:53:02.749295",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "boost-cpp =1.85",
+            "llvm-openmp",
+            "python",
+            "click"
+          ],
+          "description": [
+            "EPIK uses pre-computed phylo-k-mers indexes (see package IPK) to rapidly place large amounts of sequences on a fixed phylogenetic tree. Please cite: doi.org/10.1093/bioinformatics/btad692."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/epik/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/epik/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/phylo42/epik/releases/download/v0.2.0/EPIK-v0.2.0_src_for_bioconda.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "epik"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "epik",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/phylo42/epik"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/phylo42/epik/releases/download/v0.2.0/EPIK-v0.2.0_src_for_bioconda.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "0.2.0"
+          ],
+          "webpage": [
+            "https://github.com/phylo42/epik"
+          ]
+        },
+        "id": "bioconda_recipes/epik/cmd/0.2.0",
+        "last_updated_at": "2026-03-18T23:50:54.385966",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/epik/cmd/0.2.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/EPIK/None/v0.2.0,biotools/epik/cmd/0.2.0",
+        "data": {
+          "authors": [
+            {
+              "email": "nromashchenko@lirmm.fr",
+              "maintainer": false,
+              "name": "Nikolai Romashchenko",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Benjamin Linard",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Fabio Pardi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "rivals@lirmm.fr",
+              "maintainer": false,
+              "name": "Eric Rivals",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Precise and scalable evolutionary placement with informative k-mers.",
+            "Alignment-free phylogenetic placement."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/phylo42/epik/blob/main/CHANGELOG.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/phylo42/epik/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/phylo42/epik/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Data index",
+                "uri": "http://edamontology.org/data_0955",
+                "vocabulary": "EDAM"
+              },
+              "term": "Binary format",
+              "uri": "http://edamontology.org/format_2333",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "EPIK"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "EPIK",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Phylogenetic inference",
+              "uri": "http://edamontology.org/operation_0323",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "epik"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Phylogenetic tree",
+                "uri": "http://edamontology.org/data_0872",
+                "vocabulary": "EDAM"
+              },
+              "term": "JSON",
+              "uri": "http://edamontology.org/format_3464",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "68adb739b94758ef79db05e5"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/phylo42/EPIK"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Phylogeny",
+              "uri": "http://edamontology.org/topic_0084",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v0.1.3",
+            "v0.1.1",
+            "v0.1.0",
+            "v0.1.2",
+            "0.2.0",
+            "v0.1.3a",
+            "v0.2.0"
+          ],
+          "webpage": [
+            "https://github.com/phylo42/EPIK"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:epik_bioconda_recipes/epik/cmd/0.2.0,biotools/epik/cmd/0.2.0,github/EPIK/None/v0.2.0",
+  "conflict_name": "epik/*",
+  "date": "2026-03-25T21:21:52.089208+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
