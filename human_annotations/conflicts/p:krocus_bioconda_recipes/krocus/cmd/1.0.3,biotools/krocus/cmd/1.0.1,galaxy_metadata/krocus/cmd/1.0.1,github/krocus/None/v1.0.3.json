@@ -1,0 +1,274 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/krocus/cmd/1.0.1",
+        "created_at": "2025-08-26T15:38:14.807078",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Predict MLST directly from uncorrected long reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://github.com/quadram-institute-bioscience/krocus/blob/master/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "krocus"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "krocus",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Multilocus sequence typing",
+              "uri": "http://edamontology.org/operation_3840",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "k-mer counting",
+              "uri": "http://edamontology.org/operation_3472",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "68adb8c6b94758ef79db07e7"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Public health and epidemiology",
+              "uri": "http://edamontology.org/topic_3305",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1.0.1"
+          ],
+          "webpage": [
+            "https://github.com/quadram-institute-bioscience/krocus"
+          ]
+        },
+        "id": "biotools/krocus/cmd/1.0.1",
+        "last_updated_at": "2026-03-19T02:25:20.567295",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/krocus/cmd/1.0.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/krocus/cmd/1.0.3,github/krocus/None/v1.0.3,galaxy_metadata/krocus/cmd/1.0.1",
+        "data": {
+          "authors": [
+            {
+              "email": "andrew.page@quadram.ac.uk",
+              "maintainer": false,
+              "name": "andrewjpage",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "198982749+Copilot@users.noreply.github.com",
+              "maintainer": false,
+              "name": "copilot-swe-agent[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "rmp@psyphi.net",
+              "maintainer": false,
+              "name": "Roger Pettett",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "esteinig@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Eike J. Steinig",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "pyfastaq >=3.14.0",
+            "setuptools",
+            "biopython >=1.68",
+            "python >=3"
+          ],
+          "description": [
+            "Krocus can predict a sequence type directly from uncorrected long reads, \nand was designed to consume read data as it is produced, providing results \nin minutes.",
+            "Predict MLST directly from uncorrected long reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/krocus/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/krocus/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/andrewjpage/krocus/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/andrewjpage/krocus/blob/main/docs/API_DOCUMENTATION.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/andrewjpage/krocus/blob/main/docs/DEVELOPER_GUIDE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/andrewjpage/krocus/blob/main/docs/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/andrewjpage/krocus/blob/main/docs/USER_GUIDE.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/andrewjpage/krocus/blob/main/docs/WORK_INSTRUCTION.md"
+            }
+          ],
+          "download": [
+            "https://github.com/andrewjpage/krocus/archive/v1.0.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "krocus"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "krocus",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/andrewjpage/krocus"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "galaxy_metadata",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/andrewjpage/krocus/archive/v1.0.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0.1",
+            "v0.2.2",
+            "v1.0.1",
+            "v1.0.2",
+            "v1.0.3",
+            "v1.0.0",
+            "1.0.3",
+            "v0.2.3"
+          ],
+          "webpage": [
+            "https://github.com/andrewjpage/krocus"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:krocus_bioconda_recipes/krocus/cmd/1.0.3,biotools/krocus/cmd/1.0.1,galaxy_metadata/krocus/cmd/1.0.1,github/krocus/None/v1.0.3",
+  "conflict_name": "krocus/*",
+  "date": "2026-03-25T19:42:31.799609+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
