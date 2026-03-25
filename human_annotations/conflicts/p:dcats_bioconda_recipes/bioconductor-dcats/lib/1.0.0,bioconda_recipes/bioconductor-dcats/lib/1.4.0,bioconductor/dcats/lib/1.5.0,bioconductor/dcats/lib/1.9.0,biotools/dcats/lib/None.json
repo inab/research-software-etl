@@ -1,0 +1,303 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/dcats/lib/None",
+        "created_at": "2025-04-02T11:54:33.984261",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "yuanhua@hku.hk",
+              "maintainer": false,
+              "name": "Yuanhua Huang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jwkho@hku.hk",
+              "maintainer": false,
+              "name": "Joshua W. K. Ho",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Differential composition analysis for flexible single-cell experimental designs."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DCATS"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "dcats",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression profiling",
+              "uri": "http://edamontology.org/operation_0314",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2bd9cb57beba26405ce41"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Experimental design and studies",
+              "uri": "http://edamontology.org/topic_3678",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cytometry",
+              "uri": "http://edamontology.org/topic_3934",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cell biology",
+              "uri": "http://edamontology.org/topic_2229",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/holab-hku/DCATS"
+          ]
+        },
+        "id": "biotools/dcats/lib/None",
+        "last_updated_at": "2026-03-19T00:38:53.808744",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/dcats/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/dcats/lib/1.5.0,bioconda_recipes/bioconductor-dcats/lib/1.0.0,bioconda_recipes/bioconductor-dcats/lib/1.4.0,bioconductor/dcats/lib/1.9.0",
+        "data": {
+          "authors": [
+            {
+              "email": "linxy29@connect.hku.hk",
+              "maintainer": false,
+              "name": "Xinyi Lin",
+              "orcid": "https://orcid.org/0000-0002-7780-2461",
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hadley@posit.co",
+              "maintainer": false,
+              "name": "Chuen Chau",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "jenny@posit.co",
+              "maintainer": false,
+              "name": "Yuanhua Huang",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Joshua W.K. Ho",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-robustbase",
+            "R (>= 4.1.0)",
+            "MCMCpack",
+            "e1071",
+            "r-base",
+            "matrixStats",
+            "r-e1071",
+            "r-aod",
+            "r-matrixstats",
+            "aod",
+            "r-mcmcpack",
+            "robustbase",
+            "stats"
+          ],
+          "description": [
+            "Methods to detect the differential composition abundances between conditions in singel-cell RNA-seq experiments, with or without replicates.  It aims to correct bias introduced by missclaisification and enable controlling of confounding covariates. To avoid the influence of proportion change from big cell types, DCATS can use either total cell number or specific reference group as normalization term.",
+            "Methods to detect the differential composition abundances between conditions in singel-cell RNA-seq experiments, with or without replicates. It aims to correct bias introduced by missclaisification and enable controlling of confounding covariates. To avoid the influence of proportion change from big cell types, DCATS can use either total cell number or specific reference group as normalization term."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-dcats/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-dcats/README.html"
+            }
+          ],
+          "download": [
+            "https://depot.galaxyproject.org/software/bioconductor-dcats/bioconductor-dcats_1.4.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/DCATS_1.4.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/DCATS_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/DCATS_1.4.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/DCATS/DCATS_1.4.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-dcats/bioconductor-dcats_1.0.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/DCATS_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/DCATS/DCATS_1.0.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DCATS",
+            "bioconductor-dcats"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "dcats",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-dcats"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/DCATS"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://depot.galaxyproject.org/software/bioconductor-dcats/bioconductor-dcats_1.4.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/DCATS_1.4.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/DCATS_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/DCATS_1.4.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/DCATS/DCATS_1.4.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-dcats/bioconductor-dcats_1.0.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/DCATS_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/DCATS/DCATS_1.0.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.9.0",
+            "1.0.0",
+            "1.4.0",
+            "1.5.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.20/bioc/html/DCATS.html",
+            "https://bioconductor.org/packages/DCATS",
+            "https://bioconductor.org/packages/3.18/bioc/html/DCATS.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:dcats_bioconda_recipes/bioconductor-dcats/lib/1.0.0,bioconda_recipes/bioconductor-dcats/lib/1.4.0,bioconductor/dcats/lib/1.5.0,bioconductor/dcats/lib/1.9.0,biotools/dcats/lib/None",
+  "conflict_name": "dcats/lib",
+  "date": "2026-03-25T19:38:16.040943+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
