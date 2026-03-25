@@ -1,0 +1,337 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/stem/undefined/None",
+        "created_at": "2025-04-02T12:43:25.468213",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "jhkauf@us.ibm.com",
+              "maintainer": false,
+              "name": "James H. Kaufman",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An Open Source Tool for Disease Modeling | The Eclipse Foundation - home to a global community, the Eclipse IDE, Jakarta EE and over 350 open source projects, including runtimes, tools and frameworks | The Spatiotemporal Epidemiological Modeler (STEM) Project | Some Eclipse Foundation pages use cookies to better serve you when you return to the site. You can set your browser to notify you before you receive a cookie or turn off cookies. If you do so, however, some areas of some sites may not function properly. To read Eclipse Foundation Privacy Policy click here | The Spatiotemporal Epidemiological Modeler (STEM) tool is designed to help scientists and public health officials create and use spatial and temporal models of emerging infectious diseases. These models can aid in understanding and potentially preventing the spread of such diseases."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "STEM"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "stem",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Modelling and simulation",
+              "uri": "http://edamontology.org/operation_2426",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c832f110e2f3aa0b3bb5e2"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Infectious disease",
+              "uri": "http://edamontology.org/topic_3324",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Public health and epidemiology",
+              "uri": "http://edamontology.org/topic_3305",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Regenerative medicine",
+              "uri": "http://edamontology.org/topic_3395",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.eclipse.org/stem"
+          ]
+        },
+        "id": "biotools/stem/undefined/None",
+        "last_updated_at": "2026-03-19T01:40:23.967218",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/stem/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/STEM/None/published,biotools/scstem/lib/None,bioconda_recipes/scstem/lib/0.0.2,github/scSTEM_sample_data/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "1225775433@qq.com",
+              "maintainer": false,
+              "name": "whirl",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "zivbj@cs.cmu.edu",
+              "maintainer": false,
+              "name": "Ziv Bar-Joseph",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "alexsong@vt.edu",
+              "maintainer": false,
+              "name": "Qi Song",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Jingtao Wang",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "seaborn >=0.11.1",
+            "scanpy >=1.8.2",
+            "tqdm >=4.60.0",
+            "pytorch"
+          ],
+          "description": [
+            "A Method for Mapping Single-cell and Spatial Transcriptomics Data with Transfer Learning.",
+            "Single cell STEM (scSTEM) is a shiny app based R package for visualizing and clustering genes in pseudotime ordered single cell RNA-seq data. scSTEM is a GUI based tool and thus does not require any coding experience.",
+            "This repository includes sample data for scSTEM.",
+            "A method for mapping single-cell and spatial transcriptomics data with transfer learning."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/WhirlFirst/STEM/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/scstem/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/scstem/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/alexQiSong/scSTEM_sample_data/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://files.pythonhosted.org/packages/py3/s/scSTEM/scSTEM-0.0.2-py3-none-any.whl"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "scSTEM_sample_data",
+            "scstem",
+            "STEM",
+            "scSTEM"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+              "name": "Not licensed",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0-only",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "STEM",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Expression profile clustering",
+              "uri": "http://edamontology.org/operation_0313",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression profiling",
+              "uri": "http://edamontology.org/operation_0314",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Essential dynamics",
+              "uri": "http://edamontology.org/operation_3891",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Dimensionality reduction",
+              "uri": "http://edamontology.org/operation_3935",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "scSTEM_sample_data",
+            "scstem"
+          ],
+          "output": [],
+          "publication": [
+            "67c835f110e2f3aa0b3bc5fd"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/WhirlFirst/STEM"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/alexQiSong/scSTEM_sample_data/"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/alexQiSong/scSTEM_sample_data"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "biotools"
+          ],
+          "source_code": [
+            "https://files.pythonhosted.org/packages/py3/s/scSTEM/scSTEM-0.0.2-py3-none-any.whl"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cell biology",
+              "uri": "http://edamontology.org/topic_2229",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Immunoproteins and antigens",
+              "uri": "http://edamontology.org/topic_2830",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sample collections",
+              "uri": "http://edamontology.org/topic_3277",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "published",
+            "0.0.2",
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/WhirlFirst/STEM",
+            "https://github.com/alexQiSong/scSTEM"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:stem_bioconda_recipes/scstem/lib/0.0.2,biotools/scstem/lib/None,biotools/stem/undefined/None,github/STEM/None/published,github/scSTEM_sample_data/None/None",
+  "conflict_name": "stem/*",
+  "date": "2026-03-25T20:17:30.709165+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
