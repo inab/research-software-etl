@@ -1,0 +1,309 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/tttrlib/None/v0.26.2",
+        "created_at": "2026-03-25T15:20:08.080764",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "thomas.peulen@posteo.de",
+              "maintainer": false,
+              "name": "tpeulen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "File format agnostic low level, high performance API to read and process time-tagged-time resolved (TTTR) data for single-molecule and image spectroscopy)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/fluorescence-tools/tttrlib/blob/main/BUILDING.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/fluorescence-tools/tttrlib/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/fluorescence-tools/tttrlib/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/fluorescence-tools/tttrlib/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/fluorescence-tools/tttrlib/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "tttrlib"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+              "url": "http://choosealicense.com/licenses/bsd-3-clause/"
+            }
+          ],
+          "links": [],
+          "name": "tttrlib",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Fluorescence-Tools/tttrlib"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "ptu",
+              "uri": "https://github.com/topics/ptu",
+              "vocabulary": ""
+            },
+            {
+              "term": "flim",
+              "uri": "https://github.com/topics/flim",
+              "vocabulary": ""
+            },
+            {
+              "term": "becker",
+              "uri": "https://github.com/topics/becker",
+              "vocabulary": ""
+            },
+            {
+              "term": "picoquant",
+              "uri": "https://github.com/topics/picoquant",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "single-molecule",
+              "uri": "https://github.com/topics/single-molecule",
+              "vocabulary": ""
+            },
+            {
+              "term": "fluorescence",
+              "uri": "https://github.com/topics/fluorescence",
+              "vocabulary": ""
+            },
+            {
+              "term": "fluorescence-correlation",
+              "uri": "https://github.com/topics/fluorescence-correlation",
+              "vocabulary": ""
+            },
+            {
+              "term": "fluorescence-microscopy-imaging",
+              "uri": "https://github.com/topics/fluorescence-microscopy-imaging",
+              "vocabulary": ""
+            },
+            {
+              "term": "imaging",
+              "uri": "https://github.com/topics/imaging",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "v0.26.2",
+            "v0.25.1",
+            "v0.25.0",
+            "v0.24.4",
+            "v0.24.3",
+            "v0.24.2",
+            "v0.24.1",
+            "v0.24.0",
+            "0.0.19",
+            "0.0.18",
+            "0.0.17r2",
+            "0.0.9",
+            "0.0.6"
+          ],
+          "webpage": [
+            "http://tttrlib.rtfd.io/"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:20:08.080764",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/tttrlib",
+            "source_url": "https://github.com/fluorescence-tools/tttrlib"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/tttrlib/undefined/None",
+        "created_at": "2026-02-23T16:11:06.448379",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "thomas.peulen@tu-dortmund.de",
+              "maintainer": false,
+              "name": "Thomas-Otavio Peulen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "katrin.heinze@uni-wuerzburg.de",
+              "maintainer": false,
+              "name": "Katrin G Heinze",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Tttrlib is a modular software resource designed for integrating fluorescence spectroscopy, imaging, and molecular modeling data. It facilitates time-resolved data processing and development of analysis pipelines."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://docs.peulen.xyz/tttrlib"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "tttrlib"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "tttrlib",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Image analysis",
+              "uri": "http://edamontology.org/operation_3443",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data handling",
+              "uri": "http://edamontology.org/operation_2409",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6e0a4393fdfaf890c3c8"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "NMR",
+              "uri": "http://edamontology.org/topic_0593",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Data submission",
+              "uri": "http://edamontology.org/topic_0219",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pypi.org/project/tttrlib/"
+          ]
+        },
+        "id": "biotools/tttrlib/undefined/None",
+        "last_updated_at": "2026-03-19T02:34:41.520735",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/tttrlib/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:tttrlib_biotools/tttrlib/undefined/None,github/tttrlib/None/v0.26.2",
+  "conflict_name": "tttrlib/*",
+  "date": "2026-03-25T21:32:47.731346+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
