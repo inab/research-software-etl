@@ -1,0 +1,260 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/ShinyButchR/None/None",
+        "created_at": "2026-03-25T15:20:15.871890",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "a.quintero@dkfz.de",
+              "maintainer": false,
+              "name": "AndresQ",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "carl.herrmann@bioquant.uni-heidelberg.de",
+              "maintainer": false,
+              "name": "Carl Herrmann",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "andquintero@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Andres Quintero",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Shiny app to run NMF using the package Bratwurst."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/hdsu-bioquant/shinyButchR/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ShinyButchR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "ShinyButchR",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/hdsu-bioquant/ShinyButchR"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:20:15.871890",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/ShinyButchR",
+            "source_url": "https://github.com/hdsu-bioquant/shinyButchR"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/shinybutchr/undefined/None,github/ButchR/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Matthias Schlesner",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "carl.herrmann@bioquant.uni-heidelberg.de",
+              "maintainer": false,
+              "name": "Carl Herrmann",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "a.quintero@dkfz.de",
+              "maintainer": false,
+              "name": "AndresQ",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Interactive NMF-based decomposition workflow of genome-scale datasets.\n\nShinyButchR is an interactive R/Shiny app to perform NMF on an input matrix. ShinyButchR uses ButchR (https://github.com/wurst-theke/ButchR) to run the matrix decomposition and generate diagnostic plots and visualizations that helps to find association of the NMF signatures to known biological factors.\n\nButchR is an R package providing functions to perform non-negative matrix factorization and postprocessing using TensorFlow."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/wurst-theke/ButchR/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ShinyButchR",
+            "ButchR"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "shinybutchr",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Feature extraction",
+              "uri": "http://edamontology.org/operation_3937",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Enrichment analysis",
+              "uri": "http://edamontology.org/operation_3501",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "ButchR"
+          ],
+          "output": [],
+          "publication": [
+            "67c8325610e2f3aa0b3bb00d"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/hdsu-bioquant/shinyButchR"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/wurst-theke/ButchR"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Imaging",
+              "uri": "http://edamontology.org/topic_3382",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "undefined"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://hdsu-bioquant.shinyapps.io/shinyButchR/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:butchr_biotools/shinybutchr/undefined/None,github/ButchR/None/None,github/ShinyButchR/None/None",
+  "conflict_name": "butchr/*",
+  "date": "2026-03-25T20:23:08.460560+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
