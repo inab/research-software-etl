@@ -1,0 +1,326 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/smaca/undefined/None",
+        "created_at": "2025-04-02T12:40:54.106881",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "joaquin.dopazo@juntadeandalucia.es",
+              "maintainer": false,
+              "name": "Joaqu\u00edn Dopazo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "SMAca: SMA Carrier Analysis tool. SMN1 copy-number and sequence variant analysis from next generation sequencing data.\nSMAca is a python tool to detect putative SMA carriers and estimate the absolute SMN1 copy-number in a population. Moreover, SMAca takes advantage of the knowledge of certain variants specific to SMN1 duplication to also identify the so-called \u201csilent carriers\u201d (i.e. individuals with two copies of SMN1 on one chromosome, but none on the other)."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SMAca"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "smaca",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Copy number estimation",
+              "uri": "http://edamontology.org/operation_3233",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Validation",
+              "uri": "http://edamontology.org/operation_2428",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8325310e2f3aa0b3bafe7"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation",
+              "uri": "http://edamontology.org/topic_0199",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.github.com/babelomics/SMAca"
+          ]
+        },
+        "id": "biotools/smaca/undefined/None",
+        "last_updated_at": "2026-03-19T01:40:57.316193",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/smaca/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/SMAca/None/v1.2.3,bioconda_recipes/smaca/cmd/1.2.3,bioconda_recipes/smaca/lib/1.2.3,github/SMAca/None/v1.2.4rc9",
+        "data": {
+          "authors": [
+            {
+              "email": "d.lopez.bioinfo@gmail.com",
+              "maintainer": false,
+              "name": "dlopez-bioinfo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "daniel.lopez.lopez@juntadeandalucia.es",
+              "maintainer": false,
+              "name": "Daniel L\u00f3pez L\u00f3pez",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "erdanieee@gmail.com",
+              "maintainer": false,
+              "name": "Er Dani\u00e9",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "carlos.loucera@juntadeandalucia.es",
+              "maintainer": false,
+              "name": "loucerac",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "dlopez@gattaca1.bullx",
+              "maintainer": false,
+              "name": "Daniel L\u00f3pez",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "loucerac@unican.es",
+              "maintainer": false,
+              "name": "Carlos",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "rosariocarmona@uma.es",
+              "maintainer": false,
+              "name": "rosariocarmona",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "joaquin.dopazo@gmail.com",
+              "maintainer": false,
+              "name": "Joaquin Dopazo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "pysam",
+            "numpy",
+            "click",
+            "joblib"
+          ],
+          "description": [
+            "Smaca is a python tool to detect putative SMA carriers and estimate the absolute SMN1 copy-number in a population.",
+            "SMN1 copy-number and sequence variant analysis from next generation sequencing data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/babelomics/SMAca/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/babelomics/SMAca/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/smaca/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/smaca/README.html"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/s/smaca/smaca-1.2.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SMAca",
+            "smaca"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "SMAca",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "smaca"
+          ],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/babelomics/SMAca"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/s/smaca/smaca-1.2.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "v1.0",
+            "1.2.3",
+            "v1.2.4rc9",
+            "v1.2.4rc8",
+            "v1.2.3",
+            "v1.0.1",
+            "v1.2.4rc2",
+            "v1.2.4rc10",
+            "v1.2.2",
+            "v1.2.4rc6",
+            "v1.2.4rc5",
+            "v1.2.4rc3",
+            "v1.2.0",
+            "v1.2.4rc7",
+            "v1.2.4rc11"
+          ],
+          "webpage": [
+            "https://github.com/babelomics/SMAca"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:smaca_bioconda_recipes/smaca/cmd/1.2.3,bioconda_recipes/smaca/lib/1.2.3,biotools/smaca/undefined/None,github/SMAca/None/v1.2.3,github/SMAca/None/v1.2.4rc9",
+  "conflict_name": "smaca/*",
+  "date": "2026-03-25T20:17:51.050411+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
