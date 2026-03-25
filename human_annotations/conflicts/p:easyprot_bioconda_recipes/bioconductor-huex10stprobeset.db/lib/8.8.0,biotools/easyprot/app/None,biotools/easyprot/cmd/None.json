@@ -1,0 +1,205 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/bioconductor-huex10stprobeset.db/lib/8.8.0",
+        "created_at": "2025-04-02T11:51:21.925678",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-annotationdbi >=1.68.0,<1.69.0",
+            "bioconductor-org.hs.eg.db >=3.20.0,<3.21.0",
+            "r-base",
+            "curl",
+            "bioconductor-data-packages >=20241103"
+          ],
+          "description": [
+            "Affymetrix huex10 annotation data (chip huex10stprobeset) assembled using data from public repositories."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-huex10stprobeset.db/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-huex10stprobeset.db/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.20/data/annotation/src/contrib/huex10stprobeset.db_8.8.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/huex10stprobeset.db/huex10stprobeset.db_8.8.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/huex10stprobeset.db_8.8.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-huex10stprobeset.db/bioconductor-huex10stprobeset.db_8.8.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-huex10stprobeset.db"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-huex10stprobeset.db",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/huex10stprobeset.db/huex10stprobeset.db_8.8.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/data/annotation/src/contrib/huex10stprobeset.db_8.8.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-huex10stprobeset.db/bioconductor-huex10stprobeset.db_8.8.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/huex10stprobeset.db_8.8.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "lib",
+          "version": [
+            "8.8.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.20/data/annotation/html/huex10stprobeset.db.html"
+          ]
+        },
+        "id": "bioconda_recipes/bioconductor-huex10stprobeset.db/lib/8.8.0",
+        "last_updated_at": "2026-03-18T23:47:29.991450",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/bioconductor-huex10stprobeset.db/lib/8.8.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/easyprot/cmd/None,biotools/easyprot/app/None",
+        "data": {
+          "authors": [
+            {
+              "email": "florent.gluck@unige.ch",
+              "maintainer": false,
+              "name": "Florent Gluck",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "webmaster@ms-utils.org",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://ms-utils.org/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Graphical and software platform for the analysis of MS/MS data."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "EasyProt"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "easyprot",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein fragment weight comparison",
+              "uri": "http://edamontology.org/operation_2929",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c7aa2cd3b8acd1a2f9bbff"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Proteomics",
+            "ms-utils"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "app"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://easyprot.unige.ch/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:easyprot_bioconda_recipes/bioconductor-huex10stprobeset.db/lib/8.8.0,biotools/easyprot/app/None,biotools/easyprot/cmd/None",
+  "conflict_name": "easyprot/*",
+  "date": "2026-03-25T21:47:12.915886+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
