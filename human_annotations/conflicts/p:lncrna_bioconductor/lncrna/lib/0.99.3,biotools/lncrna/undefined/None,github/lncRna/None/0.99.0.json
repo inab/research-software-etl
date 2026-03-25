@@ -1,0 +1,319 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/lncrna/undefined/None",
+        "created_at": "2026-02-23T16:08:10.262605",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "michiel.dehoon@riken.jp",
+              "maintainer": false,
+              "name": "Michiel J. L. de Hoon",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "FANTOM-ZENBU provides an annotation of nuclear long non-coding RNAs based on chromatin interactions and Hi-C data, identifying potential target genes and regulatory factors. The results are accessible through an interactive visualization web portal."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "FANTOM-ZENBU lncRNA annotation"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "lncrna",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Differential gene expression profiling",
+              "uri": "http://edamontology.org/operation_3223",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Scaffolding",
+              "uri": "http://edamontology.org/operation_3216",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6d5a4393fdfaf890bd0c"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": null,
+              "uri": "http://edamontology.org/topic_4052",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "ChIP-seq",
+              "uri": "http://edamontology.org/topic_3169",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://fantom.gsc.riken.jp/zenbu/reports/#F6_3D_lncRNA"
+          ]
+        },
+        "id": "biotools/lncrna/undefined/None",
+        "last_updated_at": "2026-03-19T02:28:24.681272",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/lncrna/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/lncrna/lib/0.99.3,github/lncRna/None/0.99.0",
+        "data": {
+          "authors": [
+            {
+              "email": "bioinformatyka@gmail.com",
+              "maintainer": false,
+              "name": "Jan Pawel Jastrzebski",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "dcwmpl@gmail.com",
+              "maintainer": false,
+              "name": "Damian Czopek",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "ma.jankowski99@gmail.com",
+              "maintainer": false,
+              "name": "Mariusz Jankowski",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "gawronska572@gmail.com",
+              "maintainer": false,
+              "name": "Monika Gawronska",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "wiktorbabis@gmail.com",
+              "maintainer": false,
+              "name": "Wiktor Babis",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "stefano.pascarella@uniroma1.it",
+              "maintainer": false,
+              "name": "Stefano Pascarella",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "hugo.gruson+R@normalesup.org",
+              "maintainer": false,
+              "name": "Hugo Gruson",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "36973370+Dragon96pl@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Dragon96pl",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bioinformatyka@gmail.com",
+              "maintainer": false,
+              "name": "prodakt",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "GenomicRanges",
+            "Polychrome",
+            "scales",
+            "stringr",
+            "patchwork",
+            "tidyr",
+            "S4Vectors",
+            "utils",
+            "stats",
+            "ggplot2",
+            "Hmisc",
+            "plotly",
+            "graphics",
+            "fmsb",
+            "grDevices"
+          ],
+          "description": [
+            "Provides a complete workflow for the identification, analysis, and functional annotation of long non-coding RNAs (lncRNAs) from RNA-Seq data. The package includes functions for filtering transcripts from GTF files, evaluating the performance of multiple coding potential prediction tools (e.g., CPC2, PLEK, CPAT), and summarizing their agreement. It enables systematic performance analysis of individual tools, \"at least N\" tool consensus, and all possible tool combinations. Functional analysis is supported through the identification of potential cis- and trans-acting interactions with protein-coding genes, followed by enrichment analysis. Results can be visualized using a variety of plots, including radar plots, clock plots, and interactive Sankey diagrams.",
+            "Is a package that simplifies the lncRNA identification process."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/prodakt/lncRna/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/prodakt/lncRna/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "lncRna"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "lncrna",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "lncRna"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/lncRna"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/prodakt/lncRna"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconductor"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "0.99.3",
+            "1.2.0",
+            "0.99.0",
+            "0.1.0"
+          ],
+          "webpage": [
+            "https://github.com/prodakt/lncRna"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:lncrna_bioconductor/lncrna/lib/0.99.3,biotools/lncrna/undefined/None,github/lncRna/None/0.99.0",
+  "conflict_name": "lncrna/*",
+  "date": "2026-03-25T21:39:04.798230+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
