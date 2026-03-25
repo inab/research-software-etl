@@ -1,0 +1,262 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/cutefc/undefined/None",
+        "created_at": "2026-02-23T16:10:27.897336",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "ghwang@hit.edu.cn",
+              "maintainer": false,
+              "name": "Guohua Wang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ydwang@hit.edu.cn",
+              "maintainer": false,
+              "name": "Yadong Wang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "CuteFC is a force-calling method for accurate and efficient regenotyping of structural variants. It utilizes self-adaptive clustering and outperforms state-of-the-art tools in yield and scaling performance."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "cuteFC"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "cutefc",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structural variation detection",
+              "uri": "http://edamontology.org/operation_3228",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6de34393fdfaf890c252"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": null,
+              "uri": "http://edamontology.org/topic_4056",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structural variation",
+              "uri": "http://edamontology.org/topic_3175",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://zenodo.org/records/14671406"
+          ]
+        },
+        "id": "biotools/cutefc/undefined/None",
+        "last_updated_at": "2026-03-19T02:33:18.803927",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/cutefc/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/cutefc/lib/1.0.2,github/cuteFC/None/cuteFC-v1.0.2",
+        "data": {
+          "authors": [
+            {
+              "email": "47966870+Meltpinkg@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Meltpinkg",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tjiang@hit.edu.cn",
+              "maintainer": false,
+              "name": "JiangTao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "zzdzhangzzd@hotmail.com",
+              "maintainer": false,
+              "name": "CRE",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "cigar",
+            "biopython",
+            "pysam",
+            "numpy",
+            "pyvcf3",
+            "scipy",
+            "scikit-learn",
+            "python >=3"
+          ],
+          "description": [
+            "Regenotyping structural variants through an accurate and efficient force-calling method."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/cutefc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/cutefc/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Meltpinkg/cuteFC/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/c/cuteFC/cuteFC-1.0.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "cuteFC",
+            "cutefc"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "cutefc",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "cuteFC"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Meltpinkg/cuteFC"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/c/cuteFC/cuteFC-1.0.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.0.2",
+            "cuteFC-v1.0.1",
+            "cuteFC-v1.0.2"
+          ],
+          "webpage": [
+            "https://github.com/Meltpinkg/cuteFC"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:cutefc_bioconda_recipes/cutefc/lib/1.0.2,biotools/cutefc/undefined/None,github/cuteFC/None/cuteFC-v1.0.2",
+  "conflict_name": "cutefc/*",
+  "date": "2026-03-25T21:35:14.553868+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
