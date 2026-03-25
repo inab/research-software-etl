@@ -1,0 +1,466 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/zol/undefined/None",
+        "created_at": "2026-02-23T16:11:08.455240",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "kalanlr@mcmaster.ca",
+              "maintainer": false,
+              "name": "Lindsay R Kalan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Zol is a program that creates table reports showing ortholog group conservation, annotation, and evolutionary stats for gene clusters or loci of interest. It enables large-scale comparative analysis of gene clusters and mobile-genetic elements, overcoming limitations in orthology inference across broad taxonomic contexts."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "zol"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "zol",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Homology-based gene prediction",
+              "uri": "http://edamontology.org/operation_3663",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Aggregation",
+              "uri": "http://edamontology.org/operation_3436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6e0c4393fdfaf890c3dc"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mobile genetic elements",
+              "uri": "http://edamontology.org/topic_0798",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenomics",
+              "uri": "http://edamontology.org/topic_0194",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogeny",
+              "uri": "http://edamontology.org/topic_0084",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Model organisms",
+              "uri": "http://edamontology.org/topic_0621",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/Kalan-Lab/zol/wiki"
+          ]
+        },
+        "id": "biotools/zol/undefined/None",
+        "last_updated_at": "2026-03-19T02:34:45.222771",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/zol/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/zol/cmd/1.3.18,github/zol/None/v1.5.8,bioconda_recipes/zol/cmd/1.6.18,github/zol/None/v1.6.18",
+        "data": {
+          "authors": [
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Rauf Salamzade",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Lindsay Kalan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "skani",
+            "curl",
+            "muscle =5.1",
+            "prodigal",
+            "ete3",
+            "pyhmmer",
+            "peptides",
+            "python =3.10",
+            "pomegranate >0.13,<=0.14.8",
+            "miniprot >=0.13",
+            "diamond =2.0.15",
+            "r-ggplot2",
+            "hyphy =2.5.14",
+            "scikit-learn",
+            "setuptools",
+            "pandas >=2.0",
+            "pip",
+            "hyphy >=2.5.14",
+            "r-gggenes",
+            "gzip",
+            "codoff >=1.2.3",
+            "pyrodigal",
+            "python >=3.10",
+            "pyhmmer =0.11.4",
+            "pal2nal >=14.1",
+            "diamond =2.1.11",
+            "miniprot =0.7",
+            "prodigal-gv",
+            "r-cowplot",
+            "pympler",
+            "biopython",
+            "r-gridextra",
+            "hmmer >=3.0.0",
+            "axel",
+            "ncbi-genome-download",
+            "trimal",
+            "miniprot =0.13",
+            "slclust",
+            "legacy-cgi",
+            "xlsxwriter >=3.0.3",
+            "muscle",
+            "colour",
+            "bioconductor-ggtree",
+            "biopython =1.79",
+            "r-base",
+            "cd-hit",
+            "mcl",
+            "aiohttp",
+            "fasttree",
+            "pomegranate >=1.0.0",
+            "tqdm",
+            "fasttree >=2.0.0",
+            "skani >=0.2.2",
+            "rich-argparse",
+            "aiofile"
+          ],
+          "description": [
+            "Zol (& fai): large-scale targeted detection and evolutionary investigation of gene clusters.",
+            "Zol (& fai): large-scale targeted detection and evolutionary investigation of gene clusters (i.e. BGCs, phages, etc.)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/zol/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/zol/README.html"
+            },
+            {
+              "content": null,
+              "type": "contributing",
+              "url": "https://github.com/Kalan-Lab/zol/blob/main/CONTRIBUTING.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Kalan-Lab/zol/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/Kalan-Lab/zol"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Kalan-Lab/zol/blob/main/PEP8_COMPLIANCE_GUIDE.md"
+            }
+          ],
+          "download": [
+            "https://github.com/Kalan-Lab/zol/archive/refs/tags/v1.3.18.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "zol"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-3-Clause license",
+              "url": null
+            },
+            {
+              "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+              "url": "http://choosealicense.com/licenses/bsd-3-clause/"
+            },
+            {
+              "name": "BSD-3-Clause",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "zol",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Kalan-Lab/zol"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/Kalan-Lab/zol/archive/refs/tags/v1.3.18.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "gene-clusters",
+              "uri": "https://github.com/topics/gene-clusters",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "detection",
+              "uri": "https://github.com/topics/detection",
+              "vocabulary": ""
+            },
+            {
+              "term": "evolution",
+              "uri": "https://github.com/topics/evolution",
+              "vocabulary": ""
+            },
+            {
+              "term": "bgc",
+              "uri": "https://github.com/topics/bgc",
+              "vocabulary": ""
+            },
+            {
+              "term": "phage",
+              "uri": "https://github.com/topics/phage",
+              "vocabulary": ""
+            },
+            {
+              "term": "biosynthetic-gene-clusters",
+              "uri": "https://github.com/topics/biosynthetic-gene-clusters",
+              "vocabulary": ""
+            },
+            {
+              "term": "comparative-genomics",
+              "uri": "https://github.com/topics/comparative-genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "metagenomics",
+              "uri": "https://github.com/topics/metagenomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "mobile-genetic-elements",
+              "uri": "https://github.com/topics/mobile-genetic-elements",
+              "vocabulary": ""
+            },
+            {
+              "term": "visualization",
+              "uri": "https://github.com/topics/visualization",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.3.19",
+            "v1.6.16",
+            "v1.6.14",
+            "v1.5.17",
+            "v1.5.13",
+            "v1.3.6",
+            "v.1.2.1",
+            "v1.6.11",
+            "1.3.18",
+            "v1.5.5",
+            "v1.6.10",
+            "v1.4.12",
+            "v1.5.7",
+            "v1.4.7",
+            "v1.5.9",
+            "v1.3.2",
+            "v1.4.0",
+            "v1.5.4",
+            "v1.2.5",
+            "v1.3.4",
+            "v1.6.0",
+            "v1.3.1",
+            "v1.5.2",
+            "v1.3.18",
+            "v1.4.10",
+            "v1.5.12",
+            "v1.3.12",
+            "v1.5.16",
+            "v1.6.7",
+            "v1.3.16",
+            "v1.2.10",
+            "v1.4.5",
+            "v1.6.1",
+            "v1.5.0",
+            "v1.5.1",
+            "1.6.18",
+            "v1.2.7",
+            "v1.4.4",
+            "v1.5.15",
+            "v1.2.6",
+            "v1.3.17",
+            "v1.3.15",
+            "v1.5.10",
+            "v1.6.8",
+            "v1.3.5",
+            "v1.4.6",
+            "v1.5.11",
+            "v1.5.14",
+            "v1.5.19",
+            "v1.4.9",
+            "v1.3.20",
+            "v1.3.10",
+            "v1.3.9",
+            "v1.5.6",
+            "v1.4.11",
+            "v1.4.1",
+            "v1.2.4",
+            "v1.3.3",
+            "v1.6.12",
+            "v1.6.5",
+            "v1.6.17",
+            "v1.3.7",
+            "v1.6.3",
+            "v1.6.9",
+            "v1.3.11",
+            "v1.5.3",
+            "v1.3.8",
+            "v1.6.4",
+            "v1.5.8",
+            "1.2",
+            "v1.6.2",
+            "v1.2.8",
+            "1.5.8",
+            "v1.2.2",
+            "v1.6.18",
+            "v1.6.15",
+            "v1.6.13",
+            "v1.4.8"
+          ],
+          "webpage": [
+            "https://github.com/Kalan-Lab/zol"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:zol_bioconda_recipes/zol/cmd/1.3.18,bioconda_recipes/zol/cmd/1.6.18,biotools/zol/undefined/None,github/zol/None/v1.5.8,github/zol/None/v1.6.18",
+  "conflict_name": "zol/*",
+  "date": "2026-03-25T19:18:08.803348+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
