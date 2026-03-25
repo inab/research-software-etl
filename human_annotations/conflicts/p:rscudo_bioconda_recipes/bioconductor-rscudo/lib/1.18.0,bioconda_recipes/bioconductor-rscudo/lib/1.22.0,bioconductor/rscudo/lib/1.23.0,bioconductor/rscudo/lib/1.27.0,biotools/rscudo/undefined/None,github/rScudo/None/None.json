@@ -1,0 +1,328 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/rScudo/None/None",
+        "created_at": "2026-03-25T15:19:01.124480",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "matteo.ciciani@gmail.com",
+              "maintainer": false,
+              "name": "Matteo-Ciciani",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cantorethomas@gmail.com",
+              "maintainer": false,
+              "name": "cantorethomas",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "RScudo."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Matteo-Ciciani/scudo/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "rScudo"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "rScudo",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Matteo-Ciciani/rScudo"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:19:01.124480",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/rScudo",
+            "source_url": "https://github.com/Matteo-Ciciani/scudo"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-rscudo/lib/1.18.0,biotools/rscudo/undefined/None,bioconductor/rscudo/lib/1.23.0,bioconda_recipes/bioconductor-rscudo/lib/1.22.0,bioconductor/rscudo/lib/1.27.0",
+        "data": {
+          "authors": [
+            {
+              "email": "mario.lauria@unitn.it",
+              "maintainer": false,
+              "name": "Matteo Ciciani",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cantorethomas@gmail.com",
+              "maintainer": false,
+              "name": "Thomas Cantore",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "enrica.colasurdo@gmail.com",
+              "maintainer": false,
+              "name": "Enrica Colasurdo",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "mario.lauria@unitn.it",
+              "maintainer": false,
+              "name": "Mario Lauria",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "bioconductor-s4vectors >=0.44.0,<0.45.0",
+            "stringr",
+            "stats",
+            "BiocGenerics",
+            "Biobase",
+            "SummarizedExperiment",
+            "bioconductor-summarizedexperiment >=1.36.0,<1.37.0",
+            "igraph",
+            "bioconductor-biobase >=2.62.0,<2.63.0",
+            "bioconductor-biocgenerics >=0.52.0,<0.53.0",
+            "grDevices",
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "bioconductor-biobase >=2.66.0,<2.67.0",
+            "S4Vectors",
+            "R (>= 3.6)",
+            "r-igraph",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "r-base",
+            "r-stringr",
+            "methods"
+          ],
+          "description": [
+            "SCUDO (Signature-based Clustering for Diagnostic Purposes) is a rank-based method for the analysis of gene expression profiles for diagnostic and classification purposes. It is based on the identification of sample-specific gene signatures composed of the most up- and down-regulated genes for that sample. Starting from gene expression data, functions in this package identify sample-specific gene signatures and use them to build a graph of samples. In this graph samples are joined by edges if they have a similar expression profile, according to a pre-computed similarity matrix.  The similarity between the expression profiles of two samples is computed using a method similar to GSEA. The graph of samples can then be used to perform community clustering or to perform supervised classification of samples in a testing set.",
+            "An R package for classification of molecular profiles using rank-based signatures.\n\nSignature-based Clustering for Diagnostic Purposes.\n\nSCUDO (Signature-based Clustering for Diagnostic Purposes) is a rank-based method for the analysis of gene expression profiles for diagnostic and classification purposes.\n\nBiomedicalInformatics, Classification, Clustering, DifferentialExpression, FeatureExtraction, GeneExpression, GraphAndNetwork, Network, Proteomics, Software, SystemsBiology, Transcriptomics.",
+            "SCUDO (Signature-based Clustering for Diagnostic Purposes) is a rank-based method for the analysis of gene expression profiles for diagnostic and classification purposes. It is based on the identification of sample-specific gene signatures composed of the most up- and down-regulated genes for that sample. Starting from gene expression data, functions in this package identify sample-specific gene signatures and use them to build a graph of samples. In this graph samples are joined by edges if they have a similar expression profile, according to a pre-computed similarity matrix. The similarity between the expression profiles of two samples is computed using a method similar to GSEA. The graph of samples can then be used to perform community clustering or to perform supervised classification of samples in a testing set."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-rscudo/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-rscudo/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/rScudo_1.18.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/rScudo_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rscudo/bioconductor-rscudo_1.22.0_src_all.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rscudo/bioconductor-rscudo_1.18.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/rScudo_1.22.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/rScudo/rScudo_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/rScudo/rScudo_1.22.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/rScudo_1.22.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "rScudo",
+            "bioconductor-rscudo"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-rscudo",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Expression profile clustering",
+              "uri": "http://edamontology.org/operation_0313",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Feature extraction",
+              "uri": "http://edamontology.org/operation_3937",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Validation",
+              "uri": "http://edamontology.org/operation_2428",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "rscudo"
+          ],
+          "output": [],
+          "publication": [
+            "67c8327010e2f3aa0b3bb10c"
+          ],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/rScudo"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Matteo-Ciciani/scudo"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "biotools",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/rScudo_1.18.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/rScudo_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rscudo/bioconductor-rscudo_1.22.0_src_all.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rscudo/bioconductor-rscudo_1.18.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/rScudo_1.22.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/rScudo/rScudo_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/rScudo/rScudo_1.22.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/rScudo_1.22.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Personalised medicine",
+              "uri": "http://edamontology.org/topic_3577",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "undefined"
+          ],
+          "version": [
+            "1.22.0",
+            "1.18.0",
+            "None",
+            "1.23.0",
+            "1.27.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/rScudo.html",
+            "https://bioconductor.org/packages/rScudo",
+            "https://github.com/Matteo-Ciciani/scudo",
+            "https://bioconductor.org/packages/3.20/bioc/html/rScudo.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:rscudo_bioconda_recipes/bioconductor-rscudo/lib/1.18.0,bioconda_recipes/bioconductor-rscudo/lib/1.22.0,bioconductor/rscudo/lib/1.23.0,bioconductor/rscudo/lib/1.27.0,biotools/rscudo/undefined/None,github/rScudo/None/None",
+  "conflict_name": "rscudo/*",
+  "date": "2026-03-25T19:25:36.702239+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
