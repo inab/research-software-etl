@@ -1,0 +1,346 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/cleaver/None/None",
+        "created_at": "2025-04-02T15:43:55.204535",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Cleaver is a program for comparing restriction endonuclease digests of orthologous DNA sequences from different taxa. It performs virtual restriction digests and searches for endonucleases that cleave DNA fragments from given taxa but not others."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/cleaver"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "cleaver"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "cleaver",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/cleaver"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://cleaver.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/cleaver/None/None",
+        "last_updated_at": "2026-03-19T03:34:33.477867",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/cleaver//",
+            "source_url": "https://sourceforge.net/projects/cleaver"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/cleaver/None/None,bioconda_recipes/bioconductor-cleaver/lib/1.40.0,biotools/cleaver/cmd/1.12.0,biotools/cleaver/lib/1.12.0,bioconductor/cleaver/lib/1.45.0,bioconductor/cleaver/lib/1.49.0",
+        "data": {
+          "authors": [
+            {
+              "email": "mail@sebastiangibb.de",
+              "maintainer": false,
+              "name": "Sebastian Gibb",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jwokaty@users.noreply.github.com",
+              "maintainer": false,
+              "name": "J Wokaty",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "valerie.obenchain@roswellpark.org",
+              "maintainer": false,
+              "name": "vobencha",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hpages@fredhutch.org",
+              "maintainer": false,
+              "name": "Herv\u00e9 Pag\u00e8s",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "unknown",
+              "maintainer": false,
+              "name": "s.gibb",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hpages@fhcrc.org",
+              "maintainer": false,
+              "name": "Herve Pages",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "dtenenba@fhcrc.org",
+              "maintainer": false,
+              "name": "Dan Tenenbaum",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mcarlson@fhcrc.org",
+              "maintainer": false,
+              "name": "Marc Carlson",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "Biostrings (>= 1.29.8)",
+            "IRanges",
+            "r-base",
+            "S4Vectors",
+            "bioconductor-biostrings >=2.70.0,<2.71.0",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "R (>= 3.0.0)",
+            "methods",
+            "bioconductor-iranges >=2.36.0,<2.37.0"
+          ],
+          "description": [
+            "In-silico cleavage of polypeptide sequences. The cleavage rules are taken from: http://web.expasy.org/peptide_cutter/peptidecutter_enzymes.html.",
+            "In-silico cleavage of polypeptide sequences.",
+            "Cleavage of polypeptide sequences."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/sgibb/cleaver/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-cleaver/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-cleaver/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/cleaver.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/cleaver_1.40.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-cleaver/bioconductor-cleaver_1.40.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/cleaver_1.40.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/cleaver/cleaver_1.40.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "cleaver",
+            "bioconductor-cleaver"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL (>= 3)",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "cleaver",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein cleavage site prediction",
+              "uri": "http://edamontology.org/operation_0422",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "bioconductor-cleaver"
+          ],
+          "output": [],
+          "publication": [
+            "67c79b54d3b8acd1a2f9b394"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/sgibb/cleaver"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/cleaver"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "biotools",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/cleaver_1.40.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-cleaver/bioconductor-cleaver_1.40.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/cleaver_1.40.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/cleaver/cleaver_1.40.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "r",
+              "uri": "https://github.com/topics/r",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioc",
+              "uri": "https://github.com/topics/bioc",
+              "vocabulary": ""
+            },
+            {
+              "term": "cleavage",
+              "uri": "https://github.com/topics/cleavage",
+              "vocabulary": ""
+            },
+            {
+              "term": "peptides",
+              "uri": "https://github.com/topics/peptides",
+              "vocabulary": ""
+            },
+            {
+              "term": "digest",
+              "uri": "https://github.com/topics/digest",
+              "vocabulary": ""
+            },
+            {
+              "term": "\"Protein sites",
+              "uri": "http://edamontology.org/topic_3510",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "1.49.0",
+            "1.45.0",
+            "1.12.0",
+            "1.40.0"
+          ],
+          "webpage": [
+            "http://bioconductor.org/packages/release/bioc/html/cleaver.html",
+            "https://codeberg.org/sgibb/cleaver",
+            "https://bioconductor.org/packages/3.18/bioc/html/cleaver.html",
+            "https://github.com/sgibb/cleaver/",
+            "https://codeberg.org/sgibb/cleaver/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:cleaver_bioconda_recipes/bioconductor-cleaver/lib/1.40.0,bioconductor/cleaver/lib/1.45.0,bioconductor/cleaver/lib/1.49.0,biotools/cleaver/cmd/1.12.0,biotools/cleaver/lib/1.12.0,github/cleaver/None/None,sourceforge/cleaver/None/None",
+  "conflict_name": "cleaver/*",
+  "date": "2026-03-25T21:04:22.732439+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
