@@ -1,0 +1,387 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/circrna/undefined/None",
+        "created_at": "2025-04-02T12:54:02.515225",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Biogenesis mechanisms of circular RNA can be categorized through feature extraction of a machine learning model | Contextual_Regression_for_CircRNA | Contextual Regression for CircRNA."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "circRNA"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "circrna",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "CpG island and isochore detection",
+              "uri": "http://edamontology.org/operation_0430",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA binding site prediction",
+              "uri": "http://edamontology.org/operation_3902",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Parsing",
+              "uri": "http://edamontology.org/operation_1812",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8330f10e2f3aa0b3bb6e6"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA",
+              "uri": "http://edamontology.org/topic_0099",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/chl556/Contextual_Regression_for_CircRNA"
+          ]
+        },
+        "id": "biotools/circrna/undefined/None",
+        "last_updated_at": "2026-03-19T02:03:28.541135",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/circrna/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/nf-core_circrna/workflow/None,github/circrna/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "barry.digby@nuigalway.ie",
+              "maintainer": false,
+              "name": "Barry Digby",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Stephen P Finn",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Pilib \u00d3 Broin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nictru32@gmail.com",
+              "maintainer": false,
+              "name": "Nico Trummer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "core@nf-co.re",
+              "maintainer": false,
+              "name": "nf-core-bot",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Portable workflow for the quantification, miRNA target prediction and differential expression analysis of circular RNAs.",
+            "CircRNA quantification, differential expression analysis and miRNA target prediction of RNA-Seq data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/nf-core/circrna/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/nf-core/circrna/blob/main/CITATIONS.md"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/nf-core/circrna/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/nf-core/circrna/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/nf-core/circrna/blob/main/docs/README.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/nf-core/circrna/blob/main/docs/output.md"
+            },
+            {
+              "content": null,
+              "type": "usage",
+              "url": "https://github.com/nf-core/circrna/blob/main/docs/usage.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "circrna",
+            "nf-core circrna"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "nf-core_circrna",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "miRNA target prediction",
+              "uri": "http://edamontology.org/operation_0463",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq quantification",
+              "uri": "http://edamontology.org/operation_3800",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "miRNA expression analysis",
+              "uri": "http://edamontology.org/operation_3792",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Differential gene expression profiling",
+              "uri": "http://edamontology.org/operation_3223",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Alternative splicing prediction",
+              "uri": "http://edamontology.org/operation_0264",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "circrna"
+          ],
+          "output": [],
+          "publication": [
+            "67e2c429b57beba26405d6a2"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/nf-core/circrna"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "circrna",
+              "uri": "https://github.com/topics/circrna",
+              "vocabulary": ""
+            },
+            {
+              "term": "circrna-prediction",
+              "uri": "https://github.com/topics/circrna-prediction",
+              "vocabulary": ""
+            },
+            {
+              "term": "circrna-pipeline",
+              "uri": "https://github.com/topics/circrna-pipeline",
+              "vocabulary": ""
+            },
+            {
+              "term": "circular-rna",
+              "uri": "https://github.com/topics/circular-rna",
+              "vocabulary": ""
+            },
+            {
+              "term": "rna-seq",
+              "uri": "https://github.com/topics/rna-seq",
+              "vocabulary": ""
+            },
+            {
+              "term": "nf-core",
+              "uri": "https://github.com/topics/nf-core",
+              "vocabulary": ""
+            },
+            {
+              "term": "nextflow",
+              "uri": "https://github.com/topics/nextflow",
+              "vocabulary": ""
+            },
+            {
+              "term": "pipeline",
+              "uri": "https://github.com/topics/pipeline",
+              "vocabulary": ""
+            },
+            {
+              "term": "workflow",
+              "uri": "https://github.com/topics/workflow",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "ngs",
+              "uri": "https://github.com/topics/ngs",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "mirna",
+              "uri": "https://github.com/topics/mirna",
+              "vocabulary": ""
+            },
+            {
+              "term": "mirna-targets",
+              "uri": "https://github.com/topics/mirna-targets",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "workflow"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://nf-co.re/circrna"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:circrna_biotools/circrna/undefined/None,biotools/nf-core_circrna/workflow/None,github/circrna/None/None",
+  "conflict_name": "circrna/*",
+  "date": "2026-03-25T20:43:45.319909+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
