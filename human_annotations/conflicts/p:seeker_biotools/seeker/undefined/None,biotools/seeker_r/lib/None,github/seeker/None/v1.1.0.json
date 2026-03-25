@@ -1,0 +1,339 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/seeker/undefined/None",
+        "created_at": "2025-04-02T12:45:50.889196",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "koonin@ncbi.nlm.nih.gov",
+              "maintainer": false,
+              "name": "Ayal B. Gussow",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ayal.gussow@nih.gov",
+              "maintainer": false,
+              "name": "Eugene V. Koonin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Alignment-free identification of bacteriophage genomes by deep learning.\n\nSeeker is a python library for discriminating between bacterial and phage genomes. Seeker is based on an LSTM deep-learning models and does not rely on a reference genome, genomic alignment or any direct genome comparison.\n\nAlignment free identification of novel phages via a deep learning framework.\n\nMaximum file size is 10MB. For large-scale datasets, please use the accompanying Python package.\n\nThe MATLAB and Python model types differ in how they represent the DNA sequences. They are largely equivalent in their performance. The default recommendation is to use the Python model, as it uses fewer parameters."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Seeker"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "seeker",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene tree construction",
+              "uri": "http://edamontology.org/operation_0553",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Filtering",
+              "uri": "http://edamontology.org/operation_3695",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8325f10e2f3aa0b3bb05c"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/gussow/seeker"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein interaction experiment",
+              "uri": "http://edamontology.org/topic_3957",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://seeker.pythonanywhere.com/"
+          ]
+        },
+        "id": "biotools/seeker/undefined/None",
+        "last_updated_at": "2026-03-19T01:41:53.137647",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/seeker/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/seeker/None/v1.1.0,biotools/seeker_r/lib/None",
+        "data": {
+          "authors": [
+            {
+              "email": "jakejhughey@gmail.com",
+              "maintainer": false,
+              "name": "Jake Hughey",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jacorvar@users.noreply.github.com",
+              "maintainer": false,
+              "name": "jacorvar",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "josh.schoenbachler@gmail.com",
+              "maintainer": false,
+              "name": "Josh Schoenbachler",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jakejhughey@gmail.com",
+              "maintainer": false,
+              "name": "Jacob J. Hughey",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Joshua L. Schoenbachler",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Simplified fetching and processing of transcriptome data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/hugheylab/seeker/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/hugheylab/seeker/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/hugheylab/seeker/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/hugheylab/seeker/blob/main/cran-comments.md"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://cloud.r-project.org/web/packages/seeker/seeker.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "seeker"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "seeker",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Differential gene expression profiling",
+              "uri": "http://edamontology.org/operation_3223",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "seeker_r"
+          ],
+          "output": [],
+          "publication": [
+            "67c8378d10e2f3aa0b3bcc6b"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/hugheylab/seeker"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/hugheylab/seeker/"
+            },
+            {
+              "kind": null,
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://cloud.r-project.org/web/packages/seeker/index.html"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microarray experiment",
+              "uri": "http://edamontology.org/topic_3518",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "v1.1.0",
+            "v1.0.13",
+            "None"
+          ],
+          "webpage": [
+            "https://seeker.hugheylab.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:seeker_biotools/seeker/undefined/None,biotools/seeker_r/lib/None,github/seeker/None/v1.1.0",
+  "conflict_name": "seeker/*",
+  "date": "2026-03-25T20:18:55.038068+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
