@@ -1,0 +1,398 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/sbgn/None/None",
+        "created_at": "2025-04-02T15:43:39.723606",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The international SBGN project aims to bring consistency and uniformity to the graphical expression of network diagrams in biology, in the same way that electronic circuit diagrams are standardized in electrical engineering."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/sbgn"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "sbgn"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "sbgn",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/sbgn"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://sbgn.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/sbgn/None/None",
+        "last_updated_at": "2026-03-19T03:37:06.535872",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/sbgn//",
+            "source_url": "https://sourceforge.net/projects/sbgn"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/sbgn/undefined/None,github/krayon4sbgn/None/None,github/libsbgn/None/milestone3.3,github/ySBGN/None/1.1.2",
+        "data": {
+          "authors": [
+            {
+              "email": "aluna@jimmy.harvard.edu",
+              "maintainer": false,
+              "name": "Augustin Luna",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "39997205+AntonJuliusRabe@users.noreply.github.com",
+              "maintainer": false,
+              "name": "AntonJuliusRabe",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "andreas.draeger@uni-tuebingen.de",
+              "maintainer": false,
+              "name": "Andreas Dr\u00e4ger",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "roland.wiese@gmail.com",
+              "maintainer": false,
+              "name": "wiese42",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tczauderna@gmail.com",
+              "maintainer": false,
+              "name": "Tobias Czauderna",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49699333+dependabot[bot]@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dependabot[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "fbergman@caltech.edu",
+              "maintainer": false,
+              "name": "Frank Bergmann",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "piotr.gawron@uni.lu",
+              "maintainer": false,
+              "name": "Piotr Gawron",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ibalaur@eisbm.org",
+              "maintainer": false,
+              "name": "Irina Balaur",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "a.mazein@gmail.com",
+              "maintainer": false,
+              "name": "Alexander Mazein",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Libraries for the Systems Biology Graphical Notation (SBGN); Java and C++.",
+            "The aim is to provide the most accurate translation for metabolic networks between GraphML (yEd) and SBGN-ML Process Description file formats. Translation in both direction is possible. This project should ultimately be integrated into the SBFC.",
+            "A yFiles-based editor for SBGN diagrams written in Kotlin.",
+            "Translation between GraphML (yED) and SBGN-ML."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/draeger-lab/krayon4sbgn/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/draeger-lab/krayon4sbgn/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/sbgn/libsbgn/blob/main/CHANGES.txt"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/sbgn/libsbgn/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/sbgn/libsbgn/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/sbgn/ySBGN/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SBGN",
+            "krayon4sbgn",
+            "ySBGN",
+            "libsbgn"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "GNU General Public License v2.0",
+              "url": "http://choosealicense.com/licenses/gpl-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "sbgn",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression profile pathway mapping",
+              "uri": "http://edamontology.org/operation_0533",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Editing",
+              "uri": "http://edamontology.org/operation_3096",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "krayon4sbgn",
+            "ySBGN",
+            "libsbgn"
+          ],
+          "output": [],
+          "publication": [
+            "67c8326910e2f3aa0b3bb0c8"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "http://github.com/draeger-lab/krayon4sbgn"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "http://github.com/sbgn/ySBGN"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "http://github.com/sbgn/libsbgn"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/draeger-lab/krayon4sbgn"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/sbgn/libsbgn"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/sbgn/ySBGN"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Systems biology",
+              "uri": "http://edamontology.org/topic_2259",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Endocrinology and metabolism",
+              "uri": "http://edamontology.org/topic_3407",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein expression",
+              "uri": "http://edamontology.org/topic_0108",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Ontology and terminology",
+              "uri": "http://edamontology.org/topic_0089",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "sbgn",
+              "uri": "https://github.com/topics/sbgn",
+              "vocabulary": ""
+            },
+            {
+              "term": "java",
+              "uri": "https://github.com/topics/java",
+              "vocabulary": ""
+            },
+            {
+              "term": "ant",
+              "uri": "https://github.com/topics/ant",
+              "vocabulary": ""
+            },
+            {
+              "term": "maven",
+              "uri": "https://github.com/topics/maven",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "undefined"
+          ],
+          "version": [
+            "v1.0",
+            "1.1.2",
+            "milestone2jar",
+            "milestone3.1",
+            "milestone3.0",
+            "milestone3.2",
+            "milestone2jardep",
+            "milestone3.3",
+            "None",
+            "v1.1",
+            "v1.1-alpha"
+          ],
+          "webpage": [
+            "https://github.com/sbgn/ySBGN",
+            "http://sbgn.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:sbgn_biotools/sbgn/undefined/None,github/krayon4sbgn/None/None,github/libsbgn/None/milestone3.3,github/ySBGN/None/1.1.2,sourceforge/sbgn/None/None",
+  "conflict_name": "sbgn/*",
+  "date": "2026-03-25T20:15:44.374326+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
