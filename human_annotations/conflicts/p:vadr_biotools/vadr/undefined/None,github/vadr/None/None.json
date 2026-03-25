@@ -1,0 +1,262 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/vadr/None/None",
+        "created_at": "2025-04-02T15:48:01.085733",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "nawrocke@ncbi.nlm.nih.gov",
+              "maintainer": false,
+              "name": "Eric Nawrocki",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Viral Annotation DefineR: classification and annotation of viral sequences based on RefSeq annotation."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ncbi/vadr/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/ncbi/vadr/blob/main/RELEASE-NOTES.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ncbi/vadr/blob/main/documentation/README.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/ncbi/vadr/blob/main/documentation/advbuild.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/ncbi/vadr/blob/main/documentation/alerts.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/ncbi/vadr/blob/main/documentation/annotate.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/ncbi/vadr/blob/main/documentation/build.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/ncbi/vadr/blob/main/documentation/formats.md"
+            },
+            {
+              "content": null,
+              "type": "installation",
+              "url": "https://github.com/ncbi/vadr/blob/main/documentation/install.md"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/ncbi/vadr/blob/main/documentation/scan.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "vadr"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "vadr",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/NLM-DIR/vadr"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "id": "github/vadr/None/None",
+        "last_updated_at": "2026-03-25T15:15:41.716309",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/vadr",
+            "source_url": "https://github.com/ncbi/vadr"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/vadr/undefined/None",
+        "created_at": "2025-04-02T12:51:15.269419",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Classification and annotation of viral sequences based on RefSeq annotation."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "VADR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "vadr",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence alignment validation",
+              "uri": "http://edamontology.org/operation_0447",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence annotation",
+              "uri": "http://edamontology.org/operation_0361",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Reverse complement",
+              "uri": "http://edamontology.org/operation_0363",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e6c2f24737f0977933721b"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "COVID-19"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Virology",
+              "uri": "http://edamontology.org/topic_0781",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene and protein families",
+              "uri": "http://edamontology.org/topic_0623",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Sequence sites",
+              "uri": "http://edamontology.org/topic_0160",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/nawrockie/vadr"
+          ]
+        },
+        "id": "biotools/vadr/undefined/None",
+        "last_updated_at": "2026-03-19T01:56:14.796242",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/vadr/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:vadr_biotools/vadr/undefined/None,github/vadr/None/None",
+  "conflict_name": "vadr/*",
+  "date": "2026-03-25T20:34:03.842838+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
