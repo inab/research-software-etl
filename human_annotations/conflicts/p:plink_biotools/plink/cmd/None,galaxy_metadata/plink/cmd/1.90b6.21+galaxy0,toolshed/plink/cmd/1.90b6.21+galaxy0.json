@@ -1,0 +1,176 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/plink/cmd/None",
+        "created_at": "2025-04-02T12:15:16.500701",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "https://amber.mgh.harvard.edu/mailman/listinfo/plink-list"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Free, open-source whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://zzz.bwh.harvard.edu/plink/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PLINK"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "plink",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a419d3b8acd1a2f9b575"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "GWAS study",
+              "uri": "http://edamontology.org/topic_3517",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://zzz.bwh.harvard.edu/plink/"
+          ]
+        },
+        "id": "biotools/plink/cmd/None",
+        "last_updated_at": "2026-03-19T01:25:01.582535",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/plink/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/plink/cmd/1.90b6.21+galaxy0,toolshed/plink/cmd/1.90b6.21+galaxy0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [
+            {
+              "content": "\n        PLINK is a free, open-source whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner.\n\n        For detailed usage notes, visit http://www.cog-genomics.org/plink/2.0/\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "plink"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "plink",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c8384110e2f3aa0b3bcd40"
+          ],
+          "repository": [],
+          "source": [
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.90b6.21+galaxy0"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:plink_biotools/plink/cmd/None,galaxy_metadata/plink/cmd/1.90b6.21+galaxy0,toolshed/plink/cmd/1.90b6.21+galaxy0",
+  "conflict_name": "plink/cmd",
+  "date": "2026-03-25T18:17:12.827693+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
