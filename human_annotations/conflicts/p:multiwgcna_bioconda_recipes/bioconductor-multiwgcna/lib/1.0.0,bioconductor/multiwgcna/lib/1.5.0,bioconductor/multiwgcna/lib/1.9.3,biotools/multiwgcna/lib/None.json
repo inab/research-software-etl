@@ -1,0 +1,296 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/multiwgcna/lib/None",
+        "created_at": "2025-04-02T12:56:57.049112",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "bfogel@ucla.edu",
+              "maintainer": false,
+              "name": "Brent L. Fogel",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Dario Tommasini",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "R package for deep mining gene co-expression networks in multi-trait expression data."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "multiWGCNA"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "multiwgcna",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Weighted correlation network analysis",
+              "uri": "http://edamontology.org/operation_3766",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression correlation analysis",
+              "uri": "http://edamontology.org/operation_3463",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Network visualisation",
+              "uri": "http://edamontology.org/operation_3925",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8383e10e2f3aa0b3bcd39"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Neurology",
+              "uri": "http://edamontology.org/topic_3334",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/fogellab/multiWGCNA"
+          ]
+        },
+        "id": "biotools/multiwgcna/lib/None",
+        "last_updated_at": "2026-03-19T02:12:04.147948",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/multiwgcna/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/multiwgcna/lib/1.5.0,bioconda_recipes/bioconductor-multiwgcna/lib/1.0.0,bioconductor/multiwgcna/lib/1.9.3",
+        "data": {
+          "authors": [
+            {
+              "email": "dtommasini0@gmail.com",
+              "maintainer": false,
+              "name": "Dario Tommasini",
+              "orcid": "https://orcid.org/0000-0002-1214-6547",
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Brent Fogel",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "patchwork",
+            "ggalluvial",
+            "r-wgcna",
+            "r-ggalluvial",
+            "WGCNA",
+            "reshape2",
+            "r-ggplot2",
+            "stringr",
+            "bioconductor-dcanr >=1.18.0,<1.19.0",
+            "SummarizedExperiment",
+            "dcanr",
+            "igraph",
+            "magrittr",
+            "r-reshape2",
+            "flashClust",
+            "r-flashclust",
+            "dplyr",
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "r-dplyr",
+            "r-cowplot",
+            "ggrepel",
+            "r-igraph",
+            "r-scales",
+            "data.table",
+            "ggraph",
+            "r-ggrepel",
+            "scales",
+            "r-readr",
+            "r-data.table",
+            "tidyr",
+            "r-base",
+            "r-stringr",
+            "cowplot",
+            "R (>= 4.3.0)",
+            "ggplot2",
+            "r-patchwork",
+            "methods",
+            "readr"
+          ],
+          "description": [
+            "An R package for deeping mining gene co-expression networks in multi-trait expression data. Provides functions for analyzing, comparing, and visualizing WGCNA networks across conditions. multiWGCNA was designed to handle the common case where there are multiple biologically meaningful sample traits, such as disease vs wildtype across development or anatomical region."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-multiwgcna/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-multiwgcna/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/multiWGCNA_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/multiWGCNA_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/multiWGCNA/multiWGCNA_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-multiwgcna/bioconductor-multiwgcna_1.0.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "multiWGCNA",
+            "bioconductor-multiwgcna"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "multiwgcna",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-multiwgcna"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/multiWGCNA"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/multiWGCNA_1.0.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/multiWGCNA_1.0.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/multiWGCNA/multiWGCNA_1.0.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-multiwgcna/bioconductor-multiwgcna_1.0.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.0.0",
+            "1.9.3",
+            "1.5.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/multiWGCNA",
+            "https://bioconductor.org/packages/3.18/bioc/html/multiWGCNA.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:multiwgcna_bioconda_recipes/bioconductor-multiwgcna/lib/1.0.0,bioconductor/multiwgcna/lib/1.5.0,bioconductor/multiwgcna/lib/1.9.3,biotools/multiwgcna/lib/None",
+  "conflict_name": "multiwgcna/lib",
+  "date": "2026-03-25T20:42:25.123948+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
