@@ -1,0 +1,1572 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/mdt/cmd/5.3",
+        "created_at": "2025-04-02T12:03:46.530058",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://salilab.org/index.html"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "It prepares a raw frequency table, given information from MODELLER alignments and/or PDB files. The sample for generating the frequencies N is obtained depending on the type of features a, b, c, \u2026, d. The sample can contain individual proteins, pairs of proteins, pairs of residues in proteins, pairs of aligned residues, pairs of aligned pairs of residues, chemical bonds, angles, dihedral angles, and pairs of tuples of atoms."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://mdt.readthedocs.io/en/stable/index.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MDT"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mdt",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein sequence analysis",
+              "uri": "http://edamontology.org/operation_2479",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteins",
+              "uri": "http://edamontology.org/topic_0078",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "5.3"
+          ],
+          "webpage": [
+            "http://salilab.org/mdt/"
+          ]
+        },
+        "id": "biotools/mdt/cmd/5.3",
+        "last_updated_at": "2026-03-19T01:09:11.362726",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mdt/cmd/5.3",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/peptide-shaker/cmd/3.0.6,bioconda_recipes/peptide-shaker/cmd/1.16.0,bioconda_recipes/peptide-shaker/cmd/1.16.13,bioconda_recipes/peptide-shaker/cmd/1.16.15,bioconda_recipes/peptide-shaker/cmd/1.16.16,bioconda_recipes/peptide-shaker/cmd/1.16.3,bioconda_recipes/peptide-shaker/cmd/1.16.4,github/peptide-shaker/None/None,biotools/peptideshaker/app/3.0.11,biotools/peptideshaker/cmd/3.0.11,bioconda_recipes/peptide-shaker/cmd/3.0.11,biotools/centiserver/web/1.0.0,biotools/centiserver/lib/1.0.0,biotools/centiserver/cmd/1.0.0,bioconda_recipes/bioconductor-degraph/lib/1.54.0,biotools/degraph/lib/1.26.0,biotools/degraph/cmd/1.26.0,bioconductor/degraph/lib/1.59.0,bioconductor/degraph/lib/1.63.0,biotools/dupchecker/cmd/1.12.0,biotools/dupchecker/lib/1.12.0,bioconductor/dupchecker/lib/1.27.0,galaxy_metadata/fastqc/cmd/0.66,bioconda_recipes/fastqc/cmd/0.12.1,bioconda_recipes/fastqc/cmd/0.11.5,bioconda_recipes/fastqc/cmd/0.11.7,biotools/fastqc/cmd/None,toolshed/fastqc/cmd/0.66,github/fastqc/None/None,biotools/fourcseq/lib/1.8.0,biotools/fourcseq/cmd/1.8.0,bioconductor/fourcseq/lib/1.25.0,biotools/hic-pro/cmd/2.7.8,github/HiC-Pro/None/v3.1.0,biotools/hcsnip/lib/1.14.0,biotools/hcsnip/cmd/1.14.0,bioconductor/hcsnip/lib/1.19.0,bioconda_recipes/bioconductor-geneexpressionsignature/lib/1.48.0,biotools/geneexpressionsignature/cmd/1.20.0,biotools/geneexpressionsignature/lib/1.20.0,bioconductor/geneexpressionsignature/lib/1.53.0,bioconductor/geneexpressionsignature/lib/1.57.0,bioconda_recipes/bioconductor-htqpcr/lib/1.56.0,biotools/htqpcr/cmd/1.28.0,biotools/htqpcr/lib/1.28.0,bioconductor/htqpcr/lib/1.61.0,bioconductor/htqpcr/lib/1.65.0,bioconda_recipes/bioconductor-hibag/lib/1.38.0,biotools/hibag/cmd/1.10.0,biotools/hibag/lib/1.10.0,bioconductor/hibag/lib/1.43.1,biotools/hibagr/undefined/None,bioconda_recipes/bioconductor-hibag/lib/1.42.0,bioconductor/hibag/lib/1.47.0,biotools/mescan/lib/None,biotools/mescan/cmd/None,github/GeneExpressionSignature/None/None,galaxy/fastqc/cmd/0.71",
+        "data": {
+          "authors": [
+            {
+              "email": "harald.barsnes@gmail.com",
+              "maintainer": false,
+              "name": "Harald Barsnes",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49699333+dependabot[bot]@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dependabot[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mvaudel@gmail.com",
+              "maintainer": false,
+              "name": "mvaudel",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "j.vasicek58@gmail.com",
+              "maintainer": false,
+              "name": "Jakub Vasicek",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "daphne.skiado@gmail.com",
+              "maintainer": false,
+              "name": "Daphne-Skiado",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "BioInfra.Prot",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "dominik.kopczynski@isas.de",
+              "maintainer": false,
+              "name": "Dominik Kopczynsk",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://compomics.github.io/projects/peptide-shaker.html"
+            },
+            {
+              "email": "alimgh@ams.ac.ir",
+              "maintainer": false,
+              "name": "Mahdi Jalili",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "laurent.jacob@gmail.com",
+              "maintainer": false,
+              "name": "Laurent Jacob",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "shengqh@gmail.com",
+              "maintainer": false,
+              "name": "\"Quanhu SHENG\"",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "simon.andrews@bbsrc.ac.uk",
+              "maintainer": false,
+              "name": "Simon Andrews",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ido.tamir@imp.ac.at",
+              "maintainer": false,
+              "name": "Ido Tamir",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "felix.klein@embl.de",
+              "maintainer": false,
+              "name": "Felix A. Klein",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mike.smith@embl.de",
+              "maintainer": false,
+              "name": "Mike Smith",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "nicolas.servant@curie.fr",
+              "maintainer": false,
+              "name": "Nicolas Servant",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Institut Curie",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "curie.fr",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "3411613+claymcleod@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Clay McLeod",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hans-georg.sommer@gwdg.de",
+              "maintainer": false,
+              "name": "Hans-Georg Sommer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "46615988+kevm29@users.noreply.github.com",
+              "maintainer": false,
+              "name": "kevm29",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mikhail.dozmorov@gmail.com",
+              "maintainer": false,
+              "name": "Mikhail Dozmorov",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nservant@curie.fr",
+              "maintainer": false,
+              "name": "nservant",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "askar703@gmail.com",
+              "maintainer": false,
+              "name": "Askar Obulkasim",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "yiluheihei@gmail.com",
+              "maintainer": false,
+              "name": "Yang Cao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "pittacus@gmail.com",
+              "maintainer": false,
+              "name": "Fei Li",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hanl8910@gmail.com",
+              "maintainer": false,
+              "name": "Lu Han",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hdvinge@fredhutch.org",
+              "maintainer": false,
+              "name": "Heidi Dvinge",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mccallm@gmail.com",
+              "maintainer": false,
+              "name": "Matthew N. McCall",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "zhengx@u.washington.edu",
+              "maintainer": false,
+              "name": "Xiuwen Zheng",
+              "orcid": "https://orcid.org/0000-0002-1390-0708",
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bsweir@u.washington.edu",
+              "maintainer": false,
+              "name": "Bruce Weir",
+              "orcid": "https://orcid.org/0000-0002-4883-1247",
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "000704@tool.caaumed.org.tw",
+              "maintainer": false,
+              "name": "Fuu-Jen Tsai",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "chi.wang@uky.edu",
+              "maintainer": false,
+              "name": "Chi Wang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "yiluheihei@gmail.com",
+              "maintainer": false,
+              "name": "yiluheihei",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vobencha@gmail.com",
+              "maintainer": false,
+              "name": "vobencha",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hpages@fredhutch.org",
+              "maintainer": false,
+              "name": "Herv\u00e9 Pag\u00e8s",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hpages@fhcrc.org",
+              "maintainer": false,
+              "name": "Herve Pages",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "dtenenba@fhcrc.org",
+              "maintainer": false,
+              "name": "Dan Tenenbaum",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "sarora@fhcrc.org",
+              "maintainer": false,
+              "name": "Sonali Arora",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mtmorgan@fhcrc.org",
+              "maintainer": false,
+              "name": "Martin Morgan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ngopalak@fhcrc.org",
+              "maintainer": false,
+              "name": "Nishant Gopalakrishnan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "R (>= 3.2.0)",
+            "R (>= 4.0)",
+            "Rsamtools",
+            "bioconductor-rgraphviz >=2.46.0,<2.47.0",
+            "coin",
+            "Biobase",
+            "SummarizedExperiment",
+            "limma",
+            "mvtnorm",
+            "bioconductor-ncigraph >=1.50.0,<1.51.0",
+            "fontconfig",
+            "openjdk >=6",
+            "r-gplots",
+            "xz =5",
+            "R.methodsS3",
+            "tools",
+            "r-rrcov",
+            "r-base",
+            "r-r.methodss3",
+            "bioconductor-affy >=1.80.0,<1.81.0",
+            "DESeq2 (>= 1.9.11)",
+            "LSD",
+            "stats4",
+            "RCurl",
+            "RcppParallel",
+            "R.utils",
+            "ggbio",
+            "affy",
+            "bioconductor-kegggraph >=1.62.0,<1.63.0",
+            "lattice",
+            "grDevices",
+            "Rgraphviz",
+            "Biostrings",
+            "Matrix",
+            "randomForestSRC",
+            "bioconductor-graph >=1.80.0,<1.81.0",
+            "openjdk >=17",
+            "fda",
+            "rtracklayer",
+            "gtools",
+            "graph",
+            "GenomicRanges",
+            "splines",
+            "sm",
+            "r-mvtnorm",
+            "clusterRepro",
+            "reshape2",
+            "bioconductor-rbgl >=1.78.0,<1.79.0",
+            "graphics",
+            "stats",
+            "R(>= 2.10.0)",
+            "perl",
+            "utils",
+            "bioconductor-biobase >=2.62.0,<2.63.0",
+            "RBGL",
+            "NCIgraph",
+            "r-lattice",
+            "GenomicAlignments",
+            "bioconductor-limma >=3.58.0,<3.59.0",
+            "openjdk >=8.0.144",
+            "R (>= 3.0)",
+            "font-ttf-dejavu-sans-mono",
+            "impute",
+            "ggplot2",
+            "RColorBrewer",
+            "r-rcppparallel >=5.0.0",
+            "R (>= 2.10.0)",
+            "survival",
+            "python",
+            "r-rcolorbrewer",
+            "fpc",
+            "sigaR",
+            "gplots",
+            "KEGGgraph",
+            "r-r.utils",
+            "methods",
+            "rrcov"
+          ],
+          "description": [
+            "Interpretation of proteomics identification results.",
+            "A powerful statistical framework for Genome-Scale mutual exclusivity analysis of cancer mutations.\n\nMEScan is an accurate and efficient statistical framework for genome-scale mutual exclusivity analysis of cancer mutations.\n\nWe provide an example dataset from TCGA Ovarian Cancer to demonstrate the pipeline for large scale ME patterns survey using MEScan. The pipeline has several steps as shown in the DAG below.",
+            "DEGraph implements recent hypothesis testing methods which directly assess whether a particular gene network is differentially expressed between two conditions. This is to be contrasted with the more classical two-step approaches which first test individual genes, then test gene sets for enrichment in differentially expressed genes. These recent methods take into account the topology of the network to yield more powerful detection procedures. DEGraph provides methods to easily test all KEGG pathways for differential expression on any gene expression data set and tools to visualize the results.",
+            "Csf fork of fastqc for usage on selected reads of unaligned bam file.",
+            "Analysis of Ct values from high throughput quantitative real-time PCR (qPCR) assays across multiple conditions or replicates. The input data can be from spatially-defined formats such ABI TaqMan Low Density Arrays or OpenArray; LightCycler from Roche Applied Science, etc. It handles data loading, quality assessment, normalization, visualization and parametric or non-parametric testing for statistical significance in Ct values between features.",
+            "PeptideShaker is a search engine independent platform for interpretation of proteomics identification results from multiple search engines, currently supporting X!Tandem, MS-GF+, Metamorpheus, MS Amanda, OMSSA, MyriMatch, Comet, Tide, Mascot, Andromeda and mzIdentML. By combining the results from multiple search engines, while re-calculating PTM localization scores and redoing the protein inference, PeptideShaker attempts to give you the best possible understanding of your proteomics data!.",
+            "FourCSeq is an R package dedicated to the analysis of (multiplexed) 4C sequencing data. The package provides a pipeline to detect specific interactions between DNA elements and identify differential interactions between conditions. The statistical analysis in R starts with individual bam files for each sample as inputs. To obtain these files, the package contains a python script (extdata/python/demultiplex.py) to demultiplex libraries and trim off primer sequences. With a standard alignment software the required bam files can be then be generated.",
+            "This tool aims to provide a QC report which can spot problems or biases which originate either in the sequencer or in the starting library material. It can be run in one of two modes. It can either run as a stand alone interactive application for the immediate analysis of small numbers of FastQ files, or it can be run in a non-interactive mode where it would be suitable for integrating into a larger analysis pipeline for the systematic processing of large numbers of files.",
+            "PeptideShaker is a search engine independent platform for interpretation of proteomics identification results from multiple search engines, currently supporting X!Tandem, MS-GF+, MS Amanda, OMSSA, MyriMatch, Comet, Tide, Mascot, Andromeda and mzIdentML. By combining the results from multiple search engines, while re-calculating PTM localization scores and redoing the protein inference, PeptideShaker attempts to give you the best possible understanding of your proteomics data.",
+            "Meta-analysis has become a popular approach for high-throughput genomic data analysis because it often can significantly increase power to detect biological signals or patterns in datasets. However, when using public-available databases for meta-analysis, duplication of samples is an often encountered problem, especially for gene expression data. Not removing duplicates would make study results questionable. We developed a Bioconductor package DupChecker that efficiently identifies duplicated samples by generating MD5 fingerprints for raw data.",
+            "Meta-analysis has become a popular approach for high-throughput genomic data analysis because it can significantly increase power to detect biological signals or patterns in datasets. However, when using public-available databases for meta-analysis, duplication of samples is an often-encountered problem. Not removing duplicates would make study results questionable. We developed a BioConductor package that efficiently identifies duplicated samples by generating MD5 fingerprints for raw data.",
+            "R package dedicated to the analysis of (multiplexed) 4C sequencing data. It provides a pipeline to detect specific interactions between DNA elements and identify differential interactions between conditions. The statistical analysis in R starts with individual bam files for each sample as inputs. To obtain these files, the package contains a python script to demultiplex libraries and trim off primer sequences. With a standard alignment software the required bam files can be then be generated.",
+            "This package implements the gene expression signature and its distance to each. Gene expression signature is represented as a list of genes whose expression is correlated with a biological state of interest. Its distance is defined using a nonparametric, rank-based pattern-matching strategy based on the Kolmogorov-Smirnov statistic. Gene expression signature and its distance can be used to detect similarities among the signatures of drugs, diseases, and biological states of interest.",
+            "Imputes HLA classical alleles using GWAS SNP data, and it relies on a training set of HLA and SNP genotypes. HIBAG can be used by researchers with published parameter estimates instead of requiring access to large training sample datasets. It combines the concepts of attribute bagging, an ensemble classifier method, with haplotype inference for SNPs and HLA types. Attribute bagging is a technique which improves the accuracy and stability of classifier ensembles using bootstrap aggregating and random variable selection.",
+            "HIBAG is a Bioconductor package that imputes HLA classical alleles using GWAS SNP data, utilizing an attribute bagging approach. It predicts psoriasis and its associated phenotypes in Taiwanese populations, incorporating polygenic risk score analysis.",
+            "Analysis of Ct values from high throughput quantitative real-time PCR (qPCR) assays across multiple conditions or replicates. The input data can be from spatially-defined formats such ABI TaqMan Low Density Arrays or OpenArray; LightCycler from Roche Applied Science; the CFX plates from Bio-Rad Laboratories; conventional 96- or 384-well plates; or microfluidic devices such as the Dynamic Arrays from Fluidigm Corporation. HTqPCR handles data loading, quality assessment, normalization, visualization and parametric or non-parametric testing for statistical significance in Ct values between features (e.g. genes, microRNAs).",
+            "PeptideShaker is a search engine independent platform for interpretation of proteomics identification results from multiple search engines,\ncurrently supporting X!Tandem, MS-GF+, MS Amanda, OMSSA, MyriMatch, Comet, Tide, Mascot, Andromeda and mzIdentML.\nBy combining the results from multiple search engines, while re-calculating PTM localization scores and redoing the protein inference,\nPeptideShaker attempts to give you the best possible understanding of your proteomics data!.",
+            "This tool was designed to process Hi-C data, from raw fastq files (paired-end Illumina data) to the normalized contact maps. Since version 2.7.0, it can analyze data from digestion protocols as well as data from protocols that do not require restriction enzyme such as DNase Hi-C. The pipeline is flexible, scalable and optimized. It can operate either on a single laptop or on a computational cluster using the PBS-Torque scheduler.",
+            "Decompose given hierarchical clustering tree into non-overlapping clusters in a semi-supervised way by using available patients follow-up information as guidance. Contains functions for snipping HC tree, various cluster quality evaluation criteria, assigning new patients to one of the two given HC trees, testing the significance of clusters with permutation argument and clusters visualization using sample's molecular entropy.",
+            "Read Quality reports.",
+            "CentiServer is a comprehensive online resource that provides over 110 definitions of different centrality indices, their computational methods, and algorithms in the form of an encyclopedia. In addition, CentiServer allows users to calculate 55 centralities with the help of an interactive web-based application tool and provides a numerical result as a comma separated value (csv) file format or a mapped graphical format as a graph modeling language (GML) file.",
+            "A quality control tool for high throughput sequence data.",
+            "HiC-Pro: An optimized and flexible pipeline for Hi-C data processing.",
+            "Gene Expression Signature based Similarity Metric.",
+            "This package gives the implementations of the gene expression signature and its distance to each. Gene expression signature is represented as a list of genes whose expression is correlated with a biological state of interest. And its distance is defined using a nonparametric, rank-based pattern-matching strategy based on the Kolmogorov-Smirnov statistic. Gene expression signature and its distance can be used to detect similarities among the signatures of drugs, diseases, and biological states of interest.",
+            "Implements recent hypothesis testing methods to assess whether a particular gene network is differentially expressed between two conditions. This is to be contrasted with the more classical two-step approaches. These recent methods consider the topology of the network to yield more powerful detection procedures. It provides methods to easily test all KEGG pathways for differential expression on any gene expression data set and tools to visualize the results.",
+            "It is a software package for imputing HLA types using SNP data, and relies on a training set of HLA and SNP genotypes. It can be used by researchers with published parameter estimates instead of requiring access to large training sample datasets. It combines the concepts of attribute bagging (improves the accuracy and stability of classifier ensembles using bootstrap aggregating and random variable selection), an ensemble classifier method, with haplotype inference for SNPs and HLA types."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/peptide-shaker/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/peptide-shaker/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/compomics/peptide-shaker/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/compomics/peptide-shaker/blob/main/README.txt"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://compomics.github.io/projects/peptide-shaker.html#read-me"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://compomics.github.io/projects/peptide-shaker.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://cran.r-project.org/web/packages/centiserve/centiserve.pdf"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-degraph/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-degraph/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/DEGraph.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/DupChecker.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/fastqc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/fastqc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/csf-ngs/fastqc/tree/master/Help"
+            },
+            {
+              "content": "\n\n.. class:: infomark\n\n**Purpose**\n\nFastQC aims to provide a simple way to do some quality control checks on raw\nsequence data coming from high throughput sequencing pipelines.\nIt provides a modular set of analyses which you can use to give a quick\nimpression of whether your data has any problems of\nwhich you should be aware before doing any further analysis.\n\nThe main functions of FastQC are:\n\n- Import of data from BAM, SAM or FastQ files (any variant)\n- Providing a quick overview to tell you in which areas there may be problems\n- Summary graphs and tables to quickly assess your data\n- Export of results to an HTML based permanent report\n- Offline operation to allow automated generation of reports without running the interactive application\n\n\n-----\n\n\n.. class:: infomark\n\n**FastQC**\n\nThis is a Galaxy wrapper. It merely exposes the external package FastQC_ which is documented at FastQC_\nKindly acknowledge it as well as this tool if you use it.\nFastQC incorporates the Picard-tools_ libraries for sam/bam processing.\n\nThe contaminants file parameter was borrowed from the independently developed\nfastqcwrapper contributed to the Galaxy Community Tool Shed by J. Johnson.\nAdaption to version 0.11.2 by T. McGowan.\n\n-----\n\n.. class:: infomark\n\n**Inputs and outputs**\n\nFastQC_ is the best place to look for documentation - it's very good.\nA summary follows below for those in a tearing hurry.\n\nThis wrapper will accept a Galaxy fastq, sam or bam as the input read file to check.\nIt will also take an optional file containing a list of contaminants information, in the form of\na tab-delimited file with 2 columns, name and sequence. As another option the tool takes a custom\nlimits.txt file that allows setting the warning thresholds for the different modules and also specifies\nwhich modules to include in the output.\n\nThe tool produces a basic text and a HTML output file that contain all of the results, including the following:\n\n- Basic Statistics\n- Per base sequence quality\n- Per sequence quality scores\n- Per base sequence content\n- Per base GC content\n- Per sequence GC content\n- Per base N content\n- Sequence Length Distribution\n- Sequence Duplication Levels\n- Overrepresented sequences\n- Kmer Content\n\nAll except Basic Statistics and Overrepresented sequences are plots.\n .. _FastQC: http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc/\n .. _Picard-tools: http://picard.sourceforge.net/index.shtml\n\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "installation",
+              "url": "https://github.com/csf-ngs/fastqc/blob/main/INSTALL.txt"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/csf-ngs/fastqc/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/csf-ngs/fastqc/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/csf-ngs/fastqc/blob/main/README.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/csf-ngs/fastqc/blob/main/RELEASE_NOTES.txt"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/FourCSeq.html"
+            },
+            {
+              "content": null,
+              "type": "citation_instructions",
+              "url": "https://github.com/nservant/HiC-Pro/blob/master/README.rst"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://nservant.github.io/HiC-Pro/"
+            },
+            {
+              "content": null,
+              "type": "terms_of_use",
+              "url": "https://github.com/nservant/HiC-Pro/blob/master/LICENSE"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/nservant/HiC-Pro/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/nservant/HiC-Pro/blob/main/config-hicpro.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/nservant/HiC-Pro/blob/main/config-install.txt"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/HCsnip.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-geneexpressionsignature/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-geneexpressionsignature/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/GeneExpressionSignature.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-htqpcr/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-htqpcr/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/HTqPCR.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-hibag/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-hibag/README.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/HIBAG.html"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/yiluheihei/GeneExpressionSignature/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/yiluheihei/GeneExpressionSignature/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/yiluheihei/GeneExpressionSignature/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/HIBAG/HIBAG_1.42.0.tar.gz",
+            "https://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/3.0.11/PeptideShaker-3.0.11.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/GeneExpressionSignature_1.48.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.15/PeptideShaker-1.16.15.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/HIBAG/HIBAG_1.38.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/HTqPCR_1.56.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.0/PeptideShaker-1.16.0.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/HTqPCR_1.56.0.tar.gz",
+            "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/DEGraph_1.54.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/DEGraph_1.54.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-geneexpressionsignature/bioconductor-geneexpressionsignature_1.48.0_src_all.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.16/PeptideShaker-1.16.16.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/HIBAG_1.38.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.4/PeptideShaker-1.16.4.zip",
+            "https://depot.galaxyproject.org/software/bioconductor-hibag/bioconductor-hibag_1.38.0_src_all.tar.gz",
+            "https://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/3.0.6/PeptideShaker-3.0.6.zip",
+            "https://bioarchive.galaxyproject.org/GeneExpressionSignature_1.48.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.13/PeptideShaker-1.16.13.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/DEGraph/DEGraph_1.54.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/HIBAG_1.42.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-hibag/bioconductor-hibag_1.42.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/HTqPCR/HTqPCR_1.56.0.tar.gz",
+            "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.7.zip",
+            "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/GeneExpressionSignature/GeneExpressionSignature_1.48.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-htqpcr/bioconductor-htqpcr_1.56.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/HIBAG_1.38.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.3/PeptideShaker-1.16.3.zip",
+            "https://depot.galaxyproject.org/software/bioconductor-degraph/bioconductor-degraph_1.54.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/HIBAG_1.42.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Protein sequence",
+                "uri": "http://edamontology.org/data_2976",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzIdentML",
+              "uri": "http://edamontology.org/format_3247",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrometry data",
+                "uri": "http://edamontology.org/data_2536",
+                "vocabulary": "EDAM"
+              },
+              "term": "MGF",
+              "uri": "http://edamontology.org/format_3651",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Raw sequence",
+                "uri": "http://edamontology.org/data_0848",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ-like format (text)",
+              "uri": "http://edamontology.org/format_2182",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Raw sequence",
+                "uri": "http://edamontology.org/data_0848",
+                "vocabulary": "EDAM"
+              },
+              "term": "SAM",
+              "uri": "http://edamontology.org/format_2573",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Raw sequence",
+                "uri": "http://edamontology.org/data_0848",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ",
+              "uri": "http://edamontology.org/format_1930",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Raw sequence",
+                "uri": "http://edamontology.org/data_0848",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence",
+                "uri": "http://edamontology.org/data_2044",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            },
+            {
+              "datatype": {
+                "term": "Gene expression profile",
+                "uri": "http://edamontology.org/data_0928",
+                "vocabulary": "EDAM"
+              },
+              "term": "Gene expression report format",
+              "uri": "http://edamontology.org/format_2058",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-geneexpressionsignature",
+            "HTqPCR",
+            "FastQC",
+            "peptide-shaker",
+            "HCsnip",
+            "fastqc",
+            "bioconductor-degraph",
+            "DEGraph",
+            "FourCSeq",
+            "HiC-Pro",
+            "DupChecker",
+            "PeptideShaker",
+            "GeneExpressionSignature",
+            "bioconductor-htqpcr",
+            "bioconductor-hibag",
+            "HIBAG",
+            "CentiServer",
+            "MEScan"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": null
+            },
+            {
+              "name": "Apache License, Version 2.0",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GPL-3",
+              "url": null
+            },
+            {
+              "name": "GPL-2.0",
+              "url": null
+            },
+            {
+              "name": "GPL (>= 2)",
+              "url": null
+            },
+            {
+              "name": "GPL >=3",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+              "name": "GPL (>= 3)",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "GPL-2",
+              "url": null
+            },
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "peptide-shaker",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Mass spectrum visualisation",
+              "uri": "http://edamontology.org/operation_3694",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Peptide identification",
+              "uri": "http://edamontology.org/operation_3631",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Validation",
+              "uri": "http://edamontology.org/operation_2428",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "PTM localisation",
+              "uri": "http://edamontology.org/operation_3755",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Enrichment analysis",
+              "uri": "http://edamontology.org/operation_3501",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure visualisation",
+              "uri": "http://edamontology.org/operation_0570",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein identification",
+              "uri": "http://edamontology.org/operation_3767",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistical calculation",
+              "uri": "http://edamontology.org/operation_2238",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence redundancy removal",
+              "uri": "http://edamontology.org/operation_0290",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence composition calculation",
+              "uri": "http://edamontology.org/operation_0236",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing quality control",
+              "uri": "http://edamontology.org/operation_3218",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Nucleic acid sequence analysis",
+              "uri": "http://edamontology.org/operation_2478",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Analysis",
+              "uri": "http://edamontology.org/operation_2945",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression correlation analysis",
+              "uri": "http://edamontology.org/operation_3463",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Imputation",
+              "uri": "http://edamontology.org/operation_3557",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Haplotype mapping",
+              "uri": "http://edamontology.org/operation_0487",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Aggregation",
+              "uri": "http://edamontology.org/operation_3436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "bioconductor-geneexpressionsignature",
+            "mescan",
+            "hcsnip",
+            "fastqc",
+            "HiC-Pro",
+            "dupchecker",
+            "bioconductor-htqpcr",
+            "hic-pro",
+            "centiserver",
+            "geneexpressionsignature",
+            "degraph",
+            "GeneExpressionSignature",
+            "fourcseq",
+            "htqpcr",
+            "hibagr",
+            "bioconductor-degraph",
+            "hibag",
+            "peptideshaker",
+            "bioconductor-hibag"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Protein structure image",
+                "uri": "http://edamontology.org/data_2992",
+                "vocabulary": "EDAM"
+              },
+              "term": "JPG",
+              "uri": "http://edamontology.org/format_3579",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Protein structure image",
+                "uri": "http://edamontology.org/data_2992",
+                "vocabulary": "EDAM"
+              },
+              "term": "SVG",
+              "uri": "http://edamontology.org/format_3604",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "GO-term enrichment data",
+                "uri": "http://edamontology.org/data_3754",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence image",
+                "uri": "http://edamontology.org/data_2969",
+                "vocabulary": "EDAM"
+              },
+              "term": "Image format",
+              "uri": "http://edamontology.org/format_3547",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Protein report",
+                "uri": "http://edamontology.org/data_0896",
+                "vocabulary": "EDAM"
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence report",
+                "uri": "http://edamontology.org/data_2955",
+                "vocabulary": "EDAM"
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c8281410e2f3aa0b3b78f1",
+            "699c6d6c4393fdfaf890bdc1",
+            "67c8280010e2f3aa0b3b7826",
+            "67e2dc73ac7ee6cb578912f9",
+            "67c827cb10e2f3aa0b3b75f1",
+            "67c827f710e2f3aa0b3b77d4",
+            "67c7a02dd3b8acd1a2f9b488",
+            "67c78bc9d3b8acd1a2f9b229",
+            "67c79407d3b8acd1a2f9b2ee",
+            "67c78b96d3b8acd1a2f9b218",
+            "67c82e0e10e2f3aa0b3ba219",
+            "67c827e910e2f3aa0b3b7737",
+            "67c827cf10e2f3aa0b3b761f",
+            "67e2bc0c57d529f68e72a1ef",
+            "67e2bda1b57beba26405ce49",
+            "67c7aa52d3b8acd1a2f9bc3e"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/compomics/peptide-shaker"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/CompOmics/peptide-shaker"
+            },
+            {
+              "kind": null,
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://cran.r-project.org/web/packages/centiserve/index.html"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/DEGraph"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/DupChecker"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/csf-ngs/fastqc"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/FourCSeq"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/nservant/HiC-Pro"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/HCsnip"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/GeneExpressionSignature"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/yiluheihei/GeneExpressionSignature"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/HTqPCR"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/HIBAG"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "galaxy",
+            "toolshed",
+            "bioconductor",
+            "github",
+            "galaxy_metadata",
+            "biotools"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/HIBAG/HIBAG_1.42.0.tar.gz",
+            "https://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/3.0.11/PeptideShaker-3.0.11.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/GeneExpressionSignature_1.48.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.15/PeptideShaker-1.16.15.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/HIBAG/HIBAG_1.38.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/HTqPCR_1.56.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.0/PeptideShaker-1.16.0.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/HTqPCR_1.56.0.tar.gz",
+            "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/DEGraph_1.54.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/DEGraph_1.54.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-geneexpressionsignature/bioconductor-geneexpressionsignature_1.48.0_src_all.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.16/PeptideShaker-1.16.16.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/HIBAG_1.38.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.4/PeptideShaker-1.16.4.zip",
+            "https://depot.galaxyproject.org/software/bioconductor-hibag/bioconductor-hibag_1.38.0_src_all.tar.gz",
+            "https://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/3.0.6/PeptideShaker-3.0.6.zip",
+            "https://bioarchive.galaxyproject.org/GeneExpressionSignature_1.48.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.13/PeptideShaker-1.16.13.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/DEGraph/DEGraph_1.54.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/HIBAG_1.42.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-hibag/bioconductor-hibag_1.42.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/HTqPCR/HTqPCR_1.56.0.tar.gz",
+            "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.7.zip",
+            "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/GeneExpressionSignature/GeneExpressionSignature_1.48.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-htqpcr/bioconductor-htqpcr_1.56.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/HIBAG_1.38.0.tar.gz",
+            "http://genesis.ugent.be/maven2/eu/isas/peptideshaker/PeptideShaker/1.16.3/PeptideShaker-1.16.3.zip",
+            "https://depot.galaxyproject.org/software/bioconductor-degraph/bioconductor-degraph_1.54.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/HIBAG_1.42.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "galaxyPasteur",
+            "de.NBI",
+            "PerMedCoE",
+            "Proteomics",
+            "BioConductor",
+            "BioInfra.Prot",
+            "FastQC"
+          ],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "proteomics",
+              "uri": "https://github.com/topics/proteomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "protein-identification",
+              "uri": "https://github.com/topics/protein-identification",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "java",
+              "uri": "https://github.com/topics/java",
+              "vocabulary": ""
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteome",
+              "uri": "http://edamontology.org/topic_0644",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data integration and warehousing",
+              "uri": "http://edamontology.org/topic_3366",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Applied mathematics",
+              "uri": "http://edamontology.org/topic_3569",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data quality management",
+              "uri": "http://edamontology.org/topic_3572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Biology",
+              "uri": "http://edamontology.org/topic_3070",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "PCR experiment",
+              "uri": "http://edamontology.org/topic_3519",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Immunoproteins and antigens",
+              "uri": "http://edamontology.org/topic_2830",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Immunology",
+              "uri": "http://edamontology.org/topic_0804",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "GWAS study",
+              "uri": "http://edamontology.org/topic_3517",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Dermatology",
+              "uri": "http://edamontology.org/topic_3404",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation",
+              "uri": "http://edamontology.org/topic_0199",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "undefined",
+            "app",
+            "web",
+            "cmd"
+          ],
+          "version": [
+            "1.38.0",
+            "v2.6.0",
+            "v2.11.1",
+            "1.16.13",
+            "1.59.0",
+            "1.61.0",
+            "2.7.8",
+            "1.14.0",
+            "0.66",
+            "0.11.5",
+            "None",
+            "1.48.0",
+            "0.12.1",
+            "1.53.0",
+            "1.16.4",
+            "v2.3.1",
+            "1.47.0",
+            "1.57.0",
+            "1.0.0",
+            "1.27.0",
+            "1.42.0",
+            "0.11.7",
+            "v2.7.8",
+            "v3.1.0",
+            "3.0.6",
+            "v2.8.0",
+            "1.12.0",
+            "1.16.15",
+            "v2.11.4",
+            "1.56.0",
+            "1.26.0",
+            "v2.7.6",
+            "1.19.0",
+            "v2.9.0",
+            "1.8.0",
+            "1.63.0",
+            "1.65.0",
+            "1.10.0",
+            "1.43.1",
+            "1.20.0",
+            "v2.7.4",
+            "v2.7.0",
+            "v3.0.0",
+            "0.71",
+            "v2.10.0",
+            "1.54.0",
+            "v2.5.1",
+            "1.25.0",
+            "1.28.0",
+            "1.16.3",
+            "v2.7.1",
+            "1.16.16",
+            "3.0.11",
+            "1.16.0",
+            "v2.5.2"
+          ],
+          "webpage": [
+            "https://github.com/nservant/HiC-Pro",
+            "https://github.com/MarkeyBBSRF/MEScan",
+            "https://github.com/yiluheihei/GeneExpressionSignature",
+            "http://compomics.github.io/projects/peptide-shaker.html",
+            "http://bioconductor.org/packages/release/bioc/html/DEGraph.html",
+            "https://bioconductor.org/packages/DEGraph",
+            "https://bioconductor.org/packages/3.20/bioc/html/HIBAG.html",
+            "https://github.com/zhengxwen/HIBAG",
+            "https://github.com/compomics/peptide-shaker",
+            "https://bioconductor.org/packages/3.18/bioc/html/GeneExpressionSignature.html",
+            "https://bioconductor.org/packages/DupChecker",
+            "https://bioconductor.org/packages/HCsnip",
+            "http://bioconductor.org/packages/release/bioc/html/HIBAG.html",
+            "https://bioconductor.org/packages/release/bioc/html/HIBAG.html",
+            "http://www.centiserver.org/",
+            "https://bioconductor.org/packages/3.18/bioc/html/DEGraph.html",
+            "http://bioconductor.org/packages/release/bioc/html/FourCSeq.html",
+            "http://bioconductor.org/packages/release/bioc/html/HTqPCR.html",
+            "http://www.ebi.ac.uk/bertone/software",
+            "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fdevteam%2Ffastqc%2Ffastqc%2F0.71",
+            "https://bioconductor.org/packages/3.18/bioc/html/HTqPCR.html",
+            "http://bioconductor.org/packages/release/bioc/html/HCsnip.html",
+            "https://bioconductor.org/packages/FourCSeq",
+            "https://hibag.s3.amazonaws.com/index.html",
+            "http://bioconductor.org/packages/release/bioc/html/GeneExpressionSignature.html",
+            "https://compomics.github.io/projects/peptide-shaker.html",
+            "https://bioconductor.org/packages/3.18/bioc/html/HIBAG.html",
+            "http://bioconductor.org/packages/release/bioc/html/DupChecker.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:mga_bioconda_recipes/bioconductor-degraph/lib/1.54.0,bioconda_recipes/bioconductor-geneexpressionsignature/lib/1.48.0,bioconda_recipes/bioconductor-hibag/lib/1.38.0,bioconda_recipes/bioconductor-hibag/lib/1.42.0,bioconda_recipes/bioconductor-htqpcr/lib/1.56.0,bioconda_recipes/fastqc/cmd/0.11.5,bioconda_recipes/fastqc/cmd/0.11.7,bioconda_recipes/fastqc/cmd/0.12.1,bioconda_recipes/peptide-shaker/cmd/1.16.0,bioconda_recipes/peptide-shaker/cmd/1.16.13,bioconda_recipes/peptide-shaker/cmd/1.16.15,bioconda_recipes/peptide-shaker/cmd/1.16.16,bioconda_recipes/peptide-shaker/cmd/1.16.3,bioconda_recipes/peptide-shaker/cmd/1.16.4,bioconda_recipes/peptide-shaker/cmd/3.0.11,bioconda_recipes/peptide-shaker/cmd/3.0.6,bioconductor/degraph/lib/1.59.0,bioconductor/degraph/lib/1.63.0,bioconductor/dupchecker/lib/1.27.0,bioconductor/fourcseq/lib/1.25.0,bioconductor/geneexpressionsignature/lib/1.53.0,bioconductor/geneexpressionsignature/lib/1.57.0,bioconductor/hcsnip/lib/1.19.0,bioconductor/hibag/lib/1.43.1,bioconductor/hibag/lib/1.47.0,bioconductor/htqpcr/lib/1.61.0,bioconductor/htqpcr/lib/1.65.0,biotools/centiserver/cmd/1.0.0,biotools/centiserver/lib/1.0.0,biotools/centiserver/web/1.0.0,biotools/degraph/cmd/1.26.0,biotools/degraph/lib/1.26.0,biotools/dupchecker/cmd/1.12.0,biotools/dupchecker/lib/1.12.0,biotools/fastqc/cmd/None,biotools/fourcseq/cmd/1.8.0,biotools/fourcseq/lib/1.8.0,biotools/geneexpressionsignature/cmd/1.20.0,biotools/geneexpressionsignature/lib/1.20.0,biotools/hcsnip/cmd/1.14.0,biotools/hcsnip/lib/1.14.0,biotools/hibag/cmd/1.10.0,biotools/hibag/lib/1.10.0,biotools/hibagr/undefined/None,biotools/hic-pro/cmd/2.7.8,biotools/htqpcr/cmd/1.28.0,biotools/htqpcr/lib/1.28.0,biotools/mdt/cmd/5.3,biotools/mescan/cmd/None,biotools/mescan/lib/None,biotools/peptideshaker/app/3.0.11,biotools/peptideshaker/cmd/3.0.11,galaxy/fastqc/cmd/0.71,galaxy_metadata/fastqc/cmd/0.66,github/GeneExpressionSignature/None/None,github/HiC-Pro/None/v3.1.0,github/fastqc/None/None,github/peptide-shaker/None/None,toolshed/fastqc/cmd/0.66",
+  "conflict_name": "mga/*",
+  "date": "2026-03-25T18:15:29.834939+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
