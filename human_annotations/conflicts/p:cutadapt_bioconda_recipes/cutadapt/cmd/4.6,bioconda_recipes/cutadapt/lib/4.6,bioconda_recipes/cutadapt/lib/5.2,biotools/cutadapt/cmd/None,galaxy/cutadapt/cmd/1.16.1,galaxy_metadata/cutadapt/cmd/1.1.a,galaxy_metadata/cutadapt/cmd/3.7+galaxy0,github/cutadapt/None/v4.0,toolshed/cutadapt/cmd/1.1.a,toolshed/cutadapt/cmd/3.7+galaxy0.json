@@ -1,0 +1,337 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/cutadapt/cmd/None",
+        "created_at": "2025-04-02T11:54:19.830475",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "marcel.martin@scilifelab.se",
+              "maintainer": false,
+              "name": "Marcel Martin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Find and remove adapter sequences, primers, poly-A tails and other types of unwanted sequence from your high-throughput sequencing reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://cutadapt.readthedocs.io/en/stable/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "RNA sequence",
+                "uri": "http://edamontology.org/data_3495",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ",
+              "uri": "http://edamontology.org/format_1930",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "RNA sequence",
+                "uri": "http://edamontology.org/data_3495",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence alignment",
+                "uri": "http://edamontology.org/data_1383",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Cutadapt"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "cutadapt",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Primer removal",
+              "uri": "http://edamontology.org/operation_3237",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read pre-processing",
+              "uri": "http://edamontology.org/operation_3219",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "RNA sequence",
+                "uri": "http://edamontology.org/data_3495",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTQ",
+              "uri": "http://edamontology.org/format_1930",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "RNA sequence",
+                "uri": "http://edamontology.org/data_3495",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Nucleic acid sequence alignment",
+                "uri": "http://edamontology.org/data_1383",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67e2bd93b57beba26405ce2f",
+            "67e2bc0c57d529f68e72a1ef"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "galaxyPasteur",
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Probes and primers",
+              "uri": "http://edamontology.org/topic_0632",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pypi.org/project/cutadapt/"
+          ]
+        },
+        "id": "biotools/cutadapt/cmd/None",
+        "last_updated_at": "2026-03-19T00:40:24.925195",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/cutadapt/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/cutadapt/lib/4.6,bioconda_recipes/cutadapt/lib/5.2,github/cutadapt/None/v4.0,galaxy_metadata/cutadapt/cmd/1.1.a,bioconda_recipes/cutadapt/cmd/4.6,galaxy_metadata/cutadapt/cmd/3.7+galaxy0,toolshed/cutadapt/cmd/1.1.a,toolshed/cutadapt/cmd/3.7+galaxy0,galaxy/cutadapt/cmd/1.16.1",
+        "data": {
+          "authors": [
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Marcel Martin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "xopen >=1.6.0",
+            "dnaio >=1.2.0",
+            "dnaio >=1.2.2",
+            "python"
+          ],
+          "description": [
+            "Remove adapter sequences from Fastq/Fasta.",
+            "Remove Adapter Sequences from FASTQ/FASTA.",
+            "Trim adapters from high-throughput sequencing reads.",
+            "Cutadapt removes adapter sequences from sequencing reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/cutadapt/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/cutadapt/README.html"
+            },
+            {
+              "content": "\n\n.. class:: infomark\n\n**What it does**\n\n-------------------\n\n**Cutadapt** finds and removes adapter sequences, primers, poly-A tails and other types of unwanted sequence from your high-throughput sequencing reads.\n\nCleaning your data in this way is often required: Reads from small-RNA sequencing contain the 3\u2019 sequencing adapter because the read is longer than the molecule that is sequenced, such as in microRNA, or CRISPR data, or Poly-A tails that are useful for pulling out RNA from your sample but often you don\u2019t want them to be in your reads.\n\nCutadapt_ helps with these trimming tasks by finding the adapter or primer sequences in an error-tolerant way. It can also modify and filter reads in various ways. Cutadapt searches for the adapter in all reads and removes it when it finds it. Unless you use a filtering option, all reads that were present in the input file will also be present in the output file, some of them trimmed, some of them not. Even reads that were trimmed entirely (because the adapter was found in the very beginning) are output. All of this can be changed with options in the tool form above.\n\nThe tool is based on the **Open Source** Cutadapt_ tool. See the complete `Cutadapt documentation`_ for additional details. If you use Cutadapt, please cite *Marcel, 2011* under **Citations** below.\n\n-------------------\n\n**Inputs**\n\n-------------------\n\nInput files for Cutadapt need to be:\n\n- FASTQ.GZ, FASTQ.BZ2, FASTQ or FASTA\n\nTo trim an adapter, input the ADAPTER sequence in plain text or in a FASTA file e.g. AACCGGTT (with the characters: **$**, **^**, **...**, if anchored or linked).\n\n    =============================================   ===================\n    **Option**                                      **Sequence**\n    ---------------------------------------------   -------------------\n    3\u2019 (End) Adapter                                ADAPTER\n    Anchored 3\u2019 Adapter                             ADAPTER$\n\n    5\u2019 (Front) Adapter                              ADAPTER\n    Anchored 5\u2019 Adapter                             ^ADAPTER\n\n    5\u2019 or 3\u2019 (Both possible)                        ADAPTER\n\n    Linked Adapter - 3' (End) only                  ADAPTER1...ADAPTER2\n    Non-anchored Linked Adapter - 5' (Front) only   ADAPTER1...ADAPTER2\n    =============================================   ===================\n\nBelow is an illustration of the allowed adapter locations relative to the read and depending on the adapter type:\n\n.. image:: $PATH_TO_IMAGES/adapters.svg\n\n\n-------------------\n\n*Example: Illumina TruSeq Adapters*\n\n-------------------\n\nIf you have reads containing Illumina TruSeq adapters, for example, follow these steps.\n\n\nFor Single-end reads as well as the first reads of Paired-end data:\n\n**Read 1**\n\nIn the **3' (End) Adapters** option above, insert A + the \u201cTruSeq Indexed Adapter\u201d prefix that is common to all Indexed Adapter sequences, e.g insert:\n\nAGATCGGAAGAGCACACGTCTGAACTCCAGTCAC\n\n\nFor the second reads of Paired-end data:\n\n**Read 2**\n\nIn the **3' (End) Adapters** option above, insert the reverse complement of the \u201cTruSeq Universal Adapter\u201d:\n\nAGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT\n\nThe adapter sequences can be found in the document `Illumina TruSeq Adapters De-Mystified`_.\n\n-----------\n\n**Outputs**\n\n-----------\n\n- Trimmed reads\n\nOptionally, under **Output Options** you can choose to output\n\n    * Report\n    * Info file\n\n\n**Report**\n\nCutadapt can output per-adapter statistics if you select to output the report above.\n\nExample:\n\n    ::\n        \n        This is cutadapt 3.4 with Python 3.9.2\n\n        Command line parameters: -j=1 -a AGATCGGAAGAGC -A AGATCGGAAGAGC --output=out1.fq.gz --paired-output=out2.fq.gz --error-rate=0.1 --times=1 \n        --overlap=3 --action=trim --minimum-length=30:40 --pair-filter=both --cut=0 bwa-mem-fastq1_assimetric_fq_gz.fq.gz bwa-mem-fastq2_assimetric_fq_gz.fq.gz\n        \n        Processing reads on 1 core in paired-end mode ...\n        Finished in 0.01 s (129 \u00b5s/read; 0.46 M reads/minute).\n\n        === Summary ===\n\n        Total read pairs processed:                 99\n        Read 1 with adapter:                       2 (2.0%)\n        Read 2 with adapter:                       4 (4.0%)\n        Pairs that were too short:                   3 (3.0%)\n        Pairs written (passing filters):            96 (97.0%)\n\n        Total basepairs processed:        48,291 bp\n        Read 1:        24,147 bp\n        Read 2:        24,144 bp\n        Total written (filtered):         48,171 bp (99.8%)\n        Read 1:        24,090 bp\n        Read 2:        24,081 bp\n\n\n**Info file**\n\nThe info file contains information about the found adapters. The output is a tab-separated text file. Each line corresponds to one read of the input file.\n\nColumns contain the following data:\n\n    * **1st**:   Read name\n    * **2nd**:   Number of errors\n    * **3rd**:   0-based start coordinate of the adapter match\n    * **4th**:   0-based end coordinate of the adapter match\n    * **5th**:   Sequence of the read to the left of the adapter match (can be empty)\n    * **6th**:   Sequence of the read that was matched to the adapter\n    * **7th**:   Sequence of the read to the right of the adapter match (can be empty)\n    * **8th**:   Name of the found adapter\n    * **9th**:   Quality values corresponding to sequence left of the adapter match (can be empty)\n    * **10th**:  Quality values corresponding to sequence matched to the adapter (can be empty)\n    * **11th**:  Quality values corresponding to sequence to the right of the adapter (can be empty)\n\nThe concatenation of columns 5-7 yields the full read sequence. Column 8 identifies the found adapter. Adapters without a name are numbered starting from 1. Fields 9-11 are empty if quality values are not available. Concatenating them yields the full sequence of quality values.\n\nIf no adapter was found, the format is as follows:\n\n     #. Read name\n     #. The value -1\n     #. The read sequence\n     #. Quality values\n\nWhen parsing the file, be aware that additional columns may be added in the future. Note also that some fields can be empty, resulting in consecutive tabs within a line.\n\nIf the --times option is used and greater than 1, each read can appear more than once in the info file. There will be one line for each found adapter, all with identical read names. Only for the first of those lines will the concatenation of columns 5-7 be identical to the original read sequence (and accordingly for columns 9-11). For subsequent lines, the shown sequence are the ones that were used in subsequent rounds of adapter trimming, that is, they get successively shorter.\n\n\n--------------------\n\n**Rename Reads**\n\n--------------------\n\n\nThe --rename option expects a template string such as {id} extra_info {adapter_name} as a parameter. It can contain regular text and placeholders that consist of a name enclosed in curly braces ({placeholdername}).\n\nThe read name will be set to the template string in which the placeholders are replaced with the actual values relevant for the current read.\n\nThe following placeholders are currently available for single-end reads:\n\n        * {header} \u2013 the full, unchanged header\n        * {id} \u2013 the read ID, that is, the part of the header before the first whitespace\n        * {comment} \u2013 the part of the header after the whitespace following the ID\n        * {adapter_name} \u2013 the name of adapter that was found in this read or no_adapter if there was none adapter match. If you use --times to do multiple rounds of adapter matching, this is the name of the last found adapter.\n        * {match_sequence} \u2013 the sequence of the read that matched the adapter (including errors). If there was no adapter match, this is set to an empty string. If you use a linked adapter, this is to the two matching strings, separated by a comma.\n        * {cut_prefix} \u2013 the prefix removed by the --cut (or -u) option (that is, when used with a positive length argument)\n        * {cut_suffix} \u2013 the suffix removed by the --cut (or -u) option (that is, when used with a negative length argument)\n        * {rc} \u2013 this is replaced with the string rc if the read was reverse complemented. This only applies when reverse complementing was requested\n\nIf the --rename option is used with paired-end data, the template is applied separately to both R1 and R2. That is, for R1, the placeholders are replaced with values from R1, and for R2, the placeholders are replaced with values from R2. For example, {comment} becomes R1\u2019s comment in R1 and it becomes R2\u2019s comment in R2.\n\nFor paired-end data, the placeholder {rn} is available (\u201cread number\u201d), and it is replaced with 1 in R1 and with 2 in R2.\n\nIn addition, it is possible to write a placeholder as {r1.placeholdername} or {r2.placeholdername}, which always takes the replacement value from R1 or R2, respectively.\nThe {r1.placeholder} and {r2.placeholder} notation is available for all placeholders except {rn} and {id} because the read ID needs to be identical for both reads.\n\n--------------------\n\n**More Information**\n\n--------------------\n\nSee the excellent `Cutadapt documentation`_\n\n.. _Cutadapt: https://cutadapt.readthedocs.io/en/stable/\n.. _`Cutadapt documentation`: https://cutadapt.readthedocs.io/en/latest/index.html\n.. _`Illumina TruSeq Adapters De-Mystified`: http://tucf-genomics.tufts.edu/documents/protocols/TUCF_Understanding_Illumina_TruSeq_Adapters.pdf\n\n\n--------------------\n\n**Galaxy Wrapper Development**\n\n--------------------\n\nAuthor: Lance Parsons <lparsons@princeton.edu>\n\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [
+            "https://files.pythonhosted.org/packages/35/b4/f1a7401c3503c17998fb9547b04353217a18323d5d85a3b957f1049ab800/cutadapt-4.6.tar.gz",
+            "https://files.pythonhosted.org/packages/25/0a/2b4007e4577dd3e19affdf7aa716ebf9642e224d68a9205b2081d42ed08a/cutadapt-5.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Cutadapt",
+            "cutadapt"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "cutadapt",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e2bd93b57beba26405ce2f"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/marcelm/cutadapt"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "galaxy",
+            "toolshed",
+            "github",
+            "galaxy_metadata"
+          ],
+          "source_code": [
+            "https://files.pythonhosted.org/packages/35/b4/f1a7401c3503c17998fb9547b04353217a18323d5d85a3b957f1049ab800/cutadapt-4.6.tar.gz",
+            "https://files.pythonhosted.org/packages/25/0a/2b4007e4577dd3e19affdf7aa716ebf9642e224d68a9205b2081d42ed08a/cutadapt-5.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "4.6",
+            "v3.4",
+            "5.2",
+            "1.1.a",
+            "v3.3",
+            "1.16.1",
+            "3.7+galaxy0",
+            "v4.0"
+          ],
+          "webpage": [
+            "https://cutadapt.readthedocs.io/",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Flparsons%2Fcutadapt%2Fcutadapt%2F1.16.1"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:cutadapt_bioconda_recipes/cutadapt/cmd/4.6,bioconda_recipes/cutadapt/lib/4.6,bioconda_recipes/cutadapt/lib/5.2,biotools/cutadapt/cmd/None,galaxy/cutadapt/cmd/1.16.1,galaxy_metadata/cutadapt/cmd/1.1.a,galaxy_metadata/cutadapt/cmd/3.7+galaxy0,github/cutadapt/None/v4.0,toolshed/cutadapt/cmd/1.1.a,toolshed/cutadapt/cmd/3.7+galaxy0",
+  "conflict_name": "cutadapt/*",
+  "date": "2026-03-25T21:40:11.628091+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
