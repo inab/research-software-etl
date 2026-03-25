@@ -1,0 +1,395 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/bhageerath-h/cmd/None",
+        "created_at": "2025-04-02T11:41:59.710385",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.scfbio-iitd.res.in/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Energy based, for narrowing down the search space of tertiary structures of small globular proteins. The protocol comprises 8 different computational modules that form an automated pipeline. It combines physics based potentials with biophysical filters to arrive at 10 plausible candidate structures starting from sequence and secondary structure information. The methodology has been validated here on 50 small globular proteins consisting of helices and strands with known tertiary structures."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.scfbio-iitd.res.in/bhageerath/help.htm"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BHAGEERATH-H"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "bhageerath-h",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein structure prediction",
+              "uri": "http://edamontology.org/operation_0474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a793d3b8acd1a2f9b772",
+            "67c7a794d3b8acd1a2f9b773"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteins",
+              "uri": "http://edamontology.org/topic_0078",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure prediction",
+              "uri": "http://edamontology.org/topic_0082",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.scfbio-iitd.res.in/bhageerath/index.jsp"
+          ]
+        },
+        "id": "biotools/bhageerath-h/cmd/None",
+        "last_updated_at": "2026-03-19T00:25:01.669622",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/bhageerath-h/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/htsanalyzer/lib/2.26.0,biotools/htsanalyzer/cmd/2.26.0,bioconductor/htsanalyzer/lib/2.39.0,bioconda_recipes/seurat-scripts/cmd/4.0.0,github/r-seurat-scripts/None/0.0.9",
+        "data": {
+          "authors": [
+            {
+              "email": "xinwang2hms@gmail.com",
+              "maintainer": false,
+              "name": "Xin Wang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "pablo.moreno@astrazeneca.com",
+              "maintainer": false,
+              "name": "Pablo Moreno",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "a.solovyev39@gmail.com",
+              "maintainer": false,
+              "name": "Andrey Solovyev",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jmanning@ebi.ac.uk",
+              "maintainer": false,
+              "name": "Jonathan Manning",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lix930701@gmail.com",
+              "maintainer": false,
+              "name": "Li Xing",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "43669368+racoonrocket@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Guilhem Marnier",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "mscorefonts",
+            "bioconductor-multtest",
+            "BioNet",
+            "r-workflowscriptscommon >=0.0.8",
+            "r-loom",
+            "r-svglite",
+            "bioconductor-scater",
+            "r-metap",
+            "igraph",
+            "AnnotationDbi",
+            "libpng",
+            "r-cairo",
+            "r-seurat =4.0.0",
+            "pandoc",
+            "R (>= 2.15)",
+            "r-optparse",
+            "cellHTS2",
+            "RankProd",
+            "biomaRt",
+            "r-seuratdisk",
+            "GSEABase",
+            "r-uwot <0.1.11",
+            "graph",
+            "methods"
+          ],
+          "description": [
+            "This package provides classes and methods for gene set over-representation, enrichment and network analyses on high-throughput screens. The over-representation analysis is performed based on hypergeometric tests. The enrichment analysis is based on the GSEA algorithm (Subramanian et al.  PNAS 2005). The network analysis identifies enriched subnetworks based on algorithms from the BioNet package (Beisser et al., Bioinformatics 2010). A pipeline is also specifically designed for cellHTS2 object to perform integrative network analyses of high-throughput RNA interference screens. The users can build their own analysis pipeline for their own data set based on this package.",
+            "This package provides classes and methods for gene set over-representation, enrichment and network analyses on high-throughput screens. A pipeline is also specifically designed for cellHTS2 object to perform integrative network analyses of high-throughput RNA interference screens. The users can build their own analysis pipeline for their own data set based on this package.",
+            "Scripts to install as a Bioconda package for making workflows.",
+            "A set of wrappers for individual components of the Seurat package."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/HTSanalyzeR.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/seurat-scripts/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/seurat-scripts/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/ebi-gene-expression-group/r-seurat-scripts/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/ebi-gene-expression-group/r-seurat-scripts/archive/4.0.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "ID list",
+                "uri": "http://edamontology.org/data_2872",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "HTSanalyzeR",
+            "r-seurat-scripts",
+            "seurat-scripts"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Artistic-2.0",
+              "url": null
+            },
+            {
+              "name": "Apache-2.0",
+              "url": null
+            },
+            {
+              "name": "Apache License 2.0",
+              "url": "http://choosealicense.com/licenses/apache-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "htsanalyzer",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene set testing",
+              "uri": "http://edamontology.org/operation_3224",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression profile pathway mapping",
+              "uri": "http://edamontology.org/operation_0533",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "r-seurat-scripts",
+            "seurat-scripts"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Image format",
+              "uri": "http://edamontology.org/format_3547",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c8281410e2f3aa0b3b78f0"
+          ],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/HTSanalyzeR"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/ebi-gene-expression-group/r-seurat-scripts"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "biotools",
+            "github",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://github.com/ebi-gene-expression-group/r-seurat-scripts/archive/4.0.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Functional genomics",
+              "uri": "http://edamontology.org/topic_0085",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNAi experiment",
+              "uri": "http://edamontology.org/topic_3523",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "2.39.0",
+            "0.0.8",
+            "0.0.9",
+            "4.0.0",
+            "2.26.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/HTSanalyzeR",
+            "https://github.com/ebi-gene-expression-group/r-seurat-scripts",
+            "http://bioconductor.org/packages/release/bioc/html/HTSanalyzeR.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:bat_bioconda_recipes/seurat-scripts/cmd/4.0.0,bioconductor/htsanalyzer/lib/2.39.0,biotools/bhageerath-h/cmd/None,biotools/htsanalyzer/cmd/2.26.0,biotools/htsanalyzer/lib/2.26.0,github/r-seurat-scripts/None/0.0.9",
+  "conflict_name": "bat/*",
+  "date": "2026-03-25T17:06:32.147483+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
