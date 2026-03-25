@@ -1,0 +1,219 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/dialign-tx/web/None",
+        "created_at": "2025-04-02T11:54:48.629249",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "subraman@informatik.uni-tuebingen.de",
+              "maintainer": false,
+              "name": "Amarendran R. Subramanian",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "DIALIGN-TX is an update to DIALIGN. It combines the greedy heuristic method of DIALIGN with a traditional progressive method."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://dialign-tx.gobics.de/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DIALIGN-TX"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "dialign-tx",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein secondary structure comparison",
+              "uri": "http://edamontology.org/operation_2488",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein sequence analysis",
+              "uri": "http://edamontology.org/operation_2479",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein secondary structure analysis",
+              "uri": "http://edamontology.org/operation_2416",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c827be10e2f3aa0b3b7572"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Protein structure analysis",
+              "uri": "http://edamontology.org/topic_2814",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein secondary structure",
+              "uri": "http://edamontology.org/topic_3542",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://dialign-tx.gobics.de/"
+          ]
+        },
+        "id": "biotools/dialign-tx/web/None",
+        "last_updated_at": "2026-03-19T00:42:00.412846",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/dialign-tx/web/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/dialign-tx/cmd/1.0.2",
+        "created_at": "2025-04-02T11:52:53.970831",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "DIALIGN-TX is a greedy and progressive approaches for segment-based multiple sequence alignment."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/dialign-tx/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/dialign-tx/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://dialign.gobics.de/"
+            }
+          ],
+          "download": [
+            "https://master.dl.sourceforge.net/project/old-software-collection/DIALIGN-TX_1.0.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "dialign-tx"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "LGPL-2.1-or-later",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "dialign-tx",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67c827be10e2f3aa0b3b7572"
+          ],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://master.dl.sourceforge.net/project/old-software-collection/DIALIGN-TX_1.0.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.0.2"
+          ],
+          "webpage": [
+            "https://dialign.gobics.de/"
+          ]
+        },
+        "id": "bioconda_recipes/dialign-tx/cmd/1.0.2",
+        "last_updated_at": "2026-03-18T23:49:41.460485",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/dialign-tx/cmd/1.0.2",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:dialign-tx_bioconda_recipes/dialign-tx/cmd/1.0.2,biotools/dialign-tx/web/None",
+  "conflict_name": "dialign-tx/*",
+  "date": "2026-03-25T21:46:57.430306+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
