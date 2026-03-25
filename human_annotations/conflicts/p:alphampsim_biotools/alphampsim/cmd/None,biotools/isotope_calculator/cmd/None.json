@@ -1,0 +1,273 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/alphampsim/cmd/None",
+        "created_at": "2025-04-02T11:37:37.780859",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "jmwhickey@hotmail.com",
+              "maintainer": false,
+              "name": "John Hickey",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://sites.google.com/site/hickeyjohn/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Simple software package for simulating data in multi-parent populations."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://sites.google.com/site/hickeyjohn/workstuff/alphampsim"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "AlphaMPSim"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "alphampsim",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Modelling and simulation",
+              "uri": "http://edamontology.org/operation_2426",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a8f3d3b8acd1a2f9b9d5"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genetics",
+              "uri": "http://edamontology.org/topic_3053",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Population genomics",
+              "uri": "http://edamontology.org/topic_3796",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Computational biology",
+              "uri": "http://edamontology.org/topic_3307",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://sites.google.com/site/hickeyjohn/workstuff/alphampsim"
+          ]
+        },
+        "id": "biotools/alphampsim/cmd/None",
+        "last_updated_at": "2026-03-19T00:24:20.996716",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/alphampsim/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/isotope_calculator/cmd/None",
+        "created_at": "2025-04-02T12:02:10.539980",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "webmaster@ms-utils.org",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://ms-utils.org/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Console application for calculating isotope distributions based on Yergey's method."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://download.kombyonyx.com/IsotopesDocumentation.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Chemical formula",
+                "uri": "http://edamontology.org/data_0846",
+                "vocabulary": "EDAM"
+              },
+              "term": "Chemical formula format",
+              "uri": "http://edamontology.org/format_2035",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Chemical formula",
+                "uri": "http://edamontology.org/data_0846",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Isotope calculator"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "isotope_calculator",
+          "operating_system": [
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Isotopic distributions calculation",
+              "uri": "http://edamontology.org/operation_3632",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Standardisation and normalisation",
+              "uri": "http://edamontology.org/operation_3435",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistical calculation",
+              "uri": "http://edamontology.org/operation_2238",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "CSV",
+              "uri": "http://edamontology.org/format_3752",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c8288410e2f3aa0b3b7cd7"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "ms-utils",
+            "Proteomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.kombyonyx.com/isotopes/"
+          ]
+        },
+        "id": "biotools/isotope_calculator/cmd/None",
+        "last_updated_at": "2026-03-19T01:03:16.727365",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/isotope_calculator/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:alphampsim_biotools/alphampsim/cmd/None,biotools/isotope_calculator/cmd/None",
+  "conflict_name": "alphampsim/*_secondary_13",
+  "date": "2026-03-25T22:02:20.380525+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
