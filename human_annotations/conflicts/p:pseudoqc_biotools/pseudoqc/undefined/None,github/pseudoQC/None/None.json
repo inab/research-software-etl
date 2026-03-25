@@ -1,0 +1,221 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/pseudoQC/None/None",
+        "created_at": "2026-03-25T15:21:03.088531",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "1152491638@qq.com",
+              "maintainer": false,
+              "name": "qade544",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "wssdandan2009@outlook.com",
+              "maintainer": false,
+              "name": "wangshisheng",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Regression-Based Simulation Applications for Correction and Normalization of Complex Metabolomics and Proteomics Datasets."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/qade544/pseudoQC/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pseudoQC"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "pseudoQC",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/YanglabWCH/pseudoQC"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:21:03.088531",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/pseudoQC",
+            "source_url": "https://github.com/qade544/pseudoQC"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/pseudoqc/undefined/None",
+        "created_at": "2025-04-02T12:58:04.545885",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A Regression-Based Simulation Software for Correction and Normalization of Complex Metabolomics and Proteomics Datasets | Regression-Based Simulation Applications for Correction and Normalization of Complex Metabolomics and Proteomics Datasets | Wang, Shisheng, and Hao Yang. \"pseudoQC: A Regression\u2010Based Simulation Software for Correction and Normalization of Complex Metabolomics and Proteomics Datasets.\" Proteomics (2019): 1900264. (DOI: 10.1002/pmic.201900264)."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pseudoQC"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "pseudoqc",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Imputation",
+              "uri": "http://edamontology.org/operation_3557",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8331f10e2f3aa0b3bb77a"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/qade544/pseudoQC"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metabolomics",
+              "uri": "http://edamontology.org/topic_3172",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://www.omicsolution.org/wukong/pseudoQC/"
+          ]
+        },
+        "id": "biotools/pseudoqc/undefined/None",
+        "last_updated_at": "2026-03-19T02:15:53.091867",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pseudoqc/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:pseudoqc_biotools/pseudoqc/undefined/None,github/pseudoQC/None/None",
+  "conflict_name": "pseudoqc/*",
+  "date": "2026-03-25T20:44:52.574128+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
