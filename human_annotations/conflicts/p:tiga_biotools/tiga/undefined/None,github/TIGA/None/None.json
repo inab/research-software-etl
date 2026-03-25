@@ -1,0 +1,258 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/TIGA/None/None",
+        "created_at": "2026-03-25T15:21:29.189933",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "jeremyjyang@gmail.com",
+              "maintainer": false,
+              "name": "Jeremy Yang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An approach, workflow and web app for GWAS gene-trait evidence aggregation."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/unmtransinfo/tiga-gwas-explorer/blob/main/LATEST_RELEASE_EFO.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/unmtransinfo/tiga-gwas-explorer/blob/main/LATEST_RELEASE_GWC.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/unmtransinfo/tiga-gwas-explorer/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/unmtransinfo/tiga-gwas-explorer/blob/main/RELEASE_NOTES.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/unmtransinfo/tiga-gwas-explorer/blob/main/venv_requirements.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TIGA"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD 2-Clause \"Simplified\" License",
+              "url": "http://choosealicense.com/licenses/bsd-2-clause/"
+            }
+          ],
+          "links": [],
+          "name": "TIGA",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/unmtransinfo/TIGA"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "u54ca189205",
+              "uri": "https://github.com/topics/u54ca189205",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:21:29.189933",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/TIGA",
+            "source_url": "https://github.com/unmtransinfo/tiga-gwas-explorer"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/tiga/undefined/None",
+        "created_at": "2025-04-02T12:49:57.806209",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "toprea@salud.unm.edu",
+              "maintainer": false,
+              "name": "Tudor I Oprea",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Target illumination GWAS analytics.\n\nGenome-wide association studies (GWAS) generate large volumes of associations between genomic variations and phenotypic traits. However, assessing strength, specificity and relevance of associations, and semantically valid aggregation of associations, for applications such as drug target prioritization, is challenging. This project addresses this challenge.\n\nBeta coefficients require units and thus are not comparable between non-convertible units (e.g. mg vs mm). Nor are beta coefficients comparable with OR, so it is questionable that these values are combined in one field OR_or_BETA. Current TIGA workaround is to use simple count of beta values supporting gene-trait association."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TIGA"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-2-Clause",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "tiga",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Aggregation",
+              "uri": "http://edamontology.org/operation_3436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Collapsing methods",
+              "uri": "http://edamontology.org/operation_3791",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8323f10e2f3aa0b3baf30"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/unmtransinfo/tiga-gwas-explorer"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "GWAS study",
+              "uri": "http://edamontology.org/topic_3517",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Small molecules",
+              "uri": "http://edamontology.org/topic_0154",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Drug discovery",
+              "uri": "http://edamontology.org/topic_3336",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://unmtid-shinyapps.net/tiga/"
+          ]
+        },
+        "id": "biotools/tiga/undefined/None",
+        "last_updated_at": "2026-03-19T01:46:35.793098",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/tiga/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:tiga_biotools/tiga/undefined/None,github/TIGA/None/None",
+  "conflict_name": "tiga/*",
+  "date": "2026-03-25T20:28:09.099673+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
