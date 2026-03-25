@@ -1,0 +1,396 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/trimal/None/None",
+        "created_at": "2025-04-02T15:44:45.921559",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "TrimAl is a bioinformatic tool that cleans multiple protein or nucleotide sequence alignment. The clean alignment (as a result of the TrimAl cleaning process) is used for phylogenetic reconstruction. TrimAl improves the quality of the reconstructed trees."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/trimal"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "trimal"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "trimal",
+          "operating_system": [
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/trimal"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "https://trimal.sourceforge.io/"
+          ]
+        },
+        "id": "sourceforge/trimal/None/None",
+        "last_updated_at": "2026-03-19T03:38:07.032511",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/trimal//",
+            "source_url": "https://sourceforge.net/projects/trimal"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/trimal/None/v1.5.1,galaxy_metadata/trimal/cmd/0.1.0,biotools/trimal/cmd/2.0-RC,toolshed/trimal/cmd/0.1.0,biotools/trimal/cmd/1.5.1,bioconda_recipes/trimal/cmd/1.5.1,galaxy_metadata/trimal/cmd/1.5.1+galaxy0,galaxy_metadata/trimal/cmd/1.4.1+galaxy0,bioconda_recipes/trimal/cmd/1.4.1",
+        "data": {
+          "authors": [
+            {
+              "email": "nicolas.diazroussel@bsc.es",
+              "maintainer": false,
+              "name": "Nicol\u00e1s D\u00edaz Roussel",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "salvador.capella@bsc.es",
+              "maintainer": false,
+              "name": "Salvador Capella",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "2072150+jmfernandez@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Jos\u00e9 Mar\u00eda Fern\u00e1ndez",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cclauss@me.com",
+              "maintainer": false,
+              "name": "Christian Clauss",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "florian.plaza-onate@inrae.fr",
+              "maintainer": false,
+              "name": "Florian Plaza-Onate",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bjoern@gruenings.eu",
+              "maintainer": false,
+              "name": "Bj\u00f6rn Gr\u00fcning",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "salcagu@gmail.com",
+              "maintainer": false,
+              "name": "Salvador Capella-Gutierrez",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tgabaldon@crg.es",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://gabaldonlab.crg.es/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A tool for automated alignment trimming in large-scale phylogenetic analyses. Development version: 2.0.",
+            "Tool for the automated removal of spurious sequences or poorly aligned regions from a multiple sequence alignment.",
+            "A tool for the automated removal of spurious sequences or poorly aligned regions from a multiple sequence alignment."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/scapella/trimal/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/scapella/trimal/blob/main/docs/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://trimal.readthedocs.io/"
+            },
+            {
+              "content": "\nModes\n    -nogaps                  Remove all positions with gaps in the alignment.\n    -noallgaps               Remove columns composed only by gaps.\n    -gappyout                Use automatic selection on \"gappyout\" mode. This method only uses information based on gaps' distribution. (see User Guide).\n    -strict                  Use automatic selection on \"strict\" mode. (see User Guide).\n    -strictplus              Use automatic selection on \"strictplus\" mode. (see User Guide).\n    -automated1              Use an heuristic method to decide which is the best automated method for a given MSA.\n    trimAl v1.4.rev15 build[2013-12-17]. 2009-2013. Salvador Capella-Gutierrez and Toni Gabald\u00f3n.\n\nCustom mode parameters\n    -gt -gapthreshold <n>    1 - (fraction of sequences with a gap allowed).\n    -st -simthreshold <n>    Minimum average similarity allowed.\n    -cons <n>                Minimum percentage of the positions in the original alignment to conserve.\n\nOutput formats\n    -nbrf                    Output file in NBRF/PIR format\n    -mega                    Output file in MEGA format\n    -nexus                   Output file in NEXUS format\n    -clustal                 Output file in CLUSTAL format\n    -fasta                   Output file in FASTA format\n    -fasta_m10               Output file in FASTA format. Sequences name length up to 10 characters.\n    -phylip                  Output file in PHYLIP/PHYLIP4 format\n    -phylip_m10              Output file in PHYLIP/PHYLIP4 format. Sequences name length up to 10 characters.\n    -phylip_paml             Output file in PHYLIP format compatible with PAML\n    -phylip_paml_m10         Output file in PHYLIP format compatible with PAML. Sequences name length up to 10 characters.\n    -phylip3.2               Output file in PHYLIP3.2 format\n    -phylip3.2_m10           Output file in PHYLIP3.2 format. Sequences name length up to 10 characters.\n    \ntrimAl webpage: http://trimal.cgenomics.org\n\nThis program is free software: you can redistribute it and/or modify \nit under the terms of the GNU General Public License as published by \nthe Free Software Foundation, the last available version.\n\nPlease cite:\n    trimAl: a tool for automated alignment trimming in large-scale phylogenetic analyses.\n    Salvador Capella-Gutierrez; Jose M. Silla-Martinez; Toni Gabaldon.\n    Bioinformatics 2009, 25:1972-1973.\n    ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/trimal/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/trimal/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/inab/trimal/archive/refs/tags/v1.5.1.tar.gz",
+            "https://github.com/scapella/trimal/archive/v1.4.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "trimAl",
+            "trimAl: a tool for automated alignment trimming",
+            "trimal"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+              "name": "GPL-3.0-or-later",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3 or later (GPLv3)",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "trimal",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Multiple sequence alignment",
+              "uri": "http://edamontology.org/operation_0492",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Alignment",
+                "uri": "http://edamontology.org/data_1916",
+                "vocabulary": "EDAM"
+              },
+              "term": "PHYLIP sequential",
+              "uri": "http://edamontology.org/format_1998",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Alignment",
+                "uri": "http://edamontology.org/data_1916",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Alignment",
+                "uri": "http://edamontology.org/data_1916",
+                "vocabulary": "EDAM"
+              },
+              "term": "ClustalW format",
+              "uri": "http://edamontology.org/format_1982",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Alignment",
+                "uri": "http://edamontology.org/data_1916",
+                "vocabulary": "EDAM"
+              },
+              "term": "PHYLIP format",
+              "uri": "http://edamontology.org/format_1997",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c82af410e2f3aa0b3b91bf"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/inab/trimal"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/scapella/trimal"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "toolshed",
+            "github",
+            "galaxy_metadata",
+            "biotools"
+          ],
+          "source_code": [
+            "https://github.com/inab/trimal/archive/refs/tags/v1.5.1.tar.gz",
+            "https://github.com/scapella/trimal/archive/v1.4.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "multiple-sequence-alignment",
+              "uri": "https://github.com/topics/multiple-sequence-alignment",
+              "vocabulary": ""
+            },
+            {
+              "term": "trimming",
+              "uri": "https://github.com/topics/trimming",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics-tool",
+              "uri": "https://github.com/topics/bioinformatics-tool",
+              "vocabulary": ""
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Sequence sites",
+              "uri": "http://edamontology.org/topic_0160",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.4.1+galaxy0",
+            "1.4.1",
+            "1.5.1",
+            "v1.4.1",
+            "0.1.0",
+            "v1.5.0",
+            "1.5.1+galaxy0",
+            "v1.5.1",
+            "2.0-RC"
+          ],
+          "webpage": [
+            "http://trimal.cgenomics.org/",
+            "https://trimal.readthedocs.io/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:trimal_bioconda_recipes/trimal/cmd/1.4.1,bioconda_recipes/trimal/cmd/1.5.1,biotools/trimal/cmd/1.5.1,biotools/trimal/cmd/2.0-RC,galaxy_metadata/trimal/cmd/0.1.0,galaxy_metadata/trimal/cmd/1.4.1+galaxy0,galaxy_metadata/trimal/cmd/1.5.1+galaxy0,github/trimal/None/v1.5.1,sourceforge/trimal/None/None,toolshed/trimal/cmd/0.1.0",
+  "conflict_name": "trimal/*",
+  "date": "2026-03-25T21:14:30.510755+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
