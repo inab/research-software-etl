@@ -1,0 +1,321 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/multi-netclust/cmd/None",
+        "created_at": "2025-04-02T12:06:09.771742",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "jack.leunissen@wur.nl",
+              "maintainer": false,
+              "name": "Jack A.M. Leunissen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Tool for finding connected clusters in multi-parametric networks."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Multi-netclust"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Unlicense",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "multi-netclust",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Aggregation",
+              "uri": "http://edamontology.org/operation_3436",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c828e810e2f3aa0b3b806f"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.bioinformatics.nl/netclust/"
+          ]
+        },
+        "id": "biotools/multi-netclust/cmd/None",
+        "last_updated_at": "2026-03-19T01:17:57.918058",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/multi-netclust/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/genonets/cmd/None,bioconda_recipes/genonets/lib/2.0,github/genonets/None/v2.0,biotools/genonets/web/None",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "SIB Swiss Institute of Bioinformatics",
+              "orcid": null,
+              "type": null,
+              "url": "http://www.sib.swiss/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Evolutionary Systems Biology Group - University of Zurich",
+              "orcid": null,
+              "type": null,
+              "url": "http://www.sib.swiss/wagner-andreas/wagner-andreas-sub"
+            },
+            {
+              "email": "joshua.payne@ieu.uzh.ch",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "fahad.khalid@gmail.com",
+              "maintainer": false,
+              "name": "Fahad Khalid",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49699333+dependabot[bot]@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dependabot[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "tqdm >=4.49.0",
+            "numpy >=1.19",
+            "python-igraph >=0.8.2",
+            "python"
+          ],
+          "description": [
+            "A genotype network is a graph in which vertices represent genotypes that have the same phenotype. This tool provides the following features: (i) the construction of genotype networks for categorical and univariate phenotypes; (ii) analyses of genotype network topology and how it relates to robustness and evolvability, as well as analyses of genotype network topography and how it relates to the navigability of a genotype network; (iii) multiple interactive visualizations.",
+            "Framework for creating and analyzing genotype networks from data.",
+            "Python framework for creating and analyzing genotype networks from data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://ieu-genonets.uzh.ch/learn"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/genonets/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/genonets/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/fkhalid/genonets/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/fkhalid/genonets/blob/main/docs/requirements.txt"
+            }
+          ],
+          "download": [
+            "https://files.pythonhosted.org/packages/fb/ea/acf63ad7b54fc16ddacd0a9d1f4da4c455b5efe6fe7ec30b7eb2b0bd69e4/genonets-2.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Genotype/phenotype report",
+                "uri": "http://edamontology.org/data_0920",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Genonets",
+            "genonets"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "genonets",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Pathway or network prediction",
+              "uri": "http://edamontology.org/operation_3439",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Network simulation",
+              "uri": "http://edamontology.org/operation_3562",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathway or network visualisation",
+              "uri": "http://edamontology.org/operation_3083",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Pathway or network",
+                "uri": "http://edamontology.org/data_2600",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "67c79fb9d3b8acd1a2f9b454"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/fkhalid/genonets"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "biotools",
+            "github"
+          ],
+          "source_code": [
+            "https://files.pythonhosted.org/packages/fb/ea/acf63ad7b54fc16ddacd0a9d1f4da4c455b5efe6fe7ec30b7eb2b0bd69e4/genonets-2.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Evolutionary biology",
+              "uri": "http://edamontology.org/topic_3299",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Systems biology",
+              "uri": "http://edamontology.org/topic_2259",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib",
+            "web",
+            "cmd"
+          ],
+          "version": [
+            "2.0",
+            "v1.1.10",
+            "v1.1.8",
+            "v1.1.7",
+            "None",
+            "v1.1.9",
+            "v1.0.7",
+            "v2.0"
+          ],
+          "webpage": [
+            "http://ieu-genonets.uzh.ch/",
+            "https://github.com/fkhalid/genonets"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:genonets_bioconda_recipes/genonets/lib/2.0,biotools/genonets/cmd/None,biotools/genonets/web/None,biotools/multi-netclust/cmd/None,github/genonets/None/v2.0",
+  "conflict_name": "genonets/*",
+  "date": "2026-03-25T21:47:41.439825+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
