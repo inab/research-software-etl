@@ -1,0 +1,273 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/splitcode/undefined/None",
+        "created_at": "2026-02-23T16:11:03.607941",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "lpachter@caltech.edu",
+              "maintainer": false,
+              "name": "Lior Pachter",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Splitcode is a tool for flexible parsing, interpretation, and editing of sequencing reads, facilitating preprocessing of reads from various single-cell and bulk sequencing assays. It is available as a command-line tool with installation through pip and is described in a publication and associated documentation."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "splitcode"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "splitcode",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read pre-processing",
+              "uri": "http://edamontology.org/operation_3219",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6e074393fdfaf890c3aa"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": null,
+              "uri": "http://edamontology.org/topic_4028",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Bioinformatics",
+              "uri": "http://edamontology.org/topic_0091",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://splitcode.readthedocs.io/"
+          ]
+        },
+        "id": "biotools/splitcode/undefined/None",
+        "last_updated_at": "2026-03-19T02:34:35.314571",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/splitcode/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/splitcode/cmd/0.31.6,github/splitcode/None/v0.31.6",
+        "data": {
+          "authors": [
+            {
+              "email": "delaneyk.sullivan@gmail.com",
+              "maintainer": false,
+              "name": "Yenaled",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "96021122+zimward@users.noreply.github.com",
+              "maintainer": false,
+              "name": "zimward",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "purpleblobmob@gmail.com",
+              "maintainer": false,
+              "name": "Jessica Yin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Flexible and efficient parsing, interpreting and editing of sequencing reads.",
+            "Flexible parsing, interpretation, and editing of technical sequences."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/splitcode/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/splitcode/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/pachterlab/splitcode"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/pachterlab/splitcode/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/pachterlab/splitcode/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/pachterlab/splitcode/archive/refs/tags/v0.31.6.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "splitcode"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD-2-Clause",
+              "url": null
+            },
+            {
+              "name": "BSD 2-Clause \"Simplified\" License",
+              "url": "http://choosealicense.com/licenses/bsd-2-clause/"
+            }
+          ],
+          "links": [],
+          "name": "splitcode",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "69bad2942f353da541e302c8"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/pachterlab/splitcode"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/pachterlab/splitcode/archive/refs/tags/v0.31.6.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v0.29.1",
+            "v0.30.0",
+            "0.31.6",
+            "v0.28.6",
+            "v0.29.2",
+            "v0.29.3",
+            "v0.31.6",
+            "v0.31.4",
+            "v0.31.1",
+            "v0.31.5",
+            "v0.28.4",
+            "v0.28.3",
+            "v0.28.2",
+            "v0.31.3",
+            "v0.28.1",
+            "v0.29.0",
+            "v0.28.5",
+            "v0.29.4",
+            "v0.31.0",
+            "v0.31.2"
+          ],
+          "webpage": [
+            "https://pachterlab.github.io/splitcode/",
+            "https://github.com/pachterlab/splitcode"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:splitcode_bioconda_recipes/splitcode/cmd/0.31.6,biotools/splitcode/undefined/None,github/splitcode/None/v0.31.6",
+  "conflict_name": "splitcode/*",
+  "date": "2026-03-25T21:36:37.770572+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
