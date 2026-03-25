@@ -1,0 +1,277 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/bmge/cmd/1.12",
+        "created_at": "2025-04-02T11:42:42.344675",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Simonetta Gribaldo",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://research.pasteur.fr/en/member/simonetta-gribaldo/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Institut Pasteur",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://research.pasteur.fr/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "C3BI",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://research.pasteur.fr/en/center/c3bi/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Bioinformatics and Biostatistics Hub",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://research.pasteur.fr/en/team/bioinformatics-and-biostatistics-hub/"
+            },
+            {
+              "email": "alexis.criscuolo@pasteur.fr",
+              "maintainer": false,
+              "name": "Alexis Criscuolo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "alexis.criscuolo@pasteur.fr",
+              "maintainer": false,
+              "name": "Alexis Criscuolo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Block Mapping and Gathering using Entropy."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://research.pasteur.fr/en/software/bmge-block-mapping-and-gathering-with-entropy/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "PHYLIP sequential",
+              "uri": "http://edamontology.org/format_1998",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA-aln",
+              "uri": "http://edamontology.org/format_1984",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "BMGE"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bmge",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence alignment analysis",
+              "uri": "http://edamontology.org/operation_0258",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "nexusnon",
+              "uri": "http://edamontology.org/format_1973",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "PHYLIP sequential",
+              "uri": "http://edamontology.org/format_1998",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA-aln",
+              "uri": "http://edamontology.org/format_1984",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67e2bcd1b57beba26405ccd7"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Institut Pasteur"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Phylogeny",
+              "uri": "http://edamontology.org/topic_0084",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "1.12"
+          ],
+          "webpage": [
+            "https://research.pasteur.fr/en/software/bmge-block-mapping-and-gathering-with-entropy/"
+          ]
+        },
+        "id": "biotools/bmge/cmd/1.12",
+        "last_updated_at": "2026-03-19T00:25:58.526657",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/bmge/cmd/1.12",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/bmge/cmd/1.12+galaxy0",
+        "created_at": "2026-03-19T03:05:59.290556",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BMGE"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "bmge",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.12+galaxy0"
+          ],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-19T03:05:59.290556",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy_metadata/bmge/cmd/1.12+galaxy0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:bmge_biotools/bmge/cmd/1.12,galaxy_metadata/bmge/cmd/1.12+galaxy0",
+  "conflict_name": "bmge/cmd",
+  "date": "2026-03-25T17:15:04.223219+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
