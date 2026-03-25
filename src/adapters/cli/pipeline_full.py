@@ -132,7 +132,6 @@ def _resolve_selected_stages(
 
         selected = STAGES[start_idx : end_idx + 1]
 
-    # Apply feature toggles
     if not remove_opeb_metrics and "remove_opeb_metrics" in selected:
         selected.remove("remove_opeb_metrics")
     if not human_updates and "human_updates" in selected:
@@ -141,6 +140,75 @@ def _resolve_selected_stages(
         selected.remove("merge")
 
     return selected
+
+
+def _resolve_resume_run_dir(resume_run: str | Path, runs_root: Path) -> Path:
+    candidate = Path(resume_run)
+
+    if candidate.is_absolute() or candidate.parts:
+        if candidate.exists():
+            return candidate.resolve()
+
+    candidate_from_runs_root = (runs_root / str(resume_run)).resolve()
+    if candidate_from_runs_root.exists():
+        return candidate_from_runs_root
+
+    raise PipelineError(
+        f"Could not resolve --resume-run={resume_run!r}. "
+        f"Provide either an existing run directory path or a run ID under {runs_root}."
+    )
+
+
+def _load_manifest(manifest_path: Path) -> dict:
+    if not manifest_path.exists():
+        return {}
+    try:
+        with open(manifest_path) as fh:
+            return json.load(fh)
+    except Exception as e:
+        raise PipelineError(f"Could not read manifest at {manifest_path}: {e}") from e
+
+
+def _ensure_exists(path: Path, description: str) -> None:
+    if not path.exists():
+        raise PipelineError(f"Required input for {description} not found: {path}")
+
+
+def _check_prerequisites_for_selected_stages(
+    selected_stages: list[str],
+    *,
+    grouped_entries_file: Path,
+    grouped_entries_no_opeb: Path,
+    conflicts_json: Path,
+    simplified_blocks_json: Path,
+    conflicts_jsonl: Path,
+    simplified_blocks_jsonl: Path,
+    disambiguation_out_dir: Path,
+) -> None:
+    selected = set(selected_stages)
+
+    if "conflict_detection" in selected:
+        if grouped_entries_no_opeb.exists():
+            _ensure_exists(grouped_entries_no_opeb, "conflict_detection")
+        else:
+            _ensure_exists(grouped_entries_file, "conflict_detection")
+
+    if "simplify_blocks" in selected:
+        if grouped_entries_no_opeb.exists():
+            _ensure_exists(grouped_entries_no_opeb, "simplify_blocks")
+        else:
+            _ensure_exists(grouped_entries_file, "simplify_blocks")
+
+    if "json_to_jsonl" in selected:
+        _ensure_exists(conflicts_json, "json_to_jsonl (conflicts)")
+        _ensure_exists(simplified_blocks_json, "json_to_jsonl (simplified blocks)")
+
+    if "disambiguation" in selected:
+        _ensure_exists(conflicts_jsonl, "disambiguation")
+        _ensure_exists(simplified_blocks_jsonl, "disambiguation")
+
+    if "human_updates" in selected or "merge" in selected:
+        _ensure_exists(disambiguation_out_dir, "human_updates/merge")
 
 
 def run_full(
@@ -154,14 +222,28 @@ def run_full(
     from_stage: Optional[str] = None,
     until_stage: Optional[str] = None,
     only_stage: Optional[str] = None,
+    resume_run: Optional[str | Path] = None,
 ) -> None:
+    
+    
+    if resume_run and run_tag:
+        raise PipelineError("--tag cannot be used together with --resume-run")
+
     wd = Path(workdir).resolve()
     runs_root = (wd / runs_root).resolve()
     runs_root.mkdir(parents=True, exist_ok=True)
 
-    run_id = _make_run_id(wd, tag=run_tag)
-    run_dir = runs_root / run_id
-    run_dir.mkdir(parents=True, exist_ok=True)
+    if resume_run:
+        run_dir = _resolve_resume_run_dir(resume_run, runs_root)
+        if not run_dir.is_dir():
+            raise PipelineError(f"Resolved --resume-run is not a directory: {run_dir}")
+        run_id = run_dir.name
+        is_resume = True
+    else:
+        run_id = _make_run_id(wd, tag=run_tag)
+        run_dir = runs_root / run_id
+        run_dir.mkdir(parents=True, exist_ok=True)
+        is_resume = False
 
     _symlink_latest(runs_root / "latest", run_dir)
 
@@ -181,6 +263,7 @@ def run_full(
     disambiguation_out_dir.mkdir(parents=True, exist_ok=True)
 
     manifest_path = run_dir / "manifest.json"
+    previous_manifest = _load_manifest(manifest_path)
 
     started_at = datetime.now(timezone.utc)
 
@@ -193,12 +276,27 @@ def run_full(
         do_merge_to_db=do_merge_to_db,
     )
 
+    if is_resume:
+        _check_prerequisites_for_selected_stages(
+            selected_stages,
+            grouped_entries_file=grouped_entries_file,
+            grouped_entries_no_opeb=grouped_entries_no_opeb,
+            conflicts_json=conflicts_json,
+            simplified_blocks_json=simplified_blocks_json,
+            conflicts_jsonl=conflicts_jsonl,
+            simplified_blocks_jsonl=simplified_blocks_jsonl,
+            disambiguation_out_dir=disambiguation_out_dir,
+        )
+
     executed_stages: list[str] = []
 
     def should_run(stage: str) -> bool:
         return stage in selected_stages
 
-    # Stage 0
+    effective_blocks_in = grouped_entries_file
+    if grouped_entries_no_opeb.exists():
+        effective_blocks_in = grouped_entries_no_opeb
+
     if should_run("transformation"):
         print("=== Stage: transformation ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
@@ -208,7 +306,6 @@ def run_full(
         )
         executed_stages.append("transformation")
 
-    # Stage 1
     if should_run("grouping"):
         print("=== Stage: grouping ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
@@ -222,11 +319,9 @@ def run_full(
             ],
             cwd=wd,
         )
+        effective_blocks_in = grouped_entries_file
         executed_stages.append("grouping")
 
-    effective_blocks_in = grouped_entries_file
-
-    # Stage 2
     if should_run("remove_opeb_metrics"):
         print("=== Stage: remove_opeb_metrics ===")
         _run(
@@ -243,10 +338,8 @@ def run_full(
         effective_blocks_in = grouped_entries_no_opeb
         executed_stages.append("remove_opeb_metrics")
     elif grouped_entries_no_opeb.exists():
-        # useful when resuming later in a run directory
         effective_blocks_in = grouped_entries_no_opeb
 
-    # Stage 3
     if should_run("conflict_detection"):
         print("=== Stage: conflict_detection ===")
         _run(
@@ -263,7 +356,6 @@ def run_full(
         )
         executed_stages.append("conflict_detection")
 
-    # Stage 4
     if should_run("simplify_blocks"):
         print("=== Stage: simplify_blocks ===")
         _run(
@@ -279,7 +371,6 @@ def run_full(
         )
         executed_stages.append("simplify_blocks")
 
-    # Stage 5
     if should_run("json_to_jsonl"):
         print("=== Stage: json_to_jsonl ===")
         _run(
@@ -306,7 +397,6 @@ def run_full(
         )
         executed_stages.append("json_to_jsonl")
 
-    # Stage 6
     if should_run("disambiguation"):
         print("=== Stage: disambiguation ===")
         _require_env(["GITHUB_TOKEN", "GITLAB_TOKEN", "OPENROUTER_API_KEY", "HUGGINGFACE_API_KEY"])
@@ -330,7 +420,6 @@ def run_full(
         )
         executed_stages.append("disambiguation")
 
-    # Stage 7
     if should_run("human_updates"):
         print("=== Stage: human_updates ===")
         try:
@@ -349,7 +438,6 @@ def run_full(
         )
         executed_stages.append("human_updates")
 
-    # Stage 8
     if should_run("merge"):
         print("=== Stage: merge ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
@@ -365,7 +453,6 @@ def run_full(
         )
         executed_stages.append("merge")
 
-    # Stage 9
     if should_run("stats"):
         print("=== Stage: stats ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
@@ -375,12 +462,11 @@ def run_full(
         )
         executed_stages.append("stats")
 
-    manifest = {
-        "run_id": run_id,
-        "run_dir": str(run_dir),
-        "git_short_sha": _git_short_sha(wd),
+    execution_record = {
         "utc_started": started_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "utc_finished": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "is_resume": is_resume,
+        "resume_run": str(resume_run) if resume_run else None,
         "stage_selection": {
             "from_stage": from_stage,
             "until_stage": until_stage,
@@ -388,6 +474,22 @@ def run_full(
             "selected_stages": selected_stages,
             "executed_stages": executed_stages,
         },
+        "options": {
+            "remove_opeb_metrics": remove_opeb_metrics,
+            "human_updates": human_updates,
+            "do_merge_to_db": do_merge_to_db,
+        },
+    }
+
+    execution_history = previous_manifest.get("execution_history", [])
+    execution_history.append(execution_record)
+
+    manifest = {
+        "run_id": run_id,
+        "run_dir": str(run_dir),
+        "git_short_sha": _git_short_sha(wd),
+        "created_utc": previous_manifest.get("created_utc", started_at.strftime("%Y-%m-%dT%H:%M:%SZ")),
+        "last_updated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "paths": {
             "grouped_entries_file": str(grouped_entries_file),
             "grouped_entries_no_opeb": str(grouped_entries_no_opeb),
@@ -397,7 +499,7 @@ def run_full(
             "simplified_blocks_jsonl": str(simplified_blocks_jsonl),
             "disambiguation_out_dir": str(disambiguation_out_dir),
         },
-        "options": {
+        "latest_options": {
             "remove_opeb_metrics": remove_opeb_metrics,
             "human_updates": human_updates,
             "do_merge_to_db": do_merge_to_db,
@@ -414,6 +516,7 @@ def run_full(
             "OPENROUTER_API_KEY": mask_secret(os.getenv("OPENROUTER_API_KEY")),
             "HUGGINGFACE_API_KEY": mask_secret(os.getenv("HUGGINGFACE_API_KEY")),
         },
+        "execution_history": execution_history,
     }
 
     try:

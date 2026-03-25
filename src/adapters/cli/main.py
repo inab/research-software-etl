@@ -20,9 +20,12 @@ def main(argv: list[str] | None = None) -> int:
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    # --- run subcommand ---------------------------------------------------------
     run_p = subparsers.add_parser("run", help="Run the integration pipeline")
     run_p.add_argument("--tag", dest="run_tag", help="Optional tag appended to run ID")
+    run_p.add_argument(
+        "--resume-run",
+        help="Resume an existing run by run ID or run directory path",
+    )
     run_p.add_argument(
         "--no-merge",
         dest="do_merge_to_db",
@@ -38,9 +41,10 @@ def main(argv: list[str] | None = None) -> int:
     run_p.add_argument(
         "--remove-opeb-metrics",
         dest="remove_opeb_metrics",
-        action="store_true",
+        action="store_false",
         help="Enable removal of OEB metrics stage",
     )
+    run_p.set_defaults(remove_opeb_metrics=True)
     run_p.add_argument(
         "--from-stage",
         choices=STAGES,
@@ -62,7 +66,6 @@ def main(argv: list[str] | None = None) -> int:
     run_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
     run_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
 
-    # --- run-transformation subcommand ------------------------------------------
     tr_p = subparsers.add_parser(
         "run-transformation",
         help="Run only the transformation step",
@@ -73,10 +76,8 @@ def main(argv: list[str] | None = None) -> int:
     tr_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
     tr_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
 
-    # --- check-env subcommand ---------------------------------------------------
     subparsers.add_parser("check-env", help="Check environment variables and API connectivity")
 
-    # --- run-webavailability subcommand -----------------------------------------
     wa_p = subparsers.add_parser(
         "run-webavailability",
         help="Run daily web availability update (and ensure ToolsDev URLs exist)",
@@ -105,6 +106,7 @@ def main(argv: list[str] | None = None) -> int:
             from_stage=args.from_stage,
             until_stage=args.until_stage,
             only_stage=args.only_stage,
+            resume_run=args.resume_run,
         )
         return 0
 
