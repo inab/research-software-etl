@@ -1,0 +1,289 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/locuszoomr/undefined/None",
+        "created_at": "2026-02-23T16:10:40.823478",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "myles.lewis@qmul.ac.uk",
+              "maintainer": false,
+              "name": "Myles J Lewis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Locuszoomr is an R package that allows users to generate publication-ready regional gene locus plots similar to the LocusZoom web interface. It leverages the LDlink API and allows integration with Bioconductor databases for gene annotation and provides flexibility for customization."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "locuszoomr"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "locuszoomr",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Query and retrieval",
+              "uri": "http://edamontology.org/operation_0224",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Scatter plot plotting",
+              "uri": "http://edamontology.org/operation_2940",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6df04393fdfaf890c2ce"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "GWAS study",
+              "uri": "http://edamontology.org/topic_3517",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA polymorphism",
+              "uri": "http://edamontology.org/topic_2885",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://cran.r-project.org/package=locuszoomr"
+          ]
+        },
+        "id": "biotools/locuszoomr/undefined/None",
+        "last_updated_at": "2026-03-19T02:33:45.145808",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/locuszoomr/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/locuszoomr/None/v0.3.8,bioconda_recipes/r-locuszoomr/cmd/0.3.8",
+        "data": {
+          "authors": [
+            {
+              "email": "myles.lewis@qmul.ac.uk",
+              "maintainer": false,
+              "name": "Myles Lewis",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-iranges",
+            "r-rlang",
+            "r-dplyr",
+            "r-cowplot",
+            "r-ggrepel",
+            "r-base",
+            "r-memoise",
+            "bioconductor-genomicranges",
+            "r-gggrid",
+            "r-plotly",
+            "bioconductor-rtracklayer",
+            "r-ldlinkr",
+            "bioconductor-biocgenerics",
+            "bioconductor-annotationfilter",
+            "r-ggplot2",
+            "bioconductor-genomeinfodb",
+            "r-zoo",
+            "bioconductor-ensembldb"
+          ],
+          "description": [
+            "Publication-ready regional gene locus plots similar to those produced by the web interface 'LocusZoom' <https://my.locuszoom.org>, but running locally in R. Genetic or genomic data with gene annotation tracks are plotted via R base graphics, 'ggplot2' or 'plotly', allowing flexibility and easy customisation including laying out multiple locus plots on the same page. It uses the 'LDlink' API <https://ldlink.nih.gov/?tab=apiaccess> to query linkage disequilibrium data from the 1000 Genomes Project and can overlay this on plots.",
+            "A pure R implementation of locuszoom for plotting genetic data at genomic loci accompanied by gene annotations."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/myles-lewis/locuszoomr/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/myles-lewis/locuszoomr/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/myles-lewis/locuszoomr/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/myles-lewis/locuszoomr/blob/main/cran-comments.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/r-locuszoomr/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/r-locuszoomr/README.html"
+            }
+          ],
+          "download": [
+            "https://cloud.r-project.org/src/contrib/locuszoomr_0.3.8.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/locuszoomr/locuszoomr_0.3.8.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "locuszoomr",
+            "r-locuszoomr"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+              "name": "GPL-3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "locuszoomr",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "r-locuszoomr"
+          ],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/myles-lewis/locuszoomr"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://cloud.r-project.org/src/contrib/locuszoomr_0.3.8.tar.gz",
+            "https://cloud.r-project.org/src/contrib/Archive/locuszoomr/locuszoomr_0.3.8.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v0.1.1",
+            "v0.3.4",
+            "v0.2.0",
+            "v0.3.6",
+            "v0.3.1",
+            "v0.2.1",
+            "0.3.8",
+            "v0.3.8",
+            "v0.3.2",
+            "v0.3.0"
+          ],
+          "webpage": [
+            "https://github.com/myles-lewis/locuszoomr"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:locuszoomr_bioconda_recipes/r-locuszoomr/cmd/0.3.8,biotools/locuszoomr/undefined/None,github/locuszoomr/None/v0.3.8",
+  "conflict_name": "locuszoomr/*",
+  "date": "2026-03-25T21:30:28.369809+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
