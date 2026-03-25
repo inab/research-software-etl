@@ -1,0 +1,392 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/sparrow/undefined/None",
+        "created_at": "2026-02-23T16:09:52.542073",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "SPArrOW is a flexible and scalable pipeline for spatial transcriptomics data processing, designed to improve cell segmentation and data quality. It provides visual quality checks and accommodates various spatial transcriptomics platforms."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SPArrOW"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "sparrow",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression profiling",
+              "uri": "http://edamontology.org/operation_0314",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6dc04393fdfaf890c102"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cell biology",
+              "uri": "http://edamontology.org/topic_2229",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": null,
+              "uri": "http://edamontology.org/topic_4021",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/saeyslab/napari-SPArrOW"
+          ]
+        },
+        "id": "biotools/sparrow/undefined/None",
+        "last_updated_at": "2026-03-19T02:32:02.708391",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/sparrow/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/sparrow/None/None,bioconda_recipes/bioconductor-sparrow/lib/1.8.0,bioconductor/sparrow/lib/1.13.4,bioconda_recipes/bioconductor-sparrow/lib/1.12.0,bioconductor/sparrow/lib/1.17.0",
+        "data": {
+          "authors": [
+            {
+              "email": "slianoglou@mazetx.com",
+              "maintainer": false,
+              "name": "Steve Lianoglou",
+              "orcid": "https://orcid.org/0000-0002-0924-1754",
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "andres.wokaty@sph.cuny.edu",
+              "maintainer": false,
+              "name": "A Wokaty",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jwokaty@users.noreply.github.com",
+              "maintainer": false,
+              "name": "J Wokaty",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lianoglou@dnli.com",
+              "maintainer": false,
+              "name": "lianos",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "41166437+gladkia@users.noreply.github.com",
+              "maintainer": false,
+              "name": "gladkia",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "gladki.arkadiusz@gmail.com",
+              "maintainer": false,
+              "name": "Arkadiusz Gladki",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Aratus Informatics, LLC",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Denali Therapeutics",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Genentech",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-irlba",
+            "BiocSet",
+            "R (>= 4.0)",
+            "bioconductor-delayedmatrixstats >=1.28.0,<1.29.0",
+            "bioconductor-edger >=4.0.0,<4.1.0",
+            "r-data.table >=1.10.4",
+            "r-viridis",
+            "graphics",
+            "BiocGenerics",
+            "stats",
+            "r-matrix",
+            "bioconductor-delayedmatrixstats >=1.24.0,<1.25.0",
+            "bioconductor-edger >=4.4.0,<4.5.0",
+            "babelgene (>= 21.4)",
+            "bioconductor-biocparallel >=1.40.0,<1.41.0",
+            "irlba",
+            "ggplot2 (>= 2.2.0)",
+            "limma",
+            "utils",
+            "bioconductor-biocgenerics >=0.52.0,<0.53.0",
+            "bioconductor-biocset >=1.16.0,<1.17.0",
+            "edgeR (>= 3.18.1)",
+            "grDevices",
+            "methods",
+            "bioconductor-limma >=3.58.0,<3.59.0",
+            "Matrix",
+            "bioconductor-limma >=3.62.0,<3.63.0",
+            "data.table (>= 1.10.4)",
+            "bioconductor-gseabase >=1.64.0,<1.65.0",
+            "viridis",
+            "DelayedMatrixStats",
+            "r-circlize",
+            "bioconductor-complexheatmap >=2.18.0,<2.19.0",
+            "BiocParallel",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "r-base",
+            "ComplexHeatmap (>= 2.0)",
+            "GSEABase",
+            "bioconductor-complexheatmap >=2.22.0,<2.23.0",
+            "plotly (>= 4.9.0)",
+            "checkmate",
+            "bioconductor-biocset >=1.20.0,<1.21.0",
+            "r-babelgene >=21.4",
+            "r-ggplot2 >=2.2.0",
+            "r-plotly >=4.9.0",
+            "bioconductor-biocparallel >=1.36.0,<1.37.0",
+            "r-checkmate",
+            "bioconductor-gseabase >=1.68.0,<1.69.0",
+            "circlize"
+          ],
+          "description": [
+            "Take command of your set enrichment analyses.",
+            "Provides a unified interface to a variety of GSEA techniques from different bioconductor packages. Results are harmonized into a single object and can be interrogated uniformly for quick exploration and interpretation of results. Interactive exploration of GSEA results is enabled through a shiny app provided by a sparrow.shiny sibling package."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/lianos/sparrow/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/lianos/sparrow/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-sparrow/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-sparrow/README.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/sparrow_1.12.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/sparrow_1.8.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/sparrow/sparrow_1.12.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-sparrow/bioconductor-sparrow_1.12.0_src_all.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-sparrow/bioconductor-sparrow_1.8.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/sparrow/sparrow_1.8.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/sparrow_1.8.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/sparrow_1.12.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-sparrow",
+            "sparrow"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "sparrow",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-sparrow"
+          ],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/lianos/sparrow"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/sparrow"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/sparrow_1.12.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/sparrow_1.8.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/sparrow/sparrow_1.12.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-sparrow/bioconductor-sparrow_1.12.0_src_all.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-sparrow/bioconductor-sparrow_1.8.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/sparrow/sparrow_1.8.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/sparrow_1.8.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/sparrow_1.12.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "gsea",
+              "uri": "https://github.com/topics/gsea",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.8.0",
+            "1.13.4",
+            "1.12.0",
+            "1.17.0"
+          ],
+          "webpage": [
+            "https://lianos.github.io/sparrow/",
+            "https://bioconductor.org/packages/3.18/bioc/html/sparrow.html",
+            "https://bioconductor.org/packages/3.20/bioc/html/sparrow.html",
+            "https://github.com/lianos/sparrow"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:sparrow_bioconda_recipes/bioconductor-sparrow/lib/1.12.0,bioconda_recipes/bioconductor-sparrow/lib/1.8.0,bioconductor/sparrow/lib/1.13.4,bioconductor/sparrow/lib/1.17.0,biotools/sparrow/undefined/None,github/sparrow/None/None",
+  "conflict_name": "sparrow/*",
+  "date": "2026-03-25T21:28:15.612814+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
