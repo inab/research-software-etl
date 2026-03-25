@@ -1,0 +1,375 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/pyranges/None/v0",
+        "created_at": "2026-03-25T15:19:38.438742",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "marco.mariotti.mm@gmail.com",
+              "maintainer": false,
+              "name": "Marco Mariotti",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "endrebak@idi.ntnu.no",
+              "maintainer": false,
+              "name": "endrebak",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "emmanuel.noutahi@hotmail.ca",
+              "maintainer": false,
+              "name": "Emmanuel Noutahi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nick.semenkovich@gmail.com",
+              "maintainer": false,
+              "name": "Nick Semenkovich",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "farjoun@gmail.com",
+              "maintainer": false,
+              "name": "Yossi Farjoun",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "endre.bakkenstovner@arm.com",
+              "maintainer": false,
+              "name": "Endre Bakken Stovner",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "fairliek@comcast.net",
+              "maintainer": false,
+              "name": "Fairlie Reese",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49699333+dependabot[bot]@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dependabot[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "endrebak85@gmail.com",
+              "maintainer": false,
+              "name": "endrebak.ada",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "endrebakkenstovner@endres-MacBook-Air.local",
+              "maintainer": false,
+              "name": "endre bakken stovner",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "yech1990@gmail.com",
+              "maintainer": false,
+              "name": "Chang Y",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "endrebakkenstovner@endres-Air.lan",
+              "maintainer": false,
+              "name": "endre bakken stovner",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "CanI.m.61st@gmail.com",
+              "maintainer": false,
+              "name": "Masahiro Kanai",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "fairlie.reese@gmail.com",
+              "maintainer": false,
+              "name": "Fairlie Reese",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "54724353+FabrizioG202@users.noreply.github.com",
+              "maintainer": false,
+              "name": "FabrizioG202",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "amin8w@gmail.com",
+              "maintainer": false,
+              "name": "Amin Allahyar",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49978382+SamBryce-Smith@users.noreply.github.com",
+              "maintainer": false,
+              "name": "SamBryce-Smith",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "iamjli@mit.edu",
+              "maintainer": false,
+              "name": "Johnny Li",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Performant Pythonic GenomicRanges."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/endrebak/pyranges/blob/main/CHANGELOG.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/endrebak/pyranges/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/endrebak/pyranges/blob/main/docs/requirements.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pyranges"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "pyranges",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/pyranges/pyranges"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "genomicranges",
+              "uri": "https://github.com/topics/genomicranges",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "pandas",
+              "uri": "https://github.com/topics/pandas",
+              "vocabulary": ""
+            },
+            {
+              "term": "data-structures",
+              "uri": "https://github.com/topics/data-structures",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "v0",
+            "0.0.111",
+            "0.0.85",
+            "0.0.79",
+            "0.0.58",
+            "0.0.57.hotfix",
+            "0.0.56"
+          ],
+          "webpage": [
+            "https://pyranges.readthedocs.io/"
+          ]
+        },
+        "last_updated_at": "2026-03-25T15:19:38.438742",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/pyranges",
+            "source_url": "https://github.com/endrebak/pyranges"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/pyranges/undefined/None",
+        "created_at": "2025-04-02T12:26:38.768485",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "> CORRECT NAME OF TOOL COULD ALSO BE 'AVAILABILITY:PyRanges' | efficient comparison of genomic intervals in Python | (beta) Performant Pythonic GenomicRanges | PyRanges are collections of intervals that support comparison operations (like overlap and intersect) and other methods that are useful for genomic analyses. The ranges can have an arbitrary number of meta-data fields, i.e. columns associated with them | PyRanges is in a beta state. We are extremely responsive to bug-reports, so if you have problems or come across unexpected behavior, please create an issue | GenomicRanges and genomic Rle-objects for Python | Feel free to ask questions of the type \"how do I do X with pyranges?\" on public forums like Stack Overflow, Bioinformatics Stack Exchange or Biostars. You can use endrebak85#gmail.com to point me to the question(s) | \"Finally ... This was what Python badly needed for years.\" - Heng Li."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PyRanges"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "pyranges",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sorting",
+              "uri": "http://edamontology.org/operation_3802",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8331610e2f3aa0b3bb724"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/biocore-NTNU/pyranges"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pyranges.readthedocs.io/en/master/autoapi/pyranges/index.html"
+          ]
+        },
+        "id": "biotools/pyranges/undefined/None",
+        "last_updated_at": "2026-03-19T01:33:23.006396",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/pyranges/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:pyranges_biotools/pyranges/undefined/None,github/pyranges/None/v0",
+  "conflict_name": "pyranges/*",
+  "date": "2026-03-25T20:10:56.933523+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
