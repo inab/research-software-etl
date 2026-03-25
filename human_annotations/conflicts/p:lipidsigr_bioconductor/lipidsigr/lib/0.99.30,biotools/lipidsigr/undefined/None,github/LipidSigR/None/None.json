@@ -1,0 +1,282 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/lipidsigr/undefined/None",
+        "created_at": "2026-02-23T16:08:46.824523",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "cwc0702@gmail.com",
+              "maintainer": false,
+              "name": "Wei-Chung Cheng",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "LipidSigR is an R package based on the LipidSig web tool for integrated lipidomics data analysis and visualization, offering greater flexibility for customized workflows. It provides a companion R package to build customized lipidomics data analysis workflows."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "LipidSigR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "lipidsigr",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Essential dynamics",
+              "uri": "http://edamontology.org/operation_3891",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6d7e4393fdfaf890be75"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Lipids",
+              "uri": "http://edamontology.org/topic_0153",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Endocrinology and metabolism",
+              "uri": "http://edamontology.org/topic_3407",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://lipidsig.bioinfomics.org/lipidsigr/index.html"
+          ]
+        },
+        "id": "biotools/lipidsigr/undefined/None",
+        "last_updated_at": "2026-03-19T02:29:40.969298",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/lipidsigr/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/LipidSigR/None/None,bioconductor/lipidsigr/lib/0.99.30",
+        "data": {
+          "authors": [
+            {
+              "email": "87956787+BioinfOMICS@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Wei-Chung Cheng",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Wen-Jen Lin",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Pei-Chun Shen",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Hsiu-Cheng Liu",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Meng-Hsin Tsai",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "tibble",
+            "SummarizedExperiment",
+            "tidyr",
+            "plotly (>= 4.9.4.1)",
+            "R (>= 4.3.0)",
+            "stats",
+            "magrittr",
+            "tidyselect",
+            "forcats",
+            "stringr",
+            "dplyr"
+          ],
+          "description": [
+            "R package for Analyzing Lipidomic Datasets.",
+            "\"LipidSigR\" is an R package developed based on LipidSig web-based tool (http://www.chenglab.cmu.edu.tw/lipidsig/). This package integrates a comprehensive analysis for streamlined data mining of lipidomic datasets.  We provide 2 main analysis workflows, which is \"Profiling\" and \"Differential expression\". Each section provides unique aspects to analyze the lipidome profiling data based on different characteristics including lipid class, chain length, unsaturation, hydroxyl group, and fatty acid composition.  \"Profiling\" provides an overview of comprehensive analyses to efficiently examine data quality, the clustering of samples, the correlation between lipid species, and the composition of lipid characteristics. \"Differential expression\" integrates many useful lipid-focused analyses for identifying significant lipid species or lipid characteristics."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/BioinfOMICS/LipidSigR/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/BioinfOMICS/LipidSigR/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "LipidSigR"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            },
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "LipidSigR",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "lipidsigr"
+          ],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/BioinfOMICS/LipidSigR"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/LipidSigR"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconductor"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "lipidomics",
+              "uri": "https://github.com/topics/lipidomics",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "0.99.30"
+          ],
+          "webpage": [
+            "https://github.com/BioinfOMICS/LipidSigR"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:lipidsigr_bioconductor/lipidsigr/lib/0.99.30,biotools/lipidsigr/undefined/None,github/LipidSigR/None/None",
+  "conflict_name": "lipidsigr/*",
+  "date": "2026-03-25T21:26:59.186704+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
