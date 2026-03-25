@@ -1,0 +1,340 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/chromvar/lib/None",
+        "created_at": "2025-04-02T12:52:51.197101",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "GreenleafLab",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://github.com/GreenleafLab"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Inferring transcription-factor-associated accessibility from single-cell epigenomic data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/GreenleafLab/chromVAR"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "chromVAR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "chromvar",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Transcriptional regulatory element prediction",
+              "uri": "http://edamontology.org/operation_0438",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2c310b57beba26405d56a"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Epigenomics",
+              "uri": "http://edamontology.org/topic_3173",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcription factors and regulatory sites",
+              "uri": "http://edamontology.org/topic_0749",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Nucleic acid structure analysis",
+              "uri": "http://edamontology.org/topic_0097",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/GreenleafLab/chromVAR"
+          ]
+        },
+        "id": "biotools/chromvar/lib/None",
+        "last_updated_at": "2026-03-19T01:58:50.059120",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/chromvar/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/chromvar/lib/1.29.0,bioconda_recipes/bioconductor-chromvar/lib/1.24.0,bioconda_recipes/bioconductor-chromvar/lib/1.30.1,bioconductor/chromvar/lib/1.33.0",
+        "data": {
+          "authors": [
+            {
+              "email": "aschep@gmail.com",
+              "maintainer": false,
+              "name": "Alicia Schep",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Jason Buenrostro",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Caleb Lareau",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "William Greenleaf",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Stanford University",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "GenomicRanges",
+            "TFBSTools",
+            "r-miniui",
+            "bioconductor-biostrings >=2.70.0,<2.71.0",
+            "R (>= 3.4)",
+            "r-plotly",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "Rsamtools",
+            "bioconductor-genomeinfodb >=1.38.0,<1.39.0",
+            "r-ggplot2",
+            "bioconductor-s4vectors >=0.44.0,<0.45.0",
+            "plotly",
+            "graphics",
+            "BiocGenerics",
+            "r-matrix",
+            "stats",
+            "DT",
+            "SummarizedExperiment",
+            "shiny",
+            "r-rcolorbrewer",
+            "bioconductor-biocparallel >=1.40.0,<1.41.0",
+            "bioconductor-tfbstools >=1.40.0,<1.41.0",
+            "bioconductor-summarizedexperiment >=1.36.0,<1.37.0",
+            "utils",
+            "bioconductor-biocparallel >=1.36.0,<1.37.0",
+            "bioconductor-tfbstools >=1.44.0,<1.45.0",
+            "r-rtsne",
+            "bioconductor-biocgenerics >=0.52.0,<0.53.0",
+            "Seqinfo",
+            "bioconductor-rsamtools >=2.18.0,<2.19.0",
+            "bioconductor-bsgenome >=1.70.0,<1.71.0",
+            "bioconductor-iranges >=2.36.0,<2.37.0",
+            "nabor",
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "Biostrings",
+            "Matrix",
+            "bioconductor-genomicranges >=1.58.0,<1.59.0",
+            "GenomeInfoDb",
+            "r-dt",
+            "S4Vectors",
+            "Rtsne",
+            "r-rcpparmadillo",
+            "grid",
+            "bioconductor-genomeinfodb >=1.42.0,<1.43.0",
+            "bioconductor-genomicranges >=1.54.0,<1.55.0",
+            "Rcpp",
+            "bioconductor-rsamtools >=2.22.0,<2.23.0",
+            "bioconductor-bsgenome >=1.74.0,<1.75.0",
+            "r-rcpp",
+            "miniUI",
+            "bioconductor-iranges >=2.40.0,<2.41.0",
+            "BiocParallel",
+            "IRanges",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "r-base",
+            "bioconductor-biostrings >=2.74.0,<2.75.0",
+            "ggplot2",
+            "RColorBrewer",
+            "r-nabor",
+            "methods",
+            "r-shiny",
+            "BSgenome"
+          ],
+          "description": [
+            "Determine variation in chromatin accessibility across sets of annotations or peaks. Designed primarily for single-cell or sparse chromatin accessibility data, e.g. from scATAC-seq or sparse bulk ATAC or DNAse-seq experiments."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-chromvar/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-chromvar/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconductor.org/packages/3.21/bioc/html/chromVAR.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/chromVAR_1.24.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-chromvar/bioconductor-chromvar_1.30.1_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/chromVAR_1.30.1.tar.gz",
+            "https://bioarchive.galaxyproject.org/chromVAR_1.24.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/chromVAR/chromVAR_1.24.0.tar.gz",
+            "https://bioconductor.org/packages/3.21/bioc/src/contrib/Archive/chromVAR/chromVAR_1.30.1.tar.gz",
+            "https://bioconductor.org/packages/3.21/bioc/src/contrib/chromVAR_1.30.1.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-chromvar/bioconductor-chromvar_1.24.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "chromVAR",
+            "bioconductor-chromvar"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "chromvar",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-chromvar"
+          ],
+          "output": [],
+          "publication": [
+            "69bb5588544fe2eedb0a3963",
+            "67c78cc1d3b8acd1a2f9b270"
+          ],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/chromVAR"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/chromVAR_1.24.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-chromvar/bioconductor-chromvar_1.30.1_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/chromVAR_1.30.1.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/chromVAR/chromVAR_1.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/chromVAR_1.24.0.tar.gz",
+            "https://bioconductor.org/packages/3.21/bioc/src/contrib/Archive/chromVAR/chromVAR_1.30.1.tar.gz",
+            "https://bioconductor.org/packages/3.21/bioc/src/contrib/chromVAR_1.30.1.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-chromvar/bioconductor-chromvar_1.24.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.24.0",
+            "1.33.0",
+            "1.29.0",
+            "1.30.1"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/chromVAR.html",
+            "https://bioconductor.org/packages/3.21/bioc/html/chromVAR.html",
+            "https://bioconductor.org/packages/chromVAR"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:chromvar_bioconda_recipes/bioconductor-chromvar/lib/1.24.0,bioconda_recipes/bioconductor-chromvar/lib/1.30.1,bioconductor/chromvar/lib/1.29.0,bioconductor/chromvar/lib/1.33.0,biotools/chromvar/lib/None",
+  "conflict_name": "chromvar/lib",
+  "date": "2026-03-25T20:37:45.774578+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
