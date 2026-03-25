@@ -1,0 +1,348 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/biokit/lib/0.5.0",
+        "created_at": "2025-04-02T11:49:16.788838",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "easydev >=0.9.34",
+            "pandas",
+            "bioservices >=1.4.16",
+            "colormap",
+            "scipy",
+            "xmltodict",
+            "numpydoc",
+            "bioservices",
+            "matplotlib-base",
+            "mesalib",
+            "biopython",
+            "pyyaml",
+            "colorlog"
+          ],
+          "description": [
+            "Set of visualisation and analysis tools for biological data sets."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/biokit/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/biokit/README.html"
+            }
+          ],
+          "download": [
+            "https://pypi.io/packages/source/b/biokit/biokit-0.5.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "biokit"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "biokit",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://pypi.io/packages/source/b/biokit/biokit-0.5.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "lib",
+          "version": [
+            "0.5.0"
+          ],
+          "webpage": [
+            "http://pypi.python.org/pypi/biokit"
+          ]
+        },
+        "id": "bioconda_recipes/biokit/lib/0.5.0",
+        "last_updated_at": "2026-03-18T23:46:33.897958",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/biokit/lib/0.5.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/biokit/lib/None,biotools/biokit/suite/None,github/BioKIT/None/v1.1.3",
+        "data": {
+          "authors": [
+            {
+              "email": "jacob.steenwyk@vanderbilt.edu",
+              "maintainer": false,
+              "name": "Jacob L. Steenwyk",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://github.com/JLSteenwyk"
+            },
+            {
+              "email": "antonis.rokas@vanderbilt.edu",
+              "maintainer": false,
+              "name": "Antonis Rokas",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jlsteenwyk@gmail.com",
+              "maintainer": false,
+              "name": "JLSteenwyk",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jacoblsteenwyk@Jacobs-MacBook-Pro.local",
+              "maintainer": false,
+              "name": "Jacob L Steenwyk",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A versatile toolkit for processing and analyzing diverse types of sequence data.",
+            "BioKIT is a versatile toolkit for processing and analyzing diverse types of sequence data. BioKIT is a UNIX shell toolkit for processing molecular sequence data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://jlsteenwyk.com/BioKIT"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/JLSteenwyk/BioKIT/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/JLSteenwyk/BioKIT/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/JLSteenwyk/BioKIT/blob/main/change_log.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/JLSteenwyk/BioKIT/blob/main/requirements-dev.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/JLSteenwyk/BioKIT/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/JLSteenwyk/BioKIT/blob/main/docs/DOCS.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BioKIT"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "biokit",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Codon usage analysis",
+              "uri": "http://edamontology.org/operation_0286",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "BioKIT"
+          ],
+          "output": [],
+          "publication": [
+            "67c8349e10e2f3aa0b3bbe96"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/JLSteenwyk/BioKIT"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Phylogenomics",
+              "uri": "http://edamontology.org/topic_0194",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Model organisms",
+              "uri": "http://edamontology.org/topic_0621",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            },
+            {
+              "term": "comparative-genomics",
+              "uri": "https://github.com/topics/comparative-genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "evolution",
+              "uri": "https://github.com/topics/evolution",
+              "vocabulary": ""
+            },
+            {
+              "term": "evolutionary-biology",
+              "uri": "https://github.com/topics/evolutionary-biology",
+              "vocabulary": ""
+            },
+            {
+              "term": "evolutionary-genomics",
+              "uri": "https://github.com/topics/evolutionary-genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "python",
+              "uri": "https://github.com/topics/python",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib",
+            "suite"
+          ],
+          "version": [
+            "v1.1.0",
+            "v1.1.2",
+            "v0.1.1",
+            "v0.0.3",
+            "v1.1.3",
+            "None",
+            "v1.1.1",
+            "v1.0.0",
+            "v0.1.2"
+          ],
+          "webpage": [
+            "https://anaconda.org/jlsteenwyk/jlsteenwyk-biokit",
+            "https://jlsteenwyk.com/BioKIT/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:biokit_bioconda_recipes/biokit/lib/0.5.0,biotools/biokit/lib/None,biotools/biokit/suite/None,github/BioKIT/None/v1.1.3",
+  "conflict_name": "biokit/*",
+  "date": "2026-03-25T21:46:29.131520+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
