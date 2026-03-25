@@ -1,0 +1,339 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/rnaagecalc/undefined/None",
+        "created_at": "2025-04-02T12:30:52.413434",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "peifen.kuan@stonybrook.edu",
+              "maintainer": false,
+              "name": "Pei Fen Kuan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A multi-tissue transcriptional age calculator.\n\nAn R package for the analysis of tiling array data that incorporates the correlation structures among probe measurements."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "RNAAgeCalc"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "rnaagecalc",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene-set enrichment analysis",
+              "uri": "http://edamontology.org/operation_2436",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Differential gene expression profiling",
+              "uri": "http://edamontology.org/operation_3223",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8327310e2f3aa0b3bb130"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Microarray experiment",
+              "uri": "http://edamontology.org/topic_3518",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Epigenetics",
+              "uri": "http://edamontology.org/topic_3295",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.ams.sunysb.edu/~pfkuan/softwares.html#RNAAgeCalc"
+          ]
+        },
+        "id": "biotools/rnaagecalc/undefined/None",
+        "last_updated_at": "2026-03-19T01:32:22.929235",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/rnaagecalc/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-rnaagecalc/lib/1.14.0,bioconductor/rnaagecalc/lib/1.19.0,bioconda_recipes/bioconductor-rnaagecalc/lib/1.18.0,bioconductor/rnaagecalc/lib/1.23.0,github/RNAAgeCalc/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "xuren2120@gmail.com",
+              "maintainer": false,
+              "name": "Xu Ren",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "peifen.kuan@stonybrook.edu",
+              "maintainer": false,
+              "name": "Pei Fen Kuan",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "bioconductor-org.hs.eg.db >=3.20.0,<3.21.0",
+            "r-ggplot2",
+            "bioconductor-annotationdbi >=1.68.0,<1.69.0",
+            "stats",
+            "SummarizedExperiment",
+            "bioconductor-summarizedexperiment >=1.36.0,<1.37.0",
+            "AnnotationDbi",
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "bioconductor-recount >=1.32.0,<1.33.0",
+            "bioconductor-impute >=1.80.0,<1.81.0",
+            "R (>= 3.6)",
+            "recount",
+            "bioconductor-annotationdbi >=1.64.0,<1.65.0",
+            "bioconductor-org.hs.eg.db >=3.18.0,<3.19.0",
+            "impute",
+            "r-base",
+            "ggplot2",
+            "org.Hs.eg.db",
+            "methods",
+            "bioconductor-impute >=1.76.0,<1.77.0",
+            "bioconductor-recount >=1.28.0,<1.29.0"
+          ],
+          "description": [
+            "It has been shown that both DNA methylation and RNA transcription are linked to chronological age and age related diseases. Several estimators have been developed to predict human aging from DNA level and RNA level. Most of the human transcriptional age predictor are based on microarray data and limited to only a few tissues. To date, transcriptional studies on aging using RNASeq data from different human tissues is limited. The aim of this package is to provide a tool for across-tissue and tissue-specific transcriptional age calculation based on GTEx RNASeq data.",
+            "It has been shown that both DNA methylation and RNA transcription are linked to chronological age and age related diseases. Several estimators have been developed to predict human aging from DNA level and RNA level. Most of the human transcriptional age predictor are based on microarray data and limited to only a few tissues. To date, transcriptional studies on aging using RNASeq data from different human tissues is limited.  The aim of this package is to provide a tool for across-tissue and tissue-specific transcriptional age calculation based on GTEx RNASeq data.",
+            "A multi-tissue transcriptional age calculator."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-rnaagecalc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-rnaagecalc/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/reese3928/RNAAgeCalc/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/RNAAgeCalc_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rnaagecalc/bioconductor-rnaagecalc_1.14.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/RNAAgeCalc/RNAAgeCalc_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rnaagecalc/bioconductor-rnaagecalc_1.18.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/RNAAgeCalc_1.14.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/RNAAgeCalc_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/RNAAgeCalc_1.14.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/RNAAgeCalc/RNAAgeCalc_1.14.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-rnaagecalc",
+            "RNAAgeCalc"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-rnaagecalc",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "rnaagecalc",
+            "RNAAgeCalc"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/RNAAgeCalc"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/reese3928/RNAAgeCalc"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/RNAAgeCalc_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rnaagecalc/bioconductor-rnaagecalc_1.14.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/RNAAgeCalc/RNAAgeCalc_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rnaagecalc/bioconductor-rnaagecalc_1.18.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/RNAAgeCalc_1.14.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/RNAAgeCalc_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/RNAAgeCalc_1.14.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/RNAAgeCalc/RNAAgeCalc_1.14.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "rna-seq",
+              "uri": "https://github.com/topics/rna-seq",
+              "vocabulary": ""
+            },
+            {
+              "term": "biological-age",
+              "uri": "https://github.com/topics/biological-age",
+              "vocabulary": ""
+            },
+            {
+              "term": "prediction",
+              "uri": "https://github.com/topics/prediction",
+              "vocabulary": ""
+            },
+            {
+              "term": "elastic-net",
+              "uri": "https://github.com/topics/elastic-net",
+              "vocabulary": ""
+            },
+            {
+              "term": "regularized-regression",
+              "uri": "https://github.com/topics/regularized-regression",
+              "vocabulary": ""
+            },
+            {
+              "term": "gene-expression",
+              "uri": "https://github.com/topics/gene-expression",
+              "vocabulary": ""
+            },
+            {
+              "term": "genotype-tissue-expression",
+              "uri": "https://github.com/topics/genotype-tissue-expression",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.23.0",
+            "1.14.0",
+            "1.18.0",
+            "1.19.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.18/bioc/html/RNAAgeCalc.html",
+            "https://bioconductor.org/packages/3.20/bioc/html/RNAAgeCalc.html",
+            "https://bioconductor.org/packages/release/bioc/html/RNAAgeCalc.html",
+            "https://github.com/reese3928/RNAAgeCalc"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:rnaagecalc_bioconda_recipes/bioconductor-rnaagecalc/lib/1.14.0,bioconda_recipes/bioconductor-rnaagecalc/lib/1.18.0,bioconductor/rnaagecalc/lib/1.19.0,bioconductor/rnaagecalc/lib/1.23.0,biotools/rnaagecalc/undefined/None,github/RNAAgeCalc/None/None",
+  "conflict_name": "rnaagecalc/*",
+  "date": "2026-03-25T19:42:08.764826+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
