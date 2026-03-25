@@ -1,0 +1,288 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/simupop/None/None",
+        "created_at": "2025-04-02T15:43:30.486060",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A general-purpose individual-based forward-time population genetics simulation environment."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/simupop"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "simupop"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "simupop",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/simupop"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://simupop.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/simupop/None/None",
+        "last_updated_at": "2026-03-19T03:37:48.575539",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/simupop//",
+            "source_url": "https://sourceforge.net/projects/simupop"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/simuPOP/None/1.1.12,biotools/simupop/lib/1.1.10",
+        "data": {
+          "authors": [
+            {
+              "email": "BoPeng@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Bo",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ben.bog@gmail.com",
+              "maintainer": false,
+              "name": "Bo Peng",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "louise.mcmillan@gmail.com",
+              "maintainer": false,
+              "name": "Louise McMillan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "SimonGreenhill@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Simon J Greenhill",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "noamb@nrgene.com",
+              "maintainer": false,
+              "name": "noamb",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "noam.barkai@gmail.com",
+              "maintainer": false,
+              "name": "Noam Barkai",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A general-purpose forward-time population genetics simulation environment."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/BoPeng/simuPOP/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/BoPeng/simuPOP/blob/main/DEVELOPMENT.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/BoPeng/simuPOP/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/BoPeng/simuPOP/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "api",
+              "url": "http://bopeng.github.io/simuPOP/"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bopeng.github.io/simuPOP/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "simuPOP"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v2.0",
+              "url": "http://choosealicense.com/licenses/gpl-2.0/"
+            },
+            {
+              "name": "GPL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "simuPOP",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Probabilistic sequence generation",
+              "uri": "http://edamontology.org/operation_3481",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Probabilistic data generation",
+              "uri": "http://edamontology.org/operation_3480",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Allele frequency distribution analysis",
+              "uri": "http://edamontology.org/operation_0554",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenetic inference (method centric)",
+              "uri": "http://edamontology.org/operation_0539",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "simupop"
+          ],
+          "output": [],
+          "publication": [
+            "67c837b610e2f3aa0b3bccd3",
+            "67c837b610e2f3aa0b3bccd2"
+          ],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/BoPeng/simuPOP"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Molecular evolution",
+              "uri": "http://edamontology.org/topic_3945",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogeny",
+              "uri": "http://edamontology.org/topic_0084",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.1.9",
+            "1.1.10",
+            "1.1.12"
+          ],
+          "webpage": [
+            "http://bopeng.github.io/simuPOP/",
+            "https://github.com/bopeng/simupop"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:simupop_biotools/simupop/lib/1.1.10,github/simuPOP/None/1.1.12,sourceforge/simupop/None/None",
+  "conflict_name": "simupop/*",
+  "date": "2026-03-25T20:57:10.107038+00:00",
+  "run_id": "20260325T161538Z-69100db-pre-annotation"
+}
