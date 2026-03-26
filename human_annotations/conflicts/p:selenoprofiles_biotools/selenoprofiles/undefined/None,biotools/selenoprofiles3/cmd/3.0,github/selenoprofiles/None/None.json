@@ -1,0 +1,300 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/selenoprofiles/undefined/None",
+        "created_at": "2026-02-23T16:09:57.403828",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Selenoprofiles is a homology-based tool for selenoprotein prediction designed to address widespread annotation errors in public databases. It improves upon existing methods and can be integrated into annotation pipelines."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://selenoprofiles4.readthedocs.io/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Selenoprofiles"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "selenoprofiles",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "SECIS element prediction",
+              "uri": "http://edamontology.org/operation_0437",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Homology-based gene prediction",
+              "uri": "http://edamontology.org/operation_3663",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data retrieval",
+              "uri": "http://edamontology.org/operation_2422",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "699c6dc54393fdfaf890c130"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Model organisms",
+              "uri": "http://edamontology.org/topic_0621",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database management",
+              "uri": "http://edamontology.org/topic_3489",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Plant biology",
+              "uri": "http://edamontology.org/topic_0780",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://mariottigenomicslab.bio.ub.edu/selenoprofiles_data/selenoprofiles_predictions/"
+          ]
+        },
+        "id": "biotools/selenoprofiles/undefined/None",
+        "last_updated_at": "2026-03-19T02:32:12.607112",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/selenoprofiles/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/selenoprofiles3/cmd/3.0,github/selenoprofiles/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "marco.mariotti.mm@gmail.com",
+              "maintainer": false,
+              "name": "Marco Mariotti",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Didac Santesmasses",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Lab Roderic Guigo Group",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "crg.eu",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "didac.santesmasses@crg.eu",
+              "maintainer": false,
+              "name": "Didac Santesmasses & Marco Mariotti",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Pipeline for profile-based protein finding in genomes.",
+            "Selenoprofiles is a pipeline for profile-based protein finding in genomes. It is suitable also (but not only) for selenoproteins."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://big.crg.cat/services/selenoprofiles"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/marco-mariotti/selenoprofiles/blob/main/CHANGES.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/marco-mariotti/selenoprofiles/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/marco-mariotti/selenoprofiles/blob/main/version.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "DNA sequence",
+                "uri": "http://edamontology.org/data_3494",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Selenoprofiles3",
+            "selenoprofiles"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v2.0",
+              "url": "http://choosealicense.com/licenses/gpl-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "selenoprofiles3",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "selenoprofiles"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Nucleic acid features",
+                "uri": "http://edamontology.org/data_1276",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "67c82a9e10e2f3aa0b3b8f24"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/marco-mariotti/selenoprofiles"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "\"Sequence sites",
+              "uri": "http://edamontology.org/topic_0160",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "3.0"
+          ],
+          "webpage": [
+            "http://big.crg.cat/services/selenoprofiles"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:selenoprofiles_biotools/selenoprofiles/undefined/None,biotools/selenoprofiles3/cmd/3.0,github/selenoprofiles/None/None",
+  "conflict_name": "selenoprofiles/*",
+  "date": "2026-03-26T15:25:41.688847+00:00",
+  "run_id": "20260326T141846Z-01f931c3-pre-annotation"
+}
