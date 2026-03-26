@@ -1,0 +1,286 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/spotyping/cmd/2.0",
+        "created_at": "2025-04-02T12:49:05.486042",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "twee_hee_ong@nuhs.edu.sg",
+              "maintainer": false,
+              "name": "Rick Twee-Hee Ong",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Fast and accurate in silico Mycobacterium spoligotyping from sequence reads."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "https://github.com/xiaeryu/SpoTyping-v2.0/tree/master/SpoTyping-v2.0-commandLine"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SpoTyping"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "spotyping",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Variant pattern analysis",
+              "uri": "http://edamontology.org/operation_3504",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82b3f10e2f3aa0b3b9417"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Microbiology",
+              "uri": "http://edamontology.org/topic_3301",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Sequence composition",
+              "uri": "http://edamontology.org/topic_0157",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation",
+              "uri": "http://edamontology.org/topic_0199",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "2.0"
+          ],
+          "webpage": [
+            "https://github.com/xiaeryu/SpoTyping-v2.0"
+          ]
+        },
+        "id": "biotools/spotyping/cmd/2.0",
+        "last_updated_at": "2026-03-19T01:49:03.111992",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/spotyping/cmd/2.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/spotyping3/cmd/3.0,github/SpoTyping/None/v3.0,github/SpoTyping/None/v2.1,galaxy_metadata/spotyping/cmd/1.0.4,galaxy_metadata/spotyping/cmd/2.1+galaxy2,bioconda_recipes/spotyping/cmd/2.1,toolshed/spotyping/cmd/1.0.4,toolshed/spotyping/cmd/2.1+galaxy2",
+        "data": {
+          "authors": [
+            {
+              "email": "matthewnguyen.667@gmail.com",
+              "maintainer": false,
+              "name": "Matthew Nguyen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "xiaeryu@nus.edu.sg",
+              "maintainer": false,
+              "name": "xiaeryu",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-gdata",
+            "python <3",
+            "python >=3.5",
+            "blast"
+          ],
+          "description": [
+            "Fast and accurate in silico Mycobacterium spoligotyping from sequence reads.",
+            "SpoTyping: fast and accurate in silico Mycobacterium spoligotyping from sequence reads.",
+            "SpoTyping3: fast and accurate in silico Mycobacterium spoligotyping from sequence reads, compatible with Python3."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/spotyping3/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/spotyping3/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/matnguyen/SpoTyping/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/xiaeryu/SpoTyping/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/spotyping/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/spotyping/README.html"
+            },
+            {
+              "content": "\n    SpoTyping_ is a software for predicting spoligotype_ from sequencing reads, complete genomic sequences and assembled contigs.\n\n    **Input:**\n\n    - Fastq file - if paired end data is used, you may choose to concatenate paired reads into a single input (e.g. using the cat tool)\n    - Fasta file of a complete genomic sequence or assembled contigs of an isolate (with --seq option)\n\n    *Note on input size*: In swift mode the sampling threshold is reached in approximately 30x coverage when using\n    paired end sequencing of a *M. tuberculosis* genome.\n\n    **Output:**\n\n    Count of hits from BLAST result for each spacer sequence and predicted spoligotype in the format of binary code and octal code.\n\n    **Options:**\n\n    \\--noQuery\n    Avoid querying the SITVIT_ online service to describe the prevalance of the reported spoligotype.\n\n    \\--seq\n    Set this if input is a fasta file that contains only complete genomic sequence or assembled contigs from an isolate. [Default is off]\n\n    \\-s SWIFT, --swift=SWIFT\n    Swift mode, either \"on\" or \"off\" [Default: on] - swift mode samples 250 million bases to use for spoligotyping\n\n    \\--sorted\n    Set if input reads are sorted relative to positions on a reference genome. If reads are sorted and swift mode is used, swift mode's sampling is adjusted\n    to sample reads across positions in the genome evenly.\n\n    \\--filter\n    Filter reads such that:\n\n    1. Leading and trailing 'N's would be removed.\n    2. Any read with more than 3 'N's in the middle would be removed.\n    3. Any read with more than 7 consecutive bases identical would be trimmed/filtered out given\n       the length of the flanking regions.\n\n    **Got weird spoligotype prediction?**\n\n    Sequencing throughput is very low (<40Mbp, for example): SpoTyping may not be able to give accurate prediction due to the relatively low read depth.\n\n    **Interpreting the spoligotype**\n\n    The binary or octal spoligotype can be used to look up lineage information using a service\n    like `TB Lineage`_.\n\n    **SITVIT reports**\n\n    Optionally a report on the detected spoligotype can be retrieved from the SITVIT_ database. If such a report is requested it can also be\n    illustrated as a (PDF format) plot.\n\n  .. _SpoTyping: https://github.com/xiaeryu/SpoTyping\n  .. _spoligotype: https://www.ncbi.nlm.nih.gov/pubmed/19521871\n  .. _TB Lineage: http://tbinsight.cs.rpi.edu/run_tb_lineage.html\n  .. _SITVIT: http://www.pasteur-guadeloupe.fr:8081/SITVIT_ONLINE/\n    \n  ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [
+            "https://github.com/xiaeryu/SpoTyping/archive/v2.1.tar.gz",
+            "https://github.com/matnguyen/SpoTyping/archive/v3.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "spotyping",
+            "spotyping3",
+            "Spoligotype Prediction",
+            "SpoTyping"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "spotyping3",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "spotyping",
+            "SpoTyping"
+          ],
+          "output": [],
+          "publication": [
+            "67c82b3f10e2f3aa0b3b9417"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/matnguyen/SpoTyping"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/xiaeryu/SpoTyping"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github",
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [
+            "https://github.com/xiaeryu/SpoTyping/archive/v2.1.tar.gz",
+            "https://github.com/matnguyen/SpoTyping/archive/v3.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v2.0",
+            "3.0",
+            "2.1+galaxy2",
+            "v3.0",
+            "2.1",
+            "v2.1",
+            "1.0.4"
+          ],
+          "webpage": [
+            "https://github.com/xiaeryu/SpoTyping",
+            "https://github.com/matnguyen/SpoTyping"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:spotyping_bioconda_recipes/spotyping/cmd/2.1,bioconda_recipes/spotyping3/cmd/3.0,biotools/spotyping/cmd/2.0,galaxy_metadata/spotyping/cmd/1.0.4,galaxy_metadata/spotyping/cmd/2.1+galaxy2,github/SpoTyping/None/v2.1,github/SpoTyping/None/v3.0,toolshed/spotyping/cmd/1.0.4,toolshed/spotyping/cmd/2.1+galaxy2",
+  "conflict_name": "spotyping/*",
+  "date": "2026-03-26T12:04:06.724512+00:00",
+  "run_id": "20260326T113352Z-3e0dedd-pre-annotation"
+}
