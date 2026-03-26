@@ -1,0 +1,184 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/mitohifi/cmd/2.2",
+        "created_at": "2025-04-02T12:05:48.220941",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Find, circularise and annotate mitogenome from PacBio assemblies."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MitoHiFi"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "mitohifi",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "De-novo assembly",
+              "uri": "http://edamontology.org/operation_0524",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence classification",
+              "uri": "http://edamontology.org/operation_2995",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8358610e2f3aa0b3bc382"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "2.2"
+          ],
+          "webpage": [
+            "https://github.com/marcelauliano/MitoHiFi"
+          ]
+        },
+        "id": "biotools/mitohifi/cmd/2.2",
+        "last_updated_at": "2026-03-19T01:16:12.913723",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mitohifi/cmd/2.2",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/mitohifi/cmd/3+galaxy0,toolshed/mitohifi/cmd/3+galaxy0,galaxy_metadata/mitohifi/cmd/3.2.3+galaxy0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Assembly mitogenomes from Pacbio HiFi reads."
+          ],
+          "documentation": [
+            {
+              "content": "\n.. class:: infomark\n\n**Purpose**\n\n\nThe dissemination of high-quality long reads (such as PacBio HiFi) makes the assembly of high-quality mitogenome straight forward. Because of the circular nature of the molecule, however, the mitocontig is usually assembled redundantly resulting in multiple-copy mitogenome-contigs. This pipeline was developed to finalise the assembly and annotation of the mitogenome. It will also dected different variants of the mitogenome present in your sample. At the end you are going to have all the variants assembled and annotated, and MitoHiFi.v2 is going to choose a final consensus sequence. In addtion, you will find an aligment of all the variants to facilitate your analysis of mitochondria heteroplasmy.\n\n.. class:: infomark\n\n**Important parameter to change and test (-p)**\n\nMitohifi is going to pull possible mito contigs by blasting your contigs with the close-related mito. The Default parameter -p is going to chose any contig which has 50% or more of its length in the blast match. This is the default because with invertebrate taxa from the Darwin Tree of Life we have been seeing that the repetitive portion of the mitogenomes is not very conserved between some taxa. In these cases, a more stringent -p ends up excluding real mito sequences. Nevertheless, if you are working with more conserved taxa - such as mammals and other vertebrates - use higher -p (such as 80 or 90) for better results.\n\n\n        ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MitoHiFi"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mitohifi",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67e6c2544737f09779337123"
+          ],
+          "repository": [],
+          "source": [
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "3.2.3+galaxy0",
+            "3+galaxy0"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:mitohifi_biotools/mitohifi/cmd/2.2,galaxy_metadata/mitohifi/cmd/3+galaxy0,galaxy_metadata/mitohifi/cmd/3.2.3+galaxy0,toolshed/mitohifi/cmd/3+galaxy0",
+  "conflict_name": "mitohifi/cmd",
+  "date": "2026-03-26T12:09:28.361702+00:00",
+  "run_id": "20260326T113352Z-3e0dedd-pre-annotation"
+}
