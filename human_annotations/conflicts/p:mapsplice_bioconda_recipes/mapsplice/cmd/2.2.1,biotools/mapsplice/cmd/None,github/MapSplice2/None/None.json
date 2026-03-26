@@ -1,0 +1,228 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/mapsplice/cmd/None",
+        "created_at": "2025-04-02T12:04:57.792260",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "mapsplice@netlab.uky.edu",
+              "maintainer": false,
+              "name": "Support",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Highly sensitive and specific tool in the detection of splices as well as CPU and memory efficiency. It can be applied to both short (<75 bp) and long reads (>=75 bp) and it is not dependent on splice site features or intron length, consequently it can detect novel canonical as well as non-canonical splices. The tool leverages the quality and diversity of read alignments of a given splice to increase accuracy."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.netlab.uky.edu/p/bioinfo/MapSpliceManual"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MapSplice"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "mapsplice",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/operation_2429",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c828c310e2f3aa0b3b7f1b"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.netlab.uky.edu/p/bioinfo/MapSplice"
+          ]
+        },
+        "id": "biotools/mapsplice/cmd/None",
+        "last_updated_at": "2026-03-19T01:12:41.930225",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/mapsplice/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/mapsplice/cmd/2.2.1,github/MapSplice2/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "david.roberson@gmail.com",
+              "maintainer": false,
+              "name": "davidroberson",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "ncurses"
+          ],
+          "description": [
+            "MapSplice is a software for mapping RNA-seq data to reference genome for splice junction discovery that depends only on reference genome, and not on any further annotations."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/mapsplice/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/mapsplice/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.netlab.uky.edu/p/bioinfo/MapSplice2"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/davidroberson/MapSplice2/blob/main/Copyright.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/davidroberson/MapSplice2/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "http://protocols.netlab.uky.edu/~zeng/MapSplice-v2.2.1.zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MapSplice2",
+            "mapsplice"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Custom",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "mapsplice",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "MapSplice2"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/davidroberson/MapSplice2"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "http://protocols.netlab.uky.edu/~zeng/MapSplice-v2.2.1.zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.2.1"
+          ],
+          "webpage": [
+            "http://www.netlab.uky.edu/p/bioinfo/MapSplice2"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:mapsplice_bioconda_recipes/mapsplice/cmd/2.2.1,biotools/mapsplice/cmd/None,github/MapSplice2/None/None",
+  "conflict_name": "mapsplice/*",
+  "date": "2026-03-26T13:11:05.077398+00:00",
+  "run_id": "20260326T113352Z-3e0dedd-pre-annotation"
+}
