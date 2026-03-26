@@ -1,0 +1,284 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/kebabs/lib/1.8.0",
+        "created_at": "2025-04-02T12:02:33.963102",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "bodenhofer@bioinf.jku.at",
+              "maintainer": false,
+              "name": "Ulrich Bodenhofer",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.bioinf.jku.at/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "This package provides functionality for kernel based analysis of biological sequences via Support Vector Machine (SVM) based methods. Biological sequences include DNA, RNA, and amino acid (AA) sequences. Sequence kernels define similarity measures between sequences."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://bioconductor.org/packages/release/bioc/html/kebabs.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "KeBABS"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "kebabs",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence comparison",
+              "uri": "http://edamontology.org/operation_2451",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8286310e2f3aa0b3b7bcf"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA",
+              "uri": "http://edamontology.org/topic_0099",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "1.8.0"
+          ],
+          "webpage": [
+            "http://www.bioinf.jku.at/software/kebabs/"
+          ]
+        },
+        "id": "biotools/kebabs/lib/1.8.0",
+        "last_updated_at": "2026-03-19T01:05:06.605246",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/kebabs/lib/1.8.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-kebabs/lib/1.36.0,bioconductor/kebabs/lib/1.41.0,bioconda_recipes/bioconductor-kebabs/lib/1.40.0,bioconductor/kebabs/lib/1.45.0",
+        "data": {
+          "authors": [
+            {
+              "email": "ulrich@bodenhofer.com",
+              "maintainer": false,
+              "name": "Ulrich Bodenhofer",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Johannes Palme",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-apcluster",
+            "bioconductor-iranges >=2.36.0,<2.37.0",
+            "Matrix (>= 1.5-0)",
+            "Rcpp (>= 0.11.2)",
+            "Biostrings (>= 2.35.5)",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "bioconductor-xvector >=0.42.0,<0.43.0",
+            "grDevices",
+            "r-matrix >=1.5-0",
+            "r-liblinear",
+            "methods",
+            "bioconductor-biostrings >=2.74.0,<2.75.0",
+            "bioconductor-biostrings >=2.70.0,<2.71.0",
+            "stats",
+            "utils",
+            "apcluster",
+            "bioconductor-xvector >=0.46.0,<0.47.0",
+            "r-kernlab",
+            "r-rcpp >=0.11.2",
+            "R (>= 3.3.0)",
+            "graphics",
+            "r-e1071",
+            "S4Vectors (>= 0.27.3)",
+            "r-base",
+            "LiblineaR",
+            "XVector (>= 0.7.3)",
+            "bioconductor-s4vectors >=0.44.0,<0.45.0",
+            "e1071",
+            "bioconductor-iranges >=2.40.0,<2.41.0",
+            "kernlab"
+          ],
+          "description": [
+            "The package provides functionality for kernel-based analysis of DNA, RNA, and amino acid sequences via SVM-based methods. As core functionality, kebabs implements following sequence kernels: spectrum kernel, mismatch kernel, gappy pair kernel, and motif kernel. Apart from an efficient implementation of standard position-independent functionality, the kernels are extended in a novel way to take the position of patterns into account for the similarity measure. Because of the flexibility of the kernel formulation, other kernels like the weighted degree kernel or the shifted weighted degree kernel with constant weighting of positions are included as special cases. An annotation-specific variant of the kernels uses annotation information placed along the sequence together with the patterns in the sequence.  The package allows for the generation of a kernel matrix or an explicit feature representation in dense or sparse format for all available kernels which can be used with methods implemented in other R packages. With focus on SVM-based methods, kebabs provides a framework which simplifies the usage of existing SVM implementations in kernlab, e1071, and LiblineaR. Binary and multi-class classification as well as regression tasks can be used in a unified way without having to deal with the different functions, parameters, and formats of the selected SVM. As support for choosing hyperparameters, the package provides cross validation - including grouped cross validation, grid search and model selection functions. For easier biological interpretation of the results, the package computes feature weights for all SVMs and prediction profiles which show the contribution of individual sequence positions to the prediction result and indicate the relevance of sequence sections for the learning result and the underlying biological functions.",
+            "The package provides functionality for kernel-based analysis of DNA, RNA, and amino acid sequences via SVM-based methods. As core functionality, kebabs implements following sequence kernels: spectrum kernel, mismatch kernel, gappy pair kernel, and motif kernel. Apart from an efficient implementation of standard position-independent functionality, the kernels are extended in a novel way to take the position of patterns into account for the similarity measure. Because of the flexibility of the kernel formulation, other kernels like the weighted degree kernel or the shifted weighted degree kernel with constant weighting of positions are included as special cases. An annotation-specific variant of the kernels uses annotation information placed along the sequence together with the patterns in the sequence. The package allows for the generation of a kernel matrix or an explicit feature representation in dense or sparse format for all available kernels which can be used with methods implemented in other R packages. With focus on SVM-based methods, kebabs provides a framework which simplifies the usage of existing SVM implementations in kernlab, e1071, and LiblineaR. Binary and multi-class classification as well as regression tasks can be used in a unified way without having to deal with the different functions, parameters, and formats of the selected SVM. As support for choosing hyperparameters, the package provides cross validation - including grouped cross validation, grid search and model selection functions. For easier biological interpretation of the results, the package computes feature weights for all SVMs and prediction profiles which show the contribution of individual sequence positions to the prediction result and indicate the relevance of sequence sections for the learning result and the underlying biological functions."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-kebabs/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-kebabs/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/kebabs_1.40.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-kebabs/bioconductor-kebabs_1.36.0_src_all.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-kebabs/bioconductor-kebabs_1.40.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/kebabs_1.40.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/kebabs_1.36.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/kebabs/kebabs_1.40.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/kebabs/kebabs_1.36.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/kebabs_1.36.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "kebabs",
+            "bioconductor-kebabs"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL (>= 2.1)",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-kebabs",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "kebabs"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/kebabs"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/kebabs_1.40.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-kebabs/bioconductor-kebabs_1.36.0_src_all.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-kebabs/bioconductor-kebabs_1.40.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/kebabs_1.40.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/kebabs_1.36.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/kebabs/kebabs_1.40.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/kebabs/kebabs_1.36.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/kebabs_1.36.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.36.0",
+            "1.45.0",
+            "1.40.0",
+            "1.41.0"
+          ],
+          "webpage": [
+            "https://github.com/UBod/kebabs",
+            "https://bioconductor.org/packages/3.18/bioc/html/kebabs.html",
+            "https://bioconductor.org/packages/3.20/bioc/html/kebabs.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:kebabs_bioconda_recipes/bioconductor-kebabs/lib/1.36.0,bioconda_recipes/bioconductor-kebabs/lib/1.40.0,bioconductor/kebabs/lib/1.41.0,bioconductor/kebabs/lib/1.45.0,biotools/kebabs/lib/1.8.0",
+  "conflict_name": "kebabs/lib",
+  "date": "2026-03-26T12:01:56.624413+00:00",
+  "run_id": "20260326T113352Z-3e0dedd-pre-annotation"
+}
