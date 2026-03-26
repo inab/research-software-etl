@@ -1,0 +1,180 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/bridger/cmd/None",
+        "created_at": "2025-04-02T11:48:50.335007",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "xhuang@astate.edu",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "De novo transcriptome assembler for RNA-Seq data. It uses RNA-Seq reads as input in fasta or fastq format, outputs all transcripts in fasta format, without using a reference genome. It works in two steps: First, Bridger partitions the sequence data into many individual splicing graphs, each capturing the full transcriptional complexity at a given gene or no more than a few genes. Then, it uses a rigorous mathematical model called minimum path cover to search an optimal set of paths."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://sourceforge.net/projects/rnaseqassembly/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Bridger"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSL-1.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bridger",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Transcriptome assembly",
+              "uri": "http://edamontology.org/operation_3258",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a89bd3b8acd1a2f9b947"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://sourceforge.net/projects/rnaseqassembly/files/?source=navbar"
+          ]
+        },
+        "id": "biotools/bridger/cmd/None",
+        "last_updated_at": "2026-03-19T00:31:43.908417",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/bridger/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/bridger/cmd/v1,toolshed/bridger/cmd/v1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "De novo assembly of RNA-Seq data."
+          ],
+          "documentation": [
+            {
+              "content": "\n\t  https://github.com/fmaguire/Bridger_Assembler\n\t",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bridger"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "bridger",
+          "operating_system": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "toolshed",
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:bridger_biotools/bridger/cmd/None,galaxy_metadata/bridger/cmd/v1,toolshed/bridger/cmd/v1",
+  "conflict_name": "bridger/cmd",
+  "date": "2026-03-26T13:48:23.588133+00:00",
+  "run_id": "20260326T134314Z-8cd5c284-pre-annotation"
+}
