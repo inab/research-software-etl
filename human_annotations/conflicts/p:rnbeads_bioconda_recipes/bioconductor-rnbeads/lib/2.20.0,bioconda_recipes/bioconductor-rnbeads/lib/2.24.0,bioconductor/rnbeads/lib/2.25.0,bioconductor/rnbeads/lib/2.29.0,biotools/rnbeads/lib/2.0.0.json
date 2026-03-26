@@ -1,0 +1,398 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/rnbeads/lib/2.0.0",
+        "created_at": "2025-04-02T12:35:58.115292",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Yassen Assenov",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://www.dkfz.de/en/tox/staff/Assenov.html"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Fabian M\u00fcller",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.mpi-inf.mpg.de/~fmueller/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Pavlo Lutsik",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://www.dkfz.de/en/tox/staff/Lutsik.html"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Michael Scherer",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.mpi-inf.mpg.de/~mscherer/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Christoph Bock",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.christoph-bock.org/"
+            },
+            {
+              "email": "rnbeads@mpi-inf.mpg.de",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "https://rnbeads.org/index.html"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An R package for comprehensive analysis of DNA methylation data obtained with any experimental protocol that provides single-CpG resolution."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://rnbeads.mpi-inf.mpg.de/data/RnBeads.pdf"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence coordinates",
+                "uri": "http://edamontology.org/data_2012",
+                "vocabulary": "EDAM"
+              },
+              "term": "IDAT",
+              "uri": "http://edamontology.org/format_3578",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence coordinates",
+                "uri": "http://edamontology.org/data_2012",
+                "vocabulary": "EDAM"
+              },
+              "term": "BED",
+              "uri": "http://edamontology.org/format_3003",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "RnBeads"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "rnbeads",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Methylation analysis",
+              "uri": "http://edamontology.org/operation_3204",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Heat map generation",
+              "uri": "http://edamontology.org/operation_0531",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Report",
+                "uri": "http://edamontology.org/data_2048",
+                "vocabulary": "EDAM"
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c82a4910e2f3aa0b3b8c6b"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "de.NBI",
+            "HD-Hub",
+            "BioConductor"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Epigenomics",
+              "uri": "http://edamontology.org/topic_3173",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "2.0.0"
+          ],
+          "webpage": [
+            "http://rnbeads.mpi-inf.mpg.de/"
+          ]
+        },
+        "id": "biotools/rnbeads/lib/2.0.0",
+        "last_updated_at": "2026-03-19T01:39:37.107426",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/rnbeads/lib/2.0.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconductor/rnbeads/lib/2.25.0,bioconda_recipes/bioconductor-rnbeads/lib/2.20.0,bioconda_recipes/bioconductor-rnbeads/lib/2.24.0,bioconductor/rnbeads/lib/2.29.0",
+        "data": {
+          "authors": [
+            {
+              "email": "assenov@gmail.com",
+              "maintainer": false,
+              "name": "Yassen Assenov",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "cbock@cemm.at",
+              "maintainer": false,
+              "name": "Christoph Bock",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "p.lutsik@dkfz.de",
+              "maintainer": false,
+              "name": "Pavlo Lutsik",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "mscherer@mpi-inf.mpg.de",
+              "maintainer": false,
+              "name": "Michael Scherer",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "team@rnbeads.org",
+              "maintainer": false,
+              "name": "Fabian Mueller",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "R (>= 3.0.0)",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "bioconductor-iranges >=2.36.0,<2.37.0",
+            "bioconductor-limma >=3.62.0,<3.63.0",
+            "ggplot2 (>= 0.9.2)",
+            "cluster",
+            "r-base",
+            "bioconductor-genomicranges >=1.54.0,<1.55.0",
+            "BiocGenerics",
+            "bioconductor-iranges >=2.40.0,<2.41.0",
+            "gplots",
+            "GenomicRanges",
+            "bioconductor-genomicranges >=1.58.0,<1.59.0",
+            "r-gplots",
+            "bioconductor-biocgenerics >=0.52.0,<0.53.0",
+            "IRanges",
+            "reshape2",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "methods",
+            "methylumi",
+            "plyr",
+            "r-mass",
+            "grid",
+            "bioconductor-s4vectors >=0.44.0,<0.45.0",
+            "bioconductor-methylumi >=2.52.0,<2.53.0",
+            "S4Vectors (>= 0.9.25)",
+            "r-ggplot2 >=0.9.2",
+            "matrixStats",
+            "MASS",
+            "illuminaio",
+            "ff",
+            "gridExtra",
+            "r-matrixstats",
+            "r-gridextra",
+            "limma",
+            "r-plyr",
+            "bioconductor-illuminaio >=0.48.0,<0.49.0",
+            "r-cluster",
+            "fields",
+            "bioconductor-methylumi >=2.48.0,<2.49.0",
+            "r-fields",
+            "r-ff",
+            "bioconductor-limma >=3.58.0,<3.59.0",
+            "bioconductor-illuminaio >=0.44.0,<0.45.0"
+          ],
+          "description": [
+            "RnBeads facilitates comprehensive analysis of various types of DNA methylation data at the genome scale."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-rnbeads/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-rnbeads/README.html"
+            }
+          ],
+          "download": [
+            "https://depot.galaxyproject.org/software/bioconductor-rnbeads/bioconductor-rnbeads_2.24.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/RnBeads_2.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/RnBeads_2.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/RnBeads_2.20.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/RnBeads_2.20.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/RnBeads/RnBeads_2.24.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rnbeads/bioconductor-rnbeads_2.20.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/RnBeads/RnBeads_2.20.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-rnbeads",
+            "RnBeads"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "rnbeads",
+          "operating_system": [
+            "Windows",
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-rnbeads"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/RnBeads"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://depot.galaxyproject.org/software/bioconductor-rnbeads/bioconductor-rnbeads_2.24.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/RnBeads_2.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/RnBeads_2.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/RnBeads_2.20.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/RnBeads_2.20.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/RnBeads/RnBeads_2.24.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rnbeads/bioconductor-rnbeads_2.20.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/RnBeads/RnBeads_2.20.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "2.20.0",
+            "2.29.0",
+            "2.25.0",
+            "2.24.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/RnBeads",
+            "https://bioconductor.org/packages/3.20/bioc/html/RnBeads.html",
+            "https://bioconductor.org/packages/3.18/bioc/html/RnBeads.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:rnbeads_bioconda_recipes/bioconductor-rnbeads/lib/2.20.0,bioconda_recipes/bioconductor-rnbeads/lib/2.24.0,bioconductor/rnbeads/lib/2.25.0,bioconductor/rnbeads/lib/2.29.0,biotools/rnbeads/lib/2.0.0",
+  "conflict_name": "rnbeads/lib",
+  "date": "2026-03-26T15:16:28.949095+00:00",
+  "run_id": "20260326T141846Z-01f931c3-pre-annotation"
+}
