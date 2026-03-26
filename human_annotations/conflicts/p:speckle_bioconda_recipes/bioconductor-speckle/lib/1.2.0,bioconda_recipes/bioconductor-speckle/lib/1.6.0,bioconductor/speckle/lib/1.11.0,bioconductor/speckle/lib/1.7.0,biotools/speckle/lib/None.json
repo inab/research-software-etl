@@ -1,0 +1,306 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/speckle/lib/None",
+        "created_at": "2025-04-02T12:59:15.375922",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "alicia.oshlack@petermac.org",
+              "maintainer": false,
+              "name": "Alicia Oshlack",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Belinda Phipson",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Choon Boon Sim",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Enzo Porrello",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Alex W Hewitt",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Joseph Powell",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The speckle package currently contains functions to analyse differences in cell type proportions in single cell RNA-seq data, and to classify cells as male or female. As our research into specialised analyses of single cell data continues we anticipate that the package will be updated with new functions."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "speckle"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "speckle",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Dimensionality reduction",
+              "uri": "http://edamontology.org/operation_3935",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression profiling",
+              "uri": "http://edamontology.org/operation_0314",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8348610e2f3aa0b3bbe12"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cell biology",
+              "uri": "http://edamontology.org/topic_2229",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/Oshlack/speckle"
+          ]
+        },
+        "id": "biotools/speckle/lib/None",
+        "last_updated_at": "2026-03-19T02:18:11.896246",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/speckle/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-speckle/lib/1.2.0,bioconductor/speckle/lib/1.7.0,bioconda_recipes/bioconductor-speckle/lib/1.6.0,bioconductor/speckle/lib/1.11.0",
+        "data": {
+          "authors": [
+            {
+              "email": "phipson.b@wehi.edu.au",
+              "maintainer": false,
+              "name": "Belinda Phipson",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "r-ggplot2",
+            "ggplot2",
+            "bioconductor-edger >=4.0.0,<4.1.0",
+            "Seurat",
+            "grDevices",
+            "bioconductor-limma >=3.58.0,<3.59.0",
+            "methods",
+            "SingleCellExperiment",
+            "stats",
+            "bioconductor-singlecellexperiment >=1.28.0,<1.29.0",
+            "limma",
+            "R (>= 4.2.0)",
+            "bioconductor-singlecellexperiment >=1.24.0,<1.25.0",
+            "graphics",
+            "edgeR",
+            "r-seurat",
+            "r-base",
+            "bioconductor-limma >=3.62.0,<3.63.0",
+            "bioconductor-edger >=4.4.0,<4.5.0"
+          ],
+          "description": [
+            "The speckle package contains functions for the analysis of single cell RNA-seq data. The speckle package currently contains functions to analyse differences in cell type proportions. There are also functions to estimate the parameters of the Beta distribution based on a given counts matrix, and a function to normalise a counts matrix to the median library size. There are plotting functions to visualise cell type proportions and the mean-variance relationship in cell type proportions and counts. As our research into specialised analyses of single cell data continues we anticipate that the package will be updated with new functions."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-speckle/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-speckle/README.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/speckle_1.6.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/speckle_1.2.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/speckle/speckle_1.2.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-speckle/bioconductor-speckle_1.6.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/speckle/speckle_1.6.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-speckle/bioconductor-speckle_1.2.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/speckle_1.2.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/speckle_1.6.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "speckle",
+            "bioconductor-speckle"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-speckle",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "speckle"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/speckle"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/speckle_1.2.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/speckle_1.6.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/speckle/speckle_1.2.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-speckle/bioconductor-speckle_1.6.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/speckle/speckle_1.6.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-speckle/bioconductor-speckle_1.2.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/speckle_1.2.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/speckle_1.6.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.2.0",
+            "1.11.0",
+            "1.7.0",
+            "1.6.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/speckle",
+            "https://bioconductor.org/packages/3.20/bioc/html/speckle.html",
+            "https://bioconductor.org/packages/3.18/bioc/html/speckle.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:speckle_bioconda_recipes/bioconductor-speckle/lib/1.2.0,bioconda_recipes/bioconductor-speckle/lib/1.6.0,bioconductor/speckle/lib/1.11.0,bioconductor/speckle/lib/1.7.0,biotools/speckle/lib/None",
+  "conflict_name": "speckle/lib",
+  "date": "2026-03-26T13:14:55.002840+00:00",
+  "run_id": "20260326T113352Z-3e0dedd-pre-annotation"
+}
