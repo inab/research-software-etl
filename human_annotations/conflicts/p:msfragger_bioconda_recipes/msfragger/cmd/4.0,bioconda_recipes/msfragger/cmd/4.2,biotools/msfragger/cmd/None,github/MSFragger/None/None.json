@@ -1,0 +1,354 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/msfragger/cmd/None",
+        "created_at": "2025-08-26T15:33:38.369176",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "nesvi@umich.edu",
+              "maintainer": false,
+              "name": "Alexey Nesvizhskii",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A database search tool for performing mass spectometry data similarity comparisons. For that it uses a fragment ion indexing method."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzML",
+              "uri": "http://edamontology.org/format_3244",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzXML",
+              "uri": "http://edamontology.org/format_3654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "MGF",
+              "uri": "http://edamontology.org/format_3651",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "Thermo RAW",
+              "uri": "http://edamontology.org/format_3712",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "MSFragger"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Other",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "msfragger",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Peptide database search",
+              "uri": "http://edamontology.org/operation_3646",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Spectral library search",
+              "uri": "http://edamontology.org/operation_3801",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "pepXML",
+              "uri": "http://edamontology.org/format_3655",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Peptide identification",
+                "uri": "http://edamontology.org/data_0945",
+                "vocabulary": "EDAM"
+              },
+              "term": "TSV",
+              "uri": "http://edamontology.org/format_3475",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c8294310e2f3aa0b3b83a6"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Proteomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein modifications",
+              "uri": "http://edamontology.org/topic_0601",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.nesvilab.org/software"
+          ]
+        },
+        "id": "biotools/msfragger/cmd/None",
+        "last_updated_at": "2026-03-19T02:23:18.737735",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/msfragger/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/msfragger/cmd/4.0,github/MSFragger/None/None,bioconda_recipes/msfragger/cmd/4.2",
+        "data": {
+          "authors": [
+            {
+              "email": "fcyucn@gmail.com",
+              "maintainer": false,
+              "name": "Fengchao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "34653819+anesvi@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Alexey Nesvizhskii",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hayse@umich.edu",
+              "maintainer": false,
+              "name": "Sarah Haynes",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "prvst@pm.me",
+              "maintainer": false,
+              "name": "Felipe da Veiga Leprevost",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "openjdk >=11",
+            "mono >=5, <6",
+            "python =3.11",
+            "zlib >=1.2.13",
+            "python >=3.9"
+          ],
+          "description": [
+            "MSFragger is an ultrafast database search tool for peptide identification in mass spectrometry-based proteomics.\nIt has demonstrated excellent performance across a wide range of datasets and applications.\nMSFragger is suitable for standard shotgun proteomics analyses as well as large datasets (including timsTOF PASEF data),\nenzyme unconstrained searches (e.g., peptidome),\nopen database searches (e.g., precursor mass tolerance set to hundreds of Daltons) for identification\nof modified peptides, and glycopeptide identification (N-linked and O-linked).\n\nMSFragger is available freely for academic research and educational purposes only, in accordance with the terms at https://msfragger.arsci.com/upgrader/MSFragger-LICENSE.pdf.",
+            "Ultrafast, comprehensive peptide identification for mass spectrometry\u2013based proteomics."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/msfragger/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/msfragger/README.html"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/Nesvilab/MSFragger/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Nesvilab/MSFragger/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://msfragger-upgrader.nesvilab.org/upgrader/download.php?token=0000000&download=Release%204.2%24zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "msfragger",
+            "MSFragger"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Academic License (https://msfragger.arsci.com/upgrader/MSFragger-.pdf)",
+              "url": null
+            },
+            {
+              "name": "Academic License",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "msfragger",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "MSFragger"
+          ],
+          "output": [],
+          "publication": [
+            "67e2dc0bac7ee6cb57891295",
+            "67c8294310e2f3aa0b3b83a6",
+            "67e2dc1aac7ee6cb578912a6"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Nesvilab/MSFragger"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://msfragger-upgrader.nesvilab.org/upgrader/download.php?token=0000000&download=Release%204.2%24zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "proteomics",
+              "uri": "https://github.com/topics/proteomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "mass-spectrometry",
+              "uri": "https://github.com/topics/mass-spectrometry",
+              "vocabulary": ""
+            },
+            {
+              "term": "database-search",
+              "uri": "https://github.com/topics/database-search",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioinformatics",
+              "uri": "https://github.com/topics/bioinformatics",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "4.0",
+            "4.2"
+          ],
+          "webpage": [
+            "https://github.com/Nesvilab/MSFragger",
+            "https://msfragger.nesvilab.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:msfragger_bioconda_recipes/msfragger/cmd/4.0,bioconda_recipes/msfragger/cmd/4.2,biotools/msfragger/cmd/None,github/MSFragger/None/None",
+  "conflict_name": "msfragger/*",
+  "date": "2026-03-26T12:10:08.606099+00:00",
+  "run_id": "20260326T113352Z-3e0dedd-pre-annotation"
+}
