@@ -11,7 +11,7 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
 REPO = "inab/research-software-etl"
 GITHUB_API = "https://api.github.com"
-BRANCH = "pair_wise_cache"
+BRANCH = "main"
 
 def commit_conflict_json(conflict: dict, path: str, branch=BRANCH, repo=REPO) -> str:
     """

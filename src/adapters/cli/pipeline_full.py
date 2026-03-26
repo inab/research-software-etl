@@ -183,7 +183,7 @@ def _check_prerequisites_for_selected_stages(
     simplified_blocks_json: Path,
     conflicts_jsonl: Path,
     simplified_blocks_jsonl: Path,
-    disambiguation_out_dir: Path,
+    disambiguation_out_file: Path,
 ) -> None:
     selected = set(selected_stages)
 
@@ -208,7 +208,7 @@ def _check_prerequisites_for_selected_stages(
         _ensure_exists(simplified_blocks_jsonl, "disambiguation")
 
     if "human_updates" in selected or "merge" in selected:
-        _ensure_exists(disambiguation_out_dir, "human_updates/merge")
+        _ensure_exists(disambiguation_out_file, "human_updates/merge")
 
 
 def run_full(
@@ -259,8 +259,7 @@ def run_full(
         "src/application/services/integration/disambiguation/pair_decisions.jsonl"
     )
 
-    disambiguation_out_dir = run_dir / f"disambiguation.{run_id}.jsonl"
-    disambiguation_out_dir.mkdir(parents=True, exist_ok=True)
+    disambiguation_out_file = run_dir / f"disambiguation.{run_id}.jsonl"
 
     manifest_path = run_dir / "manifest.json"
     previous_manifest = _load_manifest(manifest_path)
@@ -285,7 +284,7 @@ def run_full(
             simplified_blocks_json=simplified_blocks_json,
             conflicts_jsonl=conflicts_jsonl,
             simplified_blocks_jsonl=simplified_blocks_jsonl,
-            disambiguation_out_dir=disambiguation_out_dir,
+            disambiguation_out_file=disambiguation_out_file,
         )
 
     executed_stages: list[str] = []
@@ -410,7 +409,7 @@ def run_full(
                 "--blocks-file",
                 str(simplified_blocks_jsonl),
                 "--disambiguated-blocks-file",
-                str(disambiguation_out_dir),
+                str(disambiguation_out_file),
                 "--pair_wise_decisions_file",
                 str(pair_wise_decisions_file),
                 "--run-id",
@@ -432,7 +431,7 @@ def run_full(
                 "-m",
                 "src.adapters.cli.integration.update_disambiguation_after_human_resoltion",
                 "--disambiguation-dir",
-                str(disambiguation_out_dir),
+                str(disambiguation_out_file),
             ],
             cwd=wd,
         )
@@ -447,7 +446,7 @@ def run_full(
                 "-m",
                 "src.adapters.cli.integration.merge_entries",
                 "--disambiguated-blocks-file",
-                str(disambiguation_out_dir),
+                str(disambiguation_out_file),
             ],
             cwd=wd,
         )
@@ -497,7 +496,7 @@ def run_full(
             "simplified_blocks_json": str(simplified_blocks_json),
             "conflicts_jsonl": str(conflicts_jsonl),
             "simplified_blocks_jsonl": str(simplified_blocks_jsonl),
-            "disambiguation_out_dir": str(disambiguation_out_dir),
+            "disambiguation_out_file": str(disambiguation_out_file),
         },
         "latest_options": {
             "remove_opeb_metrics": remove_opeb_metrics,

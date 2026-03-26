@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: research-software-observatory-pipeline
-Version: 0.1.0
+Version: 0.1.1
 Summary: Data integration and enrichment pipeline powering the Research Software Observatory.
 Author-email: Eva Martín del Pico <eva.martin@bsc.es>
 Maintainer-email: Eva Martín del Pico <eva.martin@bsc.es>
