@@ -1,0 +1,284 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/scedar/None/None",
+        "created_at": "2026-03-25T15:20:40.101285",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "deannetaylorphd@gmail.com",
+              "maintainer": false,
+              "name": "Deanne Taylor",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "y.will.zhang@gmail.com",
+              "maintainer": false,
+              "name": "logstar",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bjs385@drexel.edu",
+              "maintainer": false,
+              "name": "ben stear",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Single-cell exploratory data analysis for RNA-Seq."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/logstar/scedar/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/logstar/scedar/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/logstar/scedar/blob/main/pypiREADME.md"
+            },
+            {
+              "content": null,
+              "type": "docs",
+              "url": "https://github.com/logstar/scedar/blob/main/docs/requirement.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "scedar"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "scedar",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/TaylorResearchLab/scedar"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "single-cell-rna-seq",
+              "uri": "https://github.com/topics/single-cell-rna-seq",
+              "vocabulary": ""
+            },
+            {
+              "term": "clustering-algorithm",
+              "uri": "https://github.com/topics/clustering-algorithm",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:20:40.101285",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/scedar",
+            "source_url": "https://github.com/logstar/scedar"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/scedar/undefined/None",
+        "created_at": "2025-04-02T12:58:56.227226",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "taylordm@email.chop.edu",
+              "maintainer": false,
+              "name": "Deanne M. Taylor",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A scalable Python package for single-cell RNA-seq exploratory data analysis.\n\nSingle-cell exploratory data analysis for RNA-Seq.\n\nScedar (Single-cell exploratory data analysis for RNA-Seq) is a reliable and easy-to-use Python package for efficient visualization, imputation of gene dropouts, detection of rare transcriptomic profiles, and clustering of large-scale single cell RNA-seq (scRNA-seq) datasets."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "scedar"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "scedar",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Imputation",
+              "uri": "http://edamontology.org/operation_3557",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq analysis",
+              "uri": "http://edamontology.org/operation_3680",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA transcription",
+              "uri": "http://edamontology.org/operation_0372",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8326810e2f3aa0b3bb0bc"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/logstar/scedar"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Zoology",
+              "uri": "http://edamontology.org/topic_3500",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pypi.org/project/scedar"
+          ]
+        },
+        "id": "biotools/scedar/undefined/None",
+        "last_updated_at": "2026-03-19T02:19:03.539813",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/scedar/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:scedar_biotools/scedar/undefined/None,github/scedar/None/None",
+  "conflict_name": "scedar/*",
+  "date": "2026-03-27T13:12:44.178548+00:00",
+  "run_id": "20260327T114032Z-c227780a-pre-annotation"
+}
