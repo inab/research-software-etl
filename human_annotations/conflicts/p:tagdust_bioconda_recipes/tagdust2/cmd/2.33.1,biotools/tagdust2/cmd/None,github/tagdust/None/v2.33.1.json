@@ -1,0 +1,276 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/tagdust2/cmd/None",
+        "created_at": "2025-04-02T12:50:15.812745",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "timolassmann@gmail.com",
+              "maintainer": false,
+              "name": "Timo Lassmann",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A generic method to extract reads from sequencing data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://tagdust.sourceforge.net/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TagDust2"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "tagdust2",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82b6210e2f3aa0b3b950b"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "TagDust"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://tagdust.sourceforge.net/"
+          ]
+        },
+        "id": "biotools/tagdust2/cmd/None",
+        "last_updated_at": "2026-03-19T01:47:52.236871",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/tagdust2/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/tagdust2/cmd/2.33.1,github/tagdust/None/v2.33.1",
+        "data": {
+          "authors": [
+            {
+              "email": "arash.darzian.rostami@ki.se",
+              "maintainer": false,
+              "name": "Aradar",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "x1@example.com",
+              "maintainer": false,
+              "name": "x1",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "timolassmann@icloud.com",
+              "maintainer": false,
+              "name": "Timo Lassmann",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lassmann@gmail.com",
+              "maintainer": false,
+              "name": "lassmann",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "pthread-stubs"
+          ],
+          "description": [
+            "TagDust2 filters NGS reads using HMMs, removes artifacts, and can simulate reads.",
+            "A tool to extract mappable reads from various library preparation protocols."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/tagdust2/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/tagdust2/README.html"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/aradar46/tagdust/blob/main/CLAUDE.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/aradar46/tagdust/blob/main/CMAKE_BUILD.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/aradar46/tagdust/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/aradar46/tagdust/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/aradar46/tagdust/archive/v2.33.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "tagdust",
+            "tagdust2"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "tagdust2",
+          "operating_system": [
+            "Windows",
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "tagdust"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/aradar46/tagdust"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/aradar46/tagdust/archive/v2.33.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.33.1",
+            "v2.33.1"
+          ],
+          "webpage": [
+            "https://github.com/aradar46/tagdust"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:tagdust_bioconda_recipes/tagdust2/cmd/2.33.1,biotools/tagdust2/cmd/None,github/tagdust/None/v2.33.1",
+  "conflict_name": "tagdust/*",
+  "date": "2026-03-27T12:19:29.331552+00:00",
+  "run_id": "20260327T114032Z-c227780a-pre-annotation"
+}
