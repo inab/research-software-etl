@@ -1,0 +1,229 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/BigStitcher/None/None",
+        "created_at": "2026-03-25T15:19:08.664477",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "stephan.preibisch@gmx.de",
+              "maintainer": false,
+              "name": "Stephan Preibisch",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ctrueden@wisc.edu",
+              "maintainer": false,
+              "name": "Curtis Rueden",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tobias.pietzsch@gmail.com",
+              "maintainer": false,
+              "name": "tpietzsch",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "ImgLib2/BDV implementation of Stitching for large datasets."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/PreibischLab/BigStitcher/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/PreibischLab/BigStitcher/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BigStitcher"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU General Public License v2.0",
+              "url": "http://choosealicense.com/licenses/gpl-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "BigStitcher",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/JaneliaSciComp/BigStitcher"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:19:08.664477",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/BigStitcher",
+            "source_url": "https://github.com/PreibischLab/BigStitcher"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/bigstitcher/undefined/None",
+        "created_at": "2025-04-02T11:45:38.412955",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Reconstructing high-resolution image datasets of cleared and expanded samples | ImgLib2/BDV implementation of Stitching for large datasets | The BigStitcher is a software package that allows simple and efficient alignment of multi-tile and multi-angle image datasets, for example acquired by lightsheet, widefield or confocal microscopes. The software supports images of almost arbitrary size ranging from very small images up to volumes in the range of many terabytes, which are for example produced when acquiring cleared tissue samples with lightsheet microscopy."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "BigStitcher"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bigstitcher",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Microscope image visualisation",
+              "uri": "http://edamontology.org/operation_3552",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence merging",
+              "uri": "http://edamontology.org/operation_0232",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Deisotoping",
+              "uri": "http://edamontology.org/operation_3629",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8332d10e2f3aa0b3bb7f6"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/PreibischLab/BigStitcher"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Imaging",
+              "uri": "http://edamontology.org/topic_3382",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Zoology",
+              "uri": "http://edamontology.org/topic_3500",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://imagej.net/BigStitcher"
+          ]
+        },
+        "id": "biotools/bigstitcher/undefined/None",
+        "last_updated_at": "2026-03-19T00:28:41.305003",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/bigstitcher/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:bigstitcher_biotools/bigstitcher/undefined/None,github/BigStitcher/None/None",
+  "conflict_name": "bigstitcher/*",
+  "date": "2026-03-27T11:56:13.318509+00:00",
+  "run_id": "20260327T114032Z-c227780a-pre-annotation"
+}
