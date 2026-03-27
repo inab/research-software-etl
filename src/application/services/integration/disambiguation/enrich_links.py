@@ -368,7 +368,7 @@ async def extract_with_playwright(url: str) -> str | None:
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch(
-                headless=False,
+                headless=True,
                 channel="chrome",
                 args=[
                     "--proxy-bypass-list=<-loopback>",
