@@ -1,0 +1,256 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconductor/leapr/lib/0.99.9",
+        "created_at": "2026-03-19T02:47:46.258699",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "sara.gosline@pnnl.gov",
+              "maintainer": false,
+              "name": "Sara Gosline",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "jason.mcdermott@pnnl.gov",
+              "maintainer": false,
+              "name": "Jason McDermott",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "jeremy.jacobson@pnnl.gov",
+              "maintainer": false,
+              "name": "Jeremy Jacobson",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "vincent.danna@pnnl.gov",
+              "maintainer": false,
+              "name": "Vincent Danna",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "National Institutes of Health",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "R (>= 4.5.0)",
+            "BiocStyle",
+            "dplyr",
+            "ggplot2",
+            "gplots",
+            "gplots",
+            "methods",
+            "readr",
+            "stats",
+            "stringr",
+            "SummarizedExperiment",
+            "tibble",
+            "tidyr"
+          ],
+          "description": [
+            "LeapR is a package that identifies pathways that are enriched across diverse 'omics experiments. It leverages any tabular expression data (proteomics, transcriptomics) using the `SummarizedExperiment` object. It works with any pathway in the .gct file format."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "leapR"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "leapr",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/leapR"
+            }
+          ],
+          "source": [
+            "bioconductor"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "lib",
+          "version": [
+            "0.99.9"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/leapR"
+          ]
+        },
+        "last_updated_at": "2026-03-19T02:47:46.258699",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconductor/leapR/lib/0.99.9",
+            "source_url": "https://git.bioconductor.org/packages/leapR"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/leapr/lib/None",
+        "created_at": "2025-04-02T12:56:09.501785",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An R Package for Multiomic Pathway Analysis\nLayered Enrichment Analysis of Pathways in R (leapR) a tool that carries out statistical enrichment analysis on single- or multi-omics data."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "leapR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "leapr",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Pathway analysis",
+              "uri": "http://edamontology.org/operation_3928",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Enrichment analysis",
+              "uri": "http://edamontology.org/operation_3501",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Principal component analysis",
+              "uri": "http://edamontology.org/operation_3960",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82f1d10e2f3aa0b3ba90d"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metabolomics",
+              "uri": "http://edamontology.org/topic_3172",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Endocrinology and metabolism",
+              "uri": "http://edamontology.org/topic_3407",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/biodataganache/leapR"
+          ]
+        },
+        "id": "biotools/leapr/lib/None",
+        "last_updated_at": "2026-03-19T02:10:46.793952",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/leapr/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:leapr_bioconductor/leapr/lib/0.99.9,biotools/leapr/lib/None",
+  "conflict_name": "leapr/lib",
+  "date": "2026-03-27T13:06:31.025234+00:00",
+  "run_id": "20260327T114032Z-c227780a-pre-annotation"
+}
