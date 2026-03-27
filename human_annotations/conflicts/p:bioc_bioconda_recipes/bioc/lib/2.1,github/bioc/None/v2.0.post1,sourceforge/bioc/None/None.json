@@ -1,0 +1,268 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/bioc/None/None",
+        "created_at": "2025-04-02T15:43:15.273362",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A minimalist approach to share text documents and data annotations. Allows a large number of different annotations to be represented. \n\nProject files contain: \n\n- simple code to hold/read/write data and perform sample processing.\n- BioC-formatted corpora\n- BioC tools that work with BioC corpora\n\nBioC goals\n\n- simplicity\n- interoperability\n- broad use\n- reuse\n\nThere should be little investment required to learn to use a format or a software module to process that format. We are interested in reuse, and we focus on common NLP tasks that are broadly useful for textmining."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/bioc"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioc"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "bioc",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/bioc"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://bioc.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/bioc/None/None",
+        "last_updated_at": "2026-03-19T03:36:34.570168",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/bioc//",
+            "source_url": "https://sourceforge.net/projects/bioc"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioc/lib/2.1,github/bioc/None/v2.0.post1",
+        "data": {
+          "authors": [
+            {
+              "email": "yip4002@med.cornell.edu",
+              "maintainer": false,
+              "name": "Yifan Peng",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jake.lever@gmail.com",
+              "maintainer": false,
+              "name": "Jake Lever",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "martinro@informatik.hu-berlin.de",
+              "maintainer": false,
+              "name": "Robert Martin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "lxml >=4.6.3",
+            "jsonlines >=1.2.0",
+            "tqdm",
+            "docopt",
+            "intervaltree",
+            "python >=3.6"
+          ],
+          "description": [
+            "Bioc - Processing BioC, Brat, and PubTator with Python.",
+            "Data structures and code to read/write BioC XML and Json."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioc/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioc/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/bionlplab/bioc/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/bionlplab/bioc/blob/main/requirements-dev.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/bionlplab/bioc/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/bionlplab/bioc/blob/main/docs/requirements.txt"
+            }
+          ],
+          "download": [
+            "https://pypi.org/packages/source/b/bioc/bioc-2.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioc"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "bioc",
+          "operating_system": [
+            "Windows",
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/bionlplab/bioc"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://pypi.org/packages/source/b/bioc/bioc-2.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "bioc",
+              "uri": "https://github.com/topics/bioc",
+              "vocabulary": ""
+            },
+            {
+              "term": "xml",
+              "uri": "https://github.com/topics/xml",
+              "vocabulary": ""
+            },
+            {
+              "term": "json",
+              "uri": "https://github.com/topics/json",
+              "vocabulary": ""
+            },
+            {
+              "term": "reader",
+              "uri": "https://github.com/topics/reader",
+              "vocabulary": ""
+            },
+            {
+              "term": "writer",
+              "uri": "https://github.com/topics/writer",
+              "vocabulary": ""
+            },
+            {
+              "term": "bionlp",
+              "uri": "https://github.com/topics/bionlp",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "v1.3.7",
+            "v2.0.post1",
+            "v1.2.1",
+            "2.1",
+            "v2.0",
+            "v1.0.dev26",
+            "v1.3",
+            "v1.2.4",
+            "v1.0"
+          ],
+          "webpage": [
+            "https://github.com/bionlplab/bioc"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:bioc_bioconda_recipes/bioc/lib/2.1,github/bioc/None/v2.0.post1,sourceforge/bioc/None/None",
+  "conflict_name": "bioc/*",
+  "date": "2026-03-27T13:37:28.833409+00:00",
+  "run_id": "20260327T114032Z-c227780a-pre-annotation"
+}
