@@ -1,0 +1,261 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/intact/None/None",
+        "created_at": "2025-04-02T15:44:12.427199",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "NOTE: The IntAct package is now hosted at google code: http://intact.googlecode.com IntAct is an open source package to store and manipulate molecular interaction data."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/intact"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "intact"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "intact",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "BSD",
+            "ChromeOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/intact"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://intact.googlecode.com/"
+          ]
+        },
+        "id": "sourceforge/intact/None/None",
+        "last_updated_at": "2026-03-19T03:36:12.804440",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/intact//",
+            "source_url": "https://sourceforge.net/projects/intact"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "github/INTACT/None/None,bioconda_recipes/bioconductor-intact/lib/1.2.0,bioconductor/intact/lib/1.7.0,bioconductor/intact/lib/1.11.0",
+        "data": {
+          "authors": [
+            {
+              "email": "jwokaty@users.noreply.github.com",
+              "maintainer": false,
+              "name": "J Wokaty",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jokamoto@umich.edu",
+              "maintainer": false,
+              "name": "Jeff Okamoto",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jokamoto@umich.edu",
+              "maintainer": false,
+              "name": "Jeffrey Okamoto",
+              "orcid": "https://orcid.org/0000-0001-9988-1618",
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "xwen@umich.edu",
+              "maintainer": false,
+              "name": "Xiaoquan Wen",
+              "orcid": "https://orcid.org/0000-0001-8990-2737",
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "stats",
+            "ggplot2",
+            "r-numderiv",
+            "bdsmatrix",
+            "r-squarem",
+            "tidyr",
+            "r-bdsmatrix",
+            "R (>= 4.3.0)",
+            "numDeriv",
+            "r-base",
+            "SQUAREM"
+          ],
+          "description": [
+            "Integration of TWAS and Colocalization Analysis.",
+            "This package integrates colocalization probabilities from colocalization analysis with transcriptome-wide association study (TWAS) scan summary statistics to implicate genes that may be biologically relevant to a complex trait. The probabilistic framework implemented in this package constrains the TWAS scan z-score-based likelihood using a gene-level colocalization probability. Given gene set annotations, this package can estimate gene set enrichment using posterior probabilities from the TWAS-colocalization integration step."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/jokamoto97/INTACT/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jokamoto97/INTACT/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-intact/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-intact/README.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/INTACT_1.2.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/INTACT/INTACT_1.2.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-intact/bioconductor-intact_1.2.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/INTACT_1.2.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "INTACT",
+            "bioconductor-intact"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GNU Affero General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/agpl-3.0/"
+            },
+            {
+              "name": "GPL-3",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "INTACT",
+          "operating_system": [
+            "Windows",
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-intact",
+            "intact"
+          ],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jokamoto97/INTACT"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/INTACT"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/INTACT/INTACT_1.2.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/INTACT_1.2.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-intact/bioconductor-intact_1.2.0_src_all.tar.gz",
+            "https://bioarchive.galaxyproject.org/INTACT_1.2.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.7.0",
+            "1.11.0",
+            "1.2.0"
+          ],
+          "webpage": [
+            "https://github.com/jokamoto97/INTACT",
+            "https://bioconductor.org/packages/3.18/bioc/html/INTACT.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:intact_bioconda_recipes/bioconductor-intact/lib/1.2.0,bioconductor/intact/lib/1.11.0,bioconductor/intact/lib/1.7.0,github/INTACT/None/None,sourceforge/intact/None/None",
+  "conflict_name": "intact/*",
+  "date": "2026-03-27T13:22:12.808658+00:00",
+  "run_id": "20260327T114032Z-c227780a-pre-annotation"
+}
