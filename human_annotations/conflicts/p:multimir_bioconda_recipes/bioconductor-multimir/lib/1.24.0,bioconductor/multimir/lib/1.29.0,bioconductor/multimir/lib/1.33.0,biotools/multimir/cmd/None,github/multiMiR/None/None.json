@@ -1,0 +1,358 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/multimir/cmd/None",
+        "created_at": "2025-04-02T12:56:56.431062",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "Dan.Theodorescu@ucdenver.edu",
+              "maintainer": false,
+              "name": "Dan Theodorescu",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.linkedin.com/in/yuanbinru"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "This R package is a comprehensive collection of predicted and validated miRNA-target interactions and their associations with diseases and drugs."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/KechrisLab/multiMiR"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "multiMiR"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "multimir",
+          "operating_system": [
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c828ee10e2f3aa0b3b80a3"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Functional",
+              "uri": "http://edamontology.org/topic_0659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://multimir.ucdenver.edu/"
+          ]
+        },
+        "id": "biotools/multimir/cmd/None",
+        "last_updated_at": "2026-03-19T02:12:43.528985",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/multimir/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-multimir/lib/1.24.0,bioconductor/multimir/lib/1.29.0,bioconductor/multimir/lib/1.33.0,github/multiMiR/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "ruyuanbin@gmail.com",
+              "maintainer": false,
+              "name": "Yuanbin Ru",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "matt.mulvahill@gmail.com",
+              "maintainer": false,
+              "name": "Matt Mulvahill",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "Spencer.Mahaffey@cuanschutz.edu",
+              "maintainer": false,
+              "name": "Spencer Mahaffey",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "Katerina.Kechris@ucdenver.edu",
+              "maintainer": false,
+              "name": "Katerina Kechris",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "c-matthew.mulvahill@charter.com",
+              "maintainer": false,
+              "name": "Matt",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "vobencha@gmail.com",
+              "maintainer": false,
+              "name": "vobencha",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "marcel.ramosperez@roswellpark.org",
+              "maintainer": false,
+              "name": "LiNk-NY",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hpages@fredhutch.org",
+              "maintainer": false,
+              "name": "Herv\u00e9 Pag\u00e8s",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "matthew.mulvahill@ucdenver.edu",
+              "maintainer": false,
+              "name": "Matt Mulvahill (MtEvans)",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "tibble (>= 2.0)",
+            "dplyr",
+            "purrr (>= 0.2.2)",
+            "r-tibble >=1.2",
+            "stats",
+            "r-dplyr",
+            "r-xml",
+            "XML",
+            "bioconductor-annotationdbi >=1.64.0,<1.65.0",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "AnnotationDbi",
+            "BiocGenerics",
+            "r-purrr >=0.2.2",
+            "RCurl",
+            "r-rcurl",
+            "R (>= 3.4)",
+            "r-base",
+            "methods"
+          ],
+          "description": [
+            "A collection of microRNAs/targets from external resources, including validated microRNA-target databases (miRecords, miRTarBase and TarBase), predicted microRNA-target databases (DIANA-microT, ElMMo, MicroCosm, miRanda, miRDB, PicTar, PITA and TargetScan) and microRNA-disease/drug databases (miR2Disease, Pharmaco-miR VerSe and PhenomiR).",
+            "Development repository for the multiMiR database's R API."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-multimir/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-multimir/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/KechrisLab/multiMiR/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://depot.galaxyproject.org/software/bioconductor-multimir/bioconductor-multimir_1.24.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/multiMiR/multiMiR_1.24.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/multiMiR_1.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/multiMiR_1.24.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-multimir",
+            "multiMiR"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "Other",
+              "url": "http://choosealicense.com/licenses/other/"
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-multimir",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "multimir",
+            "multiMiR"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/multiMiR"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/KechrisLab/multiMiR"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconductor",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://depot.galaxyproject.org/software/bioconductor-multimir/bioconductor-multimir_1.24.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/multiMiR/multiMiR_1.24.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/multiMiR_1.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/multiMiR_1.24.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "r",
+              "uri": "https://github.com/topics/r",
+              "vocabulary": ""
+            },
+            {
+              "term": "sql",
+              "uri": "https://github.com/topics/sql",
+              "vocabulary": ""
+            },
+            {
+              "term": "microrna-sequence",
+              "uri": "https://github.com/topics/microrna-sequence",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.24.0",
+            "1.29.0",
+            "1.33.0"
+          ],
+          "webpage": [
+            "https://github.com/KechrisLab/multiMiR",
+            "https://bioconductor.org/packages/3.18/bioc/html/multiMiR.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:multimir_bioconda_recipes/bioconductor-multimir/lib/1.24.0,bioconductor/multimir/lib/1.29.0,bioconductor/multimir/lib/1.33.0,biotools/multimir/cmd/None,github/multiMiR/None/None",
+  "conflict_name": "multimir/*",
+  "date": "2026-04-09T22:50:23.608862+00:00",
+  "run_id": "20260409T221317Z-84587146-ignore-emboss"
+}
