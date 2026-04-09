@@ -1,0 +1,220 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/CoREx/None/None",
+        "created_at": "2026-03-25T15:20:56.644276",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "torresmateo@gmail.com",
+              "maintainer": false,
+              "name": "Mateo Torres",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "pcva036@debian",
+              "maintainer": false,
+              "name": "Mateo Torres",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mm.sr@outlook.com",
+              "maintainer": false,
+              "name": "marimar96",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "35616632+marimar96@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Mar\u00eda del Mar",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CoREx"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "CoREx",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/paccanarolab/CoREx"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:20:56.644276",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/CoREx",
+            "source_url": "https://github.com/paccanarolab/corex"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/corex/web/None",
+        "created_at": "2025-04-02T11:54:04.106491",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Analyzing Tumor Gene Expression Factors with the CorExplorer Web Portal.\n\nWelcome to the CorEx portal for gene expression analysis!.\n\nThis website began as an extension of work applying the CorEx machine learning algorithm to gene expression data from ovarian cancer tumors as presented in this paper."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "CorEx"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "corex",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Database search",
+              "uri": "http://edamontology.org/operation_2421",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Differential gene expression profiling",
+              "uri": "http://edamontology.org/operation_3223",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82ccd10e2f3aa0b3b98f0"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein interactions",
+              "uri": "http://edamontology.org/topic_0128",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://corex.isi.edu/"
+          ]
+        },
+        "id": "biotools/corex/web/None",
+        "last_updated_at": "2026-03-19T00:40:52.778811",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/corex/web/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:corex_biotools/corex/web/None,github/CoREx/None/None",
+  "conflict_name": "corex/*",
+  "date": "2026-04-09T22:56:26.194335+00:00",
+  "run_id": "20260409T221317Z-84587146-ignore-emboss"
+}
