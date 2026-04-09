@@ -1,0 +1,195 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/fpocket/web/1.0",
+        "created_at": "2025-04-02T11:58:22.562411",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "pierre.tuffery@univ-paris-diderot.fr",
+              "maintainer": false,
+              "name": "Pierre Tuff\u00e9ry",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Web server which detects small molecule pockets by relying on the geometric alpha sphere theory. It also tracks pockets during molecular dynamics so to provide insight on pocket dynamics (mdpocket) and transposes mdpocket to the combined analysis of homologous structures (hpocket)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioserv.rpbs.univ-paris-diderot.fr/services/fpocket/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Protein structure",
+                "uri": "http://edamontology.org/data_1460",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDB",
+              "uri": "http://edamontology.org/format_1476",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "Fpocket"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Freeware",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "fpocket",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Molecular surface analysis",
+              "uri": "http://edamontology.org/operation_3351",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Protein structural motif",
+                "uri": "http://edamontology.org/data_2878",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDB",
+              "uri": "http://edamontology.org/format_1476",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c827c410e2f3aa0b3b75a5",
+            "67c82c0a10e2f3aa0b3b96f5"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Protein structural motifs and surfaces",
+              "uri": "http://edamontology.org/topic_0166",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "1.0"
+          ],
+          "webpage": []
+        },
+        "id": "biotools/fpocket/web/1.0",
+        "last_updated_at": "2026-03-19T00:51:43.947595",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/fpocket/web/1.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/fpocket/cmd/4.0.0+galaxy0,toolshed/fpocket/cmd/4.0.0+galaxy0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "- find potential binding sites in protein structures."
+          ],
+          "documentation": [
+            {
+              "content": "\n\nDetect 'pockets' in a protein structure using the fpocket software. A potential use \nof this tool is locating potential binding sites in a protein prior to performing \nprotein-ligand docking.\n\nTo use, upload a protein structure in PDB format and select the type of pocket to \ndetect. 'Custom options' can also be selected - this exposes all internal fpocket \nparameters. Using this option requires some knowledge of the fpocket prediction \nalgorithm. Please consult the cited publications for more details.\n\n\n-----\n\n.. class:: infomark\n\n**Input**\n\nA protein structure in PDB format.\n\n-----\n\n.. class:: infomark\n\n**Output**\n\nSome or all of the following files:\n\n- A collection of PDB files, one for each pocket, each containing the atoms bordering the pocket.\n- A collection of PQR files, one for each pocket, each containing Voronoi vertices of the pocket.\n- A single PQR file containing all Voronoi vertices for all pockets.\n- A text file listing properties of all pockets detected.\n\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "fpocket"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "fpocket",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c82c0a10e2f3aa0b3b96f5",
+            "67c827c410e2f3aa0b3b75a5"
+          ],
+          "repository": [],
+          "source": [
+            "galaxy_metadata",
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "4.0.0+galaxy0"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:fpocket_biotools/fpocket/web/1.0,galaxy_metadata/fpocket/cmd/4.0.0+galaxy0,toolshed/fpocket/cmd/4.0.0+galaxy0",
+  "conflict_name": "fpocket/*",
+  "date": "2026-04-09T22:01:32.525547+00:00",
+  "run_id": "20260409T204459Z-84587146"
+}
