@@ -1,0 +1,304 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/balrog/undefined/None",
+        "created_at": "2025-04-02T11:44:16.936207",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "markusjsommer@gmail.com",
+              "maintainer": false,
+              "name": "Markus J. Sommer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Balrog is a prokaryotic gene finder based on a Temporal Convolutional Network."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Balrog"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "balrog",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Gene prediction",
+              "uri": "http://edamontology.org/operation_2454",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein modelling",
+              "uri": "http://edamontology.org/operation_0477",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8328810e2f3aa0b3bb1f1"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Model organisms",
+              "uri": "http://edamontology.org/topic_0621",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene structure",
+              "uri": "http://edamontology.org/topic_0114",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA binding sites",
+              "uri": "http://edamontology.org/topic_3125",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/salzberg-lab/Balrog"
+          ]
+        },
+        "id": "biotools/balrog/undefined/None",
+        "last_updated_at": "2026-03-19T00:28:06.639002",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/balrog/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/balrog/cmd/0.5.1,github/BalrogCPP/None/v0.5.1,github/BalrogCPP/None/v0.3.2",
+        "data": {
+          "authors": [
+            {
+              "email": "markusjsommer@gmail.com",
+              "maintainer": false,
+              "name": "Markus Sommer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "scipy",
+            "llvm-openmp",
+            "libgomp"
+          ],
+          "description": [
+            "Balrog: A universal protein model for prokaryotic gene prediction.",
+            "Bacterial Annotation by Learned Representation Of Genes (C++ version)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/balrog/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/balrog/README.html"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/salzberg-lab/BalrogCPP/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/salzberg-lab/BalrogCPP/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/Markusjsommer/BalrogCPP/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/Markusjsommer/BalrogCPP/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/salzberg-lab/BalrogCPP/archive/v0.5.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "balrog",
+            "BalrogCPP"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "balrog",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "BalrogCPP"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/salzberg-lab/BalrogCPP"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/Markusjsommer/BalrogCPP"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/salzberg-lab/BalrogCPP/archive/v0.5.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v0.4.4",
+            "v0.2.9",
+            "v0.2.10",
+            "v0.2.18",
+            "v0.2.14",
+            "v0.4.7",
+            "v0.5.0",
+            "v0.4.0",
+            "v0.4.5",
+            "v0.2.4",
+            "0.5.1",
+            "v0.2.5",
+            "v0.2.19",
+            "v0.3.2",
+            "v0.2.11",
+            "v0.2.3",
+            "v0.2.8",
+            "v0.2.6",
+            "v0.2",
+            "v0.4.2",
+            "v0.3.1",
+            "v0.2.1",
+            "v0.2.17",
+            "v0.4.8",
+            "v0.3.0",
+            "v0.2.16",
+            "v0.2.15",
+            "v0.2.13",
+            "v0.1",
+            "v0.5.1",
+            "v0.2.7",
+            "v0.2.2",
+            "v0.4.6",
+            "v0.4.1",
+            "v0.2.12"
+          ],
+          "webpage": [
+            "https://github.com/salzberg-lab/BalrogCPP"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:balrog_bioconda_recipes/balrog/cmd/0.5.1,biotools/balrog/undefined/None,github/BalrogCPP/None/v0.3.2,github/BalrogCPP/None/v0.5.1",
+  "conflict_name": "balrog/*",
+  "date": "2026-04-09T22:04:37.721908+00:00",
+  "run_id": "20260409T204459Z-84587146"
+}
