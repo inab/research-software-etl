@@ -1,0 +1,232 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/miamexpress/None/None",
+        "created_at": "2025-04-02T15:44:16.742234",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Submission tool for Microarray experiments."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/miamexpress"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "miamexpress"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "miamexpress",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/miamexpress"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://www.ebi.ac.uk/miamexpress/"
+          ]
+        },
+        "id": "sourceforge/miamexpress/None/None",
+        "last_updated_at": "2026-03-19T03:35:54.751180",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/miamexpress//",
+            "source_url": "https://sourceforge.net/projects/miamexpress"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/miamexpress/web/None",
+        "created_at": "2025-04-02T12:04:01.394294",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Contact Form",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://www.ebi.ac.uk/support/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Compliant microarray data submission tool."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "faq",
+              "url": "http://www.ebi.ac.uk/microarray/MIAMExpress/miamexpress.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://www.ebi.ac.uk/arrayexpress/help/index.html"
+            },
+            {
+              "content": null,
+              "type": "help",
+              "url": "https://www.ebi.ac.uk/support"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "MIAMExpress"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "miamexpress",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression profile clustering",
+              "uri": "http://edamontology.org/operation_0313",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression profiling",
+              "uri": "http://edamontology.org/operation_0314",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Query and retrieval",
+              "uri": "http://edamontology.org/operation_0224",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c828de10e2f3aa0b3b8006"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Microarray experiment",
+              "uri": "http://edamontology.org/topic_3518",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene expression",
+              "uri": "http://edamontology.org/topic_0203",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Data submission",
+              "uri": "http://edamontology.org/topic_0219",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database management",
+              "uri": "http://edamontology.org/topic_3489",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Model organisms",
+              "uri": "http://edamontology.org/topic_0621",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.ebi.ac.uk/microarray/MIAMExpress/miamexpress.html"
+          ]
+        },
+        "id": "biotools/miamexpress/web/None",
+        "last_updated_at": "2026-03-19T01:09:31.339882",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/miamexpress/web/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:miamexpress_biotools/miamexpress/web/None,sourceforge/miamexpress/None/None",
+  "conflict_name": "miamexpress/*",
+  "date": "2026-04-09T23:02:21.625287+00:00",
+  "run_id": "20260409T221317Z-84587146-ignore-emboss"
+}
