@@ -1,0 +1,501 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/bedtools/None/None",
+        "created_at": "2025-04-02T15:43:46.460385",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "BEDTools is a suite of utilities for comparing genomic features in BED format. These utilities allow one to quickly address tasks such as: 1. Intersecting two BED files. 2. Merge overlapping features. 3. Paired-end overlaps."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/bedtools"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bedtools"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "bedtools",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/bedtools"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://people.virginia.edu/~arq5x/bedtools.html"
+          ]
+        },
+        "id": "sourceforge/bedtools/None/None",
+        "last_updated_at": "2026-03-19T03:34:05.118048",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/bedtools//",
+            "source_url": "https://sourceforge.net/projects/bedtools"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bedtools/cmd/2.31.1,bioconda_recipes/bedtools/cmd/2.27.1,bioconda_recipes/bedtools/cmd/2.26.0gx,bioconda_recipes/bedtools/cmd/2.23.0,bioconda_recipes/bedtools/cmd/2.22,biotools/bedtools/cmd/None,biotools/bedtools/suite/None,biotools/bedtools_bamtobed/web/0.1.0,biotools/fastafrombed/web/1.0,github/bedtools2/None/v2.31.1",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Bedtools Discussion Forum",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://groups.google.com/forum/?fromgroups#!forum/bedtools-discuss"
+            },
+            {
+              "email": "galaxy@pasteur.fr",
+              "maintainer": false,
+              "name": "Galaxy Support Team",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "aaronquinlan@gmail.com",
+              "maintainer": false,
+              "name": "Aaron Quinlan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "evan.christensen@utah.edu",
+              "maintainer": false,
+              "name": "Evan Christensen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "farjoun@gmail.com",
+              "maintainer": false,
+              "name": "Yossi Farjoun",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "chrisamiller@gmail.com",
+              "maintainer": false,
+              "name": "Chris Miller",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jmarshall@hey.com",
+              "maintainer": false,
+              "name": "John Marshall",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bpederse@gmail.com",
+              "maintainer": false,
+              "name": "Brent Pedersen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "iii@linux.ibm.com",
+              "maintainer": false,
+              "name": "Ilya Leoshkevich",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "christian@brueffer.io",
+              "maintainer": false,
+              "name": "Christian Brueffer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "haohou302@gmail.com",
+              "maintainer": false,
+              "name": "Hao Hou",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "45037268+jethror1@users.noreply.github.com",
+              "maintainer": false,
+              "name": "jethror1",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "robert.aboukhalil@gmail.com",
+              "maintainer": false,
+              "name": "Robert Aboukhalil",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "yurikl@gmail.com",
+              "maintainer": false,
+              "name": "Shrulik",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mnk1@andrew.cmu.edu",
+              "maintainer": false,
+              "name": "Nahin Khan",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ysk123.5.789@gmail.com",
+              "maintainer": false,
+              "name": "hisakatha",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "david.winter@gmail.com",
+              "maintainer": false,
+              "name": "dwinter",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "titus@idyll.org",
+              "maintainer": false,
+              "name": "C. Titus Brown",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bernhardu@mailbox.org",
+              "maintainer": false,
+              "name": "Bernhard \u00dcbelacker",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zlib"
+          ],
+          "description": [
+            "Create fasta files with DNA sequences given a BED file.",
+            "BEDTools is an extensive suite of utilities for comparing genomic features in BED format.",
+            "Bedtools - the swiss army knife for genome arithmetic.",
+            "A swiss army knife for genome arithmetic.  https://github.com/arq5x/bedtools2.",
+            "A powerful toolset for genome arithmetic.",
+            "Convert a BAM file to a BED file. The end coordinate is computed by inspecting the CIGAR string. The QNAME for the alignment is used as the BED name field and, by default, the MAPQ is used as the BED score."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bedtools/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bedtools/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://bedtools.readthedocs.io/en/latest/"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://quinlanlab.org/tutorials/bedtools/bedtools.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/arq5x/bedtools2/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/arq5x/bedtools2/releases/download/v2.22.1/bedtools-2.22.1.tar.gz",
+            "https://github.com/arq5x/bedtools2/releases/download/v2.27.1/bedtools-2.27.1.tar.gz",
+            "https://github.com/arq5x/bedtools2/archive/v2.23.0.tar.gz",
+            "https://github.com/arq5x/bedtools2/releases/download/v2.26.0/bedtools-2.26.0.tar.gz",
+            "https://github.com/arq5x/bedtools2/releases/download/v2.31.1/bedtools-2.31.1.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Sequence trace",
+                "uri": "http://edamontology.org/data_0924",
+                "vocabulary": "EDAM"
+              },
+              "term": "BAM",
+              "uri": "http://edamontology.org/format_2572",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Annotation track",
+                "uri": "http://edamontology.org/data_3002",
+                "vocabulary": "EDAM"
+              },
+              "term": "BED",
+              "uri": "http://edamontology.org/format_3003",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "BEDTools",
+            "bedtools2",
+            "bedtools_bamtobed",
+            "fastafrombed",
+            "bedtools"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "GPL v2",
+              "url": null
+            },
+            {
+              "name": "GPL-2.0",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "bedtools",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/operation_2429",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence alignment",
+              "uri": "http://edamontology.org/operation_0292",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Formatting",
+              "uri": "http://edamontology.org/operation_0335",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "bedtools_bamtobed",
+            "fastafrombed",
+            "bedtools2"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Annotation track",
+                "uri": "http://edamontology.org/data_3002",
+                "vocabulary": "EDAM"
+              },
+              "term": "BED",
+              "uri": "http://edamontology.org/format_3003",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Sequence alignment",
+                "uri": "http://edamontology.org/data_0863",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7a7aed3b8acd1a2f9b7a3",
+            "67e2bc0c57d529f68e72a1ef",
+            "67c7a6f3d3b8acd1a2f9b658"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/arq5x/bedtools2"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "github",
+            "biotools"
+          ],
+          "source_code": [
+            "https://github.com/arq5x/bedtools2/releases/download/v2.22.1/bedtools-2.22.1.tar.gz",
+            "https://github.com/arq5x/bedtools2/releases/download/v2.27.1/bedtools-2.27.1.tar.gz",
+            "https://github.com/arq5x/bedtools2/archive/v2.23.0.tar.gz",
+            "https://github.com/arq5x/bedtools2/releases/download/v2.26.0/bedtools-2.26.0.tar.gz",
+            "https://github.com/arq5x/bedtools2/releases/download/v2.31.1/bedtools-2.31.1.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics",
+            "galaxyPasteur",
+            "bedtools",
+            "FASTA utility"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "web",
+            "cmd",
+            "suite"
+          ],
+          "version": [
+            "v2.23.0",
+            "v2.20.1",
+            "v2.27.0",
+            "v2.28.0",
+            "2.27.1",
+            "v2.31.0",
+            "v2.25.0",
+            "0.1.0",
+            "1.0",
+            "v2.24.0",
+            "v2.18.0",
+            "v2.29.2",
+            "v2.30.0",
+            "2.26.0gx",
+            "None",
+            "v2.26.0",
+            "v2.21.0",
+            "v2.19.1",
+            "2.23.0",
+            "v2.29.1",
+            "v2.27.1",
+            "2.22",
+            "v2.18.1",
+            "v2.19.0",
+            "v2.22.0",
+            "2.31.1",
+            "v2.18.2",
+            "v2.22.1",
+            "v2.20.0",
+            "v2.29.0",
+            "v2.31.1"
+          ],
+          "webpage": [
+            "http://bedtools.readthedocs.org/",
+            "https://github.com/arq5x/bedtools2"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:bedtools_bioconda_recipes/bedtools/cmd/2.22,bioconda_recipes/bedtools/cmd/2.23.0,bioconda_recipes/bedtools/cmd/2.26.0gx,bioconda_recipes/bedtools/cmd/2.27.1,bioconda_recipes/bedtools/cmd/2.31.1,biotools/bedtools/cmd/None,biotools/bedtools/suite/None,biotools/bedtools_bamtobed/web/0.1.0,biotools/fastafrombed/web/1.0,github/bedtools2/None/v2.31.1,sourceforge/bedtools/None/None",
+  "conflict_name": "bedtools/*",
+  "date": "2026-04-09T22:02:29.334376+00:00",
+  "run_id": "20260409T204459Z-84587146"
+}
