@@ -1,0 +1,298 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/phemd/undefined/None",
+        "created_at": "2025-04-02T12:20:05.825806",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "bernd.bodenmiller@imls.uzh.ch",
+              "maintainer": false,
+              "name": "Bernd Bodenmiller",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "smita.krishnaswamy@yale.edu",
+              "maintainer": false,
+              "name": "Smita Krishnaswamy",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "PhEMD is a package for relating a network of single-cell samples. By first modeling the cell-state landscape of a model system and then computing pairwise distances between samples using EMD, PhEMD constructs a low-dimensional embedding that uncovers intrinsic manifold structure."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "PhEMD"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "phemd",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deisotoping",
+              "uri": "http://edamontology.org/operation_3629",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Regression analysis",
+              "uri": "http://edamontology.org/operation_3659",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Clustering",
+              "uri": "http://edamontology.org/operation_3432",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c832a310e2f3aa0b3bb303"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cytometry",
+              "uri": "http://edamontology.org/topic_3934",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sample collections",
+              "uri": "http://edamontology.org/topic_3277",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/wschen/phemd"
+          ]
+        },
+        "id": "biotools/phemd/undefined/None",
+        "last_updated_at": "2026-03-19T01:25:37.641985",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/phemd/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-phemd/lib/1.18.0,bioconductor/phemd/lib/1.21.0",
+        "data": {
+          "authors": [
+            {
+              "email": "wil.yum.chen@gmail.com",
+              "maintainer": false,
+              "name": "William S Chen",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "reticulate",
+            "cowplot",
+            "S4Vectors",
+            "SummarizedExperiment",
+            "scatterplot3d",
+            "SingleCellExperiment",
+            "bioconductor-monocle >=2.30.0,<2.31.0",
+            "BiocGenerics",
+            "r-maptree",
+            "igraph",
+            "pheatmap",
+            "RANN",
+            "utils",
+            "r-igraph",
+            "methods",
+            "r-cowplot",
+            "monocle",
+            "transport",
+            "bioconductor-biocgenerics >=0.48.0,<0.49.0",
+            "r-pheatmap",
+            "R (>= 4.0)",
+            "r-rcolorbrewer",
+            "Biobase",
+            "r-reticulate",
+            "maptree",
+            "Seurat",
+            "VGAM",
+            "r-base",
+            "r-pracma",
+            "grDevices",
+            "bioconductor-destiny >=3.16.0,<3.17.0",
+            "bioconductor-biobase >=2.62.0,<2.63.0",
+            "stats",
+            "r-vgam",
+            "Rtsne",
+            "r-seurat",
+            "RColorBrewer",
+            "r-rtsne",
+            "ggplot2",
+            "bioconductor-summarizedexperiment >=1.32.0,<1.33.0",
+            "destiny",
+            "r-phater",
+            "bioconductor-singlecellexperiment >=1.24.0,<1.25.0",
+            "graphics",
+            "cluster",
+            "r-cluster",
+            "r-scatterplot3d",
+            "phateR",
+            "pracma",
+            "r-ggplot2",
+            "r-rann",
+            "bioconductor-s4vectors >=0.40.0,<0.41.0",
+            "r-transport"
+          ],
+          "description": [
+            "Package for comparing and generating a low-dimensional embedding of multiple single-cell samples."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-phemd/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-phemd/README.html"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/phemd_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-phemd/bioconductor-phemd_1.18.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/phemd/phemd_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/phemd_1.18.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-phemd",
+            "phemd"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-phemd",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "phemd"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/phemd"
+            }
+          ],
+          "source": [
+            "bioconductor",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/phemd_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/phemd_1.18.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/phemd/phemd_1.18.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-phemd/bioconductor-phemd_1.18.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.18.0",
+            "1.21.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/phemd",
+            "https://bioconductor.org/packages/3.18/bioc/html/phemd.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:phemd_bioconda_recipes/bioconductor-phemd/lib/1.18.0,bioconductor/phemd/lib/1.21.0,biotools/phemd/undefined/None",
+  "conflict_name": "phemd/*",
+  "date": "2026-04-09T22:58:02.225650+00:00",
+  "run_id": "20260409T221317Z-84587146-ignore-emboss"
+}
