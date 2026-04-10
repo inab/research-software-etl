@@ -1,0 +1,294 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/leehom/cmd/None",
+        "created_at": "2025-04-02T12:03:05.832323",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "gabriel_renaud@eva.mpg.de",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.eva.mpg.de/genetics/index.html"
+            },
+            {
+              "email": "kelso@eva.mpg.de",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Program for the Bayesian reconstruction of ancient DNA."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/grenaud/leeHom/blob/master/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "LeeHom"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "leehom",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Ancestral reconstruction",
+              "uri": "http://edamontology.org/operation_3745",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8288610e2f3aa0b3b7ce1"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Evolutionary biology",
+              "uri": "http://edamontology.org/topic_3299",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://bioinf.eva.mpg.de/leehom/"
+          ]
+        },
+        "id": "biotools/leehom/cmd/None",
+        "last_updated_at": "2026-03-19T01:04:11.567885",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/leehom/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/leehom/cmd/1.2.15,github/leeHom/None/v1.2.18",
+        "data": {
+          "authors": [
+            {
+              "email": "gabriel.reno@gmail.com",
+              "maintainer": false,
+              "name": "grenaud",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "xmf170@a00710.science.domain",
+              "maintainer": false,
+              "name": "xmf170",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "phil.ewels@scilifelab.se",
+              "maintainer": false,
+              "name": "Phil Ewels",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "gabriel@wonton",
+              "maintainer": false,
+              "name": "Gabriel Renaud",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bgreshake@googlemail.com",
+              "maintainer": false,
+              "name": "Bastian Greshake",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "zlib",
+            "bamtools",
+            "htslib",
+            "libgab >=1.0.5"
+          ],
+          "description": [
+            "Bayesian reconstruction of ancient DNA fragments.",
+            "Maximum-likelihood adapter trimming and removal."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/leehom/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/leehom/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/grenaud/leehom/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/grenaud/leehom/archive/1.2.15.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "leehom",
+            "leeHom"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPLv3",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/gpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "leehom",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "leeHom"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/grenaud/leehom"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/grenaud/leeHom"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/grenaud/leehom/archive/1.2.15.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.2.12",
+            "1.2.14",
+            "1.2.10",
+            "1.2.9",
+            "v1.2.17",
+            "1.2.13",
+            "1.2.15",
+            "1.2.6",
+            "v.1.1.5",
+            "1.2",
+            "1.2.16",
+            "v1.2.18",
+            "1.2.11",
+            "1.2.8",
+            "v1.2.5",
+            "1.2.7"
+          ],
+          "webpage": [
+            "https://grenaud.github.io/leeHom/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:leehom_bioconda_recipes/leehom/cmd/1.2.15,biotools/leehom/cmd/None,github/leeHom/None/v1.2.18",
+  "conflict_name": "leehom/*",
+  "date": "2026-04-10T18:37:54.167156+00:00",
+  "run_id": "20260410T170121Z-ae990a21-lower-case-urls-2"
+}
