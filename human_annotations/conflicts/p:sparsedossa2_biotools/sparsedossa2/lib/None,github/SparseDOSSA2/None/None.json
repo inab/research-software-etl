@@ -1,0 +1,286 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/SparseDOSSA2/None/None",
+        "created_at": "2026-03-25T15:19:38.216086",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "syma.research@gmail.com",
+              "maintainer": false,
+              "name": "Siyuan Ma",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "sagun_90@hotmail.com",
+              "maintainer": false,
+              "name": "sagun",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "Siyuan@MacBook-Pro.local",
+              "maintainer": false,
+              "name": "Siyuan Ma",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "12431344+mishort@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Meg Short",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "sim653@mail.harvard.edu",
+              "maintainer": false,
+              "name": "siyuanma",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "sagunmaharjann@gmail.com",
+              "maintainer": false,
+              "name": "sagun98",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SparseDOSSA2"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "SparseDOSSA2",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/biobakery/SparseDOSSA2"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "biobakery",
+              "uri": "https://github.com/topics/biobakery",
+              "vocabulary": ""
+            },
+            {
+              "term": "public",
+              "uri": "https://github.com/topics/public",
+              "vocabulary": ""
+            },
+            {
+              "term": "tools",
+              "uri": "https://github.com/topics/tools",
+              "vocabulary": ""
+            },
+            {
+              "term": "bioconductor",
+              "uri": "https://github.com/topics/bioconductor",
+              "vocabulary": ""
+            },
+            {
+              "term": "r-tools",
+              "uri": "https://github.com/topics/r-tools",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:19:38.216086",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/SparseDOSSA2",
+            "source_url": "https://github.com/biobakery/sparseDOSSA2"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/sparsedossa2/lib/None",
+        "created_at": "2025-04-02T12:48:31.936618",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "chuttenh@hsph.harvard.edu",
+              "maintainer": false,
+              "name": "Curtis Huttenhower",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "SparseDOSSA 2 is an upcoming software for the simulation of null and metadata-associated microbial abundance profiles. It has functionalities for a) fitting to user-provided microbial template datasets, b) synthesizing microbial abundances similar to either user-provided or pre-trained templates, and c) additionally simulating associations with sample metadata or among microbial features."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/biobakery/biobakery/wiki/SparseDOSSA2"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SparseDOSSA 2"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "sparsedossa2",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "DNA barcoding",
+              "uri": "http://edamontology.org/operation_3200",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Ecological modelling",
+              "uri": "http://edamontology.org/operation_3946",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistical modelling",
+              "uri": "http://edamontology.org/operation_3664",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8340110e2f3aa0b3bbbb2"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/biobakery/sparseDOSSA2"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Microbial ecology",
+              "uri": "http://edamontology.org/topic_3697",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Public health and epidemiology",
+              "uri": "http://edamontology.org/topic_3305",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://huttenhower.sph.harvard.edu/sparsedossa2"
+          ]
+        },
+        "id": "biotools/sparsedossa2/lib/None",
+        "last_updated_at": "2026-03-19T01:47:22.219264",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/sparsedossa2/lib/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:sparsedossa2_biotools/sparsedossa2/lib/None,github/SparseDOSSA2/None/None",
+  "conflict_name": "sparsedossa2/*",
+  "date": "2026-04-10T07:21:12.342528+00:00",
+  "run_id": "20260409T221317Z-84587146-ignore-emboss"
+}

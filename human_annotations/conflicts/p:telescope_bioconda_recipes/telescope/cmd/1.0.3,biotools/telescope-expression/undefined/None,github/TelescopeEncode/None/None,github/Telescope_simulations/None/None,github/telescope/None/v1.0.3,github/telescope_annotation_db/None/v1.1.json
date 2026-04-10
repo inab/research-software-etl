@@ -1,0 +1,386 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/Telescope_simulations/None/None",
+        "created_at": "2026-03-25T15:18:55.577781",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "lpr4001@med.cornell.edu",
+              "maintainer": false,
+              "name": "Luis Iniguez",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "liniguez@lcg.unam.mx",
+              "maintainer": false,
+              "name": "Luis Pedro I\u00f1iguez",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/LIniguez/Telescope_simulations/blob/main/Counting.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/LIniguez/Telescope_simulations/blob/main/DB_creation.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/LIniguez/Telescope_simulations/blob/main/Images.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/LIniguez/Telescope_simulations/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/LIniguez/Telescope_simulations/blob/main/Simulations.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/LIniguez/Telescope_simulations/blob/main/Software.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Telescope_simulations"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "Telescope_simulations",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/liniguez/Telescope_simulations"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:18:55.577781",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/Telescope_simulations",
+            "source_url": "https://github.com/LIniguez/Telescope_simulations"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/telescope/cmd/1.0.3,github/telescope/None/v1.0.3,biotools/telescope-expression/undefined/None,github/TelescopeEncode/None/None,github/telescope_annotation_db/None/v1.1",
+        "data": {
+          "authors": [
+            {
+              "email": "mlb4001@med.cornell.edu",
+              "maintainer": false,
+              "name": "Matthew L. Bendall",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "matt.greenig@gmail.com",
+              "maintainer": false,
+              "name": "Matt",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "54070138+mgreenig@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Matthew Greenig",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bendall@gwu.edu",
+              "maintainer": false,
+              "name": "Matthew Bendall",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "numpy",
+            "python",
+            "scipy >=1.2.1",
+            "intervaltree >=3.0.2",
+            "pysam >=0.15.2",
+            "future >=0.17.1",
+            "pyyaml >=5.1"
+          ],
+          "description": [
+            "Telescope is a tool for the characterization of the retrotranscriptome by accurate estimation of transposable element expression and the quantification of transposable element expression using RNA-seq.\nIt can be used for Statistical Performance of TE Quantification Methods.\n\nAll scripts needed to examine the sensitivity and biases of computational approaches for quantifying TE expression: 1) unique counts, 2) best counts, 3) RepEnrich, 4) TEtranscripts, 5) RSEM, 6) SalmonTE, and 7) Telescope.",
+            "Single locus resolution of Transposable ELEment expression.",
+            "Quantification of transposable element expression using RNA-seq.",
+            "Transposable element databases."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/telescope/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/telescope/README.html"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/mlbendall/telescope/blob/main/CHANGELOG.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/mlbendall/telescope/blob/main/DEVELOPER.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/mlbendall/telescope/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "https://github.com/mlbendall/telescope_demo"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/mlbendall/TelescopeEncode/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/mlbendall/telescope_annotation_db/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/mlbendall/telescope/archive/v1.0.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "TelescopeEncode",
+            "Telescope",
+            "telescope",
+            "telescope_annotation_db"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "telescope",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Essential dynamics",
+              "uri": "http://edamontology.org/operation_3891",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence trimming",
+              "uri": "http://edamontology.org/operation_3192",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "RNA-Seq quantification",
+              "uri": "http://edamontology.org/operation_3800",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Expression analysis",
+              "uri": "http://edamontology.org/operation_2495",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read mapping",
+              "uri": "http://edamontology.org/operation_3198",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "TelescopeEncode",
+            "telescope_annotation_db",
+            "telescope-expression"
+          ],
+          "output": [],
+          "publication": [
+            "67c7a5fad3b8acd1a2f9b5de",
+            "67c832b510e2f3aa0b3bb3b3"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/mlbendall/telescope"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/mlbendall/telescope_annotation_db"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/mlbendall/TelescopeEncode"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/LIniguez/Telescope_simulations"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "biotools",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/mlbendall/telescope/archive/v1.0.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "RNA-Seq",
+              "uri": "http://edamontology.org/topic_3170",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "undefined"
+          ],
+          "version": [
+            "v1.0",
+            "v1.0.2",
+            "v1.0.3",
+            "1.0.3",
+            "v1.1",
+            "None",
+            "v0.3"
+          ],
+          "webpage": [
+            "https://github.com/mlbendall/telescope"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:telescope_bioconda_recipes/telescope/cmd/1.0.3,biotools/telescope-expression/undefined/None,github/TelescopeEncode/None/None,github/Telescope_simulations/None/None,github/telescope/None/v1.0.3,github/telescope_annotation_db/None/v1.1",
+  "conflict_name": "telescope/*",
+  "date": "2026-04-10T13:45:10.802619+00:00",
+  "run_id": "20260410T111726Z-ae990a21-lower-case-urls"
+}

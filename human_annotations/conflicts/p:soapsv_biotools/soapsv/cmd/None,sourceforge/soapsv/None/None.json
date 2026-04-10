@@ -1,0 +1,189 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/soapsv/None/None",
+        "created_at": "2025-04-02T15:44:36.795634",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "This is an approach that complements previous methods for reliable homozygous structural variation identification. Our approach accurately determines genotype and breakpoints relative to a reference genome based on de novo assembly of Illumina Genome Analyzer sequencing data. In this method, we examined only homozygous structural variations because detecting heterozygous structural variations requires assembly of haplotype sequences, which is not yet possible using existing assemblers."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/soapsv"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "soapsv"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "soapsv",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/soapsv"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://soapsv.sourceforge.net/"
+          ]
+        },
+        "id": "sourceforge/soapsv/None/None",
+        "last_updated_at": "2026-03-19T03:38:36.667021",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/soapsv//",
+            "source_url": "https://sourceforge.net/projects/soapsv"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/soapsv/cmd/None",
+        "created_at": "2025-04-02T12:41:45.711158",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "soap@genomics.org.cn",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A program for detecting structural variation."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://soap.genomics.org.cn/SOAPsv.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "SOAPsv"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "soapsv",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Structure analysis",
+              "uri": "http://edamontology.org/operation_2480",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82a8e10e2f3aa0b3b8e9f"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Genetic variation",
+              "uri": "http://edamontology.org/topic_0199",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://soap.genomics.org.cn/index.html"
+          ]
+        },
+        "id": "biotools/soapsv/cmd/None",
+        "last_updated_at": "2026-03-19T01:44:05.235056",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/soapsv/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:soapsv_biotools/soapsv/cmd/None,sourceforge/soapsv/None/None",
+  "conflict_name": "soapsv/*",
+  "date": "2026-04-10T07:19:21.158489+00:00",
+  "run_id": "20260409T221317Z-84587146-ignore-emboss"
+}

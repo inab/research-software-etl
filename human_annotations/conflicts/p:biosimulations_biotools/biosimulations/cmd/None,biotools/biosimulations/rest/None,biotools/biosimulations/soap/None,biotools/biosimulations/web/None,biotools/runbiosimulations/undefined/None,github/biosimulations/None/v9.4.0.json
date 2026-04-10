@@ -1,0 +1,599 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/runbiosimulations/undefined/None",
+        "created_at": "2025-04-02T12:58:34.333333",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "karr@mssm.edu",
+              "maintainer": false,
+              "name": "Jonathan Karr",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://www.karrlab.org/"
+            },
+            {
+              "email": "moraru@uchc.edu",
+              "maintainer": false,
+              "name": "Ion Moraru",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://facultydirectory.uchc.edu/profile?profileId=Moraru-Ion"
+            },
+            {
+              "email": "bilalshaikh42@gmail.com",
+              "maintainer": false,
+              "name": "Bilal Shaikh",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://bshaikh.com/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "RunBioSimulations is a web application for executing a broad range of modeling studies and visualizing their results. runBioSimulations uses BioSimulators to supports a broad range of modeling frameworks (e.g., logical, constraint-based, kinetic), simulation algorithms (e.g., CVODE, FBA, SSA), and modeling formats (e.g., BNGL, SBML). runBioSimulations also provides a REST API for programmatic access to the same simulation capabilities."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "api",
+              "url": "https://api.biosimulations.org/"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://docs.biosimulations.org/developers/conduct/"
+            },
+            {
+              "content": null,
+              "type": "contributions_policy",
+              "url": "https://docs.biosimulations.org/community/contributing/"
+            },
+            {
+              "content": null,
+              "type": "faq",
+              "url": "https://docs.biosimulations.org/users/faqs/"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://docs.biosimulations.org/"
+            },
+            {
+              "content": null,
+              "type": "terms_of_use",
+              "url": "https://docs.biosimulations.org/about/terms/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Simulation",
+                "uri": "http://edamontology.org/data_3869",
+                "vocabulary": "EDAM"
+              },
+              "term": "COMBINE OMEX",
+              "uri": "http://edamontology.org/format_3686",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "runBioSimulations"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "runbiosimulations",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Modelling and simulation",
+              "uri": "http://edamontology.org/operation_2426",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Simulation",
+                "uri": "http://edamontology.org/data_3869",
+                "vocabulary": "EDAM"
+              },
+              "term": "HDF5",
+              "uri": "http://edamontology.org/format_3590",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Simulation",
+                "uri": "http://edamontology.org/data_3869",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDF",
+              "uri": "http://edamontology.org/format_3508",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/biosimulations/Biosimulations"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Computational biology",
+              "uri": "http://edamontology.org/topic_3307",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Simulation experiment",
+              "uri": "http://edamontology.org/topic_3524",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Systems biology",
+              "uri": "http://edamontology.org/topic_2259",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://run.biosimulations.org/"
+          ]
+        },
+        "id": "biotools/runbiosimulations/undefined/None",
+        "last_updated_at": "2026-03-19T02:16:57.469739",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/runbiosimulations/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/biosimulations/cmd/None,biotools/biosimulations/rest/None,biotools/biosimulations/web/None,biotools/biosimulations/soap/None,github/biosimulations/None/v9.4.0",
+        "data": {
+          "authors": [
+            {
+              "email": "karr@mssm.edu",
+              "maintainer": false,
+              "name": "Jonathan Karr",
+              "orcid": null,
+              "type": "Person",
+              "url": "https://www.karrlab.org/"
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Bilal Shaikh",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Gnaneswara Marupilla",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Mike Wilson",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Blinov L. Michael",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Ion I. Moraru",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "",
+              "maintainer": false,
+              "name": "Jonathan R. Karr",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A platform for sharing and reusing biomodeling studies including models, simulations, and visualizations of their results.",
+            "BioSimulations is a web application for sharing and re-using biomodels, simulations, and visualizations of simulations results. BioSimulations supports a wide range of modeling frameworks (e.g., kinetic, constraint-based, and logical modeling), model formats (e.g., BNGL, CellML, SBML), and simulation tools (e.g., COPASI, libRoadRunner/tellurium, NFSim, VCell). BioSimulations aims to help researchers discover published models that might be useful for their research and quickly try them via a simple web-based interface."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "api",
+              "url": "https://api.biosimulations.org/"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://docs.biosimulations.org/developers/conduct/"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://docs.biosimulations.org/"
+            },
+            {
+              "content": null,
+              "type": "terms_of_use",
+              "url": "https://docs.biosimulations.org/about/terms/"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/reproducible-biomedical-modeling/Biosimulations/blob/main/License.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/reproducible-biomedical-modeling/Biosimulations/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "changelog",
+              "url": "https://github.com/reproducible-biomedical-modeling/Biosimulations/blob/main/docs/CHANGELOG.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Mathematical model",
+                "uri": "http://edamontology.org/data_0950",
+                "vocabulary": "EDAM"
+              },
+              "term": "SBML",
+              "uri": "http://edamontology.org/format_2585",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mathematical model",
+                "uri": "http://edamontology.org/data_0950",
+                "vocabulary": "EDAM"
+              },
+              "term": "CellML",
+              "uri": "http://edamontology.org/format_3240",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "BioSimulations",
+            "biosimulations"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "biosimulations",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Modelling and simulation",
+              "uri": "http://edamontology.org/operation_2426",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [
+            {
+              "datatype": {
+                "term": "Trajectory data",
+                "uri": "http://edamontology.org/data_3870",
+                "vocabulary": "EDAM"
+              },
+              "term": "CSV",
+              "uri": "http://edamontology.org/format_3752",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Trajectory data",
+                "uri": "http://edamontology.org/data_3870",
+                "vocabulary": "EDAM"
+              },
+              "term": "SVG",
+              "uri": "http://edamontology.org/format_3604",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/reproducible-biomedical-modeling/Biosimulations"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/biosimulations/biosimulations"
+            }
+          ],
+          "source": [
+            "biotools",
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Systems biology",
+              "uri": "http://edamontology.org/topic_2259",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "biology",
+              "uri": "https://github.com/topics/biology",
+              "vocabulary": ""
+            },
+            {
+              "term": "modeling",
+              "uri": "https://github.com/topics/modeling",
+              "vocabulary": ""
+            },
+            {
+              "term": "simulation",
+              "uri": "https://github.com/topics/simulation",
+              "vocabulary": ""
+            },
+            {
+              "term": "standards",
+              "uri": "https://github.com/topics/standards",
+              "vocabulary": ""
+            },
+            {
+              "term": "sbml",
+              "uri": "https://github.com/topics/sbml",
+              "vocabulary": ""
+            },
+            {
+              "term": "sed-ml",
+              "uri": "https://github.com/topics/sed-ml",
+              "vocabulary": ""
+            },
+            {
+              "term": "vega",
+              "uri": "https://github.com/topics/vega",
+              "vocabulary": ""
+            },
+            {
+              "term": "reproducibility",
+              "uri": "https://github.com/topics/reproducibility",
+              "vocabulary": ""
+            },
+            {
+              "term": "biochemical-networks",
+              "uri": "https://github.com/topics/biochemical-networks",
+              "vocabulary": ""
+            },
+            {
+              "term": "biosimulations",
+              "uri": "https://github.com/topics/biosimulations",
+              "vocabulary": ""
+            },
+            {
+              "term": "biological-simulations",
+              "uri": "https://github.com/topics/biological-simulations",
+              "vocabulary": ""
+            },
+            {
+              "term": "biosimulation",
+              "uri": "https://github.com/topics/biosimulation",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "rest",
+            "cmd",
+            "soap",
+            "web"
+          ],
+          "version": [
+            "v9.0.1",
+            "v4.2.0",
+            "v5.4.0",
+            "v5.8.0",
+            "v4.4.1",
+            "v9.2.1",
+            "v8.2.0",
+            "v8.8.0",
+            "v9.1.1",
+            "v3.15.0",
+            "v5.7.0",
+            "v3.12.0",
+            "v8.4.1",
+            "v3.4.1",
+            "v3.10.0",
+            "v5.7.1",
+            "v8.5.2",
+            "v3.16.0",
+            "v9.4.0",
+            "2021-article-submission",
+            "v9.2.4",
+            "v8.5.4",
+            "v2.4.0",
+            "v5.1.1",
+            "v3.13.0",
+            "v3.8.0",
+            "v2.3.0",
+            "v4.4.0",
+            "v3.0.0",
+            "v5.7.3",
+            "v9.0.0",
+            "v3.1.0",
+            "v9.0.2",
+            "v9.2.0",
+            "v8.5.3",
+            "v8.7.0",
+            "v3.3.0",
+            "v6.0.1",
+            "v8.7.1",
+            "v8.5.1",
+            "v3.0.1",
+            "None",
+            "v8.3.0",
+            "v8.2.1",
+            "v4.1.0",
+            "v8.5.0",
+            "v3.6.0",
+            "v5.5.0",
+            "v8.5.6",
+            "v3.18.0",
+            "v9.0.5",
+            "v5.6.0",
+            "v9.3.0",
+            "v8.5.5",
+            "v5.9.0",
+            "v2.5.2",
+            "v3.2.0",
+            "v2.0.0",
+            "v8.6.0",
+            "v9.0.4",
+            "v4.6.0",
+            "v2.5.0",
+            "v3.19.0",
+            "v4.0.1",
+            "v3.0.2",
+            "v8.4.0",
+            "v3.7.0",
+            "v6.0.0",
+            "v7.0.0",
+            "v1.0.0",
+            "v3.11.0",
+            "v5.3.0",
+            "v2.2.0",
+            "v5.0.0",
+            "v2.2.1",
+            "v5.1.0",
+            "v3.20.0",
+            "v5.2.0",
+            "v4.5.0",
+            "v4.4.2",
+            "v2.5.1",
+            "v9.2.2",
+            "v4.0.0",
+            "v8.1.0",
+            "v3.17.0",
+            "v9.1.2",
+            "v9.2.3",
+            "v8.0.0",
+            "v4.3.0",
+            "v3.5.0",
+            "v5.6.2",
+            "v6.1.0",
+            "v2.1.0",
+            "v5.6.1",
+            "v3.14.0",
+            "v5.7.2",
+            "v3.4.0",
+            "v3.9.0",
+            "v6.0.2",
+            "v9.0.3",
+            "v9.1.0"
+          ],
+          "webpage": [
+            "https://biosimulations.org/",
+            "https://www.biosimulations.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:biosimulations_biotools/biosimulations/cmd/None,biotools/biosimulations/rest/None,biotools/biosimulations/soap/None,biotools/biosimulations/web/None,biotools/runbiosimulations/undefined/None,github/biosimulations/None/v9.4.0",
+  "conflict_name": "biosimulations/*",
+  "date": "2026-04-10T13:40:34.201512+00:00",
+  "run_id": "20260410T111726Z-ae990a21-lower-case-urls"
+}

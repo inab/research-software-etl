@@ -1,0 +1,488 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/ThermoRawFileParserGUI/None/None",
+        "created_at": "2025-04-02T15:49:25.525329",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "harald.barsnes@gmail.com",
+              "maintainer": false,
+              "name": "Harald Barsnes",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "49699333+dependabot[bot]@users.noreply.github.com",
+              "maintainer": false,
+              "name": "dependabot[bot]",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "carlos.horro@gmail.com",
+              "maintainer": false,
+              "name": "CarlosHorro",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "niels.hulstaert@ugent.be",
+              "maintainer": false,
+              "name": "Niels Hulstaert",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nielshulstaert@gmail.com",
+              "maintainer": false,
+              "name": "nielshulstaert",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Graphical user interface for the ThermoRawFileParser."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/compomics/ThermoRawFileParserGUI/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/compomics/ThermoRawFileParserGUI/blob/main/README.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ThermoRawFileParserGUI"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache License 2.0",
+              "url": "http://choosealicense.com/licenses/apache-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "ThermoRawFileParserGUI",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/CompOmics/ThermoRawFileParserGUI"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "java",
+              "uri": "https://github.com/topics/java",
+              "vocabulary": ""
+            },
+            {
+              "term": "proteomics",
+              "uri": "https://github.com/topics/proteomics",
+              "vocabulary": ""
+            },
+            {
+              "term": "conversion",
+              "uri": "https://github.com/topics/conversion",
+              "vocabulary": ""
+            },
+            {
+              "term": "raw",
+              "uri": "https://github.com/topics/raw",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://compomics.github.io/projects/ThermoRawFileParserGUI"
+          ]
+        },
+        "id": "github/ThermoRawFileParserGUI/None/None",
+        "last_updated_at": "2026-03-25T15:18:03.483115",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/ThermoRawFileParserGUI",
+            "source_url": "https://github.com/compomics/ThermoRawFileParserGUI"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/thermorawfileparser/cmd/1.4.3,biotools/thermorawfileparser/cmd/None,bioconda_recipes/thermorawfileparser/cmd/2.0.0.dev,github/ThermoRawFileParser/None/v1.4.5,github/ThermoRawFileParser/None/v.2.0.0-dev",
+        "data": {
+          "authors": [
+            {
+              "email": "compomics.list@gmail.com",
+              "maintainer": false,
+              "name": "Computational Omics and Systems Biology Group",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "homer2k@gmail.com",
+              "maintainer": false,
+              "name": "caetera",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ypriverol@gmail.com",
+              "maintainer": false,
+              "name": "Yasset Perez-Riverol",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "asedv@yahoo.de",
+              "maintainer": false,
+              "name": "Andre Schoengraf",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "harald.barsnes@gmail.com",
+              "maintainer": false,
+              "name": "Harald Barsnes",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "52833340+wolfgangcolsman@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Wolfgang Colsman",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "he-ting.zhao@zontal.io",
+              "maintainer": false,
+              "name": "MEMBER\\Heting.Zhao",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "michaellazear92@gmail.com",
+              "maintainer": false,
+              "name": "Michael Lazear",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "homer2k@gmail.com",
+              "maintainer": false,
+              "name": "Vladimir Gorshkov",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lazar.zivadinovic@evotec.com",
+              "maintainer": false,
+              "name": "Lazar Zivadinovic",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "mono >=5",
+            "zlib",
+            "openssl",
+            "icu >=70.1",
+            "libstdcxx-ng >=7.5.0",
+            "libzlib"
+          ],
+          "description": [
+            "Open-source, crossplatform tool that converts Thermo RAW files into open file formats such as MGF and to the HUPO-PSI standard file format mzML.",
+            "Parser for Thermo RAW files based on the ThermoFisher ThermoRawFileReader library.",
+            "Thermo RAW file parser that runs on Linux/Mac and all other platforms that support Mono.",
+            "Wrapper around the .net (C#) ThermoFisher ThermoRawFileReader library for running on Linux with mono."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/thermorawfileparser/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/thermorawfileparser/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/compomics/ThermoRawFileParser"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/compomics/ThermoRawFileParser/blob/master/README.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/compomics/ThermoRawFileParser/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/compomics/ThermoRawFileParser/releases/download/v1.4.3/ThermoRawFileParser1.4.3.zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "Thermo RAW",
+              "uri": "http://edamontology.org/format_3712",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "thermorawfileparser",
+            "ThermoRawFileParser"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache Software",
+              "url": null
+            },
+            {
+              "name": "Apache-2.0",
+              "url": null
+            },
+            {
+              "name": "Apache License 2.0",
+              "url": "http://choosealicense.com/licenses/apache-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "thermorawfileparser",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Read binning",
+              "uri": "http://edamontology.org/operation_3798",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Conversion",
+              "uri": "http://edamontology.org/operation_3434",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Filtering",
+              "uri": "http://edamontology.org/operation_3695",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Peak detection",
+              "uri": "http://edamontology.org/operation_3215",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "ThermoRawFileParser"
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "MGF",
+              "uri": "http://edamontology.org/format_3651",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Mass spectrum",
+                "uri": "http://edamontology.org/data_0943",
+                "vocabulary": "EDAM"
+              },
+              "term": "mzML",
+              "uri": "http://edamontology.org/format_3244",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c82a8b10e2f3aa0b3b8e82"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/compomics/ThermoRawFileParser"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/compomics/ThermoRawFileParserGUI"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/CompOmics/ThermoRawFileParser"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "biotools",
+            "github"
+          ],
+          "source_code": [
+            "https://github.com/compomics/ThermoRawFileParser/releases/download/v1.4.3/ThermoRawFileParser1.4.3.zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Geriatric medicine",
+              "uri": "http://edamontology.org/topic_3399",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Metabolomics",
+              "uri": "http://edamontology.org/topic_3172",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v1.3.4",
+            "v1.2.1",
+            "v1.1.9",
+            "v1.1.10",
+            "v1.4.4",
+            "v1.2.3",
+            "v1.3.0",
+            "v1.4.0",
+            "None",
+            "v1.3.3",
+            "v.2.0.0-dev",
+            "v1.3.1",
+            "v1.3.2",
+            "v1.4.1",
+            "2.0.0.dev",
+            "v1.1.7",
+            "v1.4.3",
+            "v1.4.2",
+            "v1.2.2",
+            "v1.1.11",
+            "1.4.3",
+            "v1.2.0",
+            "v1.1.6",
+            "v1.4.5",
+            "v1.1.8"
+          ],
+          "webpage": [
+            "https://github.com/compomics/ThermoRawFileParser"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:thermorawfileparser_bioconda_recipes/thermorawfileparser/cmd/1.4.3,bioconda_recipes/thermorawfileparser/cmd/2.0.0.dev,biotools/thermorawfileparser/cmd/None,github/ThermoRawFileParser/None/v.2.0.0-dev,github/ThermoRawFileParser/None/v1.4.5,github/ThermoRawFileParserGUI/None/None",
+  "conflict_name": "thermorawfileparser/*",
+  "date": "2026-04-10T13:49:51.019260+00:00",
+  "run_id": "20260410T111726Z-ae990a21-lower-case-urls"
+}
