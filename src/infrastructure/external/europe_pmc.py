@@ -6,6 +6,7 @@ import requests
 
 class EuropePmcClient:
     BASE_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/searchPOST"
+    REST_BASE_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest"
 
     def parse_metadata(self, response_dict: dict[str, Any], doi: str) -> dict[str, Any]:
         """
@@ -35,7 +36,7 @@ class EuropePmcClient:
         metadata["citations"] = [
             {
                 "source": "Europe PMC",
-                "count": {"total": result.get("citedByCount", "")},
+                "count": {"total": result.get("citedByCount", 0)},
             }
         ]
         return metadata
@@ -75,32 +76,125 @@ class EuropePmcClient:
         response_json = self.fetch_metadata(doi)
         return self.parse_metadata(response_json, doi)
 
-    def fetch_citations(self, identifier: str, source: str) -> list[dict[str, Any]]:
+    def fetch_citations_page(
+        self,
+        identifier: str,
+        source: str,
+        page: int = 1,
+        page_size: int = 1000,
+    ) -> dict[str, Any]:
         """
-        Fetch citations from Europe PMC by identifier/source.
-        Example: source='pmid'
+        Fetch one page of citing publications from Europe PMC.
+
+        Example endpoint:
+        /MED/27083558/citations?page=1&pageSize=25&format=json
         """
-        base_url = "https://www.ebi.ac.uk/europepmc/webservices/rest/"
-        url = f"{base_url}{source}/{identifier}/citations?format=json"
+        url = (
+            f"{self.REST_BASE_URL}/{source}/{identifier}/citations"
+            f"?page={page}&pageSize={page_size}&format=json"
+        )
 
         response = requests.get(url, timeout=30)
         if response.status_code == 200:
-            data = response.json()
-            return data.get("citationList", {}).get("citation", [])
+            return response.json()
 
-        return []
+        return {
+            "error": f"Request failed with status code {response.status_code}",
+            "details": response.text,
+        }
+
+    def fetch_all_citations(
+        self,
+        identifier: str,
+        source: str,
+        page_size: int = 1000,
+    ) -> list[dict[str, Any]]:
+        """
+        Fetch all citing publications from Europe PMC, following pagination.
+        """
+        all_citations: list[dict[str, Any]] = []
+        page = 1
+
+        while True:
+            page_data = self.fetch_citations_page(
+                identifier=identifier,
+                source=source,
+                page=page,
+                page_size=page_size,
+            )
+
+            if page_data.get("error"):
+                break
+
+            citation_list = page_data.get("citationList", {}).get("citation", [])
+            if not isinstance(citation_list, list):
+                citation_list = []
+
+            all_citations.extend(citation_list)
+
+            hit_count = page_data.get("hitCount", 0)
+            if not isinstance(hit_count, int):
+                try:
+                    hit_count = int(hit_count)
+                except Exception:
+                    hit_count = 0
+
+            if len(all_citations) >= hit_count or len(citation_list) == 0:
+                break
+
+            page += 1
+
+        return all_citations
+
+    def count_citations_per_year(
+        self,
+        citations: list[dict[str, Any]],
+    ) -> dict[str, int]:
+        """
+        Build a year -> citation count dictionary from Europe PMC citing records.
+
+        Important:
+        Each citing publication counts as 1 citation for the target publication.
+        We do NOT sum citedByCount from the citing publications.
+        """
+        counts: dict[str, int] = {}
+
+        for citation in citations:
+            if not isinstance(citation, dict):
+                continue
+
+            pub_year = citation.get("pubYear")
+            if pub_year is None:
+                continue
+
+            year = str(pub_year).strip()
+            if not year:
+                continue
+
+            counts[year] = counts.get(year, 0) + 1
+
+        counts["total"] = len(citations)
+        return counts
 
     def get_metadata_and_citations(self, doi: str) -> dict[str, Any]:
         """
-        Preserve the old combined behavior.
+        Fetch publication metadata and all Europe PMC citations grouped per year.
         """
         metadata = self.get_publication_metadata(doi)
         if "error" in metadata:
             return metadata
 
         pmid = metadata.get("pmid", "")
-        if pmid:
-            citations = self.fetch_citations(pmid, "pmid")
-            metadata["citations"] = citations
+        source = metadata.get("source", "")
+
+        if pmid and source:
+            citations = self.fetch_all_citations(identifier=pmid, source=source)
+            citation_counts = self.count_citations_per_year(citations)
+            metadata["citations"] = [
+                {
+                    "source": "Europe PMC",
+                    "count": citation_counts,
+                }
+            ]
 
         return metadata

@@ -18,6 +18,7 @@ class PipelineError(RuntimeError):
 
 STAGES = [
     "transformation",
+    "license-normalization",
     "grouping",
     "remove_opeb_metrics",
     "conflict_detection",
@@ -27,6 +28,7 @@ STAGES = [
     "human_updates",
     "merge",
     "stats",
+    "fairsoft"
 ]
 
 
@@ -223,6 +225,7 @@ def run_full(
     until_stage: Optional[str] = None,
     only_stage: Optional[str] = None,
     resume_run: Optional[str | Path] = None,
+    dry_run_disambiguation: bool = False
 ) -> None:
     
 
@@ -305,6 +308,14 @@ def run_full(
         )
         executed_stages.append("transformation")
 
+    if should_run("license-normalization"):
+        print("=== Stage: license-normalization ===")
+        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _run(
+            [python_exe, "-m", "src.adapters.cli.post_transformation/normalize_licenses"],
+            cwd=wd
+        )
+
     if should_run("grouping"):
         print("=== Stage: grouping ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
@@ -326,7 +337,7 @@ def run_full(
         _run(
             [
                 python_exe,
-                "scripts/scripts/remove_oeb_metrics.py",
+                "scripts/utils/remove_oeb_metrics.py",
                 "--in",
                 str(grouped_entries_file),
                 "--out",
@@ -399,24 +410,27 @@ def run_full(
     if should_run("disambiguation"):
         print("=== Stage: disambiguation ===")
         _require_env(["GITHUB_TOKEN", "GITLAB_TOKEN", "OPENROUTER_API_KEY", "HUGGINGFACE_API_KEY"])
-        _run(
-            [
-                python_exe,
-                "-m",
-                "src.adapters.cli.integration.disambiguation",
-                "--conflict-blocks-file",
-                str(conflicts_jsonl),
-                "--blocks-file",
-                str(simplified_blocks_jsonl),
-                "--disambiguated-blocks-file",
-                str(disambiguation_out_file),
-                "--pair_wise_decisions_file",
-                str(pair_wise_decisions_file),
-                "--run-id",
-                run_id,
-            ],
-            cwd=wd,
-        )
+        cmd = [
+            python_exe,
+            "-m",
+            "src.adapters.cli.integration.disambiguation",
+            "--conflict-blocks-file",
+            str(conflicts_jsonl),
+            "--blocks-file",
+            str(simplified_blocks_jsonl),
+            "--disambiguated-blocks-file",
+            str(disambiguation_out_file),
+            "--pair_wise_decisions_file",
+            str(pair_wise_decisions_file),
+            "--run-id",
+            run_id,
+        ]
+
+        if dry_run_disambiguation:
+            cmd.append("--dry-run")
+
+        _run(cmd, cwd=wd)
+
         executed_stages.append("disambiguation")
 
     if should_run("human_updates"):
@@ -429,8 +443,10 @@ def run_full(
             [
                 python_exe,
                 "-m",
-                "src.adapters.cli.integration.update_disambiguation_after_human_resoltion",
-                "--disambiguation-dir",
+                "src.adapters.cli.integration.update_disambiguation_after_human_resolution",
+                "--conflict-blocks-file",
+                str(conflicts_jsonl),
+                "--disambiguated-blocks-file",
                 str(disambiguation_out_file),
             ],
             cwd=wd,
@@ -456,10 +472,20 @@ def run_full(
         print("=== Stage: stats ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
         _run(
-            [python_exe, "-m", "src.adapters.cli.generate_stats", "--collections", "tools"],
+            [python_exe, "-m", "src.adapters.cli.generate_stats", "--collections", "Proteomics, tools"],
             cwd=wd,
         )
         executed_stages.append("stats")
+
+    if should_run("fairsoft"):
+        print("=== Stage: fairsoft ===")
+        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _run(
+            [python_exe, "-m", "src.adapters.cli.fair_scores", "--collections", "Proteomics, tools"],
+            cwd=wd,
+        )
+        executed_stages.append("fairsoft")
+
 
     execution_record = {
         "utc_started": started_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -477,6 +503,8 @@ def run_full(
             "remove_opeb_metrics": remove_opeb_metrics,
             "human_updates": human_updates,
             "do_merge_to_db": do_merge_to_db,
+            "dry_run_disambiguation": dry_run_disambiguation,
+
         },
     }
 
@@ -502,6 +530,7 @@ def run_full(
             "remove_opeb_metrics": remove_opeb_metrics,
             "human_updates": human_updates,
             "do_merge_to_db": do_merge_to_db,
+            "dry_run_disambiguation": dry_run_disambiguation,
         },
         "latest_execution": execution_record,
         "latest_executed_stages": executed_stages,

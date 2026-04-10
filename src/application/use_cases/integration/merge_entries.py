@@ -106,7 +106,7 @@ def save_entry(metadata):
     """
     try:
         id = mongo_adapter.insert_one(
-            collection_name='toolsDevTest',
+            collection_name='toolsDev',
             document=metadata
         )
 

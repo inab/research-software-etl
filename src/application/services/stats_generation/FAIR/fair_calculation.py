@@ -125,7 +125,7 @@ def compute_fair_score_means(results: List[Dict[str, Any]]) -> Dict[str, float]:
 
 def request_fair_calculation(entry) -> None:
     
-    URL ="https://observatory.openebench.bsc.es/api/fair/evaluate"
+    URL ="https://observatory.openebench.bsc.es/api/fairsoft/evaluate"
     #URL ="http://127.0.0.1:8000/fair/evaluate"
     body = {
         'tool_metadata': entry,
@@ -207,7 +207,7 @@ def compute_fair_results(tools):
         entry['repository'] = repos
 
         if entry['test'] is True:
-            entry['test'] = ['https://openebech.bsc.es']
+            entry['test'] = ['https://openebench.bsc.es']
         else:
             entry['test'] = []
 

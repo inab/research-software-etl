@@ -11,11 +11,6 @@ logger = logging.getLogger("rs-etl-pipeline")
 global webTypes
 webTypes = ['rest', 'web', 'app', 'suite', 'workbench', 'db', 'soap', 'sparql']
 
-# Labels of sources accross FAIRsoft pacakage. Must be consistent!!!! 
-# Present in:
-# 1.- 'sources' field in `instance`` objects (and anywhere they appear in code) 
-# 2.- toolGenerators in FAIRsoft.meta_transformers
-# if labels change in one place, they must change in the others for everythong to keep working
 
 sources_labels = {
     'BIOCONDUCTOR':'bioconductor',

@@ -78,10 +78,6 @@ def generate_stats_for_collections(collections):
         
         documentation(tools, collection=collection)
         print('Documentation done')
-
-
-        compute_fair_distributions(tools, collection=collection)
-        print('Fair distributions done')
         
         publications_journals_IF(collection=collection)
         print('Publications journals IF done')

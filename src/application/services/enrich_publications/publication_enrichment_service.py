@@ -2,24 +2,21 @@ from __future__ import annotations
 
 from typing import Any
 
-from application.services.enrich_publications.helpers import (
-    count_citations_per_year,
-    remove_empty_fields,
-)
+from application.services.enrich_publications.helpers import remove_empty_fields
 
 
 class PublicationEnrichmentService:
     """
-    Enrich one publication by DOI.
+    Enrich one publication by DOI using Europe PMC only.
 
-    Main behavior preserved from the original code:
+    Behavior:
     - metadata comes from Europe PMC
-    - citation counts per year come from Semantic Scholar
+    - citations are fetched from Europe PMC and grouped by publication year
     """
 
-    def __init__(self, europe_pmc_client, semantic_scholar_client) -> None:
+    def __init__(self, europe_pmc_client) -> None:
         self.europe_pmc_client = europe_pmc_client
-        self.semantic_scholar_client = semantic_scholar_client
+        self.europe_pmc_citation_error_count = 0
 
     def enrich_by_doi(self, doi: str) -> dict[str, Any]:
         metadata: dict[str, Any] = {}
@@ -35,28 +32,34 @@ class PublicationEnrichmentService:
         # Ensure DOI is present even if Europe PMC fails
         metadata["doi"] = doi
 
-        # --- Semantic Scholar citations ---
-        try:
-            citations_response = self.semantic_scholar_client.fetch_semanticscholar_citations(doi)
-            processed_citations = count_citations_per_year(citations_response)
+        if "error" in metadata:
+            return metadata
 
-            if metadata.get("citations"):
-                metadata["citations"].append(
-                    {
-                        "source": "Semantic Scholar",
-                        "count": processed_citations,
-                    }
+        # --- Europe PMC citations per year ---
+        try:
+            pmid = metadata.get("pmid", "")
+            source = metadata.get("source", "")
+
+            if pmid and source:
+                citations = self.europe_pmc_client.fetch_all_citations(
+                    identifier=pmid,
+                    source=source,
                 )
-            else:
+                processed_citations = self.europe_pmc_client.count_citations_per_year(
+                    citations
+                )
+
                 metadata["citations"] = [
                     {
-                        "source": "Semantic Scholar",
+                        "source": "Europe PMC",
                         "count": processed_citations,
                     }
                 ]
 
             metadata = remove_empty_fields(metadata)
+
         except Exception as exc:
-            print(f"Error fetching metadata from Semantic Scholar for DOI {doi}: {exc}")
+            self.europe_pmc_citation_error_count += 1
+            print(f"Error fetching citations from Europe PMC for DOI {doi}: {exc}")
 
         return metadata

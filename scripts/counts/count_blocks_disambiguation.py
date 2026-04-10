@@ -1,101 +1,102 @@
-from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 import json
+
+
 # ----------------------------------------------------
-# Count the number of blocks in the disambiguation process
-#
+# Count blocks from the final disambiguation file
 # ----------------------------------------------------
 
-
-db_pre_human_path = 'scripts/data/disambiguated_blocks_second_round.jsonl'
-db_after_human_path = 'scripts/data/disambiguated_blocks.jsonl'
-
-human_solution = 'human_annotations/human_conflicts_log.jsonl'
+db_final_path = "data/integration/runs/20260327T114032Z-c227780a-pre-annotation/disambiguation.20260327T114032Z-c227780a-pre-annotation.jsonl"
 
 
-keys = {}
-for line in open(human_solution):
-    # load dict from line
-    line = line.strip()
-    if not line:
-        continue
-    try:
-        d = json.loads(line)
-        k = list(d.keys())[0]
-        if k in keys:
-            print(f"Duplicate key found: {k}")
-            keys[k] += 1
-        else:
-            keys[k] = 1
-    except json.JSONDecodeError:
-        print(f"Error decoding JSON: {line}")
-        continue
+def load_disambiguation_blocks(path: str) -> dict[str, dict]:
+    """
+    Load disambiguation blocks from JSONL.
 
-for k, v in keys.items():
-    if v > 1:
-        print(f"Key {k} appears {v} times in the human solution file.")
+    Expected line format:
+    {"block_id": {...block_data...}}
 
-db_pre_human = load_dict_from_jsonl(db_pre_human_path)
+    Returns:
+        dict[str, dict]: {block_id: block_data}
+    """
+    blocks = {}
 
-blocks = 0
-for k, v in keys.items():
-    if k not in db_pre_human:
-        print(f"Key {k} not found in the disambiguated blocks file.")
-    else:
-        blocks += 1
-        if db_pre_human[k].get("resolution") != "manual_review_pending":
-            print(f"Key {k} is not marked as manual_review_pending in the disambiguated blocks file.")
+    with open(path, "r", encoding="utf-8") as f:
+        for line_number, line in enumerate(f, start=1):
+            line = line.strip()
+            if not line:
+                continue
 
-print(f"Total number of blocks in the human solution file: {len(keys)}")
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                print(f"Error decoding JSON in {path}, line {line_number}: {line}")
+                continue
 
+            if not isinstance(record, dict):
+                print(
+                    f"Unexpected record type in {path}, line {line_number}: "
+                    f"expected dict, got {type(record).__name__}"
+                )
+                continue
+
+            if len(record) != 1:
+                print(
+                    f"Unexpected record structure in {path}, line {line_number}: "
+                    f"expected a single-key dict, got keys {list(record.keys())}"
+                )
+                continue
+
+            block_id, block_data = next(iter(record.items()))
+
+            if block_id in blocks:
+                print(f"Duplicate block ID found in {path}: {block_id}")
+
+            blocks[block_id] = block_data
+
+    return blocks
+
+
+db_final = load_disambiguation_blocks(db_final_path)
 
 non_conflictive = 0
 conflictive = 0
 solved_by_llms = 0
-unclear_for_llms = 0
 solved_by_human = 0
-unclear_for_human = 0
+unclear = 0
 
+for key, block in db_final.items():
+    if "_secondary_" in key:
+        # Secondary blocks are not counted as independent blocks
+        continue
 
+    resolution = block.get("resolution")
+    source = block.get("source", "")
 
-for key in db_pre_human:
-    if db_pre_human[key].get("resolution") == "no_conflict":
+    if resolution == "no_conflict":
         non_conflictive += 1
+        continue
+
+    conflictive += 1
+
+    if resolution == "unclear":
+        unclear += 1
+
+    elif source == "manual":
+        solved_by_human += 1
+
+    elif source.startswith("auto:agreement-proxy-v"):
+        solved_by_llms += 1
+
     else:
-        if '_secondary_' in key:
-            # This is a secondary block, so we don't count it
-            continue
-        conflictive += 1
-
-        if db_pre_human[key].get("resolution") == "merged" or db_pre_human[key].get("resolution") == "partial":
-            solved_by_llms += 1
-
-        elif db_pre_human[key].get("resolution") == "manual_review_pending":
-            unclear_for_llms += 1
-
-        else:
-            print(f"WARNING: Unknown resolution: {db_pre_human[key].get('resolution')}.")
-            unclear_for_llms += 1
+        print(
+            f"WARNING: Block {key} has conflictive resolution '{resolution}' "
+            f"but unknown source '{source}'."
+        )
 
 
-db_after_human = load_dict_from_jsonl(db_after_human_path)
-for key in db_after_human:
-    if db_after_human[key].get("resolution") == "unclear":
-        unclear_for_human += 1
-
-solved_by_human = unclear_for_llms - unclear_for_human
-
-secondary_blocks = 2
-
-
-# Total number of blcoks and total number of records are different things, because "partial" 
-# blocks should be counted as 2 blocks
-
-
-print(f"Total number of blocks: {len(db_pre_human)}")
+print(f"Total number of blocks: {non_conflictive + conflictive}")
 print(f"-- Number of non-conflictive blocks: {non_conflictive}")
 print(f"-- Number of conflictive blocks: {conflictive}")
 print(f"    -- Number of blocks solved by LLMs: {solved_by_llms}")
-print(f"    -- Number of blocks unclear for LLMs: {unclear_for_llms}")
-print(f"         -- Number of blocks solved by human: {solved_by_human}")
-print(f"         -- Number of blocks unclear for human: {unclear_for_human}")
-
+print(f"    -- Number of blocks solved by human: {solved_by_human}")
+print(f"    -- Number of blocks still unclear: {unclear}")

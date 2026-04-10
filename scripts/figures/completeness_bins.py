@@ -162,7 +162,7 @@ def software_completeness_total():
 
 
 def publications_completeness():
-    records = mongo_adapter.fetch_entries("publicationsMetadataDev", {})
+    records = mongo_adapter.fetch_entries("publications_metadata", {})
     europe_pmc = []
     semantic_scholar = []
     pubs_perct = []
@@ -189,7 +189,7 @@ def publications_completeness():
                     
         if features_count == 0:
             print("Record with cero features")
-            #mongo_adapter.delete_entry("publicationsMetadataDev", record['_id'])
+            #mongo_adapter.delete_entry("publications_metadata", record['_id'])
 
         percentage_record = features_count / 11
 
@@ -203,60 +203,90 @@ def publications_completeness():
     print('-----------------------------------')
 
 
-def pubs_sources_completeness():
 
-    def count_features(tool: Dict[str, Any]) -> int:
-        return sum(1 for k,v in tool.items() if is_meaningful(k,v, publication_features))
-    
-    file_path = "scripts/data/publications_enrichment.jsonl"
-    with open(file_path, "r") as file:
-        lines = file.readlines()
-    records = [json.loads(line) for line in lines]
+
+def pubs_sources_completeness():
+    """
+    Compute completeness bins for publication information coming from
+    Europe PMC and Semantic Scholar, using publications_metadata.
+
+    Assumptions:
+    - Publication metadata live in the "data" field of each document.
+    - Source-specific citation info is stored in data.citations as a list of dicts.
+    - Europe PMC records are publication docs that contain a citation entry
+      with source == "Europe PMC".
+    - Semantic Scholar records are publication docs that contain a citation entry
+      with source == "Semantic Scholar".
+    """
+
+    def count_features(publication_data: Dict[str, Any]) -> int:
+        return sum(
+            1
+            for k, v in publication_data.items()
+            if is_meaningful(k, v, publication_features)
+        )
+
+    def get_citation_entry_by_source(publication_data: Dict[str, Any], source_name: str):
+        citations = publication_data.get("citations", [])
+
+        if not isinstance(citations, list):
+            return None
+
+        for citation in citations:
+            if not isinstance(citation, dict):
+                continue
+            if citation.get("source") == source_name:
+                return citation
+
+        return None
 
     europe_pmc = []
     semantic_scholar = []
 
-    for record in records:
-        if 'error' not in record:
-            if record['source'] == 'Europe PMC':
-                europe_pmc.append(record)
-            elif record['source'] == 'Semantic Scholar':
-                semantic_scholar.append(record)
+    for doc in mongo_adapter.fetch_entries("publications_metadata", {}):
+        publication_data = doc.get("data", {})
+
+        if not isinstance(publication_data, dict):
+            continue
+
+        europe_pmc_citation = get_citation_entry_by_source(publication_data, "Europe PMC")
+        semantic_scholar_citation = get_citation_entry_by_source(
+            publication_data, "Semantic Scholar"
+        )
+
+        if europe_pmc_citation is not None:
+            europe_pmc.append(publication_data)
+
+        if semantic_scholar_citation is not None:
+            semantic_scholar.append((publication_data, semantic_scholar_citation))
 
     perc_europe_pmc = []
     for record in europe_pmc:
         features_count = count_features(record)
         percentage_record = features_count / 11
         perc_europe_pmc.append(percentage_record)
-    
+
     bins = bin_scores_by_completeness(perc_europe_pmc)
-    print(f" ----- Bins for Europe PMC ----- ")
+    print(" ----- Bins for Europe PMC ----- ")
     print(f"Extracted {len(europe_pmc)} records from Europe PMC")
     for i, score in enumerate(bins):
         print(f"Bin {i}: {score * 100:.4f}%")
-    print('-----------------------------------')
+    print("-----------------------------------")
 
     perc_semantic_scholar = []
-    n_semantic =0
-    for record in semantic_scholar:
-        if record['citations'].get('count'):
-            if record['citations']['count']['total'] > 0:
-                features_count = count_features(record)
-                percentage_record = 1 / 11
-                perc_semantic_scholar.append(percentage_record)
-                n_semantic += 1
-            
-    
+    n_semantic = 0
+    for record, semantic_citation in semantic_scholar:
+        count_data = semantic_citation.get("count", {})
+
+        if isinstance(count_data, dict) and count_data.get("total", 0) > 0:
+            features_count = count_features(record)
+            percentage_record = features_count / 11
+            perc_semantic_scholar.append(percentage_record)
+            n_semantic += 1
+
     bins = bin_scores_by_completeness(perc_semantic_scholar)
-    print(f" ----- Bins for Semantic Scholar ----- ")
-    print(f"Extracted {n_semantic} records from Semantic Scholar")
-    for i, score in enumerate(bins):
-        print(f"Bin {i}: {score * 100:.4f}%")
-    print('-----------------------------------')
 
         
-
-
 
 if __name__ == "__main__":
 

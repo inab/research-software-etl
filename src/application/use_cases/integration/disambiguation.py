@@ -9,7 +9,8 @@ async def run_full_disambiguation(blocks_file,
                          conflict_blocks_file, 
                          disambiguated_blocks_file,
                          pair_wise_decisions_file,
-                         run_id):
+                         run_id,
+                         dry_run):
 
     # 1. Load input data
 
@@ -18,13 +19,13 @@ async def run_full_disambiguation(blocks_file,
 
 
     # 3. Run first round of disambiguation
-
     disambiguated_blocks = await disambiguate_blocks(
         conflict_blocks=conflict_blocks,
         blocks=blocks,
         disambiguated_blocks_path=disambiguated_blocks_file,
         pair_wise_decisions_path=pair_wise_decisions_file,
-        run_id=run_id
+        run_id=run_id,
+        dry_run=dry_run
     )
 
 
@@ -50,7 +51,8 @@ async def run_full_disambiguation(blocks_file,
             blocks_path=blocks_file,
             run_id=run_id,
             pair_wise_decisions_path=pair_wise_decisions_file,
-            disambiguate_blocks_func=disambiguate_blocks
+            disambiguate_blocks_func=disambiguate_blocks,
+            dry_run=dry_run
         )
 
         # Reload conflict_blocks to see what's left

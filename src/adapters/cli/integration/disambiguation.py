@@ -60,6 +60,12 @@ async def main():
         default=".env",
     )
 
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Run disambiguation without creating conflict files or GitHub issues. Prints how many issues would be created and the pair IDs involved.",
+    )
+
 
     args = parser.parse_args()
 
@@ -73,7 +79,7 @@ async def main():
     logger.info(f"Blocks file: {args.blocks_file}")
     logger.info(f"Conflict blocks file: {args.conflict_blocks_file}")
     logger.info(f"Disambiguated blocks file: {args.disambiguated_blocks_file}")
-    logger.info(f"Pair-wise deicisions file: {args.pair_wise_decisions_file}")
+    logger.info(f"Pair-wise decisions file: {args.pair_wise_decisions_file}")
 
 
     logger.info("Disambiguating entries...")
@@ -83,6 +89,7 @@ async def main():
         disambiguated_blocks_file=args.disambiguated_blocks_file,
         pair_wise_decisions_file=args.pair_wise_decisions_file,
         run_id = args.run_id,
+        dry_run= args.dry_run
     )
 
     logger.info("Disambiguation finished!")

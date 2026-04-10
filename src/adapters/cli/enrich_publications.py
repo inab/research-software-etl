@@ -1,9 +1,9 @@
-'''
+"""
 python -m adapters.cli.enrich_publications
 python -m adapters.cli.enrich_publications --limit 100
 python -m adapters.cli.enrich_publications --progress-every 100
 python -m adapters.cli.enrich_publications --no-update-db
-'''
+"""
 
 from __future__ import annotations
 
@@ -20,13 +20,12 @@ from infrastructure.db.mongo.publications_repository import (
     MongoPublicationRepository,
 )
 from infrastructure.external.europe_pmc import EuropePmcClient
-from infrastructure.external.semantic_scholar import SemanticScholarClient
 from infrastructure.storage.jsonl import JsonlPublicationEnrichmentCache
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Enrich publication metadata using Europe PMC and Semantic Scholar."
+        description="Enrich publication metadata and citation counts using Europe PMC."
     )
     parser.add_argument(
         "--collection",
@@ -81,7 +80,6 @@ def main() -> int:
     enrichment_cache = JsonlPublicationEnrichmentCache(args.jsonl_path)
     enrichment_service = PublicationEnrichmentService(
         europe_pmc_client=EuropePmcClient(),
-        semantic_scholar_client=SemanticScholarClient(),
     )
 
     use_case = EnrichPublicationCollectionUseCase(

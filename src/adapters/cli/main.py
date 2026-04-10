@@ -144,7 +144,13 @@ def main(argv: list[str] | None = None) -> int:
     run_p.add_argument("--python-exe", default="python", help="Python executable for subprocesses")
     run_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
     run_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
-
+    run_p.add_argument(
+        "--dry-run-disambiguation",
+        dest="dry_run_disambiguation",
+        action="store_true",
+        help="Run the disambiguation stage without creating conflict files or GitHub issues.",
+    )
+    
     # --- run-transformation -----------------------------------------------------
     tr_p = subparsers.add_parser("run-transformation", help="Run only the transformation step")
     tr_p.add_argument("--tag", dest="run_tag", help="Optional tag appended to run ID")
@@ -152,7 +158,7 @@ def main(argv: list[str] | None = None) -> int:
     tr_p.add_argument("--python-exe", default="python", help="Python executable for subprocesses")
     tr_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
     tr_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
-
+    
     # --- check-env --------------------------------------------------------------
     subparsers.add_parser("check-env", help="Check environment variables and API connectivity")
 
@@ -210,6 +216,7 @@ def main(argv: list[str] | None = None) -> int:
                 until_stage=args.until_stage,
                 only_stage=args.only_stage,
                 resume_run=args.resume_run,
+                dry_run_disambiguation=args.dry_run_disambiguation
             )
             return 0
 

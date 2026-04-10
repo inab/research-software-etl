@@ -4,7 +4,7 @@ from datetime import datetime
 
 from bson import ObjectId
 
-def compute_journal_impact(docs, years=['2022', '2023', '2024', '2025']):
+def compute_journal_impact(docs, years=['2023', '2024', '2025']):
     """
     Compute total citations in selected years per journal and collect document IDs.
     

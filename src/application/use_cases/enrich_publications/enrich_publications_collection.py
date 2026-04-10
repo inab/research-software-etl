@@ -4,8 +4,8 @@ Application use case: enrich the publications collection from DOI metadata.
 This module defines the collection-level enrichment workflow for publication
 records. Given a publications collection, the use case scans records with a
 DOI, normalizes and validates each DOI, skips already seen identifiers when
-configured, retrieves enriched metadata from an external service, and updates
-the corresponding database records.
+configured, retrieves enriched metadata and citation counts from Europe PMC,
+and updates the corresponding database records.
 
 Its role is to ensure that stored publication entries can be progressively
 completed and refreshed from DOI-based metadata sources, while remaining safe
@@ -46,6 +46,7 @@ class EnrichPublicationCollectionUseCase:
         updated = 0
         skipped_seen = 0
         skipped_invalid = 0
+        no_metadata = 0
 
         for doc in self.publication_repository.fetch_with_doi(collection_name):
             if limit is not None and processed >= limit:
@@ -69,8 +70,9 @@ class EnrichPublicationCollectionUseCase:
 
             metadata = self.enrichment_service.enrich_by_doi(doi)
 
-            if not metadata:
+            if not metadata or metadata.get("error"):
                 print(f"No metadata found for DOI {doi}")
+                no_metadata += 1
                 continue
 
             if update_db:
@@ -91,10 +93,17 @@ class EnrichPublicationCollectionUseCase:
                 print(
                     f"Processed {processed} docs | "
                     f"updated={updated} | skipped_seen={skipped_seen} | "
-                    f"skipped_invalid={skipped_invalid}"
+                    f"skipped_invalid={skipped_invalid} | no_metadata={no_metadata}"
                 )
 
         print(
             f"Done. Processed={processed}, updated={updated}, "
-            f"skipped_seen={skipped_seen}, skipped_invalid={skipped_invalid}"
+            f"skipped_seen={skipped_seen}, skipped_invalid={skipped_invalid}, "
+            f"no_metadata={no_metadata}"
         )
+
+        if hasattr(self.enrichment_service, "europe_pmc_citation_error_count"):
+            print(
+                "Europe PMC citation fetch errors: "
+                f"{self.enrichment_service.europe_pmc_citation_error_count}"
+            )
