@@ -1,0 +1,184 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "sourceforge/almost/None/None",
+        "created_at": "2025-04-02T15:44:49.516589",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Almost - all atom molecular simulation toolkit - is a fast and flexible molecular modeling environment that provides powerful and efficient algorithms for molecular simulation, homology modeling, de novo design and ab-initio calculations."
+          ],
+          "documentation": [],
+          "download": [
+            "https://sourceforge.net/projects/almost"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "almost"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "almost",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "sourceforge",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://sourceforge.net/projects/almost"
+            }
+          ],
+          "source": [
+            "sourceforge"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": [
+            "http://www.open-almost.org/"
+          ]
+        },
+        "id": "sourceforge/almost/None/None",
+        "last_updated_at": "2026-03-19T03:38:59.837956",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "sourceforge/almost//",
+            "source_url": "https://sourceforge.net/projects/almost"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/almost/cmd/None",
+        "created_at": "2025-04-02T11:34:21.670883",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www-vendruscolo.ch.cam.ac.uk/index.html"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "This modelling environment provides powerful and efficient algorithms for molecular simulation, homology modeling, de novo design and ab-initio calculations."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "ALMOST"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "almost",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein modelling",
+              "uri": "http://edamontology.org/operation_0477",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a962d3b8acd1a2f9ba99"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Molecular modelling",
+              "uri": "http://edamontology.org/topic_2275",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structural biology",
+              "uri": "http://edamontology.org/topic_1317",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein structure analysis",
+              "uri": "http://edamontology.org/topic_2814",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www-mvsoftware.ch.cam.ac.uk/"
+          ]
+        },
+        "id": "biotools/almost/cmd/None",
+        "last_updated_at": "2026-03-19T00:22:49.186761",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/almost/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:almost_biotools/almost/cmd/None,sourceforge/almost/None/None",
+  "conflict_name": "almost/*",
+  "date": "2026-04-10T18:43:39.464912+00:00",
+  "run_id": "20260410T170121Z-ae990a21-lower-case-urls-2"
+}
