@@ -1,0 +1,152 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/dorado/undefined/None",
+        "created_at": "2025-04-02T11:56:18.732515",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Dorado is a high-performance, easy-to-use, open source basecaller for Oxford Nanopore reads."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Dorado"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "dorado",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Base-calling",
+              "uri": "http://edamontology.org/operation_3185",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence generation",
+              "uri": "http://edamontology.org/operation_0230",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://github.com/nanoporetech/dorado"
+          ]
+        },
+        "id": "biotools/dorado/undefined/None",
+        "last_updated_at": "2026-03-19T00:49:59.411403",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/dorado/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/dorado/cmd/0.9.5+bd7fb217+galaxy1",
+        "created_at": "2026-03-19T03:06:27.188260",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Dorado"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "dorado",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "0.9.5+bd7fb217+galaxy1"
+          ],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-19T03:06:27.188260",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy_metadata/dorado/cmd/0.9.5+bd7fb217+galaxy1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ]
+  },
+  "conflict_id": "p:dorado_biotools/dorado/undefined/None,galaxy_metadata/dorado/cmd/0.9.5+bd7fb217+galaxy1",
+  "conflict_name": "dorado/*",
+  "date": "2026-04-10T19:03:21.932797+00:00",
+  "run_id": "20260410T170121Z-ae990a21-lower-case-urls-2"
+}
