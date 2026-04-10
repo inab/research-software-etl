@@ -1,0 +1,318 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/DeepPoseKit-Data/None/v0.3.0",
+        "created_at": "2026-03-25T15:20:02.462764",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "jgraving@gmail.com",
+              "maintainer": false,
+              "name": "Jake",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Example datasets for DeepPoseKit."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/jgraving/deepposekit-data/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jgraving/deepposekit-data/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DeepPoseKit-Data"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache License 2.0",
+              "url": "http://choosealicense.com/licenses/apache-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "DeepPoseKit-Data",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [
+            {
+              "doi": "",
+              "title": "Fast and robust animal pose estimation",
+              "url": "",
+              "year": "2019"
+            }
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jgraving/DeepPoseKit-Data"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "data",
+              "uri": "https://github.com/topics/data",
+              "vocabulary": ""
+            },
+            {
+              "term": "posture",
+              "uri": "https://github.com/topics/posture",
+              "vocabulary": ""
+            },
+            {
+              "term": "pose-estimation",
+              "uri": "https://github.com/topics/pose-estimation",
+              "vocabulary": ""
+            },
+            {
+              "term": "deepposekit",
+              "uri": "https://github.com/topics/deepposekit",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [
+            "v0.3.0",
+            "v0.1",
+            "v0.1-doi"
+          ],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:20:02.462764",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/DeepPoseKit-Data",
+            "source_url": "https://github.com/jgraving/deepposekit-data"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/deepposekit/suite/None,github/DeepPoseKit/None/None",
+        "data": {
+          "authors": [
+            {
+              "email": "jgraving@gmail.com",
+              "maintainer": false,
+              "name": "Jacob M Graving",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "icouzin@ab.mpg.de",
+              "maintainer": false,
+              "name": "Iain D Couzin",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "jgraving@gmail.com",
+              "maintainer": false,
+              "name": "Jake",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "eduramiba@gmail.com",
+              "maintainer": false,
+              "name": "Eduardo Ramos",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A toolkit for pose estimation using deep learning.",
+            "A software toolkit for fast and robust animal pose estimation using deep learning.\nDeepPoseKit is a software toolkit with a high-level API for 2D pose estimation of user-defined keypoints using deep learning\u2014written in Python and built using Tensorflow and Keras."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/elifesciences-publications/DeepPoseKit/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/elifesciences-publications/DeepPoseKit/blob/main/DEVELOPMENT.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/elifesciences-publications/DeepPoseKit/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DeepPoseKit"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache-2.0",
+              "url": null
+            },
+            {
+              "name": "Apache License 2.0",
+              "url": "http://choosealicense.com/licenses/apache-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "deepposekit",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Peak detection",
+              "uri": "http://edamontology.org/operation_3215",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Visualisation",
+              "uri": "http://edamontology.org/operation_0337",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "DeepPoseKit"
+          ],
+          "output": [],
+          "publication": [
+            "67c82cde10e2f3aa0b3b9977"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jgraving/deepposekit-data"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/elifesciences-publications/DeepPoseKit-Data"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/elifesciences-publications/DeepPoseKit"
+            }
+          ],
+          "source": [
+            "biotools",
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Neurobiology",
+              "uri": "http://edamontology.org/topic_3304",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Zoology",
+              "uri": "http://edamontology.org/topic_3500",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Ecology",
+              "uri": "http://edamontology.org/topic_0610",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "suite"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://deepposekit.org/",
+            "https://github.com/jgraving/deepposekit"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:deepposekit_biotools/deepposekit/suite/None,github/DeepPoseKit-Data/None/v0.3.0,github/DeepPoseKit/None/None",
+  "conflict_name": "deepposekit/*",
+  "date": "2026-04-10T14:00:42.202592+00:00",
+  "run_id": "20260410T111726Z-ae990a21-lower-case-urls"
+}
