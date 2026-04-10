@@ -1,0 +1,267 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/godmd/web/None",
+        "created_at": "2025-04-02T11:59:07.205357",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "adam.hospital@irbbarcelona.org",
+              "maintainer": false,
+              "name": "Institute for Research in Biomedicine Barcelona",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Web portal for determining pathways for conformational transitions in macromolecules based on the use of discrete molecular dynamics and biasing techniques based on a combination of essential dynamics and Maxwell-Demon sampling techniques."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://mmb.irbbarcelona.org/GOdMD/index.php?id=about"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "Protein structure",
+                "uri": "http://edamontology.org/data_1460",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDB",
+              "uri": "http://edamontology.org/format_1476",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "GOdMD"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "godmd",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Molecular dynamics",
+              "uri": "http://edamontology.org/operation_2476",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Structure",
+                "uri": "http://edamontology.org/data_0883",
+                "vocabulary": "EDAM"
+              },
+              "term": "",
+              "uri": null,
+              "vocabulary": ""
+            }
+          ],
+          "publication": [
+            "67c8276b10e2f3aa0b3b729a",
+            "67c8276c10e2f3aa0b3b729d"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "BioExcel",
+            "ELIXIR-ES"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Molecular dynamics",
+              "uri": "http://edamontology.org/topic_0176",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://mmb.irbbarcelona.org/GOdMD"
+          ]
+        },
+        "id": "biotools/godmd/web/None",
+        "last_updated_at": "2026-03-19T00:54:11.366811",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/godmd/web/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/godmd/cmd/1.8,github/GOdMD/None/None,bioconda_recipes/godmd/cmd/1.0.0",
+        "data": {
+          "authors": [
+            {
+              "email": "genis.bayarri@irbbarcelona.org",
+              "maintainer": false,
+              "name": "gbayarri",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ruben.chaves@irbbarcelona.org",
+              "maintainer": false,
+              "name": "Rub\u00e9n Chaves",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "adam.hospital@irbbarcelona.org",
+              "maintainer": false,
+              "name": "Adam Hospital",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "GOdMD is a new method for determining pathways for conformational transitions in macromolecules based on the use of discrete molecular dynamics and biasing techniques based on a combination of essential dynamics and Maxwell-Demon sampling techniques. The method can work with high efficiency at different levels of resolution, including the atomistic one, and can help to define initial pathways for further exploration by means of more accurate atomistic molecular dynamics simulations."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/godmd/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/godmd/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/mmb-irb/godmd/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "http://mmb.irbbarcelona.org/gitlab/adam/GOdMD/repository/archive.tar.gz",
+            "https://github.com/mmb-irb/GOdMD/archive/refs/tags/v1.8.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "godmd",
+            "GOdMD"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "Apache Software License",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "godmd",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "GOdMD"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/mmb-irb/godmd"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/mmb-irb/GOdMD"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "http://mmb.irbbarcelona.org/gitlab/adam/GOdMD/repository/archive.tar.gz",
+            "https://github.com/mmb-irb/GOdMD/archive/refs/tags/v1.8.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.8",
+            "1.0.0"
+          ],
+          "webpage": [
+            "https://github.com/mmb-irb/godmd",
+            "http://mmb.irbbarcelona.org/gitlab/adam/GOdMD"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:godmd_bioconda_recipes/godmd/cmd/1.0.0,bioconda_recipes/godmd/cmd/1.8,biotools/godmd/web/None,github/GOdMD/None/None",
+  "conflict_name": "godmd/*",
+  "date": "2026-04-10T18:52:29.791665+00:00",
+  "run_id": "20260410T170121Z-ae990a21-lower-case-urls-2"
+}
