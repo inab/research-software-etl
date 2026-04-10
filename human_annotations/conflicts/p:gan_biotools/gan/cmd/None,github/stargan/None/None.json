@@ -1,0 +1,264 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/stargan/None/None",
+        "created_at": "2026-03-25T15:21:38.112620",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "yunjey.choi@gmail.com",
+              "maintainer": false,
+              "name": "Yunjey Choi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "yunjey47@naver.com",
+              "maintainer": false,
+              "name": "Yunjey Choi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "StarGAN - Official PyTorch Implementation (CVPR 2018)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/yunjey/StarGAN/blob/main/README.md"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "stargan"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "stargan",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [
+            {
+              "doi": "",
+              "title": "StarGAN: Unified Generative Adversarial Networks for Multi-Domain Image-to-Image Translation",
+              "url": "",
+              "year": "2018"
+            }
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/yunjey/stargan"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "stargan",
+              "uri": "https://github.com/topics/stargan",
+              "vocabulary": ""
+            },
+            {
+              "term": "pytorch",
+              "uri": "https://github.com/topics/pytorch",
+              "vocabulary": ""
+            },
+            {
+              "term": "image-to-image-translation",
+              "uri": "https://github.com/topics/image-to-image-translation",
+              "vocabulary": ""
+            },
+            {
+              "term": "generative-models",
+              "uri": "https://github.com/topics/generative-models",
+              "vocabulary": ""
+            },
+            {
+              "term": "cvpr2018",
+              "uri": "https://github.com/topics/cvpr2018",
+              "vocabulary": ""
+            }
+          ],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:21:38.112620",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/stargan",
+            "source_url": "https://github.com/yunjey/StarGAN"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/gan/cmd/None",
+        "created_at": "2025-04-02T11:58:37.467360",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "From Image-to-Image Translation to Disease Detection and Localization.\n\nThis repository provides the official PyTorch implementation of Fixed-Point GAN. Fixed-Point GAN introduces fixed-point translation which dramatically reduces artifacts in image-to-image translation and introduces a novel method for disease detection and localization using image-level annotation only.\n\nStarGAN - Official PyTorch Implementation."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "GAN"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "gan",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Quantification",
+              "uri": "http://edamontology.org/operation_3799",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Image annotation",
+              "uri": "http://edamontology.org/operation_3553",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Image analysis",
+              "uri": "http://edamontology.org/operation_3443",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82f0110e2f3aa0b3ba896"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/yunjey/StarGAN"
+            }
+          ],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Medical imaging",
+              "uri": "http://edamontology.org/topic_3384",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein expression",
+              "uri": "http://edamontology.org/topic_0108",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Echography",
+              "uri": "http://edamontology.org/topic_3954",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://github.com/jlianglab/Fixed-Point-GAN"
+          ]
+        },
+        "id": "biotools/gan/cmd/None",
+        "last_updated_at": "2026-03-19T00:52:21.617019",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/gan/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:gan_biotools/gan/cmd/None,github/stargan/None/None",
+  "conflict_name": "gan/*",
+  "date": "2026-04-10T14:06:17.320648+00:00",
+  "run_id": "20260410T111726Z-ae990a21-lower-case-urls"
+}
