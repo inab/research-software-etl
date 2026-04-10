@@ -1,0 +1,282 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/hsdfinder/web/None",
+        "created_at": "2025-04-02T12:00:41.591955",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "xzha25@uwo.ca",
+              "maintainer": false,
+              "name": "Xi Zhang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "dsmit242@uwo.ca",
+              "maintainer": false,
+              "name": "David Roy Smith",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Yining Hu",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "An integrated tool for predicting highly similar duplicates (HSDs) in eukaryotic genomes.\nHSDFinder aims to become a useful platform for the identification and analysis of HSDs in the eukaryotic genomes, which deepen our insights into the gene duplication mechanisms driving the genome adaptation."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "HSDFinder"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "hsdfinder",
+          "operating_system": [
+            "macOS",
+            "Linux",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Duplication detection",
+              "uri": "http://edamontology.org/operation_3963",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome visualisation",
+              "uri": "http://edamontology.org/operation_3208",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Heat map generation",
+              "uri": "http://edamontology.org/operation_0531",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c836e810e2f3aa0b3bc910"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Model organisms",
+              "uri": "http://edamontology.org/topic_0621",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Evolutionary biology",
+              "uri": "http://edamontology.org/topic_3299",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Gene transcripts",
+              "uri": "http://edamontology.org/topic_3512",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Cell biology",
+              "uri": "http://edamontology.org/topic_2229",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://hsdfinder.com/"
+          ]
+        },
+        "id": "biotools/hsdfinder/web/None",
+        "last_updated_at": "2026-03-19T00:58:45.403156",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/hsdfinder/web/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/hsdfinder/cmd/1.1.1,github/HSDFinder/None/v1.0",
+        "data": {
+          "authors": [
+            {
+              "email": "13602037587@163.com",
+              "maintainer": false,
+              "name": "Xi Zhang",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python >=3.7",
+            "pandas"
+          ],
+          "description": [
+            "A tool to predict highly similar duplicates (HSDs) in eukaryotes."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/hsdfinder/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/hsdfinder/README.html"
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/zx0223winner/HSDFinder/blob/main/LICENSE.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/zx0223winner/HSDFinder/blob/main/Readme.md"
+            }
+          ],
+          "download": [
+            "https://github.com/zx0223winner/hsdfinder_conda/archive/refs/tags/hsdfinder.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "HSDFinder",
+            "hsdfinder"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "hsdfinder",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "HSDFinder"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/zx0223winner/HSDFinder"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/zx0223winner/hsdfinder_conda/archive/refs/tags/hsdfinder.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "duplicates",
+              "uri": "https://github.com/topics/duplicates",
+              "vocabulary": ""
+            },
+            {
+              "term": "evolution",
+              "uri": "https://github.com/topics/evolution",
+              "vocabulary": ""
+            },
+            {
+              "term": "gene",
+              "uri": "https://github.com/topics/gene",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.1.1",
+            "v1.0"
+          ],
+          "webpage": [
+            "https://github.com/zx0223winner/HSDFinder"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:hsdfinder_bioconda_recipes/hsdfinder/cmd/1.1.1,biotools/hsdfinder/web/None,github/HSDFinder/None/v1.0",
+  "conflict_name": "hsdfinder/*",
+  "date": "2026-04-10T19:04:24.994116+00:00",
+  "run_id": "20260410T170121Z-ae990a21-lower-case-urls-2"
+}
