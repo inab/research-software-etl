@@ -1,32 +1,97 @@
 from collections import defaultdict
 from urllib.parse import urlparse
+from pathlib import Path
 import logging
+
+
+# -----------------------------------------------------------------------------
+# BLACKLIST LOADING
+# -----------------------------------------------------------------------------
+
+BLACKLIST_PATH = Path("scripts/disambiguation/hub_repo_blacklist_over_3_names.txt")
+
+def load_repository_blacklist(path: Path) -> set[str]:
+    """
+    Load normalized repository URLs from a plain-text blacklist file.
+
+    Expected format:
+    - one repository URL per line
+    - empty lines are ignored
+    - lines starting with '#' are ignored
+
+    The URLs are normalized with normalize_url() before being stored, so the
+    blacklist can contain either raw URLs or already-normalized URLs.
+    """
+    blacklist = set()
+
+    if not path.exists():
+        logging.getLogger(__name__).warning(
+            "Repository blacklist file not found: %s. Continuing without blacklist.",
+            path,
+        )
+        return blacklist
+
+    with open(path, "r", encoding="utf-8") as f:
+        for line_number, line in enumerate(f, start=1):
+            raw = line.strip()
+
+            if not raw or raw.startswith("#"):
+                continue
+
+            normalized = normalize_url(raw)
+            if normalized:
+                blacklist.add(normalized)
+            else:
+                logging.getLogger(__name__).warning(
+                    "Could not normalize blacklist entry at line %d in %s: %r",
+                    line_number,
+                    path,
+                    raw,
+                )
+
+    logging.getLogger(__name__).info(
+        "Loaded %d repository URLs from blacklist: %s",
+        len(blacklist),
+        path,
+    )
+    return blacklist
 
 
 # -----------------------------------------------------------------------------
 # URL NORMALIZATION
 # -----------------------------------------------------------------------------
 
+from urllib.parse import urlparse
+
+
 def normalize_url(url: str) -> str | None:
     """
     Normalize a URL so equivalent repository/webpage links can be matched.
 
+    Handles both:
+    - full URLs: https://github.com/user/repo
+    - bare host/path values: github.com/user/repo
+
     Current normalization rules:
+    - accept missing scheme by assuming https
     - remove protocol
     - lowercase domain
     - remove trailing slash
     - special handling for Bioconductor package pages
     - remove final '.html' when present in Bioconductor-like pages
-
-    Examples:
-    - https://github.com/user/repo/        -> github.com/user/repo
-    - http://bioconductor.org/packages/release/bioc/html/edgeR.html
-      -> bioconductor.org/packages/edgeR
     """
     if not url or not isinstance(url, str):
         return None
 
-    parsed_url = urlparse(url.strip())
+    url = url.strip()
+    if not url:
+        return None
+
+    # Allow bare host/path values such as "github.com/user/repo"
+    if "://" not in url and not url.startswith("//"):
+        url = f"https://{url}"
+
+    parsed_url = urlparse(url)
     netloc = parsed_url.netloc.lower().strip()
     path = parsed_url.path.strip().rstrip("/")
 
@@ -45,6 +110,13 @@ def normalize_url(url: str) -> str | None:
                 return f"bioconductor.org/packages/{part}"
 
     return f"{netloc}{path}".lower()
+
+
+# Loaded once at import time
+IGNORED_REPOSITORY_URLS = load_repository_blacklist(BLACKLIST_PATH)
+
+# Keep the existing hardcoded ignored repository as an extra safeguard
+IGNORED_REPOSITORY_URLS.add("emboss.open-bio.org/html/adm/ch01s01")
 
 
 # -----------------------------------------------------------------------------
@@ -112,13 +184,20 @@ def should_ignore_repository_url(url: str) -> bool:
     Return True for repository URLs that should be ignored for grouping.
 
     These links are treated as if they did not exist.
-    TODO: make a black list of URLs like this one
+
+    Ignore rules:
+    - malformed / empty URLs are not ignored here
+    - hardcoded known-bad URLs are ignored
+    - any repository present in the external blacklist is ignored
     """
     if not url or not isinstance(url, str):
         return False
 
     normalized = normalize_url(url)
-    return normalized == "emboss.open-bio.org/html/adm/ch01s01"
+    if not normalized:
+        return False
+
+    return normalized in IGNORED_REPOSITORY_URLS
 
 
 def extract_grouping_links(inst: dict) -> set[str]:
@@ -160,6 +239,9 @@ def extract_grouping_links(inst: dict) -> set[str]:
     ]
 
     for web_link in safe_list(data.get("webpage")):
+        if should_ignore_repository_url(web_link):
+            continue
+
         normalized_url = normalize_url(web_link)
         if normalized_url and any(domain in normalized_url for domain in repository_like_domains):
             links.add(normalized_url)
@@ -250,6 +332,8 @@ def group_by_key_with_links(instances, logger: logging.Logger | None = None):
     """
     if logger is None:
         logger = logging.getLogger(__name__)
+
+    logger.info("Repository blacklist entries loaded: %d", len(IGNORED_REPOSITORY_URLS))
 
     # -------------------------------------------------------------------------
     # Internal indexes
