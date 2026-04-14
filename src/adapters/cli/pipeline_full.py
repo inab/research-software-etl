@@ -312,7 +312,7 @@ def run_full(
         print("=== Stage: license-normalization ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
         _run(
-            [python_exe, "-m", "src.adapters.cli.post_transformation/normalize_licenses"],
+            [python_exe, "-m", "src.adapters.cli.post_transformation.normalize_licenses"],
             cwd=wd
         )
 
