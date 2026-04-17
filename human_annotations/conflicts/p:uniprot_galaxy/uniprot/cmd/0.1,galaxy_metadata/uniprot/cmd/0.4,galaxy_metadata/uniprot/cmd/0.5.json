@@ -1,0 +1,130 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "galaxy/uniprot/cmd/0.1",
+        "created_at": "2025-04-02T11:34:01.374858",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "ID mapping and retrieval."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "uniprot"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "uniprot",
+          "operating_system": [],
+          "operating_systems": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "0.1"
+          ],
+          "webpage": [
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Funiprot_rest_interface%2Funiprot%2F0.1"
+          ]
+        },
+        "id": "galaxy/uniprot/cmd/0.1",
+        "last_updated_at": "2026-03-19T03:31:08.954751",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy/uniprot/workflow/0.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/uniprot/cmd/0.4,galaxy_metadata/uniprot/cmd/0.5",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "UniProt"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "uniprot",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.5",
+            "0.4"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:uniprot_galaxy/uniprot/cmd/0.1,galaxy_metadata/uniprot/cmd/0.4,galaxy_metadata/uniprot/cmd/0.5",
+  "conflict_name": "uniprot/*",
+  "date": "2026-04-17T21:06:40.342895+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
