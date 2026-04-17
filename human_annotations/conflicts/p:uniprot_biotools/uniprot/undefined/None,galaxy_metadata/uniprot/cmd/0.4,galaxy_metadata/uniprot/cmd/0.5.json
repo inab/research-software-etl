@@ -1,0 +1,193 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/uniprot/undefined/None",
+        "created_at": "2025-04-02T12:51:09.536263",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The universal protein knowledgebase in 2021.\n\nYou are using a version of browser that may not display all the features of this website."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "UniProt"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "CC-BY-4.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "uniprot",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Text annotation",
+              "uri": "http://edamontology.org/operation_3778",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Data retrieval",
+              "uri": "http://edamontology.org/operation_2422",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database search",
+              "uri": "http://edamontology.org/operation_2421",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82bb310e2f3aa0b3b9682",
+            "67c8322710e2f3aa0b3bae3a",
+            "67c8322710e2f3aa0b3bae3c",
+            "67c8322710e2f3aa0b3bae39",
+            "67c8322710e2f3aa0b3bae40",
+            "67e2c2a1b57beba26405d4e6",
+            "67c8322710e2f3aa0b3bae3b",
+            "67c8322710e2f3aa0b3bae3e",
+            "67c8322710e2f3aa0b3bae38",
+            "67c8322710e2f3aa0b3bae3f",
+            "67c8322710e2f3aa0b3bae41",
+            "67c8322710e2f3aa0b3bae37",
+            "67e2c2a0b57beba26405d4e5",
+            "67c8322710e2f3aa0b3bae3d"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteomics",
+              "uri": "http://edamontology.org/topic_0121",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Literature and language",
+              "uri": "http://edamontology.org/topic_3068",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Model organisms",
+              "uri": "http://edamontology.org/topic_0621",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Proteomics experiment",
+              "uri": "http://edamontology.org/topic_3520",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "undefined",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://www.uniprot.org/"
+          ]
+        },
+        "id": "biotools/uniprot/undefined/None",
+        "last_updated_at": "2026-04-15T23:37:12.842086",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/uniprot/undefined/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/uniprot/cmd/0.4,galaxy_metadata/uniprot/cmd/0.5",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "UniProt"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "uniprot",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.5",
+            "0.4"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:uniprot_biotools/uniprot/undefined/None,galaxy_metadata/uniprot/cmd/0.4,galaxy_metadata/uniprot/cmd/0.5",
+  "conflict_name": "uniprot/*",
+  "date": "2026-04-17T21:07:48.381512+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
