@@ -1,0 +1,186 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "galaxy/rnashapes/cmd/3.3.0",
+        "created_at": "2025-04-02T11:34:00.206146",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "RNA Secondary structure prediction."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "RNAshapes"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "rnashapes",
+          "operating_system": [],
+          "operating_systems": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "3.3.0"
+          ],
+          "webpage": [
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Frnateam%2Frnashapes%2FRNAshapes%2F3.3.0"
+          ]
+        },
+        "id": "galaxy/rnashapes/cmd/3.3.0",
+        "last_updated_at": "2026-03-19T03:31:01.333006",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy/rnashapes/workflow/3.3.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/rnashapes/cmd/3.3.2,bioconda_recipes/rnashapes/cmd/3.4.0",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "libopenblas",
+            "compiler_cxx",
+            "perl",
+            "bellmans-gapc >=2021.04.28",
+            "bellmans-gapc >=2024.01.12"
+          ],
+          "description": [
+            "RNAshape abstraction maps structures to a tree-like domain of shapes, retaining adjacency and nesting of structural features, but disregarding helix lengths. Shape abstraction integrates well with dynamic programming algorithms, and hence it can be applied during structure prediction rather than afterwards. This avoids exponential explosion and can still give us a non-heuristic and complete account of properties of the molecule's folding space."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/rnashapes/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/rnashapes/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bibiserv.cebitec.uni-bielefeld.de/rnashapes"
+            }
+          ],
+          "download": [
+            "https://github.com/jlab/fold-grammars/archive/2.3.1.tar.gz",
+            "https://github.com/jlab/fold-grammars/archive/2.2.14.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "rnashapes"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPLv3",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0-or-later",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "rnashapes",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c7a311d3b8acd1a2f9b545"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jlab/fold-grammars"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/jlab/fold-grammars/archive/2.3.1.tar.gz",
+            "https://github.com/jlab/fold-grammars/archive/2.2.14.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "3.4.0",
+            "3.3.2"
+          ],
+          "webpage": [
+            "https://bibiserv.cebitec.uni-bielefeld.de/rnashapes"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:rnashapes_bioconda_recipes/rnashapes/cmd/3.3.2,bioconda_recipes/rnashapes/cmd/3.4.0,galaxy/rnashapes/cmd/3.3.0",
+  "conflict_name": "rnashapes/cmd",
+  "date": "2026-04-17T21:04:57.414525+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
