@@ -4,12 +4,9 @@ Application use case: enrich the publications collection from DOI metadata.
 This module defines the collection-level enrichment workflow for publication
 records. Given a publications collection, the use case scans records with a
 DOI, normalizes and validates each DOI, skips already seen identifiers when
-configured, retrieves enriched metadata and citation counts from Europe PMC,
+configured, optionally skips records that already contain Europe PMC citation
+information, retrieves enriched metadata and citation counts from Europe PMC,
 and updates the corresponding database records.
-
-Its role is to ensure that stored publication entries can be progressively
-completed and refreshed from DOI-based metadata sources, while remaining safe
-to rerun through the use of a seen-DOI cache.
 """
 
 from __future__ import annotations
@@ -30,12 +27,33 @@ class EnrichPublicationCollectionUseCase:
         self.enrichment_cache = enrichment_cache
         self.enrichment_service = enrichment_service
 
+    @staticmethod
+    def _has_europe_pmc_citations(doc: dict) -> bool:
+        """
+        Return True if the publication already contains citations
+        coming from Europe PMC.
+        """
+        citations = doc.get("data", {}).get("citations", [])
+
+        if not isinstance(citations, list):
+            return False
+
+        for citation in citations:
+            if not isinstance(citation, dict):
+                continue
+
+            if citation.get("source") == "Europe PMC":
+                return True
+
+        return False
+
     def execute(
         self,
         collection_name: str = "publicationsMetadataDev",
         progress_every: int = 1000,
         limit: int | None = None,
         skip_seen: bool = True,
+        skip_if_has_europe_pmc_citations: bool = True,
         write_cache: bool = True,
         update_db: bool = True,
     ) -> None:
@@ -46,6 +64,7 @@ class EnrichPublicationCollectionUseCase:
         updated = 0
         skipped_seen = 0
         skipped_invalid = 0
+        skipped_existing_epmc_citations = 0
         no_metadata = 0
 
         for doc in self.publication_repository.fetch_with_doi(collection_name):
@@ -53,6 +72,13 @@ class EnrichPublicationCollectionUseCase:
                 break
 
             processed += 1
+
+            if (
+                skip_if_has_europe_pmc_citations
+                and self._has_europe_pmc_citations(doc)
+            ):
+                skipped_existing_epmc_citations += 1
+                continue
 
             doc_id = doc.get("_id")
             raw_doi = doc.get("data", {}).get("doi")
@@ -92,13 +118,18 @@ class EnrichPublicationCollectionUseCase:
             if progress_every > 0 and processed % progress_every == 0:
                 print(
                     f"Processed {processed} docs | "
-                    f"updated={updated} | skipped_seen={skipped_seen} | "
-                    f"skipped_invalid={skipped_invalid} | no_metadata={no_metadata}"
+                    f"updated={updated} | "
+                    f"skipped_seen={skipped_seen} | "
+                    f"skipped_invalid={skipped_invalid} | "
+                    f"skipped_existing_epmc_citations={skipped_existing_epmc_citations} | "
+                    f"no_metadata={no_metadata}"
                 )
 
         print(
             f"Done. Processed={processed}, updated={updated}, "
-            f"skipped_seen={skipped_seen}, skipped_invalid={skipped_invalid}, "
+            f"skipped_seen={skipped_seen}, "
+            f"skipped_invalid={skipped_invalid}, "
+            f"skipped_existing_epmc_citations={skipped_existing_epmc_citations}, "
             f"no_metadata={no_metadata}"
         )
 

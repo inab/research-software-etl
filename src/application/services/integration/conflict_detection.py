@@ -196,12 +196,64 @@ def process_description(description):
     return " ".join(description) if description else ""
 
 
+
+def normalize_source_identity(source: str) -> str | None:
+    """
+    Normalize a source string to a stable identity suitable for post-conflict merging.
+
+    Examples:
+    - bioconda_recipes/perl-datetime/lib/1.59 -> bioconda_recipes/perl-datetime
+    - bioconda/perl-datetime/lib/1.59 -> bioconda/perl-datetime
+    - biotools/peptideshaker/app/1.16.45 -> biotools/peptideshaker
+    - galaxy/foo -> galaxy/foo
+    """
+    if not source:
+        return None
+
+    parts = [p.strip().lower() for p in source.split("/") if p.strip()]
+    if not parts:
+        return None
+
+    if parts[0] == "bioconda_recipes" and len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+
+    if parts[0] == "bioconda" and len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+
+    if parts[0] == "biotools" and len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+
+    if parts[0] == "toolshed" and len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+
+    if parts[0] == "galaxy" and len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+
+    if len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+
+    return parts[0]
+
+
+def get_normalized_source_identities(entry):
+    return {
+        normalized
+        for source in entry.get("source", [])
+        if (normalized := normalize_source_identity(source))
+    }
+
+
 def are_same_by_source_and_name(entry1, entry2):
     name1 = entry1.get("name", "").strip().lower()
     name2 = entry2.get("name", "").strip().lower()
-    sources1 = set(map(str.lower, entry1.get("source", [])))
-    sources2 = set(map(str.lower, entry2.get("source", [])))
-    return name1 == name2 and bool(sources1 & sources2)
+
+    if name1 != name2:
+        return False
+
+    sources1 = get_normalized_source_identities(entry1)
+    sources2 = get_normalized_source_identities(entry2)
+
+    return bool(sources1 & sources2)
 
 
 def apply_source_name_merge(conflict_blocks):
@@ -223,13 +275,13 @@ def apply_source_name_merge(conflict_blocks):
         if merged:
             print(f"🔗 Merging {len(merged)} disconnected entries into remaining for block: {key}")
 
-        updated[key] = {
-            "remaining": remaining + merged,
-            "disconnected": still_disconnected
-        }
+        if still_disconnected:
+            updated[key] = {
+                "remaining": remaining + merged,
+                "disconnected": still_disconnected
+            }
 
     return updated
-
 
 def is_galaxy_related(entry):
     sources = set(s.lower() for s in entry.get("source", []))
@@ -423,7 +475,9 @@ def find_disconnected_entries(data, use_name_match_for_no_links=True):
                 "remaining": remaining
             }
 
-    return disconnected_keys
+    merged_conflicts = apply_source_name_merge(disconnected_keys)
+    return merged_conflicts
+
 
 
 def token_size(text):

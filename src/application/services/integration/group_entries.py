@@ -123,20 +123,24 @@ IGNORED_REPOSITORY_URLS.add("emboss.open-bio.org/html/adm/ch01s01")
 # NORMALIZATION HELPERS
 # -----------------------------------------------------------------------------
 
+import re
+
 def normalize_name(name: str) -> str:
     """
     Normalize software name for grouping by name.
 
-    Current policy:
+    Rules:
+    - None -> ""
     - lowercase
     - strip leading/trailing spaces
-
-    You may later decide to make this more aggressive
-    (replace underscores/dashes/spaces, etc.), but for now it stays conservative.
+    - remove separators: spaces, hyphens, underscores
     """
     if name is None:
         return ""
-    return str(name).strip().lower()
+
+    name = str(name).strip().lower()
+    name = re.sub(r"[\s\-_]+", "", name)
+    return name
 
 
 def normalize_type(software_type) -> str:

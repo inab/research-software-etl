@@ -1,4 +1,5 @@
 import json
+import sys
 from collections import defaultdict
 from urllib.parse import urlparse
 
@@ -118,7 +119,39 @@ def update_groups(unique_name_groups, grouped_instancies):
     return grouped_instancies
 
 
+def debug_group_links(grouped_instancies, target_keys):
+    for group_key in target_keys:
+        print(f"\nGROUP: {group_key}")
+        group = grouped_instancies.get(group_key)
+        if not group:
+            print("  NOT FOUND")
+            continue
+
+        all_links = set()
+
+        for instance in group.get("instances", []):
+            repo_links = {
+                normalize_url(repo["url"])
+                for repo in instance["data"].get("repository", [])
+                if isinstance(repo, dict) and repo.get("url")
+            }
+            webpage_links = {
+                normalize_url(url)
+                for url in instance["data"].get("webpage", [])
+                if url
+            }
+
+            print("  raw repository:", instance["data"].get("repository"))
+            print("  raw webpage:", instance["data"].get("webpage"))
+            print("  normalized repository:", repo_links)
+            print("  normalized webpage:", webpage_links)
+
+            all_links.update(x for x in repo_links | webpage_links if x)
+
+        print("  ALL LINKS:", sorted(all_links))
+
 def recover_shared_name_link(grouped_instancies):    
+
 
     print(f"Groups of tools before recovery: {len(grouped_instancies)}")
     print(f"Example of group keys: {list(grouped_instancies.keys())[:5]}")
@@ -190,10 +223,13 @@ def recover_shared_name_link(grouped_instancies):
      
     print(f"Groups of tools with same name and common link after merging: {len(new_unique_names_groups)}")
     print(f"Example of groups: {unique_name_groups[:5]}")
+    
 
     
     grouped_instancies = update_groups(new_unique_names_groups, grouped_instancies)
     print(f"Groups of tools after recovery: {len(grouped_instancies)}")
+
+
 
     return grouped_instancies
 
