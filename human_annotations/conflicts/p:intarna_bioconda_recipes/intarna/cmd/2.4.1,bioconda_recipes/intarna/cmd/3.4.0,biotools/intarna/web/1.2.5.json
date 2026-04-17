@@ -1,0 +1,355 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/intarna/web/1.2.5",
+        "created_at": "2025-04-02T12:02:01.233586",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Patrick Wright",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "University Freiburg",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "rnateam",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "rna@rna.informatik.uni-freiburg.de",
+              "maintainer": false,
+              "name": "Rolf Backofen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "wrightp@informatik.uni-freiburg.de",
+              "maintainer": false,
+              "name": "Patrick Wright",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "SRNA target prediction."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://rna.informatik.uni-freiburg.de/Help.jsp"
+            },
+            {
+              "content": null,
+              "type": "help",
+              "url": "http://rna.informatik.uni-freiburg.de/IntaRNA/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [
+            {
+              "datatype": {
+                "term": "RNA sequence",
+                "uri": "http://edamontology.org/data_3495",
+                "vocabulary": "EDAM"
+              },
+              "term": "FASTA",
+              "uri": "http://edamontology.org/format_1929",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "inst_instr": false,
+          "label": [
+            "IntaRNA - RNA-RNA interaction"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "intarna",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "RNA secondary structure prediction",
+              "uri": "http://edamontology.org/operation_0278",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [
+            {
+              "datatype": {
+                "term": "Feature table",
+                "uri": "http://edamontology.org/data_1270",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Feature table",
+                "uri": "http://edamontology.org/data_1270",
+                "vocabulary": "EDAM"
+              },
+              "term": "Textual format",
+              "uri": "http://edamontology.org/format_2330",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Image",
+                "uri": "http://edamontology.org/data_2968",
+                "vocabulary": "EDAM"
+              },
+              "term": "Image format",
+              "uri": "http://edamontology.org/format_3547",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Image",
+                "uri": "http://edamontology.org/data_2968",
+                "vocabulary": "EDAM"
+              },
+              "term": "EPS",
+              "uri": "http://edamontology.org/format_3466",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Image",
+                "uri": "http://edamontology.org/data_2968",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDF",
+              "uri": "http://edamontology.org/format_3508",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Image",
+                "uri": "http://edamontology.org/data_2968",
+                "vocabulary": "EDAM"
+              },
+              "term": "Image format",
+              "uri": "http://edamontology.org/format_3547",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Image",
+                "uri": "http://edamontology.org/data_2968",
+                "vocabulary": "EDAM"
+              },
+              "term": "EPS",
+              "uri": "http://edamontology.org/format_3466",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Image",
+                "uri": "http://edamontology.org/data_2968",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDF",
+              "uri": "http://edamontology.org/format_3508",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Feature table",
+                "uri": "http://edamontology.org/data_1270",
+                "vocabulary": "EDAM"
+              },
+              "term": "HTML",
+              "uri": "http://edamontology.org/format_2331",
+              "vocabulary": "EDAM"
+            },
+            {
+              "datatype": {
+                "term": "Feature table",
+                "uri": "http://edamontology.org/data_1270",
+                "vocabulary": "EDAM"
+              },
+              "term": "PDF",
+              "uri": "http://edamontology.org/format_3508",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "publication": [
+            "67c7aa61d3b8acd1a2f9bc58"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "1.2.5"
+          ],
+          "webpage": [
+            "http://rna.informatik.uni-freiburg.de/IntaRNA/"
+          ]
+        },
+        "id": "biotools/intarna/web/1.2.5",
+        "last_updated_at": "2026-04-15T17:57:07.829618",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/intarna/web/1.2.5",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/intarna/cmd/3.4.0,bioconda_recipes/intarna/cmd/2.4.1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "llvm-openmp",
+            "zlib",
+            "boost-cpp"
+          ],
+          "description": [
+            "Efficient RNA-RNA interaction prediction incorporating seeding and accessibility of interacting sites."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/intarna/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/intarna/README.html"
+            }
+          ],
+          "download": [
+            "https://github.com/BackofenLab/IntaRNA/releases/download/v2.4.1/intaRNA-2.4.1.tar.gz",
+            "https://github.com/BackofenLab/IntaRNA/releases/download/v3.4.0/intaRNA-3.4.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "intarna"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "intarna",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c82bb210e2f3aa0b3b9680",
+            "67c7948fd3b8acd1a2f9b304",
+            "67c82bb210e2f3aa0b3b967f"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/BackofenLab/IntaRNA"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/BackofenLab/IntaRNA/releases/download/v2.4.1/intaRNA-2.4.1.tar.gz",
+            "https://github.com/BackofenLab/IntaRNA/releases/download/v3.4.0/intaRNA-3.4.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.4.1",
+            "3.4.0"
+          ],
+          "webpage": [
+            "https://github.com/BackofenLab/IntaRNA"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:intarna_bioconda_recipes/intarna/cmd/2.4.1,bioconda_recipes/intarna/cmd/3.4.0,biotools/intarna/web/1.2.5",
+  "conflict_name": "intarna/*",
+  "date": "2026-04-17T20:56:23.009929+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
