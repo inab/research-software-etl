@@ -1,0 +1,138 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "galaxy/lca1/cmd/1.0.1",
+        "created_at": "2025-04-02T11:33:56.216805",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "lca1"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "lca1",
+          "operating_system": [],
+          "operating_systems": [
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.0.1"
+          ],
+          "webpage": [
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fdevteam%2Flca_wrapper%2Flca1%2F1.0.1"
+          ]
+        },
+        "id": "galaxy/lca1/cmd/1.0.1",
+        "last_updated_at": "2026-03-19T03:30:41.108810",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy/lca1/workflow/1.0.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/lca1/cmd/1.0.1",
+        "created_at": "2025-04-02T11:40:57.470629",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Find lowest diagnostic rank"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "lca1",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.0.1"
+          ],
+          "webpage": []
+        },
+        "id": "galaxy_metadata/lca1/cmd/1.0.1",
+        "last_updated_at": "2026-03-19T02:53:52.814934",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy_metadata/lca1/cmd/1.0.1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:lca1_galaxy/lca1/cmd/1.0.1,galaxy_metadata/lca1/cmd/1.0.1",
+  "conflict_name": "lca1/*",
+  "date": "2026-04-17T20:54:24.809327+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
