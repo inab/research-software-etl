@@ -1,0 +1,141 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "toolshed/fetch taxonomic ranks/cmd/1.1.0",
+        "created_at": "2025-04-02T15:02:01.670942",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [
+            {
+              "content": "\n\n.. class:: infomark\n\nUse *Filter and Sort->Filter* to restrict output of this tool to desired taxonomic ranks. You can also use *Text Manipulation->Cut* to remove unwanted columns from the output.\n\n------\n\n**What it does**\n\nFetches taxonomic information for a list of GI numbers (sequences identifiers used by the National Center for Biotechnology Information http://www.ncbi.nlm.nih.gov).\n\n-------\n\n**Example**\n\nSuppose you have BLAST output that looks like this::\n  \n   +-----------------------+----------+----------+-----------------+------------+------+--------+\n   | queryId               | targetGI | identity | alignmentLength | mismatches | gaps | score  |\n   +-----------------------+----------+----------+-----------------+------------+------+--------+\n   | 1L_EYKX4VC01BXWX1_265 |  1430919 |    90.09 |             212 |         15 |    6 | 252.00 | \n   +-----------------------+----------+----------+-----------------+------------+------+--------+\n\nand you want to obtain full taxonomic representation for GIs listed in *targetGI* column. If you set parameters as shown here:\n\n.. image:: ${static_path}/images/fetchTax.png\n\n\nthe tool will generate the following output (you may need to scroll sideways to see the entire line)::\n\n  1                     2    3    4         5       6 7 8        9        10            11       12 13               14       15         16          17        18  19  20 21  22  23           24 25\n  1L_EYKX4VC01BXWX1_265 9606 root Eukaryota Metazoa n n Chordata Craniata Gnathostomata Mammalia n  Euarchontoglires Primates Haplorrhini Hominoidea Hominidae n   n   n  Homo n  Homo sapiens n  1430919\n\nIn other words the tool printed *Name column*, *taxonomy Id*, appended 22 columns containing taxonomic ranks from Superkingdom to Subspecies and added *GI* as the last column. Below is a formal definition of the output columns::\n\n    Column Definition\n   ------- ------------------------------------------\n         1 Name (specified by 'Name column' dropdown)\n         2 GI   (specified by 'GI column' dropdown)\n         3 root\n         4 superkingdom\n         5 kingdom\n         6 subkingdom\n         7 superphylum\n         8 phylum\n         9 subphylum\n        10 superclass\n        11 class\n        12 subclass\n        13 superorder\n        14 order\n        15 suborder\n        16 superfamily\n        17 family\n        18 subfamily\n        19 tribe\n        20 subtribe\n        21 genus\n        22 subgenus\n        23 species\n        24 subspecies\n\n------\n\n.. class:: warningmark\n\n**Why do I have these \"n\" things?** \n\nBe aware that the NCBI taxonomy (ftp://ftp.ncbi.nih.gov/pub/taxonomy/) this tool relies upon is incomplete.  This means that for many species one or more ranks are absent and represented as \"**n**\". In the above example *subkingdom*, *superphylum* etc. are missing.\n\n\n",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Fetch taxonomic representation"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "fetch taxonomic ranks",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.1.0"
+          ],
+          "webpage": []
+        },
+        "id": "toolshed/fetch taxonomic ranks/cmd/1.1.0",
+        "last_updated_at": "2026-03-19T03:18:38.650858",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy_config/Fetch Taxonomic Ranks/cmd/1.1.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/fetch taxonomic ranks/cmd/1.1.0",
+        "created_at": "2025-04-02T11:38:24.974867",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Fetch taxonomic representation"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "fetch taxonomic ranks",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "1.1.0"
+          ],
+          "webpage": []
+        },
+        "id": "galaxy_metadata/fetch taxonomic ranks/cmd/1.1.0",
+        "last_updated_at": "2026-03-19T02:55:44.240214",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy_metadata/Fetch Taxonomic Ranks/cmd/1.1.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:fetchtaxonomicranks_galaxy_metadata/fetch taxonomic ranks/cmd/1.1.0,toolshed/fetch taxonomic ranks/cmd/1.1.0",
+  "conflict_name": "fetchtaxonomicranks/cmd",
+  "date": "2026-04-17T20:54:12.416383+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
