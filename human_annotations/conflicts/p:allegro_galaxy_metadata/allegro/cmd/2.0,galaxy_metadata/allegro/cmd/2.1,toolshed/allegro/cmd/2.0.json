@@ -1,0 +1,136 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "toolshed/allegro/cmd/2.0",
+        "created_at": "2025-04-02T14:55:26.495368",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Linkage and Haplotype analysis."
+          ],
+          "documentation": [
+            {
+              "content": "\nAllegro is a computer program for multipoint genetic linkage analysis and related calculations. Allegro can do both classical parametric linkage analysis and analysis based on allele sharing models. In addition, Allegro estimates total number of recombinations between markers, computes posterior IBD sharing probabilities, re-constructs haplotypes and does two types of simulation. Thus Allegro includes the basic functionality of the well known Genehunter program (Kruglyak et al. 1996). It can analyse pedigrees of moderate size,and it can handle many markers. The biggest advantages of Allegro over Genehunterar the allele sharing models that it provides and a much shorter execution time.\n    ",
+              "type": "help",
+              "url": null
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Allegro"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "allegro",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [
+            "67e571b57d85c6cb37dd318f",
+            "67e571b57d85c6cb37dd318e"
+          ],
+          "repository": [],
+          "source": [
+            "toolshed"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [],
+          "type": "cmd",
+          "version": [
+            "2.0"
+          ],
+          "webpage": []
+        },
+        "id": "toolshed/allegro/cmd/2.0",
+        "last_updated_at": "2026-03-19T03:09:43.642952",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "galaxy_config/allegro/cmd/2.0",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/allegro/cmd/2.0,galaxy_metadata/allegro/cmd/2.1",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "Allegro"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "allegro",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "2.0",
+            "2.1"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:allegro_galaxy_metadata/allegro/cmd/2.0,galaxy_metadata/allegro/cmd/2.1,toolshed/allegro/cmd/2.0",
+  "conflict_name": "allegro/cmd",
+  "date": "2026-04-17T21:13:07.121755+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
