@@ -1,0 +1,162 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "bioconda_recipes/uniprot/lib/1.3",
+        "created_at": "2025-04-02T11:54:19.853242",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "python",
+            "requests"
+          ],
+          "description": [
+            "Retrieve protein sequence identifiers and metadata from http://uniprot.org."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/uniprot/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/uniprot/README.html"
+            }
+          ],
+          "download": [
+            "https://pypi.python.org/packages/41/82/7d57f68ba49394c86f58792f57c47a79d7890589a911cbcaee84fa6081f4/uniprot-1.3.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "uniprot"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "BSD",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "uniprot",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/boscoh/uniprot"
+            }
+          ],
+          "source": [
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://pypi.python.org/packages/41/82/7d57f68ba49394c86f58792f57c47a79d7890589a911cbcaee84fa6081f4/uniprot-1.3.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": "lib",
+          "version": [
+            "1.3"
+          ],
+          "webpage": [
+            "http://github.com/boscoh/uniprot"
+          ]
+        },
+        "id": "bioconda_recipes/uniprot/lib/1.3",
+        "last_updated_at": "2026-03-18T23:57:41.231142",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "bioconda_recipes/uniprot/lib/1.3",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/uniprot/cmd/0.4,galaxy_metadata/uniprot/cmd/0.5",
+        "data": {
+          "authors": [],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "UniProt"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "uniprot",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "other_names": [],
+          "output": [],
+          "publication": [],
+          "repository": [],
+          "source": [
+            "galaxy_metadata"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "0.5",
+            "0.4"
+          ],
+          "webpage": []
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:uniprot_bioconda_recipes/uniprot/lib/1.3,galaxy_metadata/uniprot/cmd/0.4,galaxy_metadata/uniprot/cmd/0.5",
+  "conflict_name": "uniprot/*",
+  "date": "2026-04-17T21:06:23.384009+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
