@@ -1,0 +1,465 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/gemini/cmd/None",
+        "created_at": "2025-04-02T11:58:48.101906",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "arq5x@virginia.edu",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "GEMINI (GEnome MINIng) is a flexible framework for exploring genetic variation in the context of the wealth of genome annotations available for the human genome. By placing genetic variants, sample phenotypes and genotypes, as well as genome annotations into an integrated database framework, GEMINI provides a simple, flexible, and powerful system for exploring genetic variation for disease and population genetics."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://gemini.readthedocs.io/en/latest/index.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "GEMINI"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "gemini",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/operation_2403",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetic variation analysis",
+              "uri": "http://edamontology.org/operation_3197",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c79fc2d3b8acd1a2f9b458"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Animal and Crop Genomics"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://gemini.readthedocs.io/en/latest/index.html"
+          ]
+        },
+        "id": "biotools/gemini/cmd/None",
+        "last_updated_at": "2026-04-15T21:45:46.110322",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/gemini/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/gemini/cmd/0.30.2,bioconda_recipes/gemini/lib/0.20.1,bioconda_recipes/gemini/lib/0.30.2,bioconda_recipes/gemini/cmd/0.20.1,bioconda_recipes/bioconductor-gemini/lib/1.16.0,bioconda_recipes/bioconductor-gemini/lib/1.20.0,bioconductor/gemini/lib/1.21.0,bioconductor/gemini/lib/1.25.0,github/gemini/None/v0.6.2,github/gemini/None/v0.99.0-alpha",
+        "data": {
+          "authors": [
+            {
+              "email": "mzamanig@broadinstitute.org",
+              "maintainer": false,
+              "name": "Mahdi Zamanighomi",
+              "orcid": null,
+              "type": null,
+              "url": null
+            },
+            {
+              "email": "sidharthsjain@gmail.com",
+              "maintainer": false,
+              "name": "Sidharth Jain",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bpederse@gmail.com",
+              "maintainer": false,
+              "name": "Brent Pedersen",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mmoisse@users.noreply.github.com",
+              "maintainer": false,
+              "name": "mmoisse",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "matthias.desmet@ugent.be",
+              "maintainer": false,
+              "name": "Matthias De Smet",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "rory.kirchner@gmail.com",
+              "maintainer": false,
+              "name": "roryk",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "m.j.miossec@gmail.com",
+              "maintainer": false,
+              "name": "Matthieu J.M",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "arq5x@virginia.edu",
+              "maintainer": false,
+              "name": "arq5x",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mbootwalla@chla.usc.edu",
+              "maintainer": false,
+              "name": "Moiz Bootwalla",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "chapmanb@50mail.com",
+              "maintainer": false,
+              "name": "chapmanb",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "moorena@broadinstitute.org",
+              "maintainer": false,
+              "name": "Nate",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nitesh.turaga@gmail.com",
+              "maintainer": false,
+              "name": "Nitesh Turaga",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "snappy",
+            "wget",
+            "parallel",
+            "r-magrittr",
+            "r-scales",
+            "mixtools",
+            "stats",
+            "utils",
+            "grabix",
+            "bottle",
+            "python",
+            "dplyr",
+            "openpyxl",
+            "scales",
+            "geneimpacts",
+            "inheritance",
+            "bcolz",
+            "R (>= 4.1.0)",
+            "cyvcf2 >0.6.5",
+            "pybedtools",
+            "magrittr",
+            "unidecode",
+            "bx-python",
+            "pyyaml",
+            "ggplot2",
+            "pandas",
+            "ipyparallel",
+            "r-pbmcapply",
+            "jinja2",
+            "r-base",
+            "python-snappy",
+            "numpy",
+            "cyordereddict",
+            "numexpr",
+            "pbmcapply",
+            "grDevices",
+            "sqlalchemy",
+            "scipy",
+            "networkx",
+            "pysam >=0.22",
+            "r-dplyr",
+            "r-mixtools",
+            "r-ggplot2",
+            "ipython-cluster-helper",
+            "pysam"
+          ],
+          "description": [
+            "GEMINI uses log-fold changes to model sample-dependent and independent effects, and uses a variational Bayes approach to infer these effects. The inferred effects are used to score and identify genetic interactions, such as lethality and recovery. More details can be found in Zamanighomi et al. 2019 (in press).",
+            "GEMINI: A variational Bayesian approach to identify genetic interactions from combinatorial CRISPR screens.",
+            "A lightweight db framework for exploring genetic variation.",
+            "A lightweight db framework for disease and population genetics.",
+            "GEMINI uses log-fold changes to model sample-dependent and independent effects, and uses a variational Bayes approach to infer these effects. The inferred effects are used to score and identify genetic interactions, such as lethality and recovery.  More details can be found in Zamanighomi et al. 2019 (in press)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gemini/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gemini/README.html"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-gemini/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-gemini/README.html"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/arq5x/gemini/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/arq5x/gemini/blob/main/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/arq5x/gemini/blob/main/docs/requirements.txt"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/sellerslab/gemini/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/sellerslab/gemini/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://bioarchive.galaxyproject.org/gemini_1.20.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-gemini/bioconductor-gemini_1.20.0_src_all.tar.gz",
+            "https://github.com/arq5x/gemini/archive/v0.30.2.tar.gz",
+            "https://bioarchive.galaxyproject.org/gemini_1.16.0.tar.gz",
+            "https://github.com/arq5x/gemini/archive/v0.20.1.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/gemini/gemini_1.20.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/gemini_1.16.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-gemini/bioconductor-gemini_1.16.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/gemini_1.20.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/gemini/gemini_1.16.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gemini",
+            "bioconductor-gemini"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            },
+            {
+              "name": "BSD_3_clause",
+              "url": null
+            },
+            {
+              "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+              "url": "http://choosealicense.com/licenses/bsd-3-clause/"
+            }
+          ],
+          "links": [],
+          "name": "gemini",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "bioconductor-gemini"
+          ],
+          "output": [],
+          "publication": [
+            "67c79fc2d3b8acd1a2f9b458"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/arq5x/gemini"
+            },
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/gemini"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/sellerslab/gemini"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioarchive.galaxyproject.org/gemini_1.20.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-gemini/bioconductor-gemini_1.20.0_src_all.tar.gz",
+            "https://github.com/arq5x/gemini/archive/v0.30.2.tar.gz",
+            "https://bioarchive.galaxyproject.org/gemini_1.16.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/gemini/gemini_1.16.0.tar.gz",
+            "https://github.com/arq5x/gemini/archive/v0.20.1.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/gemini_1.16.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-gemini/bioconductor-gemini_1.16.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/gemini_1.20.0.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/gemini/gemini_1.20.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "computational-biology",
+              "uri": "https://github.com/topics/computational-biology",
+              "vocabulary": ""
+            },
+            {
+              "term": "crispr",
+              "uri": "https://github.com/topics/crispr",
+              "vocabulary": ""
+            },
+            {
+              "term": "genetic-interactions",
+              "uri": "https://github.com/topics/genetic-interactions",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "v0.99.0-alpha",
+            "1.25.0",
+            "1.16.0",
+            "1.20.0",
+            "0.20.1",
+            "v0.6.2",
+            "0.30.2",
+            "0.99.0",
+            "1.21.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.20/bioc/html/gemini.html",
+            "https://github.com/arq5x/gemini",
+            "https://bioconductor.org/packages/3.18/bioc/html/gemini.html",
+            "https://bioconductor.org/packages/gemini",
+            "http://gemini.readthedocs.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:gemini_bioconda_recipes/bioconductor-gemini/lib/1.16.0,bioconda_recipes/bioconductor-gemini/lib/1.20.0,bioconda_recipes/gemini/cmd/0.20.1,bioconda_recipes/gemini/cmd/0.30.2,bioconda_recipes/gemini/lib/0.20.1,bioconda_recipes/gemini/lib/0.30.2,bioconductor/gemini/lib/1.21.0,bioconductor/gemini/lib/1.25.0,biotools/gemini/cmd/None,github/gemini/None/v0.6.2,github/gemini/None/v0.99.0-alpha",
+  "conflict_name": "gemini/*",
+  "date": "2026-04-17T21:16:04.541630+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
