@@ -1,0 +1,319 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "github/gambit-publication/None/None",
+        "created_at": "2026-03-25T15:20:26.723941",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "mjlumpe@gmail.com",
+              "maintainer": false,
+              "name": "Jared Lumpe",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Snakemake workflow to generate figures and results from GAMBIT paper."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/jlumpe/gambit-publication/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/jlumpe/gambit-publication/blob/main/env-frozen.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gambit-publication"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "gambit-publication",
+          "operating_system": [],
+          "operational": false,
+          "operations": [],
+          "output": [],
+          "publication": [],
+          "publications": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jlumpe/gambit-publication"
+            }
+          ],
+          "source": [
+            "github"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": null,
+          "version": [],
+          "webpage": []
+        },
+        "last_updated_at": "2026-03-25T15:20:26.723941",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "github/gambit-publication",
+            "source_url": "https://github.com/jlumpe/gambit-publication"
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/gambit/cmd/1.0.0,bioconda_recipes/gambit/lib/1.1.0,bioconda_recipes/gambit/lib/1.0.0,biotools/gambit_bacterial/lib/None,biotools/gambit_bacterial/cmd/None",
+        "data": {
+          "authors": [
+            {
+              "email": "jared@jaredlumpe.com",
+              "maintainer": false,
+              "name": "Jared Lumpe",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "dhess@unr.edu",
+              "maintainer": false,
+              "name": "David Hess",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "mpandori@med.unr.edu",
+              "maintainer": false,
+              "name": "Mark Pandori",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "attrs >=20",
+            "h5py >=3.0",
+            "sqlalchemy >=1.4",
+            "scipy >=1.7",
+            "cattrs >=23.2",
+            "biopython >=1.79",
+            "numpy >=1.13",
+            "sqlalchemy >=1.1",
+            "setuptools",
+            "biopython >=1.69",
+            "cattrs >=1.0",
+            "click >=7.0",
+            "alembic >=1.0",
+            "numpy >=1.13,<2",
+            "typing-extensions >=4",
+            "python"
+          ],
+          "description": [
+            "GAMBIT (Genomic Approximation Method for Bacterial Identification and Tracking) is a tool for rapid taxonomic identification of microbial pathogens. It uses an efficient genomic distance metric along with a curated database of approximately 50,000 reference genomes (derived from NCBI RefSeq) to identify genome assemblies from across the Bacterial kingdom in seconds.",
+            "GAMBIT (Genomic Approximation Method for Bacterial Identification and Tracking)\nis a tool for rapid taxonomic identification of microbial pathogens. It uses an\nextremely efficient genomic distance metric along with a curated database of\napproximately 50,000 reference genomes (derived from NCBI RefSeq) to identify\nunknown bacterial genomes within seconds."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/gambit/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/gambit/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/jlumpe/gambit"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://gambit-genomics.readthedocs.io/en/latest/"
+            }
+          ],
+          "download": [
+            "https://github.com/jlumpe/gambit/archive/v1.1.0.tar.gz",
+            "https://github.com/jlumpe/gambit/archive/v1.0.0.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "gambit",
+            "GAMBIT"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "AGPL-3.0-or-later",
+              "url": null
+            },
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "gambit",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genome assembly",
+              "uri": "http://edamontology.org/operation_0525",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Taxonomic classification",
+              "uri": "http://edamontology.org/operation_3460",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "De-novo assembly",
+              "uri": "http://edamontology.org/operation_0524",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "k-mer counting",
+              "uri": "http://edamontology.org/operation_3472",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "gambit_bacterial"
+          ],
+          "output": [],
+          "publication": [
+            "67c8377c10e2f3aa0b3bcc13"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jlumpe/gambit"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jlumpe/gambit/"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/jlumpe/gambit-publication"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "biotools"
+          ],
+          "source_code": [
+            "https://github.com/jlumpe/gambit/archive/v1.1.0.tar.gz",
+            "https://github.com/jlumpe/gambit/archive/v1.0.0.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Whole genome sequencing",
+              "uri": "http://edamontology.org/topic_3673",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Taxonomy",
+              "uri": "http://edamontology.org/topic_0637",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Public health and epidemiology",
+              "uri": "http://edamontology.org/topic_3305",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd",
+            "lib"
+          ],
+          "version": [
+            "None",
+            "1.0.0",
+            "1.1.0"
+          ],
+          "webpage": [
+            "https://github.com/jlumpe/gambit",
+            "https://bioconda.github.io/recipes/gambit/README.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:gambit_bioconda_recipes/gambit/cmd/1.0.0,bioconda_recipes/gambit/lib/1.0.0,bioconda_recipes/gambit/lib/1.1.0,biotools/gambit_bacterial/cmd/None,biotools/gambit_bacterial/lib/None,github/gambit-publication/None/None",
+  "conflict_name": "gambit/*",
+  "date": "2026-04-17T21:23:51.852408+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
