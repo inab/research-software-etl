@@ -1,0 +1,260 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/h4rvs/lib/None",
+        "created_at": "2026-04-16T00:22:54.830601",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "ingo@jhu.edu",
+              "maintainer": false,
+              "name": "Ingo Ruczinski",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Detection of rare disease variants in extended pedigrees using RVS.\n\nComputes estimates of the probability of related individuals sharing a rare variant.\n\nRare Variant Sharing (RVS) implements tests of association and linkage between rare genetic variant genotypes and a dichotomous phenotype, e.g. a disease status, in family samples. The tests are based on probabilities of rare variant sharing by relatives under the null hypothesis of absence of linkage and association between the rare variants and the phenotype and apply to single variants or multiple variants in a region (e.g. gene-based test).\n\nExomeSeq, Genetics, GenomeWideAssociation, ImmunoOncology, Software, VariantDetection, WholeGenome."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "h4RVS"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "h4rvs",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Genotyping",
+              "uri": "http://edamontology.org/operation_3196",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Variant calling",
+              "uri": "http://edamontology.org/operation_3227",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Collapsing methods",
+              "uri": "http://edamontology.org/operation_3791",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82f0010e2f3aa0b3ba893"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Rare Disease"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Mapping",
+              "uri": "http://edamontology.org/topic_0102",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Rare diseases",
+              "uri": "http://edamontology.org/topic_3325",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "lib",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/release/bioc/html/RVS.html"
+          ]
+        },
+        "last_updated_at": "2026-04-16T00:22:54.830601",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/h4rvs/lib/unknown",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": "local"
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/bioconductor-rvs/lib/1.24.0,bioconda_recipes/bioconductor-rvs/lib/1.28.0,bioconductor/rvs/lib/1.29.0,bioconductor/rvs/lib/1.33.0",
+        "data": {
+          "authors": [
+            {
+              "email": "alexandre.bureau@fmed.ulaval.ca",
+              "maintainer": false,
+              "name": "Alexandre Bureau",
+              "orcid": null,
+              "type": null,
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "gRain",
+            "r-r.utils",
+            "R.utils",
+            "r-genlib",
+            "utils",
+            "stats",
+            "snpStats",
+            "r-kinship2",
+            "r-base",
+            "bioconductor-snpstats >=1.56.0,<1.57.0",
+            "bioconductor-snpstats >=1.52.0,<1.53.0",
+            "r-grain",
+            "methods",
+            "kinship2",
+            "GENLIB",
+            "R (>= 3.5.0)"
+          ],
+          "description": [
+            "Rare Variant Sharing (RVS) implements tests of association and linkage between rare genetic variant genotypes and a dichotomous phenotype, e.g. a disease status, in family samples. The tests are based on probabilities of rare variant sharing by relatives under the null hypothesis of absence of linkage and association between the rare variants and the phenotype and apply to single variants or multiple variants in a region (e.g. gene-based test)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/bioconductor-rvs/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/bioconductor-rvs/README.html"
+            }
+          ],
+          "download": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/RVS/RVS_1.28.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/RVS_1.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/RVS_1.28.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/RVS_1.24.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/RVS/RVS_1.24.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rvs/bioconductor-rvs_1.24.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/RVS_1.28.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rvs/bioconductor-rvs_1.28.0_src_all.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "bioconductor-rvs",
+            "RVS"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "bioconductor-rvs",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "rvs"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "bioconductor",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://git.bioconductor.org/packages/RVS"
+            }
+          ],
+          "source": [
+            "bioconda_recipes",
+            "bioconductor"
+          ],
+          "source_code": [
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/RVS/RVS_1.28.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/RVS_1.24.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/RVS_1.28.0.tar.gz",
+            "https://bioarchive.galaxyproject.org/RVS_1.24.0.tar.gz",
+            "https://bioconductor.org/packages/3.18/bioc/src/contrib/Archive/RVS/RVS_1.24.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rvs/bioconductor-rvs_1.24.0_src_all.tar.gz",
+            "https://bioconductor.org/packages/3.20/bioc/src/contrib/RVS_1.28.0.tar.gz",
+            "https://depot.galaxyproject.org/software/bioconductor-rvs/bioconductor-rvs_1.28.0_src_all.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "lib"
+          ],
+          "version": [
+            "1.24.0",
+            "1.29.0",
+            "1.33.0",
+            "1.28.0"
+          ],
+          "webpage": [
+            "https://bioconductor.org/packages/3.20/bioc/html/RVS.html",
+            "https://bioconductor.org/packages/RVS",
+            "https://bioconductor.org/packages/3.18/bioc/html/RVS.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:rvs_bioconda_recipes/bioconductor-rvs/lib/1.24.0,bioconda_recipes/bioconductor-rvs/lib/1.28.0,bioconductor/rvs/lib/1.29.0,bioconductor/rvs/lib/1.33.0,biotools/h4rvs/lib/None",
+  "conflict_name": "rvs/lib",
+  "date": "2026-04-17T21:12:18.241391+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
