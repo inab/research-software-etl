@@ -1,0 +1,219 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/a5-miseq/cmd/None",
+        "created_at": "2025-04-02T11:34:01.815772",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://sourceforge.net/projects/ngopt/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "De novo assembly & analysis of Illumina sequence data, including the A5 pipeline, A5-miseq, tools to evaluate assembly quality, and scripts to facilitate data submission to NCBI and the RAST annotation system."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://sourceforge.net/projects/ngopt/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "A5-miseq"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "a5-miseq",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Deposition",
+              "uri": "http://edamontology.org/operation_3431",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/operation_0310",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "De-novo assembly",
+              "uri": "http://edamontology.org/operation_0524",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a6e0d3b8acd1a2f9b64c"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://sourceforge.net/projects/ngopt/"
+          ]
+        },
+        "id": "biotools/a5-miseq/cmd/None",
+        "last_updated_at": "2026-04-15T20:50:14.787464",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/a5-miseq/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/a5/cmd/None",
+        "created_at": "2025-04-02T11:34:01.785460",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "aarondarling@ucdavis.edu",
+              "maintainer": false,
+              "name": "Aaron E. Darling",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A5 is an integrative pipeline for genome assembly that automates sequence data cleaning, error correction, assembly, and quality control by chaining a number of programs together with additional custom algorithms."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://sourceforge.net/p/ngopt/wiki/browse_pages/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "A5"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "a5",
+          "operating_system": [
+            "Linux",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "De-novo assembly",
+              "uri": "http://edamontology.org/operation_0524",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7a6add3b8acd1a2f9b616"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequence assembly",
+              "uri": "http://edamontology.org/topic_0196",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://sourceforge.net/projects/ngopt/"
+          ]
+        },
+        "id": "biotools/a5/cmd/None",
+        "last_updated_at": "2026-04-15T20:50:14.461486",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/a5/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ]
+  },
+  "conflict_id": "p:a5_biotools/a5-miseq/cmd/None,biotools/a5/cmd/None",
+  "conflict_name": "a5/cmd",
+  "date": "2026-04-17T21:09:53.292577+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
