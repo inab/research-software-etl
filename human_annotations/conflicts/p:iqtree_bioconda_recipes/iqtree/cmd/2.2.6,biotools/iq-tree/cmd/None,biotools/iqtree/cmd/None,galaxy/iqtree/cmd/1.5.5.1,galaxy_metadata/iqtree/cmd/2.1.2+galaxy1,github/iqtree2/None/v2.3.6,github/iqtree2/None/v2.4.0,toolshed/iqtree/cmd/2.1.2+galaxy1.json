@@ -1,0 +1,416 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/iq-tree/cmd/None",
+        "created_at": "2025-04-02T12:01:41.812795",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "admin.vbc5@univie.ac.at",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www.cibiv.at/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Very efficient phylogenetic software for reconstructing maximum-likelihood trees and assessing branch supports with the ultrafast bootstrap approximation. It is based on the IQPNNI algorithm with 10-fold speedup together with substantially additional features."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.iqtree.org/doc/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "IQ-TREE"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "iq-tree",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Phylogenetic inference (maximum likelihood and Bayesian methods)",
+              "uri": "http://edamontology.org/operation_0547",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8285910e2f3aa0b3b7b69"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Phylogenetics",
+              "uri": "http://edamontology.org/topic_3293",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Statistics and probability",
+              "uri": "http://edamontology.org/topic_2269",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenomics",
+              "uri": "http://edamontology.org/topic_0194",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.cibiv.at/software/iqtree/"
+          ]
+        },
+        "id": "biotools/iq-tree/cmd/None",
+        "last_updated_at": "2026-04-15T22:01:06.946881",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/iq-tree/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/iqtree/cmd/2.1.2+galaxy1,bioconda_recipes/iqtree/cmd/2.2.6,biotools/iqtree/cmd/None,toolshed/iqtree/cmd/2.1.2+galaxy1,github/iqtree2/None/v2.3.6,github/iqtree2/None/v2.4.0,galaxy/iqtree/cmd/1.5.5.1",
+        "data": {
+          "authors": [
+            {
+              "email": "david.cerny1@gmail.com",
+              "maintainer": false,
+              "name": "David \u010cern\u00fd",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "m.bui@anu.edu.au",
+              "maintainer": false,
+              "name": "Minh Bui",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cornelius.roemer@gmail.com",
+              "maintainer": false,
+              "name": "Cornelius Roemer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "russell@vort.org",
+              "maintainer": false,
+              "name": "Russell Neches",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "thomaskf@gmail.com",
+              "maintainer": false,
+              "name": "Thomas Wong",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "nguyenchithanhpro196@gmail.com",
+              "maintainer": false,
+              "name": "flashhhhh",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "trongnhan.uit@gmail.com",
+              "maintainer": false,
+              "name": "NhanLT",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "tothuhien@gmail.com",
+              "maintainer": false,
+              "name": "Thu-Hien To",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "103940576+IntegerLimit@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Integer Limit",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "bqm2001@icloud.com",
+              "maintainer": false,
+              "name": "iqtree",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "m.bui@anu.edu.au",
+              "maintainer": false,
+              "name": "Bui Quang Minh",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "christoph.stelz@student.kit.edu",
+              "maintainer": false,
+              "name": "Christoph Stelz",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Phylogenomic / evolutionary tree construction from multiple sequences.",
+            "IQ-TREE software version 2: phylogenetics by maximum likelihood.",
+            "A fast and effective stochastic algorithm to infer phylogenetic trees by maximum likelihood. IQ-TREE compares favorably to RAxML and PhyML in terms of likelihoods with similar computing time.",
+            "NEW location of IQ-TREE software for efficient phylogenomic software by maximum likelihood http://www.iqtree.org.",
+            "Efficient phylogenomic software by maximum likelihood."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/iqtree/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/iqtree/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://www.iqtree.org/doc/"
+            },
+            {
+              "content": "\nNote that --seqtype CODON is always necessary when using codon models and you also need to specify a genetic code like this if differed from the standard genetic code.\n<br/><i>-st</i> NT2AA tells IQ-TREE to translate protein-coding DNA into AA sequences and then subsequent analysis will work on the AA sequences. You can also use a genetic code like --seqtype NT2AA5 for the Invertebrate Mitochondrial Code (see genetic code table).\n                ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/iqtree/iqtree2/blob/main/CMakeLists.txt"
+            },
+            {
+              "content": null,
+              "type": "code_of_conduct",
+              "url": "https://github.com/iqtree/iqtree2/blob/main/CODE_OF_CONDUCT.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/iqtree/iqtree2/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "example",
+              "url": "https://github.com/iqtree/iqtree2/blob/main/example/custom_distributions.txt"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "IQ-TREE",
+            "iqtree2",
+            "iqtree"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-2.0-or-later",
+              "url": null
+            },
+            {
+              "name": "GNU General Public License v2.0",
+              "url": "http://choosealicense.com/licenses/gpl-2.0/"
+            }
+          ],
+          "links": [],
+          "name": "iqtree",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Phylogenetic analysis",
+              "uri": "http://edamontology.org/operation_0324",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/operation_2403",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "iqtree2"
+          ],
+          "output": [],
+          "publication": [
+            "67e2dc85ac7ee6cb57891303",
+            "67e6c2364737f097793370db",
+            "67e6c2364737f097793370da",
+            "67c82ba810e2f3aa0b3b9674",
+            "67c82acc10e2f3aa0b3b909a",
+            "67c82acc10e2f3aa0b3b909b",
+            "67e6c2364737f097793370dc"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/iqtree/iqtree2"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes",
+            "toolshed",
+            "biotools",
+            "galaxy_metadata",
+            "galaxy"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "Phylogenetics",
+              "uri": "http://edamontology.org/topic_3293",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v2.2.0.4",
+            "v2.2.0",
+            "v2.1.3",
+            "v2.3.4.cmaple",
+            "v.2.3.3",
+            "v2.3.5.cmaple",
+            "v2.2.1",
+            "v2.2.0.7",
+            "v2.2.2.3",
+            "v2.3.6",
+            "v2.4.0",
+            "1.5.5.1",
+            "v2.1.1",
+            "v2.2.2.8",
+            "v2.0.8",
+            "v2.2.2.1",
+            "2.1.2+galaxy1",
+            "v2.2.0.3",
+            "v2.2.0.8.mix",
+            "v2.1.4-beta",
+            "v2.3.2",
+            "v2.2.2-fundi",
+            "v2.1.0",
+            "v2.2.2.7",
+            "2.2.6",
+            "v2.2.2.4",
+            "v2.3.4",
+            "v2.2.0-ascf",
+            "v2.2.0.5",
+            "v2.2.6",
+            "v2.2.5",
+            "v2.3.5",
+            "v2.2.2.6",
+            "v2.2.2.2",
+            "v2.2.0.6",
+            "v2.2.2.5",
+            "v2.1.2",
+            "v2.2.3",
+            "v2.3.0",
+            "v2.2.2",
+            "v2.2.2.9",
+            "v2.2.0.8",
+            "v2.2.0.7.mx",
+            "v2.2.4",
+            "None",
+            "v2.3.1"
+          ],
+          "webpage": [
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fiuc%2Fiqtree%2Fiqtree%2F1.5.5.1",
+            "http://www.iqtree.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:iqtree_bioconda_recipes/iqtree/cmd/2.2.6,biotools/iq-tree/cmd/None,biotools/iqtree/cmd/None,galaxy/iqtree/cmd/1.5.5.1,galaxy_metadata/iqtree/cmd/2.1.2+galaxy1,github/iqtree2/None/v2.3.6,github/iqtree2/None/v2.4.0,toolshed/iqtree/cmd/2.1.2+galaxy1",
+  "conflict_name": "iqtree/*",
+  "date": "2026-04-20T11:07:53.186297+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
