@@ -1,0 +1,265 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/whatif/web/1",
+        "created_at": "2025-04-02T12:51:53.394521",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Instruct",
+              "orcid": null,
+              "type": "Organization",
+              "url": null
+            },
+            {
+              "email": "ccisb@stfc.ac.uk",
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "A molecular modelling package that is specialized on working with proteins and the molecules in their environment like water, ligands, nucleic acids, etc."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://swift.cmbi.ru.nl/teach/WHATIF/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "WHATIF"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "whatif",
+          "operating_system": [
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein modelling",
+              "uri": "http://edamontology.org/operation_0477",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67e2c2d1b57beba26405d521"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Instruct"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Molecular modelling",
+              "uri": "http://edamontology.org/topic_2275",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "web",
+          "version": [
+            "1"
+          ],
+          "webpage": [
+            "http://swift.cmbi.ru.nl/whatif/"
+          ]
+        },
+        "id": "biotools/whatif/web/1",
+        "last_updated_at": "2026-04-15T19:27:43.829086",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/whatif/web/1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/what_if/db/None,biotools/what-if/undefined/None",
+        "data": {
+          "authors": [
+            {
+              "email": "Vriend@CMBI.ru.nl",
+              "maintainer": false,
+              "name": "Gert Vriend",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "PDB Related Datbases present a series of databases that run parallel to the PDB. DSSP holds the secondary structure of the proteins. PDBREPORT holds reports on the structure quality and lists errors. HSSP holds a multiple sequence alignment for all proteins. The PDBFINDER holds easy to parse summaries of the PDB file content. PDB_REDO holds re-refined, and often improved, copies of all structures solved by X-ray.",
+            "Interactive Probing of Machine Learning Models | Building effective machine learning models means asking a lot of questions. Look for answers using the What-if Tool, an interactive visual interface designed to probe your models better | you could inspect a machine learning model,."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://swift.cmbi.ru.nl/servers/html/modserver_help1.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://swift.cmbi.ru.nl/servers/html/index.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "WHAT IF",
+            "What-If Tool"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "what_if",
+          "operating_system": [
+            "macOS",
+            "Windows",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Protein secondary structure comparison",
+              "uri": "http://edamontology.org/operation_2488",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein secondary structure assignment",
+              "uri": "http://edamontology.org/operation_0319",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein secondary structure prediction",
+              "uri": "http://edamontology.org/operation_0267",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein secondary structure analysis",
+              "uri": "http://edamontology.org/operation_2416",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "what-if"
+          ],
+          "output": [],
+          "publication": [
+            "67c8280b10e2f3aa0b3b7896",
+            "67c832d910e2f3aa0b3bb4fd"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Proteins",
+              "uri": "http://edamontology.org/topic_0078",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein secondary structure",
+              "uri": "http://edamontology.org/topic_3542",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database management",
+              "uri": "http://edamontology.org/topic_3489",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Protein structure analysis",
+              "uri": "http://edamontology.org/topic_2814",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Structure analysis",
+              "uri": "http://edamontology.org/topic_0081",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Machine learning",
+              "uri": "http://edamontology.org/topic_3474",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Probes and primers",
+              "uri": "http://edamontology.org/topic_0632",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "db",
+            "undefined"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "https://pair-code.github.io/what-if-tool/",
+            "http://swift.cmbi.ru.nl/servers/html/index.html"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:whatif_biotools/what-if/undefined/None,biotools/what_if/db/None,biotools/whatif/web/1",
+  "conflict_name": "whatif/*",
+  "date": "2026-04-20T11:17:38.768635+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
