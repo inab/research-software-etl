@@ -62,8 +62,8 @@ async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, bloc
 
 
     for key in secondary_conflict:
-        update_jsonl_record(conflict_blocks_path, key, secondary_conflict)
-        update_jsonl_record(blocks_path, key, secondary_block)
+        update_jsonl_record(conflict_blocks_path, key, secondary_conflict[key])
+        update_jsonl_record(blocks_path, key, secondary_block[key])
 
     print(f"🔁 {len(secondary_conflict)} secondary conflict blocks generated and added.")
 
