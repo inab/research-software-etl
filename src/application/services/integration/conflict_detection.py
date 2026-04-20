@@ -1,4 +1,5 @@
 import logging
+import re
 import tiktoken
 import requests
 from urllib.parse import urlparse
@@ -236,19 +237,24 @@ def normalize_source_identity(source: str) -> str | None:
 
 
 def get_normalized_source_identities(entry):
-    """
-    Return normalized source identities for an entry.
-
-    Prefer explicit source values if they carry identity information.
-    If source is too generic (e.g. just 'bioconda_recipes'), also derive
-    a stable identity from the entry id, which in your data often contains
-    the package-level identity.
-    """
     identities = set()
+
+    generic_sources = {
+        "biotools",
+        "github",
+        "sourceforge",
+        "bioconductor",
+        "bioconda",
+        "bioconda_recipes",
+        "galaxy",
+        "toolshed",
+        "galaxy_metadata",
+        "oeb_metrics",
+    }
 
     for source in entry.get("source", []):
         normalized = normalize_source_identity(source)
-        if normalized:
+        if normalized and normalized not in generic_sources:
             identities.add(normalized)
 
     entry_id = entry.get("id")
@@ -258,36 +264,64 @@ def get_normalized_source_identities(entry):
 
     return identities
 
-import re
 
-def normalize_name(name: str) -> str:
-    """
-    Normalize software names for conflict comparison.
-
-    Examples:
-    - "fetch taxonomic ranks" -> "fetch taxonomic ranks"
-    - "fetch_taxonomic_ranks" -> "fetch taxonomic ranks"
-    - "fetch-taxonomic-ranks" -> "fetch taxonomic ranks"
-    - "  Fetch__Taxonomic--Ranks  " -> "fetch taxonomic ranks"
-    """
+def normalize_name_strict(name: str) -> str:
     if not name:
         return ""
+    return " ".join(name.strip().lower().split())
 
+
+def normalize_name_relaxed(name: str) -> str:
+    if not name:
+        return ""
     name = name.strip().lower()
     name = re.sub(r"[_\-]+", " ", name)
     name = re.sub(r"\s+", " ", name)
     return name
 
+def get_source_origins(entry):
+    origins = set()
+
+    for source in entry.get("source", []):
+        if not source:
+            continue
+        parts = [p.strip().lower() for p in source.split("/") if p.strip()]
+        if parts:
+            origins.add(parts[0])
+
+    entry_id = entry.get("id")
+    if entry_id:
+        parts = [p.strip().lower() for p in entry_id.split("/") if p.strip()]
+        if parts:
+            origins.add(parts[0])
+
+    return origins
+
+
+def share_source_origin(entry1, entry2):
+    return bool(get_source_origins(entry1) & get_source_origins(entry2))
+
+
 def are_same_by_source_and_name(entry1, entry2):
     """
     Two entries are considered the same for conflict resolution if:
-    - names match
+    - their names match under the appropriate comparison rule
     - and either:
         * both are Galaxy-related
-        * or they share at least one normalized source identity
+        * or they share a normalized source identity
     """
-    name1 = normalize_name(entry1.get("name", ""))
-    name2 = normalize_name(entry2.get("name", ""))
+
+    same_origin = share_source_origin(entry1, entry2)
+
+    if same_origin:
+        # Within the same source, be conservative:
+        # different names may indicate a real conflict.
+        name1 = normalize_name_strict(entry1.get("name", ""))
+        name2 = normalize_name_strict(entry2.get("name", ""))
+    else:
+        # Across different sources, allow formatting variants.
+        name1 = normalize_name_relaxed(entry1.get("name", ""))
+        name2 = normalize_name_relaxed(entry2.get("name", ""))
 
     if name1 != name2:
         return False
@@ -299,6 +333,7 @@ def are_same_by_source_and_name(entry1, entry2):
     sources2 = get_normalized_source_identities(entry2)
 
     return bool(sources1 & sources2)
+
 
 def resolve_source_name_clusters(conflict_blocks):
     """

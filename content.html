@@ -1,263 +1,184 @@
-<!DOCTYPE html><html lang="en"><head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>CRISPR-CAS++</title>
-	<meta name="description" content="The CRISPRCasFinder program enables the easy detection of CRISPRs and cas genes in user-submitted sequence data.">
+<!DOCTYPE html><html class="mdl-js"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Do we need additional share metadata included here? -->
 
-	
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-46457317-11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-	
-		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
-<meta name="x-stylesheet-fallback-test" content="" class="sr-only"><script>!function(a,b,c,d){var e,f=document,g=f.getElementsByTagName("SCRIPT"),h=g[g.length-1].previousElementSibling,i=f.defaultView&&f.defaultView.getComputedStyle?f.defaultView.getComputedStyle(h):h.currentStyle;if(i&&i[a]!==b)for(e=0;e<c.length;e++)f.write('<link href="'+c[e]+'" '+d+"/>")}("position","absolute",["/lib/bootstrap/dist/css/bootstrap.min.css"], "rel=\u0022stylesheet\u0022 ");</script>
-		<link rel="stylesheet" href="/lib/jstree/themes/default/style.min.css">
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/1.5.0/css/scroller.dataTables.min.css">
-		<link rel="stylesheet" href="/lib/bootstrap-multiselect/bootstrap-multiselect.css">
-		<link rel="stylesheet" href="/css/site.min.css?v=dS8KuwkiBBqOcEjo2n2AAMLo3s36My4LtQqVXA-p08A">
-	
+  gtag('config', 'UA-46457317-11');
+</script>
 
-	
-	
-	
-		<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js" crossorigin="anonymous" integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-		</script>
-<script>(window.jQuery||document.write("\u003Cscript src=\u0022/lib/jquery/dist/jquery.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-K\u002BctZQ\u002BLL8q6tP7I94W\u002BqzQsfRV2a\u002BAfHIi9k8z8l9ggpc8X\u002BYtst4yBo/hH\u002B8Fk\u0022\u003E\u003C/script\u003E"));</script>
-		<script src="/lib/jquery-resizable/jquery-resizable.min.js"></script>
-		<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-		</script>
-<script>(window.jQuery && window.jQuery.fn && window.jQuery.fn.modal||document.write("\u003Cscript src=\u0022/lib/bootstrap/dist/js/bootstrap.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\u0022\u003E\u003C/script\u003E"));</script>
-		<script src="/js/site.min.js?v=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU"></script>
-		<script src="/lib/jstree/jstree.min.js"></script>
-		<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-		<script type="text/javascript" src="https://cdn.datatables.net/scroller/1.5.0/js/dataTables.scroller.min.js"></script>
-		<script src="/lib/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	
-
-
+    <title>What-If Tool</title>
     
-</head>
-<body>
-    <header class="container">
-        <div class="col-md-6">
-            <a href="/">
-                <img src="/images/LogoCrisperCas.png" style="height:75px;">
-            </a>
-			
-			
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/what-if-tool/assets/css/material.min.css">
+    <link rel="stylesheet" href="/what-if-tool/assets/css/material-components-web.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,500,500italic,700,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Manrope:400,400italic,500,500italic,700,700italic" rel="stylesheet" type="text/css">
+
+    <!-- <link href='/what-if-tool/assets/css/main.css' rel='stylesheet' type='text/css'> -->
+    <link href="/what-if-tool/assets/css/new.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/what-if-tool/assets/images/favicon.png" type="image/png">
+    <style>
+      .main-bg { background-image:url(/what-if-tool/assets/images/home-bg.png); }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="mdl-layout__container"><div class="mdl-layout mdl-layout--no-desktop-drawer-button mdl-js-layout mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
+      
+      <header class="mdl-layout__header is-casting-shadow"><div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button"><i class="material-icons"></i></div>
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout__title"><a href="/what-if-tool/">What-If Tool</a></span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="/what-if-tool/get-started/">GET STARTED</a>
+            <a class="mdl-navigation__link" href="/what-if-tool/learn/">TUTORIALS</a>
+            <a class="mdl-navigation__link" href="/what-if-tool/explore/">DEMOS</a>
+            <a class="mdl-navigation__link" href="/what-if-tool/faqs/">FAQs</a>
+            <a class="mdl-navigation__link" href="https://groups.google.com/forum/#!forum/what-if-tool" target="-_blank">GET INVOLVED<img class="header-arrow" src="/what-if-tool/assets/images/arrow-link-out.png"></a>
+            <a class="mdl-navigation__link" href="https://github.com/pair-code/what-if-tool" target="-_blank">GITHUB<img class="header-arrow" src="/what-if-tool/assets/images/arrow-link-out.png"></a>
+          </nav>
         </div>
-		
-        <div class="col-md-6" style="text-align:right; white-space:nowrap">
-			<a href="http://www.i2bc.paris-saclay.fr/" target="_blank">
-				<img src="/images/ParisSaclay.svg" style="height:35px">
-			</a>
-			&nbsp;
-			<a href="http://www.i2bc.paris-saclay.fr/" target="_blank">
-				<img src="/images/i2bc.png" style="height:75px">
-			</a>
-			&nbsp;
-			<a href="https://c3bi.pasteur.fr/" target="_blank">
-				<img src="/images/PasteurC3BI.png" style="height:50px">
-			</a>
+      </header>
+      <div class="mdl-layout__drawer" aria-hidden="true">
+        <span class="mdl-layout__title"><a href="/what-if-tool/">What-If Tool</a></span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/what-if-tool/get-started/">GET STARTED</a>
+          <a class="mdl-navigation__link" href="/what-if-tool/learn/">TUTORIALS</a>
+          <a class="mdl-navigation__link" href="/what-if-tool/explore/">DEMOS</a>
+          <a class="mdl-navigation__link" href="/what-if-tool/faqs/">FAQs</a>
+          <a class="mdl-navigation__link" href="https://groups.google.com/forum/#!forum/what-if-tool" target="_blank">GET INVOLVED<img class="header-arrow" src="/what-if-tool/assets/images/arrow-link-out.png"></a>
+          <a class="mdl-navigation__link" href="https://github.com/pair-code/what-if-tool" target="-_blank">GITHUB<img class="header-arrow" src="/what-if-tool/assets/images/arrow-link-out.png"></a>
+          
+          <!-- <a class="mdl-navigation__link" href="https://pair-code.github.io/facets/" target="-_blank">
+            <i class="material-icons icon-style">star</i>
+            <span>Facets</span>
+          </a>
+          <a class="mdl-navigation__link" href="https://js.tensorflow.org" target="-_blank">
+            <i class="material-icons icon-style">star</i>
+            <span>TensorFlow.js</span>
+          </a> -->
+        </nav>
+      </div>
+      
+      <main class="mdl-layout__content hero-banner main-bg">
+        <div class="mdl_grid main-page-container">
+          <div class="mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+          <div class="mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--8-col-phone">
+<div class="display1"><strong>Visually probe</strong> the behavior of <strong>trained machine learning models</strong>, with minimal coding.</div> 
+<a class="home-cta-button" href="/what-if-tool/get-started">
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">
+  Get started
+  <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+</a>
+<div class="spacer" style="height:60px;"></div>
+</div>
+<p><img src="/what-if-tool/assets/images/home-hero.gif" alt="overview of WIT"></p>
+<div class="spacer" style="height:60px;"></div>
+<div class="mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--8-col-phone">
+<p>A key challenge in developing and deploying responsible Machine Learning (ML) systems is understanding their performance across a wide range of inputs.</p>
+<p>Using WIT, you can test performance in hypothetical situations, analyze the importance of different data features, and visualize model behavior across multiple models and subsets of input data, and for different ML fairness metrics.</p>
+</div>
+<div class="spacer" style="height:50px;"></div>
+<div class="display2">Model probing, from within any workflow</div>
+<div class="mdl-grid no-padding">
+<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
+  <h3>Platforms and Integrations</h3>
+  <div>
+<p><a href="https://colab.research.google.com/">Colaboratory notebooks</a></p>
+<p><a href="https://jupyter.org/">Jupyter notebooks</a></p>
+<p><a href="https://cloud.google.com/ai-platform-notebooks">Cloud AI Notebooks</a></p>
+<p><a href="https://www.tensorflow.org/tensorboard">TensorBoard</a></p>
+<p><a href="https://www.tensorflow.org/tfx/guide/fairness_indicators">TFMA Fairness Indicators</a></p>
+</div>
+</div>
+<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
+  <h3>Compatible models<br> and frameworks</h3>
+  <div>
+<p>TF Estimators</p>
+<p>Models served by <a href="https://www.tensorflow.org/tfx/guide/serving">TF serving</a></p>
+<p>Cloud AI Platform Models</p>
+<p>Models that can be wrapped in a python function</p>
+</div>
+</div>
+<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--6-col-phone">
+  <h3>Supported data and task types</h3>
+  <div>
+<p>Binary classification</p>
+<p>Multi-class classification</p>
+<p>Regression</p>
+<p>Tabular, Image, Text data</p>
+</div>
+</div>
+</div>
+<div class="spacer" style="height:50px;"></div>
+<h2>Ask and answer questions about models, features, and data points</h2>
+<div class="spacer" style="height:20px;"></div>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/qTUUwfG1vSs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<div class="spacer" style="height:20px;"></div>
+<h2>What’s the latest</h2>
+<div class="mdl-grid no-padding">
+<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--8-col-phone">
+  <img class="home-card-image" src="/what-if-tool/assets/images/home-card-code.png">
+  <div class="home-card-action">CODE</div>
+  <h3 class="home-card-title">Contribute to the What-If Tool</h3>
+  <div class="home-card-desc">The What-If Tool is open to anyone who wants to help develop and improve it!</div>
+  <div class="home-card-cta-button"><a href="https://github.com/PAIR-code/what-if-tool/blob/master/CONTRIBUTING.md" target="_blank">View developer guide</a><img class="external-arrow" src="/what-if-tool/assets/images/arrow-link-out.png"></div>
+</div>
+<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--8-col-phone">
+  <img class="home-card-image" src="/what-if-tool/assets/images/home-card-updates.png">
+  <div class="home-card-action">UPDATES</div>
+  <h3 class="home-card-title">Latest updates to the What-If Tool</h3>
+  <div class="home-card-desc">New features, updates, and improvements to the What-If Tool.</div>
+  <div class="home-card-cta-button"><a href="https://github.com/PAIR-code/what-if-tool/blob/master/RELEASE.md" target="_blank">See release notes</a><img class="external-arrow" src="/what-if-tool/assets/images/arrow-link-out.png"></div>
+</div>
+<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--8-col-phone">
+  <img class="home-card-image" src="/what-if-tool/assets/images/home-card-research.png">
+  <div class="home-card-action">RESEARCH</div>
+  <h3 class="home-card-title">Systems Paper at IEEE VAST ‘19</h3>
+  <div class="home-card-desc">Read about what went into the What-If Tool in our systems papers, presented at IEEE VAST ‘19.</div>
+  <div class="home-card-cta-button"><a href="https://ieeexplore.ieee.org/abstract/document/8807255" target="_blank">Go to proceedings</a><img class="external-arrow" src="/what-if-tool/assets/images/arrow-link-out.png"></div>
+</div>
+<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--8-col-phone">
+  <img class="home-card-image" src="/what-if-tool/assets/images/home-card-article.png">
+  <div class="home-card-action">ARTICLE</div>
+  <h3 class="home-card-title">Playing with AI Fairness</h3>
+  <div class="home-card-desc">The What-If Tool lets you try on five different types of fairness. What do they mean?</div>
+  <div class="home-card-cta-button"><a href="./ai-fairness.html">Read the article</a><span class="home-card-icon material-icons">arrow_right_alt</span></div>
+</div>
+</div>
+          </div>
+
+          <div class="footer-container mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--4-col-phone"><a href="https://pair.withgoogle.com/" target="_blank"><img src="/what-if-tool/assets/images/pair-logo.svg"></a></div>
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--4-col-phone"><a href="https://research.google/teams/brain/pair/" target="_blank">Google Research</a></div>
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--4-col-phone"><a href="https://groups.google.com/forum/#!forum/what-if-tool" target="_blank">Get Involved</a></div>
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--4-col-phone"><a href="https://github.com/pair-code" target="_blank">Github</a></div>
+  <div class="footer-icons mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+    <a href="mailto:peopleai@google.com" target="_blank"><img src="/what-if-tool/assets/images/mail.png"></a>
+    <a href="https://medium.com/people-ai-research" target="_blank"><img src="/what-if-tool/assets/images/medium.png"></a>
+    <a href="https://www.youtube.com/channel/UCnnns-uu4yy9BXfYSPIX5AA" target="_blank"><img src="/what-if-tool/assets/images/youtube.png"></a>
+  </div>
+</div>
         </div>
-    </header>
-	<nav class="navbar navbar-inverse">
-		
- 		<div class="container">
-			<div class="navbar-header">
+      </main>
+    <div class="mdl-layout__obfuscator"></div></div></div>
+  
 
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
+  
 
-				<a href="/">
-					<img src="/images/home.png" style="margin-top:0.5em;height:2em;">
-					</a>
-
-			</div>
-			
-			<div class="navbar-collapse collapse">
-				
-				<ul class="nav navbar-nav">
-					
-					<li class="dropdown">
-						
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							CRISPRCas...<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="/CrisprCasFinder/Index">Finder</a></li>
-							<li><a href="/CrisprCasFinder/Viewer">Viewer</a></li>
-							<li><a href="/CrisprCasMeta/Index">Meta</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							CRISPRCasdb...<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="/MainDb/StrainList">Browse strains by list</a></li>
-							<li><a href="/MainDb/TaxoTree">Browse by taxonomy</a></li>
-							<li><a href="/MainDbQry/Index">Search DR/spacers</a></li>
-						</ul>
-					</li>					
-						<li><a href="/Home/About">About CRISPR/Cas</a></li>
-						<li><a href="/Home/Download">Download</a></li>
-						<li><a href="/Home/Links">Links</a></li>
-						<li><a href="/Home/Contact">Contact</a></li>
-						<li><a href="/Home/Credits">Credits</a></li>
-						<li><a href="/Home/News">News</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<div class="container-fluid body-content" id="renderbody">
-		
-<div class="container" style="width:70%;">
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Welcome to CRISPR-Cas++ ! Please select a tool...</h2>
-            </div>
-
-
-        <div class="col-md-4 col-sm-3">
-            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
-                <a href="CrisprCasFinder/Index">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgb(50,130,255,0.1);">
-                        <br><br>
-                        <img style="width:100%;" src="images/logo_crispr.png">
-                        <h3>Submit nucleotide sequences to search for CRISPRs &amp; Cas</h3>
-                    </div>
-                    <div class="wrimagecard-topimage_title">
-                        <h2>CRISPRCasFinder</h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-3">
-        <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
-            <a href="CrisprCasMeta/Index">
-                <div class="wrimagecard-topimage_header" style="background-color: rgb(200,150,150,0.1);">
-                    <img style="width:50%;" src="images/logo_meta2.png">
-                    <center><i class="fa fa-cubes" style="color:#16A085"></i></center>
-                    <h3>Submit metagenomes to find CRISPR &amp; Cas</h3>
-                </div>
-                <div class="wrimagecard-topimage_title">
-                    <h2>CRISPRCasMeta</h2>
-                    <div class="pull-right badge" id="WrControls"></div>
-                </div>
-            </a>
-        </div>
-        </div>
-
-
-        <div class="col-md-4 col-sm-3">
-            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
-                <a href="MainDb/StrainList">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgb(200,250,150,0.3);">
-                        <img style="width:80%;" src="images/logo_crisprdb.png">
-                        <center><i class="fa" style="color:#BB7824"></i></center>
-                        <h3>Browse the CRISPR-Cas++ <br>database of strains</h3>
-                    </div>
-                    <div class="wrimagecard-topimage_title">
-                        <h2>CRISPRCasdb</h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-3">
-            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
-                <a href="MainDb/TaxoTree">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgb(255,230,100,0.6); ">
-                        <img style="width:70%;" src="images/logo_taxo.png">
-                        <center><i class="fa" style="color:#BB7824"></i></center>
-                        <h3>View the CRISPR-Cas++ database as taxonomy tree</h3>
-                    </div>
-                    <div class="wrimagecard-topimage_title">
-                        <h2>CRISPRCasdb-Taxo</h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-3">
-            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
-                <a href="MainDbQry/Index">
-                    <div class="wrimagecard-topimage_header" style="background-color:rgb(0,0,0,0.1);">
-                        <br>
-                        <img style="width:100%;" src="images/logo_blast2.png">
-                        <h3>Blast small sequences against the<br>Direct repeats &amp; spacers databases</h3>
-                    </div>
-                    <div class="wrimagecard-topimage_title">
-                        <h2>CRISPRCasdb-Blast</h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-
-        <div class="col-md-4 col-sm-3">
-            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
-
-
-                <div class="list-group">
-
-                    <div class="list-group">
-
-                        <p class="list-group-item active">
-                                Dec. 2024
-                        </p>
-
-                        <p class="list-group-item">
-                            A new version of the CRISPRCasDb is available ! <br>
-                            <a href="/MainDb/StrainList">Visit CRISPRCasDb page</a>
-                        </p>	
-
-                    </div>
-
-                    <p class="list-group-item active">
-                            Sept. 25, 2020
-                    </p>
-
-                    <p class="list-group-item">
-                        
-                        Run CRISPRCasFinder on your computer easily !
-                        You can now download a container with CRISPRCasFinder pre-installed...
-                        <br>
-                        <a href="/Home/Download">Download CRISPRCasFinder container.</a>
-                    </p>	
-
-                </div>
-                
-
-            </div>
-        </div>
-
-    </div>
-    </div>
-
-</div>	
-	</div>
-    <footer id="footer" class="container col-xs-12 navbar-fixed-bottom">
-			<span>
-        <hr style="height:1px; margin:5px;">
-
-				<div class="d-inline text-center">
-        	<span style="font-size:x-small; text-align:center">© 2021 - CRISPR-Cas++ 2.0.1 (Mar 2026) - I2BC - </span>
-					<a target="_blank" href="https://bioweb.i2bc.paris-saclay.fr/use.htm">Terms of use - </a>
-					<a target="_blank" href="https://bioweb.i2bc.paris-saclay.fr/privacy.htm">Privacy</a>
-					
-				</div>
-
-				</span>
-    </footer>
-
-	
-	
-
+  <script defer="" src="/what-if-tool/assets/js/material.min.js"></script>
+  <script defer="" src="/what-if-tool/assets/js/material-components-web.min.js"></script>
 
 </body></html>
