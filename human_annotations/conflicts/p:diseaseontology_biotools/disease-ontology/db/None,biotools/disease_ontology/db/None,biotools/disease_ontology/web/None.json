@@ -1,0 +1,270 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/disease-ontology/db/None",
+        "created_at": "2025-04-02T12:54:34.310092",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "lschriml@som.umaryland.edu",
+              "maintainer": false,
+              "name": "Lynn M Schriml",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Classification, content and workflow expansion.\n\nEach import consists of two files: a *_terms.txt file and a *_import.owl file. The .txt file is used to generate the .owl import module using ROBOT extract.\n\nThis browser does not support visualization of term relationships on the Disease Ontology website.\n\nPlease use Chrome, Safari or Firefox when using the Disease Ontology website to unlock visualization capabaility.\n\nOpen the corresponding .txt file and do a text search to ensure the ID has not yet been added.\n\nSave the file, and then in terminal, run the desired make command (see below).\n\nName Synonym Definition Subset DOID Alternate ID Xrefs DO_AGR_slim DO_cancer_slim DO_FlyBase_slim DO_GXD_slim DO_IEDB_slim DO_MGI_slim DO_rare_slim NCIthesaurus TopNodes_DOcancerslim."
+          ],
+          "documentation": [],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "disease-ontology"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "disease-ontology",
+          "operating_system": [],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Ontology visualisation",
+              "uri": "http://edamontology.org/operation_3559",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Database search",
+              "uri": "http://edamontology.org/operation_2421",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Named-entity and concept recognition",
+              "uri": "http://edamontology.org/operation_3280",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c82f0010e2f3aa0b3ba894"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Rare Disease"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Ontology and terminology",
+              "uri": "http://edamontology.org/topic_0089",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Oncology",
+              "uri": "http://edamontology.org/topic_2640",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Anatomy",
+              "uri": "http://edamontology.org/topic_3067",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Rare diseases",
+              "uri": "http://edamontology.org/topic_3325",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "db",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://www.disease-ontology.org/"
+          ]
+        },
+        "id": "biotools/disease-ontology/db/None",
+        "last_updated_at": "2026-04-15T23:50:47.773262",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/disease-ontology/db/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "biotools/disease_ontology/db/None,biotools/disease_ontology/web/None",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "Contact Form",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://disease-ontology.org/contact/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "The Disease Ontology (DO) has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://disease-ontology.org/about/"
+            },
+            {
+              "content": null,
+              "type": "training_material",
+              "url": "http://disease-ontology.org/tutorial/"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "DO"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "CC-BY-1.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "disease_ontology",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Annotation",
+              "uri": "http://edamontology.org/operation_0226",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Ontology comparison",
+              "uri": "http://edamontology.org/operation_3352",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Query and retrieval",
+              "uri": "http://edamontology.org/operation_0224",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Ontology visualisation",
+              "uri": "http://edamontology.org/operation_3559",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [],
+          "output": [],
+          "publication": [
+            "67c7abb5d3b8acd1a2f9be80"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "Rare Disease"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Pathology",
+              "uri": "http://edamontology.org/topic_0634",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Ontology and terminology",
+              "uri": "http://edamontology.org/topic_0089",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Medical informatics",
+              "uri": "http://edamontology.org/topic_3063",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "\"Molecular interactions",
+              "uri": "http://edamontology.org/topic_0602",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Rare diseases",
+              "uri": "http://edamontology.org/topic_3325",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": [
+            "db",
+            "web"
+          ],
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://disease-ontology.org/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:diseaseontology_biotools/disease-ontology/db/None,biotools/disease_ontology/db/None,biotools/disease_ontology/web/None",
+  "conflict_name": "diseaseontology/*",
+  "date": "2026-04-20T16:11:46.654513+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
