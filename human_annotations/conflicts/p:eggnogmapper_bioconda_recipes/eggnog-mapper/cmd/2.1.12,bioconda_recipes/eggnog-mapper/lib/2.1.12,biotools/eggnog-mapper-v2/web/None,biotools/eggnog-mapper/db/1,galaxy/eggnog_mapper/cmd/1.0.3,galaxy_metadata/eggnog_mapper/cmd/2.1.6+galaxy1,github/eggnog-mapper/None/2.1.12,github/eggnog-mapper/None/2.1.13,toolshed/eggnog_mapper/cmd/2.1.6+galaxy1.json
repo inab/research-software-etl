@@ -1,0 +1,449 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/eggnog-mapper/db/1",
+        "created_at": "2025-04-02T11:57:03.923169",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "European Molecular Biology Laboratory (EMBL)",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://www.embl.de/"
+            },
+            {
+              "email": null,
+              "maintainer": false,
+              "name": "HD-HuB",
+              "orcid": null,
+              "type": "Organization",
+              "url": "https://www.hd-hub.de/"
+            },
+            {
+              "email": "zeller@embl.de",
+              "maintainer": false,
+              "name": "Georg Zeller",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "danielrmende@gmail.com",
+              "maintainer": false,
+              "name": "Daniel Mende",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "For fast functional annotation of novel sequences. It uses precomputed orthologous groups and phylogenies from the eggNOG database to transfer functional information from fine-grained orthologs only. Its common uses include the annotation of novel genomes, transcriptomes or even metagenomic gene catalogs.\n\nThe use of orthology predictions for functional annotation permits a higher precision than traditional homology searches, as it avoids transferring annotations from close paralogs."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/jhcepas/eggnog-mapper/wiki"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "EggNOG-mapper"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "eggnog-mapper",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Database search",
+              "uri": "http://edamontology.org/operation_2421",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c7ab4dd3b8acd1a2f9bdda",
+            "67c7ab4dd3b8acd1a2f9bdd9",
+            "67c7ab4ed3b8acd1a2f9bddb"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [
+            "de.NBI"
+          ],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genomics",
+              "uri": "http://edamontology.org/topic_0622",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "db",
+          "version": [
+            "1"
+          ],
+          "webpage": [
+            "http://beta-eggnogdb.embl.de/#/app/emapper"
+          ]
+        },
+        "id": "biotools/eggnog-mapper/db/1",
+        "last_updated_at": "2026-04-15T17:14:26.782341",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/eggnog-mapper/db/1",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "galaxy_metadata/eggnog_mapper/cmd/2.1.6+galaxy1,bioconda_recipes/eggnog-mapper/cmd/2.1.12,toolshed/eggnog_mapper/cmd/2.1.6+galaxy1,bioconda_recipes/eggnog-mapper/lib/2.1.12,biotools/eggnog-mapper-v2/web/None,github/eggnog-mapper/None/2.1.12,github/eggnog-mapper/None/2.1.13,galaxy/eggnog_mapper/cmd/1.0.3",
+        "data": {
+          "authors": [
+            {
+              "email": "bork@embl.de",
+              "maintainer": false,
+              "name": "Peer Bork",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "huerta.jaime@inia.es",
+              "maintainer": false,
+              "name": "Jaime Huerta-Cepas",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cpcantalapiedra@gmail.com",
+              "maintainer": false,
+              "name": "Carlos P Cantalapiedra",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ejr@stowers.org",
+              "maintainer": false,
+              "name": "Eric Ross",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "keegan.evans@gmail.com",
+              "maintainer": false,
+              "name": "Keegan Evans",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "douglasgscofield@gmail.com",
+              "maintainer": false,
+              "name": "Douglas Scofield",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "cpcantalapiedra@gmail.com",
+              "maintainer": false,
+              "name": "Cantalapiedra",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "wget",
+            "psutil >=5.7.0",
+            "python >=3.7",
+            "mmseqs2",
+            "xlsxwriter >=1.4.3",
+            "easel",
+            "prodigal",
+            "biopython >=1.76",
+            "hmmer",
+            "diamond >=2.0.11"
+          ],
+          "description": [
+            "Functional sequence annotation by orthology.",
+            "Fast genome-wide functional annotation through orthology assignment.",
+            "EggNOG-mapper is a tool for fast functional annotation of novel sequences. It uses precomputed orthologous groups and phylogenies from the eggNOG database (http://eggnog5.embl.de) to transfer functional information from fine-grained orthologs only."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/eggnog-mapper/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/eggnog-mapper/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/eggnogdb/eggnog-mapper"
+            },
+            {
+              "content": "\n                Min E-value expected when searching for seed eggNOG ortholog. Applies to phmmer/diamond searches.\n                Queries not having a significant seed orthologs (E-value less than threshold) will not be annotated.\n                ",
+              "type": "help",
+              "url": null
+            },
+            {
+              "content": null,
+              "type": "license",
+              "url": "https://github.com/eggnogdb/eggnog-mapper/blob/main/LICENSE.txt"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/eggnogdb/eggnog-mapper/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "requirements",
+              "url": "https://github.com/eggnogdb/eggnog-mapper/blob/main/requirements.txt"
+            }
+          ],
+          "download": [
+            "https://github.com/eggnogdb/eggnog-mapper/archive/refs/tags/2.1.12.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "eggnog-mapper",
+            "eggNOG-mapper v2",
+            "eggNOG Mapper",
+            "eggnog_mapper"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "AGPL-3.0-only",
+              "url": null
+            },
+            {
+              "name": "AGPL-3.0",
+              "url": null
+            },
+            {
+              "name": "GNU Affero General Public License v3.0",
+              "url": "http://choosealicense.com/licenses/agpl-3.0/"
+            }
+          ],
+          "links": [],
+          "name": "eggnog_mapper",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Homology-based gene prediction",
+              "uri": "http://edamontology.org/operation_3663",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genome annotation",
+              "uri": "http://edamontology.org/operation_0362",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Fold recognition",
+              "uri": "http://edamontology.org/operation_0303",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Information extraction",
+              "uri": "http://edamontology.org/operation_3907",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Query and retrieval",
+              "uri": "http://edamontology.org/operation_0224",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "other_names": [
+            "eggnog-mapper-v2",
+            "eggnog-mapper"
+          ],
+          "output": [],
+          "publication": [
+            "67c7ab4dd3b8acd1a2f9bdda",
+            "67c7ab4ed3b8acd1a2f9bddb",
+            "67c82c8410e2f3aa0b3b9780",
+            "67c7ac2ed3b8acd1a2f9bf4a"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/eggnogdb/eggnog-mapper"
+            }
+          ],
+          "source": [
+            "github",
+            "biotools",
+            "toolshed",
+            "galaxy_metadata",
+            "bioconda_recipes",
+            "galaxy"
+          ],
+          "source_code": [
+            "https://github.com/eggnogdb/eggnog-mapper/archive/refs/tags/2.1.12.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": true,
+          "topics": [
+            {
+              "term": "Metagenomics",
+              "uri": "http://edamontology.org/topic_3174",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogeny",
+              "uri": "http://edamontology.org/topic_0084",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Transcriptomics",
+              "uri": "http://edamontology.org/topic_3308",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Workflows",
+              "uri": "http://edamontology.org/topic_0769",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Sequence analysis",
+              "uri": "http://edamontology.org/topic_0080",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "annotations",
+              "uri": "https://github.com/topics/annotations",
+              "vocabulary": ""
+            },
+            {
+              "term": "orthology-assignments",
+              "uri": "https://github.com/topics/orthology-assignments",
+              "vocabulary": ""
+            },
+            {
+              "term": "functional-annotation",
+              "uri": "https://github.com/topics/functional-annotation",
+              "vocabulary": ""
+            },
+            {
+              "term": "genomics",
+              "uri": "https://github.com/topics/genomics",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "web",
+            "lib",
+            "cmd"
+          ],
+          "version": [
+            "2.1.6",
+            "2.1.9",
+            "2.1.8",
+            "2.1.12",
+            "2.1.13",
+            "2.1.0-1",
+            "2.1.10",
+            "2.1.2",
+            "2.1.11",
+            "2.1.5",
+            "2.0.7",
+            "1.0.3",
+            "2.1.6+galaxy1",
+            "2.1.4",
+            "2.1.7",
+            "2.0.8.post2",
+            "2.1.4-main_spec",
+            "None",
+            "2.0.6",
+            "2.1.4-2",
+            "2.0.5",
+            "2.1.3"
+          ],
+          "webpage": [
+            "http://eggnog-mapper.embl.de/",
+            "https://github.com/eggnogdb/eggnog-mapper",
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fgalaxyp%2Feggnog_mapper%2Feggnog_mapper%2F1.0.3"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:eggnogmapper_bioconda_recipes/eggnog-mapper/cmd/2.1.12,bioconda_recipes/eggnog-mapper/lib/2.1.12,biotools/eggnog-mapper-v2/web/None,biotools/eggnog-mapper/db/1,galaxy/eggnog_mapper/cmd/1.0.3,galaxy_metadata/eggnog_mapper/cmd/2.1.6+galaxy1,github/eggnog-mapper/None/2.1.12,github/eggnog-mapper/None/2.1.13,toolshed/eggnog_mapper/cmd/2.1.6+galaxy1",
+  "conflict_name": "eggnogmapper/*",
+  "date": "2026-04-17T11:06:11.768242+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
