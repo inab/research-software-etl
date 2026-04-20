@@ -1,0 +1,349 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/presto/cmd/None",
+        "created_at": "2025-04-02T12:57:34.454555",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": null,
+              "maintainer": false,
+              "name": null,
+              "orcid": null,
+              "type": "Person",
+              "url": "http://medicine.yale.edu/lab/kleinstein/index.aspx"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Integrated collection of platform-independent Python modules for processing raw reads from high-throughput (next-generation) sequencing of lymphocyte repertoires."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "api",
+              "url": "http://presto.readthedocs.io/en/latest/api.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://presto.readthedocs.io/en/latest/usage.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "pRESTO"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "presto",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Nucleic acid sequence analysis",
+              "uri": "http://edamontology.org/operation_2478",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8296910e2f3aa0b3b84fd"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Sequencing",
+              "uri": "http://edamontology.org/topic_3168",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "DNA",
+              "uri": "http://edamontology.org/topic_0654",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Immunology",
+              "uri": "http://edamontology.org/topic_0804",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://presto.readthedocs.io/en/latest/"
+          ]
+        },
+        "id": "biotools/presto/cmd/None",
+        "last_updated_at": "2026-04-16T00:05:27.531735",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/presto/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/r-presto/cmd/1.0.0,github/presto/None/None,bioconda_recipes/presto/cmd/0.7.2,bioconda_recipes/presto/cmd/0.7.8",
+        "data": {
+          "authors": [
+            {
+              "email": "kslowikowski@gmail.com",
+              "maintainer": false,
+              "name": "Kamil Slowikowski",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "6363505+igordot@users.noreply.github.com",
+              "maintainer": false,
+              "name": "igor",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hartmana99@gmail.com",
+              "maintainer": false,
+              "name": "Austin Hartman",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "innesbre@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Brendan Innes",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "ilya.korsunsky@gmail.com",
+              "maintainer": false,
+              "name": "Ilya Korsunsky",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "biopython >=1.71",
+            "vsearch",
+            "blast >=2.5",
+            "vsearch >=2.3.2",
+            "r-purrr",
+            "biopython >=1.81",
+            "r-tibble",
+            "r-tidyr",
+            "python >=3",
+            "numpy >=1.8",
+            "r-base",
+            "muscle >=3.8",
+            "r-dplyr",
+            "pandas >=0.24",
+            "scipy >=0.14",
+            "blast",
+            "r-matrix",
+            "r-rcpp",
+            "r-data.table",
+            "r-rcpparmadillo",
+            "packaging",
+            "r-rlang",
+            "muscle"
+          ],
+          "description": [
+            "Scalable implementation of the Wilcoxon rank sum test and auROC statistic. Interfaces to dense and sparse matrices, as well as genomics analysis frameworks Seurat and SingleCellExperiment.",
+            "Fast Wilcoxon and auROC.",
+            "A bioinformatics toolkit for processing high-throughput lymphocyte receptor sequencing data."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/r-presto/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/r-presto/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/immunogenomics/presto"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/immunogenomics/presto/blob/main/NEWS.md"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/immunogenomics/presto/blob/main/README.md"
+            },
+            {
+              "content": null,
+              "type": "root",
+              "url": "https://github.com/immunogenomics/presto/blob/main/cran-comments.md"
+            },
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/presto/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/presto/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bitbucket.org/kleinstein/presto"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://github.com/immcantation/presto"
+            }
+          ],
+          "download": [
+            "https://github.com/immunogenomics/presto/archive/refs/tags/1.0.0.tar.gz",
+            "https://pypi.org/packages/source/p/presto/presto-0.7.8.tar.gz",
+            "https://pypi.io/packages/source/p/presto/presto-0.7.2.tar.gz"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "presto",
+            "r-presto"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "GPL-3.0-only",
+              "url": null
+            },
+            {
+              "name": "AGPL-3.0-or-later",
+              "url": null
+            }
+          ],
+          "links": [],
+          "name": "r-presto",
+          "operating_system": [
+            "Linux",
+            "macOS",
+            "Windows"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "presto"
+          ],
+          "output": [],
+          "publication": [],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/immunogenomics/presto"
+            },
+            {
+              "kind": "bitbucket",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://bitbucket.org/kleinstein/presto"
+            },
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/immcantation/presto"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/immunogenomics/presto/archive/refs/tags/1.0.0.tar.gz",
+            "https://pypi.org/packages/source/p/presto/presto-0.7.8.tar.gz",
+            "https://pypi.io/packages/source/p/presto/presto-0.7.2.tar.gz"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "1.0.0",
+            "0.7.2",
+            "0.7.8"
+          ],
+          "webpage": [
+            "https://github.com/immunogenomics/presto",
+            "https://bitbucket.org/kleinstein/presto",
+            "https://github.com/immcantation/presto"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:presto_bioconda_recipes/presto/cmd/0.7.2,bioconda_recipes/presto/cmd/0.7.8,bioconda_recipes/r-presto/cmd/1.0.0,biotools/presto/cmd/None,github/presto/None/None",
+  "conflict_name": "presto/*",
+  "date": "2026-04-20T16:12:36.695479+00:00",
+  "run_id": "20260416T094701Z-57253f25"
+}
