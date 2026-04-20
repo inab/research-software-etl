@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CRISPR-CAS++</title>
+	<meta name="description" content="The CRISPRCasFinder program enables the easy detection of CRISPRs and cas genes in user-submitted sequence data.">
+
+	
+
+	
+		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="x-stylesheet-fallback-test" content="" class="sr-only"><script>!function(a,b,c,d){var e,f=document,g=f.getElementsByTagName("SCRIPT"),h=g[g.length-1].previousElementSibling,i=f.defaultView&&f.defaultView.getComputedStyle?f.defaultView.getComputedStyle(h):h.currentStyle;if(i&&i[a]!==b)for(e=0;e<c.length;e++)f.write('<link href="'+c[e]+'" '+d+"/>")}("position","absolute",["/lib/bootstrap/dist/css/bootstrap.min.css"], "rel=\u0022stylesheet\u0022 ");</script>
+		<link rel="stylesheet" href="/lib/jstree/themes/default/style.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/1.5.0/css/scroller.dataTables.min.css">
+		<link rel="stylesheet" href="/lib/bootstrap-multiselect/bootstrap-multiselect.css">
+		<link rel="stylesheet" href="/css/site.min.css?v=dS8KuwkiBBqOcEjo2n2AAMLo3s36My4LtQqVXA-p08A">
+	
+
+	
+	
+	
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js" crossorigin="anonymous" integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+		</script>
+<script>(window.jQuery||document.write("\u003Cscript src=\u0022/lib/jquery/dist/jquery.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-K\u002BctZQ\u002BLL8q6tP7I94W\u002BqzQsfRV2a\u002BAfHIi9k8z8l9ggpc8X\u002BYtst4yBo/hH\u002B8Fk\u0022\u003E\u003C/script\u003E"));</script>
+		<script src="/lib/jquery-resizable/jquery-resizable.min.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+		</script>
+<script>(window.jQuery && window.jQuery.fn && window.jQuery.fn.modal||document.write("\u003Cscript src=\u0022/lib/bootstrap/dist/js/bootstrap.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\u0022\u003E\u003C/script\u003E"));</script>
+		<script src="/js/site.min.js?v=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU"></script>
+		<script src="/lib/jstree/jstree.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/scroller/1.5.0/js/dataTables.scroller.min.js"></script>
+		<script src="/lib/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+	
+
+
+    
+</head>
+<body>
+    <header class="container">
+        <div class="col-md-6">
+            <a href="/">
+                <img src="/images/LogoCrisperCas.png" style="height:75px;">
+            </a>
+			
+			
+        </div>
+		
+        <div class="col-md-6" style="text-align:right; white-space:nowrap">
+			<a href="http://www.i2bc.paris-saclay.fr/" target="_blank">
+				<img src="/images/ParisSaclay.svg" style="height:35px">
+			</a>
+			&nbsp;
+			<a href="http://www.i2bc.paris-saclay.fr/" target="_blank">
+				<img src="/images/i2bc.png" style="height:75px">
+			</a>
+			&nbsp;
+			<a href="https://c3bi.pasteur.fr/" target="_blank">
+				<img src="/images/PasteurC3BI.png" style="height:50px">
+			</a>
+        </div>
+    </header>
+	<nav class="navbar navbar-inverse">
+		
+ 		<div class="container">
+			<div class="navbar-header">
+
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+				<a href="/">
+					<img src="/images/home.png" style="margin-top:0.5em;height:2em;">
+					</a>
+
+			</div>
+			
+			<div class="navbar-collapse collapse">
+				
+				<ul class="nav navbar-nav">
+					
+					<li class="dropdown">
+						
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							CRISPRCas...<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/CrisprCasFinder/Index">Finder</a></li>
+							<li><a href="/CrisprCasFinder/Viewer">Viewer</a></li>
+							<li><a href="/CrisprCasMeta/Index">Meta</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							CRISPRCasdb...<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/MainDb/StrainList">Browse strains by list</a></li>
+							<li><a href="/MainDb/TaxoTree">Browse by taxonomy</a></li>
+							<li><a href="/MainDbQry/Index">Search DR/spacers</a></li>
+						</ul>
+					</li>					
+						<li><a href="/Home/About">About CRISPR/Cas</a></li>
+						<li><a href="/Home/Download">Download</a></li>
+						<li><a href="/Home/Links">Links</a></li>
+						<li><a href="/Home/Contact">Contact</a></li>
+						<li><a href="/Home/Credits">Credits</a></li>
+						<li><a href="/Home/News">News</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid body-content" id="renderbody">
+		
+<div class="container" style="width:70%;">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Welcome to CRISPR-Cas++ ! Please select a tool...</h2>
+            </div>
+
+
+        <div class="col-md-4 col-sm-3">
+            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
+                <a href="CrisprCasFinder/Index">
+                    <div class="wrimagecard-topimage_header" style="background-color:rgb(50,130,255,0.1);">
+                        <br><br>
+                        <img style="width:100%;" src="images/logo_crispr.png">
+                        <h3>Submit nucleotide sequences to search for CRISPRs &amp; Cas</h3>
+                    </div>
+                    <div class="wrimagecard-topimage_title">
+                        <h2>CRISPRCasFinder</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-3">
+        <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
+            <a href="CrisprCasMeta/Index">
+                <div class="wrimagecard-topimage_header" style="background-color: rgb(200,150,150,0.1);">
+                    <img style="width:50%;" src="images/logo_meta2.png">
+                    <center><i class="fa fa-cubes" style="color:#16A085"></i></center>
+                    <h3>Submit metagenomes to find CRISPR &amp; Cas</h3>
+                </div>
+                <div class="wrimagecard-topimage_title">
+                    <h2>CRISPRCasMeta</h2>
+                    <div class="pull-right badge" id="WrControls"></div>
+                </div>
+            </a>
+        </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-3">
+            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
+                <a href="MainDb/StrainList">
+                    <div class="wrimagecard-topimage_header" style="background-color:rgb(200,250,150,0.3);">
+                        <img style="width:80%;" src="images/logo_crisprdb.png">
+                        <center><i class="fa" style="color:#BB7824"></i></center>
+                        <h3>Browse the CRISPR-Cas++ <br>database of strains</h3>
+                    </div>
+                    <div class="wrimagecard-topimage_title">
+                        <h2>CRISPRCasdb</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-3">
+            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
+                <a href="MainDb/TaxoTree">
+                    <div class="wrimagecard-topimage_header" style="background-color:rgb(255,230,100,0.6); ">
+                        <img style="width:70%;" src="images/logo_taxo.png">
+                        <center><i class="fa" style="color:#BB7824"></i></center>
+                        <h3>View the CRISPR-Cas++ database as taxonomy tree</h3>
+                    </div>
+                    <div class="wrimagecard-topimage_title">
+                        <h2>CRISPRCasdb-Taxo</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-3">
+            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
+                <a href="MainDbQry/Index">
+                    <div class="wrimagecard-topimage_header" style="background-color:rgb(0,0,0,0.1);">
+                        <br>
+                        <img style="width:100%;" src="images/logo_blast2.png">
+                        <h3>Blast small sequences against the<br>Direct repeats &amp; spacers databases</h3>
+                    </div>
+                    <div class="wrimagecard-topimage_title">
+                        <h2>CRISPRCasdb-Blast</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-3">
+            <div class="wrimagecard wrimagecard-topimage" style="text-align:center;">
+
+
+                <div class="list-group">
+
+                    <div class="list-group">
+
+                        <p class="list-group-item active">
+                                Dec. 2024
+                        </p>
+
+                        <p class="list-group-item">
+                            A new version of the CRISPRCasDb is available ! <br>
+                            <a href="/MainDb/StrainList">Visit CRISPRCasDb page</a>
+                        </p>	
+
+                    </div>
+
+                    <p class="list-group-item active">
+                            Sept. 25, 2020
+                    </p>
+
+                    <p class="list-group-item">
+                        
+                        Run CRISPRCasFinder on your computer easily !
+                        You can now download a container with CRISPRCasFinder pre-installed...
+                        <br>
+                        <a href="/Home/Download">Download CRISPRCasFinder container.</a>
+                    </p>	
+
+                </div>
+                
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+</div>	
+	</div>
+    <footer id="footer" class="container col-xs-12 navbar-fixed-bottom">
+			<span>
+        <hr style="height:1px; margin:5px;">
+
+				<div class="d-inline text-center">
+        	<span style="font-size:x-small; text-align:center">© 2021 - CRISPR-Cas++ 2.0.1 (Mar 2026) - I2BC - </span>
+					<a target="_blank" href="https://bioweb.i2bc.paris-saclay.fr/use.htm">Terms of use - </a>
+					<a target="_blank" href="https://bioweb.i2bc.paris-saclay.fr/privacy.htm">Privacy</a>
+					
+				</div>
+
+				</span>
+    </footer>
+
+	
+	
+
+
+</body></html>

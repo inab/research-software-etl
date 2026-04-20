@@ -199,7 +199,7 @@ def process_description(description):
 
 def normalize_source_identity(source: str) -> str | None:
     """
-    Normalize a source string to a stable identity suitable for post-conflict merging.
+    Normalize a source string to a stable identity suitable for conflict-block merging.
 
     Examples:
     - bioconda_recipes/perl-datetime/lib/1.59 -> bioconda_recipes/perl-datetime
@@ -236,56 +236,150 @@ def normalize_source_identity(source: str) -> str | None:
 
 
 def get_normalized_source_identities(entry):
-    return {
-        normalized
-        for source in entry.get("source", [])
-        if (normalized := normalize_source_identity(source))
-    }
+    """
+    Return normalized source identities for an entry.
 
+    Prefer explicit source values if they carry identity information.
+    If source is too generic (e.g. just 'bioconda_recipes'), also derive
+    a stable identity from the entry id, which in your data often contains
+    the package-level identity.
+    """
+    identities = set()
+
+    for source in entry.get("source", []):
+        normalized = normalize_source_identity(source)
+        if normalized:
+            identities.add(normalized)
+
+    entry_id = entry.get("id")
+    normalized_id = normalize_source_identity(entry_id)
+    if normalized_id:
+        identities.add(normalized_id)
+
+    return identities
+
+import re
+
+def normalize_name(name: str) -> str:
+    """
+    Normalize software names for conflict comparison.
+
+    Examples:
+    - "fetch taxonomic ranks" -> "fetch taxonomic ranks"
+    - "fetch_taxonomic_ranks" -> "fetch taxonomic ranks"
+    - "fetch-taxonomic-ranks" -> "fetch taxonomic ranks"
+    - "  Fetch__Taxonomic--Ranks  " -> "fetch taxonomic ranks"
+    """
+    if not name:
+        return ""
+
+    name = name.strip().lower()
+    name = re.sub(r"[_\-]+", " ", name)
+    name = re.sub(r"\s+", " ", name)
+    return name
 
 def are_same_by_source_and_name(entry1, entry2):
-    name1 = entry1.get("name", "").strip().lower()
-    name2 = entry2.get("name", "").strip().lower()
+    """
+    Two entries are considered the same for conflict resolution if:
+    - names match
+    - and either:
+        * both are Galaxy-related
+        * or they share at least one normalized source identity
+    """
+    name1 = normalize_name(entry1.get("name", ""))
+    name2 = normalize_name(entry2.get("name", ""))
 
     if name1 != name2:
         return False
+
+    if is_galaxy_related(entry1) and is_galaxy_related(entry2):
+        return True
 
     sources1 = get_normalized_source_identities(entry1)
     sources2 = get_normalized_source_identities(entry2)
 
     return bool(sources1 & sources2)
 
+def resolve_source_name_clusters(conflict_blocks):
+    """
+    Post-process conflict blocks without undoing link-based grouping.
 
-def apply_source_name_merge(conflict_blocks):
+    Rules:
+    - entries already in `remaining` stay there
+    - a disconnected entry moves to remaining if it matches any remaining entry
+    - disconnected entries that match each other form clusters; clusters of size > 1
+      are also moved to remaining
+    - only unresolved singletons remain in disconnected
+    - fully resolved blocks are removed
+    """
     updated = {}
 
     for key, block in conflict_blocks.items():
-        disconnected = block.get("disconnected", [])
-        remaining = block.get("remaining", [])
+        remaining = list(block.get("remaining", []))
+        disconnected = list(block.get("disconnected", []))
 
-        merged = []
+        existing_remaining_ids = {e["id"] for e in remaining}
+
+        # First, pull into remaining any disconnected entries that match existing remaining
+        promoted = []
         still_disconnected = []
 
         for disc in disconnected:
             if any(are_same_by_source_and_name(disc, rem) for rem in remaining):
-                merged.append(disc)
+                promoted.append(disc)
             else:
                 still_disconnected.append(disc)
 
-        if merged:
-            print(f"🔗 Merging {len(merged)} disconnected entries into remaining for block: {key}")
+        if promoted:
+            remaining.extend(promoted)
+            existing_remaining_ids.update(e["id"] for e in promoted)
 
-        if still_disconnected:
+        # Then cluster the disconnected leftovers among themselves
+        visited = set()
+        clustered_remaining = []
+        final_disconnected = []
+
+        for i, entry in enumerate(still_disconnected):
+            entry_id = entry["id"]
+            if entry_id in visited:
+                continue
+
+            cluster = []
+            stack = [i]
+
+            while stack:
+                idx = stack.pop()
+                current = still_disconnected[idx]
+                current_id = current["id"]
+
+                if current_id in visited:
+                    continue
+
+                visited.add(current_id)
+                cluster.append(current)
+
+                for j, candidate in enumerate(still_disconnected):
+                    candidate_id = candidate["id"]
+                    if candidate_id in visited:
+                        continue
+                    if are_same_by_source_and_name(current, candidate):
+                        stack.append(j)
+
+            if len(cluster) > 1:
+                clustered_remaining.extend(cluster)
+            else:
+                final_disconnected.extend(cluster)
+
+        if clustered_remaining:
+            remaining.extend(clustered_remaining)
+
+        if final_disconnected:
             updated[key] = {
-                "remaining": remaining + merged,
-                "disconnected": still_disconnected
+                "remaining": remaining,
+                "disconnected": final_disconnected,
             }
 
     return updated
-
-def is_galaxy_related(entry):
-    sources = set(s.lower() for s in entry.get("source", []))
-    return bool(sources & {"galaxy", "toolshed", "galaxy_metadata"})
 
 
 def all_entries_same_name_and_galaxy_related(instance_details):
@@ -297,21 +391,43 @@ def all_entries_same_name_and_galaxy_related(instance_details):
     return all(is_galaxy_related(entry) for entry in instance_details)
 
 
+def is_galaxy_related(entry):
+    """
+    Return True if the entry comes from a Galaxy-related source.
+    Works with plain source names, full source ids, and entry ids.
+    """
+    identities = get_normalized_source_identities(entry)
+
+    return any(
+        identity == "galaxy"
+        or identity == "toolshed"
+        or identity == "galaxy_metadata"
+        or identity.startswith("galaxy/")
+        or identity.startswith("toolshed/")
+        or identity.startswith("galaxy_metadata/")
+        for identity in identities
+    )
+
+
 def get_galaxy_related_same_name(entries):
+    """
+    Return all galaxy-related entries whose name appears in at least
+    two galaxy-related entries in the block.
+    """
     name_counter = {}
     for e in entries:
         if is_galaxy_related(e):
             name = e["name"].strip().lower()
             name_counter[name] = name_counter.get(name, 0) + 1
 
-    if not name_counter:
-        return []
+    valid_names = {name for name, count in name_counter.items() if count >= 2}
 
-    common_name = max(name_counter.items(), key=lambda x: x[1])[0]
     return [
         e for e in entries
-        if is_galaxy_related(e) and e["name"].strip().lower() == common_name
+        if is_galaxy_related(e) and e["name"].strip().lower() in valid_names
     ]
+
+
 
 
 def build_instance_representation(instances, resolve_github=False):
@@ -475,9 +591,8 @@ def find_disconnected_entries(data, use_name_match_for_no_links=True):
                 "remaining": remaining
             }
 
-    merged_conflicts = apply_source_name_merge(disconnected_keys)
-    return merged_conflicts
-
+    resolved_conflicts = resolve_source_name_clusters(disconnected_keys)
+    return resolved_conflicts
 
 
 def token_size(text):

@@ -1,0 +1,129 @@
+# Example of full workflow orchestration
+
+services:
+  toolshed-importer:
+    image: toolshed-importer:latest
+    # build:
+    #   context: ./toolshed-importer
+    #   dockerfile: Dockerfile
+    command: ["python", "main.py"]
+    env_file:
+      - ./toolshed-importer/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+
+  sourceforge-importer:
+    image: sourceforge-importer:latest
+    # build:
+    #   context: ./sourceforge-importer
+    #   dockerfile: Dockerfile
+    command: ["python", "main.py"]
+    env_file:
+      - ./sourceforge-importer/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+
+  oeb-tools-importer:
+    image: oeb-tools-importer:latest
+    # build:
+    #   context: ./oeb-tools-importer
+    #   dockerfile: Dockerfile
+    command: ["python", "main.py"]
+    env_file:
+      - ./oeb-tools-importer/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+
+  oeb-metrics-importer:
+    image: oeb-metrics-importer:latest
+    # build:
+    #   context: ./oeb-metrics-importer
+    #   dockerfile: Dockerfile
+    command: ["python", "main.py"]
+    env_file:
+      - ./oeb-metrics-importer/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+
+  bioconductor-importer:
+    image: bioconductor-importer:latest
+    # build:
+    #   context: ./bioconductor-importer
+    #   dockerfile: Dockerfile
+    command: ["python", "main.py"]
+    env_file:
+      - ./bioconductor-importer/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+
+  bioconda-importer:
+    image: bioconda-importer:latest
+    # build:
+    #   context: ./bioconda-importer
+    #   dockerfile: Dockerfile
+    command: ["python", "main.py"]
+    env_file:
+      - ./bioconda-importer/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+
+  rsetl-transformation:
+    image: rsetl:latest
+    # build:
+    #   context: ./rsetl
+    #   dockerfile: Dockerfile
+    command: ["run-transformation"]
+    env_file:
+      - ./rsetl/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+    depends_on:
+      toolshed-importer:
+        condition: service_completed_successfully
+      sourceforge-importer:
+        condition: service_completed_successfully
+      oeb-tools-importer:
+        condition: service_completed_successfully
+      oeb-metrics-importer:
+        condition: service_completed_successfully
+      bioconductor-importer:
+        condition: service_completed_successfully
+      bioconda-importer:
+        condition: service_completed_successfully
+
+  github-importer:
+    image: github-importer:latest
+    # build:
+    #   context: ./github-importer
+    #   dockerfile: Dockerfile
+    command: ["python", "main.py"]
+    env_file:
+      - ./github-importer/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+    depends_on:
+      rsetl-transformation:
+        condition: service_completed_successfully
+
+  rsetl-full:
+    image: rsetl:latest
+    # build:
+    #   context: ./rsetl
+    #   dockerfile: Dockerfile
+    command: ["run"]
+    env_file:
+      - ./rsetl/.env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+    depends_on:
+      github-importer:
+        condition: service_completed_successfully

@@ -1,5 +1,5 @@
 import json
-from application.services.integration.conflict_detection import find_disconnected_entries, apply_source_name_merge
+from application.services.integration.conflict_detection import find_disconnected_entries
 
 
 def detect_conflicts(grouped_entries_file, disconnected_entries_file):
@@ -11,7 +11,6 @@ def detect_conflicts(grouped_entries_file, disconnected_entries_file):
     
     #conflict_blocks = find_disconnected_entries(grouped_entries)
     conflict_blocks = find_disconnected_entries(grouped_entries, use_name_match_for_no_links=False)
-    conflict_blocks = apply_source_name_merge(conflict_blocks)
     print(f"{len(conflict_blocks)} conflictive keys found.")
 
     with open(disconnected_entries_file, "w", encoding="utf-8") as f:
