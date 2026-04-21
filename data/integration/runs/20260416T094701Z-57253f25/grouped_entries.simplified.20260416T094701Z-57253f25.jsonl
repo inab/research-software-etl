@@ -49544,22 +49544,3 @@
 {"xenmine/*": {"instances": ["biotools/xenmine/db/b_BETA_bUpdated_on", "biotools/xenmine/soap/b_BETA_bUpdated_on", "biotools/xenmine/web/b_BETA_bUpdated_on"]}}
 {"yeastmine/*": {"instances": ["biotools/yeastmine/db/Data_Updated_on", "biotools/yeastmine/soap/Data_Updated_on", "biotools/yeastmine/web/Data_Updated_on"]}}
 {"zebrafishmine/*": {"instances": ["biotools/zebrafishmine/db/Last_Build", "biotools/zebrafishmine/soap/Last_Build", "biotools/zebrafishmine/web/Last_Build"]}}
-{"adam/*_secondary_1": {"instances": [{"_id": "biotools/ada-m/undefined/None"}, {"_id": "biotools/adam/cmd/None"}], "parent_block_id": "adam/*", "generated_at": "2026-04-20T16:34:27.125886"}}
-{"freebayes/*_secondary_2": {"instances": [{"_id": "galaxy/freebayes/cmd/1.1.0.46-0"}, {"_id": "github/freebayes/None/None"}], "parent_block_id": "freebayes/*", "generated_at": "2026-04-20T16:34:27.125964"}}
-{"csaw/*_secondary_3": {"instances": [{"_id": "bioconda_recipes/gsea/cmd/4.3.2"}, {"_id": "biotools/gsea/cmd/None"}], "parent_block_id": "csaw/*", "generated_at": "2026-04-20T16:34:27.127142"}}
-{"atlas/*_secondary_4": {"instances": [{"_id": "biotools/atlas/cmd/2005"}, {"_id": "bioconda_recipes/atlas/cmd/0.9.9"}], "parent_block_id": "atlas/*", "generated_at": "2026-04-20T16:34:27.127597"}}
-{"ica/*_secondary_5": {"instances": [{"_id": "biotools/biodica/app/None"}, {"_id": "sourceforge/ica/None/None"}], "parent_block_id": "ica/*", "generated_at": "2026-04-20T16:34:27.127778"}}
-{"bioc/*_secondary_6": {"instances": [{"_id": "biotools/bio_c/cmd/1.0"}, {"_id": "sourceforge/bioc/None/None"}], "parent_block_id": "bioc/*", "generated_at": "2026-04-20T16:34:27.128047"}}
-{"mango/*_secondary_7": {"instances": [{"_id": "biotools/mango/cmd/None"}, {"_id": "github/mango/None/None"}], "parent_block_id": "mango/*", "generated_at": "2026-04-20T16:34:27.128119"}}
-{"cogent/*_secondary_8": {"instances": [{"_id": "bioconda_recipes/cogent/lib/1.9"}, {"_id": "biotools/cogent/lib/None"}], "parent_block_id": "cogent/*", "generated_at": "2026-04-20T16:34:27.128354"}}
-{"intact/*_secondary_9": {"instances": [{"_id": "biotools/intact/db/None"}, {"_id": "sourceforge/intact/None/None"}], "parent_block_id": "intact/*", "generated_at": "2026-04-20T16:34:27.128378"}}
-{"bamstats/*_secondary_10": {"instances": [{"_id": "biotools/bamstats/web/1.0.0"}, {"_id": "sourceforge/bamstats/None/None"}], "parent_block_id": "bamstats/*", "generated_at": "2026-04-20T16:34:27.128571"}}
-{"chipseq/*_secondary_11": {"instances": [{"_id": "biotools/chip-seq/soap/None"}, {"_id": "sourceforge/chip-seq/None/None"}], "parent_block_id": "chipseq/*", "generated_at": "2026-04-20T16:34:27.128751"}}
-{"conifer/*_secondary_12": {"instances": [{"_id": "biotools/conifer/script/None"}, {"_id": "sourceforge/conifer/None/None"}], "parent_block_id": "conifer/*", "generated_at": "2026-04-20T16:34:27.129514"}}
-{"mia/*_secondary_13": {"instances": [{"_id": "biotools/m_ia/app/None"}, {"_id": "biotools/mia/app/None"}], "parent_block_id": "mia/*", "generated_at": "2026-04-20T16:34:27.129693"}}
-{"rmap/*_secondary_14": {"instances": [{"_id": "bioconda_recipes/rmap/cmd/2.1"}, {"_id": "biotools/rmap/cmd/None"}], "parent_block_id": "rmap/*", "generated_at": "2026-04-20T16:34:27.129732"}}
-{"gmdr/*_secondary_15": {"instances": [{"_id": "biotools/gmd-r/lib/0.3.3"}, {"_id": "sourceforge/gmdr/None/None"}], "parent_block_id": "gmdr/*", "generated_at": "2026-04-20T16:34:27.130552"}}
-{"pscan/*_secondary_16": {"instances": [{"_id": "biotools/p-scan/cmd/None"}, {"_id": "biotools/pscan/cmd/r6"}], "parent_block_id": "pscan/*", "generated_at": "2026-04-20T16:34:27.131715"}}
-{"spark/*_secondary_17": {"instances": [{"_id": "biotools/spar-k/cmd/None"}, {"_id": "biotools/spark/undefined/None"}], "parent_block_id": "spark/*", "generated_at": "2026-04-20T16:34:27.132528"}}
-{"ctd/*_secondary_18": {"instances": [{"_id": "bioconductor/ctd/lib/0.99.5"}, {"_id": "sourceforge/ctd/None/None"}], "parent_block_id": "ctd/*", "generated_at": "2026-04-20T16:34:27.132931"}}
-{"canopy/*_secondary_19": {"instances": [{"_id": "biotools/canopy/cmd/None"}, {"_id": "sourceforge/canopy/None/None"}], "parent_block_id": "canopy/*", "generated_at": "2026-04-20T16:34:27.133286"}}

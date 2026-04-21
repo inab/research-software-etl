@@ -152,7 +152,7 @@ def extract_mongo_names(mongo_tools: list[dict]) -> list[dict]:
                 "labels": labels,
                 "norm_name": normalize_name(name),
                 "norm_labels": [normalize_name(label) for label in labels],
-                "sources": normalize_string_list(data.get("source")),
+                "sources": normalize_string_list(tool.get("source")),
                 "tags": normalize_string_list(data.get("tags")),
             }
         )
@@ -209,28 +209,36 @@ def compare(mongo_entries: list[dict], biotools_entries: list[dict]) -> dict:
         norm_name = tool["norm_name"]
         norm_labels = tool["norm_labels"]
 
-        exact_hit = None
         norm_hit = None
 
-        if name in biotools_exact_names:
-            exact_hit = ("name", name)
-        else:
-            for label in labels:
-                if label in biotools_exact_names:
-                    exact_hit = ("label", label)
-                    break
+        exact_hits = []
 
-        if exact_hit:
-            matched_norm_value = normalize_name(exact_hit[1])
+        if name in biotools_exact_names:
+            exact_hits.append(("name", name))
+
+        for label in labels:
+            if label in biotools_exact_names:
+                exact_hits.append(("label", label))
+
+        if exact_hits:
+            biotools_candidates = []
+            seen_norms = set()
+
+            for hit_type, hit_value in exact_hits:
+                norm_value = normalize_name(hit_value)
+                seen_norms.add(norm_value)
+                biotools_candidates.extend(biotools_by_norm.get(norm_value, []))
+
             matched_exact.append(
                 {
                     **tool,
-                    "matched_on": exact_hit[0],
-                    "matched_value": exact_hit[1],
-                    "biotools_candidates": biotools_by_norm.get(matched_norm_value, []),
+                    "matched_on": exact_hits,
+                    "matched_values": [v for _, v in exact_hits],
+                    "biotools_candidates": biotools_candidates,
                 }
             )
-            matched_biotools_norms.add(matched_norm_value)
+
+            matched_biotools_norms.update(seen_norms)
             continue
 
         if norm_name and norm_name in biotools_norm_names:
@@ -350,10 +358,55 @@ def main() -> None:
     mongo_tools = load_mongo_proteomics_tools()
     mongo_entries = extract_mongo_names(mongo_tools)
 
+    print("---- checking wiff2dta on bio.tools side ----")
+    print("wiff2dta in exact names?", "wiff2dta" in build_name_index_biotools(biotools_entries)[0])
+
+    for entry in biotools_entries:
+        if "wiff2dta" in entry["candidate_names"] or "wiff2dta" in entry["candidate_norm_names"]:
+            print("BIO MATCH CANDIDATE:", json.dumps(entry, indent=2, ensure_ascii=False))
+
+    print("---- checking wiff2dta on mongo side ----")
+    for tool in mongo_entries:
+        if tool["name"] == "quant" or "wiff2dta" in tool["labels"] or "wiff2dta" in tool["norm_labels"]:
+            print("MONGO CANDIDATE:", json.dumps(tool, indent=2, ensure_ascii=False))
+
+
+
     comparison = compare(mongo_entries, biotools_entries)
     mongo_only_with_suggestions = add_fuzzy_suggestions(
         comparison["mongo_only"], biotools_entries
     )
+
+    print("\n---- sanity check for wiff2dta after compare() ----")
+
+    matched_rows = []
+
+    for row in comparison["matched_exact"]:
+        single_value = row.get("matched_value")
+        multi_values = row.get("matched_values", [])
+
+        if single_value == "wiff2dta" or "wiff2dta" in multi_values:
+            matched_rows.append(row)
+            continue
+
+        if any(c.get("biotoolsID") == "wiff2dta" for c in row.get("biotools_candidates", [])):
+            matched_rows.append(row)
+
+    biotools_only_rows = [
+        row for row in comparison["biotools_only"]
+        if row["biotoolsID"] == "wiff2dta"
+        or row["primary_name"] == "wiff2dta"
+    ]
+
+    print("matched_exact rows:", len(matched_rows))
+    for row in matched_rows:
+        print(json.dumps(row, indent=2, ensure_ascii=False))
+
+    print("biotools_only rows:", len(biotools_only_rows))
+    for row in biotools_only_rows:
+        print(json.dumps(row, indent=2, ensure_ascii=False))
+
+        
 
     summary = {
         "biotools_count": len(biotools_entries),

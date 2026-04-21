@@ -1,799 +1,309 @@
-<!DOCTYPE html><html class="writer-html5" lang="en" data-readthedocs-tool="sphinx" data-readthedocs-tool-theme="readthedocs"><head>
-  <meta charset="utf-8"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/">
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Haplogrep 3">
+  <meta name="generator" content="Haplogrep 3 3.2.1">
+  <meta name="turbolinks-cache-control" content="no-cache">
+  <title>Haplogrep 3 - Haplogrep 3 3.2.1</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.0.0/turbolinks.min.js"></script>
+  <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/vendor/datatables/datatables.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/popper/popper.min.js"></script>
+  <script src="/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="/vendor/bootbox/bootbox.min.js"></script>
+  <script src="/vendor/datatables/datatables.min.js"></script>
+  <script src="/vendor/pekeUpload/pekeUpload.min.js"></script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pRESTO - The REpertoire Sequencing TOolkit — presto 0.7.10dev-2026.04.14 documentation</title>
-      <style type="text/css">:root, :host {
-  --fa-font-solid: normal 900 1em/1 "Font Awesome 7 Free";
-  --fa-font-regular: normal 400 1em/1 "Font Awesome 7 Free";
-  --fa-font-light: normal 300 1em/1 "Font Awesome 7 Pro";
-  --fa-font-thin: normal 100 1em/1 "Font Awesome 7 Pro";
-  --fa-font-duotone: normal 900 1em/1 "Font Awesome 7 Duotone";
-  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 7 Duotone";
-  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 7 Duotone";
-  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 7 Duotone";
-  --fa-font-brands: normal 400 1em/1 "Font Awesome 7 Brands";
-  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 7 Sharp";
-  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 7 Sharp";
-  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 7 Sharp";
-  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 7 Sharp";
-  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 7 Sharp Duotone";
-  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 7 Sharp Duotone";
-  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 7 Sharp Duotone";
-  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 7 Sharp Duotone";
-  --fa-font-slab-regular: normal 400 1em/1 "Font Awesome 7 Slab";
-  --fa-font-slab-press-regular: normal 400 1em/1 "Font Awesome 7 Slab Press";
-  --fa-font-whiteboard-semibold: normal 600 1em/1 "Font Awesome 7 Whiteboard";
-  --fa-font-thumbprint-light: normal 300 1em/1 "Font Awesome 7 Thumbprint";
-  --fa-font-notdog-solid: normal 900 1em/1 "Font Awesome 7 Notdog";
-  --fa-font-notdog-duo-solid: normal 900 1em/1 "Font Awesome 7 Notdog Duo";
-  --fa-font-etch-solid: normal 900 1em/1 "Font Awesome 7 Etch";
-  --fa-font-jelly-regular: normal 400 1em/1 "Font Awesome 7 Jelly";
-  --fa-font-jelly-fill-regular: normal 400 1em/1 "Font Awesome 7 Jelly Fill";
-  --fa-font-jelly-duo-regular: normal 400 1em/1 "Font Awesome 7 Jelly Duo";
-  --fa-font-chisel-regular: normal 400 1em/1 "Font Awesome 7 Chisel";
-  --fa-font-utility-semibold: normal 600 1em/1 "Font Awesome 7 Utility";
-  --fa-font-utility-duo-semibold: normal 600 1em/1 "Font Awesome 7 Utility Duo";
-  --fa-font-utility-fill-semibold: normal 600 1em/1 "Font Awesome 7 Utility Fill";
-}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js"></script>
 
-.svg-inline--fa {
-  box-sizing: content-box;
-  display: var(--fa-display, inline-block);
-  height: 1em;
-  overflow: visible;
-  vertical-align: -0.125em;
-  width: var(--fa-width, 1.25em);
-}
-.svg-inline--fa.fa-2xs {
-  vertical-align: 0.1em;
-}
-.svg-inline--fa.fa-xs {
-  vertical-align: 0em;
-}
-.svg-inline--fa.fa-sm {
-  vertical-align: -0.0714285714em;
-}
-.svg-inline--fa.fa-lg {
-  vertical-align: -0.2em;
-}
-.svg-inline--fa.fa-xl {
-  vertical-align: -0.25em;
-}
-.svg-inline--fa.fa-2xl {
-  vertical-align: -0.3125em;
-}
-.svg-inline--fa.fa-pull-left,
-.svg-inline--fa .fa-pull-start {
-  float: inline-start;
-  margin-inline-end: var(--fa-pull-margin, 0.3em);
-}
-.svg-inline--fa.fa-pull-right,
-.svg-inline--fa .fa-pull-end {
-  float: inline-end;
-  margin-inline-start: var(--fa-pull-margin, 0.3em);
-}
-.svg-inline--fa.fa-li {
-  width: var(--fa-li-width, 2em);
-  inset-inline-start: calc(-1 * var(--fa-li-width, 2em));
-  inset-block-start: 0.25em; /* syncing vertical alignment with Web Font rendering */
-}
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+  <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
 
-.fa-layers-counter, .fa-layers-text {
-  display: inline-block;
-  position: absolute;
-  text-align: center;
-}
+  <script src="/app.js"></script>
 
-.fa-layers {
-  display: inline-block;
-  height: 1em;
-  position: relative;
-  text-align: center;
-  vertical-align: -0.125em;
-  width: var(--fa-width, 1.25em);
-}
-.fa-layers .svg-inline--fa {
-  inset: 0;
-  margin: auto;
-  position: absolute;
-  transform-origin: center center;
-}
+</head>
 
-.fa-layers-text {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transform-origin: center center;
-}
 
-.fa-layers-counter {
-  background-color: var(--fa-counter-background-color, #ff253a);
-  border-radius: var(--fa-counter-border-radius, 1em);
-  box-sizing: border-box;
-  color: var(--fa-inverse, #fff);
-  line-height: var(--fa-counter-line-height, 1);
-  max-width: var(--fa-counter-max-width, 5em);
-  min-width: var(--fa-counter-min-width, 1.5em);
-  overflow: hidden;
-  padding: var(--fa-counter-padding, 0.25em 0.5em);
-  right: var(--fa-right, 0);
-  text-overflow: ellipsis;
-  top: var(--fa-top, 0);
-  transform: scale(var(--fa-counter-scale, 0.25));
-  transform-origin: top right;
-}
+<body>
 
-.fa-layers-bottom-right {
-  bottom: var(--fa-bottom, 0);
-  right: var(--fa-right, 0);
-  top: auto;
-  transform: scale(var(--fa-layers-scale, 0.25));
-  transform-origin: bottom right;
-}
-
-.fa-layers-bottom-left {
-  bottom: var(--fa-bottom, 0);
-  left: var(--fa-left, 0);
-  right: auto;
-  top: auto;
-  transform: scale(var(--fa-layers-scale, 0.25));
-  transform-origin: bottom left;
-}
-
-.fa-layers-top-right {
-  top: var(--fa-top, 0);
-  right: var(--fa-right, 0);
-  transform: scale(var(--fa-layers-scale, 0.25));
-  transform-origin: top right;
-}
-
-.fa-layers-top-left {
-  left: var(--fa-left, 0);
-  right: auto;
-  top: var(--fa-top, 0);
-  transform: scale(var(--fa-layers-scale, 0.25));
-  transform-origin: top left;
-}
-
-.fa-1x {
-  font-size: 1em;
-}
-
-.fa-2x {
-  font-size: 2em;
-}
-
-.fa-3x {
-  font-size: 3em;
-}
-
-.fa-4x {
-  font-size: 4em;
-}
-
-.fa-5x {
-  font-size: 5em;
-}
-
-.fa-6x {
-  font-size: 6em;
-}
-
-.fa-7x {
-  font-size: 7em;
-}
-
-.fa-8x {
-  font-size: 8em;
-}
-
-.fa-9x {
-  font-size: 9em;
-}
-
-.fa-10x {
-  font-size: 10em;
-}
-
-.fa-2xs {
-  font-size: calc(10 / 16 * 1em); /* converts a 10px size into an em-based value that's relative to the scale's 16px base */
-  line-height: calc(1 / 10 * 1em); /* sets the line-height of the icon back to that of it's parent */
-  vertical-align: calc((6 / 10 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
-}
-
-.fa-xs {
-  font-size: calc(12 / 16 * 1em); /* converts a 12px size into an em-based value that's relative to the scale's 16px base */
-  line-height: calc(1 / 12 * 1em); /* sets the line-height of the icon back to that of it's parent */
-  vertical-align: calc((6 / 12 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
-}
-
-.fa-sm {
-  font-size: calc(14 / 16 * 1em); /* converts a 14px size into an em-based value that's relative to the scale's 16px base */
-  line-height: calc(1 / 14 * 1em); /* sets the line-height of the icon back to that of it's parent */
-  vertical-align: calc((6 / 14 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
-}
-
-.fa-lg {
-  font-size: calc(20 / 16 * 1em); /* converts a 20px size into an em-based value that's relative to the scale's 16px base */
-  line-height: calc(1 / 20 * 1em); /* sets the line-height of the icon back to that of it's parent */
-  vertical-align: calc((6 / 20 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
-}
-
-.fa-xl {
-  font-size: calc(24 / 16 * 1em); /* converts a 24px size into an em-based value that's relative to the scale's 16px base */
-  line-height: calc(1 / 24 * 1em); /* sets the line-height of the icon back to that of it's parent */
-  vertical-align: calc((6 / 24 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
-}
-
-.fa-2xl {
-  font-size: calc(32 / 16 * 1em); /* converts a 32px size into an em-based value that's relative to the scale's 16px base */
-  line-height: calc(1 / 32 * 1em); /* sets the line-height of the icon back to that of it's parent */
-  vertical-align: calc((6 / 32 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
-}
-
-.fa-width-auto {
-  --fa-width: auto;
-}
-
-.fa-fw,
-.fa-width-fixed {
-  --fa-width: 1.25em;
-}
-
-.fa-ul {
-  list-style-type: none;
-  margin-inline-start: var(--fa-li-margin, 2.5em);
-  padding-inline-start: 0;
-}
-.fa-ul > li {
-  position: relative;
-}
-
-.fa-li {
-  inset-inline-start: calc(-1 * var(--fa-li-width, 2em));
-  position: absolute;
-  text-align: center;
-  width: var(--fa-li-width, 2em);
-  line-height: inherit;
-}
-
-/* Heads Up: Bordered Icons will not be supported in the future!
-  - This feature will be deprecated in the next major release of Font Awesome (v8)!
-  - You may continue to use it in this version *v7), but it will not be supported in Font Awesome v8.
-*/
-/* Notes:
-* --@{v.$css-prefix}-border-width = 1/16 by default (to render as ~1px based on a 16px default font-size)
-* --@{v.$css-prefix}-border-padding =
-  ** 3/16 for vertical padding (to give ~2px of vertical whitespace around an icon considering it's vertical alignment)
-  ** 4/16 for horizontal padding (to give ~4px of horizontal whitespace around an icon)
-*/
-.fa-border {
-  border-color: var(--fa-border-color, #eee);
-  border-radius: var(--fa-border-radius, 0.1em);
-  border-style: var(--fa-border-style, solid);
-  border-width: var(--fa-border-width, 0.0625em);
-  box-sizing: var(--fa-border-box-sizing, content-box);
-  padding: var(--fa-border-padding, 0.1875em 0.25em);
-}
-
-.fa-pull-left,
-.fa-pull-start {
-  float: inline-start;
-  margin-inline-end: var(--fa-pull-margin, 0.3em);
-}
-
-.fa-pull-right,
-.fa-pull-end {
-  float: inline-end;
-  margin-inline-start: var(--fa-pull-margin, 0.3em);
-}
-
-.fa-beat {
-  animation-name: fa-beat;
-  animation-delay: var(--fa-animation-delay, 0s);
-  animation-direction: var(--fa-animation-direction, normal);
-  animation-duration: var(--fa-animation-duration, 1s);
-  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-  animation-timing-function: var(--fa-animation-timing, ease-in-out);
-}
-
-.fa-bounce {
-  animation-name: fa-bounce;
-  animation-delay: var(--fa-animation-delay, 0s);
-  animation-direction: var(--fa-animation-direction, normal);
-  animation-duration: var(--fa-animation-duration, 1s);
-  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
-}
-
-.fa-fade {
-  animation-name: fa-fade;
-  animation-delay: var(--fa-animation-delay, 0s);
-  animation-direction: var(--fa-animation-direction, normal);
-  animation-duration: var(--fa-animation-duration, 1s);
-  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-}
-
-.fa-beat-fade {
-  animation-name: fa-beat-fade;
-  animation-delay: var(--fa-animation-delay, 0s);
-  animation-direction: var(--fa-animation-direction, normal);
-  animation-duration: var(--fa-animation-duration, 1s);
-  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-}
-
-.fa-flip {
-  animation-name: fa-flip;
-  animation-delay: var(--fa-animation-delay, 0s);
-  animation-direction: var(--fa-animation-direction, normal);
-  animation-duration: var(--fa-animation-duration, 1s);
-  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-  animation-timing-function: var(--fa-animation-timing, ease-in-out);
-}
-
-.fa-shake {
-  animation-name: fa-shake;
-  animation-delay: var(--fa-animation-delay, 0s);
-  animation-direction: var(--fa-animation-direction, normal);
-  animation-duration: var(--fa-animation-duration, 1s);
-  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-  animation-timing-function: var(--fa-animation-timing, linear);
-}
-
-.fa-spin {
-  animation-name: fa-spin;
-  animation-delay: var(--fa-animation-delay, 0s);
-  animation-direction: var(--fa-animation-direction, normal);
-  animation-duration: var(--fa-animation-duration, 2s);
-  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-  animation-timing-function: var(--fa-animation-timing, linear);
-}
-
-.fa-spin-reverse {
-  --fa-animation-direction: reverse;
-}
-
-.fa-pulse,
-.fa-spin-pulse {
-  animation-name: fa-spin;
-  animation-direction: var(--fa-animation-direction, normal);
-  animation-duration: var(--fa-animation-duration, 1s);
-  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-  animation-timing-function: var(--fa-animation-timing, steps(8));
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fa-beat,
-  .fa-bounce,
-  .fa-fade,
-  .fa-beat-fade,
-  .fa-flip,
-  .fa-pulse,
-  .fa-shake,
-  .fa-spin,
-  .fa-spin-pulse {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-@keyframes fa-beat {
-  0%, 90% {
-    transform: scale(1);
-  }
-  45% {
-    transform: scale(var(--fa-beat-scale, 1.25));
-  }
-}
-@keyframes fa-bounce {
-  0% {
-    transform: scale(1, 1) translateY(0);
-  }
-  10% {
-    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
-  }
-  30% {
-    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
-  }
-  50% {
-    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
-  }
-  57% {
-    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
-  }
-  64% {
-    transform: scale(1, 1) translateY(0);
-  }
-  100% {
-    transform: scale(1, 1) translateY(0);
-  }
-}
-@keyframes fa-fade {
-  50% {
-    opacity: var(--fa-fade-opacity, 0.4);
-  }
-}
-@keyframes fa-beat-fade {
-  0%, 100% {
-    opacity: var(--fa-beat-fade-opacity, 0.4);
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(var(--fa-beat-fade-scale, 1.125));
-  }
-}
-@keyframes fa-flip {
-  50% {
-    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-  }
-}
-@keyframes fa-shake {
-  0% {
-    transform: rotate(-15deg);
-  }
-  4% {
-    transform: rotate(15deg);
-  }
-  8%, 24% {
-    transform: rotate(-18deg);
-  }
-  12%, 28% {
-    transform: rotate(18deg);
-  }
-  16% {
-    transform: rotate(-22deg);
-  }
-  20% {
-    transform: rotate(22deg);
-  }
-  32% {
-    transform: rotate(-12deg);
-  }
-  36% {
-    transform: rotate(12deg);
-  }
-  40%, 100% {
-    transform: rotate(0deg);
-  }
-}
-@keyframes fa-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.fa-rotate-90 {
-  transform: rotate(90deg);
-}
-
-.fa-rotate-180 {
-  transform: rotate(180deg);
-}
-
-.fa-rotate-270 {
-  transform: rotate(270deg);
-}
-
-.fa-flip-horizontal {
-  transform: scale(-1, 1);
-}
-
-.fa-flip-vertical {
-  transform: scale(1, -1);
-}
-
-.fa-flip-both,
-.fa-flip-horizontal.fa-flip-vertical {
-  transform: scale(-1, -1);
-}
-
-.fa-rotate-by {
-  transform: rotate(var(--fa-rotate-angle, 0));
-}
-
-.svg-inline--fa .fa-primary {
-  fill: var(--fa-primary-color, currentColor);
-  opacity: var(--fa-primary-opacity, 1);
-}
-
-.svg-inline--fa .fa-secondary {
-  fill: var(--fa-secondary-color, currentColor);
-  opacity: var(--fa-secondary-opacity, 0.4);
-}
-
-.svg-inline--fa.fa-swap-opacity .fa-primary {
-  opacity: var(--fa-secondary-opacity, 0.4);
-}
-
-.svg-inline--fa.fa-swap-opacity .fa-secondary {
-  opacity: var(--fa-primary-opacity, 1);
-}
-
-.svg-inline--fa mask .fa-primary,
-.svg-inline--fa mask .fa-secondary {
-  fill: black;
-}
-
-.svg-inline--fa.fa-inverse {
-  fill: var(--fa-inverse, #fff);
-}
-
-.fa-stack {
-  display: inline-block;
-  height: 2em;
-  line-height: 2em;
-  position: relative;
-  vertical-align: middle;
-  width: 2.5em;
-}
-
-.fa-inverse {
-  color: var(--fa-inverse, #fff);
-}
-
-.svg-inline--fa.fa-stack-1x {
-  --fa-width: 1.25em;
-  height: 1em;
-  width: var(--fa-width);
-}
-.svg-inline--fa.fa-stack-2x {
-  --fa-width: 2.5em;
-  height: 2em;
-  width: var(--fa-width);
-}
-
-.fa-stack-1x,
-.fa-stack-2x {
-  inset: 0;
-  margin: auto;
-  position: absolute;
-  z-index: var(--fa-stack-z-index, auto);
-}</style><link rel="stylesheet" href="_static/pygments.css" type="text/css">
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css">
-      <link rel="stylesheet" href="_static/overrides.css" type="text/css">
-    <link rel="shortcut icon" href="_static/immcantation.ico">
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/js/custom.js"></script>
-    <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html">
-    <link rel="search" title="Search" href="search.html">
-    <link rel="next" title="Overview" href="overview.html"> 
-<script async="" type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="presto"><meta name="readthedocs-version-slug" content="latest"><meta name="readthedocs-resolver-filename" content="/"><meta name="readthedocs-http-status" content="200"><script id="ethicaladsjs" type="text/javascript" async="true" src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>@layer defaults{:root{--ea-container-md: 720px;--ea-container-lg: 960px;--ea-container-xl: 1040px;--ea-image-width: 120px;--ea-image-width-xs: 44px;--ea-image-placement-width: 180px;--ea-image-placement-width-horizontal: 320px;--ea-image-logo-width: 80px;--ea-fixedheader-height: 50px;--ea-font-size: 14px;--ea-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;--ea-bgcolor: rgba(0, 0, 0, 0.03);--ea-bgcolor-dark: rgba(255, 255, 255, 0.05);--ea-font-size-text-only-header: 18px;--ea-stylefixed-bgcolor: rgb(220, 220, 220);--ea-stylefixed-bgcolor-dark: rgb(80, 80, 80);--ea-color-link: rgb(80, 80, 80);--ea-color-link-dark: rgb(220, 220, 220);--ea-color-link-active: rgb(54.5, 54.5, 54.5);--ea-color-link-dark-active: rgb(245.5, 245.5, 245.5);--ea-color-link-callout: rgb(105.5, 105.5, 105.5);--ea-color-link-callout-dark: rgb(194.5, 194.5, 194.5);--ea-color-link-callout-active: #505050;--ea-color-link-callout-dark-active: gainsboro;--ea-color-link-bold: #088cdb;--ea-color-link-bold-dark: rgb(80.3788546256, 185.6299559471, 248.6211453744);--ea-color-domain: rgb(156.5, 156.5, 156.5);--ea-color-domain-dark: rgb(143.5, 143.5, 143.5);--ea-image-logo-filter: grayscale(1);--ea-image-logo-filter-dark: grayscale(1) invert(1)}}[data-ea-publisher].loaded{font-size:var(--ea-font-size);font-family:var(--ea-font-family);font-weight:normal;font-style:normal;letter-spacing:0px;vertical-align:baseline;line-height:1.3em}[data-ea-publisher].loaded a{text-decoration:none}[data-ea-publisher].loaded .ea-pixel{display:none}[data-ea-publisher].loaded .ea-content{margin:1em 1em .5em 1em;padding:1em;background:var(--ea-bgcolor);color:var(--ea-color-link);color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:link{color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:visited{color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:hover{color:var(--ea-color-link-active)}[data-ea-publisher].loaded .ea-content a:active{color:var(--ea-color-link-active)}[data-ea-publisher].loaded .ea-content a strong,[data-ea-publisher].loaded .ea-content a b{color:var(--ea-color-link-bold)}[data-ea-publisher].loaded .ea-callout{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a{font-size:.8em}[data-ea-publisher].loaded .ea-callout a:link{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a:visited{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a:hover{color:var(--ea-color-link-callout-active)}[data-ea-publisher].loaded .ea-callout a:active{color:var(--ea-color-link-callout-active)}[data-ea-publisher].loaded .ea-callout a strong,[data-ea-publisher].loaded .ea-callout a b{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-domain{margin-top:.75em;font-size:.8em;text-align:center;color:var(--ea-color-domain)}[data-ea-publisher].loaded.dark{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark);--ea-image-logo-filter: var(--ea-image-logo-filter-dark)}@media(prefers-color-scheme: dark){[data-ea-publisher].loaded.adaptive{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark);--ea-image-logo-filter: var(--ea-image-logo-filter-dark)}}html.dark [data-ea-publisher].loaded.adaptive-css,body.dark [data-ea-publisher].loaded.adaptive-css,html[data-theme=dark] [data-ea-publisher].loaded.adaptive-css,body[data-theme=dark] [data-ea-publisher].loaded.adaptive-css,html[data-bs-theme=dark] [data-ea-publisher].loaded.adaptive-css,body[data-bs-theme=dark] [data-ea-publisher].loaded.adaptive-css{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark);--ea-image-logo-filter: var(--ea-image-logo-filter-dark)}@media(prefers-color-scheme: dark){html.auto [data-ea-publisher].loaded.adaptive-css,body.auto [data-ea-publisher].loaded.adaptive-css,html.system [data-ea-publisher].loaded.adaptive-css,body.system [data-ea-publisher].loaded.adaptive-css,html[data-theme=auto] [data-ea-publisher].loaded.adaptive-css,body[data-theme=auto] [data-ea-publisher].loaded.adaptive-css,html[data-bs-theme=auto] [data-ea-publisher].loaded.adaptive-css,body[data-bs-theme=auto] [data-ea-publisher].loaded.adaptive-css{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark);--ea-image-logo-filter: var(--ea-image-logo-filter-dark)}}[data-ea-publisher].loaded .ea-content{border:0px;border-radius:3px;box-shadow:0px 2px 3px rgba(0,0,0,.15)}[data-ea-publisher].loaded.raised .ea-content{border:0px;border-radius:3px;box-shadow:0px 2px 3px rgba(0,0,0,.15)}[data-ea-publisher].loaded.bordered .ea-content{border:1px solid rgba(0,0,0,.04);border-radius:3px;box-shadow:none}[data-ea-publisher].loaded.bordered.dark .ea-content{border:1px solid hsla(0,0%,100%,.07)}@media(prefers-color-scheme: dark){[data-ea-publisher].loaded.bordered.adaptive .ea-content{border:1px solid hsla(0,0%,100%,.07)}}[data-ea-publisher].loaded.flat .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-type=image].loaded,[data-ea-publisher]:not([data-ea-type]).loaded,.ea-type-image{display:inline-block}[data-ea-type=image].loaded .ea-content,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content,.ea-type-image .ea-content{max-width:var(--ea-image-placement-width);overflow:auto;text-align:center}[data-ea-type=image].loaded .ea-content>a>img,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content>a>img,.ea-type-image .ea-content>a>img{width:var(--ea-image-width);height:auto;display:inline-block}[data-ea-type=image].loaded .ea-content>.ea-text,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content>.ea-text,.ea-type-image .ea-content>.ea-text{margin-top:1em;font-size:1em;text-align:center}[data-ea-type=image].loaded .ea-callout,[data-ea-publisher]:not([data-ea-type]).loaded .ea-callout,.ea-type-image .ea-callout{max-width:var(--ea-image-placement-width);margin:0em 1em 1em 1em;padding-left:1em;padding-right:1em;font-style:italic;text-align:right}[data-ea-type=image].loaded.horizontal .ea-content,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content,.ea-type-image.horizontal .ea-content{max-width:var(--ea-image-placement-width-horizontal)}[data-ea-type=image].loaded.horizontal .ea-content>a>img,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content>a>img,.ea-type-image.horizontal .ea-content>a>img{float:left;margin-right:1em}[data-ea-type=image].loaded.horizontal .ea-content .ea-text,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content .ea-text,.ea-type-image.horizontal .ea-content .ea-text{margin-top:0em;text-align:left;overflow:auto}[data-ea-type=image].loaded.horizontal .ea-callout,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-callout,.ea-type-image.horizontal .ea-callout{max-width:var(--ea-image-placement-width-horizontal);text-align:right}[data-ea-type=text].loaded,.ea-type-text{font-size:var(--ea-font-size)}[data-ea-type=text].loaded .ea-content,.ea-type-text .ea-content{text-align:left}[data-ea-type=text].loaded .ea-callout,.ea-type-text .ea-callout{margin:.5em 1em 1em 1em;padding-left:1em;padding-right:1em;text-align:right;font-style:italic}[data-ea-type=text-only-large-v1].loaded,.ea-type-text-large{font-size:var(--ea-font-size);margin:1em 0}[data-ea-type=text-only-large-v1].loaded .ea-logo,.ea-type-text-large .ea-logo{float:right;margin-left:1em;margin-bottom:1em}[data-ea-type=text-only-large-v1].loaded img,.ea-type-text-large img{width:var(--ea-image-logo-width);height:auto;filter:var(--ea-image-logo-filter)}[data-ea-type=text-only-large-v1].loaded .ea-headline,.ea-type-text-large .ea-headline{font-size:var(--ea-font-size-text-only-header);font-weight:bold;margin-bottom:.5em;text-align:left}[data-ea-type=text-only-large-v1].loaded .ea-body,.ea-type-text-large .ea-body{margin-bottom:.5em;text-align:left}[data-ea-type=text-only-large-v1].loaded .ea-cta,.ea-type-text-large .ea-cta{border-radius:.5em;border:1px solid var(--ea-color-link);color:var(--ea-color-link);display:inline-block;font-weight:bold;padding:.25em .5em}[data-ea-type=text-only-large-v1].loaded .ea-cta::after,.ea-type-text-large .ea-cta::after{content:" ↗"}[data-ea-type=text-only-large-v1].loaded .ea-callout,.ea-type-text-large .ea-callout{margin:.5em 1em 1em 1em;padding-left:1em;padding-right:1em;text-align:right;font-style:italic}[data-ea-style=stickybox].loaded{position:fixed;bottom:20px;right:20px;z-index:100}[data-ea-style=stickybox].loaded .ea-type-image .ea-stickybox-hide{cursor:pointer;position:absolute;top:.75em;right:.75em;background-color:#fefefe;border:1px solid #088cdb;border-radius:50%;color:#088cdb;font-size:1em;text-align:center;height:1.5em;width:1.5em;line-height:1.4}[data-ea-style=stickybox].loaded .ea-type-text{display:none !important}@media(max-width: 1300px){[data-ea-style=stickybox].loaded{position:static;bottom:0;right:0;margin:auto;text-align:center}[data-ea-style=stickybox].loaded .ea-stickybox-hide{display:none}}@media(min-width: 1301px){[data-ea-style=stickybox].loaded .ea-type-image .ea-content{background:var(--ea-stylefixed-bgcolor)}}[data-ea-style=fixedfooter].loaded{position:fixed;bottom:0;left:0;z-index:200;width:100%;max-width:100%}[data-ea-style=fixedfooter].loaded .ea-type-text{width:100%;max-width:100%;display:flex;z-index:200;background:var(--ea-stylefixed-bgcolor)}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-content{background-color:inherit;max-width:100%;margin:0;padding:1em;flex:auto}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-callout{max-width:100%;margin:0;padding:1em;flex:initial}@media(max-width: 576px){[data-ea-style=fixedfooter].loaded .ea-type-text .ea-callout{display:none}}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-fixedfooter-hide{cursor:pointer;color:var(--ea-color-link);padding:1em;flex:initial;margin:auto 0}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-fixedfooter-hide span{padding:.25em;font-size:.8em;font-weight:bold;border:.15em solid var(--ea-color-link);border-radius:.5em;white-space:nowrap}[data-ea-style=fixedfooter].loaded .ea-type-image{display:none !important}[data-ea-style=fixedheader]{height:var(--ea-fixedheader-height);width:100%;max-width:100%;background:var(--ea-stylefixed-bgcolor);border-bottom:1px solid var(--ea-background-color)}@media(max-width: 768px){[data-ea-style=fixedheader]{display:none !important}}[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-xl);margin:0 auto;display:flex}@media(max-width: 992px){[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-md)}}@media(max-width: 1200px){[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-lg)}}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content{background-color:inherit;max-width:100%;margin:0;padding:0;flex:auto;display:flex}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content .ea-text,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content .ea-text{margin-top:0;padding:1em;flex:auto;text-align:left}[data-ea-style=fixedheader].loaded .ea-type-image .ea-callout,[data-ea-style=fixedheader].loaded .ea-type-text .ea-callout{max-width:100%;margin:0;padding:1em;flex:initial}@media(max-width: 576px){[data-ea-style=fixedheader].loaded .ea-type-image .ea-callout,[data-ea-style=fixedheader].loaded .ea-type-text .ea-callout{display:none}}[data-ea-style=fixedheader].loaded .ea-type-image img{width:var(--ea-image-width-xs) !important;margin:.6em}[data-ea-style=fixedheader].loaded .ea-type-image .ea-domain{display:none}</style><script src="https://server.ethicalads.io/api/v1/decision/?publisher=readthedocs&amp;ad_types=text-v1&amp;div_ids=readthedocs-ea-text-fixedfooter-sphinx&amp;callback=ad_1776695851876_933728&amp;keywords=adaptive-immunity%7Cairr-seq%7Cbcr%7Cbioinformatics%7Cimmunoglobulin%7Cimmunology%7Cpython%7Creadthedocs-project-35902%7Creadthedocs-project-presto%7Crep-seq%7Crepertoire-sequencing%7Ctcr&amp;campaign_types=community%7Chouse%7Cpaid&amp;format=jsonp&amp;client_version=2.3.0&amp;placement_index=0&amp;url=https%3A%2F%2Fpresto.readthedocs.io%2Fen%2Flatest%2F" type="text/javascript" async=""></script></head>
+  <nav id="navigation" class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">
+    <div class="d-inline-block align-top" alt="">
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side" style="padding-bottom: 47.2031px;">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-
-          
-          
-          <a href="#" class="icon icon-home">
-            presto
-              <img src="_static/presto.png" class="logo" alt="Logo">
-          </a>
-              <div class="version">
-                0.7.10dev
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs">
-    <input type="hidden" name="check_keywords" value="yes">
-    <input type="hidden" name="area" value="default">
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference external" href="http://immcantation.readthedocs.io">Immcantation Portal</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Download</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="news.html">Release Notes</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Usage Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Commandline Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Example Workflows</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="workflows/Jiang2013_Workflow.html">Roche 454 BCR mRNA with Multiplexed Samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflows/Greiff2014_Workflow.html">Illumina MiSeq 2x250 BCR mRNA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflows/Stern2014_Workflow.html">UMI Barcoded Illumina MiSeq 2x250 BCR mRNA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflows/VanderHeiden2017_Workflow.html">UMI Barcoded Illumina MiSeq 325+275 paired-end 5’RACE BCR mRNA</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Example Tasks</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/import.html">Importing Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/annotations.html">Manipulating Annotations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/filter.html">Filtering, Subsetting and Converting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/primers.html">Isotype and Primer Annotations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/assembly.html">Fixing Assembly Problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/umi.html">Fixing UMI Problems</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">About</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="info.html">Contact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#citation">Citation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
-</ul>
-
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap" style="padding-bottom: 47.2031px;"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">presto</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">pRESTO - The REpertoire Sequencing TOolkit</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <a class="reference external image-reference" href="https://pypi.org/project/presto"><img alt="https://img.shields.io/pypi/dm/presto" src="https://img.shields.io/pypi/dm/presto"></a>
-<a class="reference external image-reference" href="https://docs.airr-community.org/en/stable/swtools/airr_swtools_standard.html"><img alt="https://img.shields.io/static/v1?label=AIRR-C%20sw-tools%20v1&amp;message=compliant&amp;color=008AFF&amp;labelColor=000000&amp;style=plastic" src="https://img.shields.io/static/v1?label=AIRR-C%20sw-tools%20v1&amp;message=compliant&amp;color=008AFF&amp;labelColor=000000&amp;style=plastic"></a>
-<a class="reference external image-reference" href="https://github.com/immcantation/presto"><img alt="https://img.shields.io/badge/github-presto-blue?logo=github&amp;link=https://github.com/immcantation/presto" src="https://img.shields.io/badge/github-presto-blue?logo=github&amp;link=https://github.com/immcantation/presto"></a>
-<div><div class="admonition-announcement attention">
-    <p class="admonition-title">Announcements</p>
-    <ul>
-      <li>📢 Recent releases: <a href="https://dowser.readthedocs.io/" target="_blank">Dowser 2.4.1</a></li>
-      <li>🚀 Registration is now open for <a href="https://tinyurl.com/airrcmeeting8" target="_blank">AIRR‑C Meeting VIII: Decoding and Recoding Immunity</a> 📅 June 8–11, 2026 📍 Yale University</li>
-      <li>▶️ Presentations from the <a href="https://immcantation.github.io/users-meeting/2026/index.html" target="_blank">2026 Immcantation Users Group Meeting</a> are now available on the <a href="https://youtube.com/playlist?list=PL_vz5s41hsdDIRqwwXrF1PyX1AJeblgUz&amp;si=UQO0vHqEvsfORyUK" target="_blank">Immcantation YouTube channel</a>!</li>
-    </ul>
-  </div></div><div><!--
-<div class="admonition important">
-    <p>
-        <strong>We value your feedback!</strong> We’ve prepared a survey to improve the 
-        <code>nf-core/airrflow</code> pipeline and ensure it is useful for as many researchers as possible.
-    </p>
-    <p>
-        Please take a couple of minutes to respond to the survey, which will help shape the development roadmap for the next year:
-    </p>
-    <p>
-        <a href="https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_baxdyQEb15cNEiy" target="_blank" class="external">
-            Take the Survey
-        </a>
-    </p>
-</div>
---></div><section id="presto-the-repertoire-sequencing-toolkit">
-<h1>pRESTO - The REpertoire Sequencing TOolkit<a class="headerlink" href="#presto-the-repertoire-sequencing-toolkit" title="Permalink to this heading"></a></h1>
-<p>pRESTO is a toolkit for processing raw reads from high-throughput sequencing of
-B cell and T cell repertoires.</p>
-<p>Dramatic improvements in high-throughput sequencing technologies now enable
-large-scale characterization of lymphocyte repertoires, defined as the
-collection of trans-membrane antigen-receptor proteins located on the surface of
-B cells and T cells. The REpertoire Sequencing TOolkit (pRESTO) is composed of a
-suite of utilities to handle all stages of sequence processing prior to germline
-segment assignment. pRESTO is designed to handle either single reads or
-paired-end reads. It includes features for quality control, primer masking,
-annotation of reads with sequence embedded barcodes, generation of
-unique molecular identifier (UMI) consensus sequences, assembly of paired-end
-reads and identification of duplicate sequences. Numerous options for sequence
-sorting, sampling and conversion operations are also included.</p>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Download</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="news.html">Release Notes</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Usage Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Commandline Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Example Workflows</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="workflows/Jiang2013_Workflow.html">Roche 454 BCR mRNA with Multiplexed Samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflows/Greiff2014_Workflow.html">Illumina MiSeq 2x250 BCR mRNA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflows/Stern2014_Workflow.html">UMI Barcoded Illumina MiSeq 2x250 BCR mRNA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflows/VanderHeiden2017_Workflow.html">UMI Barcoded Illumina MiSeq 325+275 paired-end 5’RACE BCR mRNA</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Example Tasks</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/import.html">Importing Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/annotations.html">Manipulating Annotations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/filter.html">Filtering, Subsetting and Converting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/primers.html">Isotype and Primer Annotations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/assembly.html">Fixing Assembly Problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/umi.html">Fixing UMI Problems</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">About</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="info.html">Contact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#citation">Citation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html#license">License</a></li>
-</ul>
-</div>
-<section id="indices">
-<h2>Indices<a class="headerlink" href="#indices" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-</ul>
-</section>
-</section>
-
-
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
+    &nbsp;Haplogrep 3
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <hr>
+  
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">
+          <i class="fas fa-upload"></i> Upload Data
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/phylogenies">
+          <i class="fas fa-sitemap"></i> Phylogenies
+        </a>
+      </li>
+    </ul>
 
-  <div role="contentinfo">
-    <p>© Copyright Kleinstein Lab, Yale University, 2026.</p>
+    <ul class="navbar-nav ml-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="https://haplogrep.i-med.ac.at/haplogrep2" target="_blank">
+          <i class="fas fa-link"></i>  Haplogrep 2
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="https://haplogrep.readthedocs.io">
+          <i class="fas fa-book"></i> Documentation
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://haplogrep.readthedocs.io/en/latest/installation/" title="Download Haplogrep">
+          <i class="fas fa-download"></i> Download
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/genepi/haplogrep3">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/contact" id="show-command-button">
+          About
+        </a>
+      </li>
+    </ul>
   </div>
+  
+</nav>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
 
-</footer>
+  <div id="wrapper">
+  
+
+
+<div class="text-header bg-primary">
+  <h1 class="jumbotron-heading text-center">
+    Haplogrep 3
+  </h1>
+
+  <p class="lead text-center">
+    Free mtDNA Haplogroup Classification Service
+  </p>
+</div>
+
+<div class="text-center" style="padding-top:40px; padding-bottom:40px">
+  Upload your mtDNA profiles aligned to rCRS or RSRS and<br>receive mitochondrial haplogroups in return.
+</div>
+
+<div id="container" class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-sm-5">
+      <form action="/jobs" method="post" enctype="multipart/form-data" onsubmit="waitDialog()">
+
+        <div class="form-group">
+          <label for="files">Upload one or more files <small>(&lt;30 MB)</small>:</label>
+          <input type="file" id="files" name="files" multiple="" class="form-control" accept=".fasta,.fa,.fna,.hsd,.vcf,.gz,.txt" required="">
         </div>
-      </div>
-    </section>
+
+        <div class="form-group">
+          <label for="format">
+            File Format: &nbsp;
+            <a href="https://haplogrep.readthedocs.io/en/latest/input-formats/" target="_blank" title="Help" class="col-form-label">
+              <i class="fas fa-question-circle"></i>
+            </a>
+          </label>
+          <select id="format" name="format" class="form-control" required="">
+            <option value="auto">Auto-Detect</option>
+            <option disabled="">----------------</option>
+            <option value="hsd">hsd</option>
+            <option value="vcf">VCF</option>
+            <option value="fasta">FASTA</option>
+          </select>
+        </div>
+
+        <div class="form-group text-left" id="vcf-options" style="display: none;">
+          <div class="form-group form-check">
+            <input class="form-check-input" style="margin-left: 0px;" type="checkbox" value="true" id="chip" name="chip">
+            <label class="form-check-label" for="chip">
+              Uploaded data is from a genotyping array
+              <a href="" target="_blank" title="Help">
+                <i class="fas fa-question-circle"></i>
+              </a>
+            </label>
+          </div>
+          <div class="form-inline">
+            <label for="hetLevel" class="col-form-label">
+              Heteroplasmy level:
+            </label>
+            &nbsp;
+            <input class="form-control" type="text" value="0.9" style="width: 60px; id=" hetlevel"="" name="hetLevel" required="">
+
+            &nbsp;
+            <a href="" target="_blank" title="Help" class="col-form-label">
+              <i class="fas fa-question-circle"></i>
+            </a>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <label for="phylotree">
+            Choose the phylogenetic tree:
+            <a href="https://haplogrep.readthedocs.io/en/latest/available-trees/" target="_blank" title="Help" class="col-form-label">
+              <i class="fas fa-question-circle"></i>
+            </a>
+          </label>
+          <select id="phylotree" name="phylotree" class="form-control" required="">
+            
+              <option value="" disabled="">rCRS (Human mtDNA)</option>
+              
+                <option value="phylotree-fu-rcrs@1.2">&nbsp;&nbsp;&nbsp;PhyloTree 17 - Forensic Update 1.2</option>
+              
+                <option value="phylotree-fu-rcrs@1.0">&nbsp;&nbsp;&nbsp;PhyloTree 17 - Forensic Update 1.0</option>
+              
+                <option value="phylotree-rcrs@17.2">&nbsp;&nbsp;&nbsp;PhyloTree 17.2</option>
+              
+                <option value="phylotree-rcrs@17.0">&nbsp;&nbsp;&nbsp;PhyloTree 17.0</option>
+              
+                <option value="phylotree-rcrs@16.0">&nbsp;&nbsp;&nbsp;PhyloTree 16.0</option>
+              
+                <option value="phylotree-rcrs@15.0">&nbsp;&nbsp;&nbsp;PhyloTree 15.0</option>
+              
+            
+              <option value="" disabled="">RSRS (Human mtDNA)</option>
+              
+                <option value="phylotree-rsrs@17.1">&nbsp;&nbsp;&nbsp;PhyloTree 17.1</option>
+              
+                <option value="phylotree-rsrs@17.0">&nbsp;&nbsp;&nbsp;PhyloTree 17.0</option>
+              
+            
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="distance">
+            Distance function: &nbsp;
+            <a href="https://haplogrep.readthedocs.io/en/latest/kulczynski/" target="_blank" title="Help" class="col-form-label">
+              <i class="fas fa-question-circle"></i>
+            </a>
+          </label>
+          <select id="distance" name="distance" class="form-control" required="">
+            
+            <option value="KULCZYNSKI">Kulczynski (Default)</option>
+            
+            <option value="HAMMING">Hamming</option>
+            
+            <option value="JACCARD">Jaccard</option>
+            
+            <option value="KIMURA">Kimura</option>
+            
+          </select>
+        </div>
+          <br>
+
+          <div class="form-group">
+            <label for="">
+              Output:
+            </label>
+            <div class="form-group form-check">
+              <input class="form-check-input" style="margin-left: 0px;" type="checkbox" value="true" id="additional-output" name="additional-output">
+              <label class="form-check-label" for="additional-output">
+                Create additional output files (e.g. FASTA or Multiple Sequence Alignment (MSA) file)
+              </label>
+            </div>
+          </div>
+
+        <br>
+        <button type="submit" id="submit" class="btn btn-primary btn-lg btn-upload">Upload and Classify</button>
+      </form>
+
+    </div>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-    <!-- Theme Analytics -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Q07WDQD80L"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+</div>
 
-      gtag('config', 'G-Q07WDQD80L', {
-          'anonymize_ip': false,
-      });
-    </script> 
+<div id="container" class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-sm-5 text-center">
+
+      <p><b>No dataset at hand?</b> No problem, take one of our examples:</p>
+
+      
+      <form action="/jobs" method="post" enctype="multipart/form-data" style="display: inline;">
+        <input type="hidden" name="dataset" value="evaluation-kg50-wgs-vcf">
+        <input type="hidden" name="phylotree" value="phylotree-fu-rcrs@1.2">
+        <button type="submit" id="submit" class="btn btn-outline-secondary" style="margin-top: 10px">
+          <i class="far fa-file-alt"></i> example-WGS.vcf
+        </button>
+      </form>
+      
+      <form action="/jobs" method="post" enctype="multipart/form-data" style="display: inline;">
+        <input type="hidden" name="dataset" value="evaluation-data">
+        <input type="hidden" name="phylotree" value="phylotree-fu-rcrs@1.2">
+        <button type="submit" id="submit" class="btn btn-outline-secondary" style="margin-top: 10px">
+          <i class="far fa-file-alt"></i> evaluation-data.hsd
+        </button>
+      </form>
+      
+      <form action="/jobs" method="post" enctype="multipart/form-data" style="display: inline;">
+        <input type="hidden" name="dataset" value="evaluation-kg50-microarray-vcf">
+        <input type="hidden" name="phylotree" value="phylotree-fu-rcrs@1.2">
+        <button type="submit" id="submit" class="btn btn-outline-secondary" style="margin-top: 10px">
+          <i class="far fa-file-alt"></i> example-microarray.vcf
+        </button>
+      </form>
+      
+      <form action="/jobs" method="post" enctype="multipart/form-data" style="display: inline;">
+        <input type="hidden" name="dataset" value="evaluation-kg50-wgs-fasta">
+        <input type="hidden" name="phylotree" value="phylotree-fu-rcrs@1.2">
+        <button type="submit" id="submit" class="btn btn-outline-secondary" style="margin-top: 10px">
+          <i class="far fa-file-alt"></i> example-WGS.fasta
+        </button>
+      </form>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#vcf-options').hide();
+  $('#format').on('change', function() {
+    console.log("fdsfds");
+    if ($(this).val() == 'vcf') {
+      $('#vcf-options').show();
+    } else {
+      $('#vcf-options').hide();
+    }
+  });
+</script>
 
 
-<readthedocs-flyout></readthedocs-flyout><readthedocs-notification class="raised toast"></readthedocs-notification><div class="raised adaptive-css loaded" data-ea-type="text" data-ea-style="fixedfooter" data-ea-manual="true" data-ea-publisher="readthedocs" data-ea-keywords="adaptive-immunity|airr-seq|bcr|bioinformatics|immunoglobulin|immunology|python|readthedocs-project-35902|readthedocs-project-presto|rep-seq|repertoire-sequencing|tcr" data-ea-campaign-types="community|house|paid" id="readthedocs-ea-text-fixedfooter-sphinx"><div class="ea-placement ea-type-text"><div class="ea-content"><div class="ea-text"><a href="https://server.ethicalads.io/proxy/click/10122/019dab53-3c3b-76e2-8b77-bd1bf9aba0cc/" rel="nofollow noopener sponsored" target="_blank"><strong class="ea-headline">Simplify infrastructure </strong><span class="ea-body">with MongoDB Atlas, the leading modern database</span></a></div></div><div class="ea-callout"><a rel="nofollow noopener" target="_blank" href="https://www.ethicalads.io/advertisers/?ref=ea-text">Ads by EthicalAds</a></div><div class="ea-fixedfooter-hide"><span>Close Ad</span></div></div><img src="https://server.ethicalads.io/proxy/view/10122/019dab53-3c3b-76e2-8b77-bd1bf9aba0cc/" class="ea-pixel"></div><readthedocs-search class="raised floating"></readthedocs-search><readthedocs-hotkeys></readthedocs-hotkeys></body></html>
+</div>
+
+<div id="footer" class="bg-light text-muted text-center" style="height: ">
+  <small>
+    powered by <a href="https://haplogrep.i-med.ac.at" target="_blank">Haplogrep 3 (3.2.1)</a><br>
+    <p>2022-2023 <a href="https://genepi.i-med.ac.at/" target="_blank">Institute of Genetic Epidemiology</a>, <a href="https://i-med.ac.at/" target="_blank">Medical University of Innsbruck</a></p></small><p><small>
+  </small>
+</p></div>
+
+
+
+
+
+</body></html>

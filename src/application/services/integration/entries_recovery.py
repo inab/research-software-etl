@@ -1,123 +1,328 @@
-import json
-import sys
+import re
 from collections import defaultdict
 from urllib.parse import urlparse
 
-# Merges groups with shared links and same name and updated the grouped.json file
+
+# -----------------------------------------------------------------------------
+# NORMALIZATION HELPERS
+# -----------------------------------------------------------------------------
+
+def normalize_name(name: str) -> str:
+    """
+    Normalize software name for grouping/recovery.
+
+    Rules:
+    - None -> ""
+    - lowercase
+    - remove spaces, hyphens, underscores
+    """
+    if not name:
+        return ""
+    name = str(name).strip().lower()
+    name = re.sub(r"[\s\-_]+", "", name)
+    return name
+
+
+def normalize_type(raw_type) -> str:
+    """
+    Normalize type.
+
+    Rules:
+    - None -> "*"
+    - empty -> "*"
+    - undefined -> "*"
+    """
+    if raw_type is None:
+        return "*"
+
+    t = str(raw_type).strip().lower()
+    if not t or t == "undefined":
+        return "*"
+
+    return t
+
+
+def normalize_source_stem_from_id(instance_id: str) -> str | None:
+    """
+    Extract a stable source stem from an instance id.
+
+    Examples:
+    - biotools/ms-digest/web/None -> biotools/ms-digest
+    - bioconda_recipes/gdsctools/cmd/1.0.1 -> bioconda_recipes/gdsctools
+    - galaxy/rnasnp/cmd/1.2.0 -> galaxy/rnasnp
+    """
+    if not instance_id:
+        return None
+
+    parts = [p.strip().lower() for p in str(instance_id).split("/") if p.strip()]
+    if len(parts) >= 2:
+        return f"{parts[0]}/{parts[1]}"
+    return None
+
 
 def normalize_url(url):
-    """Normalize a URL by removing the protocol, trailing slash, query parameters, and handling Bioconductor package URLs."""
+    """
+    Normalize a URL so equivalent links can match.
+
+    Rules:
+    - accept missing scheme by assuming https
+    - lowercase domain
+    - remove trailing slash
+    - remove query and fragment
+    - remove final .html
+    - canonicalize Bioconductor package URLs
+    """
+    if not url or not isinstance(url, str):
+        return None
+
+    url = url.strip()
     if not url:
         return None
 
+    if "://" not in url and not url.startswith("//"):
+        url = f"https://{url}"
+
     parsed_url = urlparse(url)
-    netloc = parsed_url.netloc.lower()
-    path = parsed_url.path.rstrip('/')
+    netloc = parsed_url.netloc.lower().strip()
+    path = parsed_url.path.rstrip("/")
 
-    # Remove query parameters and fragments
-    path = path.split('?')[0].split('#')[0]
+    path = path.split("?")[0].split("#")[0]
 
-    # Remove '.html' from the end of Bioconductor URLs
-    if path.endswith('.html'):
+    if not netloc:
+        return None
+
+    if path.endswith(".html"):
         path = path[:-5]
 
-    # Handle Bioconductor package URLs
-    if 'bioconductor.org' in netloc:
-        parts = path.split('/')
+    if "bioconductor.org" in netloc:
+        parts = [p for p in path.split("/") if p]
         for part in reversed(parts):
-            if part and part not in ('release', 'bioc', 'html', 'packages'):
+            if part and part not in ("release", "bioc", "html", "packages"):
                 return f"bioconductor.org/packages/{part}"
 
-    return f"{netloc}{path}"
+    return f"{netloc}{path}".lower()
 
 
-def find_shared_links_accross_groups(data):
+# -----------------------------------------------------------------------------
+# GROUP INTROSPECTION
+# -----------------------------------------------------------------------------
+
+def get_group_identity(group_data: dict) -> tuple[set[str], set[str], set[str]]:
     """
-    Identify links that are shared by entries in different groups.
-    
-    Args:
-        data (dict): The input data containing software entries grouped by key.
-        
+    Return:
+    - normalized names found in the group's instances
+    - normalized source stems found in the group's instances
+    - normalized types found in the group's instances
+    """
+    names = set()
+    source_stems = set()
+    types = set()
+
+    for instance in group_data.get("instances", []):
+        data = instance.get("data", {})
+
+        name = normalize_name(data.get("name"))
+        if name:
+            names.add(name)
+
+        inst_id = instance.get("_id")
+        stem = normalize_source_stem_from_id(inst_id)
+        if stem:
+            source_stems.add(stem)
+
+        types.add(normalize_type(data.get("type")))
+
+    return names, source_stems, types
+
+
+def get_group_links(group_data: dict) -> set[str]:
+    """
+    Extract normalized repository + webpage links from a group.
+    """
+    links = set()
+
+    for instance in group_data.get("instances", []):
+        data = instance.get("data", {})
+
+        for repo in data.get("repository", []) or []:
+            if isinstance(repo, dict):
+                url = repo.get("url")
+                normalized = normalize_url(url)
+                if normalized:
+                    links.add(normalized)
+
+        for webpage in data.get("webpage", []) or []:
+            normalized = normalize_url(webpage)
+            if normalized:
+                links.add(normalized)
+
+    return links
+
+
+# -----------------------------------------------------------------------------
+# RECOVERY CANDIDATE DISCOVERY
+# -----------------------------------------------------------------------------
+
+def find_shared_links_across_groups(grouped_instancies):
+    """
+    Identify links shared by more than one group.
+
     Returns:
-        dict: A dictionary where keys are shared links and values are lists of group_keys they appear in.
+        {
+            normalized_link: [group_key1, group_key2, ...]
+        }
     """
     link_to_groups = defaultdict(set)
 
-    # Map links to the groups they belong to
-    for group_key, group_data in data.items():
-        instances = group_data.get("instances", [])
+    for group_key, group_data in grouped_instancies.items():
+        for link in get_group_links(group_data):
+            link_to_groups[link].add(group_key)
 
-        for instance in instances:
-            repo_links = {normalize_url(repo["url"]) for repo in instance["data"].get("repository", []) if repo.get("url")}
-            webpage_links = {normalize_url(url) for url in instance["data"].get("webpage", []) if url}
-            combined_links = repo_links | webpage_links  # Union of both sets
-
-            # Assign each link to its corresponding group key
-            for link in combined_links:
-                if link:  # Avoid adding None values
-                    link_to_groups[link].add(group_key)
-
-    # Filter only links that appear in multiple groups
-    shared_links = {link: sorted(list(groups)) for link, groups in link_to_groups.items() if len(groups) > 1}
-
-    return shared_links
+    return {
+        link: sorted(groups)
+        for link, groups in link_to_groups.items()
+        if len(groups) > 1
+    }
 
 
-def find_same_name_link_groups(shared_links):
-    unique_name_groups = []
-    for link in shared_links:
-        unique_names = set()
-        for tool in shared_links[link]:
-            name = tool.split('/')[0]
-            unique_names.add(name)
+def find_same_name_link_groups(shared_links, grouped_instancies):
+    """
+    Recover groups that:
+    - share a normalized link
+    - and have exactly one same normalized name across the candidate groups
 
-        if len(unique_names) == 1:
-            unique_name_groups.append(shared_links[link])
+    Type differences are ignored.
+    """
+    candidate_groups = []
 
-    return unique_name_groups
+    for _, group_keys in shared_links.items():
+        all_names = set()
+        valid = True
+
+        for group_key in group_keys:
+            group_data = grouped_instancies.get(group_key)
+            if not group_data:
+                valid = False
+                break
+
+            names, _, _ = get_group_identity(group_data)
+
+            # Conservative: each group should internally correspond to one name
+            if len(names) != 1:
+                valid = False
+                break
+
+            all_names.update(names)
+
+        if valid and len(all_names) == 1:
+            candidate_groups.append(sorted(group_keys))
+
+    return candidate_groups
 
 
-def create_new_group_key(group):
-    # The new key has the format: "name/*". If there is only one type, the key is "name/type"
-    name = group[0].split('/')[0]
-    types = set([tool.split('/')[1] for tool in group])
-    if len(types) == 1 and "*" not in types:
-        return f"{name}/{types.pop()}"
-    else:
-        return f"{name}/*"
+def find_same_source_name_groups(grouped_instancies):
+    """
+    Recover groups that:
+    - share the same normalized source stem
+    - share the same normalized name
+    - regardless of type
+    """
+    groups_by_identity = defaultdict(list)
+
+    for group_key, group_data in grouped_instancies.items():
+        names, source_stems, _ = get_group_identity(group_data)
+
+        # Conservative: only recover groups that are internally coherent
+        if len(names) != 1 or len(source_stems) != 1:
+            continue
+
+        identity = (next(iter(names)), next(iter(source_stems)))
+        groups_by_identity[identity].append(group_key)
+
+    return [
+        sorted(group_keys)
+        for group_keys in groups_by_identity.values()
+        if len(group_keys) > 1
+    ]
 
 
-def update_groups(unique_name_groups, grouped_instancies):
-    # 1. Add the new merged groups (new merged key and full instances as values) and remove the original groups
-    seen_keys = set()
-    seen_groups = []
-    for group in unique_name_groups:
-        if group in seen_groups:
-            print(f"Group {group} already seen")
-        # 1.1. Create a new key for the merged group
-        new_group_key = create_new_group_key(group)
-        # 1.2. Create a new group with the full instances
+# -----------------------------------------------------------------------------
+# MERGING OF OVERLAPPING RECOVERY GROUPS
+# -----------------------------------------------------------------------------
+
+def merge_overlapping_groups(groups):
+    """
+    Merge overlapping lists of group keys.
+
+    Example:
+    [['a', 'b'], ['b', 'c'], ['x', 'y']]
+    ->
+    [['a', 'b', 'c'], ['x', 'y']]
+    """
+    merged = []
+
+    for group in groups:
+        current = set(group)
+        new_merged = []
+
+        for existing in merged:
+            if current & existing:
+                current |= existing
+            else:
+                new_merged.append(existing)
+
+        new_merged.append(current)
+        merged = new_merged
+
+    return [sorted(list(g)) for g in merged]
+
+
+# -----------------------------------------------------------------------------
+# GROUP UPDATE
+# -----------------------------------------------------------------------------
+
+def create_new_group_key(group, grouped_instancies):
+    """
+    Build merged key as name/type or name/* based on actual instance content.
+    """
+    all_names = set()
+    all_types = set()
+
+    for key in group:
+        names, _, types = get_group_identity(grouped_instancies[key])
+        all_names.update(names)
+        all_types.update(types)
+
+    name = min(all_names, key=len) if all_names else group[0].split("/")[0]
+
+    if len(all_types) == 1 and "*" not in all_types:
+        return f"{name}/{next(iter(all_types))}"
+
+    return f"{name}/*"
+
+
+def update_groups(groups_to_merge, grouped_instancies):
+    """
+    Merge the provided groups into new recovered groups.
+    """
+    for group in groups_to_merge:
+        new_group_key = create_new_group_key(group, grouped_instancies)
+
         new_group_instances = []
         for key in group:
-            if key not in seen_keys:
-                seen_keys.add(key)
-            else:
-                print(f"Key {key} already seen")
-                print(f"group: {group}")
             new_group_instances.extend(grouped_instancies[key]["instances"])
 
-        # 1.3 remove the original groups from the grouped_instancies. 
-        # This is doen before the addition of the new group to avoid conflicts with the new key
         for key in group:
             del grouped_instancies[key]
 
-        # 1.4. Add the new group to the new dictionary
         grouped_instancies[new_group_key] = {"instances": new_group_instances}
-
-        seen_groups.append(group)
 
     return grouped_instancies
 
+
+# -----------------------------------------------------------------------------
+# DEBUG
+# -----------------------------------------------------------------------------
 
 def debug_group_links(grouped_instancies, target_keys):
     for group_key in target_keys:
@@ -132,17 +337,17 @@ def debug_group_links(grouped_instancies, target_keys):
         for instance in group.get("instances", []):
             repo_links = {
                 normalize_url(repo["url"])
-                for repo in instance["data"].get("repository", [])
+                for repo in instance.get("data", {}).get("repository", [])
                 if isinstance(repo, dict) and repo.get("url")
             }
             webpage_links = {
                 normalize_url(url)
-                for url in instance["data"].get("webpage", [])
+                for url in instance.get("data", {}).get("webpage", [])
                 if url
             }
 
-            print("  raw repository:", instance["data"].get("repository"))
-            print("  raw webpage:", instance["data"].get("webpage"))
+            print("  raw repository:", instance.get("data", {}).get("repository"))
+            print("  raw webpage:", instance.get("data", {}).get("webpage"))
             print("  normalized repository:", repo_links)
             print("  normalized webpage:", webpage_links)
 
@@ -150,91 +355,53 @@ def debug_group_links(grouped_instancies, target_keys):
 
         print("  ALL LINKS:", sorted(all_links))
 
-def recover_shared_name_link(grouped_instancies):    
 
+# -----------------------------------------------------------------------------
+# MAIN RECOVERY
+# -----------------------------------------------------------------------------
 
+def recover_shared_name_link(grouped_instancies):
+    """
+    Recover split groups using two rules:
+
+    1. Same source stem + same normalized name => merge regardless of type
+    2. Shared normalized link + same normalized name => merge regardless of type
+
+    Overlapping candidate groups are merged transitively.
+    """
     print(f"Groups of tools before recovery: {len(grouped_instancies)}")
     print(f"Example of group keys: {list(grouped_instancies.keys())[:5]}")
-    example_key = list(grouped_instancies.keys())[0]
-    print(f"Example of group data: {grouped_instancies[example_key]}")
+    if grouped_instancies:
+        example_key = list(grouped_instancies.keys())[0]
+        print(f"Example of group data: {grouped_instancies[example_key]}")
 
-    # 1. Build the shared_links dictionary
-    shared_links = find_shared_links_accross_groups(grouped_instancies)
+    # Rule 1: same source + same name
+    source_name_groups = find_same_source_name_groups(grouped_instancies)
+    print(f"Groups recoverable by same source+name: {len(source_name_groups)}")
+    print(f"Example source+name groups: {source_name_groups[:5]}")
 
-    # 2. Find same name and link occurrencies
-    unique_name_groups = find_same_name_link_groups(shared_links)
+    # Rule 2: shared link + same name
+    shared_links = find_shared_links_across_groups(grouped_instancies)
+    link_name_groups = find_same_name_link_groups(shared_links, grouped_instancies)
+    print(f"Groups recoverable by shared link+name: {len(link_name_groups)}")
+    print(f"Example link+name groups: {link_name_groups[:5]}")
 
-    print(f"Groups of tools with same name and common link: {len(unique_name_groups)}")
-    print(f"Example of groups: {unique_name_groups[:5]}")
+    # Combine both recovery sources
+    all_candidate_groups = source_name_groups + link_name_groups
+    merged_candidate_groups = merge_overlapping_groups(all_candidate_groups)
 
-    # 3. Merge groups with same name and shared links and add to the grouped_instances dictionary
+    print(f"Total candidate groups before overlap merge: {len(all_candidate_groups)}")
+    print(f"Total candidate groups after overlap merge: {len(merged_candidate_groups)}")
+    print(f"Example merged candidate groups: {merged_candidate_groups[:5]}")
 
-    # check wether any key appears in more than one group 
-    
-    keys_in_several_groups = []
-    for key in grouped_instancies:
-        count = 0
-        for group in unique_name_groups:
-            if key in group:
-                count += 1
-        if count > 1:
-            keys_in_several_groups.append(key)
-    
-    print(f"Keys in more than one group: {len(set(keys_in_several_groups))}")
-    print(f"Keys: {keys_in_several_groups}")
+    if not merged_candidate_groups:
+        print("No recoverable groups found.")
+        return grouped_instancies
 
-    # the groups containing the same keys must be merged
-    merged_groups = []
-    groups_to_remove = []
-    for key in keys_in_several_groups:
-        new_group = []
-        for group in unique_name_groups:
-            if key in group:
-                groups_to_remove.append(group)
-                if key not in new_group:
-                    new_group.extend(group)
-                    print(f"To remove: {group}")
-        if new_group not in merged_groups:
-            merged_groups.append(new_group)
-            print(f"To merge: {new_group}")
-    
+    grouped_instancies = update_groups(merged_candidate_groups, grouped_instancies)
 
-    print(f"Groups merged: {len(groups_to_remove)}")
-    print(groups_to_remove)
-    print(f"Groups to be merged: {len(merged_groups)}")
-    print(merged_groups)
-
-    # Update the unique_name_groups list
-    new_unique_names_groups = []
-    count = 0
-    for group in unique_name_groups:
-        if group not in groups_to_remove:
-            new_unique_names_groups.append(group)
-        else:
-            print(f"Removing group: {group}")
-            count += 1
-    
-    print(f"Groups removed: {count}")
-    
-    print(f"Groups without the merged groups: {len(new_unique_names_groups)}")
-
-    for group in merged_groups:
-        new_unique_names_groups.append(group)  
-     
-    print(f"Groups of tools with same name and common link after merging: {len(new_unique_names_groups)}")
-    print(f"Example of groups: {unique_name_groups[:5]}")
-    
-
-    
-    grouped_instancies = update_groups(new_unique_names_groups, grouped_instancies)
     print(f"Groups of tools after recovery: {len(grouped_instancies)}")
-
-
-
     return grouped_instancies
-
-
-
 
 
 if __name__ == "__main__":
