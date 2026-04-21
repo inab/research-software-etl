@@ -1,0 +1,356 @@
+{
+  "conflict": {
+    "disconnected": [
+      {
+        "_id": "biotools/haplogrep/cmd/None",
+        "created_at": "2025-04-02T12:00:51.099516",
+        "created_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "created_logs": "local",
+        "data": {
+          "authors": [
+            {
+              "email": "Florian.Kronenberg@i-med.ac.at",
+              "maintainer": false,
+              "name": "Florian Kronenberg",
+              "orcid": null,
+              "type": "Person",
+              "url": "http://www3.i-med.ac.at/genepi/"
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [],
+          "description": [
+            "Web application for finding the corresponding haplogroup to given mtDNA profiles based on Phylotree (mtDNA classification tree)."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "general",
+              "url": "http://haplogrep.uibk.ac.at/about.html"
+            },
+            {
+              "content": null,
+              "type": "manual",
+              "url": "http://haplogrep.uibk.ac.at/help.html"
+            }
+          ],
+          "download": [],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "HaploGrep"
+          ],
+          "languages": [],
+          "license": [],
+          "links": [],
+          "name": "haplogrep",
+          "operating_system": [
+            "Linux",
+            "Windows",
+            "macOS"
+          ],
+          "operational": false,
+          "operations": [
+            {
+              "term": "Sequence classification",
+              "uri": "http://edamontology.org/operation_2995",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Phylogenetic inference",
+              "uri": "http://edamontology.org/operation_0323",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "output": [],
+          "publication": [
+            "67c8281d10e2f3aa0b3b793f"
+          ],
+          "repository": [],
+          "source": [
+            "biotools"
+          ],
+          "source_code": [],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "Phylogenetics",
+              "uri": "http://edamontology.org/topic_3293",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genotype and phenotype",
+              "uri": "http://edamontology.org/topic_0625",
+              "vocabulary": "EDAM"
+            },
+            {
+              "term": "Genetics",
+              "uri": "http://edamontology.org/topic_3053",
+              "vocabulary": "EDAM"
+            }
+          ],
+          "type": "cmd",
+          "version": [
+            "None"
+          ],
+          "webpage": [
+            "http://haplogrep.uibk.ac.at/"
+          ]
+        },
+        "id": "biotools/haplogrep/cmd/None",
+        "last_updated_at": "2026-04-15T21:56:58.544185",
+        "source": [
+          {
+            "collection": "alambiqueDev",
+            "id": "biotools/haplogrep/cmd/None",
+            "source_url": null
+          }
+        ],
+        "updated_by": "https://gitlab.bsc.es/None/None/-/commit/None",
+        "updated_logs": null
+      }
+    ],
+    "remaining": [
+      {
+        "_id": "bioconda_recipes/haplogrep/cmd/2.4.0,github/haplogrep-cmd/None/v2.4.0",
+        "data": {
+          "authors": [
+            {
+              "email": "sebastian.schoenherr@i-med.ac.at",
+              "maintainer": false,
+              "name": "Sebastian Schoenherr",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "haansi@mail.com",
+              "maintainer": false,
+              "name": "haansi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "lukas.forer@i-med.ac.at",
+              "maintainer": false,
+              "name": "Lukas Forer",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "haansi@users.noreply.github.com",
+              "maintainer": false,
+              "name": "Hansi Wei\u00dfensteiner",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "hansi@thinkstation",
+              "maintainer": false,
+              "name": "hansi",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            },
+            {
+              "email": "david.ma@mcri.edu.au",
+              "maintainer": false,
+              "name": "David Ma",
+              "orcid": null,
+              "type": "Person",
+              "url": null
+            }
+          ],
+          "bioschemas": false,
+          "citation": [],
+          "contribution_policy": false,
+          "dependencies": [
+            "openjdk"
+          ],
+          "description": [
+            "HaploGrep - mtDNA haplogroup classification. Supporting rCRS and RSRS.",
+            "A tool for mtDNA haplogroup classification."
+          ],
+          "documentation": [
+            {
+              "content": null,
+              "type": "installation_instructions",
+              "url": "https://bioconda.github.io/recipes/haplogrep/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://bioconda.github.io/recipes/haplogrep/README.html"
+            },
+            {
+              "content": null,
+              "type": "general",
+              "url": "https://haplogrep.i-med.ac.at/"
+            },
+            {
+              "content": null,
+              "type": "readme",
+              "url": "https://github.com/seppinho/haplogrep-cmd/blob/main/README.md"
+            }
+          ],
+          "download": [
+            "https://github.com/seppinho/haplogrep-cmd/releases/download/v2.4.0/haplogrep.zip"
+          ],
+          "edam_operations": [],
+          "edam_topics": [],
+          "https": false,
+          "input": [],
+          "inst_instr": false,
+          "label": [
+            "haplogrep-cmd",
+            "haplogrep"
+          ],
+          "languages": [],
+          "license": [
+            {
+              "name": "MIT",
+              "url": null
+            },
+            {
+              "name": "MIT License",
+              "url": "http://choosealicense.com/licenses/mit/"
+            }
+          ],
+          "links": [],
+          "name": "haplogrep",
+          "operating_system": [
+            "Windows",
+            "macOS",
+            "Linux"
+          ],
+          "operational": false,
+          "operations": [],
+          "other_names": [
+            "haplogrep-cmd"
+          ],
+          "output": [],
+          "publication": [
+            "67c8281d10e2f3aa0b3b793f"
+          ],
+          "repository": [
+            {
+              "kind": "github",
+              "source_hasAnonymousAccess": null,
+              "source_isDownloadRegistered": null,
+              "source_isFree": null,
+              "source_isRepoAccessible": null,
+              "url": "https://github.com/seppinho/haplogrep-cmd"
+            }
+          ],
+          "source": [
+            "github",
+            "bioconda_recipes"
+          ],
+          "source_code": [
+            "https://github.com/seppinho/haplogrep-cmd/releases/download/v2.4.0/haplogrep.zip"
+          ],
+          "sources_labels": {},
+          "ssl": false,
+          "tags": [],
+          "termsUse": false,
+          "test": false,
+          "topics": [
+            {
+              "term": "mtdna",
+              "uri": "https://github.com/topics/mtdna",
+              "vocabulary": ""
+            },
+            {
+              "term": "haplogroup",
+              "uri": "https://github.com/topics/haplogroup",
+              "vocabulary": ""
+            },
+            {
+              "term": "ngs",
+              "uri": "https://github.com/topics/ngs",
+              "vocabulary": ""
+            },
+            {
+              "term": "snp-genotyping",
+              "uri": "https://github.com/topics/snp-genotyping",
+              "vocabulary": ""
+            },
+            {
+              "term": "classificaton",
+              "uri": "https://github.com/topics/classificaton",
+              "vocabulary": ""
+            },
+            {
+              "term": "phylotree",
+              "uri": "https://github.com/topics/phylotree",
+              "vocabulary": ""
+            }
+          ],
+          "type": [
+            "cmd"
+          ],
+          "version": [
+            "v2.1.10",
+            "v2.1.23",
+            "v2.2.2",
+            "v2.1.17",
+            "v2.2.4",
+            "v2.1.20",
+            "v2.1.16",
+            "2.4.0-rc3",
+            "v2.1.19",
+            "v2.1.11",
+            "v2.1.18",
+            "v2.3.0",
+            "v2.1.26",
+            "v2.1.12",
+            "v2.1.7",
+            "v2.4.0-rc2",
+            "v2.1.6",
+            "v2.2.6",
+            "v2.1.14",
+            "v2.1.13",
+            "v2.1.22",
+            "v2.1.9",
+            "v2.1.8",
+            "v2.2.3",
+            "v2.2.1",
+            "v2.1.5",
+            "v2.1.3",
+            "2.1.25",
+            "v2.4.0-rc1",
+            "v2.1.21",
+            "v2.1.15",
+            "v2.2.9",
+            "v2.4.0",
+            "2.4.0",
+            "1.0.1",
+            "v2.2.5",
+            "v2.1.24",
+            "v2.2.0",
+            "v2.1.4"
+          ],
+          "webpage": [
+            "https://haplogrep.i-med.ac.at/"
+          ]
+        }
+      }
+    ]
+  },
+  "conflict_id": "p:haplogrep_bioconda_recipes/haplogrep/cmd/2.4.0,biotools/haplogrep/cmd/None,github/haplogrep-cmd/None/v2.4.0",
+  "conflict_name": "haplogrep/*",
+  "date": "2026-04-21T08:41:35.567088+00:00",
+  "run_id": "20260420T214128Z-c1e60c32"
+}
