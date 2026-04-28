@@ -472,7 +472,7 @@ def run_full(
         print("=== Stage: stats ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
         _run(
-            [python_exe, "-m", "src.adapters.cli.generate_stats", "--collections", "Proteomics, tools"],
+            [python_exe, "-m", "src.adapters.cli.generate_stats", "--collections", "tools"],
             cwd=wd,
         )
         executed_stages.append("stats")
@@ -481,7 +481,7 @@ def run_full(
         print("=== Stage: fairsoft ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
         _run(
-            [python_exe, "-m", "src.adapters.cli.fair_scores", "--collections", "tools"],
+            [python_exe, "-m", "src.adapters.cli.fair_scores", "--collections", "all", "--force"],
             cwd=wd,
         )
         executed_stages.append("fairsoft")

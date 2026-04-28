@@ -34,7 +34,7 @@ def compute_journal_impact(docs, years=['2023', '2024', '2025']):
         
         n_journals += 1
         for c in citations:
-            if c.get("source") == "Semantic Scholar":
+            if c.get("source") == "Europe PMC":
                 
                 counts = c.get("count")
                 if not counts:
@@ -123,7 +123,7 @@ def publications_journals_IF(collection):
         docs = list(mongo_adapter.fetch_entries("publicationsMetadataDev", {}))
 
     # 3) Compute & report
-    journal_impact = compute_journal_impact(docs, years=['2022','2023','2024','2025'])
+    journal_impact = compute_journal_impact(docs, years=['2023','2024','2025'])
     top_journals = get_top_journals(journal_impact)
 
     print('----------------- Top Journals -------------------')

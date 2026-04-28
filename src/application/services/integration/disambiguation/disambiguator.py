@@ -109,6 +109,7 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
                 "remaining_id": conflict_pair["remaining"][0]["_id"],
                 "disconnected_id": conflict_pair["disconnected"][0]["_id"],
                 "same_as_remaining": decision.get("same_as_remaining"),
+                "decision": decision.get("decision"),  # important for human unclear
                 "confidence": decision.get("confidence"),
                 "conflict_id": pair_stable_id,
                 "source": decision.get("source"),
@@ -132,10 +133,12 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
         if result.get("verdict") != "disagreement":
             now_ts = datetime.now(timezone.utc).isoformat()
             same_as_remaining = result["verdict"].lower() == "same"
+            llm_decision = "same" if same_as_remaining else "different" 
 
             payload = {
                 "pair_id": pair_stable_id,
                 "kind": "pair",
+                "decision": llm_decision,
                 "same_as_remaining": same_as_remaining,
                 "confidence": result.get("confidence", ""),
                 "source": "llm",
@@ -145,11 +148,13 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
 
             # Keep in-memory cache updated during this run too
             best_pair[pair_stable_id] = payload
+            
 
             pair_results.append({
                 "remaining_id": conflict_pair["remaining"][0]["_id"],
                 "disconnected_id": conflict_pair["disconnected"][0]["_id"],
                 "same_as_remaining": same_as_remaining,
+                "decision": llm_decision,
                 "confidence": result.get("confidence"),
                 "conflict_id": pair_stable_id,
                 "source": "llm",

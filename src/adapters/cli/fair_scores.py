@@ -8,6 +8,8 @@ import logging
 from dotenv import load_dotenv
 
 from application.use_cases.stats.generate_fair_scores import add_fair_scores
+from application.services.stats_generation.FAIR.fair_distribution import compute_fair_distributions 
+
 
 
 def main():
@@ -30,6 +32,11 @@ def main():
         help="Maximum number of tools to process.",
     )
     parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Force recomputation even when stored scores are already up to date.",
+    )
+    parser.add_argument(
         "--env-file", "-e",
         help="File containing environment variables to be set before running.",
         default=".env",
@@ -49,24 +56,42 @@ def main():
     logging.debug(f"Env file: {args.env_file}")
 
     if args.collections.lower() == "all":
-        collections = ['RIS3CAT VEIS', 'ELIXIR-ES', 'BioExcel', 'PerMedCoE', 'IMPaCT-Data', '3D-BioInfo', 'EUCAIM', 'Proteomics']
+        collections = [
+            "RIS3CAT VEIS",
+            "ELIXIR-ES",
+            "BioExcel",
+            "PerMedCoE",
+            "IMPaCT-Data",
+            "3D-BioInfo",
+            "EUCAIM",
+            "Proteomics",
+        ]
         if "tools" not in collections:
             collections.append("tools")
     else:
         collections = [c.strip() for c in args.collections.split(",") if c.strip()]
 
-
-
     for collection in collections:
         logging.info(
             f"Generating FAIR indicators/scores for selection: {collection}"
-            )
+        )
         add_fair_scores(
             tag_or_tools=collection,
             limit=args.limit,
+            force=args.force,
+        )
+        logging.info(
+            f"Generation of FAIR indicators/scores complete for {collection}"
+        )
+        logging.info(
+            f"Generating FAIRsoft distributions for {collection}"
         )
 
-    logging.info("FAIR indicators/scores generation complete.")
+        compute_fair_distributions(collection)
+        
+
+    logging.info("FAIR indicators/scores and distributions generation complete.")
+
 
 
 if __name__ == "__main__":

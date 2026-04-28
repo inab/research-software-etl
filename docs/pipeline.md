@@ -4,136 +4,225 @@
 
 The **Research Software Observatory – Data Pipeline** orchestrates the consolidation, enrichment, and integration of software metadata into analysis-ready datasets consumed by the [Research Software Observatory](https://openebench.bsc.es/observatory/).
 
-![alt text](pipeline.png)
+![Pipeline overview](pipeline.png)
 
-<p align="center" style="font-size: 15px"><i>Overview of the main and auxiliary pipelines of the Research Software Observatory.  
-Raw data importers are external to this repository and act as upstream inputs.</i></p>
+<p align="center" style="font-size: 15px"><i>
+Overview of the main and auxiliary pipelines of the Research Software Observatory.  
+Raw data importers are external to this repository and act as upstream inputs.
+</i></p>
 
-It operates downstream of independent importer processes, which periodically collect and normalise raw metadata from external registries such as bio.tools, Bioconda, etc. These importer components (maintained in separate repositories) produce the*raw data layer that serves as the entry point for the pipeline described here.
+The pipeline operates downstream of independent importer processes, which periodically collect and normalize metadata from external registries such as **bio.tools**, **Bioconda**, **Galaxy**, and others. These importer components are maintained separately and populate the *raw data layer*, which serves as the entry point of this pipeline.
 
-The data pipeline then performs: 
+The pipeline then performs:
 
-- **Normalisation and enrichment** of software metadata,  
-- **Integration and disambiguation** of duplicate records,  
-- **FAIRsoft score precomputation** and statistics generation,  
-- and **Auxiliary enrichments** (e.g. service availability and publications).
-
----
-
-## Execution Model
-
-In practice, there are three kinds of pipelines to be executed:
-
-1. **Main pipeline**
-      - It does normalisation, blocking, conflict detection, and automated disambiguation using heuristics and LLM-based agreement scoring. Whole main pipeline except the human decisions integration stage.  
-      - Stages: 1,2,3,4,6,7
-      - Usually run first via `rsetl run`
-2. **Human curation integration stages** 
-      - Executed later, once submit validated annotations ("H"); curator-provided resolutions are applied through an update stage that corrects or confirms automated results.  
-      - Stages: 5,6,7
-      - Once new annotations have been committed to the `human_annotations/` folder, the human integration is applied using `rsetl integrate-human`.  
-3. **Auxiliary pipelines** 
-      - Tasks (e.g. *publications enrichment* and *web service availability checks*) that run independently to refresh external information feeding the Observatory’s dashboards.  
-      - Stages: "Enrichment" (not numbered)
-      - Can be triggered on demand or scheduled periodically (using `rsetl run-publications` and `run-webavailability`)
-
-Together, these components maintain the merged dataset and the precomputed FAIRsoft metrics displayed in the Observatory.
-
+- **Normalization and enrichment** of software metadata  
+- **Integration and disambiguation** of duplicate records  
+- **FAIRsoft score computation** and statistics generation  
+- **Auxiliary enrichments** such as publications and service availability  
 
 ---
 
-## Main pipeline
+## Execution model
 
-| # | Stage | Main Script | Description | External Services |
-|:-:|:-------|:-------------|:-------------|:------------------|
-| 1 | **Normalization and enrichment** | | | MongoDB | 
-| 2 | **Blocking & Recovery** | `adapters/cli/integration/group_and_recovery.py` | Groups equivalent records into candidate blocks and merges overlapping ones. | MongoDB |
-|- | **Remove OEB Metrics (optional)** | `scripts/remove_opeb_metrics.py` | Removes redundant OpenEBench “metrics” records to speed up processing. | — |
-| 3 | **Conflict Detection** | `adapters/cli/integration/conflict_detection.py` | Identifies potentially inconsistent or duplicate blocks. | — |
-| - | **Simplify Blocks** | `scripts/simplify_grouped_entries.py` | Reduces block structure to the minimal format needed for disambiguation. | — |
-| - | **Convert to JSONL** | `scripts/json_to_jsonl.py` | Converts block and conflict data into JSONL format for large-scale or LLM processing. | — |
-| 4 | **Disambiguation (automated)** | `adapters/cli/integration/disambiguation.py` | Resolves conflicts via heuristics and model-based agreement scoring; optionally creates GitHub issues for ambiguous cases. | Hugging Face, OpenRouter, GitHub, GitLab |
-| 5 | **Human Integration** | `adapters/cli/integration/update_disambiguation_after_human_resoltion.py` | Incorporates curator decisions from `human_annotations/` to correct or confirm automated disambiguations. Updates the corresponding blocks in the MongoDB collection. | Git (pull from remote) |
-| 6 | **Merge Entries** | `adapters/cli/integration/merge_entries.py` | Consolidates all resolved entries (automated + human-validated) into the final merged dataset. | MongoDB |
-| 7 | **FAIRness Scores** | — | Precomputes FAIRsoft indicator scores by calling the [Observatory REST API](https://observatory.openebench.bsc.es/api/docs). Results are stored in the database for visualization. | Observatory REST API, MongoDB |
-| 7 | **Quality Statistics** | — | Precomputes descriptive statistics for Observatory dashboards. | MongoDB|
+In normal maintenance work, the pipeline is usually executed in one of two ways:
 
+1. **Run the main pipeline until disambiguation**  
+   This is the usual option when new identity conflicts may require human review. The pipeline generates the intermediate files, performs automated disambiguation, and creates the outputs needed for manual annotation.
 
-### Outputs
+   ```bash
+   rsetl run --until disambiguation --tag <TAG>
+   ```
 
-The main result of this pipeline are: 
+2. **Run the full pipeline**  
+   This is used when the data can be processed end-to-end, or when no manual curation round is expected.
 
-   - Consolidated research software metadata records. Pushed to a dedicated MongoDB collection (default name is `tools`).
-   - Scores/stats of those reseach software metadata for display in the Software Observatory. Pushed to a dedicated MongoDB collection (default name is `computations`). 
+   ```bash
+   rsetl run --tag <TAG>
+   ```
 
-In addition, some stages of the main pipeline produce intermediary files. Each pipeline execution produces the following structure under `data/integration/runs/<run_id>/`:
+After human annotation has been completed and committed, the **latest relevant run should be resumed from the `human_updates` stage**. This reuses the existing run directory and applies the curator decisions before continuing with merge, statistics, and FAIRsoft scoring.
 
+```bash
+rsetl run --resume-run latest --from-stage human_updates
 ```
+
+Alternatively, use the explicit run ID:
+
+```bash
+rsetl run --resume-run <RUN_ID> --from-stage human_updates
+```
+
+This is important because the human annotations correspond to the conflict files generated in that specific run. Starting a fresh run after annotation may produce different block or conflict identifiers and can make the annotations impossible to apply correctly.
+
+---
+
+## Main pipeline stages
+
+The full pipeline is composed of the following stages, in execution order:
+
+| # | Stage | CLI Module / Script | Description | External Services |
+|:-:|:------|:--------------------|:------------|:------------------|
+| 1 | **Transformation** | `src.adapters.cli.transformation.transformation` | Loads and normalizes raw metadata from MongoDB sources. | MongoDB |
+| 2 | **License normalization** | `src.adapters.cli.post_transformation.normalize_licenses` | Maps license information to standardized SPDX identifiers. | MongoDB |
+| 3 | **Grouping / blocking & recovery** | `src.adapters.cli.integration.group_and_recovery` | Groups records into candidate identity blocks using names and repository-like links. | MongoDB |
+| — | **Remove OEB metrics** | `scripts/utils/remove_oeb_metrics.py` | Removes redundant OpenEBench metric entries to reduce noise and processing time. | — |
+| 4 | **Conflict detection** | `src.adapters.cli.integration.conflict_detection` | Identifies disconnected records within blocks as potential identity conflicts. | — |
+| — | **Simplify blocks** | `scripts/utils/simplify_grouped_entries.py` | Reduces block structure to the minimal representation needed downstream. | — |
+| — | **JSON to JSONL conversion** | `scripts/utils/json_to_jsonl.py` | Converts conflict and block files into JSONL format. | — |
+| 5 | **Disambiguation** | `src.adapters.cli.integration.disambiguation` | Resolves conflicts using heuristics and LLM-based agreement scoring. Can generate manual-review issues for unresolved cases. | OpenRouter, Hugging Face, GitHub, GitLab |
+| 6 | **Human updates** | `src.adapters.cli.integration.update_disambiguation_after_human_resolution` | Integrates curator decisions from `human_annotations/` into the disambiguation output. | Git |
+| 7 | **Merge** | `src.adapters.cli.integration.merge_entries` | Consolidates resolved records into unified software entries. | MongoDB |
+| 8 | **Statistics** | `src.adapters.cli.generate_stats` | Computes descriptive statistics for Observatory dashboards. | MongoDB |
+| 9 | **FAIRsoft scoring** | `src.adapters.cli.fair_scores` | Computes FAIRsoft indicators and scores for software entries. | MongoDB |
+
+---
+
+## Practical maintenance workflow
+
+### Standard run with possible human curation
+
+Use this when you expect some conflicts to require manual review.
+
+```bash
+rsetl run --until disambiguation --tag <TAG>
+```
+
+Then complete and commit the human annotations.
+
+Once annotation is finished, resume the same run:
+
+```bash
+rsetl run --resume-run latest --from-stage human_updates
+```
+
+This executes:
+
+- `human_updates`
+- `merge`
+- `stats`
+- `fairsoft`
+
+unless one of those stages is skipped with a command-line option.
+
+### Full automatic run
+
+Use this when you want to execute the full pipeline in one pass.
+
+```bash
+rsetl run --tag <TAG>
+```
+
+### Resume a specific run
+
+Use this when the run to resume is not the latest one.
+
+```bash
+rsetl run --resume-run <RUN_ID> --from-stage human_updates
+```
+
+### Run only one stage
+
+Useful for debugging or recomputing a downstream step.
+
+```bash
+rsetl run --resume-run <RUN_ID> --only stats
+```
+
+---
+
+## Outputs
+
+### Primary outputs
+
+The pipeline produces:
+
+- **Merged software records**, stored in MongoDB. The default target collection is `tools`.
+- **Precomputed metrics and FAIRsoft scores**, stored in MongoDB. The default target collection is `computations`.
+
+### Run artifacts
+
+Each execution generates a versioned run directory under:
+
+```text
+data/integration/runs/<run_id>/
+```
+
+Typical contents:
+
+```text
 ├── grouped_entries.<run_id>.json
 ├── grouped_entries.no_opeb_metrics.<run_id>.json
 ├── conflicts.<run_id>.json
 ├── grouped_entries.simplified.<run_id>.json
 ├── conflicts.<run_id>.jsonl
 ├── grouped_entries.simplified.<run_id>.jsonl
-├── disambiguation.<run_id>/
+├── disambiguation.<run_id>.jsonl
 └── manifest.json
+```
 
-``` 
+A `latest` symlink points to the most recent run directory.
 
-A symlink `latest` always points to the most recent run directory.
+The `manifest.json` file records:
+
+- run ID and run directory  
+- git short SHA  
+- created and last-updated timestamps  
+- paths to generated files  
+- selected and executed stages  
+- latest execution options  
+- masked environment configuration  
+- execution history for resumed runs  
 
 ---
 
 ## Auxiliary pipelines
 
-In addition to the main integration workflow, dealing with research software metadata and related scores and statistics, the Data Pipeline includes a set of independent enrichment pipelines.  
+Auxiliary pipelines run independently from the main integration workflow.
 
-These can be executed separately through dedicated CLI commands, either to refresh to populate Observatory publications and service availability collections.
+### Publications enrichment
 
-| Pipeline | Main Script | Description | External Services |
-|:----------|:-------------|:-------------|:------------------|
-| **Publications Enrichment** | `adapters/cli/enrichment/publications_enrichment.py` | Fetches metadata for publications linked to software tools (e.g. title, authors, year, journal) using the Europe PMC API. Updates the `publications` collection in MongoDB. | Europe PMC API, Semantic Scholar API, MonoDB |
-| **Web Services Availability** | `adapters/cli/enrichment/web_services_availability.py` | Periodically checks whether tool web services and homepages are reachable. Stores uptime and response-time metrics used for Observatory dashboards. | Direct HTTP requests, MongoDB |
+| Field | Value |
+|------|------|
+| CLI | `rsetl enrich-publications` |
+| Module | `adapters.cli.enrich_publications` |
+| Description | Enriches publication metadata and citation counts using Europe PMC. |
+| Output | Updates the MongoDB publication collection, `publicationsMetadataDev` by default, and optionally writes a JSONL cache. |
+| External services | Europe PMC API |
 
-### Outputs 
-
-Results are persisted in MongoDB (independent collections).
-
----
-
-## Running Selected Stages  
-
-While the full pipeline is typically executed with:
+Examples:
 
 ```bash
-rsetl run
+rsetl enrich-publications --limit 100
+rsetl enrich-publications --progress-every 100
+rsetl enrich-publications --no-update-db
+rsetl enrich-publications --no-skip-existing-europe-pmc-citations
 ```
 
-The human-integration stage is normally executed afterwards, once new annotations have been committed to the human_annotations/ folder:
+### Web availability
+
+| Field | Value |
+|------|------|
+| CLI | `rsetl run-webavailability` |
+| Module | `adapters.cli.web_availability` |
+| Description | Checks availability of tool URLs and web services. |
+| Output | Updates the MongoDB collection used for service availability dashboards. |
+| External services | HTTP endpoints |
+
+Example:
 
 ```bash
-rsetl integrate-human
-```
-
-You can invoke specific stages manually for debugging or partial workflows.
-For example:
-
-```
-python -m adapters.cli.integration.conflict_detection \
-  --in data/integration/runs/latest/grouped_entries.json \
-  --out data/integration/runs/latest/conflicts.json
+rsetl run-webavailability
 ```
 
 ---
 
-## Notes on Versioning 
+## Notes for maintainers
 
-- Each run (automated or human-integrated) is tracked through its unique directory and manifest.json.
-- Human-integration runs can reference a previous automated run via the base_run field in the manifest.
-- All runs are reproducible using the stored Git commit, configuration, and environment snapshot.
-
----
-
-## Next Steps
+- The pipeline is stage-driven and resumable.
+- Use `--until disambiguation` when a human annotation round is expected.
+- After human annotation, resume the same run from `human_updates`; do not start a fresh run for the annotation integration step.
+- Use `rsetl runs list` and `rsetl runs latest` to identify available runs.
+- Use `--only` for targeted recomputation of individual stages.
+- Use `--dry-run-disambiguation` to test the disambiguation stage without creating conflict files or GitHub issues.
 - See [CLI Reference](cli.md) for all available command-line options.
-- Explore [Development Guide](development.md) for extending or customizing stages.
+- See [Development Guide](development.md) for extending or customizing stages.

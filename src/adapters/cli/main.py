@@ -5,6 +5,7 @@ import json
 import sys
 from pathlib import Path
 
+from adapters.cli import enrich_publications
 from adapters.cli import check_environment
 from adapters.cli import web_availability
 from adapters.cli.pipeline_full import PipelineError, STAGES, run_full
@@ -173,6 +174,17 @@ def main(argv: list[str] | None = None) -> int:
         help="Arguments passed to the web availability job",
     )
 
+    # --- enrich-publications ----------------------------------------------------
+    ep_p = subparsers.add_parser(
+        "enrich-publications",
+        help="Enrich publication metadata and citation counts using Europe PMC",
+    )
+    ep_p.add_argument(
+        "ep_args",
+        nargs=argparse.REMAINDER,
+        help="Arguments passed to the enrich publications job",
+    )
+
     # --- runs -------------------------------------------------------------------
     runs_p = subparsers.add_parser("runs", help="Inspect pipeline runs")
     runs_sub = runs_p.add_subparsers(dest="runs_command", required=True)
@@ -232,6 +244,9 @@ def main(argv: list[str] | None = None) -> int:
 
         if args.command == "run-webavailability":
             return web_availability.main(args.wa_args)
+        
+        if args.command == "enrich-publications":
+            return enrich_publications.main(args.ep_args)
 
         if args.command == "runs":
             if args.runs_command == "list":

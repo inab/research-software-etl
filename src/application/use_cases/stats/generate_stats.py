@@ -79,11 +79,12 @@ def generate_stats_for_collections(collections):
         documentation(tools, collection=collection)
         print('Documentation done')
         
+        formats(tools, collection=collection)
+        print('Input and otput data formats done')
+
         publications_journals_IF(collection=collection)
         print('Publications journals IF done')
 
-        formats(tools, collection=collection)
-        print('Input and otput data formats done')
 
         
 

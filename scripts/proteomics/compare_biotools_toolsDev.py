@@ -19,6 +19,9 @@ It generates:
 - mongo-only tools
 - biotools-only tools
 - fuzzy suggestions for mongo-only tools
+- docs with more than one aggregated biotools/<biotoolsID> source
+- docs with more than one aggregated biotools/<biotoolsID> source
+  that belongs to scripts/proteomics/biotools_proteomics_tools.json
 """
 
 from __future__ import annotations
@@ -127,13 +130,58 @@ def load_mongo_proteomics_tools() -> list[dict]:
     projection = {
         "_id": 1,
         "id": 1,
+        "source": 1,  # top-level aggregated source ids
         "data.name": 1,
         "data.label": 1,
         "data.tags": 1,
-        "data.source": 1,
     }
 
     return list(collection.find(query, projection))
+
+
+def extract_distinct_biotools_prefixes(sources: list[str]) -> list[str]:
+    """
+    From aggregated source ids like:
+        biotools/<biotoolsID>/<type>/<version>
+    extract distinct prefixes:
+        biotools/<biotoolsID>
+
+    Returns them sorted for stable output.
+    """
+    prefixes = set()
+
+    for src in sources:
+        if not isinstance(src, str):
+            continue
+
+        parts = src.strip().split("/")
+        if len(parts) < 2:
+            continue
+
+        if parts[0].lower() != "biotools":
+            continue
+
+        prefix = f"biotools/{parts[1].lower()}"
+        prefixes.add(prefix)
+
+    return sorted(prefixes)
+
+
+def build_allowed_biotools_prefixes(biotools_tools: list[dict]) -> set[str]:
+    """
+    Build:
+        {"biotools/<biotoolsID>", ...}
+    from the proteomics JSON file.
+    """
+    allowed = set()
+
+    for tool in biotools_tools:
+        biotools_id = (tool.get("biotoolsID") or "").strip().lower()
+        if biotools_id:
+            allowed.add(f"biotools/{biotools_id}")
+
+    return allowed
+
 
 def extract_mongo_names(mongo_tools: list[dict]) -> list[dict]:
     out = []
@@ -143,6 +191,8 @@ def extract_mongo_names(mongo_tools: list[dict]) -> list[dict]:
 
         name = (data.get("name") or "").strip()
         labels = normalize_string_list(data.get("label"))
+        sources = normalize_string_list(tool.get("source"))
+        biotools_sources = extract_distinct_biotools_prefixes(sources)
 
         out.append(
             {
@@ -152,7 +202,9 @@ def extract_mongo_names(mongo_tools: list[dict]) -> list[dict]:
                 "labels": labels,
                 "norm_name": normalize_name(name),
                 "norm_labels": [normalize_name(label) for label in labels],
-                "sources": normalize_string_list(tool.get("source")),
+                "sources": sources,
+                "biotools_sources": biotools_sources,
+                "biotools_source_count": len(biotools_sources),
                 "tags": normalize_string_list(data.get("tags")),
             }
         )
@@ -210,7 +262,6 @@ def compare(mongo_entries: list[dict], biotools_entries: list[dict]) -> dict:
         norm_labels = tool["norm_labels"]
 
         norm_hit = None
-
         exact_hits = []
 
         if name in biotools_exact_names:
@@ -277,6 +328,46 @@ def compare(mongo_entries: list[dict], biotools_entries: list[dict]) -> dict:
         "mongo_only": mongo_only,
         "biotools_only": biotools_only,
     }
+
+
+def find_multi_biotools_aggregations(mongo_entries: list[dict]) -> list[dict]:
+    """
+    Return Mongo docs that aggregate more than one distinct biotools/<biotoolsID>.
+    """
+    return [
+        tool
+        for tool in mongo_entries
+        if tool.get("biotools_source_count", 0) > 1
+    ]
+
+
+def find_multi_proteomics_biotools_aggregations(
+    mongo_entries: list[dict],
+    allowed_biotools_prefixes: set[str],
+) -> list[dict]:
+    """
+    Return Mongo docs that aggregate more than one distinct biotools/<biotoolsID>
+    AND where those biotools ids are in scripts/proteomics/biotools_proteomics_tools.json.
+    """
+    results = []
+
+    for tool in mongo_entries:
+        matching_proteomics_sources = [
+            src
+            for src in tool.get("biotools_sources", [])
+            if src in allowed_biotools_prefixes
+        ]
+
+        if len(matching_proteomics_sources) > 1:
+            results.append(
+                {
+                    **tool,
+                    "proteomics_biotools_sources": matching_proteomics_sources,
+                    "proteomics_biotools_source_count": len(matching_proteomics_sources),
+                }
+            )
+
+    return results
 
 
 def add_fuzzy_suggestions(
@@ -354,12 +445,22 @@ def main() -> None:
 
     biotools_tools = load_biotools_tools(BIOTOOLS_JSON)
     biotools_entries = extract_biotools_names(biotools_tools)
+    allowed_biotools_prefixes = build_allowed_biotools_prefixes(biotools_tools)
 
     mongo_tools = load_mongo_proteomics_tools()
     mongo_entries = extract_mongo_names(mongo_tools)
 
+    multi_biotools_aggregations = find_multi_biotools_aggregations(mongo_entries)
+    multi_proteomics_biotools_aggregations = find_multi_proteomics_biotools_aggregations(
+        mongo_entries,
+        allowed_biotools_prefixes,
+    )
+
     print("---- checking wiff2dta on bio.tools side ----")
-    print("wiff2dta in exact names?", "wiff2dta" in build_name_index_biotools(biotools_entries)[0])
+    print(
+        "wiff2dta in exact names?",
+        "wiff2dta" in build_name_index_biotools(biotools_entries)[0],
+    )
 
     for entry in biotools_entries:
         if "wiff2dta" in entry["candidate_names"] or "wiff2dta" in entry["candidate_norm_names"]:
@@ -369,8 +470,6 @@ def main() -> None:
     for tool in mongo_entries:
         if tool["name"] == "quant" or "wiff2dta" in tool["labels"] or "wiff2dta" in tool["norm_labels"]:
             print("MONGO CANDIDATE:", json.dumps(tool, indent=2, ensure_ascii=False))
-
-
 
     comparison = compare(mongo_entries, biotools_entries)
     mongo_only_with_suggestions = add_fuzzy_suggestions(
@@ -382,10 +481,17 @@ def main() -> None:
     matched_rows = []
 
     for row in comparison["matched_exact"]:
-        single_value = row.get("matched_value")
         multi_values = row.get("matched_values", [])
 
-        if single_value == "wiff2dta" or "wiff2dta" in multi_values:
+        if "wiff2dta" in multi_values:
+            matched_rows.append(row)
+            continue
+
+        if any(c.get("biotoolsID") == "wiff2dta" for c in row.get("biotools_candidates", [])):
+            matched_rows.append(row)
+
+    for row in comparison["matched_normalized"]:
+        if row.get("matched_value") == "wiff2dta":
             matched_rows.append(row)
             continue
 
@@ -398,7 +504,7 @@ def main() -> None:
         or row["primary_name"] == "wiff2dta"
     ]
 
-    print("matched_exact rows:", len(matched_rows))
+    print("matched rows:", len(matched_rows))
     for row in matched_rows:
         print(json.dumps(row, indent=2, ensure_ascii=False))
 
@@ -406,7 +512,43 @@ def main() -> None:
     for row in biotools_only_rows:
         print(json.dumps(row, indent=2, ensure_ascii=False))
 
-        
+    print("\n---- docs with multiple aggregated bio.tools tools ----")
+    print("count:", len(multi_biotools_aggregations))
+    for row in multi_biotools_aggregations[:20]:
+        print(
+            json.dumps(
+                {
+                    "_id": row["_id"],
+                    "id": row["id"],
+                    "name": row["name"],
+                    "labels": row["labels"],
+                    "sources": row["sources"],
+                    "biotools_sources": row["biotools_sources"],
+                    "biotools_source_count": row["biotools_source_count"],
+                },
+                indent=2,
+                ensure_ascii=False,
+            )
+        )
+
+    print("\n---- docs with multiple aggregated proteomics bio.tools tools ----")
+    print("count:", len(multi_proteomics_biotools_aggregations))
+    for row in multi_proteomics_biotools_aggregations[:20]:
+        print(
+            json.dumps(
+                {
+                    "_id": row["_id"],
+                    "id": row["id"],
+                    "name": row["name"],
+                    "labels": row["labels"],
+                    "sources": row["sources"],
+                    "proteomics_biotools_sources": row["proteomics_biotools_sources"],
+                    "proteomics_biotools_source_count": row["proteomics_biotools_source_count"],
+                },
+                indent=2,
+                ensure_ascii=False,
+            )
+        )
 
     summary = {
         "biotools_count": len(biotools_entries),
@@ -415,6 +557,8 @@ def main() -> None:
         "matched_normalized": len(comparison["matched_normalized"]),
         "mongo_only": len(comparison["mongo_only"]),
         "biotools_only": len(comparison["biotools_only"]),
+        "multi_biotools_aggregations": len(multi_biotools_aggregations),
+        "multi_proteomics_biotools_aggregations": len(multi_proteomics_biotools_aggregations),
     }
 
     print(json.dumps(summary, indent=2, ensure_ascii=False))
@@ -428,6 +572,14 @@ def main() -> None:
         mongo_only_with_suggestions,
         OUTPUT_DIR / "mongo_only_with_fuzzy_suggestions.json",
     )
+    save_json(
+        multi_biotools_aggregations,
+        OUTPUT_DIR / "multi_biotools_aggregations.json",
+    )
+    save_json(
+        multi_proteomics_biotools_aggregations,
+        OUTPUT_DIR / "multi_proteomics_biotools_aggregations.json",
+    )
 
     save_jsonl(comparison["matched_exact"], OUTPUT_DIR / "matched_exact.jsonl")
     save_jsonl(comparison["matched_normalized"], OUTPUT_DIR / "matched_normalized.jsonl")
@@ -436,6 +588,14 @@ def main() -> None:
         OUTPUT_DIR / "mongo_only_with_fuzzy_suggestions.jsonl",
     )
     save_jsonl(comparison["biotools_only"], OUTPUT_DIR / "biotools_only.jsonl")
+    save_jsonl(
+        multi_biotools_aggregations,
+        OUTPUT_DIR / "multi_biotools_aggregations.jsonl",
+    )
+    save_jsonl(
+        multi_proteomics_biotools_aggregations,
+        OUTPUT_DIR / "multi_proteomics_biotools_aggregations.jsonl",
+    )
 
     print(f"\nReports written to: {OUTPUT_DIR}")
 

@@ -16,14 +16,18 @@ from pymongo import MongoClient
 
 DEFAULT_JSON = Path("scripts/proteomics/biotools_proteomics_tools.json")
 DEFAULT_COLLECTION = "toolsDev"
+CANONICAL_TAG = "Proteomics"
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Make MongoDB tool tags match the tags from a bio.tools JSON file, "
-            "matching tools by entries in the 'source' field like "
-            "'biotools/<biotoolsID>/...'."
+            "Synchronize the Proteomics tag in MongoDB tools with a bio.tools JSON file, "
+            "matching documents through aggregated source ids like "
+            "'biotools/<biotoolsID>/<type>/<version>'. "
+            "Docs whose sources match the JSON list will keep/add the canonical "
+            "'Proteomics' tag. Docs with 'proteomics'/'Proteomics' that do not match "
+            "the JSON list will have that tag removed."
         )
     )
     parser.add_argument(
@@ -46,7 +50,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--limit",
         type=int,
         default=None,
-        help="Optional limit on number of bio.tools records to process.",
+        help="Optional limit on number of bio.tools records to load.",
     )
     parser.add_argument(
         "--log-level",
@@ -111,8 +115,8 @@ def normalize_tags(raw_tags: Any) -> list[str]:
         return [value] if value else []
 
     if isinstance(raw_tags, list):
-        cleaned = []
-        seen = set()
+        cleaned: list[str] = []
+        seen: set[str] = set()
         for item in raw_tags:
             if item is None:
                 continue
@@ -124,16 +128,98 @@ def normalize_tags(raw_tags: Any) -> list[str]:
                 cleaned.append(text)
         return cleaned
 
-    return [str(raw_tags).strip()] if str(raw_tags).strip() else []
+    text = str(raw_tags).strip()
+    return [text] if text else []
 
 
-def sorted_for_compare(values: list[str]) -> list[str]:
-    return sorted(values, key=lambda x: x.casefold())
+def get_doc_sources(doc: dict[str, Any]) -> list[str]:
+    """
+    Return aggregated source ids from the top-level 'source' array.
+    Fall back to 'sources' just in case some docs use that spelling.
+    """
+    for key in ("source", "sources"):
+        raw = doc.get(key)
+        if isinstance(raw, list):
+            values: list[str] = []
+            for item in raw:
+                if item is None:
+                    continue
+                text = str(item).strip()
+                if text:
+                    values.append(text)
+            return values
+    return []
 
 
-def source_regex_for_biotools_id(biotools_id: str) -> re.Pattern[str]:
-    escaped = re.escape(biotools_id)
-    return re.compile(rf"^biotools/{escaped}/")
+def build_allowed_biotools_prefixes(
+    tools: list[dict[str, Any]],
+) -> set[str]:
+    """
+    Build a set like:
+        {'biotools/morpheus', 'biotools/maxquant', ...}
+    """
+    prefixes: set[str] = set()
+
+    for tool in tools:
+        biotools_id = tool.get("biotoolsID")
+        if not biotools_id:
+            logging.warning("Skipping record without biotoolsID: %s", tool.get("name"))
+            continue
+
+        prefix = f"biotools/{str(biotools_id).strip().lower()}"
+        prefixes.add(prefix)
+
+    return prefixes
+
+
+def doc_matches_allowed_biotools_prefix(
+    doc: dict[str, Any],
+    allowed_prefixes: set[str],
+) -> bool:
+    """
+    A doc is considered in the proteomics list if any aggregated source id starts with:
+        biotools/<biotoolsID>/
+    where biotools/<biotoolsID> is in the allowed set.
+    """
+    for source_id in get_doc_sources(doc):
+        source_id_lc = source_id.lower()
+        parts = source_id_lc.split("/")
+        if len(parts) < 2:
+            continue
+        if parts[0] != "biotools":
+            continue
+
+        prefix = f"{parts[0]}/{parts[1]}"
+        if prefix in allowed_prefixes:
+            return True
+
+    return False
+
+
+def build_updated_tags(current_tags: list[str], should_have_proteomics: bool) -> list[str]:
+    """
+    Remove any case variant of 'proteomics' and then re-add the canonical
+    'Proteomics' tag only if the doc should have it.
+    Preserve all unrelated tags and original order as much as possible.
+    """
+    cleaned = [tag for tag in current_tags if tag.casefold() != "proteomics"]
+
+    if should_have_proteomics:
+        cleaned.append(CANONICAL_TAG)
+
+    # de-duplicate while preserving order
+    deduped: list[str] = []
+    seen: set[str] = set()
+    for tag in cleaned:
+        if tag not in seen:
+            seen.add(tag)
+            deduped.append(tag)
+
+    return deduped
+
+
+def tags_equal_case_sensitive(a: list[str], b: list[str]) -> bool:
+    return a == b
 
 
 def main() -> int:
@@ -145,83 +231,90 @@ def main() -> int:
     if args.limit is not None:
         tools = tools[: args.limit]
 
+    allowed_prefixes = build_allowed_biotools_prefixes(tools)
+    logging.info("Loaded %d allowed biotools prefixes from JSON.", len(allowed_prefixes))
+
     collection = get_mongo_collection(args.collection)
 
-    processed = 0
-    found_tools = 0
-    updated_docs = 0
-    unchanged_docs = 0
-    missing_tools = 0
-    matched_docs_total = 0
+    # We only need to inspect:
+    # 1) docs currently tagged as proteomics/proteomics
+    # 2) docs that contain some biotools aggregated source, because they might need the tag added
+    #
+    # To keep it simple and correct, fetch the union by scanning docs that either:
+    # - already have a proteomics tag, OR
+    # - have at least one aggregated biotools/... source
+    #
+    # Since source is an array of strings, this regex works on array elements too.
+    candidate_query = {
+        "$or": [
+            {"data.tags": {"$regex": r"^proteomics$", "$options": "i"}},
+            {"source": {"$regex": r"^biotools/"}},
+            {"sources": {"$regex": r"^biotools/"}},
+        ]
+    }
 
-    for tool in tools:
-        processed += 1
+    inspected = 0
+    updated = 0
+    unchanged = 0
+    should_have_count = 0
+    should_not_have_count = 0
+    currently_tagged_count = 0
 
-        biotools_id = tool.get("biotoolsID")
-        if not biotools_id:
-            logging.warning("Skipping record without biotoolsID: %s", tool.get("name"))
-            continue
+    cursor = collection.find(candidate_query)
 
-        desired_tags = normalize_tags(tool.get("collectionID"))
-        regex = source_regex_for_biotools_id(biotools_id.lower())
+    for doc in cursor:
+        inspected += 1
 
-        matches = list(collection.find({"source": {"$regex": regex}}))
-        if not matches:
-            missing_tools += 1
-            logging.info("Not found in Mongo: biotools/%s", biotools_id)
-            continue
+        current_tags = normalize_tags(doc.get("data", {}).get("tags"))
+        has_proteomics_now = any(tag.casefold() == "proteomics" for tag in current_tags)
+        if has_proteomics_now:
+            currently_tagged_count += 1
 
-        found_tools += 1
-        matched_docs_total += len(matches)
+        should_have_proteomics = doc_matches_allowed_biotools_prefix(doc, allowed_prefixes)
+        if should_have_proteomics:
+            should_have_count += 1
+        else:
+            should_not_have_count += 1
 
-        if len(matches) > 1:
-            logging.warning(
-                "Multiple Mongo docs matched biotools/%s (%d docs)",
-                biotools_id,
-                len(matches),
-            )
+        new_tags = build_updated_tags(current_tags, should_have_proteomics)
 
-        for doc in matches:
-            current_tags = normalize_tags(doc.get("data", {}).get("tags"))
-
-            if sorted_for_compare(current_tags) == sorted_for_compare(desired_tags):
-                unchanged_docs += 1
-                logging.debug(
-                    "Already up to date for _id=%s | biotools/%s",
-                    doc["_id"],
-                    biotools_id,
-                )
-                continue
-
-            logging.info(
-                "Updating _id=%s | biotools/%s | tags %s -> %s",
+        if tags_equal_case_sensitive(current_tags, new_tags):
+            unchanged += 1
+            logging.debug(
+                "Unchanged _id=%s | should_have=%s | tags=%s",
                 doc["_id"],
-                biotools_id,
+                should_have_proteomics,
                 current_tags,
-                desired_tags,
             )
+            continue
 
-            if not args.dry_run:
-                result = collection.update_one(
-                    {"_id": doc["_id"]},
-                    {"$set": {"data.tags": desired_tags}},
-                )
-                if result.modified_count == 1:
-                    updated_docs += 1
-                else:
-                    logging.warning(
-                        "No modification reported for _id=%s", doc["_id"]
-                    )
+        logging.info(
+            "Updating _id=%s | should_have=%s | tags %s -> %s",
+            doc["_id"],
+            should_have_proteomics,
+            current_tags,
+            new_tags,
+        )
+
+        if not args.dry_run:
+            result = collection.update_one(
+                {"_id": doc["_id"]},
+                {"$set": {"data.tags": new_tags}},
+            )
+            if result.modified_count == 1:
+                updated += 1
             else:
-                updated_docs += 1
+                logging.warning("No modification reported for _id=%s", doc["_id"])
+        else:
+            updated += 1
 
     logging.info("---- Summary ----")
-    logging.info("Processed bio.tools records: %d", processed)
-    logging.info("bio.tools records found in Mongo: %d", found_tools)
-    logging.info("Mongo docs matched in total: %d", matched_docs_total)
-    logging.info("Mongo docs updated: %d", updated_docs)
-    logging.info("Mongo docs already matching: %d", unchanged_docs)
-    logging.info("bio.tools records not found in Mongo: %d", missing_tools)
+    logging.info("Candidate docs inspected: %d", inspected)
+    logging.info("Docs currently tagged proteomics: %d", currently_tagged_count)
+    logging.info("Docs that should have Proteomics: %d", should_have_count)
+    logging.info("Docs that should NOT have Proteomics: %d", should_not_have_count)
+    logging.info("Docs updated: %d", updated)
+    logging.info("Docs unchanged: %d", unchanged)
     logging.info("Mode: %s", "dry-run" if args.dry_run else "write")
 
     return 0

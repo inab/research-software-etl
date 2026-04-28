@@ -21,7 +21,6 @@ Some stages call external services (APIs and model providers); make sure credent
 ??? info "Other services used"
     The following services are also accessed in some steps but require no credentials: 
     
-    - [Observatory REST API](https://observatory.openebench.bsc.es/api/docs): for FAIRness evaluation  
     - [Licenses-mapping API](https://observatory.openebench.bsc.es/licenses-mapping/docs): for SPDX license normalization  
     - [Europe PMC](https://europepmc.org/RestfulWebService) and [Semantic Scholar](https://www.semanticscholar.org/product/api) APIs: for publication enrichment   
 

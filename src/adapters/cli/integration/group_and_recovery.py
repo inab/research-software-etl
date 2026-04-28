@@ -5,10 +5,15 @@ import argparse
 import logging
 from dotenv import load_dotenv
 from application.use_cases.integration.group_and_recovery import grouping_and_recovery_process 
+from infrastructure.logging_config import setup_logging
 
-logger = logging.getLogger("rs-etl-pipeline")
+
 
 def main():
+    setup_logging()
+    logger = logging.getLogger("rs-etl-pipeline")
+
+
     parser = argparse.ArgumentParser(
         description="""Group entries based on shared repository links and shared name and non-repository links. Entries, that must have been previously standardized,
         are fetched from the MongoDB database. The grouped entries are written to a JSON file."""

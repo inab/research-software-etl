@@ -7,14 +7,15 @@ individual FAIR scores, and stores the results in the computations collection.
 Behavior:
 - If `"tools"` is passed, all tools are processed; otherwise, tools are filtered by tag.
 - For each tool, the use case recomputes and upserts the FAIR score only if the
-  stored result is missing or outdated; otherwise, it skips the tool. 
+  stored result is missing or outdated.
+- If `force=True`, all matching tools are recomputed and upserted, even if the
+  stored result is already up to date.
 
 ---> This module should be re-run every time the metadata collection is updated.
 """
 
 from datetime import datetime
 from dotenv import load_dotenv
-import argparse
 
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from application.services.stats_generation.FAIR.individual_scores import evaluate_tool
@@ -38,10 +39,15 @@ def build_tools_query(tag_or_tools: str) -> dict:
     """
     if tag_or_tools == "tools":
         return {}
+
     return {"data.tags": tag_or_tools}
 
 
-def add_fair_scores(tag_or_tools: str = "tools", limit: int | None = None):
+def add_fair_scores(
+    tag_or_tools: str = "tools",
+    limit: int | None = None,
+    force: bool = False,
+):
     tools_query = build_tools_query(tag_or_tools)
     tools = mongo_adapter.fetch_entries(TOOLS_COLLECTION, tools_query)
 
@@ -56,21 +62,33 @@ def add_fair_scores(tag_or_tools: str = "tools", limit: int | None = None):
 
             if not entry_id or tool_ts is None:
                 skipped += 1
-                print(f"[SKIP] Missing _id or timestamp: _id={entry.get('_id')} timestamp={tool_ts}")
+                print(
+                    f"[SKIP] Missing _id or timestamp: "
+                    f"_id={entry.get('_id')} timestamp={tool_ts}"
+                )
                 continue
 
             # 1) Check if score exists and is up-to-date for this tool timestamp
-            match = {"variable": VARIABLE, "createdFrom": entry_id}
+            match = {
+                "variable": VARIABLE,
+                "createdFrom": entry_id,
+            }
             existing = mongo_adapter.fetch_entry(SCORES_COLLECTION, match)
 
-            if existing and existing.get("version") == tool_ts:
+            if existing and existing.get("version") == tool_ts and not force:
                 skipped += 1
                 # Uncomment for verbose:
                 # print(f"[SKIP] Up-to-date: {entry_id} @ {tool_ts}")
                 continue
 
             # 2) Compute FAIR scores
-            print(f"[DO] Scoring tool {entry_id} @ {tool_ts}")
+            if force and existing and existing.get("version") == tool_ts:
+                print(f"[FORCE] Recomputing up-to-date tool {entry_id} @ {tool_ts}")
+            elif existing:
+                print(f"[DO] Recomputing outdated tool {entry_id} @ {tool_ts}")
+            else:
+                print(f"[DO] Scoring new tool {entry_id} @ {tool_ts}")
+
             try:
                 result = evaluate_tool(entry)
 
@@ -83,7 +101,7 @@ def add_fair_scores(tag_or_tools: str = "tools", limit: int | None = None):
                     "tags": entry.get("data", {}).get("tags", []),
                 }
 
-                # 3) Upsert (update if exists else insert)
+                # 3) Upsert: update if exists, else insert
                 mongo_adapter.update_custom_upsert(SCORES_COLLECTION, match, doc)
 
                 processed += 1
@@ -99,8 +117,10 @@ def add_fair_scores(tag_or_tools: str = "tools", limit: int | None = None):
     except KeyboardInterrupt:
         print("\n[STOP] Interrupted (Ctrl+C). Safe to rerun; it will resume based on DB state.")
 
-    print(f"\nDone. processed={processed}, skipped={skipped}, failed={failed}")
-
+    print(
+        f"\nDone. processed={processed}, "
+        f"skipped={skipped}, failed={failed}, force={force}"
+    )
 
 if __name__ == "__main__":
 

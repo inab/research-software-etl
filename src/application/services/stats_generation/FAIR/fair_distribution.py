@@ -29,6 +29,7 @@ def compute_fair_score_frequencies(results: List[Dict[str, Any]]) -> Dict[str, D
 
     for result in results:
         result = result['data']
+        
         for key, value in result.items():
             # Skip non-FAIR keys
             if key in {"name", "type", "version"}:
@@ -125,7 +126,31 @@ def get_fair_scores(collection):
     else:
         entries = mongo_adapter.fetch_entries('computationsDev', {'tags' : collection, "variable" : "FAIR_scores"})
     
-    return entries
+    latest_by_created_from = {}
+
+    for entry in entries:
+        created_from = entry.get("createdFrom")
+        version = entry.get("version")
+
+        if not created_from or not version:
+            continue
+
+        version_dt = datetime.fromisoformat(version)
+
+        current = latest_by_created_from.get(created_from)
+
+        if current is None:
+            latest_by_created_from[created_from] = entry
+            continue
+
+        current_version_dt = datetime.fromisoformat(current["version"])
+
+        if version_dt > current_version_dt:
+            latest_by_created_from[created_from] = entry
+
+        entries = list(latest_by_created_from.values())
+    
+    return list(entries)
 
 def do_sanity_check(collection):
 
@@ -151,18 +176,9 @@ def compute_fair_distributions(collection):
     do_sanity_check(collection)
 
     results = get_fair_scores(collection)
+    print(f"Results for {collection}: {len(results)} documents")
 
-    #compute_fair_results(tools)
 
-    #results = []
-    
-    #with open('scripts/data/fair_resulfs.jsonl', 'r') as f:
-    #    for line in f:
-    #        whole_dict = json.loads(line)
-    #        for key in whole_dict.keys():
-    #            results.append(whole_dict[key])
-    
-    
     frequencies = compute_fair_score_frequencies(results)
 
     new_freqs = {

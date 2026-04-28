@@ -1,12 +1,16 @@
 """
-Update pair_decisions.jsonl with missing human pair decisions.
+Update pair_decisions.jsonl with human pair decisions.
 
 It reads:
-- human_annotations/human_conflicts_logs.jsonl
+- human_annotations/human_conflicts_log.jsonl
 - src/application/services/integration/disambiguation/pair_decisions.jsonl
 
-And appends to pair_decisions.jsonl any human pair decisions that are not already
-present there, using pair_id as the unique key.
+And updates pair_decisions.jsonl using pair_id as the unique key.
+
+Behavior:
+- If a human pair decision is not present in pair_decisions.jsonl, it is added.
+- If a human pair decision is already present, the existing record is updated
+  with the decision found in the human logs file.
 
 Expected mapping:
 - decision == "same"      -> same_as_remaining = True
@@ -16,8 +20,8 @@ Expected mapping:
 Notes:
 - The output schema preserves the existing key name "same_as_remaining"
   because that is what already exists in pair_decisions.jsonl.
+- The original human decision is also stored as "decision".
 - Only records with kind == "pair" are considered.
-- Existing pair_ids in pair_decisions.jsonl are never overwritten.
 """
 
 from __future__ import annotations
@@ -25,7 +29,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Iterable
 
 
 def load_jsonl(path: Path) -> list[dict]:
@@ -55,25 +58,25 @@ def load_jsonl(path: Path) -> list[dict]:
     return records
 
 
-def append_jsonl(path: Path, records: Iterable[dict]) -> int:
+def write_jsonl(path: Path, records: list[dict]) -> int:
     """
-    Append records to a JSONL file.
+    Rewrite a JSONL file with the provided records.
 
-    Returns the number of appended records.
+    Returns the number of written records.
     """
-    count = 0
-
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    with path.open("a", encoding="utf-8") as f:
+    with path.open("w", encoding="utf-8") as f:
         for record in records:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
-            count += 1
 
-    return count
+    return len(records)
 
 
-def decision_to_bool_and_confidence(decision: str, confidence: str | None) -> tuple[bool, str]:
+def decision_to_bool_and_confidence(
+    decision: str,
+    confidence: str | None,
+) -> tuple[bool, str]:
     """
     Convert the human decision into:
     - the boolean expected by pair_decisions.jsonl
@@ -113,14 +116,17 @@ def transform_human_record(human_record: dict) -> dict:
     if human_record.get("kind") != "pair":
         raise ValueError(f"Human record is not kind='pair': {human_record}")
 
+    decision = (human_record.get("decision") or "").strip().lower()
+
     same_as_remaining, output_confidence = decision_to_bool_and_confidence(
-        human_record.get("decision"),
+        decision,
         human_record.get("confidence"),
     )
 
     transformed = {
         "pair_id": pair_id,
         "kind": "pair",
+        "decision": decision,
         "same_as_remaining": same_as_remaining,
         "confidence": output_confidence,
         "source": human_record.get("source", "human"),
@@ -130,18 +136,36 @@ def transform_human_record(human_record: dict) -> dict:
     return transformed
 
 
+def merge_existing_record(existing_record: dict, human_record: dict) -> dict:
+    """
+    Update an existing pair_decisions record with the human decision fields.
+
+    Existing extra fields are preserved unless they are explicitly replaced
+    by the transformed human record.
+    """
+    transformed = transform_human_record(human_record)
+
+    updated_record = {
+        **existing_record,
+        **transformed,
+    }
+
+    return updated_record
+
+
 def update_pair_decisions(
     human_logs_path: Path,
     pair_decisions_path: Path,
-) -> tuple[int, int, int]:
+) -> tuple[int, int, int, int]:
     """
-    Append missing human pair decisions to pair_decisions.jsonl.
+    Add or update human pair decisions in pair_decisions.jsonl.
 
     Returns:
         (
             total_human_pair_records,
-            already_present_count,
-            appended_count,
+            added_count,
+            updated_count,
+            final_record_count,
         )
     """
     human_records = load_jsonl(human_logs_path)
@@ -150,49 +174,54 @@ def update_pair_decisions(
     if pair_decisions_path.exists():
         existing_records = load_jsonl(pair_decisions_path)
 
-    existing_pair_ids = {
-        record.get("pair_id")
-        for record in existing_records
+    existing_pair_index = {
+        record.get("pair_id"): index
+        for index, record in enumerate(existing_records)
         if record.get("kind") == "pair" and record.get("pair_id")
     }
 
-    records_to_append = []
     total_human_pair_records = 0
-    already_present_count = 0
+    added_count = 0
+    updated_count = 0
 
-    # Prevent duplicates inside the same human log file
-    seen_new_pair_ids = set()
+    # If the human log contains duplicate pair_ids, the last one wins.
+    human_pair_records_by_id: dict[str, dict] = {}
 
     for human_record in human_records:
         if human_record.get("kind") != "pair":
             continue
 
         total_human_pair_records += 1
-        pair_id = human_record.get("pair_id")
 
+        pair_id = human_record.get("pair_id")
         if not pair_id:
             print(f"Skipping human record without pair_id: {human_record}")
             continue
 
-        if pair_id in existing_pair_ids:
-            already_present_count += 1
-            continue
+        human_pair_records_by_id[pair_id] = human_record
 
-        if pair_id in seen_new_pair_ids:
-            continue
+    for pair_id, human_record in human_pair_records_by_id.items():
+        if pair_id in existing_pair_index:
+            index = existing_pair_index[pair_id]
+            existing_records[index] = merge_existing_record(
+                existing_record=existing_records[index],
+                human_record=human_record,
+            )
+            updated_count += 1
+        else:
+            transformed = transform_human_record(human_record)
+            existing_records.append(transformed)
+            existing_pair_index[pair_id] = len(existing_records) - 1
+            added_count += 1
 
-        transformed = transform_human_record(human_record)
-        records_to_append.append(transformed)
-        seen_new_pair_ids.add(pair_id)
+    final_record_count = write_jsonl(pair_decisions_path, existing_records)
 
-    appended_count = append_jsonl(pair_decisions_path, records_to_append)
-
-    return total_human_pair_records, already_present_count, appended_count
+    return total_human_pair_records, added_count, updated_count, final_record_count
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Append missing human pair decisions to pair_decisions.jsonl."
+        description="Add or update human pair decisions in pair_decisions.jsonl."
     )
     parser.add_argument(
         "--human-logs",
@@ -214,15 +243,16 @@ def main() -> None:
     human_logs_path = Path(args.human_logs)
     pair_decisions_path = Path(args.pair_decisions)
 
-    total_human, already_present, appended = update_pair_decisions(
+    total_human, added, updated, final_count = update_pair_decisions(
         human_logs_path=human_logs_path,
         pair_decisions_path=pair_decisions_path,
     )
 
     print("Update completed.")
     print(f"Human pair records found: {total_human}")
-    print(f"Already present in pair_decisions.jsonl: {already_present}")
-    print(f"Appended: {appended}")
+    print(f"Added to pair_decisions.jsonl: {added}")
+    print(f"Updated in pair_decisions.jsonl: {updated}")
+    print(f"Final records in pair_decisions.jsonl: {final_count}")
 
 
 if __name__ == "__main__":
