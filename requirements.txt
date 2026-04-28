@@ -15,6 +15,7 @@ decorator==5.2.1
 dnspython==2.7.0
 email_validator==2.2.0
 executing==2.2.0
+fairsoft-core @ git+https://github.com/inab/fairsoft-core.git@5f62465d3944302b0d7e78437ece13b8167e8908
 freezegun==1.5.1
 ghp-import==2.1.0
 idna==3.10
