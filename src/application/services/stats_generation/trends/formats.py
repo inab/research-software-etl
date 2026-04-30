@@ -80,15 +80,23 @@ def formats_stats(format_counts, variable_name, collection):
 def formats(tools: List[Dict[str, Any]], collection: str):
     input_formats_counts = count_input_formats(tools)
     output_formats_counts = count_output_formats(tools)
+    created_from = [tool['_id'] for tool in tools]
+
 
     input_formats_summary = formats_stats(input_formats_counts, 'input_formats', collection)
+    input_formats_summary['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    input_formats_summary['createdFrom'] = created_from
     mongo_adapter.insert_one('computationsDev', input_formats_summary)
 
     output_formats_summary = formats_stats(output_formats_counts, 'output_formats', collection)
+    output_formats_summary['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    output_formats_summary['createdFrom'] = created_from
     mongo_adapter.insert_one('computationsDev', output_formats_summary)
 
     tools_w_formats = formats_coverage(tools)
     formats_coverage_doc = coverage_doc(tools, tools_w_formats, collection)
+    formats_coverage_doc['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    formats_coverage_doc['createdFrom'] = created_from
     mongo_adapter.insert_one('computationsDev', formats_coverage_doc)
 
 

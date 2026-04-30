@@ -87,9 +87,11 @@ def features_cummulative(tools: List[Dict[str, Any]], collection: str):
 
     feats_cummulative = {
         'variable': 'features_cummulative',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': [tool['_id'] for tool in tools],
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     mongo_adapter.insert_one("computationsDev", feats_cummulative)
@@ -118,9 +120,11 @@ def features_xy(tools: List[Dict[str, Any]], collection: str):
 
     feats_xy = {
         'variable': 'distribution_features',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': [tool['_id'] for tool in tools],
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
 

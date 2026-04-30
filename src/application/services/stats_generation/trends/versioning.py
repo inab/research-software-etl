@@ -56,12 +56,14 @@ def semantic_versioning(tools: List[Dict[str, Any]], collection: str):
             versioning_summary['None']
         ]
     }
-
+    created_from = [tool['_id'] for tool in tools]
     data_versioning = {
         'variable': 'semantic_versioning',
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': created_from,
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     # Save or return this object for further processing

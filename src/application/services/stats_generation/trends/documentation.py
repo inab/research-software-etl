@@ -92,11 +92,16 @@ def documentation_coverage(tools, tools_w_docs, collection):
 
 def documentation(tools: List[Dict[str, Any]], collection: str):
     documentation_counts, tools_w_docs = count_documentation(tools)
+    created_from = [tool['_id'] for tool in tools]
 
     documentation_summary = documentation_stats(documentation_counts, collection)
+    documentation_summary['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    documentation_summary['createdFrom'] = created_from
     mongo_adapter.insert_one("computationsDev", documentation_summary)
 
     documentation_coverage_doc = documentation_coverage(tools, tools_w_docs, collection)
+    documentation_coverage_doc['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    documentation_coverage_doc['createdFrom'] = created_from
     mongo_adapter.insert_one("computationsDev", documentation_coverage_doc)
 
 

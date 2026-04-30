@@ -68,9 +68,11 @@ def coverage_sources(tools: List[Dict[str, Any]], collection: str):
 
     result = {
         'variable': 'coverage_sources',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': [tool['_id'] for tool in tools],
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     mongo_adapter.insert_one("computationsDev", result)

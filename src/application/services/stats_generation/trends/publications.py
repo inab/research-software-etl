@@ -160,11 +160,14 @@ def publications_journals_IF(collection):
         citations['x'].append(journal)
         citations['y'].append(data['impact'])
 
+    created_from = [tool['_id'] for tool in tools]
     result = {
         'variable': 'publications_journals_IF',
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': {'tools': _tools, 'publications': _publications, 'citations': citations},
-        'collection': collection
+        'collection': collection,
+        'createdFrom': created_from,
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     mongo_adapter.insert_one("computationsDev", result)
 
@@ -174,6 +177,8 @@ def publications_journals_IF(collection):
         'variable': 'publications_coverage',
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': {'count': tools_w_pubs, 'percentage': tools_w_pubs / denom},
-        'collection': collection
+        'collection': collection,
+        'createdFrom': created_from,
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     mongo_adapter.insert_one("computationsDev", result_count)

@@ -44,6 +44,7 @@ def main():
 
     logging.info(f"Generating stats for collections: {collections}")
     generate_stats_for_collections(collections)
+    
     logging.info("Stats generation complete.")
 
 if __name__ == "__main__":

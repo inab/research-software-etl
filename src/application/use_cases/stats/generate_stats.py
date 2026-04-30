@@ -31,6 +31,7 @@ def generate_stats_for_collections(collections):
     from application.services.stats_generation.trends.documentation import documentation
     from application.services.stats_generation.trends.formats import formats
     from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+    from application.services.stats_generation.FAIR.fair_distribution import compute_fair_distributions 
 
 
     for collection in collections:
@@ -85,8 +86,9 @@ def generate_stats_for_collections(collections):
         publications_journals_IF(collection=collection)
         print('Publications journals IF done')
 
+        compute_fair_distributions(collection)
+        print('FAIR distributions done')
 
-        
 
 
 # Default collections if run as a script

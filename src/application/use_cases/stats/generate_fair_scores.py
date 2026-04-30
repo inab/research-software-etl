@@ -71,7 +71,7 @@ def add_fair_scores(
             # 1) Check if score exists and is up-to-date for this tool timestamp
             match = {
                 "variable": VARIABLE,
-                "createdFrom": entry_id,
+                "createdFrom": [ entry_id ],
             }
             existing = mongo_adapter.fetch_entry(SCORES_COLLECTION, match)
 
@@ -94,7 +94,7 @@ def add_fair_scores(
 
                 doc = {
                     "variable": VARIABLE,
-                    "createdFrom": entry_id,
+                    "createdFrom": [ entry_id ],
                     "version": tool_ts,  # tool record timestamp = "computed-for"
                     "createdAt": utc_now_iso(),  # computation time
                     "data": result,

@@ -8,7 +8,6 @@ import logging
 from dotenv import load_dotenv
 
 from application.use_cases.stats.generate_fair_scores import add_fair_scores
-from application.services.stats_generation.FAIR.fair_distribution import compute_fair_distributions 
 
 
 
@@ -56,18 +55,8 @@ def main():
     logging.debug(f"Env file: {args.env_file}")
 
     if args.collections.lower() == "all":
-        collections = [
-            "RIS3CAT VEIS",
-            "ELIXIR-ES",
-            "BioExcel",
-            "PerMedCoE",
-            "IMPaCT-Data",
-            "3D-BioInfo",
-            "EUCAIM",
-            "Proteomics",
-        ]
-        if "tools" not in collections:
-            collections.append("tools")
+        collections = ['tools']
+
     else:
         collections = [c.strip() for c in args.collections.split(",") if c.strip()]
 
@@ -83,14 +72,8 @@ def main():
         logging.info(
             f"Generation of FAIR indicators/scores complete for {collection}"
         )
-        logging.info(
-            f"Generating FAIRsoft distributions for {collection}"
-        )
 
-        compute_fair_distributions(collection)
-        
-
-    logging.info("FAIR indicators/scores and distributions generation complete.")
+    logging.info("FAIR indicators/scores generation complete.")
 
 
 

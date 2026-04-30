@@ -71,9 +71,11 @@ def features_overview(tools: List[Dict[str, Any]], collection: str):
 
     result = {
         'variable': 'features',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': features_percent,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': [tool['_id'] for tool in tools],
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     mongo_adapter.insert_one("computationsDev", result)

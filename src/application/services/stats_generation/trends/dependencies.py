@@ -62,6 +62,7 @@ def dependencies_coverage(tools, tools_w_deps, collection):
 
     doc = {
         'variable':'dependencies_coverage',
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
         'collection': collection
@@ -72,11 +73,16 @@ def dependencies_coverage(tools, tools_w_deps, collection):
 
 def dependencies(tools: List[Dict[str, Any]], collection: str):
     dependencies_stats, tools_w_deps = count_dependencies(tools)
+    created_from = [tool['_id'] for tool in tools]
 
     dependencies_summary = dependencies_count(dependencies_stats, collection)
+    dependencies_summary['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    dependencies_summary['createdFrom'] = created_from
     mongo_adapter.insert_one("computationsDev", dependencies_summary)
 
     dependencies_coverage_doc = dependencies_coverage(tools, tools_w_deps, collection)
+    dependencies_coverage_doc['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    dependencies_coverage_doc['createdFrom'] = created_from
     mongo_adapter.insert_one("computationsDev", dependencies_coverage_doc)
 
 

@@ -73,11 +73,15 @@ def version_control(tools: List[Dict[str, Any]], collection: str):
         'no version control': tools_without_repo,
     }
 
+    created_from = [tool['_id'] for tool in tools]
+
     data_vs_count = {
         'variable': 'version_control_count',
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data_count,
-        'collection': collection
+        'collection': collection,
+        'createdFrom':created_from,
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     
     mongo_adapter.insert_one("computationsDev", data_vs_count)
@@ -87,7 +91,9 @@ def version_control(tools: List[Dict[str, Any]], collection: str):
         'variable': 'version_control_repositories',
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': repo_counts,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': created_from,
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
    
     mongo_adapter.insert_one("computationsDev", data_vs_repos)

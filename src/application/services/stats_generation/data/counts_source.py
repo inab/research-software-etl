@@ -47,9 +47,11 @@ def count_tools_per_source(tools: List[Dict[str, Any]], collection: str):
 
     count_source = {
         'variable': 'tools_counts_per_source',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': [tool['_id'] for tool in tools],
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     mongo_adapter.insert_one("computationsDev", count_source)
@@ -61,9 +63,11 @@ def count_tools(tools: List[Dict[str, Any]], collection: str):
     """
     count = {
         'variable': 'tools_count',
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': sum(1 for _ in tools),  # handles cursor or list
-        'collection': collection
+        'collection': collection,
+        'createdFrom': [tool['_id'] for tool in tools],
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     mongo_adapter.insert_one("computationsDev", count)

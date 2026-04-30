@@ -10,21 +10,24 @@ licenses(entries, collection="my_stats_collection")
 '''
 
 
-def licenses_stats(entries: List[Dict[str, Any]], collection: str):
+def licenses_stats(tools: List[Dict[str, Any]], collection: str):
     """
     Computes license statistics and structures data for further use.
     """
-    license_summary, count_unambiguous = count_tools_per_license(entries)
+    created_from = [tool['_id'] for tool in tools]
+    license_summary, count_unambiguous = count_tools_per_license(tools)
     
     licenses_summary_sunburst(
         license_summary=license_summary,
         count_unambiguous=count_unambiguous,
-        collection=collection
+        collection=collection,
+        created_from=created_from
     )
     
     licenses_open_source(
         count_unambiguous=count_unambiguous,
-        collection=collection
+        collection=collection,
+        created_from=created_from
     )
 
 def map_license(name: str) -> str:
@@ -123,7 +126,7 @@ def count_tools_per_license(tools: List[Dict[str, Any]]) -> Tuple[Dict[str, int]
     return license_summary, count_unambiguous
 
 
-def licenses_summary_sunburst(license_summary: Dict[str, int], count_unambiguous: Dict[str, int], collection: str):
+def licenses_summary_sunburst(license_summary: Dict[str, int], count_unambiguous: Dict[str, int], collection: str, created_from: List[str]):
     licenses_parents = {
         'Total': '',
         'None': 'Total',
@@ -154,13 +157,15 @@ def licenses_summary_sunburst(license_summary: Dict[str, int], count_unambiguous
         'variable': 'licenses_summary_sunburst',
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': data,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': created_from,
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
     mongo_adapter.insert_one("computationsDev", data_sunburst)
 
 
-def licenses_open_source(count_unambiguous: Dict[str, int], collection: str):
+def licenses_open_source(count_unambiguous: Dict[str, int], collection: str, created_from: List[str]):
     licences_ids = ['BSD', 'GPL', 'MIT', 'Artistic', 'LGPL', 'Apache', 'CC', 'AGPL', 'CeCILL', 'AFL']
     data = {k: count_unambiguous[k] for k in licences_ids if k in count_unambiguous}
 
@@ -196,7 +201,9 @@ def licenses_open_source(count_unambiguous: Dict[str, int], collection: str):
         'variable': 'licenses_open_source',
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': result_data,
-        'collection': collection
+        'collection': collection,
+        'createdFrom': created_from,
+        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     
     mongo_adapter.insert_one("computationsDev", data_open_source)

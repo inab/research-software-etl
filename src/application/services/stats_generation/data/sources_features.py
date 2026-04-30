@@ -189,9 +189,10 @@ def get_features():
 
     data = {
         'variable': "features_dots",
-        'version': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
         'data': result,
-        'collection': 'tools'
+        'collection': 'tools',
+        
     }
 
     mongo_adapter.insert_one("computationsDev", data)

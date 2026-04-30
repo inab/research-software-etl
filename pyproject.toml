@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "research-software-observatory-pipeline"
-version = "0.1.1"
+version = "0.1.4"
 description = "Data integration and enrichment pipeline powering the Research Software Observatory."
 readme = "README.md"
 license = { text = "AGPL-3.0" }
@@ -25,11 +25,18 @@ keywords = [
 requires-python = ">=3.9"
 
 dependencies = [
-    "pymongo>=4.5.0",
-    "requests>=2.31.0",
-    "tqdm>=4.65.0",
-    "numpy>=1.26.0",
-    "python-dotenv>=1.0.0",
+    "beautifulsoup4>=4.11",
+    "bibtexparser>=1.4",
+    "Jinja2>=3.1",
+    "playwright>=1.55",
+    "pydantic>=2.13",
+    "pymongo>=4.17",
+    "python-dotenv>=1.2",
+    "readability-lxml>=0.8.4.1",
+    "requests>=2.33",
+    "tenacity>=9.0",
+    "tiktoken>=0.9",
+    "fairsoft-core>=0.1.1",
 ]
 
 [project.optional-dependencies]

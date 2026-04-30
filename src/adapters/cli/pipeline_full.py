@@ -27,8 +27,8 @@ STAGES = [
     "disambiguation",
     "human_updates",
     "merge",
-    "stats",
-    "fairsoft"
+    "fairsoft",
+    "stats"
 ]
 
 
@@ -468,23 +468,25 @@ def run_full(
         )
         executed_stages.append("merge")
 
-    if should_run("stats"):
-        print("=== Stage: stats ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
-        _run(
-            [python_exe, "-m", "src.adapters.cli.generate_stats", "--collections", "tools"],
-            cwd=wd,
-        )
-        executed_stages.append("stats")
-
     if should_run("fairsoft"):
         print("=== Stage: fairsoft ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
         _run(
-            [python_exe, "-m", "src.adapters.cli.fair_scores", "--collections", "all", "--force"],
+            [python_exe, "-m", "src.adapters.cli.fair_scores", "--collections", "tools"],
             cwd=wd,
         )
         executed_stages.append("fairsoft")
+
+    if should_run("stats"):
+        print("=== Stage: stats ===")
+        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _run(
+            [python_exe, "-m", "src.adapters.cli.generate_stats", "--collections", "all"],
+            cwd=wd,
+        )
+        executed_stages.append("stats")
+
+    
 
 
     execution_record = {
