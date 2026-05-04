@@ -8,22 +8,7 @@ This repository contains the data pipeline that powers the Research Software Obs
 
 It consolidates software records, resolves duplicates, and precomputes the quality and FAIRness statistics displayed in the Observatory’s interface.
 
-
-## Objectives
-
-The pipeline is designed to:
-	•	Aggregate and harmonize metadata from heterogeneous sources and registries.
-	•	Enrich metadata through:
-	•	SPDX license mapping.
-	•	EDAM format normalization.
-	•	Contributor classification.
-	•	Harvesting of publication metadata from Europe PMC and Semantic Scholar.
-	•	Identify and group equivalent software records across repositories.
-	•	Detect and resolve potential conflicts and duplicates through automated and human-in-the-loop processes.
-	•	Compute and export FAIRness and quality statistics for visualization and monitoring in the [Observatory UI](https://openebench.bsc.es/observatory/). 
-
-
-## Pipeline Overview
+## Pipeline 
 
 The ETL runs in eight modular stages, which can be executed independently or orchestrated end-to-end through the unified CLI command rsetl. 
 
