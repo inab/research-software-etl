@@ -6,7 +6,9 @@ Metadata integration and quality assessment of research software.
 
 This repository contains the data pipeline that powers the Research Software Observatory—a platform for monitoring and assessing the quality and FAIRness of research software in the life sciences.
 
-It consolidates software records, resolves duplicates, and precomputes the quality and FAIRness statistics displayed in the Observatory’s interface.
+It consolidates software records, resolves duplicates, and precomputes the quality and FAIRness statistics displayed in the Observatory’s interface. 
+
+-> 📄 [Documentation](https://inab.github.io/research-software-etl/)
 
 ## Pipeline 
 
