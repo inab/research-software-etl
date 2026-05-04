@@ -196,7 +196,7 @@ common_text = dict(color=txt, linespacing=1.18)
 # left label
 ax.text(
     x_left + 0.09, y_left_node_center + 0.01,
-    f"Initial conflict set\n$\\mathbf{{({initial})}}$",
+    f"Initial conflict set\n$\\mathbf{{({initial:,})}}$",
     ha="left", va="center", fontsize=5, **common_text
 )
 
@@ -217,7 +217,7 @@ x_right_label = x_right + 0.015 + node_w / 2 + label_dx
 
 ax.text(
     x_right_label, y_ai_node_center,
-    f"AI-resolved\n$\\mathbf{{({resolved_ai})}}$",
+    f"AI-resolved\n$\\mathbf{{({resolved_ai:,})}}$",
     ha="left", va="center", fontsize=5, **common_text
 )
 
