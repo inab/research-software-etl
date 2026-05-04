@@ -12,7 +12,6 @@ src/*jsonl
 scripts/*jsonl
 *json
 *csv
-*.txt
 rs-etl/*
 .DS_Store
 .pytest_cache
