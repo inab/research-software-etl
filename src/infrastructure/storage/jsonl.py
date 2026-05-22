@@ -35,6 +35,10 @@ class JsonlPublicationEnrichmentCache:
 
         return seen_dois
 
+    def clear(self) -> None:
+        if self.path.exists():
+            self.path.unlink()
+
     def append(self, payload: dict) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("a", encoding="utf-8") as f:

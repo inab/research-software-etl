@@ -185,9 +185,30 @@ Auxiliary pipelines run independently from the main integration workflow.
 |------|------|
 | CLI | `rsetl enrich-publications` |
 | Module | `adapters.cli.enrich_publications` |
-| Description | Enriches publication metadata and citation counts using Europe PMC. |
+| Description | Enriches publication metadata, citation counts, and cited-by counts using Europe PMC. |
 | Output | Updates the MongoDB publication collection, `publicationsMetadataDev` by default, and optionally writes a JSONL cache. |
 | External services | Europe PMC API |
+
+For each publication the enrichment fetches:
+
+- **Metadata** — title, abstract, authors, journal, year, PMID, and source identifier.
+- **`citations`** — publications that cite this paper, grouped by year, sourced from the Europe PMC [`/{source}/{id}/citations`](https://europepmc.org/RestfulWebService) endpoint.
+- **`citedBy`** — same dataset as `citations`, stored under a dedicated field for downstream consumers that distinguish between outgoing and incoming citation relationships.
+
+Both `citations` and `citedBy` are stored as a list with a single entry of the form:
+
+```json
+[
+  {
+    "source": "Europe PMC",
+    "count": {
+      "2020": 3,
+      "2021": 7,
+      "total": 10
+    }
+  }
+]
+```
 
 Examples:
 

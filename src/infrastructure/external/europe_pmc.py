@@ -176,6 +176,49 @@ class EuropePmcClient:
         counts["total"] = len(citations)
         return counts
 
+    def fetch_cited_by_page(
+        self,
+        identifier: str,
+        source: str,
+        page: int = 1,
+        page_size: int = 1000,
+    ) -> dict[str, Any]:
+        """
+        Fetch one page of publications that cite the given publication.
+
+        Uses the same /{source}/{id}/citations endpoint as fetch_citations_page.
+        """
+        return self.fetch_citations_page(
+            identifier=identifier,
+            source=source,
+            page=page,
+            page_size=page_size,
+        )
+
+    def fetch_all_cited_by(
+        self,
+        identifier: str,
+        source: str,
+        page_size: int = 1000,
+    ) -> list[dict[str, Any]]:
+        """
+        Fetch all publications that cite the given publication.
+        """
+        return self.fetch_all_citations(
+            identifier=identifier,
+            source=source,
+            page_size=page_size,
+        )
+
+    def count_cited_by_per_year(
+        self,
+        cited_by: list[dict[str, Any]],
+    ) -> dict[str, int]:
+        """
+        Build a year -> count dictionary from Europe PMC cited-by records.
+        """
+        return self.count_citations_per_year(cited_by)
+
     def get_metadata_and_citations(self, doi: str) -> dict[str, Any]:
         """
         Fetch publication metadata and all Europe PMC citations grouped per year.

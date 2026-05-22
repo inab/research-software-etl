@@ -30,22 +30,16 @@ class EnrichPublicationCollectionUseCase:
     @staticmethod
     def _has_europe_pmc_citations(doc: dict) -> bool:
         """
-        Return True if the publication already contains citations
-        coming from Europe PMC.
+        Return True if the publication already contains citations from Europe PMC.
         """
-        citations = doc.get("data", {}).get("citations", [])
-
-        if not isinstance(citations, list):
+        data = doc.get("data", {})
+        entries = data.get("citations", [])
+        if not isinstance(entries, list):
             return False
-
-        for citation in citations:
-            if not isinstance(citation, dict):
-                continue
-
-            if citation.get("source") == "Europe PMC":
-                return True
-
-        return False
+        return any(
+            isinstance(e, dict) and e.get("source") == "Europe PMC"
+            for e in entries
+        )
 
     def execute(
         self,
@@ -56,6 +50,7 @@ class EnrichPublicationCollectionUseCase:
         skip_if_has_europe_pmc_citations: bool = True,
         write_cache: bool = True,
         update_db: bool = True,
+        target_dois: set[str] | None = None,
     ) -> None:
         seen_dois = self.enrichment_cache.load_seen_dois() if skip_seen else set()
         print(f"Already seen {len(seen_dois)} DOIs")
@@ -90,6 +85,10 @@ class EnrichPublicationCollectionUseCase:
                 continue
 
             doi_lower = doi.lower()
+
+            if target_dois is not None and doi_lower not in target_dois:
+                continue
+
             if skip_seen and doi_lower in seen_dois:
                 skipped_seen += 1
                 continue
@@ -133,8 +132,3 @@ class EnrichPublicationCollectionUseCase:
             f"no_metadata={no_metadata}"
         )
 
-        if hasattr(self.enrichment_service, "europe_pmc_citation_error_count"):
-            print(
-                "Europe PMC citation fetch errors: "
-                f"{self.enrichment_service.europe_pmc_citation_error_count}"
-            )
