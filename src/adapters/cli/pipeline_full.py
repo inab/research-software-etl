@@ -28,7 +28,8 @@ STAGES = [
     "human_updates",
     "merge",
     "fairsoft",
-    "stats"
+    "stats",
+    "similarity",
 ]
 
 
@@ -486,7 +487,16 @@ def run_full(
         )
         executed_stages.append("stats")
 
-    
+    if should_run("similarity"):
+        print("=== Stage: similarity ===")
+        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _run(
+            [python_exe, "-m", "src.adapters.cli.similarity", "--collections", "tools"],
+            cwd=wd,
+        )
+        executed_stages.append("similarity")
+
+
 
 
     execution_record = {

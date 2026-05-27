@@ -37,6 +37,8 @@ dependencies = [
     "tenacity>=9.0",
     "tiktoken>=0.9",
     "fairsoft-core>=0.1.1",
+    "numpy>=1.24",
+    "sentence-transformers>=3.0",
 ]
 
 [project.optional-dependencies]
