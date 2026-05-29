@@ -15,9 +15,22 @@ logger = logging.getLogger(__name__)
 
 
 def build_text(tool_data: dict) -> str:
-    """Concatenate the longest description with topics and operations terms."""
-    descriptions = tool_data.get("description", [])
-    text = max(descriptions, key=len) if descriptions else ""
+    """Concatenate the longest description with topics and operations terms.
+
+    Falls back to the 'help' documentation item when description is absent.
+    """
+    descriptions = [d for d in tool_data.get("description", []) if d and d.strip()]
+    if descriptions:
+        text = max(descriptions, key=len)
+    else:
+        help_item = next(
+            (
+                item for item in tool_data.get("documentation", [])
+                if item.get("type") == "help" and item.get("content")
+            ),
+            None,
+        )
+        text = help_item["content"].strip() if help_item else ""
 
     topics = [t["term"] for t in tool_data.get("topics", []) if t.get("term")]
     operations = [o["term"] for o in tool_data.get("operations", []) if o.get("term")]
@@ -38,11 +51,15 @@ def _load_model(model_name: str):
             "sentence-transformers is required for the similarity stage. "
             "Install it with: pip install sentence-transformers"
         ) from exc
-    logger.info(f"Loading embedding model: {model_name}")
-    return SentenceTransformer(model_name)
+    logger.info(f"Loading embedding model: {model_name} (device=mps)")
+    model = SentenceTransformer(model_name, device="mps")
+    # gte-modernbert-base defaults to 8192 tokens; descriptions are short,
+    # so cap at 512 to avoid padding overhead that dominates CPU runtime.
+    model.max_seq_length = 512
+    return model
 
 
-def _embed(model, texts: list[str], batch_size: int = 128) -> np.ndarray:
+def _embed(model, texts: list[str], batch_size: int = 64) -> np.ndarray:
     """Return L2-normalised embeddings of shape (N, dim)."""
     logger.info(f"Encoding {len(texts)} texts (batch_size={batch_size}) ...")
     embeddings = model.encode(
@@ -106,7 +123,7 @@ def compute_similarities(
     tools: list[dict],
     k: int = 10,
     model_name: str = "Alibaba-NLP/gte-modernbert-base",
-    batch_size: int = 128,
+    batch_size: int = 64,
     chunk_size: int = 1000,
 ) -> list[dict]:
     """
