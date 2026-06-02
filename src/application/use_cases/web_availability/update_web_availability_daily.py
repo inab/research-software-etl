@@ -80,6 +80,7 @@ class WebAvailabilityDailyResult:
     tools_urls_already_present: int
     tools_urls_missing: int
     inserted_missing_urls: int
+    retagged_existing_urls: int
     insert_errors: int
 
 
@@ -202,6 +203,7 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
             tools_urls_already_present=0,
             tools_urls_missing=0,
             inserted_missing_urls=0,
+            retagged_existing_urls=0,
             insert_errors=0,
         )
 
@@ -210,23 +212,25 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
     )
     missing = [u for u in relevant_tool_urls if u not in existing]
 
-    # Instead of InsertOne docs, use UpdateOne(upsert=True) so:
-    # - missing docs are created with empty availability
-    # - existing docs get tagged as relevant (top-level)
+    # Use UpdateOne(upsert=True) over EVERY relevant URL (not just missing ones) so:
+    # - missing docs are created with empty availability ($setOnInsert)
+    # - existing docs (e.g. created by a legacy availability process) get tagged
+    #   relevant via $set, so Step 1 will start monitoring them.
     upserts: List[UpdateOne] = []
     inserted = 0
+    retagged = 0
     insert_errors = 0
     now = now_iso_z()
 
-    for url in missing:
+    for url in relevant_tool_urls:
         try:
             upserts.append(
                 UpdateOne(
                     {"_id": url},
                     {
                         "$set": {
-                            RELEVANCE_TAG_FIELD: True,           
-                            "relevance.source": "ToolsDev",
+                            RELEVANCE_TAG_FIELD: True,
+                            "relevance.source": cfg.tools_collection,
                             "relevance.tagged_at": now,
                             "last_updated_at": now,
                             "updated_by": cfg.updated_by,
@@ -244,7 +248,10 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
                     upsert=True,
                 )
             )
-            inserted += 1
+            if url in existing:
+                retagged += 1
+            else:
+                inserted += 1
 
             if len(upserts) >= cfg.bulk_chunk:
                 if not cfg.dry_run:
@@ -267,5 +274,6 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
         tools_urls_already_present=len(existing),
         tools_urls_missing=len(missing),
         inserted_missing_urls=inserted,
+        retagged_existing_urls=retagged,
         insert_errors=insert_errors,
     )

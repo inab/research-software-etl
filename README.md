@@ -12,17 +12,20 @@ It consolidates software records, resolves duplicates, and precomputes the quali
 
 ## Pipeline 
 
-The ETL runs in eight modular stages, which can be executed independently or orchestrated end-to-end through the unified CLI command rsetl. 
+The ETL runs in modular stages, which can be executed independently or orchestrated end-to-end through the unified CLI command rsetl. 
 
-1. Blocking and recovery – Groups related software records from normalized data. 
-2. Metrics removal (optional) – Filters low-information OpenEBench metrics. 
-3. Conflict detection – Identifies inconsistent or duplicate records. 
-4. Simplification – Reduces block complexity for later processing. 
-5. Conversion to JSONL – Formats data for large-scale or LLM-based steps. 
-6. Disambiguation – Uses heuristics and AI-assisted agreement scoring to resolve conflicts. 
-7. Human integration – Incorporates curator decisions from Git-based annotations. 
-8. Merge – Produces final, merged software entries and updates the database. 
-9. Calculation of statistivs and FAIRsoft scores - The resulting metrics are stored in the database to support efficient visualization and longitudinal monitoring.
+1. Transformation – Fetches raw records from source collections and standardizes them.
+2. License normalization – Maps license strings to SPDX identifiers.
+3. Blocking and recovery – Groups related software records from normalized data. 
+4. Metrics removal (optional) – Filters low-information OpenEBench metrics. 
+5. Conflict detection – Identifies inconsistent or duplicate records. 
+6. Simplification – Reduces block complexity for later processing. 
+7. Conversion to JSONL – Formats data for large-scale or LLM-based steps. 
+8. Disambiguation – Uses heuristics and AI-assisted agreement scoring to resolve conflicts. 
+9. Human integration – Incorporates curator decisions from Git-based annotations. 
+10. Merge – Produces final, merged software entries and updates the database. 
+11. FAIRsoft scores and statistics – Computes FAIR compliance metrics and aggregated statistics stored in the database to support visualization and longitudinal monitoring.
+12. Similarity – Embeds tool descriptions and precomputes the top-10 nearest neighbours per tool to power "similar software" recommendations.
 
 Each execution creates a versioned run directory under `data/integration/runs/<run_id>/` with a manifest file tracking inputs, outputs, and environment metadata.
 

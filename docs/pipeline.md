@@ -74,6 +74,7 @@ The full pipeline is composed of the following stages, in execution order:
 | 7 | **Merge** | `src.adapters.cli.integration.merge_entries` | Consolidates resolved records into unified software entries. | MongoDB |
 | 8 | **Statistics** | `src.adapters.cli.generate_stats` | Computes descriptive statistics for Observatory dashboards. | MongoDB |
 | 9 | **FAIRsoft scoring** | `src.adapters.cli.fair_scores` | Computes FAIRsoft indicators and scores for software entries. | MongoDB |
+| 10 | **Similarity** | `src.adapters.cli.similarity` | Embeds tool descriptions using `gte-modernbert-base` and precomputes the top-10 nearest neighbours per tool, stored in `similaritiesDev` to power "similar software" recommendations. | MongoDB, HuggingFace (model download) |
 
 ---
 
@@ -101,6 +102,7 @@ This executes:
 - `merge`
 - `stats`
 - `fairsoft`
+- `similarity`
 
 unless one of those stages is skipped with a command-line option.
 
@@ -138,6 +140,7 @@ The pipeline produces:
 
 - **Merged software records**, stored in MongoDB. The default target collection is `tools`.
 - **Precomputed metrics and FAIRsoft scores**, stored in MongoDB. The default target collection is `computations`.
+- **Precomputed similarity scores**, stored in MongoDB. The default target collection is `similaritiesDev`.
 
 ### Run artifacts
 

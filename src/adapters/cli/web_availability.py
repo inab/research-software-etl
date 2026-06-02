@@ -55,7 +55,8 @@ def main(argv: list[str] | None = None) -> int:
             f"{res.tools_unique_urls} | already present: {res.tools_urls_already_present} | missing: {res.tools_urls_missing}"
         )
         print(
-            f"[DONE] inserted missing URLs: {res.inserted_missing_urls} (insert errors: {res.insert_errors})"
+            f"[DONE] inserted missing URLs: {res.inserted_missing_urls} | "
+            f"retagged existing URLs: {res.retagged_existing_urls} (insert errors: {res.insert_errors})"
         )
         if cfg.dry_run:
             print("[DRY-RUN] No DB changes were written.")

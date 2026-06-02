@@ -37,6 +37,7 @@ The pipeline supports the following stage names, in order:
 * `merge`
 * `stats`
 * `fairsoft`
+* `similarity`
 
 **Examples**
 
@@ -67,6 +68,9 @@ rsetl run \
 rsetl run \
   --resume-run 20260428T090000Z-ab12cd-pre-human-review \
   --only fairsoft
+
+# (Re)compute similarity scores only
+rsetl run --only similarity
 ```
 
 **Notes**
