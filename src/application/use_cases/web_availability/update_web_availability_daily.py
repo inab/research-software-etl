@@ -60,7 +60,7 @@ def build_availability_entry(code: Optional[int], access_time: Optional[float]) 
 @dataclass(frozen=True)
 class WebAvailabilityDailyConfig:
     web_collection: str = "webAvailabilityDev"
-    tools_collection: str = "ToolsDev"
+    tools_collection: str = "toolsDev"
     timeout: int = DEFAULT_TIMEOUT
     keep_days: int = 365
     created_by: str = "oeb-ingest"

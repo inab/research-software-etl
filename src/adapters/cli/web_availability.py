@@ -13,10 +13,10 @@ from application.use_cases.web_availability.update_web_availability_daily import
 
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(
-        description="Daily update of web availability + ensure URLs from ToolsDev exist."
+        description="Daily update of web availability + ensure URLs from toolsDev exist."
     )
     ap.add_argument("--web-coll", default=os.getenv("MONGO_WEBAV_COLL", "webAvailabilityDev"))
-    ap.add_argument("--tools-coll", default=os.getenv("MONGO_TOOLS_COLL", "ToolsDev"))
+    ap.add_argument("--tools-coll", default=os.getenv("MONGO_TOOLS_COLL", "toolsDev"))
     ap.add_argument("--timeout", type=int, default=int(os.getenv("REQ_TIMEOUT", "15")))
     ap.add_argument("--keep-days", type=int, default=int(os.getenv("KEEP_DAYS", "365")))
     ap.add_argument("--created-by", default=os.getenv("CREATED_BY", "oeb-ingest"))
@@ -51,7 +51,7 @@ def main(argv: list[str] | None = None) -> int:
             f"{res.processed_existing_urls} (step1 errors: {res.step1_errors})"
         )
         print(
-            "[STEP 2] ToolsDev unique URLs: "
+            "[STEP 2] toolsDev unique URLs: "
             f"{res.tools_unique_urls} | already present: {res.tools_urls_already_present} | missing: {res.tools_urls_missing}"
         )
         print(

@@ -160,7 +160,7 @@ rsetl enrich-publications --dry-run
 
 ### `rsetl run-webavailability`
 
-Run the daily web availability update and ensure ToolsDev URLs exist.
+Run the daily web availability update and ensure toolsDev URLs exist.
 
 Additional arguments are passed through to the web availability job.
 

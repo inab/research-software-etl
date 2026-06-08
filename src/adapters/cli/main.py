@@ -166,7 +166,7 @@ def main(argv: list[str] | None = None) -> int:
     # --- run-webavailability ----------------------------------------------------
     wa_p = subparsers.add_parser(
         "run-webavailability",
-        help="Run daily web availability update (and ensure ToolsDev URLs exist)",
+        help="Run daily web availability update (and ensure toolsDev URLs exist)",
     )
     wa_p.add_argument(
         "wa_args",
