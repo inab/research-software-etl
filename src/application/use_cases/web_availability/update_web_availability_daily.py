@@ -101,6 +101,12 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
     # -----------------------------
     # Step 1: update ONLY relevant URLs in webAvailabilityDev
     # -----------------------------
+    # Materialize the relevant _ids up front and close the cursor before doing
+    # any slow per-URL network checks. Holding a cursor open across thousands of
+    # check_url() calls let it sit idle past MongoDB's 30-minute session idle
+    # timeout (which overrides no_cursor_timeout when no explicit session is
+    # attached), killing the job mid-stream with CursorNotFound. The projection
+    # is just _id, so the full set fits comfortably in memory.
     cursor = mongo_adapter.find(
         cfg.web_collection,
         query={RELEVANCE_TAG_FIELD: True},  # <-- only relevant
@@ -109,14 +115,20 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
         batch_size=cfg.batch_size,
         no_cursor_timeout=True,
     )
+    try:
+        relevant_ids = [doc.get("_id") for doc in cursor]
+    finally:
+        try:
+            cursor.close()
+        except Exception:
+            pass
 
     updates: List[UpdateOne] = []
     processed = 0
     errors = 0
 
     try:
-        for doc in cursor:
-            url = doc.get("_id")
+        for url in relevant_ids:
             if not _is_http_url(url):
                 continue
 
@@ -154,11 +166,6 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
     except Exception:
         errors += 1
         raise
-    finally:
-        try:
-            cursor.close()
-        except Exception:
-            pass
 
     if updates:
         if not cfg.dry_run:
