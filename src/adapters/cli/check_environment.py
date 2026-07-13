@@ -13,8 +13,6 @@ from __future__ import annotations
 
 import os
 import sys
-import socket
-import json
 import requests
 from pymongo import MongoClient
 from urllib.parse import urljoin

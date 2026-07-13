@@ -80,7 +80,6 @@ def process_raw_entry(raw_entry, source, config: PipelineConfig):
     software_metadata_dicts = standardize_entry(raw_identifier, raw_entry, source)
 
     # TODO Validate URLs of repositories and webpage
-    # using functions in adapters/http/url_resolver.py
 
     for software_metadata_dict in software_metadata_dicts:
 

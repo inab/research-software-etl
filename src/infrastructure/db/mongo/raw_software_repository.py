@@ -1,7 +1,6 @@
 # Raw software repository# This adapter translates DB logic into domain logic from infrastructure.mongo_adapter import MongoDBAdapter
 
 from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
-from typing import Dict, Any
 
 class RawSoftwareMetadataRepository:
     def __init__(self, db_adapter: MongoDBAdapter, collection_name: str = "alambiqueDev"):

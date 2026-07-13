@@ -1,6 +1,4 @@
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from bson import ObjectId
-from pprint import pprint
 import requests 
 from urllib.parse import urlparse
 

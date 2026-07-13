@@ -7,12 +7,10 @@ The "data" in entries in the tools collection (post integration) follow a modifi
 """
 
 from pydantic import BaseModel, field_validator, HttpUrl, AnyUrl,  Field
-from pydantic_core.core_schema import ValidationInfo
-from typing import List, Optional, Any
+from typing import List, Optional
 from enum import Enum
 from bson import ObjectId
 import re
-import logging
 
 from domain.models.software_instance.data_format import data_format
 from domain.models.software_instance.documentation import documentation_item

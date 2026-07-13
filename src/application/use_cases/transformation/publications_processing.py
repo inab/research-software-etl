@@ -16,7 +16,6 @@ import logging
 from typing import Dict, Any, Optional, List
 from application.services.publications.metadata import create_new_metadata
 from infrastructure.config import PipelineConfig
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
 from infrastructure.db.database_adapter import DatabaseAdapter
 from application.services.publications.publication_standardizer_factory import StandardizerFactory

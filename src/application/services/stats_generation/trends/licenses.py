@@ -64,9 +64,7 @@ def count_tools_per_license(tools: List[Dict[str, Any]]) -> Tuple[Dict[str, int]
     coincidental_lics = []
     conflicting_lics = []
     none = 0
-    not_soft = 0
     n = 0
-    c = 0
 
     for entry in tools:
         entry = entry.get('data', {})

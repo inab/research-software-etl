@@ -18,7 +18,6 @@ class ToolshedPublicationExtractor(PublicationExtractor):
         Gets journal publication information from bibtex citation.
         '''
         parser = bibtexparser.bparser.BibTexParser(common_strings=True)
-        logger_bibtex = logging.getLogger('bibtexparser')
         new_entries = []
         try:
             bibtexdb = bibtexparser.loads(ent, parser=parser)

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, model_validator, AnyUrl, TypeAdapter
+from pydantic import BaseModel, model_validator, AnyUrl
 from typing import Optional, Any, Dict
 
 

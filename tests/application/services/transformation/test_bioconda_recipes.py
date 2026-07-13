@@ -1,7 +1,7 @@
 from application.services.transformation.bioconda_recipes import biocondaRecipesStandardizer
 from domain.models.software_instance.main import software_types, operating_systems, data_sources
 from domain.models.software_instance.recognition import type_contributor
-from pydantic import HttpUrl
+from pydantic import HttpUrl, AnyUrl
 from dotenv import load_dotenv
 
 class TestBiocondaRecipesStandardizer:
@@ -94,29 +94,33 @@ class TestBiocondaRecipesStandardizer:
         assert instance.label == ['bioconductor-mafdb.gnomadex.r2.1.hs37d5']
         assert instance.description == ['Store minor allele frequency data from the Genome Aggregation Database (gnomAD exomes release 2.1) for the human genome version hs37d5.']
         assert instance.webpage == [HttpUrl('https://bioconductor.org/packages/3.16/data/annotation/html/MafDb.gnomADex.r2.1.hs37d5.html')]
+        # source_code is List[AnyUrl] in the model, and pydantic v2 compares URLs
+        # by type, so AnyUrl("x") != HttpUrl("x").
         assert instance.source_code == [
-                        HttpUrl("https://bioconductor.org/packages/3.16/data/annotation/src/contrib/MafDb.gnomADex.r2.1.hs37d5_3.10.0.tar.gz"),
-                        HttpUrl("https://depot.galaxyproject.org/software/bioconductor-mafdb.gnomadex.r2.1.hs37d5/bioconductor-mafdb.gnomadex.r2.1.hs37d5_3.10.0_src_all.tar.gz"),
-                        HttpUrl("https://bioarchive.galaxyproject.org/MafDb.gnomADex.r2.1.hs37d5_3.10.0.tar.gz") 
+                        AnyUrl("https://bioconductor.org/packages/3.16/data/annotation/src/contrib/MafDb.gnomADex.r2.1.hs37d5_3.10.0.tar.gz"),
+                        AnyUrl("https://depot.galaxyproject.org/software/bioconductor-mafdb.gnomadex.r2.1.hs37d5/bioconductor-mafdb.gnomadex.r2.1.hs37d5_3.10.0_src_all.tar.gz"),
+                        AnyUrl("https://bioarchive.galaxyproject.org/MafDb.gnomADex.r2.1.hs37d5_3.10.0.tar.gz")
                     ]
+        # documentation.url is Optional[AnyUrl] in the model.
         assert [item.model_dump() for item in instance.documentation ] ==[
             {
-                'url': HttpUrl('https://bioconda.github.io/recipes/bioconductor-mafdb.gnomadex.r2.1.hs37d5/README.html'),
+                'url': AnyUrl('https://bioconda.github.io/recipes/bioconductor-mafdb.gnomadex.r2.1.hs37d5/README.html'),
                 'type': 'installation_instructions',
                 'content': None
             },
             {
-                'url': HttpUrl('https://bioconda.github.io/recipes/bioconductor-mafdb.gnomadex.r2.1.hs37d5/README.html'),
+                'url': AnyUrl('https://bioconda.github.io/recipes/bioconductor-mafdb.gnomadex.r2.1.hs37d5/README.html'),
                 'type': 'general',
                 'content': None
             }
         ]
         assert instance.repository == []
         assert instance.operating_system == [ operating_systems.Linux, operating_systems.macOS, operating_systems.Windows]
+        # The SPDX url is filled in later, by the license-normalization stage.
         assert [item.model_dump() for item in instance.license ] == [
             {
                 'name': 'Artistic-2.0',
-                'url': HttpUrl('https://spdx.org/licenses/Artistic-2.0.html')
+                'url': None
             }
         ]
         

@@ -5,7 +5,6 @@ The command-line interface for the disambiguation step of the integration
 import argparse
 import logging
 import asyncio
-from datetime import datetime
 
 from dotenv import load_dotenv
 

@@ -1,5 +1,3 @@
-import logging
-from pprint import pprint
 from domain.models.software_instance.multitype_instance import multitype_instance
 
 

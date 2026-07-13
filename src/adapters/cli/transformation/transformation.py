@@ -18,7 +18,6 @@ python src/adapters/cli/transformation/transformation.py -e .env -s bioconda_rec
 python src/adapters/cli/transformation/transformation.py -e .env -s all
 """
 import argparse
-import logging
 from dotenv import load_dotenv
 from infrastructure.logging_config import setup_logging
 

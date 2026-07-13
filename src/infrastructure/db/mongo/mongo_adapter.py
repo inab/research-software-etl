@@ -8,7 +8,7 @@ load_dotenv()
 import os
 import pymongo
 import logging
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, List, Optional
 from pymongo.errors import NetworkTimeout, AutoReconnect, CursorNotFound
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from infrastructure.db.database_adapter import DatabaseAdapter
@@ -23,11 +23,25 @@ class MongoDBAdapter(DatabaseAdapter):
 
     def __init__(self, database=None):
         logger.debug("Initializing MongoDBAdapter")
+        self._database = database
+
+    @property
+    def client(self):
+        """
+        The shared PyMongo client, connected on first use.
+
+        Connecting lazily rather than in __init__ keeps *importing* a module
+        that holds the `mongo_adapter` singleton free of side effects. Otherwise
+        merely importing a use case requires a reachable MongoDB, which made
+        whole test modules fail to collect.
+        """
         if MongoDBAdapter._client is None:
             MongoDBAdapter._client = self._initialize_client()
+        return MongoDBAdapter._client
 
-        self.client = MongoDBAdapter._client
-        self.db = self.client[self._get_database_name(database)]
+    @property
+    def db(self):
+        return self.client[self._get_database_name(self._database)]
 
     def _initialize_client(self):
         """Initialize MongoDB Client (optionally via SSH tunnel)"""

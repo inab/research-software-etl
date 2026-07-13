@@ -4,7 +4,12 @@ from dotenv import load_dotenv
 from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 from infrastructure.db.database_adapter import DatabaseAdapter
 import logging
-from sshtunnel import SSHTunnelForwarder
+
+# sshtunnel is an optional extra: it is not declared in pyproject, and the SSH
+# tunnel path in MongoDBAdapter is currently commented out. Skip the whole module
+# when it isn't installed rather than failing collection for everyone.
+SSHTunnelForwarder = pytest.importorskip("sshtunnel").SSHTunnelForwarder
+
 import pymongo
 
 # Load .env variables

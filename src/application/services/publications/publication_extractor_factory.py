@@ -5,7 +5,6 @@ from application.services.publications.toolshed_extractor_standardizer import To
 from application.services.publications.opeb_metrics_extractor_standardizer import OPEBMetricsPublicationExtractor
 from application.services.publications.bioconda_recipes_extractor_standardizer import BiocondaRecipesPublicationExtractor
 
-from typing import Dict, Any
 
 class ExtractorFactory:
     """Factory for creating the appropriate publication standardizer."""

@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import List, Dict, Any
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from collections import Counter
 from collections import defaultdict
 
 import re
@@ -45,7 +44,6 @@ def count_documentation(tools: List[Dict[str, Any]]):
             if not doc_type or not url:
                 continue
 
-            platforms = set()
             if is_downloadable(url):
                 doc_format_counts[doc_type]["downloadable"] += 1
             else:

@@ -49,14 +49,17 @@ class TestSourceForgeStandardizer:
         assert instance.source == ["sourceforge"]
         assert instance.operating_system == [operating_systems.Linux, operating_systems.BSD]
         assert instance.description == ["BWA is a program for aligning sequencing reads against a large reference genome (e.g. human genome). It has two major components, one for read shorter than 150bp and the other for longer reads."]
+        # Licenses come out of the standardizer exactly as SourceForge words them.
+        # Mapping them to SPDX ids and urls ("MIT License" -> MIT, ...) happens in
+        # the separate license-normalization stage, so url is None here.
         assert [item.model_dump() for item in instance.license] == [
             {
-                'name': 'MIT',
-                'url': HttpUrl('https://spdx.org/licenses/MIT.html')
+                'name': 'MIT License',
+                'url': None
             },
             {
-                'name': 'GPL-3.0-only',
-                'url': HttpUrl('https://spdx.org/licenses/GPL-3.0-only.html')
+                'name': 'GNU General Public License version 3.0 (GPLv3)',
+                'url': None
             }
         ]
         assert [item.model_dump() for item in  instance.repository] == [

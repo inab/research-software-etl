@@ -2,7 +2,7 @@ from application.services.transformation.bioconda_opeb import biocondaOPEBStanda
 from domain.models.software_instance.main import operating_systems, data_sources
 
 from dotenv import load_dotenv
-from pydantic import HttpUrl
+from pydantic import HttpUrl, AnyUrl
 import os
 
 class TestBiocondaopebStandardizer:
@@ -85,23 +85,30 @@ class TestBiocondaopebStandardizer:
         assert instance.webpage == [HttpUrl('http://www.bcgsc.ca/platform/bioinfo/software/abyss')]
         assert [item.model_dump() for item in instance.publication ] == []
         
+        # download/source_code are List[AnyUrl] in the model (they must accept
+        # non-http schemes such as ftp), and pydantic v2 compares URLs by type,
+        # so AnyUrl("x") != HttpUrl("x").
         assert instance.download == [
-                    HttpUrl("https://anaconda.org/bioconda/abyss/1.5.2/download/linux-64/abyss-1.5.2-boost1.61_5.tar.bz2"),
-                    HttpUrl("https://anaconda.org/bioconda/abyss/1.5.2/download/osx-64/abyss-1.5.2-boost1.61_5.tar.bz2"),
-                    HttpUrl("https://github.com/bcgsc/abyss/releases/download/1.5.2/abyss-1.5.2.tar.gz")
+                    AnyUrl("https://anaconda.org/bioconda/abyss/1.5.2/download/linux-64/abyss-1.5.2-boost1.61_5.tar.bz2"),
+                    AnyUrl("https://anaconda.org/bioconda/abyss/1.5.2/download/osx-64/abyss-1.5.2-boost1.61_5.tar.bz2"),
+                    AnyUrl("https://github.com/bcgsc/abyss/releases/download/1.5.2/abyss-1.5.2.tar.gz")
                     ]
-        
-        assert instance.source_code == [HttpUrl("https://github.com/bcgsc/abyss/releases/download/1.5.2/abyss-1.5.2.tar.gz")]
+
+        assert instance.source_code == [AnyUrl("https://github.com/bcgsc/abyss/releases/download/1.5.2/abyss-1.5.2.tar.gz")]
         
         print(f"instance.documentation: {instance.documentation}")
+        # documentation.url is Optional[AnyUrl] in the model.
         assert [item.model_dump() for item in  instance.documentation ] == [
-            {'type': 'installation_instructions', 'url': HttpUrl('https://bioconda.github.io/recipes/abyss/README.html'), 'content': None},
-            {'type': 'general', 'url': HttpUrl('https://bioconda.github.io/recipes/abyss/README.html'), 'content': None}
+            {'type': 'installation_instructions', 'url': AnyUrl('https://bioconda.github.io/recipes/abyss/README.html'), 'content': None},
+            {'type': 'general', 'url': AnyUrl('https://bioconda.github.io/recipes/abyss/README.html'), 'content': None}
         ]
         
+        # The standardizer extracts the license verbatim ("GPL3"). Mapping it to an
+        # SPDX id ("GPL-3.0-only") and url is the job of the separate
+        # license-normalization stage, which looks the name up in licensesMapping.
         assert [item.model_dump() for item in  instance.license] == [{
-                                                                        'name': 'GPL-3.0-only',
-                                                                        'url': HttpUrl('https://spdx.org/licenses/GPL-3.0-only.html'),
+                                                                        'name': 'GPL3',
+                                                                        'url': None,
                                                                     }]
 
         assert  [item.model_dump() for item in  instance.repository ] == [{

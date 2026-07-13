@@ -1,5 +1,5 @@
 import logging
-from abc import ABC, abstractmethod
+from abc import ABC
 
 logger = logging.getLogger("rs-etl-pipeline")
 

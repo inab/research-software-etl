@@ -1,53 +1,78 @@
-import json
-import random
 import pytest
 from application.services.integration.disambiguation.disambiguator import disambiguate_blocks
 from tests.application.services.integration.data.data_disambiguation_original import conflicts_blocks_sets, expected, expected_heuristics
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
+from infrastructure.external.clients import ExternalClients
 from pprint import pprint
-from dotenv import load_dotenv
-import os 
 
-load_dotenv(".env") 
+DATA_DIR = 'tests/application/services/integration/data'
+DISAMBIGUATED_PATH = f'{DATA_DIR}/disambiguated_blocks.jsonl'
 
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-print(f"GITHUB_TOKEN: {GITHUB_TOKEN}")
-
-blocks = load_dict_from_jsonl('tests/application/services/integration/data/blocks.jsonl')
+blocks = load_dict_from_jsonl(f'{DATA_DIR}/blocks.jsonl')
 
 
+class FakeGitHubClient:
+    """Records issues/commits instead of touching GitHub."""
+
+    def __init__(self):
+        self.issues = []
+        self.commits = []
+
+    def commit_file(self, content, path, branch=None, repo=None):
+        self.commits.append(path)
+        return f"https://github.com/inab/research-software-etl/blob/main/{path}"
+
+    def create_issue(self, title, body, labels=None, repo=None):
+        self.issues.append(title)
+        return {"html_url": "https://github.com/inab/research-software-etl/issues/1"}
+
+
+def fake_clients():
+    """Only .github is exercised here -- decision_agreement_proxy is patched out,
+    so the LLM and GitLab slots stay None and would blow up loudly if reached."""
+    return ExternalClients(
+        openrouter=None, huggingface=None, github=FakeGitHubClient(), gitlab=None
+    )
+
+
+@pytest.mark.manual
 @pytest.mark.asyncio
-async def test_real_conflict_cases(monkeypatch):
+async def test_real_conflict_cases(monkeypatch, tmp_path):
     '''
     This test passes five different conflict cases to the disambiguation pipeline.
     The disambiguation runs for a set of blocks (blocks), which can be conflictive or not (if they are in conflicts_blocks or not)
     Thus, for each set of conflicts tested, all the blocks in blocks are processed and the conflictive blocks are disambiguated.
+
+    Requires a live pretoolsDev collection: disambiguate_blocks() hydrates each
+    conflict entry via replace_with_full_entries(), which calls
+    mongo_adapter.fetch_entry() directly. The 11 instance ids these blocks refer
+    to have no local fixtures, so this cannot run offline. Run with `pytest -m manual`.
     '''
-    # ------------ MOCKS -----------------
-    # --- Mock decision_agreement_proxy so we can test pipeline without API calls ---
-    def mock_decision_agreement_proxy(messages):
-        # Simulate decisions based on content length or ID presence
-        # random number for deciding whether disagreement or not
-        print('Mock decision_agreement_proxy called')
-
+    # --- Patch the LLM proxy so the pipeline runs without API calls ---
+    def mock_decision_agreement_proxy(messages, clients):
         return {"verdict": "different", "confidence": "high"}
-    
-    monkeypatch.setattr("src.application.services.integration.disambiguation.disambiguator.decision_agreement_proxy", mock_decision_agreement_proxy)
 
-    def mock_create_github_issue(title, body, labels):
-        # Simulate issue creation
-        print("Mock issue creation called")
-        print(f"Mock issue created: {title}")
-        return "Mock issue created"
-    
-    monkeypatch.setattr("src.application.services.integration.disambiguation.disambiguator.create_github_issue", mock_create_github_issue)
+    monkeypatch.setattr(
+        "application.services.integration.disambiguation.disambiguator.decision_agreement_proxy",
+        mock_decision_agreement_proxy,
+    )
 
-    # ------------ END MOCKS -----------------
+    clients = fake_clients()
 
-    print(f"Instances in ale/cmd block: {len(blocks['ale/cmd']['instances'])}")
+    # Empty decisions cache, so every pair goes through the proxy rather than
+    # reusing a previously recorded decision.
+    pair_decisions = tmp_path / "pair_decisions.jsonl"
+
     for i, conflicts_blocks in enumerate(conflicts_blocks_sets):
 
-        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.jsonl')
+        disamb_result = await disambiguate_blocks(
+            conflicts_blocks,
+            blocks,
+            disambiguated_blocks_path=DISAMBIGUATED_PATH,
+            pair_wise_decisions_path=pair_decisions,
+            run_id="test-run",
+            clients=clients,
+        )
 
         # --- Assertions ---
 
@@ -70,50 +95,53 @@ async def test_real_conflict_cases(monkeypatch):
             assert disamb_result[id]["resolution"] == expected_heuristics[id]["resolution"]
             assert disamb_result[id]["source"] == expected_heuristics[id]["source"]
             assert disamb_result[id]["notes"] == expected_heuristics[id]["notes"]
-        
+
         # clean disambiguated results
-        open('tests/application/services/integration/data/disambiguated_blocks.jsonl', 'w').close()
-    
+        open(DISAMBIGUATED_PATH, 'w').close()
 
         print("===" * 20)
 
 
+@pytest.mark.manual
 @pytest.mark.asyncio
-async def test_real_conflict_cases_human(monkeypatch):
+async def test_real_conflict_cases_human(monkeypatch, tmp_path):
     '''
-    This test passes five different conflict cases to the disambiguation pipeline.
-    The disambiguation runs for a set of blocks (blocks), which can be conflictive or not (if they are in conflicts_blocks or not)
-    Thus, for each set of conflicts tested, all the blocks in blocks are processed and the conflictive blocks are disambiguated.
+    When the two models disagree, the conflict must escalate to a curator:
+    a conflict file is committed and a GitHub issue is opened.
+
+    Requires a live pretoolsDev collection (see test_real_conflict_cases).
+    Run with `pytest -m manual`.
     '''
-    # --- Mock decision_agreement_proxy so we can test pipeline without API calls ---
-    def mock_decision_agreement_proxy(messages):
-        # Simulate decisions based on content length or ID presence
-        # random number for deciding whether disagreement or not
-        print('Mock decision_agreement_proxy called')
-        rnd = random.random()  # generates a float between 0.0 and 1.0
-        if rnd > 0.5:
-            return {"verdict": "disagreement", "confidence": "high"}
+    def mock_decision_agreement_proxy(messages, clients):
         return {"verdict": "disagreement", "confidence": "high"}
-    
-    monkeypatch.setattr("src.application.services.integration.disambiguation.disambiguator.decision_agreement_proxy", mock_decision_agreement_proxy)
 
-    def mock_create_github_issue(title, body, labels):
-        # Simulate issue creation
-        print("Mock issue creation called")
-        print(f"Mock issue created: {title}")
-        return {"html_url": "https://github.com"}
-    
-    monkeypatch.setattr("src.application.services.integration.disambiguation.disambiguator.create_github_issue", mock_create_github_issue)
+    monkeypatch.setattr(
+        "application.services.integration.disambiguation.disambiguator.decision_agreement_proxy",
+        mock_decision_agreement_proxy,
+    )
 
+    clients = fake_clients()
+    pair_decisions = tmp_path / "pair_decisions.jsonl"
 
-    print(f"Instances in ale/cmd block: {len(blocks['ale/cmd']['instances'])}")
     for conflicts_blocks in conflicts_blocks_sets[0:1]:
 
-        disamb_result = await disambiguate_blocks(conflicts_blocks, blocks, disambiguated_blocks_path='tests/application/services/integration/data/disambiguated_blocks.jsonl')
+        disamb_result = await disambiguate_blocks(
+            conflicts_blocks,
+            blocks,
+            disambiguated_blocks_path=DISAMBIGUATED_PATH,
+            pair_wise_decisions_path=pair_decisions,
+            run_id="test-run",
+            clients=clients,
+        )
 
         # --- Assertions ---
 
         assert "ale/cmd" in disamb_result.keys()
-        pprint(disamb_result["ale/cmd"])
-        print("===" * 20)
+
+        # A disagreement must escalate: the conflict is committed and an issue opened.
+        assert clients.github.commits, "disagreement should commit a conflict file"
+        assert clients.github.issues, "disagreement should open a GitHub issue"
+        assert disamb_result["ale/cmd"]["resolution"] == "manual_review_pending"
+
+        open(DISAMBIGUATED_PATH, 'w').close()
 

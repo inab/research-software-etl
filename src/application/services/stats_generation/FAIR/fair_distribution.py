@@ -1,18 +1,10 @@
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from application.services.stats_generation.FAIR.individual_scores import evaluate_tool
 from typing import List, Dict, Any
 from datetime import datetime
 from collections import defaultdict
-from typing import List, Dict, Any
-from bson import ObjectId
-from pprint import pprint
-import requests 
-import json
 
     
 
-from collections import defaultdict
-from typing import List, Dict, Any
 
 def compute_fair_score_frequencies(results: List[Dict[str, Any]]) -> Dict[str, Dict[Any, int]]:
     """

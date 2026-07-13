@@ -85,7 +85,6 @@ class toolshedStandardizer(MetadataStandardizer):
         Gets any kind of information from bibtex citation.
         '''
         parser = bibtexparser.bparser.BibTexParser(common_strings=True)
-        logger_bibtex = logging.getLogger('bibtexparser')
         new_entries = []
         try:
             bibtexdb = bibtexparser.loads(bibtex_string, parser=parser)

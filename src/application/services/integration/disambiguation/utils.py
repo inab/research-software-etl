@@ -2,10 +2,8 @@ from bson import ObjectId
 import json
 import os
 from datetime import datetime
-import hashlib
 from pathlib import Path
 from typing import Any
-from pprint import pprint 
 
 def append_dict_to_jsonl(path, data: dict) -> None:
     """
@@ -46,12 +44,7 @@ def stable_hash(obj: Any) -> str:
 def build_instances_keys_dict():
     from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
-    # Step 1: Build a publication lookup dict with stringified ObjectIds
-    publication_dict = {
-        str(doc['_id']): {**doc, "_id": str(doc['_id'])}
-        for doc in mongo_adapter.fetch_entries( "publicationsMetadataDev", {})
-    }
-    # Step 2: Build the main document dictionary and replace data.publication
+    # Build the document dictionary, keeping only ObjectId publication refs.
     doc_dict = {}
     for doc in mongo_adapter.fetch_entries( "pretoolsDev", {}):
         pub_ids= doc.get('data', {}).get('publication')

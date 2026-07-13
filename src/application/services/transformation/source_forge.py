@@ -13,17 +13,6 @@ class sourceforgeStandardizer(MetadataStandardizer):
         MetadataStandardizer.__init__(self, source)
 
     @staticmethod
-    def description(tool: Dict[str, Any]) -> List[str]:
-        '''
-        Returns the description of the tool.
-        - tool: metadata of tool to be transformed
-        '''
-        if tool.get('description'):
-            return(tool['description'])
-        else:
-            return([])
-    
-    @staticmethod
     def clean_web(link):
         print(link)
         if not link.startswith('http://') and not link.startswith('https://'):

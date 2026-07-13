@@ -1,10 +1,15 @@
-import json
-import random
+import os
 import pytest
 import uuid
 
-from pprint import pprint
-from application.services.integration.disambiguation.issues import generate_context, generate_conflict_file, commit_conflict_json, generate_github_body, stable_hash, create_github_issue
+from application.services.integration.disambiguation.issues import generate_context, generate_conflict_file, generate_github_body
+from application.services.integration.disambiguation.utils import stable_hash
+from infrastructure.external.github import GitHubClient
+
+RUN_ID = "test-run"
+# conflict_id is an opaque identifier as far as issues.py is concerned; in the
+# pipeline it comes from stable_hash() over the *full* pretools docs.
+CONFLICT_ID = "p:ale_bioconda_recipes/ale/cmd/20180904,biotools/ale/cmd/None"
 
 
 full_conflict ={
@@ -333,12 +338,15 @@ def test_github_issue_context_and_issue():
 
     conflict_name = "ale/cmd"
     conflict_url = "https://github.com/inab/research-software-etl/human_annotation/conflicts/test.jsonl"
-   
-    context = generate_context(conflict_name, full_conflict, conflict_url)
+    conflict_id = CONFLICT_ID
+
+    context = generate_context(conflict_name, conflict_id, full_conflict, conflict_url, RUN_ID)
 
     issue = generate_github_body(context)
 
-    assert context["id"] == "ale/cmd"
+    assert context["name"] == "ale/cmd"
+    assert context["id"] == conflict_id
+    assert context["run_id"] == RUN_ID
     assert "- **Name**: ale" in issue
     assert "- **ID**: bioconda_recipes/ale/cmd/20180904" in issue
     assert "- **ID**: biotools/ale/cmd/None" in issue
@@ -347,36 +355,63 @@ def test_github_issue_context_and_issue():
 
 # --------------------------------------------------------------------------------
 # Testing of the function that creates unique persistent IDs for conflicts
+#
+# stable_hash() is no longer a content hash: it pools the `_id`s of every record
+# in `remaining` + `disconnected`, splits comma-joined composite ids, sorts them
+# and joins them. The id must therefore be stable regardless of record order.
 # --------------------------------------------------------------------------------
 
-def test_stable_hash_same_object_is_same():
-    obj = {"b": 2, "a": 1, "nested": {"x": [3, 2, 1]}}
-    assert stable_hash(obj) == stable_hash(obj)
+def _conflict(remaining_ids, disconnected_ids):
+    return {
+        "remaining": [{"_id": i} for i in remaining_ids],
+        "disconnected": [{"_id": i} for i in disconnected_ids],
+    }
 
-def test_stable_hash_dict_key_order_does_not_matter():
-    obj1 = {"a": 1, "b": 2}
-    obj2 = {"b": 2, "a": 1}
-    assert stable_hash(obj1) == stable_hash(obj2)
 
-def test_stable_hash_list_order_matters_by_default():
-    obj1 = {"x": [1, 2, 3]}
-    obj2 = {"x": [3, 2, 1]}
-    assert stable_hash(obj1) != stable_hash(obj2)
+def test_stable_hash_is_deterministic():
+    conflict = _conflict(["bioconda/ale/cmd/1"], ["biotools/ale/cmd/None"])
+    assert stable_hash(conflict) == stable_hash(conflict)
+
+
+def test_stable_hash_ignores_record_order():
+    a = _conflict(["b/x/cmd/1", "a/x/cmd/2"], ["c/x/cmd/3"])
+    b = _conflict(["a/x/cmd/2", "b/x/cmd/1"], ["c/x/cmd/3"])
+    assert stable_hash(a) == stable_hash(b)
+
+
+def test_stable_hash_pools_all_ids_sorted():
+    conflict = _conflict(["b/x/cmd/1"], ["a/x/cmd/2"])
+    assert stable_hash(conflict) == "a/x/cmd/2,b/x/cmd/1"
+
+
+def test_stable_hash_splits_composite_ids():
+    """A merged record carries a comma-joined _id; each part counts separately."""
+    conflict = _conflict(["b/x/cmd/1,a/x/cmd/2"], ["c/x/cmd/3"])
+    assert stable_hash(conflict) == "a/x/cmd/2,b/x/cmd/1,c/x/cmd/3"
+
+
+def test_stable_hash_distinguishes_different_conflicts():
+    a = _conflict(["a/x/cmd/1"], ["b/x/cmd/2"])
+    b = _conflict(["a/x/cmd/1"], ["c/x/cmd/3"])
+    assert stable_hash(a) != stable_hash(b)
 
 # --------------------------------------------------------------------------------
 
-def test_generate_conflict_file(): 
-    # The function "generate_conflict_file" requires "conflict" and "conflict name" as arguments.
-    # "conflict" is the full conflict, without any processing
-    conflict_name = "ale/cmd" 
+def test_generate_conflict_file():
+    # generate_conflict_file(conflict, conflict_name, conflict_id, run_id) -> (content, filename)
+    conflict_name = "ale/cmd"
+    conflict_id = CONFLICT_ID
 
-    content, conflict_id, filename = generate_conflict_file(full_conflict, conflict_name) 
+    content, filename = generate_conflict_file(full_conflict, conflict_name, conflict_id, RUN_ID)
 
-    print(f"\nFile name is: {filename}\n")
-    #print(f"\nContent is {content}\n")
-
-    assert "ale/cmd_" in filename  
-    assert type(content) == dict
+    # The file is named after the conflict id, so re-running a conflict lands on
+    # the same path (and the 422 guard in GitHubClient.commit_file catches it).
+    assert filename == f"{conflict_id}.json"
+    assert isinstance(content, dict)
+    assert content["conflict_name"] == conflict_name
+    assert content["conflict_id"] == conflict_id
+    assert content["run_id"] == RUN_ID
+    assert content["conflict"] == full_conflict
 
 
 # --------------- Full Integration Test --------------------------------------------
@@ -391,24 +426,26 @@ def test_generate_conflict_file():
 
 @pytest.mark.manual
 def test_create_github_issue():
-    # Push issue
+    # Hits the real GitHub API against a sandbox repo. Needs GITHUB_TOKEN.
     conflict_name = "ale/cmd"
     REPO = 'EvaMart/test-integrations'
 
-    # -------- generating URL --------
-    content, conflict_id, filename = generate_conflict_file(full_conflict, conflict_name) 
-    
+    github = GitHubClient(os.environ["GITHUB_TOKEN"])
+
+    conflict_id = CONFLICT_ID
+    content, _ = generate_conflict_file(full_conflict, conflict_name, conflict_id, RUN_ID)
+
     # a suffix in the filename is necessary so new tests do not try to create already existing files
     random_suffix = uuid.uuid4().hex
-    filename = f"human_annotations/conflicts/test_{random_suffix}.json" 
-    
-    conflict_url = commit_conflict_json(content, filename, 'main', REPO)
-    context = generate_context(conflict_name, conflict_id,  full_conflict, conflict_url)
+    filename = f"human_annotations/conflicts/test_{random_suffix}.json"
+
+    conflict_url = github.commit_file(content, filename, branch='main', repo=REPO)
+    context = generate_context(conflict_name, conflict_id, full_conflict, conflict_url, RUN_ID)
     body = generate_github_body(context)
-    
+
     title = f"Manual resolution needed for {conflict_name}"
-    labels = ['test']
-    repo = 'evamart/test-integrations'
-    response = create_github_issue(title, body, labels, repo)
+    response = github.create_issue(title, body, labels=['test'], repo=REPO)
+
+    assert response["html_url"]
   
 

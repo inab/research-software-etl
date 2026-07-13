@@ -90,9 +90,10 @@ class TestBioconductorStandardizer:
         assert set(tool.download) == set()
         assert tool.source_code == []
         assert set(tool.operating_system) == set([operating_systems.Linux, operating_systems.macOS, operating_systems.Windows])
+        # The SPDX url is filled in later, by the license-normalization stage.
         assert [item.model_dump() for item in tool.license] == [{
             'name': 'MIT',
-            'url': HttpUrl('https://spdx.org/licenses/MIT.html')
+            'url': None
         }]
         assert tool.label == ['EnrichedHeatmap']
         assert set(tool.dependencies) == set(['circlize (>= 0.4.5)',

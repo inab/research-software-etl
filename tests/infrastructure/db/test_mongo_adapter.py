@@ -1,9 +1,8 @@
 import pytest
-from unittest.mock import patch, MagicMock
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from unittest.mock import patch
 
+from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 
-# Ensure the environment variables are correctly mocked
 
 @pytest.fixture
 def mock_env_vars(mocker):
@@ -17,43 +16,69 @@ def mock_env_vars(mocker):
     }
     mocker.patch.dict('os.environ', env_vars)
 
-# Mock MongoClient directly in the MongoDBAdapter scope
+
 @pytest.fixture
-def mock_mongo_client(mocker):
+def mock_mongo_client():
+    """
+    Patch pymongo.MongoClient and clear the class-level client cache.
+
+    MongoDBAdapter._client is shared across every instance, so without resetting
+    it a client built by an earlier test (or an earlier import) would be reused
+    and the mock would never be called.
+    """
+    MongoDBAdapter._client = None
     with patch('pymongo.MongoClient') as mock_client:
         yield mock_client
+    MongoDBAdapter._client = None
+
+
+def test_mongodb_adapter_connects_lazily(mock_env_vars, mock_mongo_client):
+    """Constructing the adapter must not open a connection."""
+    MongoDBAdapter()
+    mock_mongo_client.assert_not_called()
+
 
 def test_mongodb_adapter_init(mock_env_vars, mock_mongo_client):
-    # Test initialization of MongoDBAdapter
-    adapter = mongo_adapter
+    adapter = MongoDBAdapter()
+
+    # The connection is made on first use, not at construction.
+    _ = adapter.client
+
     mock_mongo_client.assert_called_once_with(
-        host=['localhost:27017'],
+        'mongodb://localhost:27017',
         username='user',
         password='password',
         authSource='admin',
-        authMechanism='SCRAM-SHA-256'
+        authMechanism='SCRAM-SHA-256',
+        maxPoolSize=100,
+        serverSelectionTimeoutMS=5000,
     )
 
+
+def _set_count(mock_client, count):
+    collection = mock_client.return_value.__getitem__.return_value.__getitem__.return_value
+    collection.count_documents.return_value = count
+
+
 def test_entry_exists_true(mock_env_vars, mock_mongo_client):
-    # Setup
-    adapter = mongo_adapter
-    collection_name = 'test_collection'
-    query = {'_id': 'some_id'}
-    
-    # Mock the count_documents method to return a non-zero value
-    mock_mongo_client.return_value.__getitem__.return_value.__getitem__.return_value.count_documents.return_value = 1
-    
-    # Test
-    assert adapter.entry_exists(collection_name, query) == True
+    adapter = MongoDBAdapter()
+    _set_count(mock_mongo_client, 1)
+
+    assert adapter.entry_exists('test_collection', 'some_id') is True
+
 
 def test_entry_exists_false(mock_env_vars, mock_mongo_client):
-    # Setup
-    adapter = mongo_adapter
-    collection_name = 'test_collection'
-    query = {'_id': 'nonexistent_id'}
-    
-    # Mock the count_documents method to return zero
-    mock_mongo_client.return_value.__getitem__.return_value.__getitem__.return_value.count_documents.return_value = 0
-    
-    # Test
-    assert adapter.entry_exists(collection_name, query) == False
+    adapter = MongoDBAdapter()
+    _set_count(mock_mongo_client, 0)
+
+    assert adapter.entry_exists('test_collection', 'nonexistent_id') is False
+
+
+def test_entry_exists_queries_by_id(mock_env_vars, mock_mongo_client):
+    adapter = MongoDBAdapter()
+    _set_count(mock_mongo_client, 1)
+
+    adapter.entry_exists('test_collection', 'some_id')
+
+    collection = mock_mongo_client.return_value.__getitem__.return_value.__getitem__.return_value
+    collection.count_documents.assert_called_once_with({'_id': 'some_id'})

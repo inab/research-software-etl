@@ -12,7 +12,6 @@ software metadata representation and stored consistently in the database.
 """
 
 import logging
-import json
 from typing import List, Dict
 from application.services.transformation.standardizers_factory import MetadataStandardizerFactory
 from application.services.transformation.metadata import create_new_metadata, update_existing_metadata

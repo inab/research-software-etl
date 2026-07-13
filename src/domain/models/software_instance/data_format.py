@@ -1,4 +1,4 @@
-from pydantic import BaseModel, model_validator, HttpUrl, AnyUrl, TypeAdapter
+from pydantic import BaseModel, model_validator, HttpUrl
 from typing import Optional, Any, Dict
 
 from domain.models.software_instance.EDAM_forFE import EDAMDict

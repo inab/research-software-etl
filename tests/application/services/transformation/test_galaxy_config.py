@@ -63,7 +63,11 @@ class TestGalaxyStandardizer:
         assert instance.type == software_types.cmd
         assert instance.version == ["1.4.1"]
         assert instance.source == ["toolshed"]
-        assert instance.download == [HttpUrl("https://toolshed.g2.bx.psu.edu/repository/download?repository_id=783bde422b425bd9&changeset_revision=f71fd828c126&file_type=zip")]
+        # The toolshed standardizer deliberately does not emit a download URL:
+        # commit 6c6a81a0 ("fix toolshed transformer") removed
+        # `download = [tool.get('@source_url')]`, because @source_url records where
+        # the entry was imported from rather than a distributable artifact.
+        assert instance.download == []
         assert instance.label == ["Convert a 10X BAM file to FASTQ"]
         assert instance.description == []
         assert [item.model_dump() for item in instance.publication] == []

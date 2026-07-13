@@ -1,5 +1,5 @@
 from pydantic import BaseModel, HttpUrl, model_validator
-from typing import List, Optional
+from typing import Optional
 from enum import Enum
 
 

@@ -26,7 +26,7 @@ def update_toolsdev_licenses():
                 unchanged += 1
                 continue
 
-            a = mongo_adapter.update_entry(
+            mongo_adapter.update_entry(
                 "toolsDev",
                 tool_id,
                 {"data.license": normalized_licenses},

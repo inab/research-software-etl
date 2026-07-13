@@ -63,7 +63,6 @@ def load_repository_blacklist(path: Path) -> set[str]:
 # URL NORMALIZATION
 # -----------------------------------------------------------------------------
 
-from urllib.parse import urlparse
 
 
 def normalize_url(url: str) -> str | None:

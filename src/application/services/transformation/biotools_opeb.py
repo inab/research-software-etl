@@ -127,7 +127,7 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
         '''
         
         try:
-            obj = biotools_data_format.model_validate(data, strict=True)
+            biotools_data_format.model_validate(data, strict=True)  # raises if invalid
         except:
             return data
         
@@ -206,7 +206,7 @@ class biotoolsOPEBStandardizer(MetadataStandardizer):
             if not homepage:  # Covers both empty string and None
                 return []
             return [homepage]
-        except Exception as e:
+        except Exception:
             # Handle unexpected errors
             return []
         

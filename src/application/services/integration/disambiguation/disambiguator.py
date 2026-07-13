@@ -5,18 +5,14 @@ from application.services.integration.disambiguation.proxy import decision_agree
 from application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
 from application.services.integration.disambiguation.issues import generate_github_body, generate_context, generate_conflict_file
 from application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash, append_dict_to_jsonl
-from application.services.integration.disambiguation.manual_annotation_lookup import find_previous_annotation_for_conflict
-from application.services.integration.disambiguation.results import build_disambiguated_record_after_human
 from infrastructure.config import PipelineConfig
 
 import json
 import logging
 import os
 import copy
-import sys
 
 
-from pprint import pprint
 from datetime import datetime, timezone
 
 

@@ -1,11 +1,7 @@
 
 import json
-from bson import json_util
 from pydantic import BaseModel
 from datetime import datetime
-from bson import ObjectId
-from pydantic.json import pydantic_encoder
-from domain.models.software_instance.main import instance
 from domain.models.software_instance.multitype_instance import multitype_instance
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
@@ -110,7 +106,7 @@ def save_entry(metadata):
             document=metadata
         )
 
-    except Exception as e:
+    except Exception:
         print(f"Error saving entry {metadata['_id']}.")
         pretty_print_model(metadata)
         raise
@@ -145,23 +141,20 @@ def merge_and_save_blocks(disambiguated_blocks_file):
             if value.get("resolution") == "no_conflict" or value.get("resolution") == "merged":
                 entry = merge_entries(value.get("merged_entries"))
                 db_entry = prepare_for_db(entry, value.get("merged_entries"))
-                db_id = save_entry(db_entry)
-                #print(f"Entry {key} saved in db with id {db_id}.")
+                save_entry(db_entry)
                 summary['n_processed'] += 1
                 summary['n_inserted_entries'] += 1
 
             elif value.get("resolution") == "partial":
                 entry = merge_entries(value.get("merged_entries"))
                 db_entry = prepare_for_db(entry, value.get("merged_entries"))
-                db_id = save_entry(db_entry)
-                #print(f"Entry {key} saved in db with id {db_id}.")
+                save_entry(db_entry)
                 summary['n_inserted_entries'] += 1
 
                 if len(value.get("unmerged_entries"))==1:
                     entry = merge_entries(value.get("unmerged_entries"))
                     db_entry = prepare_for_db(entry, value.get("unmerged_entries"))
-                    db_id = save_entry(db_entry)
-                    #print(f"Entry {key} saved in db with id {db_id}.")
+                    save_entry(db_entry)
                     summary['n_inserted_entries'] += 1
                 
                 summary['n_processed'] += 1

@@ -3,7 +3,7 @@ from domain.models.software_instance.main import software_types, operating_syste
 from domain.models.software_instance.recognition import type_contributor
 from domain.models.software_instance.repository import repository_kind
 
-from pydantic import HttpUrl
+from pydantic import HttpUrl, AnyUrl
 
 class TestTransform:
 
@@ -120,11 +120,12 @@ class TestTransform:
         assert instance.description == ['Automated homology modeling server. The method uses an effective consensus strategy by combining PSI-BLAST, IMPALA, and T-Coffee in both template selection and target-template alignment. The final three dimensional structure is built using the modeling package MODELLER.']
         assert [item.model_dump() for item in instance.publication] == [] # publications are processed separately
         assert instance.test == False
+        # The SPDX url is filled in later, by the license-normalization stage.
         assert [item.model_dump() for item in  instance.license] == [{
                                                                         'name': 'MIT',
-                                                                        'url': HttpUrl('https://spdx.org/licenses/MIT.html'),
+                                                                        'url': None,
                                                                     }]
-        assert [item.model_dump() for item in  instance.documentation ] == [{'type':'general', 'url': HttpUrl('http://ps2v3.life.nctu.edu.tw/help.php'), 'content': None}]
+        assert [item.model_dump() for item in  instance.documentation ] == [{'type':'general', 'url': AnyUrl('http://ps2v3.life.nctu.edu.tw/help.php'), 'content': None}]
         assert instance.operating_system == [operating_systems.Linux, operating_systems.Windows, operating_systems.macOS]
         assert [item.model_dump() for item in  instance.repository] == [{ 
                                                                             'url': HttpUrl('https://github.com/bene51/3Dscripts'),

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, field_validator, HttpUrl, model_validator
+from pydantic import BaseModel, field_validator, HttpUrl, model_validator
 from enum import Enum
 from typing import Optional
 import re

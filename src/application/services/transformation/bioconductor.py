@@ -169,8 +169,8 @@ class bioconductorStandardizer(MetadataStandardizer):
 
             # validate email and drop if invalid
             try:
-                user = User(email=email)
-            except ValidationError as e:
+                User(email=email)  # raises if invalid
+            except ValidationError:
                 return None
             else:
                 return email          

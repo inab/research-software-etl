@@ -32,7 +32,7 @@ def decision_agreement_proxy(messages: str, clients: ExternalClients) -> dict:
     result_mixtral, meta_mixtral = clients.openrouter.query(messages, model=MIXTRAL_MODEL)
     try:
         result_mixtral = parse_result(result_mixtral)
-    except Exception as e:
+    except Exception:
         result_mixtral = {}
     
     # agreement

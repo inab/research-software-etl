@@ -1,8 +1,15 @@
 import pytest
 from dotenv import load_dotenv
 load_dotenv()
-from application.use_cases.transformation.main import process_publications 
+from application.use_cases.transformation.main import process_publications
+from infrastructure.config import PipelineConfig
 
+# These exercise the real publications collection: they look up each publication
+# and insert it if it isn't there yet. They need a live database and they WRITE
+# to it, so they are manual-only. Run with `pytest -m manual`.
+
+
+@pytest.mark.manual
 def test_process_publications_with_publications_biotools():
     entry = {
         '_id': 'biotools/genehub-gepis/web/None',
@@ -59,13 +66,14 @@ def test_process_publications_with_publications_biotools():
         '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/pipelines/120778'
     }
     source = "biotools"
-    result = process_publications(entry, source)
+    result = process_publications(entry, source, PipelineConfig.from_env())
     print(f"Resulting IDs: {result}")
     assert len(result) > 0
 
 
 
 
+@pytest.mark.manual
 def test_process_publications_with_publications_bioconda_recipes():
     entry = {
         '_id': 'bioconda_recipes/bioconductor-genomicfiles/lib/1.38.0',
@@ -146,6 +154,6 @@ def test_process_publications_with_publications_bioconda_recipes():
         '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/biconda-importer/-/pipelines/120716'
     }
     source = "bioconda_recipes"
-    result = process_publications(entry, source)
+    result = process_publications(entry, source, PipelineConfig.from_env())
     print(f"Resulting IDs: {result}")
     assert len(result) > 0

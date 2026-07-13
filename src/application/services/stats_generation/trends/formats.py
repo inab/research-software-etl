@@ -1,11 +1,7 @@
 from datetime import datetime
 from typing import List, Dict, Any
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from collections import Counter
-from collections import defaultdict
-from pprint import pprint
 
-import re
 
 
 

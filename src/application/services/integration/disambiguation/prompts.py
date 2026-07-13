@@ -6,7 +6,6 @@ from typing import List
 from jinja2 import Template
 from functools import lru_cache
 from pathlib import Path
-from pprint import pprint
 
 from application.services.integration.disambiguation.utils import get_pub
 

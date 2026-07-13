@@ -3,7 +3,6 @@ import logging
 from dotenv import load_dotenv
 
 
-from dotenv import load_dotenv
 
 logger = logging.getLogger("rs-etl-pipeline")
 
