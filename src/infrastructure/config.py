@@ -134,6 +134,10 @@ class PipelineConfig:
     pretools_collection: str = "pretoolsDev"
     publications_collection: str = "publicationsMetadataDev"
     tools_collection: str = "toolsDev"
+    licenses_mapping_collection: str = "licensesMapping"
+    computations_collection: str = "computationsDev"
+    similarities_collection: str = "similaritiesDev"
+    web_availability_collection: str = "webAvailabilityDev"
 
     # --- Per-run stage artifacts (the orchestrator passes these as CLI flags,
     #     pointing into data/integration/runs/<run_id>/) ---
@@ -192,6 +196,14 @@ class PipelineConfig:
                 "PUBLICATIONS_COLLECTION", "publicationsMetadataDev"
             ),
             tools_collection=os.getenv("MONGO_TOOLS_COLL", "toolsDev"),
+            licenses_mapping_collection=os.getenv(
+                "LICENSES_MAPPING", "licensesMapping"
+            ),
+            computations_collection=os.getenv("COMPUTATIONS", "computationsDev"),
+            similarities_collection=os.getenv("SIMILARITIES", "similaritiesDev"),
+            web_availability_collection=os.getenv(
+                "MONGO_WEBAV_COLL", "webAvailabilityDev"
+            ),
             group_split_corrections_path=_env_path(
                 "GROUP_SPLIT_CORRECTIONS_FILE",
                 "data/integration/manual_group_split_corrections.json",

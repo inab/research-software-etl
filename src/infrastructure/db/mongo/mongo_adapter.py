@@ -11,12 +11,13 @@ import logging
 from typing import Any, Dict, List, Optional
 from pymongo.errors import NetworkTimeout, AutoReconnect, CursorNotFound
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
-from infrastructure.db.database_adapter import DatabaseAdapter
 
 #from sshtunnel import SSHTunnelForwarder
 logger = logging.getLogger("rs-etl-pipeline")
 
-class MongoDBAdapter(DatabaseAdapter):
+# Satisfies infrastructure.db.database_adapter.DatabaseAdapter structurally.
+# Deliberately not inheriting from it -- see that module's docstring.
+class MongoDBAdapter:
     _client = None
     _tunnel = None  # Keep tunnel alive
     logger.debug("Initializing MongoDBAdapter 1")
