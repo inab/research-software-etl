@@ -17,18 +17,18 @@ from typing import Dict, Any, Optional, List
 from application.services.publications.metadata import create_new_metadata
 from infrastructure.config import PipelineConfig
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
-from infrastructure.db.database_adapter import DatabaseAdapter
+from infrastructure.db.repositories import Repositories
 from application.services.publications.publication_standardizer_factory import StandardizerFactory
 from application.services.publications.publication_extractor_factory import ExtractorFactory
 
 logger = logging.getLogger("rs-etl-pipeline")
 
 
-def publication_in_collection(publication: Dict[str, Any], publications_repo: DatabaseAdapter) -> Optional[str]:
+def publication_in_collection(publication: Dict[str, Any], publications_repo: MongoPublicationRepository) -> Optional[str]:
     '''
     Checks if the publication is already in the publications collection.
     - publication: publication to be checked
-    - db_adapter: database adapter
+    - publications_repo: the publications collection
     '''
     # Check doi
     if publication.get('doi'):
@@ -65,13 +65,13 @@ def publication_in_collection(publication: Dict[str, Any], publications_repo: Da
 
 def add_publication(
     publication: Dict[str, Any],
-    publications_repo: DatabaseAdapter,
+    publications_repo: MongoPublicationRepository,
     config: PipelineConfig,
 ) -> str:
     '''
     Add a publication to the publications collection.
     - publication: publication to be added
-    - db_adapter: database adapter
+    - publications_repo: the publications collection
     - config: run provenance for the entry metadata
     '''
     # Generate entry metadata
@@ -92,8 +92,9 @@ def standardize_publications(
     publications_ids,
     raw_publication_dict: Dict[str, Any],
     config: PipelineConfig,
+    repos: Repositories,
 ) -> List[str]:
-    publications_repo = MongoPublicationRepository(config.publications_collection)
+    publications_repo = repos.publications
 
     # Parse the entry
     publication_standardizer = StandardizerFactory.get_standardizer(source_name)

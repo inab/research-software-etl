@@ -2,13 +2,21 @@ from __future__ import annotations
 
 from typing import Any, Iterable
 
-from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+from infrastructure.db.database_adapter import DatabaseAdapter
 
 
 class MongoPublicationRepository:
-    def __init__(self, collection_name: str = "publicationsMetadataDev") -> None:
-        self.mongo_db = MongoDBAdapter()
+    def __init__(
+        self,
+        db_adapter: DatabaseAdapter,
+        collection_name: str = "publicationsMetadataDev",
+    ) -> None:
+        self.mongo_db = db_adapter
         self.collection_name = collection_name
+
+    def get_by_id(self, identifier: Any):
+        """Find a publication metadata entry by its identifier."""
+        return self.mongo_db.fetch_entry(self.collection_name, identifier)
 
     def find_by_doi(self, doi: str):
         """Find a publication metadata entry by DOI."""

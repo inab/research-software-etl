@@ -16,9 +16,8 @@ corresponding helper modules and specialized services.
 import logging
 from typing import List, Dict
 from infrastructure.config import PipelineConfig
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.repositories import Repositories
 from application.use_cases.transformation.publications_processing import extract_publications, standardize_publications
-from infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
 from application.use_cases.transformation.software_metadata_processing import standardize_entry, save_entry
 
 logger = logging.getLogger("rs-etl-pipeline")
@@ -52,7 +51,7 @@ def setup_logging(loglevel: int):
     return
 
 
-def process_publications(entry: Dict, source: str, config: PipelineConfig):
+def process_publications(entry: Dict, source: str, config: PipelineConfig, repos: Repositories):
     '''
     TODO: test this function
     '''
@@ -64,16 +63,16 @@ def process_publications(entry: Dict, source: str, config: PipelineConfig):
         if len(publications) > 0:
             logger.debug(f"Found {len(publications)} publications for entry {entry['_id']}")
             for publication in publications:
-                publications_ids = standardize_publications(source, publications_ids, publication, config)
+                publications_ids = standardize_publications(source, publications_ids, publication, config, repos)
                 logger.debug(f"Id of publication: {publications_ids}")
 
     return list(publications_ids)
 
 
-def process_raw_entry(raw_entry, source, config: PipelineConfig):
+def process_raw_entry(raw_entry, source, config: PipelineConfig, repos: Repositories):
 
     # Process publication metadata in the entry and push publications to the appropriate collection
-    publication_ids = process_publications(raw_entry, source, config)
+    publication_ids = process_publications(raw_entry, source, config, repos)
 
     # Standardize software metadata in the entry
     raw_identifier = get_identifier(raw_entry)
@@ -87,19 +86,20 @@ def process_raw_entry(raw_entry, source, config: PipelineConfig):
         software_metadata_dict['publication'] = publication_ids
 
         # Save the entry in the database
-        save_entry(software_metadata_dict, raw_entry, config)
+        save_entry(software_metadata_dict, raw_entry, config, repos)
 
     return
 
 
 
-def process_source(source: str, config: PipelineConfig):
+def process_source(source: str, config: PipelineConfig, repos: Repositories):
     """
     Process each data source by retrieving and transforming data.
 
     Args:
         source (str): The data source to process.
         config (PipelineConfig): collections and paths for this run.
+        repos (Repositories): the collections this stage reads and writes.
 
     This function logs the start of the data transformation, retrieves the raw data, and
     processes each entry if data is found. Logs if no data is found.
@@ -107,8 +107,7 @@ def process_source(source: str, config: PipelineConfig):
 
     try:
         logger.info(f"Starting transformation of data from {source}")
-        alambique_repo = RawSoftwareMetadataRepository(mongo_adapter, config.alambique_collection)
-        raw_data = alambique_repo.get_raw_documents_from_source(source)
+        raw_data = repos.alambique.get_raw_documents_from_source(source)
 
         # checking if first batch has data
         try:
@@ -121,12 +120,12 @@ def process_source(source: str, config: PipelineConfig):
 
         # first batch
         for raw_entry in first_batch:
-            process_raw_entry(raw_entry, source, config)
+            process_raw_entry(raw_entry, source, config, repos)
 
         # remaining batches
         for batch in raw_data:
             for raw_entry in batch:
-                process_raw_entry(raw_entry, source, config)
+                process_raw_entry(raw_entry, source, config, repos)
 
     except Exception as e:
         logger.error(f"An error occurred while processing source {source}: {e}")
@@ -150,16 +149,15 @@ sources = [
 
 
 
-def transform_sources(sources: List[str], config: PipelineConfig, **kwargs):
+def transform_sources(sources: List[str], config: PipelineConfig, repos: Repositories, **kwargs):
     """
     Main function to orchestrate the transformation process for multiple sources.
 
     Args:
         sources (List[str]): A list of data sources to process.
         config (PipelineConfig): collections and paths for this run.
+        repos (Repositories): the collections this stage reads and writes.
         **kwargs: Arbitrary keyword arguments.
-
-    This function processes each source using a database adapter.
     """
     for source in sources:
-        process_source(source, config)
+        process_source(source, config, repos)

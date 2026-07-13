@@ -18,9 +18,8 @@ from application.services.enrich_publications.publication_enrichment_service imp
 from application.use_cases.enrich_publications.enrich_publications_collection import (
     EnrichPublicationCollectionUseCase,
 )
-from infrastructure.db.mongo.publications_repository import (
-    MongoPublicationRepository,
-)
+from infrastructure.config import PipelineConfig
+from infrastructure.db.repositories import Repositories
 from infrastructure.external.europe_pmc import EuropePmcClient
 from infrastructure.storage.jsonl import JsonlPublicationEnrichmentCache
 
@@ -96,7 +95,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 
-    publication_repository = MongoPublicationRepository()
+    repos = Repositories.from_config(PipelineConfig.from_env())
+    publication_repository = repos.publications
     enrichment_cache = JsonlPublicationEnrichmentCache(args.jsonl_path)
     enrichment_service = PublicationEnrichmentService(
         europe_pmc_client=EuropePmcClient(),

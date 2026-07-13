@@ -21,9 +21,8 @@ from application.use_cases.enrich_publications.resolve_missing_publication_doi i
 from application.services.resolve_publication_doi.crossref_doi_resolution_service import (
     CrossrefDoiResolutionService,
 )
-from infrastructure.db.mongo.publications_repository import (
-    MongoPublicationRepository,
-)
+from infrastructure.config import PipelineConfig
+from infrastructure.db.repositories import Repositories
 
 
 def parse_args() -> argparse.Namespace:
@@ -73,7 +72,8 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
-    publication_repository = MongoPublicationRepository()
+    repos = Repositories.from_config(PipelineConfig.from_env())
+    publication_repository = repos.publications
     doi_resolution_service = CrossrefDoiResolutionService(mailto=args.mailto)
 
     use_case = ResolveMissingPublicationDoiUseCase(

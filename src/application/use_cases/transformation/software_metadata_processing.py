@@ -17,7 +17,7 @@ from application.services.transformation.standardizers_factory import MetadataSt
 from application.services.transformation.metadata import create_new_metadata, update_existing_metadata
 from domain.models.metadata import Metadata
 from infrastructure.config import PipelineConfig
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.repositories import Repositories
 
 
 logger = logging.getLogger("rs-etl-pipeline")
@@ -55,21 +55,21 @@ def standardize_entry(identifier: str,  raw: Dict, source: str) -> List[Dict]:
     return(tools_dicts)
 
 
-def generate_metadata(raw_entry, identifier, config: PipelineConfig):
+def generate_metadata(raw_entry, identifier, config: PipelineConfig, repos: Repositories):
     """
-    Generate or update metadata for a given identifier using a database adapter.
+    Generate or update metadata for a given identifier.
 
-    This function checks if metadata for a given identifier exists in the pretools collection of a database. If the metadata exists, it is updated using the current metadata; if it does not exist, new metadata is created. The operation uses various helper functions and methods from the DatabaseAdapter to check existence, retrieve existing metadata, and to update or create metadata.
+    If the entry already exists in the pretools collection its metadata is updated; otherwise new metadata is created.
 
     Args:
         identifier (str): The unique identifier for which metadata is to be generated or updated.
         config (PipelineConfig): collections and run provenance.
+        repos (Repositories): the collections this stage reads and writes.
 
     Returns:
         Metadata: An instance of the Metadata class containing the generated or updated metadata.
     """
-    pretools = config.pretools_collection
-    entry_exists_db = mongo_adapter.entry_exists(pretools, identifier)
+    entry_exists_db = repos.pretools.exists(identifier)
 
     if entry_exists_db == False:
         source_url = raw_entry.get('@source_url', None)
@@ -84,7 +84,7 @@ def generate_metadata(raw_entry, identifier, config: PipelineConfig):
             config.ci,
         )
     else:
-        existing_metadata  = mongo_adapter.get_entry_metadata(pretools, identifier)
+        existing_metadata = repos.pretools.get_metadata(identifier)
         #logger.debug(f"Updating metadata for entry {identifier}")
         # _id must become id
         existing_metadata['id'] = existing_metadata.pop('_id')
@@ -97,7 +97,7 @@ def generate_metadata(raw_entry, identifier, config: PipelineConfig):
 
 
 
-def save_entry(software_metadata_dict, raw_entry, config: PipelineConfig):
+def save_entry(software_metadata_dict, raw_entry, config: PipelineConfig, repos: Repositories):
     '''
     Save the entry in the database
     '''
@@ -113,31 +113,25 @@ def save_entry(software_metadata_dict, raw_entry, config: PipelineConfig):
 
     identifier = f'{source}/{name}/{type}/{version}'
 
-    entry_metadata = generate_metadata(raw_entry, identifier, config)
+    entry_metadata = generate_metadata(raw_entry, identifier, config, repos)
 
     # Push to the database
     try:
-        push_to_db(software_metadata_dict, entry_metadata, identifier, config)
+        push_to_db(software_metadata_dict, entry_metadata, identifier, repos)
     except Exception as e:
         logger.error(f"An error occurred while saing to database {identifier}: {e}")
 
     return
 
 
-def push_to_db(software_metadata_dict, entry_metadata, identifier, config: PipelineConfig):
-
-    pretools = config.pretools_collection
+def push_to_db(software_metadata_dict, entry_metadata, identifier, repos: Repositories):
 
     try:
         # Build the entry merging entry metadata and content (software metadata)
         document = entry_metadata
         document['data'] = software_metadata_dict
 
-        # Update or insert in database
-        if mongo_adapter.entry_exists(pretools, identifier):
-            mongo_adapter.update_entry(pretools, identifier, document)
-        else:
-            mongo_adapter.insert_one(pretools, document)
+        repos.pretools.upsert(identifier, document)
 
     except Exception as e:
         logger.error(f"An error occurred while processing entry {identifier}: {e}")

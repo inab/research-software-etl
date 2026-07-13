@@ -3,7 +3,7 @@ from bson import json_util
 
 from infrastructure.config import PipelineConfig
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from infrastructure.db.mongo.standardized_software_repository import StdSoftwareMetaRepository
+from infrastructure.db.mongo.standardized_software_repository import PretoolsRepository
 from application.services.integration.group_entries import group_by_key_with_links
 from application.services.integration.entries_recovery import recover_shared_name_link
 from application.services.integration.group_split_corrections import apply_manual_split_corrections
@@ -16,10 +16,10 @@ def fetch_pretools(config: PipelineConfig):
     Get all entries from the pretools collection.
     Returns a list of dictionaries with the data field of each entry.
     """
-    std_software_repo = StdSoftwareMetaRepository(mongo_adapter, config.pretools_collection)
+    std_software_repo = PretoolsRepository(mongo_adapter, config.pretools_collection)
 
     logger.debug(f"Fetching entries from {config.pretools_collection} collection")
-    raw_entries = std_software_repo.get_standardized_software_data()
+    raw_entries = std_software_repo.get_all()
 
     entries = []
     

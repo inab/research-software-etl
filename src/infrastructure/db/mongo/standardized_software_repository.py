@@ -1,26 +1,42 @@
-# This adapter translates DB logic into domain logic from infrastructure.mongo_adapter import MongoDBAdapter
-# THis repository connects to the pretools collection and performs specific operations on it.
+# This repository connects to the pretools collection and performs specific operations on it.
 
-from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
-from domain.models.database_entries import PretoolsEntryModel
-from pydantic import ValidationError
 import logging
+
+from pydantic import ValidationError
+
+from domain.models.database_entries import PretoolsEntryModel
+from infrastructure.db.database_adapter import DatabaseAdapter
 
 logger = logging.getLogger("rs-etl-pipeline")
 
-class StdSoftwareMetaRepository:
-    def __init__(self, db_adapter: MongoDBAdapter, collection_name: str = "pretoolsDev"):
+
+class PretoolsRepository:
+    def __init__(self, db_adapter: DatabaseAdapter, collection_name: str = "pretoolsDev"):
         self.db_adapter = db_adapter
         self.collection_name = collection_name
 
-
-    def get_standardized_software_data(self):
+    def get_all(self):
         logger.info('Fetching standardized software data from the pretools collection')
-        query = {}
-        standardized_software_data = self.db_adapter.fetch_entries(self.collection_name, query)
+        standardized_software_data = self.db_adapter.fetch_entries(self.collection_name, {})
         logger.debug('Software obtained')
         return standardized_software_data
 
+    def get_by_id(self, entry_id: str):
+        """Return the full pretools entry with this id, or None."""
+        return self.db_adapter.fetch_entry(self.collection_name, {"_id": entry_id})
+
+    def exists(self, identifier: str) -> bool:
+        return self.db_adapter.entry_exists(self.collection_name, identifier)
+
+    def get_metadata(self, identifier: str):
+        """Return the entry with this identifier, without its `data` field."""
+        return self.db_adapter.get_entry_metadata(self.collection_name, identifier)
+
+    def upsert(self, identifier: str, document: dict):
+        """Update the entry if it is already there, insert it otherwise."""
+        if self.exists(identifier):
+            return self.db_adapter.update_entry(self.collection_name, identifier, document)
+        return self.db_adapter.insert_one(self.collection_name, document)
 
     def validate_standardized_software_data(self, documents):
         """
@@ -33,22 +49,17 @@ class StdSoftwareMetaRepository:
 
         Returns:
             list of dict: A list containing the dictionary representations of all successfully validated documents. Documents that fail validation are not included.
-
-        Raises:
-            ValidationError: If a document fails validation, it logs the specific error and continues with the next document. This function itself does not raise the exception but handles it internally.
-
         """
         validated_documents = []
         for doc in documents:
             try:
                 validated_doc = PretoolsEntryModel(metadata=doc, data=doc['data'])
-                validated_documents.append(validated_doc.dict)
+                validated_documents.append(validated_doc.dict())
             except ValidationError as ve:
                 logger.error(f"Data validation failed for {doc}: {ve}")
-                continue  
+                continue
 
         return validated_documents
-
 
     def get_bioconda_types(self):
         '''
@@ -56,13 +67,13 @@ class StdSoftwareMetaRepository:
         '''
         bioconda_types = {}
         try:
-            
-            biocondaCursor = self.fetch_entries(self.collection_name, {'data.source': ['bioconda']}, {'data.name': 1, 'data.type': 1, '_id': 0})
-        except:
+            bioconda_entries = self.db_adapter.fetch_entries(
+                self.collection_name, {'data.source': ['bioconda']}
+            )
+        except Exception:
             logger.error('while generating bioconda_types: could not connect to the pretools collection')
         else:
-            for tool in biocondaCursor:
+            for tool in bioconda_entries:
                 bioconda_types[tool['data']['name']] = tool['data']['type']
 
-
-        return(bioconda_types)
+        return bioconda_types
