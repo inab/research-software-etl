@@ -2,8 +2,7 @@ import logging
 from bson import json_util
 
 from infrastructure.config import PipelineConfig
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-from infrastructure.db.mongo.standardized_software_repository import PretoolsRepository
+from infrastructure.db.repositories import Repositories
 from application.services.integration.group_entries import group_by_key_with_links
 from application.services.integration.entries_recovery import recover_shared_name_link
 from application.services.integration.group_split_corrections import apply_manual_split_corrections
@@ -11,15 +10,13 @@ from application.services.integration.group_split_corrections import apply_manua
 logger = logging.getLogger("rs-etl-pipeline")
 
 
-def fetch_pretools(config: PipelineConfig):
+def fetch_pretools(config: PipelineConfig, repos: Repositories):
     """
     Get all entries from the pretools collection.
     Returns a list of dictionaries with the data field of each entry.
     """
-    std_software_repo = PretoolsRepository(mongo_adapter, config.pretools_collection)
-
     logger.debug(f"Fetching entries from {config.pretools_collection} collection")
-    raw_entries = std_software_repo.get_all()
+    raw_entries = repos.pretools.get_all()
 
     entries = []
     
@@ -40,12 +37,13 @@ def write_json_util(file_name, data):
         f.write(s)
 
 
-def grouping_and_recovery_process(config: PipelineConfig):
+def grouping_and_recovery_process(config: PipelineConfig, repos: Repositories):
     '''
     Group entries from the pretools collection and recover shared entries.
 
     Args:
     - config (PipelineConfig): collections and paths for this run.
+    - repos (Repositories): the collections this stage reads and writes.
 
     Write the grouped entries to a JSON file.
     '''
@@ -53,7 +51,7 @@ def grouping_and_recovery_process(config: PipelineConfig):
     # 1. Fetch entries from the pretools collection
     # ==================================================
     logger.info('Fetching entries from pretools')
-    entries = fetch_pretools(config)
+    entries = fetch_pretools(config, repos)
 
     # ==================================================
     # 2. Group entries referring to the same software

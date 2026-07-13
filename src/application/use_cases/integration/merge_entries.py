@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from domain.models.software_instance.multitype_instance import multitype_instance
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.repositories import Repositories
 
 def pretty_print_model(model: BaseModel) -> None:
     print(model.model_dump_json(indent=4))
@@ -34,18 +34,8 @@ def merge_instances(instances):
     return merged_instances 
         
 
-def fetch_entry_from_db(entry_id):
-    query = {
-        "_id": entry_id
-    }
-    entry = mongo_adapter.fetch_entry(
-        collection_name='pretoolsDev',
-        query=query
-    ) 
-    if entry:
-        return entry
-    else:
-        return None
+def fetch_entry_from_db(entry_id, repos: Repositories):
+    return repos.pretools.get_by_id(entry_id)
 
 
 
@@ -67,9 +57,9 @@ def prepare_for_db(entry, entries_ids):
     return db_entry
 
 
-def merge_entries(entries_ids):
+def merge_entries(entries_ids, repos: Repositories):
     # retrieve full entries from db
-    entries = [fetch_entry_from_db(entry) for entry in entries_ids]
+    entries = [fetch_entry_from_db(entry, repos) for entry in entries_ids]
     # Put type in list and validate entries as multitype_instance
     if bool(entries) == False:
         print("No entries")
@@ -92,7 +82,7 @@ def merge_entries(entries_ids):
     return merged_entries
 
 
-def save_entry(metadata):    
+def save_entry(metadata, repos: Repositories):
     """
     WARNING: this function inserts the entries in the db even if the entry is already there.
     This is because it is for the first time we are merging the entries.
@@ -101,10 +91,7 @@ def save_entry(metadata):
     update it instead of inserting it again. Add metadata to reflect updates in it. 
     """
     try:
-        id = mongo_adapter.insert_one(
-            collection_name='toolsDev',
-            document=metadata
-        )
+        id = repos.tools.insert(metadata)
 
     except Exception:
         print(f"Error saving entry {metadata['_id']}.")
@@ -115,7 +102,7 @@ def save_entry(metadata):
         return id
     
 
-def merge_and_save_blocks(disambiguated_blocks_file):
+def merge_and_save_blocks(disambiguated_blocks_file, repos: Repositories):
     '''
     Merge entries if:
         - resolution == merged or resolution == no_conflict:
@@ -139,22 +126,22 @@ def merge_and_save_blocks(disambiguated_blocks_file):
     for key, value in disambiguated_blocks.items():
         try:
             if value.get("resolution") == "no_conflict" or value.get("resolution") == "merged":
-                entry = merge_entries(value.get("merged_entries"))
+                entry = merge_entries(value.get("merged_entries"), repos)
                 db_entry = prepare_for_db(entry, value.get("merged_entries"))
-                save_entry(db_entry)
+                save_entry(db_entry, repos)
                 summary['n_processed'] += 1
                 summary['n_inserted_entries'] += 1
 
             elif value.get("resolution") == "partial":
-                entry = merge_entries(value.get("merged_entries"))
+                entry = merge_entries(value.get("merged_entries"), repos)
                 db_entry = prepare_for_db(entry, value.get("merged_entries"))
-                save_entry(db_entry)
+                save_entry(db_entry, repos)
                 summary['n_inserted_entries'] += 1
 
                 if len(value.get("unmerged_entries"))==1:
-                    entry = merge_entries(value.get("unmerged_entries"))
+                    entry = merge_entries(value.get("unmerged_entries"), repos)
                     db_entry = prepare_for_db(entry, value.get("unmerged_entries"))
-                    save_entry(db_entry)
+                    save_entry(db_entry, repos)
                     summary['n_inserted_entries'] += 1
                 
                 summary['n_processed'] += 1
@@ -175,6 +162,3 @@ def merge_and_save_blocks(disambiguated_blocks_file):
 
 
 
-if __name__ == '__main__':
-    file_path = '/Users/evabsc/projects/software-observatory/research-software-etl/scripts/data/grouped_entries.json'
-    merge_and_save_blocks(file_path)

@@ -17,6 +17,8 @@ from __future__ import annotations
 import copy
 from typing import Any, Dict, Iterator, List, Optional
 
+from bson import ObjectId
+
 from infrastructure.db.mongo.license_mapping_repository import LicenseMappingRepository
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
 from infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
@@ -137,7 +139,11 @@ class FakeDatabaseAdapter:
         document = copy.deepcopy(document)
         if "id" in document:
             document["_id"] = document.pop("id")
-        identifier = document.get("_id")
+        # MongoDB mints an _id when the document has none -- the merge stage
+        # relies on it, inserting documents that carry only `source` and `data`.
+        if document.get("_id") is None:
+            document["_id"] = ObjectId()
+        identifier = document["_id"]
         self._collection(collection_name)[identifier] = document
         return identifier
 

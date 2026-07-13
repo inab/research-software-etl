@@ -27,6 +27,16 @@ def test_insert_one_renames_id_like_the_real_adapter(db):
     assert db.fetch_entry("tools", {"_id": "tool-1"})["data"]["name"] == "x"
 
 
+def test_insert_one_mints_an_id_when_the_document_has_none(db):
+    """The merge stage inserts documents carrying only `source` and `data`;
+    MongoDB mints an _id for each, so two such inserts must not collide."""
+    first = db.insert_one("tools", {"source": ["a"], "data": {"name": "x"}})
+    second = db.insert_one("tools", {"source": ["b"], "data": {"name": "y"}})
+
+    assert first != second
+    assert len(db.fetch_entries("tools", {})) == 2
+
+
 def test_bare_identifier_is_treated_as_an_id_filter(db):
     """PyMongo treats a non-Mapping filter as an _id, and get_pub relies on it."""
     assert db.fetch_entry("pretools", "bioconda/abyss/cmd/2.0")["data"]["name"] == "abyss"

@@ -49,10 +49,17 @@ def main():
     load_dotenv(args.env_file)
 
     from application.use_cases.integration.merge_entries import merge_and_save_blocks
+    from infrastructure.config import PipelineConfig
+    from infrastructure.db.repositories import Repositories
 
-    logger.info(f"Disambiguated blocks file: {args.disambiguated_blocks_file}")
+    config = PipelineConfig.from_env(
+        disambiguated_blocks_path=args.disambiguated_blocks_file
+    )
+    repos = Repositories.from_config(config)
+
+    logger.info(f"Disambiguated blocks file: {config.disambiguated_blocks_path}")
     logger.info("Merging entries...")
-    summary = merge_and_save_blocks(args.disambiguated_blocks_file)
+    summary = merge_and_save_blocks(config.disambiguated_blocks_path, repos)
     print_summary(summary)
     logger.info("Merging finished!")
 
