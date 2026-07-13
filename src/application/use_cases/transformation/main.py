@@ -13,9 +13,9 @@ corresponding helper modules and specialized services.
 """ 
 
 
-import os
-import logging 
+import logging
 from typing import List, Dict
+from infrastructure.config import PipelineConfig
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from application.use_cases.transformation.publications_processing import extract_publications, standardize_publications
 from infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
@@ -52,7 +52,7 @@ def setup_logging(loglevel: int):
     return
 
 
-def process_publications(entry: Dict, source: str):
+def process_publications(entry: Dict, source: str, config: PipelineConfig):
     '''
     TODO: test this function
     '''
@@ -64,51 +64,51 @@ def process_publications(entry: Dict, source: str):
         if len(publications) > 0:
             logger.debug(f"Found {len(publications)} publications for entry {entry['_id']}")
             for publication in publications:
-                publications_ids = standardize_publications(source, publications_ids, publication)
+                publications_ids = standardize_publications(source, publications_ids, publication, config)
                 logger.debug(f"Id of publication: {publications_ids}")
 
     return list(publications_ids)
 
 
-def process_raw_entry(raw_entry, source):
+def process_raw_entry(raw_entry, source, config: PipelineConfig):
 
     # Process publication metadata in the entry and push publications to the appropriate collection
-    publication_ids = process_publications(raw_entry, source)
+    publication_ids = process_publications(raw_entry, source, config)
 
     # Standardize software metadata in the entry
     raw_identifier = get_identifier(raw_entry)
     software_metadata_dicts = standardize_entry(raw_identifier, raw_entry, source)
 
     # TODO Validate URLs of repositories and webpage
-    # using functions in adapters/http/url_resolver.py 
+    # using functions in adapters/http/url_resolver.py
 
     for software_metadata_dict in software_metadata_dicts:
-        
+
         # Add publication Ids to the dictionary
         software_metadata_dict['publication'] = publication_ids
 
         # Save the entry in the database
-        save_entry(software_metadata_dict, raw_entry)
-    
+        save_entry(software_metadata_dict, raw_entry, config)
+
     return
 
 
 
-def process_source(source: str):
+def process_source(source: str, config: PipelineConfig):
     """
     Process each data source by retrieving and transforming data.
 
     Args:
         source (str): The data source to process.
+        config (PipelineConfig): collections and paths for this run.
 
     This function logs the start of the data transformation, retrieves the raw data, and
     processes each entry if data is found. Logs if no data is found.
     """
-    
 
     try:
-        logger.info(f"Starting transformation of data from {source}")            
-        alambique_repo = RawSoftwareMetadataRepository(mongo_adapter)
+        logger.info(f"Starting transformation of data from {source}")
+        alambique_repo = RawSoftwareMetadataRepository(mongo_adapter, config.alambique_collection)
         raw_data = alambique_repo.get_raw_documents_from_source(source)
 
         # checking if first batch has data
@@ -120,15 +120,15 @@ def process_source(source: str):
 
         logger.debug(f"Transforming raw tools metadata from {source}")
 
-        # first batch 
+        # first batch
         for raw_entry in first_batch:
-            process_raw_entry(raw_entry, source)
+            process_raw_entry(raw_entry, source, config)
 
         # remaining batches
         for batch in raw_data:
             for raw_entry in batch:
-                process_raw_entry(raw_entry, source)
- 
+                process_raw_entry(raw_entry, source, config)
+
     except Exception as e:
         logger.error(f"An error occurred while processing source {source}: {e}")
 
@@ -151,16 +151,16 @@ sources = [
 
 
 
-def transform_sources(sources: List[str], **kwargs):
+def transform_sources(sources: List[str], config: PipelineConfig, **kwargs):
     """
     Main function to orchestrate the transformation process for multiple sources.
 
     Args:
-        loglevel (int): The log level to use across the application. Defaults to logging.WARNING.
-        sources (List[str]): A list of data sources to process. Defaults to the predefined list of sources.
+        sources (List[str]): A list of data sources to process.
+        config (PipelineConfig): collections and paths for this run.
         **kwargs: Arbitrary keyword arguments.
 
-    This function sets up logging and processes each source using a database adapter.
+    This function processes each source using a database adapter.
     """
     for source in sources:
-        process_source(source)
+        process_source(source, config)

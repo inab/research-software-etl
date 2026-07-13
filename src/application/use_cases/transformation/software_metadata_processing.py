@@ -11,20 +11,19 @@ Its role is to ensure that raw source records are converted into the internal
 software metadata representation and stored consistently in the database.
 """
 
-import os
-import logging 
+import logging
 import json
 from typing import List, Dict
 from application.services.transformation.standardizers_factory import MetadataStandardizerFactory
 from application.services.transformation.metadata import create_new_metadata, update_existing_metadata
 from domain.models.metadata import Metadata
+from infrastructure.config import PipelineConfig
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 logger = logging.getLogger("rs-etl-pipeline")
 
-ALAMBIQUE = os.getenv('ALAMBIQUE', 'alambiqueDev')
-PRETOOLS = os.getenv('PRETOOLS', 'pretoolsDev')
+
 def get_identifier(entry: Dict) -> str:
     '''
     Extracts the identifier from a raw entry.
@@ -57,41 +56,49 @@ def standardize_entry(identifier: str,  raw: Dict, source: str) -> List[Dict]:
     return(tools_dicts)
 
 
-def generate_metadata(raw_entry, identifier):
+def generate_metadata(raw_entry, identifier, config: PipelineConfig):
     """
     Generate or update metadata for a given identifier using a database adapter.
 
-    This function checks if metadata for a given identifier exists in the PRETOOLS collection of a database. If the metadata exists, it is updated using the current metadata; if it does not exist, new metadata is created. The operation uses various helper functions and methods from the DatabaseAdapter to check existence, retrieve existing metadata, and to update or create metadata.
+    This function checks if metadata for a given identifier exists in the pretools collection of a database. If the metadata exists, it is updated using the current metadata; if it does not exist, new metadata is created. The operation uses various helper functions and methods from the DatabaseAdapter to check existence, retrieve existing metadata, and to update or create metadata.
 
     Args:
         identifier (str): The unique identifier for which metadata is to be generated or updated.
+        config (PipelineConfig): collections and run provenance.
 
     Returns:
         Metadata: An instance of the Metadata class containing the generated or updated metadata.
     """
-    entry_exists_db = mongo_adapter.entry_exists(PRETOOLS, identifier)
+    pretools = config.pretools_collection
+    entry_exists_db = mongo_adapter.entry_exists(pretools, identifier)
 
     if entry_exists_db == False:
         source_url = raw_entry.get('@source_url', None)
         source_identifier = get_identifier(raw_entry)
         #logger.debug(f"Creating metadata for entry {identifier}")
         #logger.debug(f"Source identifier: {source_identifier}")
-        metadata = create_new_metadata(source_identifier, identifier, source_url, ALAMBIQUE)
+        metadata = create_new_metadata(
+            source_identifier,
+            identifier,
+            source_url,
+            config.alambique_collection,
+            config.ci,
+        )
     else:
-        existing_metadata  = mongo_adapter.get_entry_metadata(PRETOOLS, identifier)
+        existing_metadata  = mongo_adapter.get_entry_metadata(pretools, identifier)
         #logger.debug(f"Updating metadata for entry {identifier}")
-        # _id must become id 
+        # _id must become id
         existing_metadata['id'] = existing_metadata.pop('_id')
         existing_metadata = Metadata(**existing_metadata)
-        metadata = update_existing_metadata(existing_metadata)
-    
+        metadata = update_existing_metadata(existing_metadata, config.ci)
+
     metadata_dict = metadata.model_dump(mode="json")
 
     return metadata_dict
 
 
 
-def save_entry(software_metadata_dict, raw_entry):
+def save_entry(software_metadata_dict, raw_entry, config: PipelineConfig):
     '''
     Save the entry in the database
     '''
@@ -106,19 +113,21 @@ def save_entry(software_metadata_dict, raw_entry):
         version = None
 
     identifier = f'{source}/{name}/{type}/{version}'
-    
-    entry_metadata = generate_metadata(raw_entry, identifier)
 
-    # Push to the database 
+    entry_metadata = generate_metadata(raw_entry, identifier, config)
+
+    # Push to the database
     try:
-        push_to_db(software_metadata_dict, entry_metadata, identifier)
+        push_to_db(software_metadata_dict, entry_metadata, identifier, config)
     except Exception as e:
         logger.error(f"An error occurred while saing to database {identifier}: {e}")
 
     return
 
 
-def push_to_db(software_metadata_dict, entry_metadata, identifier):
+def push_to_db(software_metadata_dict, entry_metadata, identifier, config: PipelineConfig):
+
+    pretools = config.pretools_collection
 
     try:
         # Build the entry merging entry metadata and content (software metadata)
@@ -126,10 +135,10 @@ def push_to_db(software_metadata_dict, entry_metadata, identifier):
         document['data'] = software_metadata_dict
 
         # Update or insert in database
-        if mongo_adapter.entry_exists(PRETOOLS, identifier):
-            mongo_adapter.update_entry(PRETOOLS, identifier, document)
+        if mongo_adapter.entry_exists(pretools, identifier):
+            mongo_adapter.update_entry(pretools, identifier, document)
         else:
-            mongo_adapter.insert_one(PRETOOLS, document)
-    
+            mongo_adapter.insert_one(pretools, document)
+
     except Exception as e:
         logger.error(f"An error occurred while processing entry {identifier}: {e}")

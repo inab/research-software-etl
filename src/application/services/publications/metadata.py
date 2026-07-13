@@ -3,81 +3,66 @@ Functions to create the metadata for the publication entries. To be inserted in 
 - import metadata entity
 - create_metadata
 - return metadata object
-''' 
-import os
+'''
 from datetime import datetime
 from domain.models.publication.metadata import Metadata
-from datetime import datetime
+from infrastructure.config import CIContext
 from typing import Dict
 
-def create_new_metadata() -> Dict:
+
+def create_new_metadata(ci: CIContext = None) -> Dict:
     """
     Creates metadata for a new database entry.
 
-    This function generates metadata for an entry that is not yet in the database. It sets both creation and last updated fields to the current date and time, and it includes URLs for creation and update logs based on the current environment variables.
+    Sets both creation and last updated fields to the current date and time, and
+    records the commit and pipeline the entry came from.
 
     Parameters:
-        identifier (str): The unique identifier for the new entry.
-        collection (str): The collection name associated with the entry.
+        ci (CIContext): provenance of the current run.
 
     Returns:
-        Metadata: A Metadata dictionary with the current date and environment-specific values for a new entry.
-
+        Metadata: A Metadata dictionary with the current date and run-specific values.
     """
+    ci = ci or CIContext()
     current_date = datetime.now().isoformat()
-    commit_url = build_commit_url()
-    pipeline_url = os.getenv("CI_PIPELINE_URL")
-
-    if not pipeline_url:
-        pipeline_url = "local"
-    if not commit_url:
-        commit_url = "https://gitlab.com/evamdpico/research-software-meta/-/tree/4a4cdc3c2076f6f7c920c5de93d9d2563ec5bcba"
 
     metadata = Metadata(
         created_at=current_date,
-        created_by=commit_url,
-        created_logs=pipeline_url,
+        created_by=ci.commit_url(),
+        created_logs=ci.logs_url(),
         last_updated_at=current_date,
-        updated_by=commit_url,
-        updated_logs=pipeline_url
+        updated_by=ci.commit_url(),
+        updated_logs=ci.logs_url()
     )
 
-    metadata_dict = metadata.model_dump()
-
-    return metadata_dict
+    return metadata.model_dump()
 
 
-def update_existing_metadata(identifier: str, existing_metadata: Metadata) -> Metadata:
+def update_existing_metadata(
+    identifier: str, existing_metadata: Metadata, ci: CIContext = None
+) -> Metadata:
     """
     Updates metadata for an existing database entry.
 
-    This function updates the metadata for an existing entry, setting the last updated fields to the current date and time, and updating the URLs for the update logs based on current environment variables.
+    Sets the last updated fields to the current date and time, and records the
+    commit and pipeline of the current run.
 
     Parameters:
         identifier (str): The unique identifier for the existing entry.
         existing_metadata (Metadata): The current metadata object that needs to be updated.
+        ci (CIContext): provenance of the current run.
 
     Returns:
-        Metadata: The updated Metadata object with the new last updated time and URLs for update logs.
-    
-    Example:
-        >>> existing_metadata = Metadata(created_at="2023-01-01T00:00:00Z", created_by="url1", ...)
-        >>> updated_metadata = update_existing_metadata("001", "tools", existing_metadata)
-        >>> print(updated_metadata.last_updated_at)
-        '2023-10-04T14:48:00.123456'
+        Metadata: The updated Metadata object.
     """
-    current_date = datetime.now().isoformat()
-    commit_url = build_commit_url()
+    ci = ci or CIContext()
 
-    existing_metadata.last_updated_at = current_date
-    existing_metadata.updated_by = commit_url
-    existing_metadata.updated_logs = os.getenv("CI_PIPELINE_URL")
-    
+    existing_metadata.last_updated_at = datetime.now().isoformat()
+    existing_metadata.updated_by = ci.commit_url()
+    existing_metadata.updated_logs = ci.logs_url()
+
     return existing_metadata
 
 
-def build_commit_url():
-    CI_PROJECT_NAMESPACE = os.getenv("CI_PROJECT_NAMESPACE")
-    CI_PROJECT_NAME = os.getenv("CI_PROJECT_NAME")
-    CI_COMMIT_SHA = os.getenv("CI_COMMIT_SHA")
-    return f"https://gitlab.bsc.es/{CI_PROJECT_NAMESPACE}/{CI_PROJECT_NAME}/-/commit/{CI_COMMIT_SHA}"
+def build_commit_url(ci: CIContext = None) -> str:
+    return (ci or CIContext()).commit_url()

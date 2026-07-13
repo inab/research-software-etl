@@ -1,135 +1,35 @@
 import logging
-import requests
 import json
 import re
-from tenacity import retry, stop_after_attempt, wait_exponential
 
-from application.services.integration.disambiguation.config import (
-    OR_API_URL,
-    OR_API_KEY,
-    HF_API_URL,
-    HF_API_KEY,
-)
+from infrastructure.external.clients import ExternalClients
 
-
-@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
-def query_openrouter(messages, model):
-    headers = {
-        "Authorization": f"Bearer {OR_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "model": model,
-        "messages": messages,
-        "temperature": 0.2
-    }
-
-    logging.info(f"Sending request to OpenRouter API: {OR_API_URL} with key {OR_API_KEY[:4]}...")
-    
-    response = requests.post(OR_API_URL, json=payload, headers=headers )
-    
-    if response.status_code == 200:
-        try:
-            # main answer 
-            content = response.json()["choices"][0]["message"]["content"].strip()
-            # metadata
-            meta = response.json().get("usage", {})
-            meta['provider'] = response.json().get("provider", "")
-            if content:
-                return content, meta
-        except:
-            logging.warning(response.json())
-    
-    logging.warning(f"API response was empty: {response.status_code} - {response.text}")
-    return '', {}
+# Models the two independent opinions come from. They must disagree for a
+# conflict to escalate to a human, so they are deliberately different families.
+LLAMA_MODEL = "meta-llama/Llama-3.3-70B-Instruct-Turbo"
+LLAMA_PROVIDER = "together"
+MIXTRAL_MODEL = "mistralai/mixtral-8x7b-instruct"
 
 
-
-#@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
-def query_huggingface_new(messages, model, provider):
-    headers = {
-        "Authorization": f"Bearer {HF_API_KEY}",
-    }
-    payload = {
-        "model": model,
-        "messages": messages,
-    }
-     
-    URL = f"https://router.huggingface.co/{provider}/v1/chat/completions"
-    logging.info(f"Sending request to Hugging Face Inference API: {URL} with key {HF_API_KEY[:4]}...")
-    
-    response = requests.post(URL, headers=headers, json=payload)
-    response.raise_for_status()
-
-    if response.status_code == 200:
-        try:
-            # main answer 
-            content = response.json()["choices"][0]["message"]["content"].strip()
-            # metadata
-            meta = response.json().get("usage", {})
-            meta['provider'] = provider
-            if content:
-                return content, meta
-           
-        except Exception as e:
-            logging.warning(f"Parsing error: {e} | Response: {response.json()}")
-            raise
-        
-    logging.warning("API response was empty")
-    return '', {}
-
-def query_huggingface(messages, model):
-    headers = {
-        "Authorization": f"Bearer {HF_API_KEY}",
-        "Content-Type": "application/json"
-    }
-
-    payload = { 
-        "inputs": messages,
-        "parameters": {
-            "temperature": 0.2,
-            "top_p": 0.95,
-            "max_new_tokens": 512,
-            "return_full_text": False
-        }
-    }
-     
-    URL = f"{HF_API_URL}/{model}"
-    #logging.info(f"Sending request to Hugging Face Inference API: {URL} with key {HF_API_KEY[:4]}...")
-    
-    response = requests.post(URL, headers=headers, json=payload)
-    #logging.info(f"API response: {response.json()}")
-    if response.status_code == 200:
-        try:
-            #print(f"Whole response: {response.json()}")
-            output_text = response.json()[0]["generated_text"].strip()
-            return output_text, {}  
-        except Exception as e:
-            logging.warning(f"Parsing error: {e} | Response: {response.json()}")
-        
-    #logging.warning("API response was empty after 3 attempts.")
-    return None
-
-
-def decision_agreement_proxy(messages: str) -> str:
+def decision_agreement_proxy(messages: str, clients: ExternalClients) -> dict:
     """
-    This function takes a message as input and returns the agreement of the models.
-    It uses the `decision_agreement` function from the `decision_agreement` module.
+    Ask two models the same question and report whether they agree.
+
+    Returns the shared verdict when they agree, or {"verdict": "disagreement"}
+    when they don't -- which is what escalates the conflict to a curator.
     """
-    # model 1: Llama 4 Scout
-    #model = "meta-llama/Llama-4-Scout-17B-16E-Instruct"
-    model = "meta-llama/Llama-3.3-70B-Instruct-Turbo"
-    provider = "together"
-    result_llama_4, meta_llama_4 = query_huggingface_new(messages, model=model, provider=provider)
+    # model 1: Llama, via HuggingFace
+    result_llama_4, meta_llama_4 = clients.huggingface.query_chat(
+        messages, model=LLAMA_MODEL, provider=LLAMA_PROVIDER
+    )
     try:
         result_llama_4 = parse_result(result_llama_4)
     except Exception as e:
         logging.warning(f"Parsing error: {e} | Response: {result_llama_4}")
         result_llama_4 = {}
 
-    # model 2: Mixtral 8x7B
-    model = "mistralai/mixtral-8x7b-instruct"
-    result_mixtral, meta_mixtral = query_openrouter(messages, model=model)
+    # model 2: Mixtral 8x7B, via OpenRouter
+    result_mixtral, meta_mixtral = clients.openrouter.query(messages, model=MIXTRAL_MODEL)
     try:
         result_mixtral = parse_result(result_mixtral)
     except Exception as e:

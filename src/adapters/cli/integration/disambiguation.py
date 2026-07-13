@@ -74,21 +74,35 @@ async def main():
     load_dotenv(args.env_file)
 
     from application.use_cases.integration.disambiguation import run_full_disambiguation
+    from infrastructure.config import Credentials, PipelineConfig
+    from infrastructure.external.clients import ExternalClients
 
+    # Read the environment once, here, and hand the results down.
+    config = PipelineConfig.from_env(
+        grouped_json_path=args.blocks_file,
+        conflicts_json_path=args.conflict_blocks_file,
+        disambiguated_blocks_path=args.disambiguated_blocks_file,
+        pair_decisions_path=args.pair_wise_decisions_file,
+    )
+    credentials = Credentials.from_env().require(
+        "github_token", "gitlab_token", "openrouter_api_key", "huggingface_api_key"
+    )
+    clients = ExternalClients.from_credentials(credentials)
 
-    logger.info(f"Blocks file: {args.blocks_file}")
-    logger.info(f"Conflict blocks file: {args.conflict_blocks_file}")
-    logger.info(f"Disambiguated blocks file: {args.disambiguated_blocks_file}")
-    logger.info(f"Pair-wise decisions file: {args.pair_wise_decisions_file}")
+    logger.info(f"Blocks file: {config.grouped_json_path}")
+    logger.info(f"Conflict blocks file: {config.conflicts_json_path}")
+    logger.info(f"Disambiguated blocks file: {config.disambiguated_blocks_path}")
+    logger.info(f"Pair-wise decisions file: {config.pair_decisions_path}")
 
 
     logger.info("Disambiguating entries...")
     await run_full_disambiguation(
-        blocks_file=args.blocks_file,
-        conflict_blocks_file=args.conflict_blocks_file,
-        disambiguated_blocks_file=args.disambiguated_blocks_file,
-        pair_wise_decisions_file=args.pair_wise_decisions_file,
+        blocks_file=config.grouped_json_path,
+        conflict_blocks_file=config.conflicts_json_path,
+        disambiguated_blocks_file=config.disambiguated_blocks_path,
+        pair_wise_decisions_file=config.pair_decisions_path,
         run_id = args.run_id,
+        clients=clients,
         dry_run= args.dry_run
     )
 

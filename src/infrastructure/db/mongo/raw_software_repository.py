@@ -4,9 +4,9 @@ from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 from typing import Dict, Any
 
 class RawSoftwareMetadataRepository:
-    def __init__(self, db_adapter: MongoDBAdapter):
+    def __init__(self, db_adapter: MongoDBAdapter, collection_name: str = "alambiqueDev"):
         self.db_adapter = db_adapter
-        self.collection_name = "alambiqueDev"
+        self.collection_name = collection_name
 
 
     def get_raw_documents_from_source(self,source: str):

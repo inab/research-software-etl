@@ -1,3 +1,4 @@
+from infrastructure.config import PipelineConfig
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from typing import List, Dict, Any
 from datetime import datetime
@@ -5,7 +6,7 @@ from collections import defaultdict
 from typing import List, Dict, Any
 from bson import ObjectId
 from pprint import pprint
-import requests 
+import requests
 import json
 
 def get_pub(object_id):
@@ -143,7 +144,8 @@ def request_fair_calculation(entry) -> None:
     return result['result']
 
 
-def compute_fair_results(tools):
+def compute_fair_results(tools, config: PipelineConfig = None):
+    config = config or PipelineConfig()
     results = []
     publications_records = set()
     for entry in tools:
@@ -234,7 +236,7 @@ def compute_fair_results(tools):
     
         #results.append(result)
     
-        with open('scripts/data/fair_results.jsonl', 'a') as f:
+        with open(config.fair_results_path, 'a') as f:
             f.write(json.dumps(result) + '\n')
 
 

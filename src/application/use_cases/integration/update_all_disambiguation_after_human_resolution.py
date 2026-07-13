@@ -1,7 +1,6 @@
 from application.services.integration.disambiguation.results import build_disambiguated_record_after_human
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl, update_jsonl_record
-import json
-
+from infrastructure.config import PipelineConfig
 
 import json
 import re
@@ -67,17 +66,19 @@ def index_human_annotations_by_issue_url(human_annotations):
 
 def run_disambiguation_after_human_annotation(
     conflict_blocks_file,
-    disambiguated_blocks_file
+    disambiguated_blocks_file,
+    config: PipelineConfig = None
 ):
     print("Starting update of disambiguated blocks after human resolution....")
+
+    config = config or PipelineConfig()
 
     # Load input data
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_file)
     conflict_blocks = load_dict_from_jsonl(conflict_blocks_file)
 
     # Load human annotations as a list of records
-    human_log_path = "human_annotations/human_conflicts_log.jsonl"
-    human_annotations = load_jsonl_as_list(human_log_path)
+    human_annotations = load_jsonl_as_list(config.human_log_path)
     human_by_issue_url = index_human_annotations_by_issue_url(human_annotations)
 
     conflicts_updated = 0

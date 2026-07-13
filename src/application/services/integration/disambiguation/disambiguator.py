@@ -3,13 +3,14 @@ from application.services.integration.disambiguation.conflict_builder import bui
 from application.services.integration.disambiguation.prompts import build_prompt
 from application.services.integration.disambiguation.proxy import decision_agreement_proxy
 from application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
-from application.services.integration.disambiguation.issues import create_github_issue, generate_github_body, generate_context, generate_conflict_file, commit_conflict_json
+from application.services.integration.disambiguation.issues import generate_github_body, generate_context, generate_conflict_file
 from application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash, append_dict_to_jsonl
 from application.services.integration.disambiguation.manual_annotation_lookup import find_previous_annotation_for_conflict
 from application.services.integration.disambiguation.results import build_disambiguated_record_after_human
+from infrastructure.config import PipelineConfig
 
-import json 
-import logging 
+import json
+import logging
 import os
 import copy
 import sys
@@ -20,13 +21,15 @@ from datetime import datetime, timezone
 
 
 
-def log_error(conflict):
-    with open('data/error_conflicts.json', 'a') as f:
+def log_error(conflict, error_conflicts_path=None):
+    error_conflicts_path = error_conflicts_path or PipelineConfig().error_conflicts_path
+    with open(error_conflicts_path, 'a') as f:
         f.write(json.dumps(conflict, indent=4))
 
 
-def log_result(result):
-    with open('data/results.json', 'a') as f:
+def log_result(result, results_json_path=None):
+    results_json_path = results_json_path or PipelineConfig().results_json_path
+    with open(results_json_path, 'a') as f:
         f.write(json.dumps(result, indent=4))
     logging.info("Result logged")
 
@@ -64,7 +67,7 @@ def build_record_from_legacy():
     "Buils the record to put in disambiguted_blocks if this disambiguation was already done"
     pass 
 
-async def process_conflict(conflict_name, conflict, instances_dict, run_id, best_pair, pair_wise_decisions_path, dry_run=False):
+async def process_conflict(conflict_name, conflict, instances_dict, run_id, best_pair, pair_wise_decisions_path, clients, dry_run=False):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
@@ -117,15 +120,15 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
 
         # 2) Build enriched pair and run proxy
         full_conflict = filter_relevant_fields(conflict_pair)
-        full_conflict = await build_full_conflict(full_conflict)
+        full_conflict = await build_full_conflict(full_conflict, clients)
 
         messages = build_prompt(
             full_conflict["disconnected"],
             full_conflict["remaining"]
         )
-        result = decision_agreement_proxy(messages)
+        result = decision_agreement_proxy(messages, clients)
 
-        add_jsonl_record("scripts/data/results_proxy.jsonl", {conflict_name: result})
+        add_jsonl_record(str(PipelineConfig().proxy_results_path), {conflict_name: result})
 
         # 3) Proxy reached a decision
         if result.get("verdict") != "disagreement":
@@ -189,8 +192,8 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
             pair_stable_id,
             run_id
         )
-        path = f"human_annotations/conflicts/{filename}"
-        conflict_url = commit_conflict_json(content, path)
+        path = f"{PipelineConfig().conflicts_repo_dir}/{filename}"
+        conflict_url = clients.github.commit_file(content, path)
 
         context = generate_context(
             conflict_name,
@@ -203,7 +206,7 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
 
         title = f"Manual resolution needed for {conflict_name}_pair_{n}"
         labels = ["conflict", "automated"]
-        response = create_github_issue(title, body, labels)
+        response = clients.github.create_issue(title, body, labels)
 
         print(f"GitHub issue created for {conflict_name}, pair {n}")
 
@@ -228,6 +231,7 @@ async def disambiguate_blocks(
     disambiguated_blocks_path,
     pair_wise_decisions_path,
     run_id,
+    clients,
     dry_run=False,
 ):
     """
@@ -275,6 +279,7 @@ async def disambiguate_blocks(
                         run_id,
                         best_pair,
                         pair_wise_decisions_path,
+                        clients,
                         dry_run=dry_run,
                     )
 

@@ -1,65 +1,19 @@
-import requests
 import json
-import os
-import base64
-import requests
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime, timezone
 
+from infrastructure.config import PipelineConfig
 
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
-REPO = "inab/research-software-etl"
-GITHUB_API = "https://api.github.com"
-BRANCH = "main"
-
-def commit_conflict_json(conflict: dict, path: str, branch=BRANCH, repo=REPO) -> str:
-    """
-    Commit a conflict JSON file to human_annotations/conflicts/.
-
-    Args:
-        conflict (dict): Conflict data
-        filename (str): e.g. "conflict_123.json"
-
-    Returns:
-        str: GitHub URL to the committed file
-    """
-    
-    url = f"{GITHUB_API}/repos/{repo}/contents/{path}"
-
-    # prepare content
-    content = json.dumps(conflict, indent=2, sort_keys=True, default=str)
-    encoded = base64.b64encode(content.encode("utf-8")).decode("utf-8")
-
-    payload = {
-        "message": f"Add conflict annotation: {path}",
-        "content": encoded,
-        "branch": branch,
-    }
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json",
-    }
-
-    response = requests.put(url, headers=headers, json=payload)
-
-    # Handle overwrite explicitly (important for re-runs)
-    if response.status_code == 422:
-        raise RuntimeError(
-            f"Conflict file already exists: {path}. "
-            "Decide whether overwrite or reuse is intended."
-        )
-
-    response.raise_for_status()
-    return response.json()["content"]["html_url"]
-
-def create_issue(issue):
-    with open('data/issues.json', 'a') as f:
+def create_issue(issue, issues_json_path=None):
+    issues_json_path = issues_json_path or PipelineConfig().issues_json_path
+    with open(issues_json_path, 'a') as f:
         f.write(json.dumps(issue, indent=4))
 
-def generate_github_body(context, template_path='src/application/services/integration/disambiguation/github_issue.jinja2'):
+def generate_github_body(context, template_path=None):
+    template_path = template_path or PipelineConfig().github_issue_template_path
     env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template(template_path)
+    template = env.get_template(str(template_path))
     return template.render(context)
 
 def extract_url(repo):
@@ -249,38 +203,3 @@ def generate_conflict_file(conflict, conflict_name, conflict_id, run_id):
     filename = f"{conflict_id}.json"
     
     return content, filename
-
-
-
-def create_github_issue(title, body, labels=None, repo=REPO):
-    """
-    Create a GitHub issue and commit associated conflict JSON.
-
-    Args:
-        title (str)
-        body (str)
-        conflict (dict, optional)
-        conflict_id (str, optional): stable identifier for filename
-        labels (list[str], optional)
-
-    Returns:
-        dict: GitHub API response
-    """
-
-    payload = {"title": title, "body": body}
-    
-    if labels:
-        payload["labels"] = labels
-
-    print(f"Making Github issue ... ")
-
-    url = f"{GITHUB_API}/repos/{repo}/issues"
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json",
-    }
-
-    response = requests.post(url, headers=headers, json=payload)
-    response.raise_for_status()
-    
-    return response.json()

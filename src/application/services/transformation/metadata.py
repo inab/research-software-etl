@@ -3,30 +3,30 @@ Functions to create the metadata for the entries after transformation. To be ins
 - import metadata entity
 - create_metadata
 - return metadata object
-''' 
-import os
+'''
 from datetime import datetime
 from domain.models.metadata import Metadata
-from datetime import datetime
+from infrastructure.config import CIContext
 
-def create_new_metadata(source_identifier, identifier, source_url: str = None,  alambique: str = 'alambiqueDev') -> Metadata:
+
+def create_new_metadata(
+    source_identifier,
+    identifier,
+    source_url: str = None,
+    alambique: str = 'alambiqueDev',
+    ci: CIContext = None,
+) -> Metadata:
+    ci = ci or CIContext()
     current_date = datetime.now().isoformat()
-    commit_url = build_commit_url()
-    pipeline_url = os.getenv("CI_PIPELINE_URL")
-
-    if not pipeline_url:
-        pipeline_url = "local"
-    if not commit_url:
-        commit_url = "https://gitlab.com/evamdpico/research-software-meta/-/tree/4a4cdc3c2076f6f7c920c5de93d9d2563ec5bcba"
 
     metadata = Metadata(
         id=identifier,
         created_at=current_date,
-        created_by=commit_url,
-        created_logs=pipeline_url,
+        created_by=ci.commit_url(),
+        created_logs=ci.logs_url(),
         last_updated_at=current_date,
-        updated_by=commit_url,
-        updated_logs=pipeline_url,
+        updated_by=ci.commit_url(),
+        updated_logs=ci.logs_url(),
         source=[{
             "collection": alambique,
             "id": source_identifier,
@@ -36,19 +36,15 @@ def create_new_metadata(source_identifier, identifier, source_url: str = None,  
     return metadata
 
 
-def update_existing_metadata(existing_metadata: Metadata) -> Metadata:
-    current_date = datetime.now().isoformat()
-    commit_url = build_commit_url()
+def update_existing_metadata(existing_metadata: Metadata, ci: CIContext = None) -> Metadata:
+    ci = ci or CIContext()
 
-    existing_metadata.last_updated_at = current_date
-    existing_metadata.updated_by = commit_url
-    existing_metadata.updated_logs = os.getenv("CI_PIPELINE_URL")
-    
+    existing_metadata.last_updated_at = datetime.now().isoformat()
+    existing_metadata.updated_by = ci.commit_url()
+    existing_metadata.updated_logs = ci.logs_url()
+
     return existing_metadata
 
 
-def build_commit_url():
-    CI_PROJECT_NAMESPACE = os.getenv("CI_PROJECT_NAMESPACE")
-    CI_PROJECT_NAME = os.getenv("CI_PROJECT_NAME")
-    CI_COMMIT_SHA = os.getenv("CI_COMMIT_SHA")
-    return f"https://gitlab.bsc.es/{CI_PROJECT_NAMESPACE}/{CI_PROJECT_NAME}/-/commit/{CI_COMMIT_SHA}"
+def build_commit_url(ci: CIContext = None) -> str:
+    return (ci or CIContext()).commit_url()

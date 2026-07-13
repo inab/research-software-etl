@@ -3,12 +3,14 @@ from urllib.parse import urlparse
 from pathlib import Path
 import logging
 
+from infrastructure.config import PipelineConfig
+
 
 # -----------------------------------------------------------------------------
 # BLACKLIST LOADING
 # -----------------------------------------------------------------------------
 
-BLACKLIST_PATH = Path("scripts/disambiguation/hub_repo_blacklist_over_3_names.txt")
+BLACKLIST_PATH = PipelineConfig().repo_blacklist_path
 
 def load_repository_blacklist(path: Path) -> set[str]:
     """

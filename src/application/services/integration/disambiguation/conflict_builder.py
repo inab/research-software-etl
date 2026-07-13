@@ -30,7 +30,7 @@ def chunk_text(text: str, max_tokens: int = 8000, model: str = "gpt-4"):
 # Conflict Handling
 # -------------------------------
 
-async def build_full_conflict(conflict, max_tokens=8000, model="gpt-4"):
+async def build_full_conflict(conflict, clients, max_tokens=8000, model="gpt-4"):
     """
     Returns a conflict dictionary where:
     - 'disconnected' and 'remaining' contain minimal metadata (with URLs)
@@ -46,7 +46,7 @@ async def build_full_conflict(conflict, max_tokens=8000, model="gpt-4"):
                 continue
             seen.add(url)
 
-            enriched = await enrich_link(url)
+            enriched = await enrich_link(url, clients)
 
             contents[url] = {}
 

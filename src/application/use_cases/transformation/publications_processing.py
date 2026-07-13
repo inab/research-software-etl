@@ -12,10 +12,10 @@ normalized publication records without duplicating publications already stored
 in the database.
 """
 
-import os
 import logging
 from typing import Dict, Any, Optional, List
 from application.services.publications.metadata import create_new_metadata
+from infrastructure.config import PipelineConfig
 from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
 from infrastructure.db.database_adapter import DatabaseAdapter
@@ -24,7 +24,6 @@ from application.services.publications.publication_extractor_factory import Extr
 
 logger = logging.getLogger("rs-etl-pipeline")
 
-PUBLICATIONS_COLLECTION = os.getenv('PUBLICATIONS_COLLECTION', 'publicationsDev')
 
 def publication_in_collection(publication: Dict[str, Any], publications_repo: DatabaseAdapter) -> Optional[str]:
     '''
@@ -65,17 +64,22 @@ def publication_in_collection(publication: Dict[str, Any], publications_repo: Da
     return None
 
 
-def add_publication(publication: Dict[str, Any], publications_repo: DatabaseAdapter) -> str:
+def add_publication(
+    publication: Dict[str, Any],
+    publications_repo: DatabaseAdapter,
+    config: PipelineConfig,
+) -> str:
     '''
     Add a publication to the publications collection.
     - publication: publication to be added
     - db_adapter: database adapter
+    - config: run provenance for the entry metadata
     '''
     # Generate entry metadata
-    metadata_dict = create_new_metadata()
+    metadata_dict = create_new_metadata(config.ci)
 
-    # Build entry to insert in database 
-    metadata_dict['data'] = publication 
+    # Build entry to insert in database
+    metadata_dict['data'] = publication
 
     # Insert in database
     logger.debug(f"Adding publication {metadata_dict['data']['title']} to the publications collection.")
@@ -84,23 +88,28 @@ def add_publication(publication: Dict[str, Any], publications_repo: DatabaseAdap
 
 
 
-def standardize_publications(source_name : str, publications_ids, raw_publication_dict: Dict[str, Any]) -> List[str]:
-    publications_repo = MongoPublicationRepository()
+def standardize_publications(
+    source_name: str,
+    publications_ids,
+    raw_publication_dict: Dict[str, Any],
+    config: PipelineConfig,
+) -> List[str]:
+    publications_repo = MongoPublicationRepository(config.publications_collection)
 
-    # Parse the entry 
+    # Parse the entry
     publication_standardizer = StandardizerFactory.get_standardizer(source_name)
     standardized_publication = publication_standardizer.standardize(raw_publication_dict)
     if not standardized_publication:
         return publications_ids
     else:
-        standardized_publication_dict = standardized_publication.model_dump() 
-    
+        standardized_publication_dict = standardized_publication.model_dump()
+
     # Check if the publication is already in the publications collection
     publication_id = publication_in_collection(standardized_publication_dict, publications_repo)
     if publication_id:
         publications_ids.add(publication_id)
     else:
-        publication_id = add_publication(standardized_publication_dict, publications_repo)
+        publication_id = add_publication(standardized_publication_dict, publications_repo, config)
         publications_ids.add(publication_id)
 
     return publications_ids

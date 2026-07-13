@@ -6,6 +6,7 @@ from application.services.resolve_publication_doi.cache_utils import (
     append_jsonl_record,
     load_seen_document_ids,
 )
+from infrastructure.config import PipelineConfig
 
 
 class ResolveMissingPublicationDoiUseCase:
@@ -13,21 +14,27 @@ class ResolveMissingPublicationDoiUseCase:
         self,
         publication_repository,
         doi_resolution_service,
+        config: PipelineConfig = None,
     ) -> None:
         self.publication_repository = publication_repository
         self.doi_resolution_service = doi_resolution_service
+        self.config = config or PipelineConfig()
 
     def execute(
         self,
-        collection_name: str = "publicationsMetadataDev",
+        collection_name: str = None,
         progress_every: int = 1000,
         limit: int | None = None,
         skip_seen: bool = True,
         write_cache: bool = True,
         update_db: bool = True,
-        resolved_cache_path: str = "data/cache/resolved_dois.jsonl",
-        unresolved_cache_path: str = "data/cache/unresolved_dois.jsonl",
+        resolved_cache_path: str = None,
+        unresolved_cache_path: str = None,
     ) -> None:
+        collection_name = collection_name or self.config.publications_collection
+        resolved_cache_path = resolved_cache_path or self.config.resolved_dois_path
+        unresolved_cache_path = unresolved_cache_path or self.config.unresolved_dois_path
+
         seen_doc_ids = (
             load_seen_document_ids(
                 resolved_path=resolved_cache_path,

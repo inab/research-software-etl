@@ -68,7 +68,10 @@ def main():
 
     # import here so the env variables are loaded before the initialization of the db client (which uses them to connect)
     from application.use_cases.transformation.main import transform_sources
-    
+    from infrastructure.config import PipelineConfig
+
+    config = PipelineConfig.from_env()
+
     # Transform the sources ---------------------------------------------------
     if 'all' in args.sources:
         sources = ALL_SOURCES
@@ -86,7 +89,7 @@ def main():
 
     logger.info("Transforming raw data...")
 
-    transform_sources(sources=sources)
+    transform_sources(sources=sources, config=config)
 
     # Finish ------------------------------------------------------------------
     logger.info("Transformation finished!")

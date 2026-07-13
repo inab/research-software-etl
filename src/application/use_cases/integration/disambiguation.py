@@ -5,11 +5,12 @@ from application.services.integration.disambiguation.disambiguator import disamb
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 from pprint import pprint
 
-async def run_full_disambiguation(blocks_file, 
-                         conflict_blocks_file, 
+async def run_full_disambiguation(blocks_file,
+                         conflict_blocks_file,
                          disambiguated_blocks_file,
                          pair_wise_decisions_file,
                          run_id,
+                         clients,
                          dry_run):
 
     # 1. Load input data
@@ -25,6 +26,7 @@ async def run_full_disambiguation(blocks_file,
         disambiguated_blocks_path=disambiguated_blocks_file,
         pair_wise_decisions_path=pair_wise_decisions_file,
         run_id=run_id,
+        clients=clients,
         dry_run=dry_run
     )
 
@@ -52,6 +54,7 @@ async def run_full_disambiguation(blocks_file,
             run_id=run_id,
             pair_wise_decisions_path=pair_wise_decisions_file,
             disambiguate_blocks_func=disambiguate_blocks,
+            clients=clients,
             dry_run=dry_run
         )
 

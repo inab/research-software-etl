@@ -7,14 +7,7 @@ import re
 from readability import Document
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
-from application.services.integration.disambiguation.config import (
-    GITHUB_TOKEN,
-    GITHUB_API_BASE,
-    GITHUB_API_HEADERS,
-    GITHUB_METADATA_URL,
-    GITHUB_CONTENT_URL,
-    GITLAB_TOKEN,
-)
+from infrastructure.external.clients import ExternalClients
 
 SOURCEFORGE_HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; SourceForgeMetadataImporter/1.0)",
@@ -72,122 +65,6 @@ def fetch_sourceforge_html(url: str, max_retries: int = 5, base_delay: int = 10,
         return None
 
     return None
-
-
-# -------------------------------
-# GitHub API Helpers
-# -------------------------------
-
-def request_github_metadata(owner, repo_name):
-    data = {
-        "owner": owner,
-        "repo": repo_name,
-        "userToken": GITHUB_TOKEN,
-        "prepare": False,
-    }
-
-    try:
-        response = requests.post(GITHUB_METADATA_URL, json=data)
-        response.raise_for_status()
-        return response.json().get("data")
-    except Exception:
-        return None
-
-
-def request_github_content(owner, repo_name, file_path):
-    data = {
-        "owner": owner,
-        "repo": repo_name,
-        "path": file_path,
-        "userToken": GITHUB_TOKEN,
-    }
-    try:
-        response = requests.post(GITHUB_CONTENT_URL, json=data)
-        response.raise_for_status()
-        return response.json().get("content")
-    except Exception:
-        return None
-
-
-def request_github_readme(owner, repo_name):
-    try:
-        contents_url = f"{GITHUB_API_BASE}/repos/{owner}/{repo_name}/contents/"
-        response = requests.get(contents_url, headers=GITHUB_API_HEADERS)
-        response.raise_for_status()
-        files = response.json()
-
-        readme_file = next(
-            (f for f in files if f["type"] == "file" and f["name"].lower().startswith("readme")),
-            None,
-        )
-
-        if not readme_file:
-            return None
-
-        readme_path = readme_file["path"]
-        content = request_github_content(owner, repo_name, readme_path)
-        if not content:
-            return None
-
-        return content
-
-    except Exception:
-        return None
-
-
-# -------------------------------
-# GitLab API Helpers
-# -------------------------------
-
-def parse_gitlab_repo_url(repo_url: str) -> str:
-    pattern = r"https?://gitlab\.com/([^/]+/[^/]+)"
-    match = re.search(pattern, repo_url)
-    if not match:
-        return None
-    namespace_repo = match.group(1)
-    return urllib.parse.quote(namespace_repo, safe="")
-
-
-def get_gitlab_repo_metadata(repo_url: str) -> dict:
-    encoded_project = parse_gitlab_repo_url(repo_url)
-    if not encoded_project:
-        return {}
-
-    api_url = f"https://gitlab.com/api/v4/projects/{encoded_project}"
-
-    headers = {}
-    if GITLAB_TOKEN:
-        headers["PRIVATE-TOKEN"] = GITLAB_TOKEN
-
-    response = requests.get(api_url, headers=headers)
-    if response.status_code != 200:
-        return {}
-
-    return response.json()
-
-
-def get_gitlab_repo_readme(readme_url: str, repo_url: str) -> str:
-    try:
-        readme_fields = readme_url.split("/")
-        default_branch = readme_fields[-2]
-        file_name = readme_fields[-1]
-
-        encoded_project = parse_gitlab_repo_url(repo_url)
-
-        headers = {}
-        if GITLAB_TOKEN:
-            headers["PRIVATE-TOKEN"] = GITLAB_TOKEN
-
-        api_url = f"https://gitlab.com/api/v4/projects/{encoded_project}/repository/files/{file_name}/raw"
-        params = {"ref": default_branch}
-
-        response = requests.get(api_url, headers=headers, params=params)
-        if response.status_code == 200:
-            return response.text
-        return None
-
-    except Exception:
-        return None
 
 
 # -------------------------------
@@ -417,16 +294,16 @@ async def extract_with_playwright(url: str) -> str | None:
 # Repository/Webpage Enrichment
 # -------------------------------
 
-def enrich_repo(url):
+def enrich_repo(url, clients: ExternalClients):
     repo = {"url": url, "metadata": None, "readme_content": None}
     try:
         parts = url.split("/")
         if len(parts) < 5:
             return repo
         owner, repo_name = parts[3], parts[4]
-        logging.info(f"Fetching GitHub metadata for {owner}/{repo_name} with token {GITHUB_TOKEN[:4]}...")
-        repo["repo_metadata"] = request_github_metadata(owner, repo_name)
-        repo["readme_content"] = request_github_readme(owner, repo_name)
+        logging.info(f"Fetching GitHub metadata for {owner}/{repo_name}")
+        repo["repo_metadata"] = clients.github.get_repo_metadata(owner, repo_name)
+        repo["readme_content"] = clients.github.get_repo_readme(owner, repo_name)
     except Exception as e:
         logging.error(f"Invalid GitHub URL: {url} -> {e}")
 
@@ -441,7 +318,7 @@ def get_redirect(url):
         return False
 
 
-async def enrich_link(link):
+async def enrich_link(link, clients: ExternalClients):
     new_link = {"url": link}
     link = get_redirect(link)
 
@@ -453,21 +330,21 @@ async def enrich_link(link):
                 parts = link.split("/")
                 if len(parts) >= 5:
                     owner, repo_name = parts[3], parts[4]
-                    new_link["repo_metadata"] = request_github_metadata(owner, repo_name)
-                    new_link["readme_content"] = request_github_readme(owner, repo_name)
+                    new_link["repo_metadata"] = clients.github.get_repo_metadata(owner, repo_name)
+                    new_link["readme_content"] = clients.github.get_repo_readme(owner, repo_name)
                     processed = True
             except Exception as e:
                 logging.warning(f"Error processing GitHub link {link}: {e}")
                 raise e
 
         elif "gitlab.com" in link:
-            metadata = get_gitlab_repo_metadata(link)
+            metadata = clients.gitlab.get_project_metadata(link)
             new_link["repo_metadata"] = metadata
 
             if metadata:
                 readme_url = metadata.get("readme_url")
                 if readme_url:
-                    new_link["readme_content"] = get_gitlab_repo_readme(readme_url, link)
+                    new_link["readme_content"] = clients.gitlab.get_readme(readme_url, link)
                     processed = True
 
         elif "pypi.org/project/" in link:

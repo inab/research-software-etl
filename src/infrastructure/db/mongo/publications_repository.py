@@ -6,9 +6,9 @@ from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 
 
 class MongoPublicationRepository:
-    def __init__(self) -> None:
+    def __init__(self, collection_name: str = "publicationsMetadataDev") -> None:
         self.mongo_db = MongoDBAdapter()
-        self.collection_name = "publicationsMetadataDev"
+        self.collection_name = collection_name
 
     def find_by_doi(self, doi: str):
         """Find a publication metadata entry by DOI."""

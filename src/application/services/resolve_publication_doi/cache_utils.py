@@ -3,15 +3,21 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from infrastructure.config import PipelineConfig
+
 
 def ensure_parent_dir(file_path: str) -> None:
     Path(file_path).parent.mkdir(parents=True, exist_ok=True)
 
 
 def load_seen_document_ids(
-    resolved_path: str = "data/cache/resolved_dois.jsonl",
-    unresolved_path: str = "data/cache/unresolved_dois.jsonl",
+    resolved_path: str = None,
+    unresolved_path: str = None,
 ) -> set[str]:
+    _defaults = PipelineConfig()
+    resolved_path = resolved_path or _defaults.resolved_dois_path
+    unresolved_path = unresolved_path or _defaults.unresolved_dois_path
+
     seen: set[str] = set()
 
     for file_path in (resolved_path, unresolved_path):

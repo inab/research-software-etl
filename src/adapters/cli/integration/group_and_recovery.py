@@ -4,7 +4,8 @@ The command-line interface for the group and recovery step of the integration
 import argparse
 import logging
 from dotenv import load_dotenv
-from application.use_cases.integration.group_and_recovery import grouping_and_recovery_process 
+from application.use_cases.integration.group_and_recovery import grouping_and_recovery_process
+from infrastructure.config import PipelineConfig
 from infrastructure.logging_config import setup_logging
 
 
@@ -24,7 +25,7 @@ def main():
         help=("Path to the file containing grouped entries. This file is the output of the whole process. Default is 'data/grouped.json'."),
         type=str,
         dest="grouped_entries_file",
-        default="data/grouped.json",
+        default=None,
     )
 
     parser.add_argument(
@@ -39,12 +40,13 @@ def main():
 
     load_dotenv(args.env_file)
 
+    config = PipelineConfig.from_env(grouped_json_path=args.grouped_entries_file)
 
-    logger.debug(f"Grouped entries file: {args.grouped_entries_file}")
+    logger.debug(f"Grouped entries file: {config.grouped_json_path}")
     logger.debug(f"Env file: {args.env_file}")
 
     logger.info("Grouping entries and recovering shared entries...")
-    grouping_and_recovery_process(args.grouped_entries_file)
+    grouping_and_recovery_process(config)
 
     logger.info("Grouping and recovery finished!")
 

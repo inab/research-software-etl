@@ -1,5 +1,6 @@
 from application.use_cases.integration.update_all_disambiguation_after_human_resolution import run_disambiguation_after_human_annotation
-import argparse 
+from infrastructure.config import PipelineConfig
+import argparse
 
 def main():
     parser = argparse.ArgumentParser(
@@ -22,16 +23,21 @@ def main():
         default="scripts/data/disambiguated_blocks.jsonl",
     )
 
-    args = parser.parse_args() 
+    args = parser.parse_args()
 
-    conflict_blocks_file = args.conflict_blocks_file
-    disambiguated_blocks_file = args.disambiguated_blocks_file
+    config = PipelineConfig.from_env(
+        conflicts_json_path=args.conflict_blocks_file,
+        disambiguated_blocks_path=args.disambiguated_blocks_file,
+    )
 
+    print(f"Conflict blocks file: {config.conflicts_json_path}")
+    print(f"Disambiguated blocks file: {config.disambiguated_blocks_path}")
 
-    print(f"Conflict blocks file: {conflict_blocks_file}")
-    print(f"Disambiguated blocks file: {disambiguated_blocks_file}")
-
-    run_disambiguation_after_human_annotation(conflict_blocks_file, disambiguated_blocks_file)
+    run_disambiguation_after_human_annotation(
+        config.conflicts_json_path,
+        config.disambiguated_blocks_path,
+        config,
+    )
 
     print("Disambiguation process finished!")
 

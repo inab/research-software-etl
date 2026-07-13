@@ -9,9 +9,9 @@ import logging
 logger = logging.getLogger("rs-etl-pipeline")
 
 class StdSoftwareMetaRepository:
-    def __init__(self, db_adapter: MongoDBAdapter):
+    def __init__(self, db_adapter: MongoDBAdapter, collection_name: str = "pretoolsDev"):
         self.db_adapter = db_adapter
-        self.collection_name = "pretoolsDev"
+        self.collection_name = collection_name
 
 
     def get_standardized_software_data(self):
