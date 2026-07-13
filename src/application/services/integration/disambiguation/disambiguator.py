@@ -63,7 +63,7 @@ def build_record_from_legacy():
     "Buils the record to put in disambiguted_blocks if this disambiguation was already done"
     pass 
 
-async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise_decisions_path, clients, dry_run=False):
+async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise_decisions_path, clients, repos, dry_run=False):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
@@ -79,7 +79,7 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise
     - otherwise return the normal disambiguated record
     """
 
-    conflict_full = replace_with_full_entries(conflict)
+    conflict_full = replace_with_full_entries(conflict, repos.pretools)
 
     conflict_pairs, _ = build_pairs(
         copy.deepcopy(conflict_full),
@@ -115,12 +115,13 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise
             continue
 
         # 2) Build enriched pair and run proxy
-        full_conflict = filter_relevant_fields(conflict_pair)
+        full_conflict = filter_relevant_fields(conflict_pair, repos.publications)
         full_conflict = await build_full_conflict(full_conflict, clients)
 
         messages = build_prompt(
             full_conflict["disconnected"],
-            full_conflict["remaining"]
+            full_conflict["remaining"],
+            repos.publications,
         )
         result = decision_agreement_proxy(messages, clients)
 
@@ -228,6 +229,7 @@ async def disambiguate_blocks(
     pair_wise_decisions_path,
     run_id,
     clients,
+    repos,
     dry_run=False,
 ):
     """
@@ -274,6 +276,7 @@ async def disambiguate_blocks(
                         best_pair,
                         pair_wise_decisions_path,
                         clients,
+                        repos,
                         dry_run=dry_run,
                     )
 

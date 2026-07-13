@@ -36,6 +36,7 @@ def estimate_total_tokens(messages, model="gpt-4"):
 def build_chat_messages_with_disconnected(
     instruction_prompt: str,
     conflict_data: dict,
+    publications,
     disconnected_preamble= "**Disconnected tools** to be analyzed",
     remaining_preamble= "Tools known to be the **same software**",
     max_tokens_per_chunk=8000,
@@ -52,7 +53,7 @@ def build_chat_messages_with_disconnected(
         for entry in entries:
             new_pubs = []
             if entry['publication']:
-                new_pubs.append(get_pub(entry['publication']))
+                new_pubs.append(get_pub(entry['publication'], publications))
             entry['publication'] = new_pubs
             #print('Entry')
             #pprint(entry)
@@ -134,7 +135,7 @@ PROMPT_TEMPLATES = load_templates_from_folder("src/application/services/integrat
 # Prompt Selection
 # -------------------------------
 
-def build_prompt(disconnected, remaining):
+def build_prompt(disconnected, remaining, publications):
 
     template = PROMPT_TEMPLATES["prompt_benchmarking_chat_style"]
 
@@ -145,4 +146,4 @@ def build_prompt(disconnected, remaining):
         "remaining": remaining
     }
 
-    return build_chat_messages_with_disconnected(instruction_prompt, data_dict)
+    return build_chat_messages_with_disconnected(instruction_prompt, data_dict, publications)

@@ -9,6 +9,7 @@ async def run_full_disambiguation(blocks_file,
                          pair_wise_decisions_file,
                          run_id,
                          clients,
+                         repos,
                          dry_run):
 
     # 1. Load input data
@@ -25,6 +26,7 @@ async def run_full_disambiguation(blocks_file,
         pair_wise_decisions_path=pair_wise_decisions_file,
         run_id=run_id,
         clients=clients,
+        repos=repos,
         dry_run=dry_run
     )
 
@@ -53,6 +55,7 @@ async def run_full_disambiguation(blocks_file,
             pair_wise_decisions_path=pair_wise_decisions_file,
             disambiguate_blocks_func=disambiguate_blocks,
             clients=clients,
+            repos=repos,
             dry_run=dry_run
         )
 

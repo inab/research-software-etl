@@ -205,9 +205,11 @@ def fake_repos(
 class FakeGitHubClient:
     """Records issues and commits instead of touching GitHub."""
 
-    def __init__(self) -> None:
+    def __init__(self, repo_metadata=None, readme=None) -> None:
         self.issues: List[str] = []
         self.commits: List[str] = []
+        self.repo_metadata = repo_metadata or {}
+        self.readme = readme
 
     def commit_file(self, content, path, branch=None, repo=None):
         self.commits.append(path)
@@ -216,6 +218,13 @@ class FakeGitHubClient:
     def create_issue(self, title, body, labels=None, repo=None):
         self.issues.append(title)
         return {"html_url": "https://github.com/inab/research-software-etl/issues/1"}
+
+    # Link enrichment reaches for these when a conflict cites a GitHub repository.
+    def get_repo_metadata(self, owner, repo_name):
+        return self.repo_metadata
+
+    def get_repo_readme(self, owner, repo_name):
+        return self.readme
 
 
 def fake_clients(

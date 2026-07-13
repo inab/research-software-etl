@@ -74,6 +74,7 @@ async def main():
 
     from application.use_cases.integration.disambiguation import run_full_disambiguation
     from infrastructure.config import Credentials, PipelineConfig
+    from infrastructure.db.repositories import Repositories
     from infrastructure.external.clients import ExternalClients
 
     # Read the environment once, here, and hand the results down.
@@ -87,6 +88,7 @@ async def main():
         "github_token", "gitlab_token", "openrouter_api_key", "huggingface_api_key"
     )
     clients = ExternalClients.from_credentials(credentials)
+    repos = Repositories.from_config(config)
 
     logger.info(f"Blocks file: {config.grouped_json_path}")
     logger.info(f"Conflict blocks file: {config.conflicts_json_path}")
@@ -102,6 +104,7 @@ async def main():
         pair_wise_decisions_file=config.pair_decisions_path,
         run_id = args.run_id,
         clients=clients,
+        repos=repos,
         dry_run= args.dry_run
     )
 

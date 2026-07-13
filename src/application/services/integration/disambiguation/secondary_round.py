@@ -37,7 +37,7 @@ def generate_secondary_conflicts(disambiguated_blocks):
 
 
 
-async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, run_id, pair_wise_decisions_path, disambiguate_blocks_func, clients, dry_run):
+async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, run_id, pair_wise_decisions_path, disambiguate_blocks_func, clients, repos, dry_run):
     """
     Loads existing disambiguation results and conflict blocks,
     generates second-round conflicts, and runs disambiguation again.
@@ -73,6 +73,7 @@ async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, bloc
         pair_wise_decisions_path,
         run_id,
         clients,
+        repos,
         dry_run=dry_run,
     )
 

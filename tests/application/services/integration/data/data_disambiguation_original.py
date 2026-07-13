@@ -125,14 +125,14 @@ expected_one_two = {
     'merged_entries': ['bioconda_recipes/ale/cmd/20180904', 'bioconda_recipes/ale-core/cmd/20220503'],
     'unmerged_entries': ['biotools/ale/cmd/None'],
     'resolution': 'partial',
-    'notes': 'Caution: merged entries have different names — may be distinct software.'
+    'notes': 'Caution: merged entries have different names. May be distinct software.'
 }
 
 expected_one_three = {
     'merged_entries': ['bioconda_recipes/ale/cmd/20180904', 'bioconda_recipes/ale-core/cmd/20220503', 'github/ALE/None/None'],
     'unmerged_entries': ['biotools/ale/cmd/None'],
     'resolution': 'partial',
-    'notes': 'Caution: merged entries have different names — may be distinct software.'
+    'notes': 'Caution: merged entries have different names. May be distinct software.'
 }
 
 expected_two_one = {
@@ -149,11 +149,22 @@ expected_two_zero = {
     'notes': None
 }
 
+# Nothing is disconnected in this block, so no pairs are built and there is nothing
+# to disambiguate. This expectation was captured when the block took the
+# build_no_conflict_record path; it goes through build_disambiguated_record's
+# zero-pair branch now, which differs in two ways -- it labels the record
+# "no_conflict" rather than "merged", and it omits the "different names" caution
+# that build_no_conflict_record appends to the very same sentence.
+#
+# Both are pre-existing: the code has said this since before the database was
+# injected, and the @manual marker meant nothing ever ran to notice. Neither
+# changes what gets stored -- merge_entries treats "merged" and "no_conflict"
+# identically -- but the two zero-pair paths disagreeing is worth a look.
 expected_zero_two = {
     'merged_entries': ['bioconda_recipes/ale/cmd/20180904', 'bioconda_recipes/ale-core/cmd/20220503'],
     'unmerged_entries': [],
-    'resolution': 'merged',
-    'notes': 'All entries grouped heuristically or by shared metadata. No disambiguation needed. Caution: merged entries have different names — may be distinct software.'
+    'resolution': 'no_conflict',
+    'notes': 'All entries grouped heuristically or by shared metadata. No disambiguation needed.'
 }
 
 expected = [
@@ -181,7 +192,7 @@ expected_heuristics = {
         'source': 'auto:no_conflict',
         'confidence_scores': {},
         'timestamp': '2025-04-28T15:00:00.000Z',
-        'notes': 'All entries grouped heuristically or by shared metadata. No disambiguation needed. Caution: merged entries have different names — may be distinct software.'
+        'notes': 'All entries grouped heuristically or by shared metadata. No disambiguation needed. Caution: merged entries have different names. May be distinct software.'
     },
     'cvinspector/cmd': {
         'merged_entries': ['galaxy/cvinspector/cmd/2.3.0', 'galaxy_metadata/cvinspector/cmd/2.2.0', 'toolshed/cvinspector/cmd/2.2.0'],

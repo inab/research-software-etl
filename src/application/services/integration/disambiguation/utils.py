@@ -41,12 +41,9 @@ def stable_hash(obj: Any) -> str:
     return stable_id
 
 
-def get_pub(object_id):
-    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+def get_pub(object_id, publications):
+    publication = publications.get_by_id(object_id)
 
-    publication = mongo_adapter.fetch_entry( "publicationsMetadataDev", object_id)
-    # Step 2: Build the main document dictionary and replace data.publication
-    
     if publication:
         return publication.get('data')
     else:
@@ -135,7 +132,7 @@ def add_jsonl_record(path, new_record):
             f.write('\n')
 
 
-def process_publications(publications):
+def process_publications(publications, publications_repo):
     """
     Process the publications in the entries and replace
     the publication IDs with the corresponding publication data.
@@ -147,13 +144,13 @@ def process_publications(publications):
         for publication in publications:
             if isinstance(publication, ObjectId):
                 publication_str = str(publication)
-                processed_publications.append(get_pub(publication_str))
+                processed_publications.append(get_pub(publication_str, publications_repo))
             else:
                 processed_publications.append(publication)
         return processed_publications
 
 
-def replace_with_full_entries(conflict):
+def replace_with_full_entries(conflict, pretools):
     """
     Hydrate a conflict's entry ids into full pretools documents.
 
@@ -162,27 +159,21 @@ def replace_with_full_entries(conflict):
     never read -- the parameter was dead and the full-collection scan was pure
     waste, so both were removed.
     """
-    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
     new_conflict = {
         "disconnected": [],
         "remaining": [],
     }
     for entry in conflict['disconnected']:
-        entry_id = entry["id"]
-        new_entry = mongo_adapter.fetch_entry("pretoolsDev", entry_id)
-        new_conflict['disconnected'].append(new_entry)
+        new_conflict['disconnected'].append(pretools.get_by_id(entry["id"]))
 
-    
     for entry in conflict['remaining']:
-        entry_id = entry["id"]
-        new_entry = mongo_adapter.fetch_entry("pretoolsDev", entry_id)
-        new_conflict['remaining'].append(new_entry)
+        new_conflict['remaining'].append(pretools.get_by_id(entry["id"]))
 
     return new_conflict
 
 
 
-def filter_relevant_fields(conflict):
+def filter_relevant_fields(conflict, publications):
     """
     Filter the relevant fields from the conflict dictionary.
     """
@@ -202,7 +193,7 @@ def filter_relevant_fields(conflict):
             "source": entry["data"].get("source"),
             "license": entry["data"].get("license"),
             "authors": entry["data"].get("authors"),
-            "publication": process_publications(entry["data"].get("publication")),
+            "publication": process_publications(entry["data"].get("publication"), publications),
             "documentation": entry["data"].get("documentation")
         }
         filtered_conflict["disconnected"].append(filtered_entry)

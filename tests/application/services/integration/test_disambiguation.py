@@ -1,147 +1,165 @@
+"""
+Disambiguation over an in-memory database.
+
+These cases used to require a live pretoolsDev, because disambiguate_blocks()
+hydrated every conflict entry through the mongo singleton. The collections are
+injected now, so the pretools documents come from fixtures derived from the same
+production blocks the expectations were captured against.
+
+Two things are stubbed, and neither can change a verdict: the LLM proxy (fixed
+verdict, as before) and the link enrichment, which fetches repository and webpage
+content over the network. Enrichment only feeds the prompt, and the prompt's
+answer is already fixed by the proxy stub.
+"""
+
+from pathlib import Path
+
 import pytest
-from application.services.integration.disambiguation.disambiguator import disambiguate_blocks
-from tests.application.services.integration.data.data_disambiguation_original import conflicts_blocks_sets, expected, expected_heuristics
+
+from application.services.integration.disambiguation.disambiguator import (
+    disambiguate_blocks,
+)
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
-from infrastructure.external.clients import ExternalClients
-from pprint import pprint
+from tests.application.services.integration.data.data_disambiguation_original import (
+    conflicts_blocks_sets,
+    expected,
+    expected_heuristics,
+)
+from tests.application.services.integration.pretools_fixtures import pretools_entries
+from tests.fakes import FakeDatabaseAdapter, FakeGitHubClient, fake_clients, fake_repos
 
-DATA_DIR = 'tests/application/services/integration/data'
-DISAMBIGUATED_PATH = f'{DATA_DIR}/disambiguated_blocks.jsonl'
+DATA_DIR = "tests/application/services/integration/data"
 
-blocks = load_dict_from_jsonl(f'{DATA_DIR}/blocks.jsonl')
-
-
-class FakeGitHubClient:
-    """Records issues/commits instead of touching GitHub."""
-
-    def __init__(self):
-        self.issues = []
-        self.commits = []
-
-    def commit_file(self, content, path, branch=None, repo=None):
-        self.commits.append(path)
-        return f"https://github.com/inab/research-software-etl/blob/main/{path}"
-
-    def create_issue(self, title, body, labels=None, repo=None):
-        self.issues.append(title)
-        return {"html_url": "https://github.com/inab/research-software-etl/issues/1"}
+blocks = load_dict_from_jsonl(f"{DATA_DIR}/blocks.jsonl")
 
 
-def fake_clients():
-    """Only .github is exercised here -- decision_agreement_proxy is patched out,
-    so the LLM and GitLab slots stay None and would blow up loudly if reached."""
-    return ExternalClients(
-        openrouter=None, huggingface=None, github=FakeGitHubClient(), gitlab=None
-    )
+@pytest.fixture
+def repos():
+    """pretools holds the four `ale` entries; publications is never reached
+    (none of these entries has one), so leaving it None keeps it honest."""
+    db = FakeDatabaseAdapter({"pretools": pretools_entries()})
+    return fake_repos(db, pretools=True, publications=True)
 
 
-@pytest.mark.manual
-@pytest.mark.asyncio
-async def test_real_conflict_cases(monkeypatch, tmp_path):
-    '''
-    This test passes five different conflict cases to the disambiguation pipeline.
-    The disambiguation runs for a set of blocks (blocks), which can be conflictive or not (if they are in conflicts_blocks or not)
-    Thus, for each set of conflicts tested, all the blocks in blocks are processed and the conflictive blocks are disambiguated.
+@pytest.fixture
+def clients():
+    """Only .github is exercised -- the proxy is stubbed out, so the LLM and
+    GitLab slots stay None and would blow up loudly if reached."""
+    return fake_clients(github=FakeGitHubClient())
 
-    Requires a live pretoolsDev collection: disambiguate_blocks() hydrates each
-    conflict entry via replace_with_full_entries(), which calls
-    mongo_adapter.fetch_entry() directly. The 11 instance ids these blocks refer
-    to have no local fixtures, so this cannot run offline. Run with `pytest -m manual`.
-    '''
-    # --- Patch the LLM proxy so the pipeline runs without API calls ---
-    def mock_decision_agreement_proxy(messages, clients):
-        return {"verdict": "different", "confidence": "high"}
+
+@pytest.fixture(autouse=True)
+def no_network(monkeypatch):
+    """Link enrichment reaches out to GitHub and to arbitrary webpages. Stub the
+    raw fetch; the fake GitHub client covers the rest."""
+
+    async def no_link_content(link):
+        return None
 
     monkeypatch.setattr(
-        "application.services.integration.disambiguation.disambiguator.decision_agreement_proxy",
-        mock_decision_agreement_proxy,
+        "application.services.integration.disambiguation.enrich_links.get_link_content",
+        no_link_content,
     )
 
-    clients = fake_clients()
 
-    # Empty decisions cache, so every pair goes through the proxy rather than
-    # reusing a previously recorded decision.
+def _stub_proxy(monkeypatch, verdict: str):
+    def proxy(messages, clients):
+        return {"verdict": verdict, "confidence": "high"}
+
+    # NB: no "src." prefix -- the package installs as `application.*`, so
+    # "src.application..." would patch a different module object and patch nothing.
+    monkeypatch.setattr(
+        "application.services.integration.disambiguation.disambiguator.decision_agreement_proxy",
+        proxy,
+    )
+
+
+@pytest.mark.asyncio
+async def test_real_conflict_cases(monkeypatch, tmp_path, repos, clients):
+    """
+    Five real conflict cases through the disambiguation pipeline. Every block in
+    `blocks` is processed; those also present in the conflict set are disambiguated.
+
+    The already-disambiguated file is truncated between cases -- a block already
+    recorded there is skipped -- while the pair-decision cache is *shared* across
+    them, so a decision reached in one case is reused by the next. That carry-over
+    is what makes the five expected results differ.
+
+    The original did this against a file in the repository, which left its residue
+    committed; this runs in tmp_path.
+    """
+    _stub_proxy(monkeypatch, "different")
+
+    disambiguated_path = tmp_path / "disambiguated_blocks.jsonl"
     pair_decisions = tmp_path / "pair_decisions.jsonl"
 
     for i, conflicts_blocks in enumerate(conflicts_blocks_sets):
-
         disamb_result = await disambiguate_blocks(
             conflicts_blocks,
             blocks,
-            disambiguated_blocks_path=DISAMBIGUATED_PATH,
+            disambiguated_blocks_path=disambiguated_path,
             pair_wise_decisions_path=pair_decisions,
             run_id="test-run",
             clients=clients,
+            repos=repos,
         )
 
-        # --- Assertions ---
+        assert "ale/cmd" in disamb_result
 
-        assert "ale/cmd" in disamb_result.keys()
-
-        print(f"------- Disambiguation result for {i} ----------------------------")
-        pprint(disamb_result)
-
-        # ---- ale/cmd conflict results -----
         expected_result = expected[i]
-        assert set(disamb_result['ale/cmd']['merged_entries']) == set(expected_result['merged_entries'])
-        assert set(disamb_result['ale/cmd']['unmerged_entries']) == set(expected_result['unmerged_entries'])
+        assert set(disamb_result["ale/cmd"]["merged_entries"]) == set(expected_result["merged_entries"])
+        assert set(disamb_result["ale/cmd"]["unmerged_entries"]) == set(expected_result["unmerged_entries"])
         assert disamb_result["ale/cmd"]["resolution"] == expected_result["resolution"]
         assert disamb_result["ale/cmd"]["notes"] == expected_result["notes"]
 
-        # ---- other results --------
-        for id in ['1000genomes_vcf2ped/web', 'mapcaller/cmd', 'cvinspector/cmd']:
-            assert set(disamb_result[id]['merged_entries']) == set(expected_heuristics[id]['merged_entries'])
-            assert set(disamb_result[id]['unmerged_entries']) == set(expected_heuristics[id]['unmerged_entries'])
-            assert disamb_result[id]["resolution"] == expected_heuristics[id]["resolution"]
-            assert disamb_result[id]["source"] == expected_heuristics[id]["source"]
-            assert disamb_result[id]["notes"] == expected_heuristics[id]["notes"]
+        for block_id in ["1000genomes_vcf2ped/web", "mapcaller/cmd", "cvinspector/cmd"]:
+            assert set(disamb_result[block_id]["merged_entries"]) == set(expected_heuristics[block_id]["merged_entries"])
+            assert set(disamb_result[block_id]["unmerged_entries"]) == set(expected_heuristics[block_id]["unmerged_entries"])
+            assert disamb_result[block_id]["resolution"] == expected_heuristics[block_id]["resolution"]
+            assert disamb_result[block_id]["source"] == expected_heuristics[block_id]["source"]
+            assert disamb_result[block_id]["notes"] == expected_heuristics[block_id]["notes"]
 
-        # clean disambiguated results
-        open(DISAMBIGUATED_PATH, 'w').close()
-
-        print("===" * 20)
+        # Each case starts from a clean slate of already-disambiguated blocks.
+        disambiguated_path.write_text("")
 
 
-@pytest.mark.manual
 @pytest.mark.asyncio
-async def test_real_conflict_cases_human(monkeypatch, tmp_path):
-    '''
-    When the two models disagree, the conflict must escalate to a curator:
-    a conflict file is committed and a GitHub issue is opened.
+async def test_disagreement_escalates_to_a_curator(monkeypatch, tmp_path, repos, clients):
+    """When the two models disagree the conflict must escalate: a conflict file is
+    committed and a GitHub issue opened."""
+    _stub_proxy(monkeypatch, "disagreement")
 
-    Requires a live pretoolsDev collection (see test_real_conflict_cases).
-    Run with `pytest -m manual`.
-    '''
-    def mock_decision_agreement_proxy(messages, clients):
-        return {"verdict": "disagreement", "confidence": "high"}
-
-    monkeypatch.setattr(
-        "application.services.integration.disambiguation.disambiguator.decision_agreement_proxy",
-        mock_decision_agreement_proxy,
+    disamb_result = await disambiguate_blocks(
+        conflicts_blocks_sets[0],
+        blocks,
+        disambiguated_blocks_path=tmp_path / "disambiguated.jsonl",
+        pair_wise_decisions_path=tmp_path / "pair_decisions.jsonl",
+        run_id="test-run",
+        clients=clients,
+        repos=repos,
     )
 
-    clients = fake_clients()
-    pair_decisions = tmp_path / "pair_decisions.jsonl"
+    assert "ale/cmd" in disamb_result
+    assert clients.github.commits, "disagreement should commit a conflict file"
+    assert clients.github.issues, "disagreement should open a GitHub issue"
+    assert disamb_result["ale/cmd"]["resolution"] == "manual_review_pending"
 
-    for conflicts_blocks in conflicts_blocks_sets[0:1]:
 
-        disamb_result = await disambiguate_blocks(
-            conflicts_blocks,
-            blocks,
-            disambiguated_blocks_path=DISAMBIGUATED_PATH,
-            pair_wise_decisions_path=pair_decisions,
-            run_id="test-run",
-            clients=clients,
-        )
+@pytest.mark.asyncio
+async def test_conflict_entries_are_hydrated_from_pretools(monkeypatch, tmp_path, repos, clients):
+    """The stage reads full documents out of pretools rather than trusting the
+    block: an id the collection does not hold must not silently resolve."""
+    _stub_proxy(monkeypatch, "different")
+    empty = fake_repos(FakeDatabaseAdapter(), pretools=True, publications=True)
 
-        # --- Assertions ---
+    result = await disambiguate_blocks(
+        conflicts_blocks_sets[0],
+        blocks,
+        disambiguated_blocks_path=tmp_path / "disambiguated.jsonl",
+        pair_wise_decisions_path=tmp_path / "pair_decisions.jsonl",
+        run_id="test-run",
+        clients=clients,
+        repos=empty,
+    )
 
-        assert "ale/cmd" in disamb_result.keys()
-
-        # A disagreement must escalate: the conflict is committed and an issue opened.
-        assert clients.github.commits, "disagreement should commit a conflict file"
-        assert clients.github.issues, "disagreement should open a GitHub issue"
-        assert disamb_result["ale/cmd"]["resolution"] == "manual_review_pending"
-
-        open(DISAMBIGUATED_PATH, 'w').close()
-
+    assert "ale/cmd" not in result, "an unhydratable conflict must not resolve"
