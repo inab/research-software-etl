@@ -1,9 +1,6 @@
 from pydantic import BaseModel, field_validator, HttpUrl, model_validator
 from typing import Optional
 
-# TODO: THe mapping using a remote database needs to be moved to a service
-# from core.utils import connect_collection
-
 
 class license_item(BaseModel, validate_assignment=True):
     name: str = None # optional, non-nullable
@@ -44,32 +41,6 @@ class license_item(BaseModel, validate_assignment=True):
                 raise ValueError("At least one of the fields 'name' or 'url' must be present")
         '''
         return data
-    
-    """
-    @model_validator(mode="before")
-    @classmethod
-    def map_to_name_to_spdx(cls, data):
-        '''Map to SPDX license if possible.
-        TODO: This needs to be moved to a service, it does not belong to a model.
-        '''
-        from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-
-        if data.get('url') is None:
-            # Map to SPDX
-            query = { "$or": [ 
-                            { "licenseId": data['name'] }, 
-                            { "synonyms": data['name'] }, 
-                            {"name": data['name']} 
-                        ],
-                        "isDeprecatedLicenseId": False}
-            matching_license = mongo_adapter.fetch_entry('licensesMapping', query)
-
-            if matching_license:
-                data['name'] = matching_license['licenseId']
-                data['url'] = matching_license['reference']     
-            
-        return data
-    """
     
     def merge(self, other: 'license_item') -> 'license_item':
         if not isinstance(other, license_item):
