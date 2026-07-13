@@ -4,7 +4,7 @@ from application.services.integration.disambiguation.prompts import build_prompt
 from application.services.integration.disambiguation.proxy import decision_agreement_proxy
 from application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
 from application.services.integration.disambiguation.issues import generate_github_body, generate_context, generate_conflict_file
-from application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, build_instances_keys_dict, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash, append_dict_to_jsonl
+from application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash, append_dict_to_jsonl
 from infrastructure.config import PipelineConfig
 
 import json
@@ -63,7 +63,7 @@ def build_record_from_legacy():
     "Buils the record to put in disambiguted_blocks if this disambiguation was already done"
     pass 
 
-async def process_conflict(conflict_name, conflict, instances_dict, run_id, best_pair, pair_wise_decisions_path, clients, dry_run=False):
+async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise_decisions_path, clients, dry_run=False):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
@@ -79,7 +79,7 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
     - otherwise return the normal disambiguated record
     """
 
-    conflict_full = replace_with_full_entries(conflict, instances_dict)
+    conflict_full = replace_with_full_entries(conflict)
 
     conflict_pairs, _ = build_pairs(
         copy.deepcopy(conflict_full),
@@ -244,7 +244,6 @@ async def disambiguate_blocks(
       are involved
     """
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_path)
-    instances_dict = build_instances_keys_dict()
 
     # best_pair maps each pair_key to the single highest-priority decision
     # (human > LLM, otherwise most informed / recent).
@@ -271,7 +270,6 @@ async def disambiguate_blocks(
                     record = await process_conflict(
                         key,
                         conflict_blocks[key],
-                        instances_dict,
                         run_id,
                         best_pair,
                         pair_wise_decisions_path,

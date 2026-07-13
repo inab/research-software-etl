@@ -41,26 +41,6 @@ def stable_hash(obj: Any) -> str:
     return stable_id
 
 
-def build_instances_keys_dict():
-    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-
-    # Build the document dictionary, keeping only ObjectId publication refs.
-    doc_dict = {}
-    for doc in mongo_adapter.fetch_entries( "pretoolsDev", {}):
-        pub_ids= doc.get('data', {}).get('publication')
-        pubs = []
-        for pub_id in pub_ids:
-            if isinstance(pub_id, ObjectId):
-                pubs.append(pub_id)
-        
-        doc['data']['publication'] = pubs
-        doc['_id'] = str(doc['_id'])
-
-        doc_dict[doc['_id']] = doc
-
-    return doc_dict
-
-
 def get_pub(object_id):
     from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
@@ -173,7 +153,15 @@ def process_publications(publications):
         return processed_publications
 
 
-def replace_with_full_entries(conflict, instances_dict):
+def replace_with_full_entries(conflict):
+    """
+    Hydrate a conflict's entry ids into full pretools documents.
+
+    NB: this fetches each entry individually. A previous design pre-loaded the
+    whole pretools collection into a dict and passed it in, but the dict was
+    never read -- the parameter was dead and the full-collection scan was pure
+    waste, so both were removed.
+    """
     from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
     new_conflict = {
         "disconnected": [],
