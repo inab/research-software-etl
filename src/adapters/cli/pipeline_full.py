@@ -226,7 +226,8 @@ def run_full(
     until_stage: Optional[str] = None,
     only_stage: Optional[str] = None,
     resume_run: Optional[str | Path] = None,
-    dry_run_disambiguation: bool = False
+    dry_run_disambiguation: bool = False,
+    pair_wise_decisions_file: str | Path = "src/application/services/integration/disambiguation/pair_decisions.jsonl",
 ) -> None:
     
 
@@ -258,10 +259,7 @@ def run_full(
     conflicts_jsonl = run_dir / f"conflicts.{run_id}.jsonl"
     simplified_blocks_jsonl = run_dir / f"grouped_entries.simplified.{run_id}.jsonl"
 
-    pair_wise_decisions_file = (
-        "/Users/evabsc/projects/software-observatory/research-software-etl/"
-        "src/application/services/integration/disambiguation/pair_decisions.jsonl"
-    )
+    pair_wise_decisions_file = (wd / pair_wise_decisions_file)
 
     disambiguation_out_file = run_dir / f"disambiguation.{run_id}.jsonl"
 

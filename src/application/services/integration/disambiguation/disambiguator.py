@@ -64,9 +64,7 @@ def build_record_from_legacy():
     "Buils the record to put in disambiguted_blocks if this disambiguation was already done"
     pass 
 
-PAIR_DECISIONS_PATH = "/Users/evabsc/projects/software-observatory/research-software-etl/src/application/services/integration/disambiguation/pair_decisions.jsonl"
-
-async def process_conflict(conflict_name, conflict, instances_dict, run_id, best_pair, dry_run=False):
+async def process_conflict(conflict_name, conflict, instances_dict, run_id, best_pair, pair_wise_decisions_path, dry_run=False):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
@@ -144,7 +142,7 @@ async def process_conflict(conflict_name, conflict, instances_dict, run_id, best
                 "source": "llm",
                 "ts": now_ts,
             }
-            append_dict_to_jsonl(PAIR_DECISIONS_PATH, payload)
+            append_dict_to_jsonl(pair_wise_decisions_path, payload)
 
             # Keep in-memory cache updated during this run too
             best_pair[pair_stable_id] = payload
@@ -276,6 +274,7 @@ async def disambiguate_blocks(
                         instances_dict,
                         run_id,
                         best_pair,
+                        pair_wise_decisions_path,
                         dry_run=dry_run,
                     )
 
