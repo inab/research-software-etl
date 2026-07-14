@@ -5,7 +5,6 @@ from application.services.integration.disambiguation.proxy import decision_agree
 from application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
 from application.services.integration.disambiguation.issues import generate_github_body, generate_context, generate_conflict_file
 from application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash, append_dict_to_jsonl
-from infrastructure.config import PipelineConfig
 
 import json
 import logging
@@ -15,19 +14,6 @@ import copy
 
 from datetime import datetime, timezone
 
-
-
-def log_error(conflict, error_conflicts_path=None):
-    error_conflicts_path = error_conflicts_path or PipelineConfig().error_conflicts_path
-    with open(error_conflicts_path, 'a') as f:
-        f.write(json.dumps(conflict, indent=4))
-
-
-def log_result(result, results_json_path=None):
-    results_json_path = results_json_path or PipelineConfig().results_json_path
-    with open(results_json_path, 'a') as f:
-        f.write(json.dumps(result, indent=4))
-    logging.info("Result logged")
 
 
 def write_to_results_file(result, results_file):
@@ -63,10 +49,15 @@ def build_record_from_legacy():
     "Buils the record to put in disambiguted_blocks if this disambiguation was already done"
     pass 
 
-async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise_decisions_path, clients, repos, dry_run=False):
+async def process_conflict(conflict_name, conflict, run_id, best_pair, config, clients, repos, dry_run=False):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
+
+    Every path this touches comes from `config` -- the one the CLI built for this
+    run. It used to construct a `PipelineConfig()` of its own on each call, whose
+    defaults are relative to the repository root, so a run appended its diagnostics
+    to the working tree instead of to its run directory.
 
     Current conservative behavior:
     - process all pairs in the block
@@ -125,7 +116,7 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise
         )
         result = decision_agreement_proxy(messages, clients)
 
-        add_jsonl_record(str(PipelineConfig().proxy_results_path), {conflict_name: result})
+        add_jsonl_record(str(config.proxy_results_path), {conflict_name: result})
 
         # 3) Proxy reached a decision
         if result.get("verdict") != "disagreement":
@@ -142,7 +133,7 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise
                 "source": "llm",
                 "ts": now_ts,
             }
-            append_dict_to_jsonl(pair_wise_decisions_path, payload)
+            append_dict_to_jsonl(config.pair_decisions_path, payload)
 
             # Keep in-memory cache updated during this run too
             best_pair[pair_stable_id] = payload
@@ -189,7 +180,9 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise
             pair_stable_id,
             run_id
         )
-        path = f"{PipelineConfig().conflicts_repo_dir}/{filename}"
+        # A path inside the GitHub repository, committed through the API -- not a
+        # write to the local checkout.
+        path = f"{config.conflicts_repo_dir}/{filename}"
         conflict_url = clients.github.commit_file(content, path)
 
         context = generate_context(
@@ -199,7 +192,7 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise
             conflict_url,
             run_id
         )
-        body = generate_github_body(context)
+        body = generate_github_body(context, config.github_issue_template_path)
 
         title = f"Manual resolution needed for {conflict_name}_pair_{n}"
         labels = ["conflict", "automated"]
@@ -225,8 +218,7 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, pair_wise
 async def disambiguate_blocks(
     conflict_blocks,
     blocks,
-    disambiguated_blocks_path,
-    pair_wise_decisions_path,
+    config,
     run_id,
     clients,
     repos,
@@ -245,11 +237,12 @@ async def disambiguate_blocks(
     - prints a summary of how many issues would be created and which pair_ids
       are involved
     """
+    disambiguated_blocks_path = config.disambiguated_blocks_path
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_path)
 
     # best_pair maps each pair_key to the single highest-priority decision
     # (human > LLM, otherwise most informed / recent).
-    best_pair = load_pair_decisions(pair_wise_decisions_path)
+    best_pair = load_pair_decisions(config.pair_decisions_path)
 
     n = 0
     errors_n = 0
@@ -274,7 +267,7 @@ async def disambiguate_blocks(
                         conflict_blocks[key],
                         run_id,
                         best_pair,
-                        pair_wise_decisions_path,
+                        config,
                         clients,
                         repos,
                         dry_run=dry_run,

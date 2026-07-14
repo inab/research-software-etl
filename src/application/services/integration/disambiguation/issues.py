@@ -1,16 +1,15 @@
-import json
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime, timezone
 
 from infrastructure.config import PipelineConfig
 
 
-def create_issue(issue, issues_json_path=None):
-    issues_json_path = issues_json_path or PipelineConfig().issues_json_path
-    with open(issues_json_path, 'a') as f:
-        f.write(json.dumps(issue, indent=4))
-
 def generate_github_body(context, template_path=None):
+    """Render the curator-facing issue body.
+
+    The template is *read*, not written, so falling back to the packaged default is
+    safe -- but callers in the pipeline pass the path from the config the CLI built.
+    """
     template_path = template_path or PipelineConfig().github_issue_template_path
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template(str(template_path))

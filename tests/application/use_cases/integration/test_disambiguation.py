@@ -11,16 +11,42 @@ mocks used to be installed on a "src.application..." path, which does not match
 the installed package name and silently patched nothing.
 """
 
+import shutil
+
 import pytest
 
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 from application.use_cases.integration.disambiguation import run_full_disambiguation
+from infrastructure.config import PipelineConfig
 from tests.application.services.integration.pretools_fixtures import pretools_entries_for
 from tests.fakes import FakeDatabaseAdapter, FakeGitHubClient, fake_clients, fake_repos
 
 DATA_DIR = "tests/application/use_cases/integration/data"
 BLOCKS_FILE = f"{DATA_DIR}/blocks.jsonl"
 CONFLICT_BLOCKS_FILE = f"{DATA_DIR}/conflict_blocks.jsonl"
+
+
+def config_in(tmp_path) -> PipelineConfig:
+    """
+    A whole run's worth of paths under tmp_path, inputs included.
+
+    The inputs are copied rather than referenced: a second round appends its
+    generated blocks back into the blocks and conflict-blocks files, so pointing
+    the config straight at the checked-in fixtures would edit them in place.
+    """
+    blocks = tmp_path / "blocks.jsonl"
+    conflicts = tmp_path / "conflict_blocks.jsonl"
+    shutil.copy(BLOCKS_FILE, blocks)
+    shutil.copy(CONFLICT_BLOCKS_FILE, conflicts)
+
+    return PipelineConfig(
+        grouped_json_path=blocks,
+        conflicts_json_path=conflicts,
+        disambiguated_blocks_path=tmp_path / "disambiguated_blocks.jsonl",
+        pair_decisions_path=tmp_path / "pair_decisions.jsonl",
+        proxy_results_path=tmp_path / "results_proxy.jsonl",
+        conflicts_repo_dir=tmp_path / "conflicts",
+    )
 
 
 @pytest.fixture(autouse=True)
@@ -56,20 +82,17 @@ async def test_full_disambiguation_with_github_issue(monkeypatch, tmp_path):
     repos = fake_repos(db, pretools=True, publications=True)
 
     # The original wrote into the data directory, leaving its output committed.
-    disambiguated_blocks_file = tmp_path / "disambiguated_blocks.jsonl"
+    config = config_in(tmp_path)
 
     await run_full_disambiguation(
-        blocks_file=BLOCKS_FILE,
-        conflict_blocks_file=CONFLICT_BLOCKS_FILE,
-        disambiguated_blocks_file=disambiguated_blocks_file,
-        pair_wise_decisions_file=tmp_path / "pair_decisions.jsonl",
+        config=config,
         run_id="test-run",
         clients=clients,
         repos=repos,
         dry_run=False,
     )
 
-    disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_file)
+    disambiguated_blocks = load_dict_from_jsonl(config.disambiguated_blocks_path)
 
     assert "ale/cmd" in disambiguated_blocks
     # Every conflict disagreed, so each should have escalated to a curator.
@@ -97,10 +120,7 @@ async def test_dry_run_opens_no_issues(monkeypatch, tmp_path):
     repos = fake_repos(db, pretools=True, publications=True)
 
     await run_full_disambiguation(
-        blocks_file=BLOCKS_FILE,
-        conflict_blocks_file=CONFLICT_BLOCKS_FILE,
-        disambiguated_blocks_file=tmp_path / "disambiguated_blocks.jsonl",
-        pair_wise_decisions_file=tmp_path / "pair_decisions.jsonl",
+        config=config_in(tmp_path),
         run_id="test-run",
         clients=clients,
         repos=repos,

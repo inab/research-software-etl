@@ -46,6 +46,13 @@ async def main():
     )
 
     parser.add_argument(
+        "--proxy-results-file",
+        help=("Path for the per-pair proxy verdicts written during disambiguation. The full pipeline points this at the run directory; left unset it falls back to the PipelineConfig default."),
+        type=str,
+        dest="proxy_results_file",
+    )
+
+    parser.add_argument(
         "--run-id", "-r",
         help=("ID to identify the run. If not set, the datetime of the run will be used. It is added to conflict files."),
         type=str,
@@ -83,6 +90,7 @@ async def main():
         conflicts_json_path=args.conflict_blocks_file,
         disambiguated_blocks_path=args.disambiguated_blocks_file,
         pair_decisions_path=args.pair_wise_decisions_file,
+        proxy_results_path=args.proxy_results_file,
     )
     credentials = Credentials.from_env().require(
         "github_token", "gitlab_token", "openrouter_api_key", "huggingface_api_key"
@@ -96,12 +104,11 @@ async def main():
     logger.info(f"Pair-wise decisions file: {config.pair_decisions_path}")
 
 
+    logger.info(f"Proxy results file: {config.proxy_results_path}")
+
     logger.info("Disambiguating entries...")
     await run_full_disambiguation(
-        blocks_file=config.grouped_json_path,
-        conflict_blocks_file=config.conflicts_json_path,
-        disambiguated_blocks_file=config.disambiguated_blocks_path,
-        pair_wise_decisions_file=config.pair_decisions_path,
+        config=config,
         run_id = args.run_id,
         clients=clients,
         repos=repos,

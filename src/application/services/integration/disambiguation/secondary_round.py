@@ -37,13 +37,16 @@ def generate_secondary_conflicts(disambiguated_blocks):
 
 
 
-async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, blocks, blocks_path, run_id, pair_wise_decisions_path, disambiguate_blocks_func, clients, repos, dry_run):
+async def run_second_round(blocks, config, run_id, disambiguate_blocks_func, clients, repos, dry_run):
     """
     Loads existing disambiguation results and conflict blocks,
     generates second-round conflicts, and runs disambiguation again.
     """
+    conflict_blocks_path = config.conflicts_json_path
+    blocks_path = config.grouped_json_path
+
     # Load files
-    disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_path)
+    disambiguated_blocks = load_dict_from_jsonl(config.disambiguated_blocks_path)
     conflict_blocks = load_dict_from_jsonl(conflict_blocks_path)
 
 
@@ -69,8 +72,7 @@ async def run_second_round(conflict_blocks_path, disambiguated_blocks_path, bloc
     updated_disambiguated_blocks = await disambiguate_blocks_func(
         conflict_blocks,
         blocks,
-        disambiguated_blocks_path,
-        pair_wise_decisions_path,
+        config,
         run_id,
         clients,
         repos,

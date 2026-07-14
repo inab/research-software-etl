@@ -259,9 +259,13 @@ def run_full(
     conflicts_jsonl = run_dir / f"conflicts.{run_id}.jsonl"
     simplified_blocks_jsonl = run_dir / f"grouped_entries.simplified.{run_id}.jsonl"
 
+    # The pair-decision cache is deliberately *not* run-scoped: it is the curator
+    # decision history, and it accumulates across runs.
     pair_wise_decisions_file = (wd / pair_wise_decisions_file)
 
     disambiguation_out_file = run_dir / f"disambiguation.{run_id}.jsonl"
+    # Diagnostics belong to the run that produced them, not to the checkout.
+    proxy_results_file = run_dir / f"results_proxy.{run_id}.jsonl"
 
     manifest_path = run_dir / "manifest.json"
     previous_manifest = _load_manifest(manifest_path)
@@ -421,6 +425,8 @@ def run_full(
             str(disambiguation_out_file),
             "--pair_wise_decisions_file",
             str(pair_wise_decisions_file),
+            "--proxy-results-file",
+            str(proxy_results_file),
             "--run-id",
             run_id,
         ]

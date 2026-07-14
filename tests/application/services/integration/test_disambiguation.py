@@ -20,6 +20,7 @@ from application.services.integration.disambiguation.disambiguator import (
     disambiguate_blocks,
 )
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
+from infrastructure.config import PipelineConfig
 from tests.application.services.integration.data.data_disambiguation_original import (
     conflicts_blocks_sets,
     expected,
@@ -31,6 +32,24 @@ from tests.fakes import FakeDatabaseAdapter, FakeGitHubClient, fake_clients, fak
 DATA_DIR = "tests/application/services/integration/data"
 
 blocks = load_dict_from_jsonl(f"{DATA_DIR}/blocks.jsonl")
+
+
+def config_in(tmp_path: Path, **overrides) -> PipelineConfig:
+    """
+    Every path the stage writes, pointed at tmp_path.
+
+    The stage takes this config now instead of building its own, so a test no
+    longer has to be insulated from it: give it a scratch config and it writes to
+    scratch. `conftest.py` used to monkeypatch `PipelineConfig` inside the service
+    module to stop the suite appending to tracked files in the working tree.
+    """
+    return PipelineConfig(
+        disambiguated_blocks_path=tmp_path / "disambiguated_blocks.jsonl",
+        pair_decisions_path=tmp_path / "pair_decisions.jsonl",
+        proxy_results_path=tmp_path / "results_proxy.jsonl",
+        conflicts_repo_dir=tmp_path / "conflicts",
+        **overrides,
+    )
 
 
 @pytest.fixture
@@ -90,15 +109,14 @@ async def test_real_conflict_cases(monkeypatch, tmp_path, repos, clients):
     """
     _stub_proxy(monkeypatch, "different")
 
-    disambiguated_path = tmp_path / "disambiguated_blocks.jsonl"
-    pair_decisions = tmp_path / "pair_decisions.jsonl"
+    config = config_in(tmp_path)
+    disambiguated_path = config.disambiguated_blocks_path
 
     for i, conflicts_blocks in enumerate(conflicts_blocks_sets):
         disamb_result = await disambiguate_blocks(
             conflicts_blocks,
             blocks,
-            disambiguated_blocks_path=disambiguated_path,
-            pair_wise_decisions_path=pair_decisions,
+            config=config,
             run_id="test-run",
             clients=clients,
             repos=repos,
@@ -132,8 +150,7 @@ async def test_disagreement_escalates_to_a_curator(monkeypatch, tmp_path, repos,
     disamb_result = await disambiguate_blocks(
         conflicts_blocks_sets[0],
         blocks,
-        disambiguated_blocks_path=tmp_path / "disambiguated.jsonl",
-        pair_wise_decisions_path=tmp_path / "pair_decisions.jsonl",
+        config=config_in(tmp_path),
         run_id="test-run",
         clients=clients,
         repos=repos,
@@ -155,8 +172,7 @@ async def test_conflict_entries_are_hydrated_from_pretools(monkeypatch, tmp_path
     result = await disambiguate_blocks(
         conflicts_blocks_sets[0],
         blocks,
-        disambiguated_blocks_path=tmp_path / "disambiguated.jsonl",
-        pair_wise_decisions_path=tmp_path / "pair_decisions.jsonl",
+        config=config_in(tmp_path),
         run_id="test-run",
         clients=clients,
         repos=empty,

@@ -149,6 +149,9 @@ class PipelineConfig:
     grouped_json_path: Path = Path("data/grouped.json")
     conflicts_json_path: Path = Path("data/disconnected.json")
     disambiguated_blocks_path: Path = Path("data/disambiguated_grouped.json")
+    # Per-pair proxy verdicts. A diagnostic, but a per-run one: `run_full` points it
+    # at the run directory. The default is only for a stage invoked on its own.
+    proxy_results_path: Path = Path("data/results_proxy.jsonl")
 
     # --- Durable, repo-tracked inputs ---
     group_split_corrections_path: Path = Path(
@@ -168,13 +171,6 @@ class PipelineConfig:
     # Directory (inside the GitHub repo, not on disk) that conflict files for
     # curators are committed to.
     conflicts_repo_dir: Path = Path("human_annotations/conflicts")
-
-    # --- Append-only diagnostic logs ---
-    issues_json_path: Path = Path("data/issues.json")
-    results_json_path: Path = Path("data/results.json")
-    error_conflicts_path: Path = Path("data/error_conflicts.json")
-    proxy_results_path: Path = Path("scripts/data/results_proxy.jsonl")
-    fair_results_path: Path = Path("scripts/data/fair_results.jsonl")
 
     # --- Publication enrichment caches ---
     resolved_dois_path: Path = Path("data/cache/resolved_dois.jsonl")
