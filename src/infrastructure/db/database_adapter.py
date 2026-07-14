@@ -61,6 +61,26 @@ class DatabaseAdapter(Protocol):
         """Stream documents matching ``query``, reading only ``projection``."""
         ...
 
+    def update_custom_upsert(
+        self, collection_name: str, criteria: Dict[str, Any], data: Dict[str, Any]
+    ) -> None:
+        """Update the document matching ``criteria``, inserting it if there is none."""
+        ...
+
+    def bulk_write(
+        self, collection_name: str, operations: List[Any], ordered: bool = False
+    ) -> Any:
+        """Apply a batch of write operations."""
+        ...
+
+    def distinct(
+        self, collection_name: str, key: str, query: Optional[Dict[str, Any]] = None
+    ) -> List[Any]:
+        ...
+
+    def create_index(self, collection_name: str, key: str, unique: bool = False) -> Any:
+        ...
+
     def collection_exists(self, collection_name: str) -> bool:
         ...
 

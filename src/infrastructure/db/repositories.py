@@ -17,12 +17,15 @@ from typing import Optional
 
 from infrastructure.config import PipelineConfig
 from infrastructure.db.database_adapter import DatabaseAdapter
+from infrastructure.db.mongo.computations_repository import ComputationsRepository
 from infrastructure.db.mongo.license_mapping_repository import LicenseMappingRepository
 from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
 from infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
+from infrastructure.db.mongo.similarities_repository import SimilaritiesRepository
 from infrastructure.db.mongo.standardized_software_repository import PretoolsRepository
 from infrastructure.db.mongo.tools_repository import ToolsRepository
+from infrastructure.db.mongo.web_availability_repository import WebAvailabilityRepository
 
 
 @dataclass(frozen=True)
@@ -36,6 +39,9 @@ class Repositories:
     tools_staging: Optional[ToolsRepository] = None
     publications: Optional[MongoPublicationRepository] = None
     license_mapping: Optional[LicenseMappingRepository] = None
+    computations: Optional[ComputationsRepository] = None
+    similarities: Optional[SimilaritiesRepository] = None
+    web_availability: Optional[WebAvailabilityRepository] = None
 
     @classmethod
     def from_config(
@@ -57,5 +63,10 @@ class Repositories:
             publications=MongoPublicationRepository(db, config.publications_collection),
             license_mapping=LicenseMappingRepository(
                 db, config.licenses_mapping_collection
+            ),
+            computations=ComputationsRepository(db, config.computations_collection),
+            similarities=SimilaritiesRepository(db, config.similarities_collection),
+            web_availability=WebAvailabilityRepository(
+                db, config.web_availability_collection
             ),
         )

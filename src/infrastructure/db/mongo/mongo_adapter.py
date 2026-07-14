@@ -126,6 +126,9 @@ class MongoDBAdapter:
     def collection_exists(self, collection_name: str) -> bool:
         return collection_name in self.db.list_collection_names()
 
+    def create_index(self, collection_name: str, key: str, unique: bool = False):
+        return self.db[collection_name].create_index(key, unique=unique)
+
     def drop_collection(self, collection_name: str) -> None:
         logger.info("Dropping collection '%s'", collection_name)
         self.db.drop_collection(collection_name)

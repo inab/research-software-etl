@@ -19,11 +19,14 @@ from typing import Any, Dict, Iterator, List, Optional
 
 from bson import ObjectId
 
+from infrastructure.db.mongo.computations_repository import ComputationsRepository
 from infrastructure.db.mongo.license_mapping_repository import LicenseMappingRepository
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
 from infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
+from infrastructure.db.mongo.similarities_repository import SimilaritiesRepository
 from infrastructure.db.mongo.standardized_software_repository import PretoolsRepository
 from infrastructure.db.mongo.tools_repository import ToolsRepository
+from infrastructure.db.mongo.web_availability_repository import WebAvailabilityRepository
 from infrastructure.db.repositories import Repositories
 from infrastructure.external.clients import ExternalClients
 
@@ -115,6 +118,15 @@ def _resolve_path(document: Dict[str, Any], path: str) -> Any:
     return current
 
 
+def _set_path(document: Dict[str, Any], path: str, value: Any) -> None:
+    """Write a dotted path, as `$set` does -- not a key with a literal dot in it."""
+    target = document
+    parts = path.split(".")
+    for part in parts[:-1]:
+        target = target.setdefault(part, {})
+    target[parts[-1]] = value
+
+
 class FakeDatabaseAdapter:
     """
     An in-memory DatabaseAdapter: `{collection_name: {_id: document}}`.
@@ -127,6 +139,7 @@ class FakeDatabaseAdapter:
 
     def __init__(self, collections: Optional[Dict[str, List[dict]]] = None) -> None:
         self.collections: Dict[str, Dict[Any, dict]] = {}
+        self.indexes: Dict[str, List[tuple]] = {}
         for name, documents in (collections or {}).items():
             for document in documents:
                 self.insert_one(name, copy.deepcopy(document))
@@ -218,6 +231,75 @@ class FakeDatabaseAdapter:
                 target = target.setdefault(part, {})
             target[parts[-1]] = value
 
+    def update_custom_upsert(
+        self, collection_name: str, criteria: Dict[str, Any], data: Dict[str, Any]
+    ) -> None:
+        existing = self.fetch_entry(collection_name, criteria)
+        if existing is None:
+            document = {**copy.deepcopy(criteria), **copy.deepcopy(data)}
+            self.insert_one(collection_name, document)
+            return
+        self.update_entry(collection_name, existing["_id"], data)
+
+    def distinct(
+        self, collection_name: str, key: str, query: Optional[Dict[str, Any]] = None
+    ) -> List[Any]:
+        values = []
+        for document in self.fetch_entries(collection_name, query or {}):
+            value = _resolve_path(document, key)
+            if value is not _MISSING and value not in values:
+                values.append(value)
+        return values
+
+    def create_index(self, collection_name: str, key: str, unique: bool = False) -> str:
+        self.indexes.setdefault(collection_name, []).append((key, unique))
+        return f"{key}_1"
+
+    def bulk_write(
+        self, collection_name: str, operations: List[Any], ordered: bool = False
+    ) -> Any:
+        """
+        Apply pymongo UpdateOne operations.
+
+        The web-availability stage leans on `$push` with `$each`/`$slice` (a rolling
+        window of readings) and on `$setOnInsert` (create-if-absent). A fake that
+        ignored those would let a broken write look like a passing test, so they are
+        interpreted here rather than stubbed.
+        """
+        applied = 0
+        for operation in operations:
+            criteria = operation._filter
+            update = operation._doc
+            upsert = operation._upsert
+
+            document = self.fetch_entry(collection_name, criteria)
+            if document is None:
+                if not upsert:
+                    continue
+                document = copy.deepcopy(criteria)
+                for key, value in (update.get("$setOnInsert") or {}).items():
+                    _set_path(document, key, copy.deepcopy(value))
+                self.insert_one(collection_name, document)
+                document = self._collection(collection_name)[document["_id"]]
+
+            stored = self._collection(collection_name)[document["_id"]]
+            for key, value in (update.get("$set") or {}).items():
+                _set_path(stored, key, copy.deepcopy(value))
+            for key, spec in (update.get("$push") or {}).items():
+                target = _resolve_path(stored, key)
+                items = list(target) if isinstance(target, list) else []
+                if isinstance(spec, dict) and "$each" in spec:
+                    items.extend(copy.deepcopy(spec["$each"]))
+                    window = spec.get("$slice")
+                    if window is not None and window < 0:
+                        items = items[window:]
+                else:
+                    items.append(copy.deepcopy(spec))
+                _set_path(stored, key, items)
+            applied += 1
+
+        return applied
+
     def entry_exists(self, collection_name: str, identifier: Any) -> bool:
         return identifier in self._collection(collection_name)
 
@@ -237,6 +319,9 @@ def fake_repos(
     tools_staging: bool = False,
     publications: bool = False,
     license_mapping: bool = False,
+    computations: bool = False,
+    similarities: bool = False,
+    web_availability: bool = False,
 ) -> Repositories:
     """
     A `Repositories` over an in-memory adapter, wiring only what is asked for.
@@ -256,6 +341,11 @@ def fake_repos(
         ),
         license_mapping=(
             LicenseMappingRepository(db, "licenses") if license_mapping else None
+        ),
+        computations=ComputationsRepository(db, "computations") if computations else None,
+        similarities=SimilaritiesRepository(db, "similarities") if similarities else None,
+        web_availability=(
+            WebAvailabilityRepository(db, "webavailability") if web_availability else None
         ),
     )
 

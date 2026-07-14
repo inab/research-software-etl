@@ -20,6 +20,23 @@ class ToolsRepository:
     def get_all(self) -> list[dict]:
         return self.db_adapter.fetch_entries(self.collection_name, {})
 
+    def find(self, query: dict) -> list[dict]:
+        """Tools matching a query -- the stats stages scope by `{"data.tags": tag}`."""
+        return self.db_adapter.fetch_entries(self.collection_name, query)
+
+    def iter_projected(
+        self, query: dict, projection: dict, limit: int = 0, batch_size: int = 100
+    ) -> Iterator[dict]:
+        """Stream tools reading only the fields asked for."""
+        return self.db_adapter.find(
+            self.collection_name,
+            query,
+            projection=projection,
+            limit=limit if limit and limit > 0 else 0,
+            batch_size=batch_size,
+            no_cursor_timeout=True,
+        )
+
     def iter_lineage(self) -> Iterator[dict]:
         """
         Stream just enough of each tool to work out what it is: its id, the pretools
