@@ -15,25 +15,18 @@ Behaviour:
 import logging
 from datetime import datetime, timezone
 
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from application.services.stats_generation.similarity.compute_embeddings import compute_similarities
+from infrastructure.db.repositories import Repositories
 
 logger = logging.getLogger(__name__)
-
-TOOLS_COLLECTION = "toolsDev"
-SIMILARITY_COLLECTION = "similaritiesDev"
 
 
 def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def _collection_is_populated() -> bool:
-    existing = mongo_adapter.fetch_entry(SIMILARITY_COLLECTION, {})
-    return existing is not None
-
-
 def compute_and_store_similarities(
+    repos: Repositories,
     tag_or_tools: str = "tools",
     k: int = 10,
     force: bool = False,
@@ -59,28 +52,18 @@ def compute_and_store_similarities(
     chunk_size:
         Row-chunk size for the similarity slab computation.
     """
-    if not force and _collection_is_populated():
-        logger.info(
-            f"{SIMILARITY_COLLECTION} already contains data. "
-            "Pass --force to recompute."
-        )
-        print(
-            f"[SKIP] {SIMILARITY_COLLECTION} is already populated. "
-            "Use --force to recompute."
-        )
+    if not force and not repos.similarities.is_empty():
+        logger.info("Similarities already computed. Pass --force to recompute.")
+        print("[SKIP] The similarities collection is already populated. Use --force to recompute.")
         return
 
-    # Ensure a unique index on tool_id for efficient front-end lookups
-    try:
-        mongo_adapter.get_collection(SIMILARITY_COLLECTION).create_index(
-            "tool_id", unique=True
-        )
-    except Exception as exc:
-        logger.warning(f"Could not create index on tool_id: {exc}")
+    # The front-end fetches neighbours by tool_id, and the upsert below assumes one
+    # document per tool.
+    repos.similarities.ensure_tool_id_index()
 
     query = {} if tag_or_tools == "tools" else {"data.tags": tag_or_tools}
-    logger.info(f"Fetching tools from {TOOLS_COLLECTION} (query={query}) ...")
-    tools = list(mongo_adapter.fetch_entries(TOOLS_COLLECTION, query))
+    logger.info(f"Fetching tools (query={query}) ...")
+    tools = list(repos.tools.find(query))
     logger.info(f"Fetched {len(tools)} tools.")
 
     if not tools:
@@ -99,9 +82,8 @@ def compute_and_store_similarities(
     upserted = 0
     failed = 0
     for doc in similarity_docs:
-        match = {"tool_id": doc["tool_id"]}
         try:
-            mongo_adapter.update_custom_upsert(SIMILARITY_COLLECTION, match, doc)
+            repos.similarities.upsert_by_tool_id(doc)
             upserted += 1
         except Exception as exc:
             failed += 1

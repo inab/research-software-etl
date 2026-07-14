@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import List, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 '''
@@ -25,7 +24,7 @@ def guess_repo_kind_from_url(url: str) -> str:
     return None
 
 
-def version_control(tools: List[Dict[str, Any]], collection: str):
+def version_control(tools: List[Dict[str, Any]], collection: str, computations):
     # Counters
     repo_counts = {
         'github': 0,
@@ -84,7 +83,7 @@ def version_control(tools: List[Dict[str, Any]], collection: str):
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     
-    mongo_adapter.insert_one("computationsDev", data_vs_count)
+    computations.save(data_vs_count)
 
     # --- Output 2: repository type distribution ---
     data_vs_repos = {
@@ -96,4 +95,4 @@ def version_control(tools: List[Dict[str, Any]], collection: str):
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
    
-    mongo_adapter.insert_one("computationsDev", data_vs_repos)
+    computations.save(data_vs_repos)

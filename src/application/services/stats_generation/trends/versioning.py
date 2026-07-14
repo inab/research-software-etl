@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import List, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 '''
 USAGE:
@@ -9,7 +8,7 @@ semantic_versioning(tools, collection_name)
 '''
 
 
-def semantic_versioning(tools: List[Dict[str, Any]], collection: str):
+def semantic_versioning(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Computes versioning statistics from software entries and prepares data for storage/plotting.
     """
@@ -67,4 +66,4 @@ def semantic_versioning(tools: List[Dict[str, Any]], collection: str):
     }
 
     # Save or return this object for further processing
-    mongo_adapter.insert_one("computationsDev", data_versioning)
+    computations.save(data_versioning)

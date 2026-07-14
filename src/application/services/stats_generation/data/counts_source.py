@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import List, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 '''
@@ -10,7 +9,7 @@ count_tools(cursor, "my_collection")  # safe with cursors
 count_tools_per_source(cursor, "my_collection")
 '''
 
-def count_tools_per_source(tools: List[Dict[str, Any]], collection: str):
+def count_tools_per_source(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Count number of tools per curated source label.
     """
@@ -54,10 +53,10 @@ def count_tools_per_source(tools: List[Dict[str, Any]], collection: str):
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
-    mongo_adapter.insert_one("computationsDev", count_source)
+    computations.save(count_source)
 
 
-def count_tools(tools: List[Dict[str, Any]], collection: str):
+def count_tools(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Count total number of tools.
     """
@@ -70,4 +69,4 @@ def count_tools(tools: List[Dict[str, Any]], collection: str):
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
-    mongo_adapter.insert_one("computationsDev", count)
+    computations.save(count)

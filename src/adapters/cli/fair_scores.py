@@ -8,6 +8,8 @@ import logging
 from dotenv import load_dotenv
 
 from application.use_cases.stats.generate_fair_scores import add_fair_scores
+from infrastructure.config import PipelineConfig
+from infrastructure.db.repositories import Repositories
 
 
 
@@ -60,11 +62,14 @@ def main():
     else:
         collections = [c.strip() for c in args.collections.split(",") if c.strip()]
 
+    repos = Repositories.from_config(PipelineConfig.from_env())
+
     for collection in collections:
         logging.info(
             f"Generating FAIR indicators/scores for selection: {collection}"
         )
         add_fair_scores(
+            repos,
             tag_or_tools=collection,
             limit=args.limit,
             force=args.force,

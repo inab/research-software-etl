@@ -6,6 +6,8 @@ import argparse
 import logging
 from dotenv import load_dotenv
 from application.use_cases.stats.generate_stats import generate_stats_for_collections
+from infrastructure.config import PipelineConfig
+from infrastructure.db.repositories import Repositories
 
 
 def main():
@@ -41,8 +43,10 @@ def main():
     else:
         collections = [c.strip() for c in args.collections.split(",") if c.strip()]
 
+    repos = Repositories.from_config(PipelineConfig.from_env())
+
     logging.info(f"Generating stats for collections: {collections}")
-    generate_stats_for_collections(collections)
+    generate_stats_for_collections(collections, repos)
     
     logging.info("Stats generation complete.")
 

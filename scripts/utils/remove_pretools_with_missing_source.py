@@ -3,7 +3,9 @@ from __future__ import annotations
 import argparse
 import random
 
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+
+mongo_adapter = MongoDBAdapter()
 
 PRETOOLS_COLLECTION = "pretoolsDev"
 

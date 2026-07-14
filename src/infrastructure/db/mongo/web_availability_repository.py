@@ -16,7 +16,11 @@ from infrastructure.db.database_adapter import DatabaseAdapter
 
 logger = logging.getLogger("rs-etl-pipeline")
 
-RELEVANCE_TAG_FIELD = "relevance.is_relevant"
+# Top-level, not under `relevance` -- the imported collection carries both
+# relevant and non-relevant URLs, and this flag is what restricts the daily
+# monitoring to the ones that correspond to tool webpages. The `relevance`
+# subdocument next to it records only where the flag came from.
+RELEVANCE_TAG_FIELD = "is_relevant"
 
 
 class WebAvailabilityRepository:
@@ -64,13 +68,16 @@ class WebAvailabilityRepository:
         self,
         records: Iterable[Tuple[str, Dict[str, Any]]],
         keep_days: int,
-        updated_at: str,
         updated_by: str,
     ) -> None:
         """
         Append one availability reading per URL, keeping only the last ``keep_days``.
 
         Never creates a document: a URL nobody flagged relevant is not monitored.
+
+        Each reading stamps ``last_updated_at`` with its own ``date`` -- the moment
+        the URL was actually checked -- rather than the moment the batch was flushed,
+        which can be thousands of slow network checks later.
         """
         operations = [
             UpdateOne(
@@ -80,7 +87,7 @@ class WebAvailabilityRepository:
                         "data.availability": {"$each": [entry], "$slice": -keep_days}
                     },
                     "$set": {
-                        "last_updated_at": updated_at,
+                        "last_updated_at": entry["date"],
                         "updated_by": updated_by,
                         "updated_logs": "daily-update",
                         "url": url,
@@ -101,13 +108,14 @@ class WebAvailabilityRepository:
         created_by: str,
         updated_by: str,
         log_label: str = "ensure-relevant-url",
-    ) -> None:
+        chunk_size: int = 500,
+    ) -> int:
         """
         Flag these URLs relevant, creating any that do not exist yet.
 
         Upserts over *every* relevant URL rather than only the missing ones, so a
         document created by some earlier process gets tagged too and starts being
-        monitored.
+        monitored. Returns the number of operations sent.
         """
         operations = [
             UpdateOne(
@@ -134,7 +142,11 @@ class WebAvailabilityRepository:
             )
             for url in urls
         ]
-        self._bulk_write(operations)
+
+        for start in range(0, len(operations), chunk_size):
+            self._bulk_write(operations[start : start + chunk_size])
+
+        return len(operations)
 
     def _bulk_write(self, operations: List[UpdateOne]) -> Optional[Any]:
         if not operations:

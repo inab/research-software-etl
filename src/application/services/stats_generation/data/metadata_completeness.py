@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import List, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 '''
 USAGE:
@@ -59,7 +58,7 @@ def is_meaningful(key, value):
     
 
 
-def features_cummulative(tools: List[Dict[str, Any]], collection: str):
+def features_cummulative(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Computes the cumulative percentage of tools with a given number of meaningful features.
     """
@@ -94,13 +93,13 @@ def features_cummulative(tools: List[Dict[str, Any]], collection: str):
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
-    mongo_adapter.insert_one("computationsDev", feats_cummulative)
+    computations.save(feats_cummulative)
 
 
 from collections import Counter
 
 
-def features_xy(tools: List[Dict[str, Any]], collection: str):
+def features_xy(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Calculates the percentage of tools that have N meaningful features.
     X: number of features, Y: percentage of tools with that number.
@@ -128,4 +127,4 @@ def features_xy(tools: List[Dict[str, Any]], collection: str):
     }
 
 
-    mongo_adapter.insert_one("computationsDev", feats_xy)
+    computations.save(feats_xy)

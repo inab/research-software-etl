@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import argparse
 
-from src.infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from src.infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+
+mongo_adapter = MongoDBAdapter()
 
 COLLECTION_NAME = "alambiqueDev"
 

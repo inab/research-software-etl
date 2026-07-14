@@ -3,20 +3,24 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+
 from pymongo.errors import PyMongoError
 
 from application.use_cases.web_availability.update_web_availability_daily import (
     WebAvailabilityDailyConfig,
     run_update_web_availability_daily,
 )
+from infrastructure.config import PipelineConfig
+from infrastructure.db.repositories import Repositories
 
 
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(
-        description="Daily update of web availability + ensure URLs from toolsDev exist."
+        description="Daily update of web availability + ensure URLs from the tools collection exist."
     )
-    ap.add_argument("--web-coll", default=os.getenv("MONGO_WEBAV_COLL", "webAvailabilityDev"))
-    ap.add_argument("--tools-coll", default=os.getenv("MONGO_TOOLS_COLL", "toolsDev"))
+    # The collections are no longer flags: PipelineConfig reads them from the same
+    # env vars these defaulted to (MONGO_TOOLS_COLL, MONGO_WEBAV_COLL) and the
+    # repositories below are built pointing at them.
     ap.add_argument("--timeout", type=int, default=int(os.getenv("REQ_TIMEOUT", "15")))
     ap.add_argument("--keep-days", type=int, default=int(os.getenv("KEEP_DAYS", "365")))
     ap.add_argument("--created-by", default=os.getenv("CREATED_BY", "oeb-ingest"))
@@ -30,9 +34,9 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
 
+    repos = Repositories.from_config(PipelineConfig.from_env())
+
     cfg = WebAvailabilityDailyConfig(
-        web_collection=args.web_coll,
-        tools_collection=args.tools_coll,
         timeout=args.timeout,
         keep_days=args.keep_days,
         created_by=args.created_by,
@@ -44,14 +48,14 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         print("[RUN] web availability daily job")
-        res = run_update_web_availability_daily(cfg)
+        res = run_update_web_availability_daily(cfg, repos)
 
         print(
             "[STEP 1] processed existing URLs: "
             f"{res.processed_existing_urls} (step1 errors: {res.step1_errors})"
         )
         print(
-            "[STEP 2] toolsDev unique URLs: "
+            "[STEP 2] tools unique URLs: "
             f"{res.tools_unique_urls} | already present: {res.tools_urls_already_present} | missing: {res.tools_urls_missing}"
         )
         print(
@@ -69,6 +73,7 @@ def main(argv: list[str] | None = None) -> int:
     except Exception as e:
         print(f"[FATAL] Unexpected error: {e}", file=sys.stderr)
         return 1
-    
+
+
 if __name__ == "__main__":
     raise SystemExit(main())

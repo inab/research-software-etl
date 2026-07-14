@@ -1,13 +1,12 @@
 from datetime import datetime
 from typing import List, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 '''
 tools = (entry['data'] for entry in db.collection.find({}))
 coverage_sources(tools, "my_stats")
 '''
 
-def coverage_sources(tools: List[Dict[str, Any]], collection: str):
+def coverage_sources(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Computes how many sources contribute to each tool, and how many tools are present per source combination.
     """
@@ -75,5 +74,5 @@ def coverage_sources(tools: List[Dict[str, Any]], collection: str):
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
-    mongo_adapter.insert_one("computationsDev", result)
+    computations.save(result)
 

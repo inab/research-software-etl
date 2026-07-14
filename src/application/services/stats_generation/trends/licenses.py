@@ -1,7 +1,6 @@
 from collections import Counter
 from datetime import datetime
 from typing import List, Tuple, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 '''
 USAGE:
@@ -10,7 +9,7 @@ licenses(entries, collection="my_stats_collection")
 '''
 
 
-def licenses_stats(tools: List[Dict[str, Any]], collection: str):
+def licenses_stats(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Computes license statistics and structures data for further use.
     """
@@ -21,13 +20,15 @@ def licenses_stats(tools: List[Dict[str, Any]], collection: str):
         license_summary=license_summary,
         count_unambiguous=count_unambiguous,
         collection=collection,
-        created_from=created_from
+        created_from=created_from,
+        computations=computations,
     )
     
     licenses_open_source(
         count_unambiguous=count_unambiguous,
         collection=collection,
-        created_from=created_from
+        created_from=created_from,
+        computations=computations,
     )
 
 def map_license(name: str) -> str:
@@ -124,7 +125,7 @@ def count_tools_per_license(tools: List[Dict[str, Any]]) -> Tuple[Dict[str, int]
     return license_summary, count_unambiguous
 
 
-def licenses_summary_sunburst(license_summary: Dict[str, int], count_unambiguous: Dict[str, int], collection: str, created_from: List[str]):
+def licenses_summary_sunburst(license_summary: Dict[str, int], count_unambiguous: Dict[str, int], collection: str, created_from: List[str], computations):
     licenses_parents = {
         'Total': '',
         'None': 'Total',
@@ -160,10 +161,10 @@ def licenses_summary_sunburst(license_summary: Dict[str, int], count_unambiguous
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
-    mongo_adapter.insert_one("computationsDev", data_sunburst)
+    computations.save(data_sunburst)
 
 
-def licenses_open_source(count_unambiguous: Dict[str, int], collection: str, created_from: List[str]):
+def licenses_open_source(count_unambiguous: Dict[str, int], collection: str, created_from: List[str], computations):
     licences_ids = ['BSD', 'GPL', 'MIT', 'Artistic', 'LGPL', 'Apache', 'CC', 'AGPL', 'CeCILL', 'AFL']
     data = {k: count_unambiguous[k] for k in licences_ids if k in count_unambiguous}
 
@@ -204,6 +205,6 @@ def licenses_open_source(count_unambiguous: Dict[str, int], collection: str, cre
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     
-    mongo_adapter.insert_one("computationsDev", data_open_source)
+    computations.save(data_open_source)
 
 

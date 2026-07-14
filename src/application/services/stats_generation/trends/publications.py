@@ -1,4 +1,3 @@
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from collections import defaultdict
 from datetime import datetime
 
@@ -99,12 +98,14 @@ def _to_oid(x):
                     return None
     return None
 
-def publications_journals_IF(collection):
+def publications_journals_IF(collection, repos):
+    """Reads tools and publications as well as writing computations, so it takes
+    the whole bundle rather than a single repository."""
     # 1) Fetch tools (materialize)
     if collection == 'tools':
-        tools = list(mongo_adapter.fetch_entries("toolsDev", {}))
+        tools = list(repos.tools.get_all())
     else:
-        tools = list(mongo_adapter.fetch_entries("toolsDev", { 'data.tags': collection }))
+        tools = list(repos.tools.find({'data.tags': collection}))
 
     # 2) Build publications doc list robustly
     if collection != 'tools':
@@ -116,11 +117,11 @@ def publications_journals_IF(collection):
                 oid = _to_oid(p)
                 if not oid:
                     continue
-                doc = mongo_adapter.fetch_entry("publicationsMetadataDev", {"_id": oid})
+                doc = repos.publications.get_by_id(oid)
                 if doc:
                     docs.append(doc)
     else:
-        docs = list(mongo_adapter.fetch_entries("publicationsMetadataDev", {}))
+        docs = list(repos.publications.get_all())
 
     # 3) Compute & report
     journal_impact = compute_journal_impact(docs, years=['2023','2024','2025'])
@@ -169,7 +170,7 @@ def publications_journals_IF(collection):
         'createdFrom': created_from,
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
-    mongo_adapter.insert_one("computationsDev", result)
+    repos.computations.save(result)
 
     tools_w_pubs = sum(1 for t in tools if (t.get('data') or {}).get('publication'))
     denom = len(tools) or 1
@@ -181,4 +182,4 @@ def publications_journals_IF(collection):
         'createdFrom': created_from,
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
-    mongo_adapter.insert_one("computationsDev", result_count)
+    repos.computations.save(result_count)

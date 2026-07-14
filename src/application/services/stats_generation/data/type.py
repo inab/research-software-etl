@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import List, Dict, Any
 from collections import Counter
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 '''
 USAGE
@@ -9,7 +8,7 @@ tools = (entry['data'] for entry in db.mytools.find({}))
 count_types_tools(tools, "my_stats")
 '''
 
-def count_types_tools(tools: List[Dict[str, Any]], collection: str):
+def count_types_tools(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Calculates the percentage of each tool type across the dataset.
     """
@@ -40,4 +39,4 @@ def count_types_tools(tools: List[Dict[str, Any]], collection: str):
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
-    mongo_adapter.insert_one("computationsDev", types_count)
+    computations.save(types_count)

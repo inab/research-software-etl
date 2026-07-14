@@ -1,8 +1,9 @@
 """
 Application use case: update daily URL availability and maintain the relevant URL set.
 
-This use case performs the daily web availability update by checking already tracked 
-relevant URLs and ensuring that newly discovered relevant tool URLs are added to the tracking collection.
+This use case performs the daily web availability update by checking already tracked
+relevant URLs and ensuring that newly discovered relevant tool URLs are added to the
+tracking collection.
 
 When to run:
 - Periodically (at least daily)
@@ -16,9 +17,8 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import requests
-from pymongo import UpdateOne
 
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.repositories import Repositories
 
 
 DEFAULT_TIMEOUT = 15
@@ -28,7 +28,6 @@ HEADERS = {
 }
 
 RELEVANT_TYPES = {"rest", "web", "app", "suite", "workbench", "db", "soap", "sparql"}
-RELEVANCE_TAG_FIELD = "is_relevant"  # top-level boolean
 
 
 def now_iso_z() -> str:
@@ -59,8 +58,13 @@ def build_availability_entry(code: Optional[int], access_time: Optional[float]) 
 
 @dataclass(frozen=True)
 class WebAvailabilityDailyConfig:
-    web_collection: str = "webAvailabilityDev"
-    tools_collection: str = "toolsDev"
+    """
+    The knobs for one run of the stage.
+
+    Collection names are not among them: they live in `PipelineConfig`, and the
+    repositories this use case is handed already point at the right ones.
+    """
+
     timeout: int = DEFAULT_TIMEOUT
     keep_days: int = 365
     created_by: str = "oeb-ingest"
@@ -94,113 +98,68 @@ def _tool_is_relevant(types_value: Any) -> bool:
     return any(isinstance(t, str) and t in RELEVANT_TYPES for t in types_value)
 
 
-def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAvailabilityDailyResult:
+def _relevant_tool_urls(
+    repos: Repositories, cfg: WebAvailabilityDailyConfig
+) -> Set[str]:
+    """Every webpage of every tool whose type makes it worth monitoring."""
+    urls: Set[str] = set()
+    for tool in repos.tools.iter_projected(
+        query={},
+        projection={"data.type": 1, "data.webpage": 1},
+        limit=cfg.limit_tools,
+        batch_size=cfg.batch_size,
+    ):
+        data = tool.get("data") or {}
+        if not _tool_is_relevant(data.get("type")):
+            continue
+
+        webpages = data.get("webpage")
+        if isinstance(webpages, list):
+            urls.update(u.strip() for u in webpages if _is_http_url(u))
+
+    return urls
+
+
+def run_update_web_availability_daily(
+    cfg: WebAvailabilityDailyConfig, repos: Repositories
+) -> WebAvailabilityDailyResult:
     if cfg.keep_days <= 0:
         raise ValueError("keep_days must be > 0")
 
-    # -----------------------------
-    # Step 1: update ONLY relevant URLs in webAvailabilityDev
-    # -----------------------------
-    # Materialize the relevant _ids up front and close the cursor before doing
-    # any slow per-URL network checks. Holding a cursor open across thousands of
-    # check_url() calls let it sit idle past MongoDB's 30-minute session idle
-    # timeout (which overrides no_cursor_timeout when no explicit session is
-    # attached), killing the job mid-stream with CursorNotFound. The projection
-    # is just _id, so the full set fits comfortably in memory.
-    cursor = mongo_adapter.find(
-        cfg.web_collection,
-        query={RELEVANCE_TAG_FIELD: True},  # <-- only relevant
-        projection={"_id": 1},
-        limit=cfg.limit_web if cfg.limit_web and cfg.limit_web > 0 else 0,
-        batch_size=cfg.batch_size,
-        no_cursor_timeout=True,
-    )
-    try:
-        relevant_ids = [doc.get("_id") for doc in cursor]
-    finally:
-        try:
-            cursor.close()
-        except Exception:
-            pass
+    web = repos.web_availability
 
-    updates: List[UpdateOne] = []
+    # -----------------------------
+    # Step 1: check ONLY the URLs already flagged relevant
+    # -----------------------------
+    readings: List[Tuple[str, Dict[str, Any]]] = []
     processed = 0
     errors = 0
 
     try:
-        for url in relevant_ids:
+        for url in web.relevant_urls(limit=cfg.limit_web, batch_size=cfg.batch_size):
             if not _is_http_url(url):
                 continue
 
             code, access_time = check_url(url, timeout=cfg.timeout)
-            entry = build_availability_entry(code, access_time)
-
-            updates.append(
-                UpdateOne(
-                    {"_id": url},
-                    {
-                        "$push": {
-                            "data.availability": {
-                                "$each": [entry],
-                                "$slice": -cfg.keep_days,
-                            }
-                        },
-                        "$set": {
-                            "last_updated_at": now_iso_z(),
-                            "updated_by": cfg.updated_by,
-                            "updated_logs": "daily-update",
-                            "url": url,
-                            "data.url": url,
-                        },
-                    },
-                    upsert=False,
-                )
-            )
+            readings.append((url, build_availability_entry(code, access_time)))
             processed += 1
 
-            if len(updates) >= cfg.bulk_chunk:
+            if len(readings) >= cfg.bulk_chunk:
                 if not cfg.dry_run:
-                    mongo_adapter.bulk_write(cfg.web_collection, updates, ordered=False)
-                updates.clear()
+                    web.append_availability(readings, cfg.keep_days, cfg.updated_by)
+                readings.clear()
 
     except Exception:
         errors += 1
         raise
 
-    if updates:
-        if not cfg.dry_run:
-            mongo_adapter.bulk_write(cfg.web_collection, updates, ordered=False)
-        updates.clear()
+    if readings and not cfg.dry_run:
+        web.append_availability(readings, cfg.keep_days, cfg.updated_by)
 
     # -----------------------------
     # Step 2: ensure ONLY relevant tools' URLs exist + are tagged relevant
     # -----------------------------
-    tool_cursor = mongo_adapter.find(
-        cfg.tools_collection,
-        query={},  # could be optimized if you index data.type; see note below
-        projection={"data.type": 1, "data.webpage": 1},
-        limit=cfg.limit_tools if cfg.limit_tools and cfg.limit_tools > 0 else 0,
-        batch_size=cfg.batch_size,
-        no_cursor_timeout=True,
-    )
-
-    relevant_tool_urls: Set[str] = set()
-    try:
-        for tdoc in tool_cursor:
-            data = tdoc.get("data") or {}
-            if not _tool_is_relevant(data.get("type")):
-                continue
-
-            webpages = data.get("webpage")
-            if isinstance(webpages, list):
-                for u in webpages:
-                    if _is_http_url(u):
-                        relevant_tool_urls.add(u.strip())
-    finally:
-        try:
-            tool_cursor.close()
-        except Exception:
-            pass
+    relevant_tool_urls = _relevant_tool_urls(repos, cfg)
 
     if not relevant_tool_urls:
         return WebAvailabilityDailyResult(
@@ -214,65 +173,20 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
             insert_errors=0,
         )
 
-    existing = set(
-        mongo_adapter.distinct(cfg.web_collection, "_id", {"_id": {"$in": list(relevant_tool_urls)}})
-    )
-    missing = [u for u in relevant_tool_urls if u not in existing]
+    existing = web.existing_urls(relevant_tool_urls)
+    missing = relevant_tool_urls - existing
 
-    # Use UpdateOne(upsert=True) over EVERY relevant URL (not just missing ones) so:
-    # - missing docs are created with empty availability ($setOnInsert)
-    # - existing docs (e.g. created by a legacy availability process) get tagged
-    #   relevant via $set, so Step 1 will start monitoring them.
-    upserts: List[UpdateOne] = []
-    inserted = 0
-    retagged = 0
-    insert_errors = 0
-    now = now_iso_z()
-
-    for url in relevant_tool_urls:
-        try:
-            upserts.append(
-                UpdateOne(
-                    {"_id": url},
-                    {
-                        "$set": {
-                            RELEVANCE_TAG_FIELD: True,
-                            "relevance.source": cfg.tools_collection,
-                            "relevance.tagged_at": now,
-                            "last_updated_at": now,
-                            "updated_by": cfg.updated_by,
-                            "updated_logs": "ensure-relevant-url",
-                            "url": url,
-                        },
-                        "$setOnInsert": {
-                            "created_at": now,
-                            "created_by": cfg.created_by,
-                            "created_logs": "ensure-relevant-url",
-                            "data.url": url,
-                            "data.availability": [],
-                        },
-                    },
-                    upsert=True,
-                )
-            )
-            if url in existing:
-                retagged += 1
-            else:
-                inserted += 1
-
-            if len(upserts) >= cfg.bulk_chunk:
-                if not cfg.dry_run:
-                    mongo_adapter.bulk_write(cfg.web_collection, upserts, ordered=False)
-                upserts.clear()
-
-        except Exception:
-            insert_errors += 1
-            continue
-
-    if upserts:
-        if not cfg.dry_run:
-            mongo_adapter.bulk_write(cfg.web_collection, upserts, ordered=False)
-        upserts.clear()
+    if not cfg.dry_run:
+        # Tags *every* relevant URL, not just the missing ones: a document some
+        # earlier process created gets flagged too, so Step 1 starts monitoring it.
+        web.tag_relevant(
+            urls=sorted(relevant_tool_urls),
+            source=repos.tools.collection_name,
+            tagged_at=now_iso_z(),
+            created_by=cfg.created_by,
+            updated_by=cfg.updated_by,
+            chunk_size=cfg.bulk_chunk,
+        )
 
     return WebAvailabilityDailyResult(
         processed_existing_urls=processed,
@@ -280,7 +194,7 @@ def run_update_web_availability_daily(cfg: WebAvailabilityDailyConfig) -> WebAva
         tools_unique_urls=len(relevant_tool_urls),
         tools_urls_already_present=len(existing),
         tools_urls_missing=len(missing),
-        inserted_missing_urls=inserted,
-        retagged_existing_urls=retagged,
-        insert_errors=insert_errors,
+        inserted_missing_urls=len(missing),
+        retagged_existing_urls=len(existing),
+        insert_errors=0,
     )

@@ -1,4 +1,3 @@
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from typing import List, Dict, Any
 from datetime import datetime
 from collections import defaultdict
@@ -111,48 +110,55 @@ def compute_fair_score_means(results: List[Dict[str, Any]]) -> Dict[str, float]:
     return means
 
 
-def get_fair_scores(collection):
+def _tool_key(created_from):
+    """
+    The tool a FAIR-score document was computed from.
 
-    if collection == 'tools':
-        entries = mongo_adapter.fetch_entries('computationsDev', {"variable" : "FAIR_scores"})
-    else:
-        entries = mongo_adapter.fetch_entries('computationsDev', {'tags' : collection, "variable" : "FAIR_scores"})
-    
-    latest_by_created_from = {}
+    `createdFrom` is a one-element *list* of the tool id -- it was migrated from a
+    bare string by scripts/utils/db_createdFrom_to_list.py. Using the list itself
+    as a dict key raised `TypeError: unhashable type: 'list'`, which is to say this
+    dedup never ran after that migration.
+    """
+    if isinstance(created_from, list):
+        return created_from[0] if created_from else None
+    return created_from
+
+
+def get_fair_scores(collection, computations):
+    """The most recent FAIR score per tool."""
+    tag = None if collection == 'tools' else collection
+    entries = computations.find_by_variable("FAIR_scores", tag=tag)
+
+    latest_by_tool = {}
 
     for entry in entries:
-        created_from = entry.get("createdFrom")
+        tool_id = _tool_key(entry.get("createdFrom"))
         version = entry.get("version")
 
-        if not created_from or not version:
+        if not tool_id or not version:
             continue
 
         version_dt = datetime.fromisoformat(version)
+        current = latest_by_tool.get(tool_id)
 
-        current = latest_by_created_from.get(created_from)
+        if current is None or version_dt > datetime.fromisoformat(current["version"]):
+            latest_by_tool[tool_id] = entry
 
-        if current is None:
-            latest_by_created_from[created_from] = entry
-            continue
+    return list(latest_by_tool.values())
 
-        current_version_dt = datetime.fromisoformat(current["version"])
 
-        if version_dt > current_version_dt:
-            latest_by_created_from[created_from] = entry
-
-        entries = list(latest_by_created_from.values())
-    
-    return list(entries)
-
-def do_sanity_check(collection):
+def do_sanity_check(collection, repos):
 
     # tools
     if collection == 'tools':
-        tools_entries = mongo_adapter.fetch_entries('toolsDev', {})
-        fair_entries = mongo_adapter.fetch_entries('computationsDev', {"variable":"FAIR_scores" })
+        tools_entries = repos.tools.get_all()
     else:
-        tools_entries = mongo_adapter.fetch_entries('toolsDev', {'tags' : collection})
-        fair_entries = mongo_adapter.fetch_entries('computations', {"variable":"FAIR_scores","tags":collection})
+        # Tags live under `data` on a tool; the top-level `tags` this used to query
+        # does not exist there, so it always found nothing.
+        tools_entries = repos.tools.find({'data.tags': collection})
+
+    tag = None if collection == 'tools' else collection
+    fair_entries = repos.computations.find_by_variable("FAIR_scores", tag=tag)
 
     if len(tools_entries) != len(fair_entries):
         print("WARNING: different number of tools and FAIR scores records")
@@ -161,13 +167,13 @@ def do_sanity_check(collection):
         print("Same number of tools and FAIR score records")
 
     return
-    
 
-def compute_fair_distributions(collection):
 
-    do_sanity_check(collection)
+def compute_fair_distributions(collection, repos):
 
-    results = get_fair_scores(collection)
+    do_sanity_check(collection, repos)
+
+    results = get_fair_scores(collection, repos.computations)
     print(f"Results for {collection}: {len(results)} documents")
 
 
@@ -201,7 +207,7 @@ def compute_fair_distributions(collection):
         'collection': collection
     }
 
-    mongo_adapter.insert_one("computationsDev", data)
+    repos.computations.save(data)
 
     data_2 = {
         'variable': 'FAIR_scores_means',
@@ -210,12 +216,5 @@ def compute_fair_distributions(collection):
         'collection': collection
     }
 
-    mongo_adapter.insert_one("computationsDev", data_2)
+    repos.computations.save(data_2)
 
-
-
-if __name__ == "__main__":
-    
-    default_collection = 'tools'
-    compute_fair_distributions(default_collection)
-    

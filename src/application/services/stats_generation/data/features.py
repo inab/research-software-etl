@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import List, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 
 
 '''
@@ -10,7 +9,7 @@ tools = (entry['data'] for entry in cursor)
 features_overview(tools, collection="my_stats")
 '''
 
-def features_overview(tools: List[Dict[str, Any]], collection: str):
+def features_overview(tools: List[Dict[str, Any]], collection: str, computations):
     """
     Calculate percentage presence of standard metadata features across tools.
     """
@@ -78,4 +77,4 @@ def features_overview(tools: List[Dict[str, Any]], collection: str):
         'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     }
 
-    mongo_adapter.insert_one("computationsDev", result)
+    computations.save(result)

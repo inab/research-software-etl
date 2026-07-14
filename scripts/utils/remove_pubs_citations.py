@@ -1,4 +1,6 @@
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+
+mongo_adapter = MongoDBAdapter()
 
 
 if __name__ == "__main__":

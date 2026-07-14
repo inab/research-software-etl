@@ -1,5 +1,7 @@
 from typing import Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+
+mongo_adapter = MongoDBAdapter()
 
 
 def is_value_meaningful(value: Any) -> bool:

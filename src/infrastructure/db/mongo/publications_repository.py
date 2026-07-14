@@ -18,6 +18,9 @@ class MongoPublicationRepository:
         """Find a publication metadata entry by its identifier."""
         return self.mongo_db.fetch_entry(self.collection_name, identifier)
 
+    def get_all(self) -> list[dict]:
+        return self.mongo_db.fetch_entries(self.collection_name, {})
+
     def find_by_doi(self, doi: str):
         """Find a publication metadata entry by DOI."""
         query = {"data.doi": doi}

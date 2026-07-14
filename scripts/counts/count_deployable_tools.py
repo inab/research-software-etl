@@ -1,6 +1,8 @@
  # Count reords in tools with type web, rest, sparql, workbench or suite 
 
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+
+mongo_adapter = MongoDBAdapter()
 
 
 TARGET_TYPES = {"web", "rest", "sparql", "workbench", "suite"}

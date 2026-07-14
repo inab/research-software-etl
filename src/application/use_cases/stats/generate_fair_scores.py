@@ -15,16 +15,11 @@ Behavior:
 """
 
 from datetime import datetime
-from dotenv import load_dotenv
 
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from application.services.stats_generation.FAIR.individual_scores import evaluate_tool
+from infrastructure.db.repositories import Repositories
 
-
-# ---- Config ----
 VARIABLE = "FAIR_scores"
-TOOLS_COLLECTION = "toolsDev"
-SCORES_COLLECTION = "computationsDev"
 
 
 def utc_now_iso():
@@ -44,12 +39,12 @@ def build_tools_query(tag_or_tools: str) -> dict:
 
 
 def add_fair_scores(
+    repos: Repositories,
     tag_or_tools: str = "tools",
     limit: int | None = None,
     force: bool = False,
 ):
-    tools_query = build_tools_query(tag_or_tools)
-    tools = mongo_adapter.fetch_entries(TOOLS_COLLECTION, tools_query)
+    tools = repos.tools.find(build_tools_query(tag_or_tools))
 
     processed = 0
     skipped = 0
@@ -73,7 +68,7 @@ def add_fair_scores(
                 "variable": VARIABLE,
                 "createdFrom": [ entry_id ],
             }
-            existing = mongo_adapter.fetch_entry(SCORES_COLLECTION, match)
+            existing = repos.computations.find_one(match)
 
             if existing and existing.get("version") == tool_ts and not force:
                 skipped += 1
@@ -90,7 +85,7 @@ def add_fair_scores(
                 print(f"[DO] Scoring new tool {entry_id} @ {tool_ts}")
 
             try:
-                result = evaluate_tool(entry)
+                result = evaluate_tool(entry, repos.publications)
 
                 doc = {
                     "variable": VARIABLE,
@@ -101,8 +96,9 @@ def add_fair_scores(
                     "tags": entry.get("data", {}).get("tags", []),
                 }
 
-                # 3) Upsert: update if exists, else insert
-                mongo_adapter.update_custom_upsert(SCORES_COLLECTION, match, doc)
+                # 3) Upsert: update if exists, else insert. This is why tool ids
+                # must be stable across runs -- `match` is keyed on createdFrom.
+                repos.computations.upsert(match, doc)
 
                 processed += 1
                 print(f"[OK] Stored FAIR scores for {entry_id}")
@@ -121,11 +117,3 @@ def add_fair_scores(
         f"\nDone. processed={processed}, "
         f"skipped={skipped}, failed={failed}, force={force}"
     )
-
-if __name__ == "__main__":
-
-    default_dotenv ="/Users/evabsc/projects/software-observatory/research-software-etl/.env"
-    default_collection = 'tools'
-    default_limit = None
-    load_dotenv(dotenv_path=default_dotenv, override=True)
-    add_fair_scores(tag_or_tools=default_collection, limit=default_limit)

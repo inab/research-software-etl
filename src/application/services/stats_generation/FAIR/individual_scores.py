@@ -3,10 +3,8 @@ import requests
 from urllib.parse import urlparse
 
 
-def get_pub(object_id):
-    from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
-
-    publication = mongo_adapter.fetch_entry( "publicationsMetadataDev", object_id)    
+def get_pub(object_id, publications):
+    publication = publications.get_by_id(object_id)
     if publication:
         return publication.get('data')
     else:
@@ -158,7 +156,7 @@ def collect_entry_links(entry: dict) -> list[str]:
 
 
 
-def prep_entry_for_evaluation(entry):
+def prep_entry_for_evaluation(entry, publications):
 
     publications_records = set()
 
@@ -167,7 +165,7 @@ def prep_entry_for_evaluation(entry):
     publications_new = []
     if entry.get('publication'):
         for pub in entry['publication']:
-            publication = get_pub(ObjectId(pub))
+            publication = get_pub(ObjectId(pub), publications)
             if publication:
                 publications_records.add(id)
                 if 'citations' in publication:
@@ -240,10 +238,10 @@ def prep_entry_for_evaluation(entry):
 
 
 
-def evaluate_tool(entry):
+def evaluate_tool(entry, publications):
     from fairsoft_core.evaluation.all_indicators import run_fairsoft_evaluation 
 
-    entry = prep_entry_for_evaluation(entry)
+    entry = prep_entry_for_evaluation(entry, publications)
 
     #result = { id: request_fair_calculation(entry)}
 

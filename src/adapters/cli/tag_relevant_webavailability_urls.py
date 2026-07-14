@@ -16,38 +16,39 @@ from application.use_cases.web_availability.tag_relevant_webavailability_urls im
     TagRelevantWebAvailabilityConfig,
     run_tag_relevant_webavailability_urls,
 )
+from infrastructure.config import PipelineConfig
+from infrastructure.db.repositories import Repositories
 
 
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(
-        description="Tag relevant URLs in webAvailabilityDev based on toolsDev types and webpages."
+        description="Tag relevant URLs in the web-availability collection based on tool types and webpages."
     )
-    ap.add_argument("--tools-coll", default=os.getenv("MONGO_TOOLS_COLL", "toolsDev"))
-    ap.add_argument("--web-coll", default=os.getenv("MONGO_WEBAV_COLL", "webAvailabilityDev"))
+    # The collections and the tag field are no longer flags: PipelineConfig reads the
+    # collection names from the same env vars these defaulted to (MONGO_TOOLS_COLL,
+    # MONGO_WEBAV_COLL), and the tag field belongs to the repository's schema.
     ap.add_argument("--created-by", default=os.getenv("CREATED_BY", "oeb-ingest"))
     ap.add_argument("--updated-by", default=os.getenv("UPDATED_BY", "oeb-ingest"))
-    ap.add_argument("--tag-field", default=os.getenv("WEBAV_RELEVANT_TAG_FIELD", "is_relevant"))
     ap.add_argument("--limit-tools", type=int, default=0, help="Limit tool docs to scan (0=all)")
     ap.add_argument("--dry-run", action="store_true")
     return ap
 
 
-def main() -> int:
-    args = build_parser().parse_args()
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+
+    repos = Repositories.from_config(PipelineConfig.from_env())
 
     cfg = TagRelevantWebAvailabilityConfig(
-        tools_collection=args.tools_coll,
-        web_collection=args.web_coll,
         created_by=args.created_by,
         updated_by=args.updated_by,
-        tag_field=args.tag_field,
         limit_tools=args.limit_tools,
         dry_run=args.dry_run,
     )
 
     try:
         print("[RUN] Tag relevant webAvailability URLs")
-        res = run_tag_relevant_webavailability_urls(cfg)
+        res = run_tag_relevant_webavailability_urls(cfg, repos)
 
         print(f"[INFO] tools scanned: {res.tools_scanned}")
         print(f"[INFO] tools matched relevant types: {res.tools_matched}")

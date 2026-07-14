@@ -95,10 +95,12 @@ def test_tag_relevant_creates_missing_urls_and_tags_existing_ones(repos, db):
     old = db.fetch_entry("webavailability", "https://old.example")
     new = db.fetch_entry("webavailability", "https://new.example")
 
-    assert old["relevance"]["is_relevant"] is True
+    # Top-level, not under `relevance`: this is the flag the daily job filters on.
+    assert old["is_relevant"] is True
     assert old["data"]["availability"] == [1], "$setOnInsert must not touch an existing doc"
-    assert new["relevance"]["is_relevant"] is True
+    assert new["is_relevant"] is True
     assert new["data"]["availability"] == [], "a new url starts with no readings"
+    assert new["relevance"]["source"] == "toolsDev"
 
 
 def test_append_availability_keeps_only_the_last_n_readings(repos, db):
@@ -112,21 +114,21 @@ def test_append_availability_keeps_only_the_last_n_readings(repos, db):
 
     for day in range(4):
         repos.web_availability.append_availability(
-            [("https://x.example", {"code": 200, "day": day})],
+            [("https://x.example", {"code": 200, "day": day, "date": f"t{day}"})],
             keep_days=3,
-            updated_at="t1",
             updated_by="a",
         )
 
-    readings = db.fetch_entry("webavailability", "https://x.example")["data"]["availability"]
+    stored = db.fetch_entry("webavailability", "https://x.example")
+    readings = stored["data"]["availability"]
     assert [r["day"] for r in readings] == [1, 2, 3], "the window rolls, oldest dropped"
+    assert stored["last_updated_at"] == "t3", "stamped when the URL was checked"
 
 
 def test_append_availability_never_creates_an_unmonitored_url(repos, db):
     repos.web_availability.append_availability(
-        [("https://unknown.example", {"code": 200})],
+        [("https://unknown.example", {"code": 200, "date": "t"})],
         keep_days=3,
-        updated_at="t",
         updated_by="a",
     )
 
@@ -166,9 +168,8 @@ def test_the_repository_builds_the_update_operations(repos, monkeypatch):
     monkeypatch.setattr(repos.web_availability.db_adapter, "bulk_write", capture)
 
     repos.web_availability.append_availability(
-        [("https://x.example", {"code": 200})],
+        [("https://x.example", {"code": 200, "date": "t"})],
         keep_days=365,
-        updated_at="t",
         updated_by="a",
     )
 

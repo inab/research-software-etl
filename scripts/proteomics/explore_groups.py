@@ -3,7 +3,9 @@ from pathlib import Path
 from collections import Counter
 
 from bson import ObjectId
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
+from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
+
+mongo_adapter = MongoDBAdapter()
 
 
 GROUPED_FILE = Path(

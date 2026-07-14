@@ -425,15 +425,3 @@ class MongoDBAdapter:
         id_inserted_doc =  collection.insert_one(document)
         logger.debug(f"Inserted document into collection {collection_name}")
         return id_inserted_doc.inserted_id
-    
-
-    def fetch_all_tags(self):
-        """
-        Fetch all unique tags from the 'toolsDev' collection.
-        Returns:
-            List[str]: A list of unique tag strings.
-        """
-        collection = self.db['toolsDev']
-        tags = collection.distinct('data.tags')
-        return [tag for tag in tags if tag]  # filter out empty/null tags
-    

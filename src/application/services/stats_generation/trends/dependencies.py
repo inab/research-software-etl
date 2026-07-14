@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import List, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from collections import Counter
 import re
 
@@ -39,7 +38,7 @@ def count_dependencies(tools: List[Dict[str, Any]]):
     return top_20, tools_w_deps
 
 
-def dependencies_count(dependencies_stats: Dict[str, int], collection: str):
+def dependencies_count(dependencies_stats: Dict[str, int], collection: str, computations):
     """
     Prepares data for storage/plotting.
     """
@@ -53,7 +52,7 @@ def dependencies_count(dependencies_stats: Dict[str, int], collection: str):
     return dependencies_summary
 
 
-def dependencies_coverage(tools, tools_w_deps, collection):
+def dependencies_coverage(tools, tools_w_deps, collection, computations):
 
     data = {
         'count': tools_w_deps,
@@ -71,19 +70,19 @@ def dependencies_coverage(tools, tools_w_deps, collection):
     return doc
 
 
-def dependencies(tools: List[Dict[str, Any]], collection: str):
+def dependencies(tools: List[Dict[str, Any]], collection: str, computations):
     dependencies_stats, tools_w_deps = count_dependencies(tools)
     created_from = [tool['_id'] for tool in tools]
 
-    dependencies_summary = dependencies_count(dependencies_stats, collection)
+    dependencies_summary = dependencies_count(dependencies_stats, collection, computations)
     dependencies_summary['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     dependencies_summary['createdFrom'] = created_from
-    mongo_adapter.insert_one("computationsDev", dependencies_summary)
+    computations.save(dependencies_summary)
 
-    dependencies_coverage_doc = dependencies_coverage(tools, tools_w_deps, collection)
+    dependencies_coverage_doc = dependencies_coverage(tools, tools_w_deps, collection, computations)
     dependencies_coverage_doc['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     dependencies_coverage_doc['createdFrom'] = created_from
-    mongo_adapter.insert_one("computationsDev", dependencies_coverage_doc)
+    computations.save(dependencies_coverage_doc)
 
 
 

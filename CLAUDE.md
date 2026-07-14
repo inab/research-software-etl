@@ -116,10 +116,13 @@ repos = Repositories.from_config(config)   # built once, at the CLI
 grouping_and_recovery_process(config, repos)
 ```
 
-`Repositories.from_config` wires every repository (`alambique`, `pretools`, `tools`, `publications`, `license_mapping`) over one adapter. Building it is free: `MongoDBAdapter` keeps its pymongo client in a *class* attribute and connects on first use, so each stage subprocess wires its own without multiplying connections.
+`Repositories.from_config` wires every repository (`alambique`, `pretools`, `tools`, `tools_staging`, `publications`, `license_mapping`, `computations`, `similarities`, `web_availability`) over one adapter. Building it is free: `MongoDBAdapter` keeps its pymongo client in a *class* attribute and connects on first use, so each stage subprocess wires its own without multiplying connections.
+
+Use cases take the whole `Repositories` bundle; services take the one narrow repository they need (`count_types_tools(tools, tag, computations)`), so a service's signature says exactly which collections it can touch.
 
 - Need a new query? Add a method to the repository, not a `fetch_entry` call in `application/`.
 - Need a new collection? Add a field to `PipelineConfig` and a slot to `Repositories`.
+- Driver types stay in `infrastructure/`. `WebAvailabilityRepository` builds its own `pymongo.UpdateOne`s; callers pass plain dicts. `tests/test_architecture.py` fails the build if `pymongo` is imported anywhere under `application/`.
 - `DatabaseAdapter` (`infrastructure/db/database_adapter.py`) is satisfied *structurally* — concrete adapters must not inherit from it. It used to be inherited, and because its method bodies are `pass`, a method the adapter didn't implement returned `None` instead of raising.
 
 **Tool identity (`src/application/services/integration/tool_identity.py`):**
@@ -151,8 +154,7 @@ Test modules are packages (`tests/**/__init__.py`): two `test_disambiguation.py`
 `tests/test_architecture.py` enforces the two layering rules below — it will fail the build, so read it before working around it.
 
 **Known architectural debt — do not make it worse:**
-- Do not add new `mongo_adapter` singleton imports to `application/` or `domain/` — take a `Repositories` argument instead. The core pipeline is off the singleton; the `stats_generation` and `web_availability` stages are not yet, and are pinned by an allowlist in `tests/test_architecture.py` that may only ever shrink. When it empties, delete it and `mongo_db_singleton.py`.
+- There is no mongo singleton any more: `mongo_db_singleton.py` is deleted, and every stage — the core pipeline, `stats_generation` and `web_availability` alike — takes a `Repositories` argument. Do not build a `MongoDBAdapter()` below `adapters/` to get around it; `tests/test_architecture.py` fails the build if you do. (The one-off scripts under `scripts/` construct their own adapter, and are outside these rules.)
 - Do not add new `os.getenv` calls below `adapters/` — read config once at the CLI layer via `PipelineConfig.from_env()` and pass it down.
-- The stats services each end in `insert_one("computationsDev", ...)` with the collection inline; they collapse onto one narrow `ComputationsRepository.save(doc)`. While you are there: `fair_distribution.py` queries `'computations'` with no `Dev` suffix on one line and `'computationsDev'` on every other, and `MongoDBAdapter.fetch_all_tags` hardcodes `toolsDev`.
 - `build_disambiguated_record`'s zero-pair branch and `build_no_conflict_record` describe the same situation differently — one labels it `no_conflict` without the "different names" caution, the other `merged` with it. Harmless downstream (`merge_entries` treats both labels alike), but they should agree.
 - The disambiguation services (`disambiguator.py`, `issues.py`) build a `PipelineConfig()` *inline* instead of receiving one, and append diagnostics to repo-relative paths (`scripts/data/results_proxy.jsonl`, `data/issues.json`, …). So a pipeline run writes into the working tree rather than its run directory, and tests had to be insulated from it — see `tests/conftest.py`. These should take the config the CLI already builds.

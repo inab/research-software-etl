@@ -77,7 +77,12 @@ def _matches(document: Dict[str, Any], query: Dict[str, Any]) -> bool:
 
 def _project(document: Dict[str, Any], projection: Optional[Dict[str, Any]]) -> dict:
     """
-    Inclusion projection over top-level fields, which is all the pipeline asks for.
+    Inclusion projection, over dotted paths as well as top-level fields.
+
+    The dotted case is not a nicety: the web-availability stage projects
+    `{"data.type": 1, "data.webpage": 1}`, and a fake that only understood top-level
+    keys would drop `data` altogether -- leaving the stage with no URLs to check and
+    a test that passes while proving nothing.
 
     `_id` comes back unless it is explicitly excluded, as in MongoDB -- code that
     projects `{"source": 1}` still expects to get an id.
@@ -97,8 +102,15 @@ def _project(document: Dict[str, Any], projection: Optional[Dict[str, Any]]) -> 
     if not included:
         return {k: v for k, v in document.items() if k not in excluded}
 
-    keep = included | ({"_id"} if projection.get("_id", 1) else set())
-    return {k: v for k, v in document.items() if k in keep}
+    if projection.get("_id", 1):
+        included.add("_id")
+
+    projected: Dict[str, Any] = {}
+    for path in included:
+        value = _resolve_path(document, path)
+        if value is not _MISSING:
+            _set_path(projected, path, value)
+    return projected
 
 
 class _Missing:

@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import List, Dict, Any
-from infrastructure.db.mongo.mongo_db_singleton import mongo_adapter
 from collections import defaultdict
 
 import re
@@ -60,7 +59,7 @@ def count_documentation(tools: List[Dict[str, Any]]):
     return doc_format_counts, tools_w_docs
 
 
-def documentation_stats(doc_format_counts, collection):
+def documentation_stats(doc_format_counts, collection, computations):
     summary = {
         'variable': 'documentation',
         'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -71,7 +70,7 @@ def documentation_stats(doc_format_counts, collection):
     return summary
 
 
-def documentation_coverage(tools, tools_w_docs, collection):
+def documentation_coverage(tools, tools_w_docs, collection, computations):
 
     data = {
         'count': tools_w_docs,
@@ -88,18 +87,18 @@ def documentation_coverage(tools, tools_w_docs, collection):
     return doc
 
 
-def documentation(tools: List[Dict[str, Any]], collection: str):
+def documentation(tools: List[Dict[str, Any]], collection: str, computations):
     documentation_counts, tools_w_docs = count_documentation(tools)
     created_from = [tool['_id'] for tool in tools]
 
-    documentation_summary = documentation_stats(documentation_counts, collection)
+    documentation_summary = documentation_stats(documentation_counts, collection, computations)
     documentation_summary['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     documentation_summary['createdFrom'] = created_from
-    mongo_adapter.insert_one("computationsDev", documentation_summary)
+    computations.save(documentation_summary)
 
-    documentation_coverage_doc = documentation_coverage(tools, tools_w_docs, collection)
+    documentation_coverage_doc = documentation_coverage(tools, tools_w_docs, collection, computations)
     documentation_coverage_doc['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
     documentation_coverage_doc['createdFrom'] = created_from
-    mongo_adapter.insert_one("computationsDev", documentation_coverage_doc)
+    computations.save(documentation_coverage_doc)
 
 
