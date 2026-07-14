@@ -185,6 +185,21 @@ def main(argv: list[str] | None = None) -> int:
         help="Arguments passed to the enrich publications job",
     )
 
+    # --- rollback ---------------------------------------------------------------
+    rollback_p = subparsers.add_parser(
+        "rollback",
+        help="Restore the tools collection archived by a run, undoing its promotion",
+    )
+    rollback_p.add_argument("run_id", help="Run ID whose archive should be restored")
+    rollback_p.add_argument(
+        "--env-file", default=".env", help="File containing environment variables"
+    )
+    rollback_p.add_argument(
+        "--yes",
+        action="store_true",
+        help="Do not ask for confirmation. The current tools collection is dropped.",
+    )
+
     # --- runs -------------------------------------------------------------------
     runs_p = subparsers.add_parser("runs", help="Inspect pipeline runs")
     runs_sub = runs_p.add_subparsers(dest="runs_command", required=True)
@@ -247,6 +262,34 @@ def main(argv: list[str] | None = None) -> int:
         
         if args.command == "enrich-publications":
             return enrich_publications.main(args.ep_args)
+
+        if args.command == "rollback":
+            from dotenv import load_dotenv
+
+            from application.use_cases.integration.finalize_run import (
+                archive_name,
+                rollback_run,
+            )
+            from infrastructure.config import PipelineConfig
+            from infrastructure.db.repositories import Repositories
+
+            load_dotenv(args.env_file)
+            config = PipelineConfig.from_env()
+            repos = Repositories.from_config(config)
+
+            # Rolling back drops the live collection. Say so before doing it.
+            if not args.yes:
+                print(
+                    f"This will DROP '{config.tools_collection}' and restore "
+                    f"'{archive_name(config, args.run_id)}' in its place."
+                )
+                if input("Type 'yes' to continue: ").strip().lower() != "yes":
+                    print("Aborted.")
+                    return 1
+
+            result = rollback_run(args.run_id, config, repos)
+            print(f"Restored {result['restored_from']} -> {result['promoted']}")
+            return 0
 
         if args.command == "runs":
             if args.runs_command == "list":

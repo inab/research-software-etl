@@ -48,3 +48,27 @@ class DatabaseAdapter(Protocol):
     ) -> Optional[dict]:
         """Return the entry with this identifier, without its ``data`` field."""
         ...
+
+    def find(
+        self,
+        collection_name: str,
+        query: Dict[str, Any],
+        projection: Optional[Dict[str, Any]] = None,
+        limit: int = 0,
+        batch_size: int = 100,
+        no_cursor_timeout: bool = True,
+    ) -> Iterator[dict]:
+        """Stream documents matching ``query``, reading only ``projection``."""
+        ...
+
+    def collection_exists(self, collection_name: str) -> bool:
+        ...
+
+    def drop_collection(self, collection_name: str) -> None:
+        ...
+
+    def rename_collection(
+        self, collection_name: str, new_name: str, drop_target: bool = False
+    ) -> None:
+        """Rename a collection. Must be atomic: the run's final swap relies on it."""
+        ...

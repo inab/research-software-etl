@@ -134,6 +134,11 @@ class PipelineConfig:
     pretools_collection: str = "pretoolsDev"
     publications_collection: str = "publicationsMetadataDev"
     tools_collection: str = "toolsDev"
+    # Merge builds into the staging collection while the live one still serves
+    # reads (and still holds the ids the new entries inherit). Finalizing the run
+    # archives the live collection and promotes the staging one in its place.
+    tools_staging_collection: str = "toolsDev_next"
+    tools_archive_prefix: str = "toolsDev_archive_"
     licenses_mapping_collection: str = "licensesMapping"
     computations_collection: str = "computationsDev"
     similarities_collection: str = "similaritiesDev"
@@ -196,6 +201,12 @@ class PipelineConfig:
                 "PUBLICATIONS_COLLECTION", "publicationsMetadataDev"
             ),
             tools_collection=os.getenv("MONGO_TOOLS_COLL", "toolsDev"),
+            tools_staging_collection=os.getenv(
+                "MONGO_TOOLS_STAGING_COLL", "toolsDev_next"
+            ),
+            tools_archive_prefix=os.getenv(
+                "MONGO_TOOLS_ARCHIVE_PREFIX", "toolsDev_archive_"
+            ),
             licenses_mapping_collection=os.getenv(
                 "LICENSES_MAPPING", "licensesMapping"
             ),

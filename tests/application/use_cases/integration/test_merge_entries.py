@@ -49,7 +49,7 @@ def repos():
     db = FakeDatabaseAdapter(
         {"pretools": [_pretools_entry(i) for i in _entry_ids_in(BLOCKS_FILE)]}
     )
-    return fake_repos(db, pretools=True, tools=True)
+    return fake_repos(db, pretools=True, tools=True, tools_staging=True)
 
 
 def test_merge_and_save_blocks(repos):
@@ -62,11 +62,12 @@ def test_merge_and_save_blocks(repos):
     assert summary["n_unclear"] == 1
 
 
-def test_merged_entries_are_written_to_the_tools_collection(repos):
+def test_merged_entries_are_written_to_the_staging_collection(repos):
     merge_and_save_blocks(BLOCKS_FILE, repos)
 
-    written = repos.tools.get_all()
+    written = repos.tools_staging.get_all()
 
+    assert repos.tools.get_all() == [], "the live collection is untouched until promotion"
     assert len(written) == 5, "one document per inserted entry"
     # Unresolved blocks (manual_review_pending, unclear) must not reach tools.
     names = {entry["data"]["name"] for entry in written}
@@ -78,7 +79,7 @@ def test_a_merged_entry_records_the_ids_it_came_from(repos):
 
     single = next(
         entry
-        for entry in repos.tools.get_all()
+        for entry in repos.tools_staging.get_all()
         if entry["data"]["name"] == "1000genomes_vcf2ped"
     )
 

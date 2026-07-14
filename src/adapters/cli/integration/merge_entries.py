@@ -23,6 +23,19 @@ def print_summary(summary):
     print(f"     '-- Unclear for human: {summary['n_unclear']}")
     print('---------------------------------')
 
+    identities = summary.get("identities")
+    if identities:
+        print('----------- Identities ----------')
+        print(f"Kept the id of the tool they continue: {identities['preserved']}")
+        print(f"New tools (no ancestor):               {identities['new']}")
+        print(f"Retired ids (no successor):            {identities['retired']}")
+        if identities['contested']:
+            print(
+                f"Contested:                             {identities['contested']}"
+                "  (oldest ancestor won over a larger-overlap one)"
+            )
+        print('---------------------------------')
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -37,6 +50,27 @@ def main():
     )
 
     parser.add_argument(
+        "--run-id",
+        help=(
+            "Identifier of this run. Names the archive the live tools collection is "
+            "moved to when the run is promoted, so `rsetl rollback <run-id>` can undo it."
+        ),
+        type=str,
+        dest="run_id",
+        required=True,
+    )
+
+    parser.add_argument(
+        "--no-promote",
+        help=(
+            "Build the staging collection but do not swap it in. Leaves the live tools "
+            "collection untouched; promote later, or inspect the staging collection first."
+        ),
+        action="store_true",
+        dest="no_promote",
+    )
+
+    parser.add_argument(
         "--env-file", "-e",
         help=("File containing environment variables to be set before running "),
         default=".env",
@@ -48,6 +82,7 @@ def main():
     logger.debug(f"Env file: {args.env_file}")
     load_dotenv(args.env_file)
 
+    from application.use_cases.integration.finalize_run import finalize_run
     from application.use_cases.integration.merge_entries import merge_and_save_blocks
     from infrastructure.config import PipelineConfig
     from infrastructure.db.repositories import Repositories
@@ -61,6 +96,20 @@ def main():
     logger.info("Merging entries...")
     summary = merge_and_save_blocks(config.disambiguated_blocks_path, repos)
     print_summary(summary)
+
+    if args.no_promote:
+        logger.info(
+            "Built '%s'. Not promoting (--no-promote); '%s' is unchanged.",
+            config.tools_staging_collection,
+            config.tools_collection,
+        )
+        return
+
+    result = finalize_run(args.run_id, config, repos)
+    print(f"Promoted {config.tools_staging_collection} -> {result['promoted']}")
+    if result["archived_as"]:
+        print(f"Previous collection archived as {result['archived_as']}")
+        print(f"To undo: rsetl rollback {args.run_id}")
     logger.info("Merging finished!")
 
 if __name__ == "__main__":

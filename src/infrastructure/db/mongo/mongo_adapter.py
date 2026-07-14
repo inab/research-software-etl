@@ -123,6 +123,23 @@ class MongoDBAdapter:
         """Return the raw PyMongo collection (escape hatch for advanced ops)."""
         return self.db[collection_name]
 
+    def collection_exists(self, collection_name: str) -> bool:
+        return collection_name in self.db.list_collection_names()
+
+    def drop_collection(self, collection_name: str) -> None:
+        logger.info("Dropping collection '%s'", collection_name)
+        self.db.drop_collection(collection_name)
+
+    def rename_collection(
+        self, collection_name: str, new_name: str, drop_target: bool = False
+    ) -> None:
+        """
+        Rename a collection. Atomic in MongoDB, which is what makes the
+        archive-then-promote swap at the end of a run safe to do in place.
+        """
+        logger.info("Renaming collection '%s' to '%s'", collection_name, new_name)
+        self.db[collection_name].rename(new_name, dropTarget=drop_target)
+
     @retry(
         retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
         wait=wait_exponential(multiplier=1, min=1, max=10),

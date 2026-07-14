@@ -30,6 +30,10 @@ class Repositories:
     alambique: Optional[RawSoftwareMetadataRepository] = None
     pretools: Optional[PretoolsRepository] = None
     tools: Optional[ToolsRepository] = None
+    # Where merge writes. The live `tools` collection stays readable throughout the
+    # merge -- it is where the new entries inherit their ids from -- and is only
+    # replaced by this one at the end of the run.
+    tools_staging: Optional[ToolsRepository] = None
     publications: Optional[MongoPublicationRepository] = None
     license_mapping: Optional[LicenseMappingRepository] = None
 
@@ -49,6 +53,7 @@ class Repositories:
             alambique=RawSoftwareMetadataRepository(db, config.alambique_collection),
             pretools=PretoolsRepository(db, config.pretools_collection),
             tools=ToolsRepository(db, config.tools_collection),
+            tools_staging=ToolsRepository(db, config.tools_staging_collection),
             publications=MongoPublicationRepository(db, config.publications_collection),
             license_mapping=LicenseMappingRepository(
                 db, config.licenses_mapping_collection

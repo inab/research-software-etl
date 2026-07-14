@@ -72,6 +72,32 @@ def _matches(document: Dict[str, Any], query: Dict[str, Any]) -> bool:
     return True
 
 
+def _project(document: Dict[str, Any], projection: Optional[Dict[str, Any]]) -> dict:
+    """
+    Inclusion projection over top-level fields, which is all the pipeline asks for.
+
+    `_id` comes back unless it is explicitly excluded, as in MongoDB -- code that
+    projects `{"source": 1}` still expects to get an id.
+    """
+    if not projection:
+        return document
+
+    included = {k for k, v in projection.items() if v}
+    # Suppressing _id alongside inclusions is the one mix MongoDB allows; any other
+    # mix is an error there, and we do not need it here.
+    excluded = {k for k, v in projection.items() if not v}
+    if excluded - {"_id"} and included:
+        raise NotImplementedError(
+            "FakeDatabaseAdapter: mixed inclusion/exclusion projection"
+        )
+
+    if not included:
+        return {k: v for k, v in document.items() if k not in excluded}
+
+    keep = included | ({"_id"} if projection.get("_id", 1) else set())
+    return {k: v for k, v in document.items() if k in keep}
+
+
 class _Missing:
     def __repr__(self) -> str:  # pragma: no cover - debugging aid
         return "<missing>"
@@ -135,6 +161,36 @@ class FakeDatabaseAdapter:
         for start in range(0, len(matches), page_size):
             yield matches[start : start + page_size]
 
+    def find(
+        self,
+        collection_name: str,
+        query: Any,
+        projection: Optional[Dict[str, Any]] = None,
+        limit: int = 0,
+        batch_size: int = 100,
+        no_cursor_timeout: bool = True,
+    ) -> Iterator[dict]:
+        matches = self.fetch_entries(collection_name, query)
+        if limit and limit > 0:
+            matches = matches[:limit]
+        for document in matches:
+            yield _project(document, projection)
+
+    def collection_exists(self, collection_name: str) -> bool:
+        return collection_name in self.collections
+
+    def drop_collection(self, collection_name: str) -> None:
+        self.collections.pop(collection_name, None)
+
+    def rename_collection(
+        self, collection_name: str, new_name: str, drop_target: bool = False
+    ) -> None:
+        if collection_name not in self.collections:
+            raise KeyError(f"no such collection: {collection_name}")
+        if new_name in self.collections and not drop_target:
+            raise ValueError(f"target collection already exists: {new_name}")
+        self.collections[new_name] = self.collections.pop(collection_name)
+
     def insert_one(self, collection_name: str, document: Dict[str, Any]) -> Any:
         document = copy.deepcopy(document)
         if "id" in document:
@@ -178,6 +234,7 @@ def fake_repos(
     alambique: bool = False,
     pretools: bool = False,
     tools: bool = False,
+    tools_staging: bool = False,
     publications: bool = False,
     license_mapping: bool = False,
 ) -> Repositories:
@@ -193,6 +250,7 @@ def fake_repos(
         alambique=RawSoftwareMetadataRepository(db, "alambique") if alambique else None,
         pretools=PretoolsRepository(db, "pretools") if pretools else None,
         tools=ToolsRepository(db, "tools") if tools else None,
+        tools_staging=ToolsRepository(db, "tools_next") if tools_staging else None,
         publications=(
             MongoPublicationRepository(db, "publications") if publications else None
         ),

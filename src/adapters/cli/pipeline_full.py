@@ -462,6 +462,11 @@ def run_full(
                 "src.adapters.cli.integration.merge_entries",
                 "--disambiguated-blocks-file",
                 str(disambiguation_out_file),
+                # Merge builds into a staging collection and promotes it, archiving
+                # the previous one as <prefix><run_id>. `rsetl rollback <run_id>`
+                # puts it back.
+                "--run-id",
+                run_id,
             ],
             cwd=wd,
         )

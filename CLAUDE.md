@@ -77,7 +77,7 @@ src/
 7. **JSON→JSONL conversion** — prepare for downstream processing
 8. **Disambiguation** — resolve conflicts via heuristics and LLM-assisted scoring; ambiguous cases create GitHub issues for curators
 9. **Human updates** (optional) — apply curator decisions stored as Git annotations
-10. **Merge** — produce final `ToolEntryModel` entries, upsert into `tools` MongoDB collection
+10. **Merge** — produce the final tool entries, carrying each one's `_id` over from the run before, and promote them into the `tools` collection (see *Tool identity* below)
 11. **FAIRsoft scores** — calculate FAIR compliance metrics per tool
 12. **Statistics** — aggregate metrics for visualization
 
@@ -121,6 +121,16 @@ grouping_and_recovery_process(config, repos)
 - Need a new query? Add a method to the repository, not a `fetch_entry` call in `application/`.
 - Need a new collection? Add a field to `PipelineConfig` and a slot to `Repositories`.
 - `DatabaseAdapter` (`infrastructure/db/database_adapter.py`) is satisfied *structurally* — concrete adapters must not inherit from it. It used to be inherited, and because its method bodies are `pass`, a method the adapter didn't implement returned `None` instead of raising.
+
+**Tool identity (`src/application/services/integration/tool_identity.py`):**
+
+A tool's `_id` must outlive the run that produced it: FAIR scores upsert on `computationsDev.createdFrom = [str(tool._id)]`, and the front-end looks tools up by `similaritiesDev.tool_id`. Merge used to insert documents with no `_id`, so MongoDB minted a new one every run and every one of those references went stale.
+
+A tool's lineage is its `source` list — the pretools entries it was merged from. Each newly merged tool inherits the `_id` of the previous tool it shares the most lineage with. Ordering (`previous.first_seen ASC, previous._id ASC, overlap DESC, block_key ASC`) makes two rules fall out: when several tools collapse into one, the **oldest** id survives; when one tool splits, the **dominant** successor keeps it. `assign_identities` is pure and total — no database, no dependence on iteration order.
+
+Merge therefore cannot write into the live collection: it is what the new entries inherit from. It builds into `tools_staging` (`toolsDev_next`), then `finalize_run` archives the live collection as `toolsDev_archive_<run_id>` and promotes staging in its place — two atomic renames. `rsetl rollback <run_id>` reverses it. Use `--no-promote` to build the staging collection without swapping it in.
+
+The merge stage prints `preserved / new / retired / contested`. **`contested` is the number to watch**: it counts tools where the oldest ancestor won over one that shared more lineage. If it is not near zero on a real run, the ordering above deserves a second look.
 
 **External API clients (`src/infrastructure/external/`):**
 

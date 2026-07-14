@@ -90,6 +90,44 @@ def test_paginated_entries_yields_pages():
     assert [len(page) for page in pages] == [2, 2, 1]
 
 
+def test_find_projects_top_level_fields_and_keeps_id(db):
+    """iter_lineage() projects a few fields; it still needs the _id back."""
+    found = list(db.find("pretools", {}, projection={"data": 1, "first_seen": 1}))
+
+    assert set(found[0]) == {"_id", "data"}, "absent fields are simply not returned"
+    assert found[0]["_id"] == "bioconda/abyss/cmd/2.0"
+
+
+def test_find_can_exclude_the_id(db):
+    found = list(db.find("pretools", {}, projection={"_id": 0, "data": 1}))
+
+    assert "_id" not in found[0]
+
+
+def test_rename_collection_moves_the_documents(db):
+    db.rename_collection("pretools", "pretools_archive")
+
+    assert not db.collection_exists("pretools")
+    assert len(db.fetch_entries("pretools_archive", {})) == 2
+
+
+def test_rename_refuses_to_clobber_an_existing_target(db):
+    db.insert_one("other", {"_id": "x"})
+
+    with pytest.raises(ValueError):
+        db.rename_collection("pretools", "other")
+
+    db.rename_collection("pretools", "other", drop_target=True)
+    assert len(db.fetch_entries("other", {})) == 2
+
+
+def test_drop_collection(db):
+    db.drop_collection("pretools")
+
+    assert not db.collection_exists("pretools")
+    assert db.fetch_entries("pretools", {}) == []
+
+
 def test_unwired_collections_fail_loudly():
     repos = fake_repos(pretools=True)
 
