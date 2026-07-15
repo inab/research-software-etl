@@ -21,7 +21,7 @@ from application.services.integration.tool_identity import (
     previous_tool_from_document,
 )
 from domain.models.software_instance.multitype_instance import multitype_instance
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 
 logger = logging.getLogger("rs-etl-pipeline")
 

@@ -231,7 +231,9 @@ def main(argv: list[str] | None = None) -> int:
         "run-now", help="Trigger one job immediately"
     )
     scheduler_run_now_p.add_argument(
-        "job", choices=["full_pipeline"], help="Job to run once"
+        "job",
+        choices=["full_pipeline", "publication_enrichment"],
+        help="Job to run once",
     )
 
     args = parser.parse_args(argv)
@@ -285,11 +287,11 @@ def main(argv: list[str] | None = None) -> int:
                 rollback_run,
             )
             from infrastructure.config import PipelineConfig
-            from infrastructure.db.repositories import Repositories
+            from infrastructure.db.repositories import from_config
 
             load_dotenv(args.env_file)
             config = PipelineConfig.from_env()
-            repos = Repositories.from_config(config)
+            repos = from_config(config)
 
             # Rolling back drops the live collection. Say so before doing it.
             if not args.yes:

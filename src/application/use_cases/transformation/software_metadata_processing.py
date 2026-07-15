@@ -17,7 +17,7 @@ from application.services.transformation.standardizers_factory import MetadataSt
 from application.services.transformation.metadata import create_new_metadata, update_existing_metadata
 from domain.models.metadata import Metadata
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 
 
 logger = logging.getLogger("rs-etl-pipeline")

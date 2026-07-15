@@ -68,10 +68,10 @@ def main():
     # import here so the env variables are loaded before the initialization of the db client (which uses them to connect)
     from application.use_cases.transformation.main import transform_sources
     from infrastructure.config import PipelineConfig
-    from infrastructure.db.repositories import Repositories
+    from infrastructure.db.repositories import from_config
 
     config = PipelineConfig.from_env()
-    repos = Repositories.from_config(config)
+    repos = from_config(config)
 
     # Transform the sources ---------------------------------------------------
     if 'all' in args.sources:

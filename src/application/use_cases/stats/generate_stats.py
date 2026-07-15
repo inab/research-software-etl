@@ -33,7 +33,7 @@ from application.services.stats_generation.trends.publications import (
 )
 from application.services.stats_generation.trends.version_control import version_control
 from application.services.stats_generation.trends.versioning import semantic_versioning
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 
 
 def generate_stats_for_collections(collections, repos: Repositories):

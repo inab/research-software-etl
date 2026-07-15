@@ -28,18 +28,25 @@ class EnrichPublicationCollectionUseCase:
         self.enrichment_service = enrichment_service
 
     @staticmethod
-    def _has_europe_pmc_citations(doc: dict) -> bool:
+    def _has_europe_pmc_yearly_citations(doc: dict) -> bool:
         """
-        Return True if the publication already contains citations from Europe PMC.
+        Return True only if the publication already has a Europe PMC citation
+        entry with a *per-year* breakdown.
+
+        A ``count`` of just ``{"total": N}`` (no year keys) means the yearly
+        breakdown was never obtained -- such records still need enrichment, so
+        they must not be treated as done.
         """
         data = doc.get("data", {})
         entries = data.get("citations", [])
         if not isinstance(entries, list):
             return False
-        return any(
-            isinstance(e, dict) and e.get("source") == "Europe PMC"
-            for e in entries
-        )
+        for e in entries:
+            if isinstance(e, dict) and e.get("source") == "Europe PMC":
+                count = e.get("count")
+                if isinstance(count, dict) and any(k != "total" for k in count):
+                    return True
+        return False
 
     def execute(
         self,
@@ -70,7 +77,7 @@ class EnrichPublicationCollectionUseCase:
 
             if (
                 skip_if_has_europe_pmc_citations
-                and self._has_europe_pmc_citations(doc)
+                and self._has_europe_pmc_yearly_citations(doc)
             ):
                 skipped_existing_epmc_citations += 1
                 continue
@@ -131,4 +138,3 @@ class EnrichPublicationCollectionUseCase:
             f"skipped_existing_epmc_citations={skipped_existing_epmc_citations}, "
             f"no_metadata={no_metadata}"
         )
-

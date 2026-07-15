@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 from application.use_cases.stats.generate_fair_scores import add_fair_scores
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from infrastructure.db.repositories import from_config
 
 
 
@@ -62,7 +62,7 @@ def main():
     else:
         collections = [c.strip() for c in args.collections.split(",") if c.strip()]
 
-    repos = Repositories.from_config(PipelineConfig.from_env())
+    repos = from_config(PipelineConfig.from_env())
 
     for collection in collections:
         logging.info(

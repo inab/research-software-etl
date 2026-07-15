@@ -6,7 +6,7 @@ import logging
 from dotenv import load_dotenv
 from application.use_cases.integration.group_and_recovery import grouping_and_recovery_process
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from infrastructure.db.repositories import from_config
 from infrastructure.logging_config import setup_logging
 
 
@@ -42,7 +42,7 @@ def main():
     load_dotenv(args.env_file)
 
     config = PipelineConfig.from_env(grouped_json_path=args.grouped_entries_file)
-    repos = Repositories.from_config(config)
+    repos = from_config(config)
 
     logger.debug(f"Grouped entries file: {config.grouped_json_path}")
     logger.debug(f"Env file: {args.env_file}")

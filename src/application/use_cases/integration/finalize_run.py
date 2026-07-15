@@ -18,7 +18,7 @@ ids this run retired.
 import logging
 
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 
 logger = logging.getLogger("rs-etl-pipeline")
 

@@ -2,7 +2,7 @@ import logging
 from bson import json_util
 
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 from application.services.integration.group_entries import group_by_key_with_links
 from application.services.integration.entries_recovery import recover_shared_name_link
 from application.services.integration.group_split_corrections import apply_manual_split_corrections

@@ -17,7 +17,7 @@ Behavior:
 from datetime import datetime
 
 from application.services.stats_generation.FAIR.individual_scores import evaluate_tool
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 
 VARIABLE = "FAIR_scores"
 

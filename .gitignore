@@ -13,6 +13,10 @@ scripts/*jsonl
 *json
 *csv
 rs-etl/*
+# Local-only enrichment skip-cache; the scheduled job appends to it, so keeping
+# it tracked would dirty the checkout on every run. Re-enrichment is gated by
+# DB state, not by this file, so a per-machine copy is fine.
+data/cache/publications_enrichment.jsonl
 .DS_Store
 .pytest_cache
 .vscode

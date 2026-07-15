@@ -180,8 +180,9 @@ class PipelineConfig:
     )
 
     # --- Scheduler cadence ---
-    # Standard 5-field crontab string, parsed by CronTrigger.from_crontab().
+    # Standard 5-field crontab strings, parsed by CronTrigger.from_crontab().
     full_pipeline_cron: str = "0 1 * * mon,thu"  # twice weekly, 01:00 UTC
+    publication_enrichment_cron: str = "0 3 * * sun"  # weekly, Sunday 03:00 UTC
 
     ci: CIContext = field(default_factory=CIContext)
 
@@ -228,6 +229,9 @@ class PipelineConfig:
                 "human_annotations/human_conflicts_log.jsonl",
             ),
             full_pipeline_cron=os.getenv("FULL_PIPELINE_CRON", "0 1 * * mon,thu"),
+            publication_enrichment_cron=os.getenv(
+                "PUBLICATION_ENRICHMENT_CRON", "0 3 * * sun"
+            ),
             ci=CIContext.from_env(),
         )
         return cfg.with_overrides(**overrides)

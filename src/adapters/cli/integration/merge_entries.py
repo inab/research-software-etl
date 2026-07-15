@@ -85,12 +85,12 @@ def main():
     from application.use_cases.integration.finalize_run import finalize_run
     from application.use_cases.integration.merge_entries import merge_and_save_blocks
     from infrastructure.config import PipelineConfig
-    from infrastructure.db.repositories import Repositories
+    from infrastructure.db.repositories import from_config
 
     config = PipelineConfig.from_env(
         disambiguated_blocks_path=args.disambiguated_blocks_file
     )
-    repos = Repositories.from_config(config)
+    repos = from_config(config)
 
     logger.info(f"Disambiguated blocks file: {config.disambiguated_blocks_path}")
     logger.info("Merging entries...")

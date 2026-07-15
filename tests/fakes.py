@@ -27,7 +27,7 @@ from infrastructure.db.mongo.similarities_repository import SimilaritiesReposito
 from infrastructure.db.mongo.standardized_software_repository import PretoolsRepository
 from infrastructure.db.mongo.tools_repository import ToolsRepository
 from infrastructure.db.mongo.web_availability_repository import WebAvailabilityRepository
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 from infrastructure.external.clients import ExternalClients
 from infrastructure.external.url_checker import UrlProbe
 

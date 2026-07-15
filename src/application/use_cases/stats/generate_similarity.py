@@ -16,7 +16,7 @@ import logging
 from datetime import datetime, timezone
 
 from application.services.stats_generation.similarity.compute_embeddings import compute_similarities
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 
 logger = logging.getLogger(__name__)
 

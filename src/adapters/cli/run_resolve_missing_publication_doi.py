@@ -22,7 +22,7 @@ from application.services.resolve_publication_doi.crossref_doi_resolution_servic
     CrossrefDoiResolutionService,
 )
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from infrastructure.db.repositories import from_config
 from infrastructure.external.crossref import CrossrefClient
 
 
@@ -73,7 +73,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
-    repos = Repositories.from_config(PipelineConfig.from_env())
+    repos = from_config(PipelineConfig.from_env())
     publication_repository = repos.publications
     doi_resolution_service = CrossrefDoiResolutionService(
         client=CrossrefClient(mailto=args.mailto)

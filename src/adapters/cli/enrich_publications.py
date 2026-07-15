@@ -19,16 +19,39 @@ from application.use_cases.enrich_publications.enrich_publications_collection im
     EnrichPublicationCollectionUseCase,
 )
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from infrastructure.db.repositories import Repositories, from_config
 from infrastructure.external.europe_pmc import EuropePmcClient
 from infrastructure.storage.jsonl import JsonlPublicationEnrichmentCache
+
+
+def build_enrich_publications_use_case(
+    config: PipelineConfig, repos: Repositories
+) -> EnrichPublicationCollectionUseCase:
+    """Wire the publication-enrichment use case from config + repositories.
+
+    Shared by the CLI and the scheduled job so neither reconstructs the
+    dependency graph. The JSONL cache path comes from
+    ``config.publications_enrichment_path`` (the CLI's ``--jsonl-path`` flows in
+    as an override on that field).
+    """
+    enrichment_cache = JsonlPublicationEnrichmentCache(
+        str(config.publications_enrichment_path)
+    )
+    enrichment_service = PublicationEnrichmentService(
+        europe_pmc_client=EuropePmcClient(),
+    )
+    return EnrichPublicationCollectionUseCase(
+        publication_repository=repos.publications,
+        enrichment_cache=enrichment_cache,
+        enrichment_service=enrichment_service,
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
             "Enrich publication metadata and citation counts using Europe PMC, "
-            "skipping records that already contain Europe PMC citations."
+            "skipping records that already have a per-year Europe PMC breakdown."
         )
     )
     parser.add_argument(
@@ -66,7 +89,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--no-skip-existing-europe-pmc-citations",
         action="store_true",
-        help="Process records even if they already contain Europe PMC citations.",
+        help=(
+            "Process records even if they already have a per-year Europe PMC "
+            "citation breakdown. (Records whose Europe PMC count is total-only "
+            "are always processed.)"
+        ),
     )
     parser.add_argument(
         "--no-write-cache",
@@ -95,22 +122,14 @@ def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 
-    repos = Repositories.from_config(PipelineConfig.from_env())
-    publication_repository = repos.publications
-    enrichment_cache = JsonlPublicationEnrichmentCache(args.jsonl_path)
-    enrichment_service = PublicationEnrichmentService(
-        europe_pmc_client=EuropePmcClient(),
-    )
-
-    use_case = EnrichPublicationCollectionUseCase(
-        publication_repository=publication_repository,
-        enrichment_cache=enrichment_cache,
-        enrichment_service=enrichment_service,
-    )
+    config = PipelineConfig.from_env(publications_enrichment_path=args.jsonl_path)
+    repos = from_config(config)
+    use_case = build_enrich_publications_use_case(config, repos)
 
     target_dois: set[str] | None = None
     if args.dois_file:
         import pathlib
+
         lines = pathlib.Path(args.dois_file).read_text().splitlines()
         target_dois = {
             normalize_doi(line.strip()).lower()
@@ -119,7 +138,7 @@ def main(argv: list[str] | None = None) -> int:
         }
         print(f"Targeting {len(target_dois)} DOIs from {args.dois_file}")
 
-    config = {
+    run_kwargs = {
         "collection_name": args.collection,
         "progress_every": args.progress_every,
         "limit": args.limit,
@@ -134,16 +153,16 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.dry_run:
         print("Dry run. Configuration:")
-        for key, value in config.items():
+        for key, value in run_kwargs.items():
             print(f"  {key}: {value}")
         return 0
 
     if args.reset_cache:
-        enrichment_cache.clear()
+        use_case.enrichment_cache.clear()
         print(f"Cache cleared: {args.jsonl_path}")
 
     try:
-        use_case.execute(**config)
+        use_case.execute(**run_kwargs)
         return 0
     except KeyboardInterrupt:
         print("\nInterrupted by user.")

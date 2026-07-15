@@ -6,7 +6,7 @@ from application.services.post_transformation.normalize_tool_licenses import (
     normalize_tool_licenses,
 )
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from infrastructure.db.repositories import Repositories, from_config
 
 
 def update_tool_licenses(repos: Repositories):
@@ -66,7 +66,7 @@ def main():
     load_dotenv(args.env_file)
 
     config = PipelineConfig.from_env()
-    repos = Repositories.from_config(config)
+    repos = from_config(config)
 
     update_tool_licenses(repos)
 

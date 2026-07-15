@@ -10,11 +10,16 @@ from __future__ import annotations
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from adapters.scheduler.jobs import run_full_pipeline_job
+from adapters.scheduler.jobs import (
+    run_full_pipeline_job,
+    run_publication_enrichment_job,
+)
 from infrastructure.config import PipelineConfig
 
-# The publication-enrichment job joins this map in item 8.
-JOBS = {"full_pipeline": run_full_pipeline_job}
+JOBS = {
+    "full_pipeline": run_full_pipeline_job,
+    "publication_enrichment": run_publication_enrichment_job,
+}
 
 
 def build_scheduler(config: PipelineConfig) -> BlockingScheduler:
@@ -25,6 +30,14 @@ def build_scheduler(config: PipelineConfig) -> BlockingScheduler:
         trigger=CronTrigger.from_crontab(config.full_pipeline_cron),
         id="full_pipeline",
         # Two pipeline runs must never overlap: they both promote into toolsDev.
+        max_instances=1,
+        misfire_grace_time=3600,
+        replace_existing=True,
+    )
+    scheduler.add_job(
+        run_publication_enrichment_job,
+        trigger=CronTrigger.from_crontab(config.publication_enrichment_cron),
+        id="publication_enrichment",
         max_instances=1,
         misfire_grace_time=3600,
         replace_existing=True,

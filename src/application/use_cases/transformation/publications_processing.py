@@ -16,15 +16,14 @@ import logging
 from typing import Dict, Any, Optional, List
 from application.services.publications.metadata import create_new_metadata
 from infrastructure.config import PipelineConfig
-from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
-from infrastructure.db.repositories import Repositories
+from domain.repositories import PublicationRepository, Repositories
 from application.services.publications.publication_standardizer_factory import StandardizerFactory
 from application.services.publications.publication_extractor_factory import ExtractorFactory
 
 logger = logging.getLogger("rs-etl-pipeline")
 
 
-def publication_in_collection(publication: Dict[str, Any], publications_repo: MongoPublicationRepository) -> Optional[str]:
+def publication_in_collection(publication: Dict[str, Any], publications_repo: PublicationRepository) -> Optional[str]:
     '''
     Checks if the publication is already in the publications collection.
     - publication: publication to be checked
@@ -65,7 +64,7 @@ def publication_in_collection(publication: Dict[str, Any], publications_repo: Mo
 
 def add_publication(
     publication: Dict[str, Any],
-    publications_repo: MongoPublicationRepository,
+    publications_repo: PublicationRepository,
     config: PipelineConfig,
 ) -> str:
     '''

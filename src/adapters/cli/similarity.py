@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 from application.use_cases.stats.generate_similarity import compute_and_store_similarities
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from infrastructure.db.repositories import from_config
 
 
 def main():
@@ -71,7 +71,7 @@ def main():
     numeric_level = getattr(logging, args.loglevel.upper(), logging.INFO)
     logging.basicConfig(level=numeric_level)
 
-    repos = Repositories.from_config(PipelineConfig.from_env())
+    repos = from_config(PipelineConfig.from_env())
 
     compute_and_store_similarities(
         repos,

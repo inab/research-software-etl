@@ -16,7 +16,7 @@ corresponding helper modules and specialized services.
 import logging
 from typing import List, Dict
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 from application.use_cases.transformation.publications_processing import extract_publications, standardize_publications
 from application.use_cases.transformation.software_metadata_processing import standardize_entry, save_entry
 

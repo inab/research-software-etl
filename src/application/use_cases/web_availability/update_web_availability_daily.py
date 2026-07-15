@@ -15,7 +15,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 
 
 DEFAULT_TIMEOUT = 15

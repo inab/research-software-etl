@@ -17,7 +17,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Set
 
-from infrastructure.db.repositories import Repositories
+from domain.repositories import Repositories
 
 
 RELEVANT_TYPES = {"rest", "web", "app", "suite", "workbench", "db", "soap", "sparql"}

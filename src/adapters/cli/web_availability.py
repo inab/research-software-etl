@@ -11,7 +11,7 @@ from application.use_cases.web_availability.update_web_availability_daily import
     run_update_web_availability_daily,
 )
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from infrastructure.db.repositories import from_config
 from infrastructure.external.url_checker import UrlChecker
 
 
@@ -35,7 +35,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
 
-    repos = Repositories.from_config(PipelineConfig.from_env())
+    repos = from_config(PipelineConfig.from_env())
 
     cfg = WebAvailabilityDailyConfig(
         timeout=args.timeout,

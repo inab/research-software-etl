@@ -81,6 +81,28 @@ def test_no_module_below_adapters_speaks_http():
     )
 
 
+def test_the_application_layer_does_not_import_infrastructure_db():
+    """
+    The application layer depends on the repository protocols in
+    ``domain/repositories/``, not on the concrete Mongo classes. The bundle it
+    receives is wired by ``infrastructure.db.repositories.from_config`` at the CLI;
+    below adapters/ nothing names ``infrastructure.db``.
+
+    The needle is specific: it does not match the still-allowed
+    ``infrastructure.config`` / ``infrastructure.external`` imports.
+    """
+    offenders = set()
+    for path in (SRC / "application").rglob("*.py"):
+        if "infrastructure.db" in path.read_text():
+            offenders.add(str(path.relative_to(SRC)))
+
+    assert not offenders, (
+        "these modules import from infrastructure.db; depend on the protocols in "
+        "domain/repositories/ instead and take a Repositories argument: "
+        f"{sorted(offenders)}"
+    )
+
+
 def test_no_driver_types_leak_into_the_application_layer():
     """
     `pymongo.UpdateOne` used to be built in the web-availability use cases and handed

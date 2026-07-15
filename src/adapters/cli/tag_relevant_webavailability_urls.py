@@ -17,7 +17,7 @@ from application.use_cases.web_availability.tag_relevant_webavailability_urls im
     run_tag_relevant_webavailability_urls,
 )
 from infrastructure.config import PipelineConfig
-from infrastructure.db.repositories import Repositories
+from infrastructure.db.repositories import from_config
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -37,7 +37,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
 
-    repos = Repositories.from_config(PipelineConfig.from_env())
+    repos = from_config(PipelineConfig.from_env())
 
     cfg = TagRelevantWebAvailabilityConfig(
         created_by=args.created_by,

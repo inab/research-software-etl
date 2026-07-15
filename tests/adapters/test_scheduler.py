@@ -8,8 +8,11 @@ from __future__ import annotations
 
 import pytest
 
-from adapters.scheduler import runner
-from adapters.scheduler.jobs import run_full_pipeline_job
+from adapters.scheduler import jobs, runner
+from adapters.scheduler.jobs import (
+    run_full_pipeline_job,
+    run_publication_enrichment_job,
+)
 from adapters.scheduler.runner import build_scheduler, run_job_now
 from infrastructure.config import PipelineConfig
 
@@ -32,22 +35,54 @@ def test_full_pipeline_job_invokes_run_with_expected_argv(monkeypatch):
     assert calls[0]["run_tag"] == "scheduled"
 
 
-def test_build_scheduler_registers_the_full_pipeline_job():
-    config = PipelineConfig(full_pipeline_cron="0 1 * * mon,thu")
+def test_publication_enrichment_job_runs_use_case_with_skip_seen_false(monkeypatch):
+    """The job builds the use case via the shared factory and runs it with
+    skip_seen=False, so the DB-state predicate is the sole re-enrichment gate."""
+
+    class SpyUseCase:
+        def __init__(self) -> None:
+            self.kwargs = None
+
+        def execute(self, **kwargs):
+            self.kwargs = kwargs
+
+    spy = SpyUseCase()
+    # from_config builds a MongoDBAdapter (no connection until used), but stub it
+    # anyway so the test never touches config-driven wiring.
+    monkeypatch.setattr("adapters.scheduler.jobs.from_config", lambda config: object())
+    monkeypatch.setattr(
+        jobs, "build_enrich_publications_use_case", lambda config, repos: spy
+    )
+
+    run_publication_enrichment_job()
+
+    assert spy.kwargs == {"skip_seen": False}
+
+
+def test_build_scheduler_registers_both_jobs():
+    config = PipelineConfig(
+        full_pipeline_cron="0 1 * * mon,thu",
+        publication_enrichment_cron="0 3 * * sun",
+    )
 
     scheduler = build_scheduler(config)
 
     # get_job finds pending jobs even though the scheduler was never started.
     assert scheduler.get_job("full_pipeline") is not None
+    assert scheduler.get_job("publication_enrichment") is not None
 
 
 def test_run_job_now_dispatches_by_name(monkeypatch):
     fired = []
-    monkeypatch.setitem(runner.JOBS, "full_pipeline", lambda: fired.append(True))
+    monkeypatch.setitem(runner.JOBS, "full_pipeline", lambda: fired.append("full"))
+    monkeypatch.setitem(
+        runner.JOBS, "publication_enrichment", lambda: fired.append("pub")
+    )
 
     run_job_now("full_pipeline")
+    run_job_now("publication_enrichment")
 
-    assert fired == [True]
+    assert fired == ["full", "pub"]
 
 
 def test_run_job_now_rejects_unknown_job():
