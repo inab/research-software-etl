@@ -10,7 +10,6 @@ tests pin the behaviour that migration had to preserve.
 
 import pytest
 
-from application.use_cases.web_availability import update_web_availability_daily as daily
 from application.use_cases.web_availability.tag_relevant_webavailability_urls import (
     TagRelevantWebAvailabilityConfig,
     run_tag_relevant_webavailability_urls,
@@ -19,7 +18,7 @@ from application.use_cases.web_availability.update_web_availability_daily import
     WebAvailabilityDailyConfig,
     run_update_web_availability_daily,
 )
-from tests.fakes import FakeDatabaseAdapter, fake_repos
+from tests.fakes import FakeDatabaseAdapter, FakeUrlChecker, fake_repos
 
 
 def tool(identifier, types, webpages):
@@ -36,9 +35,14 @@ def monitored(url, availability=None):
 
 
 @pytest.fixture
-def no_network(monkeypatch):
-    """Every URL answers 200 in 0.1s, without touching the network."""
-    monkeypatch.setattr(daily, "check_url", lambda url, timeout=15: (200, 0.1))
+def checker():
+    """
+    Every URL answers 200 in 0.1s, without touching the network.
+
+    The stage used to build its own `requests.Session`, so this was a monkeypatch
+    of a module global. It is an argument now.
+    """
+    return FakeUrlChecker()
 
 
 def build(db):
@@ -48,7 +52,7 @@ def build(db):
 # --- step 1: check the URLs already flagged relevant --------------------------------
 
 
-def test_daily_appends_one_reading_per_relevant_url(no_network):
+def test_daily_appends_one_reading_per_relevant_url(checker):
     db = FakeDatabaseAdapter(
         {
             "webavailability": [
@@ -62,7 +66,7 @@ def test_daily_appends_one_reading_per_relevant_url(no_network):
     )
     repos = build(db)
 
-    result = run_update_web_availability_daily(WebAvailabilityDailyConfig(), repos)
+    result = run_update_web_availability_daily(WebAvailabilityDailyConfig(), repos, checker)
 
     assert result.processed_existing_urls == 1
 
@@ -74,11 +78,13 @@ def test_daily_appends_one_reading_per_relevant_url(no_network):
     assert untouched["data"]["availability"] == []
 
 
-def test_daily_keeps_only_the_last_keep_days_readings(no_network):
+def test_daily_keeps_only_the_last_keep_days_readings(checker):
     old = [{"date": f"2026-0{n}-01T00:00:00Z", "code": 200, "access_time": 0.1} for n in (1, 2, 3)]
     db = FakeDatabaseAdapter({"webavailability": [monitored("https://a.org", old)], "tools": []})
 
-    run_update_web_availability_daily(WebAvailabilityDailyConfig(keep_days=2), repos=build(db))
+    run_update_web_availability_daily(
+        WebAvailabilityDailyConfig(keep_days=2), repos=build(db), url_checker=checker
+    )
 
     window = db.fetch_entry("webavailability", "https://a.org")["data"]["availability"]
     assert len(window) == 2
@@ -88,14 +94,16 @@ def test_daily_keeps_only_the_last_keep_days_readings(no_network):
 def test_daily_rejects_a_window_of_nothing():
     with pytest.raises(ValueError):
         run_update_web_availability_daily(
-            WebAvailabilityDailyConfig(keep_days=0), repos=build(FakeDatabaseAdapter())
+            WebAvailabilityDailyConfig(keep_days=0),
+            repos=build(FakeDatabaseAdapter()),
+            url_checker=FakeUrlChecker(),
         )
 
 
 # --- step 2: make sure relevant tool URLs are tracked -------------------------------
 
 
-def test_daily_tracks_the_webpages_of_relevant_tools(no_network):
+def test_daily_tracks_the_webpages_of_relevant_tools(checker):
     db = FakeDatabaseAdapter(
         {
             "webavailability": [],
@@ -108,7 +116,7 @@ def test_daily_tracks_the_webpages_of_relevant_tools(no_network):
     )
     repos = build(db)
 
-    result = run_update_web_availability_daily(WebAvailabilityDailyConfig(), repos)
+    result = run_update_web_availability_daily(WebAvailabilityDailyConfig(), repos, checker)
 
     assert result.tools_unique_urls == 1
     assert result.inserted_missing_urls == 1
@@ -121,7 +129,7 @@ def test_daily_tracks_the_webpages_of_relevant_tools(no_network):
     assert db.fetch_entry("webavailability", "https://cmd.org") is None
 
 
-def test_daily_flags_a_url_an_earlier_process_created(no_network):
+def test_daily_flags_a_url_an_earlier_process_created(checker):
     """
     The collection was seeded from a broader dataset. A URL already sitting there
     unflagged must get tagged -- otherwise step 1 never picks it up and it is
@@ -133,13 +141,13 @@ def test_daily_flags_a_url_an_earlier_process_created(no_network):
     )
     repos = build(db)
 
-    result = run_update_web_availability_daily(WebAvailabilityDailyConfig(), repos)
+    result = run_update_web_availability_daily(WebAvailabilityDailyConfig(), repos, checker)
 
     assert (result.retagged_existing_urls, result.inserted_missing_urls) == (1, 0)
     assert db.fetch_entry("webavailability", "https://old.org")["is_relevant"] is True
 
 
-def test_daily_dry_run_writes_nothing(no_network):
+def test_daily_dry_run_writes_nothing(checker):
     db = FakeDatabaseAdapter(
         {
             "webavailability": [monitored("https://a.org")],
@@ -148,7 +156,7 @@ def test_daily_dry_run_writes_nothing(no_network):
     )
 
     result = run_update_web_availability_daily(
-        WebAvailabilityDailyConfig(dry_run=True), repos=build(db)
+        WebAvailabilityDailyConfig(dry_run=True), repos=build(db), url_checker=checker
     )
 
     assert result.processed_existing_urls == 1  # it still reports what it *would* do

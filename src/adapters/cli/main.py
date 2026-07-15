@@ -220,6 +220,20 @@ def main(argv: list[str] | None = None) -> int:
     runs_latest_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
     runs_latest_p.add_argument("--json", action="store_true", help="Output as JSON")
 
+    # --- scheduler --------------------------------------------------------------
+    scheduler_p = subparsers.add_parser("scheduler", help="Run scheduled pipeline jobs")
+    scheduler_p.add_argument(
+        "--env-file", default=".env", help="File containing environment variables"
+    )
+    scheduler_sub = scheduler_p.add_subparsers(dest="scheduler_command", required=True)
+    scheduler_sub.add_parser("start", help="Start the scheduler in the foreground")
+    scheduler_run_now_p = scheduler_sub.add_parser(
+        "run-now", help="Trigger one job immediately"
+    )
+    scheduler_run_now_p.add_argument(
+        "job", choices=["full_pipeline"], help="Job to run once"
+    )
+
     args = parser.parse_args(argv)
 
     try:
@@ -325,6 +339,20 @@ def main(argv: list[str] | None = None) -> int:
                 else:
                     _print_run_summary(data)
                 return 0
+
+        if args.command == "scheduler":
+            from dotenv import load_dotenv
+
+            from adapters.scheduler.runner import run_job_now, start_scheduler
+            from infrastructure.config import PipelineConfig
+
+            load_dotenv(args.env_file)
+            config = PipelineConfig.from_env()
+            if args.scheduler_command == "start":
+                start_scheduler(config)
+            elif args.scheduler_command == "run-now":
+                run_job_now(args.job)
+            return 0
 
         return 0
 

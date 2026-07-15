@@ -4,7 +4,8 @@ The command-line interface for the conflict detection step of the integration
 import argparse
 import logging
 from dotenv import load_dotenv
-from application.use_cases.integration.conflict_detection import detect_conflicts 
+from application.use_cases.integration.conflict_detection import detect_conflicts
+from infrastructure.external.url_checker import UrlChecker
 
 logger = logging.getLogger("rs-etl-pipeline")
 
@@ -40,7 +41,11 @@ def main():
     logger.debug(f"Disconnected entries file: {args.disconnected_entries_file}")
 
     logger.info("Detecting conflicts...")
-    detect_conflicts(args.grouped_entries_file, args.disconnected_entries_file)
+    detect_conflicts(
+        args.grouped_entries_file,
+        args.disconnected_entries_file,
+        UrlChecker(),
+    )
 
     logger.info("Conflict detection finished!")
 

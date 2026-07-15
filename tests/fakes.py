@@ -29,6 +29,7 @@ from infrastructure.db.mongo.tools_repository import ToolsRepository
 from infrastructure.db.mongo.web_availability_repository import WebAvailabilityRepository
 from infrastructure.db.repositories import Repositories
 from infrastructure.external.clients import ExternalClients
+from infrastructure.external.url_checker import UrlProbe
 
 
 def _matches(document: Dict[str, Any], query: Dict[str, Any]) -> bool:
@@ -387,13 +388,97 @@ class FakeGitHubClient:
         return self.readme
 
 
+class FakeUrlChecker:
+    """
+    Every URL answers 200 and redirects to itself.
+
+    `redirects` overrides individual targets, so a test can say "this repo moved"
+    without a network: `FakeUrlChecker(redirects={"https://a.org": "https://b.org"})`.
+    A URL mapped to None is unreachable.
+    """
+
+    def __init__(self, status=200, access_time=0.1, redirects=None) -> None:
+        self.status = status
+        self.access_time = access_time
+        self.redirects = redirects or {}
+        self.probed: List[str] = []
+
+    def probe(self, url, timeout=None) -> UrlProbe:
+        self.probed.append(url)
+        return UrlProbe(self.status, self.access_time)
+
+    def resolve_redirects(self, url, timeout=None):
+        return self.redirects.get(url, url)
+
+
+class FakeWebFetcher:
+    """
+    Stands in for the two things that fetch a page's HTML: the SourceForge client
+    (sync) and the headless browser (async). Serves canned HTML, or nothing.
+    """
+
+    def __init__(self, html=None) -> None:
+        self.html = html
+        self.fetched: List[str] = []
+
+    def fetch_html(self, url):  # SourceForgeClient
+        self.fetched.append(url)
+        return self.html
+
+    async def fetch(self, url):  # HeadlessBrowserFetcher
+        self.fetched.append(url)
+        return self.html
+
+
+class FakePyPIClient:
+    def __init__(self, info=None) -> None:
+        self.info = info
+
+    def get_project_info(self, package_name):
+        return self.info
+
+
+class FakeBitbucketClient:
+    def __init__(self, metadata=None, readme=None) -> None:
+        self.metadata = metadata or {}
+        self.readme = readme
+
+    def get_repo_metadata(self, user, repo):
+        return self.metadata
+
+    def get_readme(self, user, repo, metadata):
+        return self.readme
+
+
 def fake_clients(
-    *, github=None, gitlab=None, openrouter=None, huggingface=None
+    *,
+    github=None,
+    gitlab=None,
+    openrouter=None,
+    huggingface=None,
+    url_checker=None,
+    pypi=None,
+    sourceforge=None,
+    bitbucket=None,
+    browser=None,
 ) -> ExternalClients:
-    """External clients with only the slots a test exercises filled in."""
+    """
+    External clients with only the slots a test exercises filled in.
+
+    The tokened four default to None, so a test that did not ask for GitHub and
+    reaches for it raises instead of quietly opening a connection. The tokenless
+    fetchers default to offline fakes instead: link enrichment probes every URL a
+    conflict happens to carry, and the point of these is that no test can reach
+    the network by forgetting one.
+    """
     return ExternalClients(
         openrouter=openrouter,
         huggingface=huggingface,
         github=github,
         gitlab=gitlab,
+        url_checker=url_checker or FakeUrlChecker(),
+        pypi=pypi or FakePyPIClient(),
+        sourceforge=sourceforge or FakeWebFetcher(),
+        bitbucket=bitbucket or FakeBitbucketClient(),
+        browser=browser or FakeWebFetcher(),
     )

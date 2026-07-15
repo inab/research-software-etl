@@ -11,45 +11,20 @@ When to run:
 
 from __future__ import annotations
 
-import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set, Tuple
-
-import requests
 
 from infrastructure.db.repositories import Repositories
 
 
 DEFAULT_TIMEOUT = 15
-HEADERS = {
-    "User-Agent": "oeb-web-availability-daily/1.0 (+monitor)",
-    "Accept": "*/*",
-}
 
 RELEVANT_TYPES = {"rest", "web", "app", "suite", "workbench", "db", "soap", "sparql"}
 
 
 def now_iso_z() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
-
-
-def check_url(url: str, timeout: int = DEFAULT_TIMEOUT) -> Tuple[Optional[int], Optional[float]]:
-    session = requests.Session()
-
-    def _do(method: str) -> Tuple[Optional[int], Optional[float]]:
-        start = time.perf_counter()
-        try:
-            resp = session.request(method, url, headers=HEADERS, timeout=timeout, allow_redirects=True)
-            elapsed = time.perf_counter() - start
-            return resp.status_code, elapsed
-        except Exception:
-            return None, None
-
-    code, t = _do("HEAD")
-    if code is None or code in (405, 403, 400):
-        return _do("GET")
-    return code, t
 
 
 def build_availability_entry(code: Optional[int], access_time: Optional[float]) -> Dict[str, Any]:
@@ -121,8 +96,13 @@ def _relevant_tool_urls(
 
 
 def run_update_web_availability_daily(
-    cfg: WebAvailabilityDailyConfig, repos: Repositories
+    cfg: WebAvailabilityDailyConfig, repos: Repositories, url_checker
 ) -> WebAvailabilityDailyResult:
+    """
+    Probing arbitrary tool URLs *is* this stage's job, so the checker that does it
+    is injected rather than built here: that is the whole difference between a
+    stage that can be tested offline and one that cannot.
+    """
     if cfg.keep_days <= 0:
         raise ValueError("keep_days must be > 0")
 
@@ -140,8 +120,10 @@ def run_update_web_availability_daily(
             if not _is_http_url(url):
                 continue
 
-            code, access_time = check_url(url, timeout=cfg.timeout)
-            readings.append((url, build_availability_entry(code, access_time)))
+            probe = url_checker.probe(url, timeout=cfg.timeout)
+            readings.append(
+                (url, build_availability_entry(probe.status, probe.access_time))
+            )
             processed += 1
 
             if len(readings) >= cfg.bulk_chunk:

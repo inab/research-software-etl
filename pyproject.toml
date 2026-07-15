@@ -54,6 +54,9 @@ docs = [
     "mkdocs-material>=9.5.3",
     "pymdown-extensions>=10.4",
 ]
+scheduler = [
+    "apscheduler>=3.10",
+]
 
 [project.scripts]
 rsetl = "adapters.cli.main:main"

@@ -49,20 +49,6 @@ def config_in(tmp_path) -> PipelineConfig:
     )
 
 
-@pytest.fixture(autouse=True)
-def no_network(monkeypatch):
-    """Link enrichment fetches repository and webpage content; the fake GitHub
-    client covers the rest."""
-
-    async def no_link_content(link):
-        return None
-
-    monkeypatch.setattr(
-        "application.services.integration.disambiguation.enrich_links.get_link_content",
-        no_link_content,
-    )
-
-
 @pytest.mark.asyncio
 async def test_full_disambiguation_with_github_issue(monkeypatch, tmp_path):
     # Force every conflict down the manual-review path.

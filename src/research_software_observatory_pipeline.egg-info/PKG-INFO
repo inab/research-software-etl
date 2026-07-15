@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: research-software-observatory-pipeline
-Version: 0.1.1
+Version: 0.1.5
 Summary: Data integration and enrichment pipeline powering the Research Software Observatory.
 Author-email: Eva Martín del Pico <eva.martin@bsc.es>
 Maintainer-email: Eva Martín del Pico <eva.martin@bsc.es>
@@ -12,11 +12,20 @@ Keywords: FAIRsoft,research software,metadata,data integration,observatory,bioin
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
-Requires-Dist: pymongo>=4.5.0
-Requires-Dist: requests>=2.31.0
-Requires-Dist: tqdm>=4.65.0
-Requires-Dist: numpy>=1.26.0
-Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: beautifulsoup4>=4.11
+Requires-Dist: bibtexparser>=1.4
+Requires-Dist: Jinja2>=3.1
+Requires-Dist: playwright>=1.55
+Requires-Dist: pydantic>=2.13
+Requires-Dist: pymongo>=4.17
+Requires-Dist: python-dotenv>=1.2
+Requires-Dist: readability-lxml>=0.8.4.1
+Requires-Dist: requests>=2.33
+Requires-Dist: tenacity>=9.0
+Requires-Dist: tiktoken>=0.9
+Requires-Dist: fairsoft-core>=0.1.1
+Requires-Dist: numpy>=1.24
+Requires-Dist: sentence-transformers>=3.0
 Provides-Extra: dev
 Requires-Dist: pytest>=7.4.0; extra == "dev"
 Requires-Dist: pytest-cov>=4.1.0; extra == "dev"
@@ -27,6 +36,8 @@ Provides-Extra: docs
 Requires-Dist: mkdocs>=1.5.3; extra == "docs"
 Requires-Dist: mkdocs-material>=9.5.3; extra == "docs"
 Requires-Dist: pymdown-extensions>=10.4; extra == "docs"
+Provides-Extra: scheduler
+Requires-Dist: apscheduler>=3.10; extra == "scheduler"
 Dynamic: license-file
 
 
@@ -37,36 +48,26 @@ Metadata integration and quality assessment of research software.
 
 This repository contains the data pipeline that powers the Research Software Observatory—a platform for monitoring and assessing the quality and FAIRness of research software in the life sciences.
 
-It consolidates software records, resolves duplicates, and precomputes the quality and FAIRness statistics displayed in the Observatory’s interface.
+It consolidates software records, resolves duplicates, and precomputes the quality and FAIRness statistics displayed in the Observatory’s interface. 
 
+-> 📄 [Documentation](https://inab.github.io/research-software-etl/)
 
-## Objectives
+## Pipeline 
 
-The pipeline is designed to:
-	•	Aggregate and harmonize metadata from heterogeneous sources and registries.
-	•	Enrich metadata through:
-	•	SPDX license mapping.
-	•	EDAM format normalization.
-	•	Contributor classification.
-	•	Harvesting of publication metadata from Europe PMC and Semantic Scholar.
-	•	Identify and group equivalent software records across repositories.
-	•	Detect and resolve potential conflicts and duplicates through automated and human-in-the-loop processes.
-	•	Compute and export FAIRness and quality statistics for visualization and monitoring in the [Observatory UI](https://openebench.bsc.es/observatory/). 
+The ETL runs in modular stages, which can be executed independently or orchestrated end-to-end through the unified CLI command rsetl. 
 
-
-## Pipeline Overview
-
-The ETL runs in eight modular stages, which can be executed independently or orchestrated end-to-end through the unified CLI command rsetl. 
-
-1. Blocking and recovery – Groups related software records from normalized data. 
-2. Metrics removal (optional) – Filters low-information OpenEBench metrics. 
-3. Conflict detection – Identifies inconsistent or duplicate records. 
-4. Simplification – Reduces block complexity for later processing. 
-5. Conversion to JSONL – Formats data for large-scale or LLM-based steps. 
-6. Disambiguation – Uses heuristics and AI-assisted agreement scoring to resolve conflicts. 
-7. Human integration – Incorporates curator decisions from Git-based annotations. 
-8. Merge – Produces final, merged software entries and updates the database. 
-9. Calculation of statistivs and FAIRsoft scores - The resulting metrics are stored in the database to support efficient visualization and longitudinal monitoring.
+1. Transformation – Fetches raw records from source collections and standardizes them.
+2. License normalization – Maps license strings to SPDX identifiers.
+3. Blocking and recovery – Groups related software records from normalized data. 
+4. Metrics removal (optional) – Filters low-information OpenEBench metrics. 
+5. Conflict detection – Identifies inconsistent or duplicate records. 
+6. Simplification – Reduces block complexity for later processing. 
+7. Conversion to JSONL – Formats data for large-scale or LLM-based steps. 
+8. Disambiguation – Uses heuristics and AI-assisted agreement scoring to resolve conflicts. 
+9. Human integration – Incorporates curator decisions from Git-based annotations. 
+10. Merge – Produces final, merged software entries and updates the database. 
+11. FAIRsoft scores and statistics – Computes FAIR compliance metrics and aggregated statistics stored in the database to support visualization and longitudinal monitoring.
+12. Similarity – Embeds tool descriptions and precomputes the top-10 nearest neighbours per tool to power "similar software" recommendations.
 
 Each execution creates a versioned run directory under `data/integration/runs/<run_id>/` with a manifest file tracking inputs, outputs, and environment metadata.
 

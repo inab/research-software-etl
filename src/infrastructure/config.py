@@ -179,6 +179,10 @@ class PipelineConfig:
         "data/cache/publications_enrichment.jsonl"
     )
 
+    # --- Scheduler cadence ---
+    # Standard 5-field crontab string, parsed by CronTrigger.from_crontab().
+    full_pipeline_cron: str = "0 1 * * mon,thu"  # twice weekly, 01:00 UTC
+
     ci: CIContext = field(default_factory=CIContext)
 
     @classmethod
@@ -223,6 +227,7 @@ class PipelineConfig:
                 "HUMAN_ANNOTATIONS_LOG",
                 "human_annotations/human_conflicts_log.jsonl",
             ),
+            full_pipeline_cron=os.getenv("FULL_PIPELINE_CRON", "0 1 * * mon,thu"),
             ci=CIContext.from_env(),
         )
         return cfg.with_overrides(**overrides)

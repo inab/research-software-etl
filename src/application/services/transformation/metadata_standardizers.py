@@ -90,20 +90,4 @@ class MetadataStandardizer(ABC):
             type_=None
         
         return({'name':name, 'version':version, 'type':type_})
-    
-    """
-    TODO: move to infrastructure layer
-
-    @staticmethod
-    def page_exists(url):
-        '''
-        Checks if the url exists.
-        - url: url to check
-        '''
-        try:
-            r = requests.head(url)
-            return r.status_code == 200
-        except:
-            return False
-    """
         

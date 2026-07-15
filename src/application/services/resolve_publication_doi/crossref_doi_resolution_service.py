@@ -3,21 +3,24 @@ from __future__ import annotations
 from difflib import SequenceMatcher
 from typing import Any
 
-import requests
-
 from application.services.resolve_publication_doi.doi_utils import normalize_doi
 
 
 class CrossrefDoiResolutionService:
+    """
+    Picks the Crossref record that a title (and maybe a journal and a year) refers to.
+
+    The matching is the interesting part and lives here; the HTTP call belongs to
+    `CrossrefClient`, which the CLI hands in.
+    """
+
     def __init__(
         self,
-        mailto: str,
-        timeout: int = 30,
+        client,
         rows: int = 5,
         min_confidence: float = 0.92,
     ) -> None:
-        self.mailto = mailto
-        self.timeout = timeout
+        self.client = client
         self.rows = rows
         self.min_confidence = min_confidence
 
@@ -74,22 +77,7 @@ class CrossrefDoiResolutionService:
         if journal and str(journal).strip():
             query = f"{query} {journal.strip()}"
 
-        response = requests.get(
-            "https://api.crossref.org/works",
-            params={
-                "query.bibliographic": query,
-                "rows": self.rows,
-                "mailto": self.mailto,
-            },
-            headers={
-                "User-Agent": f"publication-doi-resolver/0.1 (mailto:{self.mailto})"
-            },
-            timeout=self.timeout,
-        )
-        response.raise_for_status()
-
-        payload = response.json()
-        return payload.get("message", {}).get("items", [])
+        return self.client.search_works(query, rows=self.rows)
 
     @staticmethod
     def _extract_title(item: dict[str, Any]) -> str | None:

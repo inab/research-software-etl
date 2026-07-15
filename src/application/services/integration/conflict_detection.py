@@ -1,18 +1,9 @@
 import logging
 import re
 import tiktoken
-import requests
 from urllib.parse import urlparse
 
 _GITHUB_RESOLUTION_CACHE = {}
-
-# Reuse a session for efficiency
-_HTTP_SESSION = requests.Session()
-_HTTP_SESSION.headers.update(
-    {
-        "User-Agent": "Mozilla/5.0 (compatible; conflict-detector/1.0)"
-    }
-)
 
 
 def ensure_url_has_scheme(url: str) -> str:
@@ -112,15 +103,14 @@ def is_github_url(url):
         return False
 
 
-def resolve_github_url(url, timeout=8):
+def resolve_github_url(url, url_checker, timeout=8):
     """
     Resolve redirects for a GitHub URL.
-    Returns the final URL as returned by requests, or None if resolution failed
-    or if the resolved target normalizes to the same repo.
+    Returns the final URL, or None if resolution failed or if the resolved target
+    normalizes to the same repo.
 
     Important:
     - works with scheme-less input
-    - tries HEAD first, then GET as fallback
     - caches both positive and negative results
     """
     if not url or not is_github_url(url):
@@ -131,43 +121,27 @@ def resolve_github_url(url, timeout=8):
         return _GITHUB_RESOLUTION_CACHE[original_input]
 
     request_url = ensure_url_has_scheme(original_input)
+    final_url = url_checker.resolve_redirects(request_url, timeout=timeout)
 
-    try:
-        # First try HEAD
-        response = _HTTP_SESSION.head(request_url, allow_redirects=True, timeout=timeout)
-        final_url = response.url
+    # Compare normalized forms, not raw strings
+    original_norm = normalize_url(original_input)
+    final_norm = normalize_url(final_url) if final_url else None
 
-        # Some servers are not reliable with HEAD; fallback to GET if needed
-        if not final_url:
-            response = _HTTP_SESSION.get(
-                request_url,
-                allow_redirects=True,
-                timeout=timeout,
-                stream=True,
-            )
-            final_url = response.url
-
-        # Compare normalized forms, not raw strings
-        original_norm = normalize_url(original_input)
-        final_norm = normalize_url(final_url)
-
-        if final_url and final_norm and final_norm != original_norm:
-            _GITHUB_RESOLUTION_CACHE[original_input] = final_url
-            return final_url
-
-    except requests.RequestException as e:
-        logging.debug(f"Could not resolve GitHub URL {original_input}: {e}")
+    if final_url and final_norm and final_norm != original_norm:
+        _GITHUB_RESOLUTION_CACHE[original_input] = final_url
+        return final_url
 
     _GITHUB_RESOLUTION_CACHE[original_input] = None
     return None
 
 
-def get_normalized_link_variants(url, resolve_github=False):
+def get_normalized_link_variants(url, url_checker=None, resolve_github=False):
     """
     Return normalized link variants for a URL.
 
     Always includes the normalized original URL.
-    Optionally includes the normalized resolved GitHub target URL.
+    Optionally includes the normalized resolved GitHub target URL -- that is the
+    only branch that touches the network, and the only one that needs a checker.
     """
     variants = set()
 
@@ -176,7 +150,7 @@ def get_normalized_link_variants(url, resolve_github=False):
         variants.add(normalized_original)
 
     if resolve_github and is_github_url(url):
-        resolved = resolve_github_url(url)
+        resolved = resolve_github_url(url, url_checker)
         if resolved:
             normalized_resolved = normalize_url(resolved)
             if normalized_resolved:
@@ -185,11 +159,13 @@ def get_normalized_link_variants(url, resolve_github=False):
     return variants
 
 
-def collect_link_set(urls, resolve_github=False):
+def collect_link_set(urls, url_checker=None, resolve_github=False):
     collected = set()
     for url in urls:
         if url:
-            collected |= get_normalized_link_variants(url, resolve_github=resolve_github)
+            collected |= get_normalized_link_variants(
+                url, url_checker=url_checker, resolve_github=resolve_github
+            )
     return collected
 
 
@@ -465,7 +441,7 @@ def get_galaxy_related_same_name(entries):
 
 
 
-def build_instance_representation(instances, resolve_github=False):
+def build_instance_representation(instances, url_checker=None, resolve_github=False):
     """
     Build instance_details and instance_links for one block.
     """
@@ -492,8 +468,12 @@ def build_instance_representation(instances, resolve_github=False):
             if url
         ]
 
-        repo_links = collect_link_set(repo_urls, resolve_github=resolve_github)
-        webpage_links = collect_link_set(webpage_urls, resolve_github=resolve_github)
+        repo_links = collect_link_set(
+            repo_urls, url_checker=url_checker, resolve_github=resolve_github
+        )
+        webpage_links = collect_link_set(
+            webpage_urls, url_checker=url_checker, resolve_github=resolve_github
+        )
         combined_links = repo_links | webpage_links
 
         entry = {
@@ -568,13 +548,15 @@ def group_has_github_urls(instances):
     return False
 
 
-def find_disconnected_entries(data, use_name_match_for_no_links=True):
+def find_disconnected_entries(data, url_checker, use_name_match_for_no_links=True):
     """
     Two-stage conflict detection:
 
     1. Cheap normalization only
     2. Only if a block still has disconnected entries and contains GitHub URLs,
        retry that block with GitHub redirect resolution
+
+    Only the second pass needs `url_checker`: the first is pure string work.
     """
     disconnected_keys = {}
 
@@ -608,6 +590,7 @@ def find_disconnected_entries(data, use_name_match_for_no_links=True):
 
             instance_details_resolved, instance_links_resolved = build_instance_representation(
                 instances,
+                url_checker=url_checker,
                 resolve_github=True
             )
 
@@ -633,10 +616,3 @@ def find_disconnected_entries(data, use_name_match_for_no_links=True):
 def token_size(text):
     encoding = tiktoken.get_encoding("cl100k_base")
     return len(encoding.encode(text))
-
-if __name__ == '__main__': 
-    print(is_github_url("github.com/bcgsc/AMPd-Up"))
-    print(normalize_url("github.com/bcgsc/AMPd-Up"))
-    print(resolve_github_url("github.com/bcgsc/AMPd-Up"))
-    print(get_normalized_link_variants("github.com/bcgsc/AMPd-Up", resolve_github=True))
-    print(get_normalized_link_variants("github.com/BirolLab/AMPd-Up", resolve_github=True))

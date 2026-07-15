@@ -137,9 +137,17 @@ The merge stage prints `preserved / new / retired / contested`. **`contested` is
 
 **External API clients (`src/infrastructure/external/`):**
 
-Every call to a tokened third-party API goes through a client class there — `GitHubClient`, `GitLabClient`, `OpenRouterClient`, `HuggingFaceClient` — each holding its token as a constructor argument. `ExternalClients.from_credentials(creds)` bundles them, and the CLI threads that bundle down the disambiguation chain (`run_full_disambiguation → disambiguate_blocks → process_conflict → {proxy, conflict_builder → enrich_links}`).
+**Every HTTP call the pipeline makes lives here**, behind a client class — not just the tokened ones. `ExternalClients.from_credentials(creds)` bundles them, and the CLI threads that bundle down the disambiguation chain (`run_full_disambiguation → disambiguate_blocks → process_conflict → {proxy, conflict_builder → enrich_links}`).
 
-No module under `application/` may read a token or build an `Authorization` header. Services receive `clients` and call methods on it. Tests inject fakes into `ExternalClients` rather than patching module globals — see `tests/application/services/integration/test_agreement_proxy.py`.
+- Tokened, each holding its token as a constructor argument: `GitHubClient`, `GitLabClient`, `OpenRouterClient`, `HuggingFaceClient`.
+- Tokenless, bundled for the same reason — a service that owns a `requests.Session` cannot be run offline: `UrlChecker`, `PyPIClient`, `SourceForgeClient` (Cloudflare retry/backoff), `BitbucketClient`, `HeadlessBrowserFetcher` (Playwright).
+- Built directly by the CLI that needs them, not bundled: `EuropePmcClient`, `SemanticScholarClient`, `CrossrefClient` (its `mailto` is a CLI flag, not a credential).
+
+`UrlChecker` is the "is this URL reachable, and where does it end up?" seam: `probe()` (HEAD, falling back to GET) for the web-availability stage, `resolve_redirects()` for GitHub redirect resolution in conflict detection and for link enrichment. Those three each owned a `requests.Session` before, so none of them could run without a network.
+
+No module under `application/` may read a token, build an `Authorization` header, or make an HTTP request. Services receive `clients` (or the one narrow client they need — `run_update_web_availability_daily(cfg, repos, url_checker)`) and call methods on it. `tests/test_architecture.py` fails the build if `requests`, `httpx`, `playwright` or `urllib.request` is imported under `application/` or `domain/`.
+
+Tests inject fakes into `ExternalClients` rather than patching module globals — see `tests/application/services/integration/test_agreement_proxy.py`. `fake_clients()` leaves the four tokened slots `None` (so an unexpected reach-through raises) but fills the tokenless fetchers with offline fakes, so no test can reach the network by forgetting one. That is not hypothetical: while the disambiguation tests patched `enrich_links.get_link_content`, the redirect check underneath it went unpatched and hit the live network on every conflict.
 
 **Tests:**
 

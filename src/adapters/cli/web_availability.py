@@ -12,6 +12,7 @@ from application.use_cases.web_availability.update_web_availability_daily import
 )
 from infrastructure.config import PipelineConfig
 from infrastructure.db.repositories import Repositories
+from infrastructure.external.url_checker import UrlChecker
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -48,7 +49,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         print("[RUN] web availability daily job")
-        res = run_update_web_availability_daily(cfg, repos)
+        res = run_update_web_availability_daily(cfg, repos, UrlChecker(timeout=cfg.timeout))
 
         print(
             "[STEP 1] processed existing URLs: "

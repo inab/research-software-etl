@@ -62,23 +62,17 @@ def repos():
 
 @pytest.fixture
 def clients():
-    """Only .github is exercised -- the proxy is stubbed out, so the LLM and
-    GitLab slots stay None and would blow up loudly if reached."""
+    """
+    Only .github is exercised -- the proxy is stubbed out, so the LLM and GitLab
+    slots stay None and would blow up loudly if reached.
+
+    Link enrichment fetches repository and webpage content along the way. That used
+    to mean monkeypatching `enrich_links.get_link_content` -- and, because the
+    redirect check underneath it was *not* patched, this test still reached the
+    network on every conflict. Both go through injected clients now, and
+    `fake_clients` fills them with offline fakes.
+    """
     return fake_clients(github=FakeGitHubClient())
-
-
-@pytest.fixture(autouse=True)
-def no_network(monkeypatch):
-    """Link enrichment reaches out to GitHub and to arbitrary webpages. Stub the
-    raw fetch; the fake GitHub client covers the rest."""
-
-    async def no_link_content(link):
-        return None
-
-    monkeypatch.setattr(
-        "application.services.integration.disambiguation.enrich_links.get_link_content",
-        no_link_content,
-    )
 
 
 def _stub_proxy(monkeypatch, verdict: str):

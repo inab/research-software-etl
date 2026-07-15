@@ -52,6 +52,35 @@ def test_no_module_below_adapters_reads_the_environment():
     )
 
 
+def test_no_module_below_adapters_speaks_http():
+    """
+    Transport belongs to `infrastructure/external/`, behind a client.
+
+    A service that owns a `requests.Session` cannot be run without a network: the
+    web-availability stage, GitHub redirect resolution and link enrichment each had
+    one, and the only way to test them was to monkeypatch a module global -- which
+    the disambiguation tests did, imperfectly, while still reaching the internet
+    through the redirect check they had not thought to patch.
+    """
+    offenders = set()
+    for layer in ("application", "domain"):
+        for path in (SRC / layer).rglob("*.py"):
+            source = path.read_text()
+            if (
+                "import requests" in source
+                or "import httpx" in source
+                or "from playwright" in source
+                or "urllib.request" in source
+            ):
+                offenders.add(str(path.relative_to(SRC)))
+
+    assert not offenders, (
+        "these modules make HTTP calls of their own; add a client to "
+        "infrastructure/external/, put it on ExternalClients, and take it as an "
+        f"argument: {sorted(offenders)}"
+    )
+
+
 def test_no_driver_types_leak_into_the_application_layer():
     """
     `pymongo.UpdateOne` used to be built in the web-availability use cases and handed

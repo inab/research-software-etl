@@ -1,5 +1,4 @@
 from bson import ObjectId
-import requests 
 from urllib.parse import urlparse
 
 
@@ -82,29 +81,6 @@ def has_version_control(entry: dict) -> bool:
                     return True
 
     return False
-
-def request_fair_calculation(entry) -> None:
-    
-    URL ="https://observatory.openebench.bsc.es/api/fair/evaluate"
-    #URL ="http://127.0.0.1:8000/fair/evaluate"
-    body = {
-        'tool_metadata': entry,
-        "prepare": False
-    }
-    request = requests.post(URL, json=body)
-    # request fair calculation
-    if request.status_code == 200:
-        result = request.json()
-    else:
-        print(f"Error: {request.status_code}")
-        print(f"Error: {request.text}")
-        print(entry)
-        raise
-        return None
-
-    return result['result']
-
-
 
 def collect_entry_links(entry: dict) -> list[str]:
     """
@@ -239,16 +215,9 @@ def prep_entry_for_evaluation(entry, publications):
 
 
 def evaluate_tool(entry, publications):
-    from fairsoft_core.evaluation.all_indicators import run_fairsoft_evaluation 
+    from fairsoft_core.evaluation.all_indicators import run_fairsoft_evaluation
 
     entry = prep_entry_for_evaluation(entry, publications)
 
-    #result = { id: request_fair_calculation(entry)}
-
-    #result = request_fair_calculation(entry)
-
-    result = run_fairsoft_evaluation(entry).get('result')
-
-
-    return result
+    return run_fairsoft_evaluation(entry).get('result')
 
