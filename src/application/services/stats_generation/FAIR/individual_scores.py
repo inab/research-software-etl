@@ -1,4 +1,3 @@
-from bson import ObjectId
 from urllib.parse import urlparse
 
 
@@ -141,7 +140,7 @@ def prep_entry_for_evaluation(entry, publications):
     publications_new = []
     if entry.get('publication'):
         for pub in entry['publication']:
-            publication = get_pub(ObjectId(pub), publications)
+            publication = get_pub(str(pub), publications)
             if publication:
                 publications_records.add(id)
                 if 'citations' in publication:

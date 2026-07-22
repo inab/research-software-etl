@@ -64,6 +64,18 @@ class ToolsRepository:
     def exists(self) -> bool:
         return self.db_adapter.collection_exists(self.collection_name)
 
+    def list_by_prefix(self, prefix: str) -> list[str]:
+        """
+        Collection names starting with ``prefix`` -- how finalize_run finds the
+        ``toolsDev_archive_*`` collections it prunes, without naming a collection
+        in the application layer.
+        """
+        return [
+            name
+            for name in self.db_adapter.list_collection_names()
+            if name.startswith(prefix)
+        ]
+
     def drop(self) -> None:
         self.db_adapter.drop_collection(self.collection_name)
 

@@ -139,6 +139,9 @@ class PipelineConfig:
     # archives the live collection and promotes the staging one in its place.
     tools_staging_collection: str = "toolsDev_next"
     tools_archive_prefix: str = "toolsDev_archive_"
+    # How many `toolsDev_archive_*` collections finalize_run keeps; the rest are
+    # dropped after promotion so they don't accumulate one per scheduled run.
+    tools_archive_keep: int = 2
     licenses_mapping_collection: str = "licensesMapping"
     computations_collection: str = "computationsDev"
     similarities_collection: str = "similaritiesDev"
@@ -208,6 +211,7 @@ class PipelineConfig:
             tools_archive_prefix=os.getenv(
                 "MONGO_TOOLS_ARCHIVE_PREFIX", "toolsDev_archive_"
             ),
+            tools_archive_keep=int(os.getenv("TOOLS_ARCHIVE_KEEP", "2")),
             licenses_mapping_collection=os.getenv(
                 "LICENSES_MAPPING", "licensesMapping"
             ),

@@ -43,20 +43,52 @@ def finalize_run(run_id: str, config: PipelineConfig, repos: Repositories) -> di
     had_live = repos.tools.exists()
 
     if had_live:
-        logger.info(
-            "Archiving '%s' as '%s'", config.tools_collection, archive
-        )
+        logger.info("Archiving '%s' as '%s'", config.tools_collection, archive)
         repos.tools.rename_to(archive)
 
     logger.info(
-        "Promoting '%s' to '%s'", config.tools_staging_collection, config.tools_collection
+        "Promoting '%s' to '%s'",
+        config.tools_staging_collection,
+        config.tools_collection,
     )
     repos.tools_staging.rename_to(config.tools_collection)
+
+    pruned = _prune_archives(config, repos)
 
     return {
         "archived_as": archive if had_live else None,
         "promoted": config.tools_collection,
+        "pruned": pruned,
     }
+
+
+def _prune_archives(config: PipelineConfig, repos: Repositories) -> list[str]:
+    """
+    Drop all but the newest ``tools_archive_keep`` archives.
+
+    Run ids are timestamp-prefixed, so a reverse lexicographic sort of the archive
+    names is newest-first -- no date parsing needed. Returns the names dropped.
+
+    ``keep < 1`` is refused: it would drop the archive this run just created and
+    leave the run with no rollback target.
+    """
+    keep = config.tools_archive_keep
+    if keep < 1:
+        logger.warning(
+            "tools_archive_keep=%s < 1; keeping all archives so this run stays "
+            "rollback-able",
+            keep,
+        )
+        return []
+
+    archives = sorted(
+        repos.tools.list_by_prefix(config.tools_archive_prefix), reverse=True
+    )
+    stale = archives[keep:]
+    for name in stale:
+        logger.info("Dropping stale archive '%s' (keeping newest %s)", name, keep)
+        repos.tools.for_collection(name).drop()
+    return stale
 
 
 def rollback_run(run_id: str, config: PipelineConfig, repos: Repositories) -> dict:

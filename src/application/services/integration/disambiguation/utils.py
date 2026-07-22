@@ -1,4 +1,3 @@
-from bson import ObjectId
 import json
 import os
 from datetime import datetime
@@ -142,11 +141,12 @@ def process_publications(publications, publications_repo):
     else:
         processed_publications = []
         for publication in publications:
-            if isinstance(publication, ObjectId):
-                publication_str = str(publication)
-                processed_publications.append(get_pub(publication_str, publications_repo))
-            else:
+            if isinstance(publication, dict):
+                # already a resolved publication object, keep as-is
                 processed_publications.append(publication)
+            else:
+                # an id reference (str, or a stray ObjectId) — resolve it
+                processed_publications.append(get_pub(str(publication), publications_repo))
         return processed_publications
 
 

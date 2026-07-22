@@ -118,3 +118,21 @@ def test_no_driver_types_leak_into_the_application_layer():
         "these modules import pymongo; move the query or the write into a repository "
         f"and pass plain dicts: {sorted(offenders)}"
     )
+
+
+def test_no_bson_types_leak_into_the_application_layer():
+    """
+    `bson.ObjectId` / `bson.json_util` used to be built in stats and disambiguation
+    services, tying them to MongoDB's id type. Coercing ids to str is the repository's
+    job: the application layer compares and looks them up as plain strings.
+    """
+    offenders = set()
+    for path in (SRC / "application").rglob("*.py"):
+        source = path.read_text()
+        if "import bson" in source or "from bson" in source:
+            offenders.add(str(path.relative_to(SRC)))
+
+    assert not offenders, (
+        "these modules import bson; coerce ids to str at the repository boundary "
+        f"and compare/look them up as strings: {sorted(offenders)}"
+    )

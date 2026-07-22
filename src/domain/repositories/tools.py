@@ -41,6 +41,10 @@ class ToolsRepository(Protocol):
         """Whether the collection exists."""
         ...
 
+    def list_by_prefix(self, prefix: str) -> List[str]:
+        """Collection names starting with ``prefix`` (e.g. the run archives)."""
+        ...
+
     def drop(self) -> None:
         """Drop the collection."""
         ...

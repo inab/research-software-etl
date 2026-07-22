@@ -1,8 +1,6 @@
 from collections import defaultdict
 from datetime import datetime
 
-from bson import ObjectId
-
 def compute_journal_impact(docs, years=['2023', '2024', '2025']):
     """
     Compute total citations in selected years per journal and collect document IDs.
@@ -63,7 +61,7 @@ def number_of_tools(publication_ids, tools):
     for entry in tools:
         publications = entry['data'].get("publication", [])
         for publication in publications:
-            if ObjectId(publication) in publication_ids:
+            if str(publication) in publication_ids:
                 n += 1
 
     return n
@@ -78,25 +76,6 @@ def tools_w_publication(tools):
     return n
 
 
-
-def _to_oid(x):
-    """Coerce x into an ObjectId if possible, else return None."""
-    if isinstance(x, ObjectId):
-        return x
-    if isinstance(x, str):
-        try:
-            return ObjectId(x)
-        except Exception:
-            return None
-    if isinstance(x, dict):
-        # Common JSON export shape: {"$oid": "..."} or {"oid": "..."}
-        for k in ("$oid", "oid", "_id"):
-            if k in x and isinstance(x[k], str):
-                try:
-                    return ObjectId(x[k])
-                except Exception:
-                    return None
-    return None
 
 def publications_journals_IF(collection, repos):
     """Reads tools and publications as well as writing computations, so it takes
@@ -114,10 +93,9 @@ def publications_journals_IF(collection, repos):
             data = tool.get("data") or {}
             pubs = data.get("publication") or []
             for p in pubs:
-                oid = _to_oid(p)
-                if not oid:
+                if not p:
                     continue
-                doc = repos.publications.get_by_id(oid)
+                doc = repos.publications.get_by_id(str(p))
                 if doc:
                     docs.append(doc)
     else:
@@ -148,8 +126,7 @@ def publications_journals_IF(collection, repos):
             # if any publication of this tool is in the set, count it once
             found = False
             for p in pubs:
-                oid = _to_oid(p)
-                if oid and oid in pub_ids_set:
+                if p and str(p) in pub_ids_set:
                     found = True
                     break
             if found:

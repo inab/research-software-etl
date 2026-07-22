@@ -3,13 +3,13 @@ import logging
 from dotenv import load_dotenv
 
 
-
 logger = logging.getLogger("rs-etl-pipeline")
+
 
 def print_summary(summary):
 
     print("✨ Merging completed! ✨")
-    print('----------- Summary -------------')
+    print("----------- Summary -------------")
     print(f"Iterated over {summary['N']} blocks.")
     print(f" |")
     print(f" |-- Processed {summary['n_processed']} blocks.")
@@ -21,20 +21,20 @@ def print_summary(summary):
     print(f"     '-- For human review: {summary['n_pending']}")
     print(f"     |")
     print(f"     '-- Unclear for human: {summary['n_unclear']}")
-    print('---------------------------------')
+    print("---------------------------------")
 
     identities = summary.get("identities")
     if identities:
-        print('----------- Identities ----------')
+        print("----------- Identities ----------")
         print(f"Kept the id of the tool they continue: {identities['preserved']}")
         print(f"New tools (no ancestor):               {identities['new']}")
         print(f"Retired ids (no successor):            {identities['retired']}")
-        if identities['contested']:
+        if identities["contested"]:
             print(
                 f"Contested:                             {identities['contested']}"
                 "  (oldest ancestor won over a larger-overlap one)"
             )
-        print('---------------------------------')
+        print("---------------------------------")
 
 
 def main():
@@ -43,10 +43,13 @@ def main():
     )
 
     parser.add_argument(
-        "--disambiguated-blocks-file", "-n",
-        help=("Path to the file where the disambiguated grouped entries and all other groups will be written. Default is 'data/disambiguated_grouped.json'."),
+        "--disambiguated-blocks-file",
+        "-n",
+        help=(
+            "Path to the file where the disambiguated grouped entries and all other groups will be written. Default is 'data/disambiguated_grouped.json'."
+        ),
         type=str,
-        dest="disambiguated_blocks_file"
+        dest="disambiguated_blocks_file",
     )
 
     parser.add_argument(
@@ -71,7 +74,8 @@ def main():
     )
 
     parser.add_argument(
-        "--env-file", "-e",
+        "--env-file",
+        "-e",
         help=("File containing environment variables to be set before running "),
         default=".env",
     )
@@ -110,7 +114,12 @@ def main():
     if result["archived_as"]:
         print(f"Previous collection archived as {result['archived_as']}")
         print(f"To undo: rsetl rollback {args.run_id}")
+    if result.get("pruned"):
+        print(
+            f"Dropped {len(result['pruned'])} stale archive(s): {', '.join(result['pruned'])}"
+        )
     logger.info("Merging finished!")
+
 
 if __name__ == "__main__":
     main()

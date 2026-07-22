@@ -22,11 +22,15 @@ from bson import ObjectId
 from infrastructure.db.mongo.computations_repository import ComputationsRepository
 from infrastructure.db.mongo.license_mapping_repository import LicenseMappingRepository
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
-from infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
+from infrastructure.db.mongo.raw_software_repository import (
+    RawSoftwareMetadataRepository,
+)
 from infrastructure.db.mongo.similarities_repository import SimilaritiesRepository
 from infrastructure.db.mongo.standardized_software_repository import PretoolsRepository
 from infrastructure.db.mongo.tools_repository import ToolsRepository
-from infrastructure.db.mongo.web_availability_repository import WebAvailabilityRepository
+from infrastructure.db.mongo.web_availability_repository import (
+    WebAvailabilityRepository,
+)
 from domain.repositories import Repositories
 from infrastructure.external.clients import ExternalClients
 from infrastructure.external.url_checker import UrlProbe
@@ -205,6 +209,9 @@ class FakeDatabaseAdapter:
     def collection_exists(self, collection_name: str) -> bool:
         return collection_name in self.collections
 
+    def list_collection_names(self) -> List[str]:
+        return list(self.collections)
+
     def drop_collection(self, collection_name: str) -> None:
         self.collections.pop(collection_name, None)
 
@@ -316,7 +323,9 @@ class FakeDatabaseAdapter:
     def entry_exists(self, collection_name: str, identifier: Any) -> bool:
         return identifier in self._collection(collection_name)
 
-    def get_entry_metadata(self, collection_name: str, identifier: Any) -> Optional[dict]:
+    def get_entry_metadata(
+        self, collection_name: str, identifier: Any
+    ) -> Optional[dict]:
         document = self._collection(collection_name).get(identifier)
         if document is None:
             return None
@@ -355,10 +364,16 @@ def fake_repos(
         license_mapping=(
             LicenseMappingRepository(db, "licenses") if license_mapping else None
         ),
-        computations=ComputationsRepository(db, "computations") if computations else None,
-        similarities=SimilaritiesRepository(db, "similarities") if similarities else None,
+        computations=(
+            ComputationsRepository(db, "computations") if computations else None
+        ),
+        similarities=(
+            SimilaritiesRepository(db, "similarities") if similarities else None
+        ),
         web_availability=(
-            WebAvailabilityRepository(db, "webavailability") if web_availability else None
+            WebAvailabilityRepository(db, "webavailability")
+            if web_availability
+            else None
         ),
     )
 

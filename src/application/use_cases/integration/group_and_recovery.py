@@ -1,5 +1,6 @@
+import json
 import logging
-from bson import json_util
+from datetime import datetime
 
 from infrastructure.config import PipelineConfig
 from domain.repositories import Repositories
@@ -28,12 +29,21 @@ def fetch_pretools(config: PipelineConfig, repos: Repositories):
     return entries
 
 
+def _json_default(o):
+    """Serialize values plain ``json`` cannot handle: datetimes as ISO strings,
+    and any residual Mongo scalar (e.g. an ``ObjectId``) as its ``str`` form."""
+    if isinstance(o, datetime):
+        return o.isoformat()
+    return str(o)
+
+
 def write_json_util(file_name, data):
     """
-    Write data to a JSON file. Uses the bson.json_util module to serialize the data.
+    Write data to a JSON file as plain JSON. Ids reach here as strings (coerced at
+    the repository boundary); ``_json_default`` handles datetimes and any stragglers.
     """
     with open(file_name, 'w') as f:
-        s = json_util.dumps(data)
+        s = json.dumps(data, default=_json_default)
         f.write(s)
 
 

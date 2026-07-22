@@ -15,7 +15,9 @@ from typing import Any, Dict, Iterator, List, Optional, Protocol
 
 
 class DatabaseAdapter(Protocol):
-    def fetch_entry(self, collection_name: str, query: Dict[str, Any]) -> Optional[dict]:
+    def fetch_entry(
+        self, collection_name: str, query: Dict[str, Any]
+    ) -> Optional[dict]:
         """Return the single document matching ``query``, or None."""
         ...
 
@@ -75,17 +77,17 @@ class DatabaseAdapter(Protocol):
 
     def distinct(
         self, collection_name: str, key: str, query: Optional[Dict[str, Any]] = None
-    ) -> List[Any]:
-        ...
+    ) -> List[Any]: ...
 
-    def create_index(self, collection_name: str, key: str, unique: bool = False) -> Any:
-        ...
+    def create_index(
+        self, collection_name: str, key: str, unique: bool = False
+    ) -> Any: ...
 
-    def collection_exists(self, collection_name: str) -> bool:
-        ...
+    def collection_exists(self, collection_name: str) -> bool: ...
 
-    def drop_collection(self, collection_name: str) -> None:
-        ...
+    def list_collection_names(self) -> List[str]: ...
+
+    def drop_collection(self, collection_name: str) -> None: ...
 
     def rename_collection(
         self, collection_name: str, new_name: str, drop_target: bool = False

@@ -3,6 +3,7 @@
 # the repositories (in adpaters/db) will remain the same.
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 import os
@@ -10,10 +11,16 @@ import pymongo
 import logging
 from typing import Any, Dict, List, Optional
 from pymongo.errors import NetworkTimeout, AutoReconnect, CursorNotFound
-from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_exponential,
+    retry_if_exception_type,
+)
 
-#from sshtunnel import SSHTunnelForwarder
+# from sshtunnel import SSHTunnelForwarder
 logger = logging.getLogger("rs-etl-pipeline")
+
 
 # Satisfies infrastructure.db.database_adapter.DatabaseAdapter structurally.
 # Deliberately not inheriting from it -- see that module's docstring.
@@ -49,13 +56,13 @@ class MongoDBAdapter:
 
         logger.info("Initializing MongoDB client")
 
-        mongo_host = os.getenv('MONGO_HOST', 'localhost')
-        mongo_port = int(os.getenv('MONGO_PORT', '27018'))
-        mongo_user = os.getenv('MONGO_USER')
-        mongo_pass = os.getenv('MONGO_PWD')
-        mongo_auth_src = os.getenv('MONGO_AUTH_SRC', 'admin')
+        mongo_host = os.getenv("MONGO_HOST", "localhost")
+        mongo_port = int(os.getenv("MONGO_PORT", "27018"))
+        mongo_user = os.getenv("MONGO_USER")
+        mongo_pass = os.getenv("MONGO_PWD")
+        mongo_auth_src = os.getenv("MONGO_AUTH_SRC", "admin")
 
-        '''
+        """
         print(f"USE_SSH_TUNNEL is {use_ssh_tunnel}")
         if use_ssh_tunnel:
             print("Using SSH tunnel to connect to MongoDB")
@@ -82,30 +89,30 @@ class MongoDBAdapter:
 
             mongo_uri = f'mongodb://127.0.0.1:{local_port}/'
         else:
-        '''
+        """
         logger.info(f"Connecting directly to MongoDB at {mongo_host}:{mongo_port}")
-        mongo_uri = f'mongodb://{mongo_host}:{mongo_port}/'
+        mongo_uri = f"mongodb://{mongo_host}:{mongo_port}/"
 
         try:
             if mongo_user and mongo_pass:
                 client = pymongo.MongoClient(
-                    f'mongodb://{mongo_host}:{mongo_port}',
+                    f"mongodb://{mongo_host}:{mongo_port}",
                     username=mongo_user,
                     password=mongo_pass,
                     authSource=mongo_auth_src,
-                    authMechanism='SCRAM-SHA-256',
+                    authMechanism="SCRAM-SHA-256",
                     maxPoolSize=100,
-                    serverSelectionTimeoutMS=5000
+                    serverSelectionTimeoutMS=5000,
                 )
             else:
-                logger.debug("No MongoDB credentials provided. Connecting without authentication.")
+                logger.debug(
+                    "No MongoDB credentials provided. Connecting without authentication."
+                )
                 client = pymongo.MongoClient(
-                    mongo_uri,
-                    maxPoolSize=100,
-                    serverSelectionTimeoutMS=5000
+                    mongo_uri, maxPoolSize=100, serverSelectionTimeoutMS=5000
                 )
 
-            client.admin.command('ping')
+            client.admin.command("ping")
             logger.info("MongoDB connection established successfully")
             return client
 
@@ -117,14 +124,17 @@ class MongoDBAdapter:
 
     def _get_database_name(self, database):
         """Get database name from parameter or environment variable"""
-        return database or os.getenv('MONGO_DB', 'oeb-research-software')
-    
+        return database or os.getenv("MONGO_DB", "oeb-research-software")
+
     def get_collection(self, collection_name: str):
         """Return the raw PyMongo collection (escape hatch for advanced ops)."""
         return self.db[collection_name]
 
     def collection_exists(self, collection_name: str) -> bool:
         return collection_name in self.db.list_collection_names()
+
+    def list_collection_names(self) -> list[str]:
+        return self.db.list_collection_names()
 
     def create_index(self, collection_name: str, key: str, unique: bool = False):
         return self.db[collection_name].create_index(key, unique=unique)
@@ -148,7 +158,9 @@ class MongoDBAdapter:
         wait=wait_exponential(multiplier=1, min=1, max=10),
         stop=stop_after_attempt(5),
     )
-    def bulk_write(self, collection_name: str, operations: List[Any], ordered: bool = False):
+    def bulk_write(
+        self, collection_name: str, operations: List[Any], ordered: bool = False
+    ):
         """Run a PyMongo bulk_write against a collection."""
         if not operations:
             return None
@@ -196,9 +208,9 @@ class MongoDBAdapter:
         return cursor
 
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
-    wait=wait_exponential(multiplier=1, min=1, max=10), 
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
     def entry_exists(self, collection_name: str, identifier: str) -> bool:
         """
@@ -214,15 +226,13 @@ class MongoDBAdapter:
             bool: True if an entry with the specified identifier exists in the collection, False otherwise.
         """
         collection = self.db[collection_name]
-        query = { 
-            '_id' : identifier 
-        }
+        query = {"_id": identifier}
         return collection.count_documents(query) > 0
-    
+
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
-    wait=wait_exponential(multiplier=1, min=1, max=10),
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
     def delete_entry(self, collection_name: str, identifier: str) -> bool:
         """
@@ -236,17 +246,20 @@ class MongoDBAdapter:
             bool: True if a document was deleted, False otherwise.
         """
         collection = self.db[collection_name]
-        logger.info(f"Deleting entry from collection '{collection_name}' with _id: {identifier}")
-        result = collection.delete_one({'_id': identifier})
+        logger.info(
+            f"Deleting entry from collection '{collection_name}' with _id: {identifier}"
+        )
+        result = collection.delete_one({"_id": identifier})
         return result.deleted_count > 0
 
-
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
-    wait=wait_exponential(multiplier=1, min=1, max=10), 
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
-    def get_entry_metadata(self, collection_name: str, identifier: str) -> Optional[dict]:
+    def get_entry_metadata(
+        self, collection_name: str, identifier: str
+    ) -> Optional[dict]:
         """
         Retrieve metadata for an entry from the specified collection, excluding the 'data' field.
 
@@ -259,20 +272,14 @@ class MongoDBAdapter:
             Returns None if no entry is found.
         """
         collection = self.db[collection_name]
-        query = {
-            '_id': identifier
-        }
-        projection = {
-            'data': 0  # Exclude 'data' field
-        }
+        query = {"_id": identifier}
+        projection = {"data": 0}  # Exclude 'data' field
         return collection.find_one(query, projection=projection)
-    
-
 
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
-    wait=wait_exponential(multiplier=1, min=1, max=10), 
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
     def update_entry(self, collection_name: str, identifier: str, data: dict):
         """
@@ -288,36 +295,32 @@ class MongoDBAdapter:
         collection = self.db[collection_name]
         logger.info("Updating entry in collection: %s", collection_name)
         return collection.update_one(
-            {'_id': identifier},  # Query matching the document to update
-            {'$set': data}  # Fields to update
+            {"_id": identifier},  # Query matching the document to update
+            {"$set": data},  # Fields to update
         )
 
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
-    wait=wait_exponential(multiplier=1, min=1, max=10), 
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
     def update_custom(self, collection_name: str, criteria: str, data: dict):
         collection = self.db[collection_name]
-        collection.update_one(
-            criteria,  
-            {'$set': data}  # Fields to update
-        )
+        collection.update_one(criteria, {"$set": data})  # Fields to update
 
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
-    wait=wait_exponential(multiplier=1, min=1, max=10), 
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
     def update_custom_upsert(self, collection_name: str, criteria: dict, data: dict):
         collection = self.db[collection_name]
-        collection.update_one(criteria, {'$set': data}, upsert=True)
-
+        collection.update_one(criteria, {"$set": data}, upsert=True)
 
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect, CursorNotFound)),
-    wait=wait_exponential(multiplier=1, min=1, max=10), 
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect, CursorNotFound)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
     def fetch_entries(self, collection_name: str, query: Dict):
         """
@@ -331,25 +334,31 @@ class MongoDBAdapter:
 
         Returns:
             pymongo.cursor.Cursor: A cursor for all documents that match the query, which allows for iterating over the documents found.
- 
+
         """
-        logger.debug(f"Fetching entries from collection {collection_name} with query: {query}")
+        logger.debug(
+            f"Fetching entries from collection {collection_name} with query: {query}"
+        )
         collection = self.db[collection_name]
 
         try:
-            document = collection.find(query, no_cursor_timeout=True).batch_size(100) # preventing automatic cursor timeout
+            document = collection.find(query, no_cursor_timeout=True).batch_size(
+                100
+            )  # preventing automatic cursor timeout
             return list(document)
 
         except CursorNotFound:
             logger.error(f"Cursor was lost for query: {query}. Retrying...")
-            raise # Retrying the operation
+            raise  # Retrying the operation
 
-    @retry( 
-            retry=retry_if_exception_type((NetworkTimeout, AutoReconnect, CursorNotFound)),
-            wait=wait_exponential(multiplier=1, min=1, max=10),
-            stop=stop_after_attempt(5),
+    @retry(
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect, CursorNotFound)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
-    def fetch_paginated_entries(self, collection_name: str, query: Dict, page_size: int = 100):
+    def fetch_paginated_entries(
+        self, collection_name: str, query: Dict, page_size: int = 100
+    ):
         """
         Retrieve documents from a specified MongoDB collection that match a given query in paginated form.
 
@@ -359,29 +368,29 @@ class MongoDBAdapter:
             collection_name (str): The name of the collection from which documents are to be retrieved.
             query (dict): A dictionary specifying the query criteria used to find documents. This must conform to MongoDB's query format.
             page_size (int): The number of documents to retrieve per page. Defaults to 100.
-        
+
         Yields:
             List[Dict]: A list of documents that match the query, with each list representing a page of documents.
         """
-        logger.debug(f"Fetching paginated entries from collection {collection_name} with query: {query}")
+        logger.debug(
+            f"Fetching paginated entries from collection {collection_name} with query: {query}"
+        )
         collection = self.db[collection_name]
-        skip = 0 
+        skip = 0
 
         while True:
             cursor = collection.find(query).skip(skip).limit(page_size)
             documents = list(cursor)
             if not documents:
-                break # stops when no more documents are found
+                break  # stops when no more documents are found
 
             yield documents
-            skip += page_size # moves to the next page
-
-
+            skip += page_size  # moves to the next page
 
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
-    wait=wait_exponential(multiplier=1, min=1, max=10), 
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
     def fetch_entry(self, collection_name: str, query: Dict):
         """
@@ -400,12 +409,11 @@ class MongoDBAdapter:
         collection = self.db[collection_name]
         document = collection.find_one(query)
         return document
-    
 
     @retry(
-    retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
-    wait=wait_exponential(multiplier=1, min=1, max=10), 
-    stop=stop_after_attempt(5),
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
     )
     def insert_one(self, collection_name: str, document: Dict):
         """
@@ -419,9 +427,9 @@ class MongoDBAdapter:
 
         """
         collection = self.db[collection_name]
-        if 'id' in document:
-            document['_id'] = document.pop('id')
-        
-        id_inserted_doc =  collection.insert_one(document)
+        if "id" in document:
+            document["_id"] = document.pop("id")
+
+        id_inserted_doc = collection.insert_one(document)
         logger.debug(f"Inserted document into collection {collection_name}")
         return id_inserted_doc.inserted_id

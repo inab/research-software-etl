@@ -1,8 +1,31 @@
 from __future__ import annotations
 
-from typing import Any, Iterable
+from typing import Any, Iterable, Optional
+
+from bson import ObjectId
+from bson.errors import InvalidId
 
 from infrastructure.db.database_adapter import DatabaseAdapter
+
+
+def _to_oid(identifier: Any) -> Any:
+    """Coerce a str id into an ``ObjectId`` for querying the ObjectId-keyed
+    publications collection. A str that isn't a valid ObjectId is left as-is (it will
+    simply match nothing here); already-``ObjectId`` (or anything else) passes through."""
+    if isinstance(identifier, str):
+        try:
+            return ObjectId(identifier)
+        except InvalidId:
+            return identifier
+    return identifier
+
+
+def _stringify_id(doc: Optional[dict]) -> Optional[dict]:
+    """Coerce a document's ``_id`` from ``ObjectId`` to ``str`` so the application
+    layer never sees a bson type. Returns the doc unchanged if it has no ObjectId id."""
+    if doc and isinstance(doc.get("_id"), ObjectId):
+        doc["_id"] = str(doc["_id"])
+    return doc
 
 
 class MongoPublicationRepository:
@@ -16,41 +39,48 @@ class MongoPublicationRepository:
 
     def get_by_id(self, identifier: Any):
         """Find a publication metadata entry by its identifier."""
-        return self.mongo_db.fetch_entry(self.collection_name, identifier)
+        return _stringify_id(
+            self.mongo_db.fetch_entry(self.collection_name, _to_oid(identifier))
+        )
 
     def get_all(self) -> list[dict]:
-        return self.mongo_db.fetch_entries(self.collection_name, {})
+        return [
+            _stringify_id(doc)
+            for doc in self.mongo_db.fetch_entries(self.collection_name, {})
+        ]
 
     def find_by_doi(self, doi: str):
         """Find a publication metadata entry by DOI."""
         query = {"data.doi": doi}
-        return self.mongo_db.fetch_entry(self.collection_name, query)
+        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
 
     def find_by_title(self, title: str):
         """Find a publication metadata entry by title."""
         query = {"data.title": title}
-        return self.mongo_db.fetch_entry(self.collection_name, query)
+        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
 
     def find_by_url(self, url: str):
         """Find a publication metadata entry by URL."""
         query = {"data.url": url}
-        return self.mongo_db.fetch_entry(self.collection_name, query)
+        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
 
     def find_by_pmid(self, pmid: str):
         """Find a publication metadata entry by PMID."""
         query = {"data.pmid": pmid}
-        return self.mongo_db.fetch_entry(self.collection_name, query)
+        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
 
     def find_by_pmcid(self, pmcid: str):
         """Find a publication metadata entry by PMCID."""
         query = {"data.pmcid": pmcid}
-        return self.mongo_db.fetch_entry(self.collection_name, query)
+        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
 
     def entry_exists(self, identifier: str) -> bool:
-        return self.mongo_db.entry_exists(self.collection_name, identifier)
+        return self.mongo_db.entry_exists(self.collection_name, _to_oid(identifier))
 
     def get_metadata(self, identifier: str):
-        return self.mongo_db.get_entry_metadata(self.collection_name, identifier)
+        return _stringify_id(
+            self.mongo_db.get_entry_metadata(self.collection_name, _to_oid(identifier))
+        )
 
     def save_entry(self, document: dict):
         return self.mongo_db.insert_one(self.collection_name, document)
@@ -83,7 +113,7 @@ class MongoPublicationRepository:
     ) -> None:
         self.mongo_db.update_entry(
             collection_name,
-            document_id,
+            _to_oid(document_id),
             {
                 "data": data,
                 "last_updated_at": last_updated_at,
@@ -126,6 +156,6 @@ class MongoPublicationRepository:
 
         self.mongo_db.update_entry(
             collection_name,
-            document_id,
+            _to_oid(document_id),
             update_data,
         )
