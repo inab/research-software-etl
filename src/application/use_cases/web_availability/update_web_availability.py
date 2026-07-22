@@ -1,12 +1,12 @@
 """
-Application use case: update daily URL availability and maintain the relevant URL set.
+Application use case: update URL availability and maintain the relevant URL set.
 
-This use case performs the daily web availability update by checking already tracked
+This use case performs the web availability update by checking already tracked
 relevant URLs and ensuring that newly discovered relevant tool URLs are added to the
 tracking collection.
 
 When to run:
-- Periodically (at least daily)
+- Periodically
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ def build_availability_entry(code: Optional[int], access_time: Optional[float]) 
 
 
 @dataclass(frozen=True)
-class WebAvailabilityDailyConfig:
+class WebAvailabilityConfig:
     """
     The knobs for one run of the stage.
 
@@ -52,7 +52,7 @@ class WebAvailabilityDailyConfig:
 
 
 @dataclass(frozen=True)
-class WebAvailabilityDailyResult:
+class WebAvailabilityResult:
     processed_existing_urls: int
     step1_errors: int
     tools_unique_urls: int
@@ -74,7 +74,7 @@ def _tool_is_relevant(types_value: Any) -> bool:
 
 
 def _relevant_tool_urls(
-    repos: Repositories, cfg: WebAvailabilityDailyConfig
+    repos: Repositories, cfg: WebAvailabilityConfig
 ) -> Set[str]:
     """Every webpage of every tool whose type makes it worth monitoring."""
     urls: Set[str] = set()
@@ -95,9 +95,9 @@ def _relevant_tool_urls(
     return urls
 
 
-def run_update_web_availability_daily(
-    cfg: WebAvailabilityDailyConfig, repos: Repositories, url_checker
-) -> WebAvailabilityDailyResult:
+def run_update_web_availability(
+    cfg: WebAvailabilityConfig, repos: Repositories, url_checker
+) -> WebAvailabilityResult:
     """
     Probing arbitrary tool URLs *is* this stage's job, so the checker that does it
     is injected rather than built here: that is the whole difference between a
@@ -144,7 +144,7 @@ def run_update_web_availability_daily(
     relevant_tool_urls = _relevant_tool_urls(repos, cfg)
 
     if not relevant_tool_urls:
-        return WebAvailabilityDailyResult(
+        return WebAvailabilityResult(
             processed_existing_urls=processed,
             step1_errors=errors,
             tools_unique_urls=0,
@@ -170,7 +170,7 @@ def run_update_web_availability_daily(
             chunk_size=cfg.bulk_chunk,
         )
 
-    return WebAvailabilityDailyResult(
+    return WebAvailabilityResult(
         processed_existing_urls=processed,
         step1_errors=errors,
         tools_unique_urls=len(relevant_tool_urls),

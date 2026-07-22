@@ -6,9 +6,9 @@ import sys
 
 from pymongo.errors import PyMongoError
 
-from application.use_cases.web_availability.update_web_availability_daily import (
-    WebAvailabilityDailyConfig,
-    run_update_web_availability_daily,
+from application.use_cases.web_availability.update_web_availability import (
+    WebAvailabilityConfig,
+    run_update_web_availability,
 )
 from infrastructure.config import PipelineConfig
 from infrastructure.db.repositories import from_config
@@ -17,7 +17,7 @@ from infrastructure.external.url_checker import UrlChecker
 
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(
-        description="Daily update of web availability + ensure URLs from the tools collection exist."
+        description="Update of web availability + ensure URLs from the tools collection exist."
     )
     # The collections are no longer flags: PipelineConfig reads them from the same
     # env vars these defaulted to (MONGO_TOOLS_COLL, MONGO_WEBAV_COLL) and the
@@ -37,7 +37,7 @@ def main(argv: list[str] | None = None) -> int:
 
     repos = from_config(PipelineConfig.from_env())
 
-    cfg = WebAvailabilityDailyConfig(
+    cfg = WebAvailabilityConfig(
         timeout=args.timeout,
         keep_days=args.keep_days,
         created_by=args.created_by,
@@ -48,8 +48,8 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     try:
-        print("[RUN] web availability daily job")
-        res = run_update_web_availability_daily(cfg, repos, UrlChecker(timeout=cfg.timeout))
+        print("[RUN] web availability job")
+        res = run_update_web_availability(cfg, repos, UrlChecker(timeout=cfg.timeout))
 
         print(
             "[STEP 1] processed existing URLs: "
