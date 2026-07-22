@@ -56,7 +56,7 @@ async def test_full_disambiguation_with_github_issue(monkeypatch, tmp_path):
         return {"verdict": "disagreement", "confidence": "high"}
 
     monkeypatch.setattr(
-        "application.services.integration.disambiguation.disambiguator.decision_agreement_proxy",
+        "application.services.integration.disambiguation.pair_scoring.decision_agreement_proxy",
         mock_decision_agreement_proxy,
     )
 
@@ -94,7 +94,7 @@ async def test_dry_run_opens_no_issues(monkeypatch, tmp_path):
         return {"verdict": "disagreement", "confidence": "high"}
 
     monkeypatch.setattr(
-        "application.services.integration.disambiguation.disambiguator.decision_agreement_proxy",
+        "application.services.integration.disambiguation.pair_scoring.decision_agreement_proxy",
         mock_decision_agreement_proxy,
     )
 

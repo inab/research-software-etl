@@ -101,7 +101,12 @@ def build_disambiguated_record(
         confidence_scores = {}
         pair_decisions = []
 
-        note = "All entries grouped heuristically or by shared metadata. No disambiguation needed."
+        # Match build_no_conflict_record: the same "already grouped" situation must
+        # carry the same "different names" caution.
+        note = (
+            "All entries grouped heuristically or by shared metadata. "
+            "No disambiguation needed. " + generate_merge_note_if_needed(merged_ids)
+        )
 
         pair_source_counts = {
             "total_pairs": 0,

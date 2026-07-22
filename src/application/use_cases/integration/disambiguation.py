@@ -1,7 +1,11 @@
+import logging
 
 from application.services.integration.disambiguation.secondary_round import run_second_round
 from application.services.integration.disambiguation.disambiguator import disambiguate_blocks
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
+
+logger = logging.getLogger(__name__)
+
 
 async def run_full_disambiguation(config, run_id, clients, repos, dry_run):
     """
@@ -34,12 +38,9 @@ async def run_full_disambiguation(config, run_id, clients, repos, dry_run):
 
     unresolved_keys = [k for k in conflict_blocks if k not in disambiguated_blocks]
 
-    print(f"{len(unresolved_keys)} unresolved keys.")
-    print(f"Unresolved keys :")
-    if len(unresolved_keys)>0:
-        for item in unresolved_keys:
-            print(item)
-    print("# -------------------------------------")
+    logger.info("%s unresolved keys.", len(unresolved_keys))
+    if len(unresolved_keys) > 0:
+        logger.info("Unresolved keys: %s", ", ".join(unresolved_keys))
 
     # 4. Repeat second-round disambiguation until everything is resolved
     rounds_n = 0
@@ -62,14 +63,15 @@ async def run_full_disambiguation(config, run_id, clients, repos, dry_run):
         unresolved_keys = [k for k in conflict_blocks if k not in disambiguated_blocks]
 
         if not unresolved_keys:
-            print("✨All conflicts resolved.")
+            logger.info("All conflicts resolved.")
             break
         else:
-            print(f"{len(unresolved_keys)} unresolved blocks remain. Continuing...")
+            logger.info("%s unresolved blocks remain. Continuing...", len(unresolved_keys))
 
-    print(' ----------- Disambiguation ended ----------------------')
-    print(f"Disambiguation exited unfinished after {rounds_n} second rounds.")
-    print(f"Number of unresolved keys: {len(unresolved_keys)}")
-    if len(unresolved_keys)>0:
-        print(f"Unresolved keys: {','.join(unresolved_keys)}")
-    print('--------------------------------------------------------')
+    logger.info(
+        "Disambiguation ended after %s second rounds; %s unresolved keys.",
+        rounds_n,
+        len(unresolved_keys),
+    )
+    if len(unresolved_keys) > 0:
+        logger.info("Unresolved keys: %s", ", ".join(unresolved_keys))

@@ -82,7 +82,7 @@ def _stub_proxy(monkeypatch, verdict: str):
     # NB: no "src." prefix -- the package installs as `application.*`, so
     # "src.application..." would patch a different module object and patch nothing.
     monkeypatch.setattr(
-        "application.services.integration.disambiguation.disambiguator.decision_agreement_proxy",
+        "application.services.integration.disambiguation.pair_scoring.decision_agreement_proxy",
         proxy,
     )
 

@@ -1,82 +1,57 @@
-from application.services.integration.disambiguation.pairing import build_pairs
-from application.services.integration.disambiguation.conflict_builder import build_full_conflict
-from application.services.integration.disambiguation.prompts import build_prompt
-from application.services.integration.disambiguation.proxy import decision_agreement_proxy
-from application.services.integration.disambiguation.results import build_disambiguated_record, build_disambiguated_record_manual, build_no_conflict_record
-from application.services.integration.disambiguation.issues import generate_github_body, generate_context, generate_conflict_file
-from application.services.integration.disambiguation.utils import replace_with_full_entries, filter_relevant_fields, load_dict_from_jsonl, add_jsonl_record, load_pair_decisions, stable_hash, append_dict_to_jsonl
-
-import json
 import logging
-import os
-import copy
+
+from application.services.integration.disambiguation.results import (
+    build_disambiguated_record,
+    build_disambiguated_record_manual,
+    build_no_conflict_record,
+)
+from application.services.integration.disambiguation.pair_scoring import PairScoringService
+from application.services.integration.disambiguation.review import DisambiguationReviewService
+from application.services.integration.disambiguation.utils import (
+    replace_with_full_entries,
+    load_dict_from_jsonl,
+    add_jsonl_record,
+    load_pair_decisions,
+    stable_hash,
+)
+
+logger = logging.getLogger(__name__)
 
 
-from datetime import datetime, timezone
+def _pair_result_from_decision(conflict_pair, pair_stable_id, decision):
+    """Shape a pair decision (cached or freshly scored) into a pair-result row."""
+    return {
+        "remaining_id": conflict_pair["remaining"][0]["_id"],
+        "disconnected_id": conflict_pair["disconnected"][0]["_id"],
+        "same_as_remaining": decision.get("same_as_remaining"),
+        "decision": decision.get("decision"),  # important for human unclear
+        "confidence": decision.get("confidence"),
+        "conflict_id": pair_stable_id,
+        "source": decision.get("source"),
+        "ts": decision.get("ts"),
+    }
 
-
-
-def write_to_results_file(result, results_file):
-    try:
-        # Ensure the directory exists
-        os.makedirs(os.path.dirname(results_file), exist_ok=True)
-        
-        with open(results_file, "a") as f:
-            json.dump(result, f)
-            f.write("\n")
-    except Exception as e:
-        logging.error(f"Error writing to results file: {e}")
-
-def load_solved_conflict_keys(jsonl_path):
-    solved_keys = set()
-    if not os.path.exists(jsonl_path):
-        return solved_keys
-    with open(jsonl_path, 'r') as f:
-        for line in f:
-            if line.strip():
-                try:
-                    entry = json.loads(line)
-                    key = next(iter(entry))
-                    solved_keys.add(key)
-                except Exception as e:
-                    logging.warning(f"Could not parse line: {line[:100]}...\n{e}")
-    return solved_keys
-
-
-
-
-def build_record_from_legacy():
-    "Buils the record to put in disambiguted_blocks if this disambiguation was already done"
-    pass 
 
 async def process_conflict(conflict_name, conflict, run_id, best_pair, config, clients, repos, dry_run=False):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
 
-    Every path this touches comes from `config` -- the one the CLI built for this
-    run. It used to construct a `PipelineConfig()` of its own on each call, whose
-    defaults are relative to the repository root, so a run appended its diagnostics
-    to the working tree instead of to its run directory.
+    Orchestration only. Scoring (LLM) lives in `PairScoringService`; the
+    pair-decision cache and GitHub issue creation live in
+    `DisambiguationReviewService`. Every path comes from `config` -- the one the
+    CLI built for this run.
 
-    Current conservative behavior:
-    - process all pairs in the block
-    - reuse cached pair decisions when available
-    - ask the proxy for unresolved pairs
-    - cache non-disagreement proxy decisions
-    - create manual-review issues for disagreements
-    - if any disagreement occurs, return block-level manual_review_pending
-      after processing all pairs
-    - otherwise return the normal disambiguated record
+    Per pair: reuse a cached decision, else score it; record non-disagreement
+    verdicts; on a disagreement escalate to a curator. If any pair disagrees the
+    block returns manual_review_pending after all pairs are processed; otherwise
+    the normal disambiguated record.
     """
+    scoring = PairScoringService(clients, repos, config.proxy_results_path)
+    review = DisambiguationReviewService(clients, config, best_pair, run_id, dry_run=dry_run)
 
     conflict_full = replace_with_full_entries(conflict, repos.pretools)
-
-    conflict_pairs, _ = build_pairs(
-        copy.deepcopy(conflict_full),
-        conflict_name,
-        more_than_two_pairs=0
-    )
+    conflict_pairs = scoring.build_pairs(conflict_full, conflict_name)
 
     pair_results = []
     n = 0
@@ -90,118 +65,41 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, config, c
         pair_stable_id = f"p:{conflict_name.split('/')[0]}_{stable_hash(conflict_pair)}"
 
         # 1) Reuse cached pair decision
-        if pair_stable_id in best_pair:
-            decision = best_pair[pair_stable_id]
-
-            pair_results.append({
-                "remaining_id": conflict_pair["remaining"][0]["_id"],
-                "disconnected_id": conflict_pair["disconnected"][0]["_id"],
-                "same_as_remaining": decision.get("same_as_remaining"),
-                "decision": decision.get("decision"),  # important for human unclear
-                "confidence": decision.get("confidence"),
-                "conflict_id": pair_stable_id,
-                "source": decision.get("source"),
-                "ts": decision.get("ts"),
-            })
+        cached = review.cached(pair_stable_id)
+        if cached is not None:
+            pair_results.append(_pair_result_from_decision(conflict_pair, pair_stable_id, cached))
             continue
 
-        # 2) Build enriched pair and run proxy
-        full_conflict = filter_relevant_fields(conflict_pair, repos.publications)
-        full_conflict = await build_full_conflict(full_conflict, clients)
-
-        messages = build_prompt(
-            full_conflict["disconnected"],
-            full_conflict["remaining"],
-            repos.publications,
-        )
-        result = decision_agreement_proxy(messages, clients)
-
-        add_jsonl_record(str(config.proxy_results_path), {conflict_name: result})
+        # 2) Score the pair with the agreement proxy
+        scored = await scoring.score(conflict_pair, conflict_name)
 
         # 3) Proxy reached a decision
-        if result.get("verdict") != "disagreement":
-            now_ts = datetime.now(timezone.utc).isoformat()
-            same_as_remaining = result["verdict"].lower() == "same"
-            llm_decision = "same" if same_as_remaining else "different" 
-
-            payload = {
-                "pair_id": pair_stable_id,
-                "kind": "pair",
-                "decision": llm_decision,
-                "same_as_remaining": same_as_remaining,
-                "confidence": result.get("confidence", ""),
-                "source": "llm",
-                "ts": now_ts,
-            }
-            append_dict_to_jsonl(config.pair_decisions_path, payload)
-
-            # Keep in-memory cache updated during this run too
-            best_pair[pair_stable_id] = payload
-            
-
-            pair_results.append({
-                "remaining_id": conflict_pair["remaining"][0]["_id"],
-                "disconnected_id": conflict_pair["disconnected"][0]["_id"],
-                "same_as_remaining": same_as_remaining,
-                "decision": llm_decision,
-                "confidence": result.get("confidence"),
-                "conflict_id": pair_stable_id,
-                "source": "llm",
-                "ts": now_ts,
-            })
+        if scored.result.get("verdict") != "disagreement":
+            payload = review.record(pair_stable_id, scored.result)
+            # The persisted payload defaults confidence to ""; the in-run pair
+            # result has historically used the raw proxy value (None when absent).
+            decision = {**payload, "confidence": scored.result.get("confidence")}
+            pair_results.append(_pair_result_from_decision(conflict_pair, pair_stable_id, decision))
             continue
 
         # 4) Proxy disagreement -> manual review needed
         manual_review_needed = True
-
-        if dry_run:
-            print(f"[DRY-RUN] Would create GitHub issue for {conflict_name} ({pair_stable_id})")
-
-            if dry_run_first_manual_record is None:
-                dry_run_first_manual_record = {
-                    "block_id": conflict_name,
-                    "remaining": conflict.get("remaining"),
-                    "disconnected": conflict.get("disconnected"),
-                    "resolution": "manual_review_pending",
-                    "issue_url": None,
-                    "dry_run": True,
-                    "would_create_issue": True,
-                    "would_create_conflict_file": True,
-                    "pair_id": pair_stable_id,
-                    "pair_number": n,
-                    "issue_title": f"Manual resolution needed for {conflict_name}_pair_{n}",
-                }
-
-            continue
-
-        content, filename = generate_conflict_file(
+        issue_url, dry_run_record = review.open_issue(
+            conflict,
             conflict_pair,
             conflict_name,
             pair_stable_id,
-            run_id
+            scored.full_conflict,
+            n,
         )
-        # A path inside the GitHub repository, committed through the API -- not a
-        # write to the local checkout.
-        path = f"{config.conflicts_repo_dir}/{filename}"
-        conflict_url = clients.github.commit_file(content, path)
 
-        context = generate_context(
-            conflict_name,
-            pair_stable_id,
-            full_conflict,
-            conflict_url,
-            run_id
-        )
-        body = generate_github_body(context, config.github_issue_template_path)
-
-        title = f"Manual resolution needed for {conflict_name}_pair_{n}"
-        labels = ["conflict", "automated"]
-        response = clients.github.create_issue(title, body, labels)
-
-        print(f"GitHub issue created for {conflict_name}, pair {n}")
+        if dry_run:
+            if dry_run_first_manual_record is None:
+                dry_run_first_manual_record = dry_run_record
+            continue
 
         if first_issue_url is None:
-            first_issue_url = response["html_url"]
+            first_issue_url = issue_url
 
     # Final decision after all pairs were processed
     if manual_review_needed:
@@ -210,10 +108,11 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, config, c
         return build_disambiguated_record_manual(
             conflict_name,
             conflict,
-            first_issue_url
+            first_issue_url,
         )
 
     return build_disambiguated_record(conflict_name, conflict, pair_results)
+
 
 async def disambiguate_blocks(
     conflict_blocks,
@@ -234,7 +133,7 @@ async def disambiguate_blocks(
     In dry-run mode:
     - does NOT create conflict files / GitHub issues
     - does NOT write dry-run manual-review records to disambiguated_blocks_path
-    - prints a summary of how many issues would be created and which pair_ids
+    - logs a summary of how many issues would be created and which pair_ids
       are involved
     """
     disambiguated_blocks_path = config.disambiguated_blocks_path
@@ -254,7 +153,7 @@ async def disambiguate_blocks(
     for key in blocks:
         n += 1
         if n % 5000 == 0:
-            print(f"Processed {n} blocks.")
+            logger.info("Processed %s blocks.", n)
 
         if key not in disambiguated_blocks:
             record = {}
@@ -285,8 +184,7 @@ async def disambiguate_blocks(
                 except Exception as e:
                     errors_n += 1
                     errors.append(key)
-                    print(f"Error processing conflict {key}")
-                    logging.error(f"Error processing conflict {key}: {e}")
+                    logger.error("Error processing conflict %s: %s", key, e)
 
             else:
                 # key is not a conflict block
@@ -303,22 +201,25 @@ async def disambiguate_blocks(
             # Record already exists in disambiguated blocks, skipping
             pass
 
-    print('#---------------- After first round ---------------------------------#')
-    print(f"{errors_n} errors in first round of disambiguation")
+    logger.info("After first round: %s errors in first round of disambiguation", errors_n)
 
     if errors_n:
-        print("Examples of error blocks:")
-        for item in errors:
-            print(item)
+        logger.warning("Examples of error blocks: %s", ", ".join(errors))
 
     # ---------------- DRY-RUN SUMMARY ----------------
     if dry_run:
-        print('#---------------- Dry-run summary -----------------------------------#')
-        print(f"Would create {len(dry_run_issue_candidates)} GitHub issues / conflict files")
+        logger.info(
+            "Dry-run summary: would create %s GitHub issues / conflict files",
+            len(dry_run_issue_candidates),
+        )
 
         if dry_run_issue_candidates:
-            print("Pair IDs involved:")
-            for item in dry_run_issue_candidates:
-                print(f"- {item['pair_id']}  ({item['issue_title']})")
+            logger.info(
+                "Pair IDs involved: %s",
+                ", ".join(
+                    f"{item['pair_id']} ({item['issue_title']})"
+                    for item in dry_run_issue_candidates
+                ),
+            )
 
     return disambiguated_blocks

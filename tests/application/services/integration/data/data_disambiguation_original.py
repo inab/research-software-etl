@@ -150,21 +150,16 @@ expected_two_zero = {
 }
 
 # Nothing is disconnected in this block, so no pairs are built and there is nothing
-# to disambiguate. This expectation was captured when the block took the
-# build_no_conflict_record path; it goes through build_disambiguated_record's
-# zero-pair branch now, which differs in two ways -- it labels the record
-# "no_conflict" rather than "merged", and it omits the "different names" caution
-# that build_no_conflict_record appends to the very same sentence.
-#
-# Both are pre-existing: the code has said this since before the database was
-# injected, and the @manual marker meant nothing ever ran to notice. Neither
-# changes what gets stored -- merge_entries treats "merged" and "no_conflict"
-# identically -- but the two zero-pair paths disagreeing is worth a look.
+# to disambiguate. It goes through build_disambiguated_record's zero-pair branch,
+# which now agrees with build_no_conflict_record: both label the record
+# "no_conflict" and append the "different names" caution to the same sentence.
+# Here the merged entries ("ale" vs "ale-core") have different names, so the
+# caution appears.
 expected_zero_two = {
     'merged_entries': ['bioconda_recipes/ale/cmd/20180904', 'bioconda_recipes/ale-core/cmd/20220503'],
     'unmerged_entries': [],
     'resolution': 'no_conflict',
-    'notes': 'All entries grouped heuristically or by shared metadata. No disambiguation needed.'
+    'notes': 'All entries grouped heuristically or by shared metadata. No disambiguation needed. Caution: merged entries have different names. May be distinct software.'
 }
 
 expected = [
