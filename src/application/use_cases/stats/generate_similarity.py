@@ -33,6 +33,7 @@ def compute_and_store_similarities(
     model_name: str = "Alibaba-NLP/gte-modernbert-base",
     batch_size: int =64,
     chunk_size: int = 1000,
+    hf_token: str | None = None,
 ) -> None:
     """
     Compute pairwise similarity and upsert results into similaritiesDev.
@@ -77,6 +78,7 @@ def compute_and_store_similarities(
         model_name=model_name,
         batch_size=batch_size,
         chunk_size=chunk_size,
+        hf_token=hf_token,
     )
 
     upserted = 0

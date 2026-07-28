@@ -43,7 +43,7 @@ def build_text(tool_data: dict) -> str:
     return text.strip()
 
 
-def _load_model(model_name: str):
+def _load_model(model_name: str, token: str | None = None):
     try:
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:
@@ -52,7 +52,9 @@ def _load_model(model_name: str):
             "Install it with: pip install sentence-transformers"
         ) from exc
     logger.info(f"Loading embedding model: {model_name} (device=mps)")
-    model = SentenceTransformer(model_name, device="mps")
+    # `token` authenticates the HuggingFace Hub download (higher rate limits,
+    # private models). None falls back to anonymous, rate-limited access.
+    model = SentenceTransformer(model_name, device="mps", token=token)
     # gte-modernbert-base defaults to 8192 tokens; descriptions are short,
     # so cap at 512 to avoid padding overhead that dominates CPU runtime.
     model.max_seq_length = 512
@@ -125,6 +127,7 @@ def compute_similarities(
     model_name: str = "Alibaba-NLP/gte-modernbert-base",
     batch_size: int = 64,
     chunk_size: int = 1000,
+    hf_token: str | None = None,
 ) -> list[dict]:
     """
     Embed all tools and return per-tool top-k neighbour documents.
@@ -158,7 +161,7 @@ def compute_similarities(
     if empty_text_count:
         logger.warning(f"{empty_text_count} tools have no description/topics/operations text.")
 
-    model = _load_model(model_name)
+    model = _load_model(model_name, token=hf_token)
     embeddings = _embed(model, texts, batch_size=batch_size)
 
     neighbours = _top_k_neighbours(embeddings, ids, names, k=k, chunk_size=chunk_size)
