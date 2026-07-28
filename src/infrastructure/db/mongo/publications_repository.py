@@ -49,30 +49,35 @@ class MongoPublicationRepository:
             for doc in self.mongo_db.fetch_entries(self.collection_name, {})
         ]
 
+    # The find_by_* lookups deliberately return the raw doc with its ObjectId
+    # _id (they do NOT go through _stringify_id). Their id is stored as a
+    # publication reference in pretools' `data.publication`, which the merge
+    # model (multitype_instance.publication: List[ObjectId]) requires to be an
+    # ObjectId. Stringifying here silently broke merge; do not re-add it.
     def find_by_doi(self, doi: str):
         """Find a publication metadata entry by DOI."""
         query = {"data.doi": doi}
-        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
+        return self.mongo_db.fetch_entry(self.collection_name, query)
 
     def find_by_title(self, title: str):
         """Find a publication metadata entry by title."""
         query = {"data.title": title}
-        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
+        return self.mongo_db.fetch_entry(self.collection_name, query)
 
     def find_by_url(self, url: str):
         """Find a publication metadata entry by URL."""
         query = {"data.url": url}
-        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
+        return self.mongo_db.fetch_entry(self.collection_name, query)
 
     def find_by_pmid(self, pmid: str):
         """Find a publication metadata entry by PMID."""
         query = {"data.pmid": pmid}
-        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
+        return self.mongo_db.fetch_entry(self.collection_name, query)
 
     def find_by_pmcid(self, pmcid: str):
         """Find a publication metadata entry by PMCID."""
         query = {"data.pmcid": pmcid}
-        return _stringify_id(self.mongo_db.fetch_entry(self.collection_name, query))
+        return self.mongo_db.fetch_entry(self.collection_name, query)
 
     def entry_exists(self, identifier: str) -> bool:
         return self.mongo_db.entry_exists(self.collection_name, _to_oid(identifier))

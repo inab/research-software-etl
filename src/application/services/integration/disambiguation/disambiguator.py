@@ -193,8 +193,11 @@ async def disambiguate_blocks(
                 # In dry-run mode there is no harm in keeping normal non-conflict records in memory
                 disambiguated_blocks.update(record)
 
-            # Write to file only in normal mode
-            if record:
+            # Persist the record, except a dry-run manual-review candidate: it is
+            # a flat diagnostic dict (not `{conflict_id: {block}}`), so writing it
+            # would corrupt the JSONL for downstream loaders. Same guard as the
+            # in-memory update above; matches this function's dry-run docstring.
+            if record and not (dry_run and record.get("would_create_issue")):
                 add_jsonl_record(disambiguated_blocks_path, record)
 
         else:
