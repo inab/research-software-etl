@@ -64,13 +64,18 @@ def build_summary_scores(distribution):
     }
     for principle in indicators.keys():
         for indicator in indicators[principle]:
-            indicator_scores = distribution[principle][indicator]
+            # An indicator with no scored tools is simply absent from the
+            # distribution (empty collection, or no tool scored on it). Treat it
+            # as empty scores rather than KeyError-ing.
+            indicator_scores = distribution[principle].get(indicator, {})
             total = sum([indicator_scores[s] for s in indicator_scores.keys()])
             indicator_summary  = {
                 'indicator': indicator,
                 'scores': [s for s in indicator_scores.keys()],
                 'count' : [indicator_scores[s] for s in indicator_scores.keys()],
-                'percent' : [indicator_scores[s]/total for s in indicator_scores.keys()] 
+                # No scored tools for this indicator -> all-zero percentages,
+                # not a division-by-zero crash (e.g. an empty collection).
+                'percent' : [(indicator_scores[s]/total if total else 0) for s in indicator_scores.keys()]
             }
             summary[principle].append(indicator_summary)
     

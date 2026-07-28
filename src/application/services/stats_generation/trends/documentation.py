@@ -72,9 +72,11 @@ def documentation_stats(doc_format_counts, collection, computations):
 
 def documentation_coverage(tools, tools_w_docs, collection, computations):
 
+    total = len(list(tools))
     data = {
         'count': tools_w_docs,
-        'percentage': tools_w_docs/len(list(tools))
+        # A collection with no tools has 0% coverage, not a crash.
+        'percentage': (tools_w_docs / total) if total else 0
     }
 
     doc = {

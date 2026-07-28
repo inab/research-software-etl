@@ -54,9 +54,13 @@ def dependencies_count(dependencies_stats: Dict[str, int], collection: str, comp
 
 def dependencies_coverage(tools, tools_w_deps, collection, computations):
 
+    total = len(list(tools))
     data = {
         'count': tools_w_deps,
-        'percentage': tools_w_deps/len(list(tools))
+        # A collection with no tools has 0% coverage, not a crash. This happens
+        # whenever a collection/tag has no tools (e.g. a small sample, or an
+        # empty collection in production for whatever reason).
+        'percentage': (tools_w_deps / total) if total else 0
     }
 
     doc = {

@@ -45,9 +45,11 @@ def formats_coverage(tools):
 
 def coverage_doc(tools, tools_w_format, collection):
 
+    total = len(list(tools))
     data = {
         'count': tools_w_format,
-        'percentage': tools_w_format/len(list(tools))
+        # A collection with no tools has 0% coverage, not a crash.
+        'percentage': (tools_w_format / total) if total else 0
     }
 
     doc = {
