@@ -11,7 +11,7 @@ Some stages call external services (APIs and model providers); make sure credent
 
 ## Requirements  
 
-- Python ≥ 3.10
+- Python ≥ 3.9 (developed and tested on 3.10)
 - MongoDB instance
 - Tokens to access to the following services (depending on [stages](pipeline.md) you run):
     - [Hugging Face](https://huggingface.co/docs/inference-providers/guides/first-api-call) and [OpenRouter](https://openrouter.ai/docs/quickstart): for LLM-based disambiguation  
@@ -35,6 +35,14 @@ pip install -e .
 ```
 
 This will install the package in editable mode and expose the CLI command `rsetl`.
+
+### Optional dependency groups
+
+```bash
+pip install -e ".[dev]"        # black, ruff, mypy, pytest (contributing)
+pip install -e ".[docs]"       # mkdocs + material theme (building these docs)
+pip install -e ".[scheduler]"  # APScheduler (needed only for `rsetl scheduler`)
+```
 
 ---
 

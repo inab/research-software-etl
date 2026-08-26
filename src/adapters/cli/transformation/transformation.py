@@ -18,14 +18,14 @@ python src/adapters/cli/transformation/transformation.py -e .env -s bioconda_rec
 python src/adapters/cli/transformation/transformation.py -e .env -s all
 """
 import argparse
+import os
 from dotenv import load_dotenv
-from infrastructure.logging_config import setup_logging
+from infrastructure.logging_config import resolve_level, setup_logging
 
-# assuming loglevel is bound to the string value obtained from the
-# command line argument. Convert to upper case to allow the user to
-# specify --log=DEBUG or --log=debug
-
-logger = setup_logging()
+# Verbosity is controlled by the LOG_LEVEL env var (default INFO), e.g.
+# LOG_LEVEL=DEBUG or LOG_LEVEL=WARNING. It propagates to every `rsetl run` stage
+# because each stage runs as its own subprocess.
+logger = setup_logging(resolve_level(os.getenv("LOG_LEVEL")))
 
 ALL_SOURCES = [
             "bioconda", 

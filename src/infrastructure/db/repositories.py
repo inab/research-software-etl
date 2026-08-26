@@ -19,6 +19,7 @@ from domain.repositories import Repositories
 from infrastructure.config import PipelineConfig
 from infrastructure.db.database_adapter import DatabaseAdapter
 from infrastructure.db.mongo.computations_repository import ComputationsRepository
+from infrastructure.db.mongo.embeddings_repository import EmbeddingsRepository
 from infrastructure.db.mongo.license_mapping_repository import LicenseMappingRepository
 from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
@@ -57,6 +58,7 @@ def from_config(
         ),
         computations=ComputationsRepository(db, config.computations_collection),
         similarities=SimilaritiesRepository(db, config.similarities_collection),
+        embeddings=EmbeddingsRepository(db, config.embeddings_collection),
         web_availability=WebAvailabilityRepository(
             db, config.web_availability_collection
         ),

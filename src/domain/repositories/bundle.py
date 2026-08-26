@@ -19,6 +19,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from domain.repositories.computations import ComputationsRepository
+from domain.repositories.embeddings import EmbeddingsRepository
 from domain.repositories.license_mapping import LicenseMappingRepository
 from domain.repositories.pretools import PretoolsRepository
 from domain.repositories.publications import PublicationRepository
@@ -41,4 +42,7 @@ class Repositories:
     license_mapping: Optional[LicenseMappingRepository] = None
     computations: Optional[ComputationsRepository] = None
     similarities: Optional[SimilaritiesRepository] = None
+    # The embedding cache the per-record similarity path reads; the full similarity
+    # run writes it. See `SimilaritiesRepository` for the neighbour lists it feeds.
+    embeddings: Optional[EmbeddingsRepository] = None
     web_availability: Optional[WebAvailabilityRepository] = None

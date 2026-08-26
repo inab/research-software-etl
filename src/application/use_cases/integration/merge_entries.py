@@ -8,6 +8,7 @@ once the run finishes. See ``application/services/integration/tool_identity.py``
 for how an entry finds its ancestor.
 """
 
+import copy
 import json
 import logging
 from datetime import datetime
@@ -58,6 +59,38 @@ def fetch_entry_from_db(entry_id, repos: Repositories):
     return repos.pretools.get_by_id(entry_id)
 
 
+def collect_source_ids(disambiguated_blocks) -> set:
+    """
+    Every pretools id that ``build_entries`` will actually merge.
+
+    Mirrors the block-selection logic in ``build_entries`` so the preload fetches
+    exactly the entries that will be read -- no more, no less.
+    """
+    ids: set = set()
+    for value in disambiguated_blocks.values():
+        resolution = value.get("resolution")
+        if resolution not in ("no_conflict", "merged", "partial"):
+            continue
+        ids.update(value.get("merged_entries") or [])
+        if resolution == "partial" and len(value.get("unmerged_entries") or []) == 1:
+            ids.update(value.get("unmerged_entries") or [])
+    return ids
+
+
+def resolve_entry(entry_id, pretools_by_id, repos: Repositories):
+    """
+    Return a pretools entry from the preloaded cache, falling back to a direct
+    read if it was not preloaded.
+
+    The entry is copied because ``convert_to_multi_type_instance`` mutates
+    ``data`` in place and an id can appear in more than one block.
+    """
+    entry = pretools_by_id.get(entry_id)
+    if entry is None:
+        entry = fetch_entry_from_db(entry_id, repos)
+    return copy.deepcopy(entry)
+
+
 
 
 
@@ -93,9 +126,21 @@ def save_entry(metadata, repos: Repositories):
         raise
 
 
-def merge_entries(entries_ids, repos: Repositories):
-    # retrieve full entries from db
-    entries = [fetch_entry_from_db(entry, repos) for entry in entries_ids]
+def save_entries(documents, repos: Repositories, batch_size: int = 1000):
+    """
+    Write all merged entries into the staging collection in batches.
+
+    A batched counterpart to ``save_entry``: one ``insert_many`` per chunk
+    instead of one insert per document, which is what made the merge stage
+    outrun a tunnel that stayed open only so long.
+    """
+    for start in range(0, len(documents), batch_size):
+        repos.tools_staging.insert_many(documents[start : start + batch_size])
+
+
+def merge_entries(entries_ids, pretools_by_id, repos: Repositories):
+    # retrieve full entries from the preloaded cache (falling back to the db)
+    entries = [resolve_entry(entry, pretools_by_id, repos) for entry in entries_ids]
     # Put type in list and validate entries as multitype_instance
     if bool(entries) == False:
         print("No entries")
@@ -118,7 +163,7 @@ def merge_entries(entries_ids, repos: Repositories):
     return merged_entries
 
 
-def build_entries(disambiguated_blocks, repos: Repositories, summary):
+def build_entries(disambiguated_blocks, pretools_by_id, repos: Repositories, summary):
     """
     Merge every resolved block into a tool document, in memory.
 
@@ -128,6 +173,9 @@ def build_entries(disambiguated_blocks, repos: Repositories, summary):
 
     Each entry is tagged with the block key it came from, which is what the
     identity pass uses as a stable tie-break.
+
+    Source entries come from ``pretools_by_id``, preloaded in one query rather
+    than one round-trip per id.
     """
     entries = []
 
@@ -137,13 +185,13 @@ def build_entries(disambiguated_blocks, repos: Repositories, summary):
 
             if resolution in ("no_conflict", "merged", "partial"):
                 merged_ids = value.get("merged_entries")
-                entry = merge_entries(merged_ids, repos)
+                entry = merge_entries(merged_ids, pretools_by_id, repos)
                 entries.append((key, prepare_for_db(entry, merged_ids)))
                 summary['n_inserted_entries'] += 1
 
                 if resolution == "partial" and len(value.get("unmerged_entries")) == 1:
                     unmerged_ids = value.get("unmerged_entries")
-                    entry = merge_entries(unmerged_ids, repos)
+                    entry = merge_entries(unmerged_ids, pretools_by_id, repos)
                     # A second tool out of the same block needs its own key.
                     entries.append((f"{key}#unmerged", prepare_for_db(entry, unmerged_ids)))
                     summary['n_inserted_entries'] += 1
@@ -213,6 +261,12 @@ def merge_and_save_blocks(disambiguated_blocks_file, repos: Repositories):
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_file)
     print('Disambiguated blocks loaded.')
 
+    # Preload every source entry in one $in query instead of one round-trip per
+    # id. Over a tunnel, the per-id fetches were the dominant cost.
+    source_ids = collect_source_ids(disambiguated_blocks)
+    pretools_by_id = repos.pretools.get_by_ids(source_ids)
+    print(f'Preloaded {len(pretools_by_id)} of {len(source_ids)} source entries.')
+
     summary = {
         "N": len(disambiguated_blocks),
         "n_processed": 0,
@@ -221,7 +275,7 @@ def merge_and_save_blocks(disambiguated_blocks_file, repos: Repositories):
         "n_unclear": 0,
     }
 
-    entries = build_entries(disambiguated_blocks, repos, summary)
+    entries = build_entries(disambiguated_blocks, pretools_by_id, repos, summary)
 
     assignment = carry_identities_forward(entries, repos)
 
@@ -230,8 +284,9 @@ def merge_and_save_blocks(disambiguated_blocks_file, repos: Repositories):
     if repos.tools_staging.exists():
         repos.tools_staging.drop()
 
-    for _key, document in entries:
-        save_entry(document, repos)
+    # Batch the inserts: one round-trip per chunk instead of one per document.
+    documents = [document for _key, document in entries]
+    save_entries(documents, repos)
 
     summary["identities"] = assignment.summary(total_new=len(entries))
     logger.info("Tool identities: %s", summary["identities"])

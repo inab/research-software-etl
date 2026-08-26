@@ -74,6 +74,23 @@ def _embed(model, texts: list[str], batch_size: int = 64) -> np.ndarray:
     return embeddings.astype(np.float32)
 
 
+def load_embedder(model_name: str, hf_token: str | None = None, batch_size: int = 64):
+    """
+    Load the model once and return a ``text -> (dim,) float32 vector`` callable.
+
+    The single-record (``enrich-tool``) path embeds one tool against the cached
+    corpus. Loading the model is the expensive part, so it is done once here and
+    the returned closure is what the incremental service is handed -- which also
+    lets tests inject a trivial embedder without any model at all.
+    """
+    model = _load_model(model_name, token=hf_token)
+
+    def embed_one(text: str) -> np.ndarray:
+        return _embed(model, [text], batch_size=batch_size)[0]
+
+    return embed_one
+
+
 def _top_k_neighbours(
     embeddings: np.ndarray,
     ids: list[str],
@@ -128,9 +145,9 @@ def compute_similarities(
     batch_size: int = 64,
     chunk_size: int = 1000,
     hf_token: str | None = None,
-) -> list[dict]:
+) -> tuple[list[dict], list[dict]]:
     """
-    Embed all tools and return per-tool top-k neighbour documents.
+    Embed all tools and return per-tool neighbour documents and their embeddings.
 
     Parameters
     ----------
@@ -147,15 +164,22 @@ def compute_similarities(
 
     Returns
     -------
-    List of dicts ready to upsert into similaritiesDev, one per tool.
+    ``(similarity_docs, embedding_records)``:
+        - ``similarity_docs``: one dict per tool ready to upsert into
+          ``similaritiesDev``.
+        - ``embedding_records``: one dict per tool
+          (``{tool_id, tool_name, text, vector, version}``) ready to upsert into
+          the embedding cache so the per-record ``enrich-tool`` path can reuse
+          these vectors instead of re-embedding the corpus.
     """
     if not tools:
         logger.warning("No tools provided — nothing to compute.")
-        return []
+        return [], []
 
     ids = [str(t["_id"]) for t in tools]
     names = [t.get("data", {}).get("name", "") for t in tools]
     texts = [build_text(t.get("data", {})) for t in tools]
+    versions = [t.get("timestamp") for t in tools]
 
     empty_text_count = sum(1 for tx in texts if not tx)
     if empty_text_count:
@@ -167,7 +191,7 @@ def compute_similarities(
     neighbours = _top_k_neighbours(embeddings, ids, names, k=k, chunk_size=chunk_size)
 
     created_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    return [
+    similarity_docs = [
         {
             "tool_id": tool_id,
             "tool_name": info["tool_name"],
@@ -176,3 +200,16 @@ def compute_similarities(
         }
         for tool_id, info in neighbours.items()
     ]
+
+    embedding_records = [
+        {
+            "tool_id": ids[i],
+            "tool_name": names[i],
+            "text": texts[i],
+            "vector": embeddings[i],
+            "version": versions[i],
+        }
+        for i in range(len(ids))
+    ]
+
+    return similarity_docs, embedding_records

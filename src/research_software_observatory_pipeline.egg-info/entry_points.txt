@@ -1,0 +1,2 @@
+[console_scripts]
+rsetl = adapters.cli.main:main

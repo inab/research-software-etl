@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Iterator, List, Protocol
+from typing import Any, Iterator, List, Optional, Protocol
 
 
 class ToolsRepository(Protocol):
@@ -21,6 +21,10 @@ class ToolsRepository(Protocol):
 
     def find(self, query: dict) -> List[dict]:
         """Tools matching a query."""
+        ...
+
+    def find_by_id(self, tool_id: str) -> Optional[dict]:
+        """One tool by its ``_id`` (a hex string is coerced to an ObjectId)."""
         ...
 
     def iter_projected(

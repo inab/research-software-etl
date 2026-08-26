@@ -1,7 +1,7 @@
 # The similarities collection: the front-end fetches a tool's neighbours by tool_id.
 
 import logging
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 from infrastructure.db.database_adapter import DatabaseAdapter
 
@@ -22,6 +22,9 @@ class SimilaritiesRepository:
         self.db_adapter.update_custom_upsert(
             self.collection_name, {"tool_id": document["tool_id"]}, document
         )
+
+    def find_by_tool_id(self, tool_id: str) -> Optional[Dict[str, Any]]:
+        return self.db_adapter.fetch_entry(self.collection_name, {"tool_id": tool_id})
 
     def ensure_tool_id_index(self) -> None:
         """

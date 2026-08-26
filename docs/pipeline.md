@@ -71,10 +71,13 @@ The full pipeline is composed of the following stages, in execution order:
 | — | **JSON to JSONL conversion** | `scripts/utils/json_to_jsonl.py` | Converts conflict and block files into JSONL format. | — |
 | 5 | **Disambiguation** | `src.adapters.cli.integration.disambiguation` | Resolves conflicts using heuristics and LLM-based agreement scoring. Can generate manual-review issues for unresolved cases. | OpenRouter, Hugging Face, GitHub, GitLab |
 | 6 | **Human updates** | `src.adapters.cli.integration.update_disambiguation_after_human_resolution` | Integrates curator decisions from `human_annotations/` into the disambiguation output. | Git |
-| 7 | **Merge** | `src.adapters.cli.integration.merge_entries` | Consolidates resolved records into unified software entries. | MongoDB |
-| 8 | **Statistics** | `src.adapters.cli.generate_stats` | Computes descriptive statistics for Observatory dashboards. | MongoDB |
-| 9 | **FAIRsoft scoring** | `src.adapters.cli.fair_scores` | Computes FAIRsoft indicators and scores for software entries. | MongoDB |
+| 7 | **Merge** | `src.adapters.cli.integration.merge_entries` | Consolidates resolved records into unified software entries, carrying each tool's `_id` over from the previous run and promoting them into the live collection. See [Tool identity & collection promotion](#tool-identity-collection-promotion). | MongoDB |
+| 8 | **FAIRsoft scoring** | `src.adapters.cli.fair_scores` | Computes FAIRsoft indicators and scores for software entries. | MongoDB |
+| 9 | **Statistics** | `src.adapters.cli.generate_stats` | Computes descriptive statistics for Observatory dashboards. | MongoDB |
 | 10 | **Similarity** | `src.adapters.cli.similarity` | Embeds tool descriptions using `gte-modernbert-base` and precomputes the top-10 nearest neighbours per tool, stored in `similaritiesDev` to power "similar software" recommendations. | MongoDB, HuggingFace (model download) |
+
+!!! note "Stage order"
+    FAIRsoft scoring runs **before** statistics — the `STAGES` list in `src/adapters/cli/pipeline_full.py` is the source of truth (`… merge → fairsoft → stats → similarity`).
 
 ---
 
@@ -100,8 +103,8 @@ This executes:
 
 - `human_updates`
 - `merge`
-- `stats`
 - `fairsoft`
+- `stats`
 - `similarity`
 
 unless one of those stages is skipped with a command-line option.
@@ -138,9 +141,11 @@ rsetl run --resume-run <RUN_ID> --only stats
 
 The pipeline produces:
 
-- **Merged software records**, stored in MongoDB. The default target collection is `tools`.
-- **Precomputed metrics and FAIRsoft scores**, stored in MongoDB. The default target collection is `computations`.
+- **Merged software records**, stored in MongoDB. The default target collection is `toolsDev`.
+- **Precomputed metrics and FAIRsoft scores**, stored in MongoDB. The default target collection is `computationsDev`.
 - **Precomputed similarity scores**, stored in MongoDB. The default target collection is `similaritiesDev`.
+
+All collection names are configurable via `PipelineConfig` (see [Development Guide](development.md) and the environment overrides in the [CLI Reference](cli.md)); the values above are the defaults.
 
 ### Run artifacts
 
@@ -175,6 +180,56 @@ The `manifest.json` file records:
 - latest execution options  
 - masked environment configuration  
 - execution history for resumed runs  
+
+---
+
+## Tool identity & collection promotion
+
+A tool's `_id` must **outlive the run that produced it**: FAIR scores upsert on `computationsDev.createdFrom = [str(tool._id)]`, and the front-end looks tools up by `similaritiesDev.tool_id`. If merge minted a fresh `_id` every run, all of those references would go stale.
+
+**Identity carry-over.** A tool's lineage is its `source` list — the pretools entries it was merged from. Each newly merged tool inherits the `_id` of the previous tool it shares the most lineage with. When several tools collapse into one, the **oldest** id survives; when one tool splits, the **dominant** successor keeps it. The assignment is pure and does not depend on iteration order (`src/application/services/integration/tool_identity.py`).
+
+**Staging and promotion.** Because the new entries inherit from the live collection, merge cannot write into it directly. Instead:
+
+1. Merge builds into a **staging** collection (`toolsDev_next`).
+2. `finalize_run` **archives** the live collection as `toolsDev_archive_<run_id>` and **promotes** staging in its place — two atomic renames.
+3. Archive retention keeps only the newest `tools_archive_keep` archives (default `2`, env `TOOLS_ARCHIVE_KEEP`) and drops the rest, so archives don't accumulate one per run.
+
+Use `--no-promote` on the merge stage to build staging **without** swapping it in. To reverse a promotion, run:
+
+```bash
+rsetl rollback <run_id>
+```
+
+**The number to watch** is `contested`. The merge stage prints `preserved / new / retired / contested`; `contested` counts tools where the oldest ancestor won over one that shared more lineage. On a healthy run it should be near zero — if it isn't, the id-ordering in `tool_identity.py` deserves a second look.
+
+---
+
+## Unattended scheduling
+
+The pipeline can run on a schedule via an optional APScheduler-based runner (`src/adapters/scheduler/`). Because stage 9 (**human updates**) requires curators to review GitHub issues and record decisions as Git annotations, automation uses a **two-phase** model:
+
+- **Phase A — automated (on a fixed cadence).** Stages 1–8, then 10–12; stage 9 is skipped and the last set of curator decisions already in the repo is used implicitly by merge. This is a single command:
+
+  ```bash
+  rsetl run --no-human-updates
+  ```
+
+- **Phase B — curator-triggered.** After curators close the open GitHub issues, apply their decisions and continue:
+
+  ```bash
+  rsetl run --only human_updates
+  rsetl run --from-stage merge
+  ```
+
+The scheduler runs two jobs, each with a configurable crontab string:
+
+| Job | Config field (env var) | Default |
+|-----|------------------------|---------|
+| `full_pipeline` (Phase A) | `full_pipeline_cron` (`FULL_PIPELINE_CRON`) | `0 1 * * mon,thu` (twice weekly, 01:00 UTC) |
+| `publication_enrichment` | `publication_enrichment_cron` (`PUBLICATION_ENRICHMENT_CRON`) | `0 3 * * sun` (weekly, Sun 03:00 UTC) |
+
+Both jobs register with `max_instances=1` (two runs must never overlap — they both promote into the live collection). See the [CLI Reference](cli.md#rsetl-scheduler) for `rsetl scheduler start` / `run-now`.
 
 ---
 

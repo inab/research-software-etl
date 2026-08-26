@@ -15,6 +15,7 @@ concrete classes stays in ``infrastructure/db/repositories.py``.
 
 from domain.repositories.bundle import Repositories
 from domain.repositories.computations import ComputationsRepository
+from domain.repositories.embeddings import EmbeddingsRepository
 from domain.repositories.license_mapping import LicenseMappingRepository
 from domain.repositories.pretools import PretoolsRepository
 from domain.repositories.publications import PublicationRepository
@@ -26,6 +27,7 @@ from domain.repositories.web_availability import WebAvailabilityRepository
 __all__ = [
     "Repositories",
     "ComputationsRepository",
+    "EmbeddingsRepository",
     "LicenseMappingRepository",
     "PretoolsRepository",
     "PublicationRepository",

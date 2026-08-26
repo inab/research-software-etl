@@ -145,6 +145,10 @@ class PipelineConfig:
     licenses_mapping_collection: str = "licensesMapping"
     computations_collection: str = "computationsDev"
     similarities_collection: str = "similaritiesDev"
+    # Cached per-tool embedding vectors, keyed by tool_id. The full similarity run
+    # populates this; the per-record `enrich-tool` path reads it so a single tool
+    # embeds only itself instead of re-embedding the whole corpus.
+    embeddings_collection: str = "toolEmbeddingsDev"
     web_availability_collection: str = "webAvailabilityDev"
 
     # --- Per-run stage artifacts (the orchestrator passes these as CLI flags,
@@ -217,6 +221,7 @@ class PipelineConfig:
             ),
             computations_collection=os.getenv("COMPUTATIONS", "computationsDev"),
             similarities_collection=os.getenv("SIMILARITIES", "similaritiesDev"),
+            embeddings_collection=os.getenv("EMBEDDINGS", "toolEmbeddingsDev"),
             web_availability_collection=os.getenv(
                 "MONGO_WEBAV_COLL", "webAvailabilityDev"
             ),

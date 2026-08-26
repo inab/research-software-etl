@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from adapters.cli import enrich_publications
+from adapters.cli import enrich_tool
 from adapters.cli import check_environment
 from adapters.cli import web_availability
 from adapters.cli.pipeline_full import PipelineError, STAGES, run_full
@@ -39,19 +40,20 @@ def _print_runs_table(runs: list[dict]) -> None:
     rows = []
     for r in runs:
         stage_text = ", ".join(r.get("latest_executed_stages", [])) or "-"
-        rows.append([
-            r.get("run_id", ""),
-            r.get("last_updated_utc") or r.get("created_utc") or "-",
-            "yes" if r.get("has_manifest") else "no",
-            "yes" if r.get("disambiguation_exists") else "no",
-            "yes" if r.get("resumable") else "no",
-            str(r.get("execution_count", 0)),
-            _truncate(stage_text, 50),
-        ])
+        rows.append(
+            [
+                r.get("run_id", ""),
+                r.get("last_updated_utc") or r.get("created_utc") or "-",
+                "yes" if r.get("has_manifest") else "no",
+                "yes" if r.get("disambiguation_exists") else "no",
+                "yes" if r.get("resumable") else "no",
+                str(r.get("execution_count", 0)),
+                _truncate(stage_text, 50),
+            ]
+        )
 
     widths = [
-        max(len(str(row[i])) for row in ([headers] + rows))
-        for i in range(len(headers))
+        max(len(str(row[i])) for row in ([headers] + rows)) for i in range(len(headers))
     ]
 
     def fmt(row: list[str]) -> str:
@@ -78,8 +80,12 @@ def _print_run_summary(data: dict) -> None:
         print("Latest execution:")
         print(f"  Is resume:        {latest_execution.get('is_resume', False)}")
         print(f"  Resume source:    {latest_execution.get('resume_run') or '-'}")
-        print(f"  Selected stages:  {', '.join(stage_selection.get('selected_stages', [])) or '-'}")
-        print(f"  Executed stages:  {', '.join(stage_selection.get('executed_stages', [])) or '-'}")
+        print(
+            f"  Selected stages:  {', '.join(stage_selection.get('selected_stages', [])) or '-'}"
+        )
+        print(
+            f"  Executed stages:  {', '.join(stage_selection.get('executed_stages', [])) or '-'}"
+        )
         print(f"  Started:          {latest_execution.get('utc_started', '-')}")
         print(f"  Finished:         {latest_execution.get('utc_finished', '-')}")
         print()
@@ -119,7 +125,9 @@ def main(argv: list[str] | None = None) -> int:
     # --- run --------------------------------------------------------------------
     run_p = subparsers.add_parser("run", help="Run the integration pipeline")
     run_p.add_argument("--tag", dest="run_tag", help="Optional tag appended to run ID")
-    run_p.add_argument("--resume-run", help="Resume an existing run by run ID or run directory path")
+    run_p.add_argument(
+        "--resume-run", help="Resume an existing run by run ID or run directory path"
+    )
     run_p.add_argument(
         "--no-merge",
         dest="do_merge_to_db",
@@ -139,50 +147,82 @@ def main(argv: list[str] | None = None) -> int:
         help="Enable removal of OEB metrics stage",
     )
     run_p.set_defaults(remove_opeb_metrics=True)
-    run_p.add_argument("--from-stage", choices=STAGES, help="Start pipeline from this stage")
-    run_p.add_argument("--until", dest="until_stage", choices=STAGES, help="Run pipeline until this stage (inclusive)")
-    run_p.add_argument("--only", dest="only_stage", choices=STAGES, help="Run only one stage")
-    run_p.add_argument("--python-exe", default="python", help="Python executable for subprocesses")
-    run_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
-    run_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
+    run_p.add_argument(
+        "--from-stage", choices=STAGES, help="Start pipeline from this stage"
+    )
+    run_p.add_argument(
+        "--until",
+        dest="until_stage",
+        choices=STAGES,
+        help="Run pipeline until this stage (inclusive)",
+    )
+    run_p.add_argument(
+        "--only", dest="only_stage", choices=STAGES, help="Run only one stage"
+    )
+    run_p.add_argument(
+        "--python-exe", default="python", help="Python executable for subprocesses"
+    )
+    run_p.add_argument(
+        "--workdir", default=".", help="Working directory (default: current)"
+    )
+    run_p.add_argument(
+        "--runs-root",
+        default="data/integration/runs",
+        help="Root folder for run outputs",
+    )
     run_p.add_argument(
         "--dry-run-disambiguation",
         dest="dry_run_disambiguation",
         action="store_true",
         help="Run the disambiguation stage without creating conflict files or GitHub issues.",
     )
-    
+
     # --- run-transformation -----------------------------------------------------
-    tr_p = subparsers.add_parser("run-transformation", help="Run only the transformation step")
+    tr_p = subparsers.add_parser(
+        "run-transformation", help="Run only the transformation step"
+    )
     tr_p.add_argument("--tag", dest="run_tag", help="Optional tag appended to run ID")
-    tr_p.add_argument("--sources", default="all", help="Sources passed to the transformation step")
-    tr_p.add_argument("--python-exe", default="python", help="Python executable for subprocesses")
-    tr_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
-    tr_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
-    
+    tr_p.add_argument(
+        "--sources", default="all", help="Sources passed to the transformation step"
+    )
+    tr_p.add_argument(
+        "--python-exe", default="python", help="Python executable for subprocesses"
+    )
+    tr_p.add_argument(
+        "--workdir", default=".", help="Working directory (default: current)"
+    )
+    tr_p.add_argument(
+        "--runs-root",
+        default="data/integration/runs",
+        help="Root folder for run outputs",
+    )
+
     # --- check-env --------------------------------------------------------------
-    subparsers.add_parser("check-env", help="Check environment variables and API connectivity")
+    subparsers.add_parser(
+        "check-env", help="Check environment variables and API connectivity"
+    )
 
     # --- run-webavailability ----------------------------------------------------
-    wa_p = subparsers.add_parser(
+    # These three subcommands forward every remaining argument verbatim to a
+    # sub-tool's own parser. They do NOT declare a passthrough positional:
+    # `nargs=argparse.REMAINDER` silently fails to capture tokens that start with
+    # `--` (bpo-17050), so `run-webavailability --dry-run` was rejected by the top
+    # parser. `main` collects the unrecognized tail via `parse_known_args` instead.
+    subparsers.add_parser(
         "run-webavailability",
         help="Run web availability update (and ensure toolsDev URLs exist)",
     )
-    wa_p.add_argument(
-        "wa_args",
-        nargs=argparse.REMAINDER,
-        help="Arguments passed to the web availability job",
-    )
 
     # --- enrich-publications ----------------------------------------------------
-    ep_p = subparsers.add_parser(
+    subparsers.add_parser(
         "enrich-publications",
         help="Enrich publication metadata and citation counts using Europe PMC",
     )
-    ep_p.add_argument(
-        "ep_args",
-        nargs=argparse.REMAINDER,
-        help="Arguments passed to the enrich publications job",
+
+    # --- enrich-tool ------------------------------------------------------------
+    subparsers.add_parser(
+        "enrich-tool",
+        help="Regenerate FAIR scores, web availability and similar tools for one tool",
     )
 
     # --- rollback ---------------------------------------------------------------
@@ -205,19 +245,37 @@ def main(argv: list[str] | None = None) -> int:
     runs_sub = runs_p.add_subparsers(dest="runs_command", required=True)
 
     runs_list_p = runs_sub.add_parser("list", help="List available runs")
-    runs_list_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
-    runs_list_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
+    runs_list_p.add_argument(
+        "--workdir", default=".", help="Working directory (default: current)"
+    )
+    runs_list_p.add_argument(
+        "--runs-root",
+        default="data/integration/runs",
+        help="Root folder for run outputs",
+    )
     runs_list_p.add_argument("--json", action="store_true", help="Output as JSON")
 
     runs_show_p = runs_sub.add_parser("show", help="Show details for one run")
     runs_show_p.add_argument("run_ref", help="Run ID or full run directory path")
-    runs_show_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
-    runs_show_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
+    runs_show_p.add_argument(
+        "--workdir", default=".", help="Working directory (default: current)"
+    )
+    runs_show_p.add_argument(
+        "--runs-root",
+        default="data/integration/runs",
+        help="Root folder for run outputs",
+    )
     runs_show_p.add_argument("--json", action="store_true", help="Output as JSON")
 
     runs_latest_p = runs_sub.add_parser("latest", help="Show the latest run")
-    runs_latest_p.add_argument("--workdir", default=".", help="Working directory (default: current)")
-    runs_latest_p.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
+    runs_latest_p.add_argument(
+        "--workdir", default=".", help="Working directory (default: current)"
+    )
+    runs_latest_p.add_argument(
+        "--runs-root",
+        default="data/integration/runs",
+        help="Root folder for run outputs",
+    )
     runs_latest_p.add_argument("--json", action="store_true", help="Output as JSON")
 
     # --- scheduler --------------------------------------------------------------
@@ -236,7 +294,16 @@ def main(argv: list[str] | None = None) -> int:
         help="Job to run once",
     )
 
-    args = parser.parse_args(argv)
+    # Passthrough subcommands hand their tail to a sub-tool's parser; every other
+    # subcommand must still reject unknown flags, so tolerate leftovers only there.
+    PASSTHROUGH_COMMANDS = {
+        "run-webavailability",
+        "enrich-publications",
+        "enrich-tool",
+    }
+    args, passthrough = parser.parse_known_args(argv)
+    if passthrough and args.command not in PASSTHROUGH_COMMANDS:
+        parser.error(f"unrecognized arguments: {' '.join(passthrough)}")
 
     try:
         if args.command == "check-env":
@@ -259,7 +326,7 @@ def main(argv: list[str] | None = None) -> int:
                 until_stage=args.until_stage,
                 only_stage=args.only_stage,
                 resume_run=args.resume_run,
-                dry_run_disambiguation=args.dry_run_disambiguation
+                dry_run_disambiguation=args.dry_run_disambiguation,
             )
             return 0
 
@@ -274,10 +341,13 @@ def main(argv: list[str] | None = None) -> int:
             return 0
 
         if args.command == "run-webavailability":
-            return web_availability.main(args.wa_args)
-        
+            return web_availability.main(passthrough)
+
         if args.command == "enrich-publications":
-            return enrich_publications.main(args.ep_args)
+            return enrich_publications.main(passthrough)
+
+        if args.command == "enrich-tool":
+            return enrich_tool.main(passthrough)
 
         if args.command == "rollback":
             from dotenv import load_dotenv

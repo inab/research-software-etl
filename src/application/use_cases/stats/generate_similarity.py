@@ -61,6 +61,9 @@ def compute_and_store_similarities(
     # The front-end fetches neighbours by tool_id, and the upsert below assumes one
     # document per tool.
     repos.similarities.ensure_tool_id_index()
+    # The embedding cache the per-record `enrich-tool` path reads is refreshed on
+    # every full run: one vector per tool, same one-per-tool invariant.
+    repos.embeddings.ensure_tool_id_index()
 
     query = {} if tag_or_tools == "tools" else {"data.tags": tag_or_tools}
     logger.info(f"Fetching tools (query={query}) ...")
@@ -72,7 +75,7 @@ def compute_and_store_similarities(
         return
 
     print(f"[INFO] Computing similarities for {len(tools)} tools (k={k}) ...")
-    similarity_docs = compute_similarities(
+    similarity_docs, embedding_records = compute_similarities(
         tools,
         k=k,
         model_name=model_name,
@@ -91,4 +94,27 @@ def compute_and_store_similarities(
             failed += 1
             logger.error(f"[FAIL] tool_id={doc['tool_id']}: {exc}")
 
-    print(f"\nDone. upserted={upserted}, failed={failed}")
+    # Persist the vectors so a later single-record run compares against them
+    # instead of re-embedding all tools. The model is recorded per document; the
+    # incremental path refuses to mix vectors from a different model.
+    embedded = 0
+    embed_failed = 0
+    for rec in embedding_records:
+        try:
+            repos.embeddings.upsert_by_tool_id(
+                tool_id=rec["tool_id"],
+                tool_name=rec["tool_name"],
+                text=rec["text"],
+                vector=rec["vector"],
+                model=model_name,
+                version=rec["version"],
+            )
+            embedded += 1
+        except Exception as exc:
+            embed_failed += 1
+            logger.error(f"[FAIL] embedding tool_id={rec['tool_id']}: {exc}")
+
+    print(
+        f"\nDone. similarities upserted={upserted}, failed={failed}; "
+        f"embeddings upserted={embedded}, failed={embed_failed}"
+    )

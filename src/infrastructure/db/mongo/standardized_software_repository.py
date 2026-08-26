@@ -25,6 +25,25 @@ class PretoolsRepository:
         """Return the full pretools entry with this id, or None."""
         return self.db_adapter.fetch_entry(self.collection_name, {"_id": entry_id})
 
+    def get_by_ids(self, entry_ids) -> dict:
+        """
+        Fetch many entries at once, keyed by ``_id``.
+
+        Replaces a per-id round-trip loop with a single ``$in`` query, paginated
+        so a large id set does not build one enormous filter. Ids with no entry
+        are simply absent from the returned dict.
+        """
+        unique_ids = list({entry_id for entry_id in entry_ids})
+        by_id: dict = {}
+        page_size = 1000
+        for start in range(0, len(unique_ids), page_size):
+            chunk = unique_ids[start : start + page_size]
+            for entry in self.db_adapter.fetch_entries(
+                self.collection_name, {"_id": {"$in": chunk}}
+            ):
+                by_id[entry["_id"]] = entry
+        return by_id
+
     def exists(self, identifier: str) -> bool:
         return self.db_adapter.entry_exists(self.collection_name, identifier)
 

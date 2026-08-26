@@ -24,10 +24,23 @@ def build_parser() -> argparse.ArgumentParser:
     # repositories below are built pointing at them.
     ap.add_argument("--timeout", type=int, default=int(os.getenv("REQ_TIMEOUT", "15")))
     ap.add_argument("--keep-days", type=int, default=int(os.getenv("KEEP_DAYS", "365")))
+    ap.add_argument(
+        "--workers",
+        type=int,
+        default=int(os.getenv("WEBAV_WORKERS", "32")),
+        help="Concurrent URL probes in step 1 (1 = sequential)",
+    )
     ap.add_argument("--created-by", default=os.getenv("CREATED_BY", "oeb-ingest"))
     ap.add_argument("--updated-by", default=os.getenv("UPDATED_BY", "oeb-ingest"))
-    ap.add_argument("--limit-web", type=int, default=0, help="Limit existing web URLs to process (0=all)")
-    ap.add_argument("--limit-tools", type=int, default=0, help="Limit tool docs to scan (0=all)")
+    ap.add_argument(
+        "--limit-web",
+        type=int,
+        default=0,
+        help="Limit existing web URLs to process (0=all)",
+    )
+    ap.add_argument(
+        "--limit-tools", type=int, default=0, help="Limit tool docs to scan (0=all)"
+    )
     ap.add_argument("--dry-run", action="store_true")
     return ap
 
@@ -44,12 +57,15 @@ def main(argv: list[str] | None = None) -> int:
         updated_by=args.updated_by,
         limit_web=args.limit_web,
         limit_tools=args.limit_tools,
+        max_workers=args.workers,
         dry_run=args.dry_run,
     )
 
     try:
         print("[RUN] web availability job")
-        res = run_update_web_availability(cfg, repos, UrlChecker(timeout=cfg.timeout))
+        res = run_update_web_availability(
+            cfg, repos, UrlChecker(timeout=cfg.timeout, max_workers=cfg.max_workers)
+        )
 
         print(
             "[STEP 1] processed existing URLs: "

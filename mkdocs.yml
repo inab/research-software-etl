@@ -20,8 +20,9 @@ theme:
       primary: indigo
       accent: indigo
   logo: static/OEB-logo.png
-  extra_css: 
-    - assets/css/extra.css
+
+extra_css:
+  - assets/extra.css
 
 markdown_extensions:
   - admonition

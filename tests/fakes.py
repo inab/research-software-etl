@@ -20,6 +20,7 @@ from typing import Any, Dict, Iterator, List, Optional
 from bson import ObjectId
 
 from infrastructure.db.mongo.computations_repository import ComputationsRepository
+from infrastructure.db.mongo.embeddings_repository import EmbeddingsRepository
 from infrastructure.db.mongo.license_mapping_repository import LicenseMappingRepository
 from infrastructure.db.mongo.publications_repository import MongoPublicationRepository
 from infrastructure.db.mongo.raw_software_repository import (
@@ -236,6 +237,11 @@ class FakeDatabaseAdapter:
         self._collection(collection_name)[identifier] = document
         return identifier
 
+    def insert_many(
+        self, collection_name: str, documents: List[Dict[str, Any]]
+    ) -> List[Any]:
+        return [self.insert_one(collection_name, document) for document in documents]
+
     def update_entry(
         self, collection_name: str, identifier: Any, data: Dict[str, Any]
     ) -> None:
@@ -343,6 +349,7 @@ def fake_repos(
     license_mapping: bool = False,
     computations: bool = False,
     similarities: bool = False,
+    embeddings: bool = False,
     web_availability: bool = False,
 ) -> Repositories:
     """
@@ -370,6 +377,7 @@ def fake_repos(
         similarities=(
             SimilaritiesRepository(db, "similarities") if similarities else None
         ),
+        embeddings=(EmbeddingsRepository(db, "embeddings") if embeddings else None),
         web_availability=(
             WebAvailabilityRepository(db, "webavailability")
             if web_availability
@@ -421,6 +429,11 @@ class FakeUrlChecker:
     def probe(self, url, timeout=None) -> UrlProbe:
         self.probed.append(url)
         return UrlProbe(self.status, self.access_time)
+
+    def probe_many(self, urls, timeout=None, max_workers=None):
+        """Offline stand-in for the concurrent probe: maps ``probe`` over the URLs."""
+        for url in urls:
+            yield url, self.probe(url, timeout=timeout)
 
     def resolve_redirects(self, url, timeout=None):
         return self.redirects.get(url, url)

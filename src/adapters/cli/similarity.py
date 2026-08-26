@@ -4,12 +4,14 @@ Command-line interface for computing and storing tool-similarity scores.
 
 import argparse
 import logging
+import os
 
 from dotenv import load_dotenv
 
 from application.use_cases.stats.generate_similarity import compute_and_store_similarities
 from infrastructure.config import Credentials, PipelineConfig
 from infrastructure.db.repositories import from_config
+from infrastructure.logging_config import resolve_level
 
 
 def main():
@@ -60,16 +62,15 @@ def main():
     )
     parser.add_argument(
         "--loglevel", "-l",
-        default="INFO",
-        help="Logging level.",
+        default=os.getenv("LOG_LEVEL", "INFO"),
+        help="Logging level (default: LOG_LEVEL env var, else INFO).",
     )
 
     args = parser.parse_args()
 
     load_dotenv(args.env_file, override=True)
 
-    numeric_level = getattr(logging, args.loglevel.upper(), logging.INFO)
-    logging.basicConfig(level=numeric_level)
+    logging.basicConfig(level=resolve_level(args.loglevel))
 
     repos = from_config(PipelineConfig.from_env())
     creds = Credentials.from_env()

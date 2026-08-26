@@ -1,4 +1,4 @@
-from typing import Any, Dict, Protocol
+from typing import Any, Dict, Optional, Protocol
 
 
 class SimilaritiesRepository(Protocol):
@@ -10,6 +10,10 @@ class SimilaritiesRepository(Protocol):
 
     def upsert_by_tool_id(self, document: Dict[str, Any]) -> None:
         """Upsert one similarity document, matched on its ``tool_id``."""
+        ...
+
+    def find_by_tool_id(self, tool_id: str) -> Optional[Dict[str, Any]]:
+        """One tool's neighbour document, or ``None``."""
         ...
 
     def ensure_tool_id_index(self) -> None:

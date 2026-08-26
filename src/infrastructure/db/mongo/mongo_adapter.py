@@ -246,7 +246,7 @@ class MongoDBAdapter:
             bool: True if a document was deleted, False otherwise.
         """
         collection = self.db[collection_name]
-        logger.info(
+        logger.debug(
             f"Deleting entry from collection '{collection_name}' with _id: {identifier}"
         )
         result = collection.delete_one({"_id": identifier})
@@ -293,7 +293,7 @@ class MongoDBAdapter:
             data (dict): A dictionary containing the fields and values to be updated. Format should match MongoDB's update standards.
         """
         collection = self.db[collection_name]
-        logger.info("Updating entry in collection: %s", collection_name)
+        logger.debug("Updating entry in collection: %s", collection_name)
         return collection.update_one(
             {"_id": identifier},  # Query matching the document to update
             {"$set": data},  # Fields to update
@@ -433,3 +433,29 @@ class MongoDBAdapter:
         id_inserted_doc = collection.insert_one(document)
         logger.debug(f"Inserted document into collection {collection_name}")
         return id_inserted_doc.inserted_id
+
+    @retry(
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
+    )
+    def insert_many(self, collection_name: str, documents: List[Dict]):
+        """
+        Insert several documents in one round-trip.
+
+        A batched counterpart to ``insert_one`` for stages that would otherwise
+        issue one insert per document (e.g. the merge stage staging ~50k tools).
+        Documents without an ``_id`` get one minted by MongoDB, as with
+        ``insert_one``.
+        """
+        if not documents:
+            return []
+        for document in documents:
+            if "id" in document:
+                document["_id"] = document.pop("id")
+        collection = self.db[collection_name]
+        result = collection.insert_many(documents, ordered=False)
+        logger.debug(
+            f"Inserted {len(result.inserted_ids)} documents into {collection_name}"
+        )
+        return result.inserted_ids

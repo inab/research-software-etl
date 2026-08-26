@@ -76,7 +76,8 @@ def load_dict_from_jsonl(path):
 
 def remove_jsonl_record(path, target_key):
     #print(f'Removing record(s) with key: {target_key}')
-    temp_path = path + '.tmp'
+    path = Path(path)
+    temp_path = path.with_name(path.name + '.tmp')
     removed = False
 
     with open(path, 'r') as infile, open(temp_path, 'w') as outfile:
@@ -101,8 +102,9 @@ def remove_jsonl_record(path, target_key):
 
 def update_jsonl_record(path, updated_key, new_value):
     #print(f'Updating record with key: {updated_key}')
+    path = Path(path)
     updated = False
-    temp_path = path + '.tmp'
+    temp_path = path.with_name(path.name + '.tmp')
 
     with open(path, 'r') as infile, open(temp_path, 'w') as outfile:
         for line in infile:

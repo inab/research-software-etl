@@ -42,7 +42,7 @@ export GITHUB_TOKEN=...
 # etc.
 
 # run full integration
-rsetl
+rsetl run
 ``` 
 
 All intermediate and final files are automatically stored in timestamped directories, and a latest symlink always points to the most recent run.
@@ -50,11 +50,17 @@ All intermediate and final files are automatically stored in timestamped directo
 
 ## Repository structure 
 
+Clean architecture with four layers (`adapters → application → domain → infrastructure`):
+
 ```
-adapters/cli/                # CLI entry points and integration scripts
-scripts/                     # Auxiliary scripts (simplify, convert, cleanup)
-domain/                      # Data models and logic
-data/integration/runs/       # Versioned outputs per run
+src/adapters/                # CLI entry points (rsetl) and the scheduler
+src/application/             # Use cases (workflows) and services (domain logic + I/O)
+src/domain/                  # Pydantic models and repository protocols
+src/infrastructure/          # MongoDB adapter/repositories, API clients, config
+scripts/                     # One-off utilities (outside the architecture rules)
+data/integration/runs/       # Versioned outputs per run (git-ignored)
 ```
+
+See the [Development Guide](https://inab.github.io/research-software-etl/development/) for details.
 
 

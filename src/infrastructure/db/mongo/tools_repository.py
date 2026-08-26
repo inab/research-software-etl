@@ -1,7 +1,10 @@
 # This repository connects to the tools collection: the pipeline's final output.
 
 import logging
-from typing import Any, Iterator
+from typing import Any, Iterator, Optional
+
+from bson import ObjectId
+from bson.errors import InvalidId
 
 from infrastructure.db.database_adapter import DatabaseAdapter
 
@@ -17,12 +20,28 @@ class ToolsRepository:
         """Insert a merged tool entry and return its id."""
         return self.db_adapter.insert_one(self.collection_name, document)
 
+    def insert_many(self, documents: list[dict]) -> list[Any]:
+        """Insert many merged tool entries in one round-trip; return their ids."""
+        return self.db_adapter.insert_many(self.collection_name, documents)
+
     def get_all(self) -> list[dict]:
         return self.db_adapter.fetch_entries(self.collection_name, {})
 
     def find(self, query: dict) -> list[dict]:
         """Tools matching a query -- the stats stages scope by `{"data.tags": tag}`."""
         return self.db_adapter.fetch_entries(self.collection_name, query)
+
+    def find_by_id(self, tool_id: str) -> Optional[dict]:
+        """
+        One tool by its ``_id``. Tool ids are ObjectIds, so a hex string is coerced
+        to one; a non-hex id (should not happen for tools) falls back to matching
+        the raw value.
+        """
+        try:
+            query = {"_id": ObjectId(tool_id)}
+        except (InvalidId, TypeError):
+            query = {"_id": tool_id}
+        return self.db_adapter.fetch_entry(self.collection_name, query)
 
     def iter_projected(
         self, query: dict, projection: dict, limit: int = 0, batch_size: int = 100

@@ -8,7 +8,10 @@ from infrastructure.external.clients import ExternalClients
 # conflict to escalate to a human, so they are deliberately different families.
 LLAMA_MODEL = "meta-llama/Llama-3.3-70B-Instruct-Turbo"
 LLAMA_PROVIDER = "together"
-MIXTRAL_MODEL = "mistralai/mixtral-8x7b-instruct"
+# The second opinion stays in the Mistral family. `mixtral-8x7b-instruct` was
+# retired from OpenRouter; Mistral Small 3.2 (24B) is its active successor. The
+# `mixtral`/`MIXTRAL_*` names are kept as legacy labels for this second opinion.
+MIXTRAL_MODEL = "mistralai/mistral-small-3.2-24b-instruct"
 
 
 def decision_agreement_proxy(messages: str, clients: ExternalClients) -> dict:

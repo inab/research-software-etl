@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import logging
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
+from typing import Iterable, Iterator, Tuple
 
 import requests
 
@@ -10,6 +13,7 @@ logger = logging.getLogger("rs-etl-pipeline")
 
 DEFAULT_TIMEOUT = 15
 DEFAULT_USER_AGENT = "oeb-research-software-etl/1.0 (+monitor)"
+DEFAULT_MAX_WORKERS = 32
 
 
 @dataclass(frozen=True)
@@ -42,10 +46,25 @@ class UrlChecker:
         self,
         timeout: int = DEFAULT_TIMEOUT,
         user_agent: str = DEFAULT_USER_AGENT,
+        max_workers: int = DEFAULT_MAX_WORKERS,
     ) -> None:
         self.timeout = timeout
-        self._session = requests.Session()
-        self._session.headers.update({"User-Agent": user_agent, "Accept": "*/*"})
+        self.max_workers = max_workers
+        self._user_agent = user_agent
+        # One Session per thread: ``requests.Session`` is not thread-safe (shared
+        # connection pool and cookie jar), so ``probe_many`` cannot share one across
+        # its workers. A ``threading.local`` gives each worker its own, lazily, while
+        # a single-threaded caller still reuses one Session for the whole run.
+        self._local = threading.local()
+
+    @property
+    def _session(self) -> requests.Session:
+        session = getattr(self._local, "session", None)
+        if session is None:
+            session = requests.Session()
+            session.headers.update({"User-Agent": self._user_agent, "Accept": "*/*"})
+            self._local.session = session
+        return session
 
     def probe(self, url: str, timeout: int | None = None) -> UrlProbe:
         """
@@ -61,6 +80,31 @@ class UrlChecker:
             return self._request("GET", url, timeout)
 
         return probe
+
+    def probe_many(
+        self,
+        urls: Iterable[str],
+        timeout: int | None = None,
+        max_workers: int | None = None,
+    ) -> Iterator[Tuple[str, UrlProbe]]:
+        """
+        Probe many URLs concurrently, yielding ``(url, UrlProbe)`` as each finishes.
+
+        Probing is almost entirely idle network waiting -- most of the sweep is
+        spent timing out on unreachable hosts, one at a time when done serially --
+        so fanning it out across a thread pool collapses the wall-clock cost. Results
+        arrive in completion order, not input order; the caller keys each reading by
+        its own URL, so order does not matter. Each URL is a distinct document with
+        one reading per run, so nothing downstream depends on the sequence either.
+
+        ``probe`` swallows every per-URL error into ``UrlProbe(None, None)``, so a
+        worker never raises and one bad URL cannot sink the batch.
+        """
+        workers = max_workers or self.max_workers
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = {pool.submit(self.probe, url, timeout): url for url in urls}
+            for future in as_completed(futures):
+                yield futures[future], future.result()
 
     def resolve_redirects(self, url: str, timeout: int | None = None) -> str | None:
         """

@@ -4,12 +4,14 @@ Command-line interface for generating FAIR indicators and scores for tools.
 
 import argparse
 import logging
+import os
 
 from dotenv import load_dotenv
 
 from application.use_cases.stats.generate_fair_scores import add_fair_scores
 from infrastructure.config import PipelineConfig
 from infrastructure.db.repositories import from_config
+from infrastructure.logging_config import resolve_level
 
 
 
@@ -44,16 +46,15 @@ def main():
     )
     parser.add_argument(
         "--loglevel", "-l",
-        help="Set the logging level.",
-        default="INFO",
+        help="Set the logging level (default: LOG_LEVEL env var, else INFO).",
+        default=os.getenv("LOG_LEVEL", "INFO"),
     )
 
     args = parser.parse_args()
 
     load_dotenv(args.env_file, override=True)
 
-    numeric_level = getattr(logging, args.loglevel.upper(), logging.INFO)
-    logging.basicConfig(level=numeric_level)
+    logging.basicConfig(level=resolve_level(args.loglevel))
     logging.debug(f"Env file: {args.env_file}")
 
     if args.collections.lower() == "all":

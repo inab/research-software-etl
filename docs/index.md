@@ -6,7 +6,7 @@ This is the documentation of the data processing backbone of the [Research Softw
 The pipeline consolidates and harmonizes metadata from multiple registries and repositories, enriches it with external information, and pre-computes the FAIRsoft indicators and other metrics displayed in the Software Observatory interface.  
 
 !!! note "At a glance"
-    **Language:** Python 3.10  
+    **Language:** Python ≥ 3.9 (tested on 3.10)  
     **Execution:** CLI (`rsetl`)  
     **Dependencies:** `pydantic`, `tenacity`, `pymongo`, ... (see [more](https://github.com/inab/research-software-etl/blob/main/requirements.txt))  
     **Database:** MongoDB  
@@ -24,10 +24,10 @@ cd research-software-etl
 pip install -e .
 ```
 
-Each execution can run as a single stage or as part of the full workflow through the unified CLI command:
+Each execution can run as a single stage or as part of the full workflow through the unified CLI command `rsetl`:
 
 ```bash
-rsetl
+rsetl run
 ```  
 
 Use `rsetl --help` or go to the CLI [docs](cli.md) for more information. 

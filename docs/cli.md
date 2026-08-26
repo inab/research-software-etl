@@ -35,8 +35,8 @@ The pipeline supports the following stage names, in order:
 * `disambiguation`
 * `human_updates`
 * `merge`
-* `stats`
 * `fairsoft`
+* `stats`
 * `similarity`
 
 **Examples**
@@ -172,6 +172,63 @@ rsetl run-webavailability
 
 ---
 
+### `rsetl rollback`
+
+Undo a run's promotion: drop the current tools collection and restore the archive that the run created in its place. See [Tool identity & collection promotion](pipeline.md#tool-identity-collection-promotion).
+
+**Arguments**
+
+* `run_id` — run ID whose archive should be restored.
+
+**Options**
+
+* `--env-file PATH` — file containing environment variables. Default: `.env`.
+* `--yes` — skip the confirmation prompt. The current tools collection is dropped without asking.
+
+**Examples**
+
+```bash
+# Roll back with a confirmation prompt
+rsetl rollback 20260428T090000Z-ab12cd-pre-human-review
+
+# Roll back without prompting
+rsetl rollback 20260428T090000Z-ab12cd-pre-human-review --yes
+```
+
+---
+
+### `rsetl scheduler`
+
+Run the pipeline on a schedule, or trigger a scheduled job once. See [Unattended scheduling](pipeline.md#unattended-scheduling).
+
+Requires the optional `scheduler` extra: `pip install -e ".[scheduler]"`.
+
+**Options**
+
+* `--env-file PATH` — file containing environment variables. Default: `.env`.
+
+**Subcommands**
+
+* `start` — start the scheduler in the foreground (blocking).
+* `run-now <job>` — trigger one job immediately, where `<job>` is `full_pipeline` or `publication_enrichment`.
+
+**Examples**
+
+```bash
+# Start the scheduler (runs until interrupted)
+rsetl scheduler start
+
+# Trigger the full Phase-A pipeline once, for testing
+rsetl scheduler run-now full_pipeline
+
+# Trigger the publication-enrichment job once
+rsetl scheduler run-now publication_enrichment
+```
+
+Cadences are configured via `FULL_PIPELINE_CRON` and `PUBLICATION_ENRICHMENT_CRON` (see [Environment configuration](#environment-configuration)).
+
+---
+
 ### `rsetl runs list`
 
 List available pipeline runs.
@@ -274,7 +331,22 @@ GITHUB_TOKEN=ghp_...
 GITLAB_TOKEN=...
 OPENROUTER_API_KEY=...
 HUGGINGFACE_API_KEY=...
+
+# Scheduling (optional — used by `rsetl scheduler`)
+FULL_PIPELINE_CRON=0 1 * * mon,thu           # Phase-A cadence (default)
+PUBLICATION_ENRICHMENT_CRON=0 3 * * sun       # publication enrichment (default)
+
+# Collection promotion (optional)
+TOOLS_ARCHIVE_KEEP=2                          # archives to retain after promotion
 ```
+
+Collection names also have environment overrides (all optional; defaults shown in
+parentheses): `MONGO_TOOLS_COLL` (`toolsDev`), `MONGO_TOOLS_STAGING_COLL`
+(`toolsDev_next`), `MONGO_TOOLS_ARCHIVE_PREFIX` (`toolsDev_archive_`),
+`COMPUTATIONS` (`computationsDev`), `SIMILARITIES` (`similaritiesDev`),
+`PRETOOLS` (`pretoolsDev`), `ALAMBIQUE` (`alambiqueDev`),
+`PUBLICATIONS_COLLECTION` (`publicationsMetadataDev`), `MONGO_WEBAV_COLL`
+(`webAvailabilityDev`).
 
 ## Run outputs
 
@@ -309,6 +381,8 @@ rsetl run --help
 rsetl run-transformation --help
 rsetl enrich-publications --help
 rsetl run-webavailability --help
+rsetl rollback --help
+rsetl scheduler --help
 rsetl runs --help
 rsetl runs list --help
 rsetl runs show --help

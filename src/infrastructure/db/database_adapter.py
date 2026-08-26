@@ -35,6 +35,12 @@ class DatabaseAdapter(Protocol):
         """Insert ``document`` and return its identifier."""
         ...
 
+    def insert_many(
+        self, collection_name: str, documents: List[Dict[str, Any]]
+    ) -> List[Any]:
+        """Insert many documents in one round-trip; return their identifiers."""
+        ...
+
     def update_entry(
         self, collection_name: str, identifier: str, data: Dict[str, Any]
     ) -> Any:

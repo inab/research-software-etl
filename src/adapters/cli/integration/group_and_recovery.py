@@ -3,16 +3,18 @@ The command-line interface for the group and recovery step of the integration
 """ 
 import argparse
 import logging
+import os
 from dotenv import load_dotenv
 from application.use_cases.integration.group_and_recovery import grouping_and_recovery_process
 from infrastructure.config import PipelineConfig
 from infrastructure.db.repositories import from_config
-from infrastructure.logging_config import setup_logging
+from infrastructure.logging_config import resolve_level, setup_logging
 
 
 
 def main():
-    setup_logging()
+    # Verbosity from LOG_LEVEL env var (default INFO); see setup_logging.
+    setup_logging(resolve_level(os.getenv("LOG_LEVEL")))
     logger = logging.getLogger("rs-etl-pipeline")
 
 
