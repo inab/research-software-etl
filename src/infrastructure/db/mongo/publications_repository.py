@@ -90,6 +90,28 @@ class MongoPublicationRepository:
     def save_entry(self, document: dict):
         return self.mongo_db.insert_one(self.collection_name, document)
 
+    def save_many(self, documents: list[dict]) -> list:
+        """Insert many publication metadata entries in one round-trip; return their ids."""
+        if not documents:
+            return []
+        return self.mongo_db.insert_many(self.collection_name, documents)
+
+    # Batched counterpart to the find_by_* lookups: one `$in` query for a whole
+    # page of publications instead of one round-trip per publication per field.
+    # Like the find_by_* methods, this returns raw docs with their ObjectId `_id`
+    # (no _stringify_id) -- pretools stores the id as an ObjectId reference and
+    # merge requires it (see the note above find_by_doi).
+    def find_existing_by_field(self, field: str, values: list) -> list[dict]:
+        """Return publication entries whose ``data.<field>`` is in ``values``."""
+        clean = [value for value in values if value]
+        if not clean:
+            return []
+        return list(
+            self.mongo_db.fetch_entries(
+                self.collection_name, {f"data.{field}": {"$in": clean}}
+            )
+        )
+
     def fetch_with_doi(self, collection_name: str) -> Iterable[dict[str, Any]]:
         query = {
             "data.doi": {

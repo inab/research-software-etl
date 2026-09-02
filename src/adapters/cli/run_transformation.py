@@ -97,6 +97,7 @@ def run_transformation(
     runs_root: str | Path = "data/integration/runs",
     run_tag: Optional[str] = None,
     sources: str = "all",
+    updated_within_days: int = 30,
     python_exe: str = "python",
 ) -> None:
     """
@@ -129,6 +130,8 @@ def run_transformation(
             "src.adapters.cli.transformation.transformation",
             "--sources",
             sources,
+            "--updated-within-days",
+            str(updated_within_days),
         ],
         cwd=wd,
     )
@@ -142,6 +145,7 @@ def run_transformation(
         "utc_finished": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "options": {
             "sources": sources,
+            "updated_within_days": updated_within_days,
         },
         "env_used": {
             "MONGO_HOST": os.getenv("MONGO_HOST"),
@@ -166,6 +170,13 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run only the transformation step")
     parser.add_argument("--tag", dest="run_tag", help="Optional tag appended to run ID")
     parser.add_argument("--sources", default="all", help="Sources passed to the transformation step")
+    parser.add_argument(
+        "--updated-within-days",
+        type=int,
+        default=30,
+        dest="updated_within_days",
+        help="Only transform raw entries updated within the last N days (default: 30). Use 0 for a full re-transform.",
+    )
     parser.add_argument("--python-exe", default="python", help="Python executable for subprocesses")
     parser.add_argument("--workdir", default=".", help="Working directory")
     parser.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
@@ -176,6 +187,7 @@ def main(argv: list[str] | None = None) -> int:
         runs_root=args.runs_root,
         run_tag=args.run_tag,
         sources=args.sources,
+        updated_within_days=args.updated_within_days,
         python_exe=args.python_exe,
     )
     return 0

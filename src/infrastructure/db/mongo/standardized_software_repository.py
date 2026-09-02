@@ -3,6 +3,7 @@
 import logging
 
 from pydantic import ValidationError
+from pymongo import UpdateOne
 
 from domain.models.database_entries import PretoolsEntryModel
 from infrastructure.db.database_adapter import DatabaseAdapter
@@ -56,6 +57,23 @@ class PretoolsRepository:
         if self.exists(identifier):
             return self.db_adapter.update_entry(self.collection_name, identifier, document)
         return self.db_adapter.insert_one(self.collection_name, document)
+
+    def bulk_upsert(self, docs_by_id: dict) -> None:
+        """
+        Upsert many entries in a single round-trip, keyed by ``_id``.
+
+        Replaces a per-entry ``exists`` + ``update``/``insert`` loop (two or three
+        round-trips each) with one ``bulk_write``. Each document is written with
+        ``$set`` so an existing entry is updated in place and a missing one is
+        inserted (``upsert=True``); the driver ``UpdateOne`` stays here in the
+        repository, never leaking into the application layer.
+        """
+        operations = [
+            UpdateOne({"_id": identifier}, {"$set": document}, upsert=True)
+            for identifier, document in docs_by_id.items()
+        ]
+        if operations:
+            self.db_adapter.bulk_write(self.collection_name, operations)
 
     def validate_standardized_software_data(self, documents):
         """

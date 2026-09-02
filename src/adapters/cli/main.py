@@ -176,6 +176,13 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Run the disambiguation stage without creating conflict files or GitHub issues.",
     )
+    run_p.add_argument(
+        "--updated-within-days",
+        type=int,
+        default=30,
+        dest="updated_within_days",
+        help="Transformation only processes raw entries updated within the last N days (default: 30). Use 0 for a full re-transform.",
+    )
 
     # --- run-transformation -----------------------------------------------------
     tr_p = subparsers.add_parser(
@@ -184,6 +191,13 @@ def main(argv: list[str] | None = None) -> int:
     tr_p.add_argument("--tag", dest="run_tag", help="Optional tag appended to run ID")
     tr_p.add_argument(
         "--sources", default="all", help="Sources passed to the transformation step"
+    )
+    tr_p.add_argument(
+        "--updated-within-days",
+        type=int,
+        default=30,
+        dest="updated_within_days",
+        help="Only transform raw entries updated within the last N days (default: 30). Use 0 for a full re-transform.",
     )
     tr_p.add_argument(
         "--python-exe", default="python", help="Python executable for subprocesses"
@@ -327,6 +341,7 @@ def main(argv: list[str] | None = None) -> int:
                 only_stage=args.only_stage,
                 resume_run=args.resume_run,
                 dry_run_disambiguation=args.dry_run_disambiguation,
+                updated_within_days=args.updated_within_days,
             )
             return 0
 
@@ -336,6 +351,7 @@ def main(argv: list[str] | None = None) -> int:
                 runs_root=args.runs_root,
                 run_tag=args.run_tag,
                 sources=args.sources,
+                updated_within_days=args.updated_within_days,
                 python_exe=args.python_exe,
             )
             return 0

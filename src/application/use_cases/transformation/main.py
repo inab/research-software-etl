@@ -14,11 +14,16 @@ corresponding helper modules and specialized services.
 
 
 import logging
-from typing import List, Dict
+from datetime import datetime
+from typing import List, Dict, Optional
 from infrastructure.config import PipelineConfig
 from domain.repositories import Repositories
-from application.use_cases.transformation.publications_processing import extract_publications, standardize_publications
-from application.use_cases.transformation.software_metadata_processing import standardize_entry, save_entry
+from application.use_cases.transformation.publications_processing import resolve_publications_for_page
+from application.use_cases.transformation.software_metadata_processing import (
+    standardize_entry,
+    pretools_identifier,
+    build_pretools_document,
+)
 
 logger = logging.getLogger("rs-etl-pipeline")
 
@@ -51,48 +56,60 @@ def setup_logging(loglevel: int):
     return
 
 
-def process_publications(entry: Dict, source: str, config: PipelineConfig, repos: Repositories):
-    '''
-    TODO: test this function
-    '''
-    sources_w_publication = ['bioconductor', 'biotools', 'toolshed', 'opeb_metrics', 'bioconda_recipes']
-    publications_ids = set()
-    if source in sources_w_publication:
-        logger.debug(f"Processing publications for entry {entry['_id']}")
-        publications = extract_publications(source, entry)
-        if len(publications) > 0:
-            logger.debug(f"Found {len(publications)} publications for entry {entry['_id']}")
-            for publication in publications:
-                publications_ids = standardize_publications(source, publications_ids, publication, config, repos)
-                logger.debug(f"Id of publication: {publications_ids}")
+def process_page(raw_entries: List[Dict], source: str, config: PipelineConfig, repos: Repositories):
+    """
+    Transform one page of raw entries with a fixed, small number of DB round-trips.
 
-    return list(publications_ids)
+    Everything that can be done in memory (standardization) is done first; the
+    database is then touched only in batches: one publication lookup per identifying
+    field, one insert for the page's new publications, one ``get_by_ids`` for the
+    page's pretools ids, and one ``bulk_upsert`` to write them. This replaces the
+    old per-entry path that issued several latency-bound round-trips per entry.
+    """
+    if not raw_entries:
+        return
+
+    # 1. Standardize software metadata for every entry -- in memory, no DB.
+    standardized_per_entry: List[List[Dict]] = []
+    for raw_entry in raw_entries:
+        raw_identifier = get_identifier(raw_entry)
+        software_dicts = standardize_entry(raw_identifier, raw_entry, source)
+        standardized_per_entry.append(software_dicts or [])
+
+    # 2. Resolve this page's publications in a handful of batched round-trips.
+    publication_ids_by_entry = resolve_publications_for_page(raw_entries, source, config, repos)
+
+    # 3. Flatten to the pretools records to write, attaching publication ids.
+    inputs: List[tuple] = []  # (identifier, software_dict, raw_entry)
+    for entry_index, software_dicts in enumerate(standardized_per_entry):
+        publication_ids = publication_ids_by_entry[entry_index]
+        raw_entry = raw_entries[entry_index]
+        for software_dict in software_dicts:
+            software_dict['publication'] = publication_ids
+            inputs.append((pretools_identifier(software_dict), software_dict, raw_entry))
+
+    if not inputs:
+        return
+
+    # 4. One existence query for the whole page (replaces per-entry exists/get_metadata).
+    existing = repos.pretools.get_by_ids([identifier for identifier, _, _ in inputs])
+
+    # 5. Build documents purely, then one bulk upsert for the page.
+    docs_by_id: Dict[str, Dict] = {}
+    for identifier, software_dict, raw_entry in inputs:
+        docs_by_id[identifier] = build_pretools_document(
+            identifier, software_dict, raw_entry, existing.get(identifier), config
+        )
+
+    repos.pretools.bulk_upsert(docs_by_id)
 
 
-def process_raw_entry(raw_entry, source, config: PipelineConfig, repos: Repositories):
-
-    # Process publication metadata in the entry and push publications to the appropriate collection
-    publication_ids = process_publications(raw_entry, source, config, repos)
-
-    # Standardize software metadata in the entry
-    raw_identifier = get_identifier(raw_entry)
-    software_metadata_dicts = standardize_entry(raw_identifier, raw_entry, source)
-
-    # TODO Validate URLs of repositories and webpage
-
-    for software_metadata_dict in software_metadata_dicts:
-
-        # Add publication Ids to the dictionary
-        software_metadata_dict['publication'] = publication_ids
-
-        # Save the entry in the database
-        save_entry(software_metadata_dict, raw_entry, config, repos)
-
-    return
-
-
-
-def process_source(source: str, config: PipelineConfig, repos: Repositories):
+def process_source(
+    source: str,
+    config: PipelineConfig,
+    repos: Repositories,
+    updated_since: Optional[datetime] = None,
+):
     """
     Process each data source by retrieving and transforming data.
 
@@ -100,35 +117,31 @@ def process_source(source: str, config: PipelineConfig, repos: Repositories):
         source (str): The data source to process.
         config (PipelineConfig): collections and paths for this run.
         repos (Repositories): the collections this stage reads and writes.
+        updated_since (datetime, optional): only transform entries whose
+            ``@last_updated_at`` is on or after this datetime; ``None`` transforms
+            every entry for the source.
 
-    This function logs the start of the data transformation, retrieves the raw data, and
-    processes each entry if data is found. Logs if no data is found.
+    This function logs the start of the data transformation, retrieves the raw data
+    one page at a time, and transforms each page. Logs if no data is found. A page
+    that fails is logged and skipped so the rest of the source still transforms.
     """
+    logger.info(f"Starting transformation of data from {source}")
+    raw_data = repos.alambique.get_raw_documents_from_source(source, updated_since=updated_since)
 
-    try:
-        logger.info(f"Starting transformation of data from {source}")
-        raw_data = repos.alambique.get_raw_documents_from_source(source)
-
-        # checking if first batch has data
+    pages = 0
+    entries = 0
+    for page in raw_data:
+        pages += 1
+        entries += len(page)
         try:
-            first_batch = next(raw_data)
-        except StopIteration:
-            logger.info(f"No data found for source {source}")
-            return
+            process_page(page, source, config, repos)
+        except Exception as e:
+            logger.error(f"An error occurred while processing a page of source {source}: {e}")
 
-        logger.debug(f"Transforming raw tools metadata from {source}")
-
-        # first batch
-        for raw_entry in first_batch:
-            process_raw_entry(raw_entry, source, config, repos)
-
-        # remaining batches
-        for batch in raw_data:
-            for raw_entry in batch:
-                process_raw_entry(raw_entry, source, config, repos)
-
-    except Exception as e:
-        logger.error(f"An error occurred while processing source {source}: {e}")
+    if pages == 0:
+        logger.info(f"No data found for source {source}")
+    else:
+        logger.info(f"Transformed {entries} raw entries from {source} across {pages} page(s)")
 
     return
 
@@ -149,7 +162,13 @@ sources = [
 
 
 
-def transform_sources(sources: List[str], config: PipelineConfig, repos: Repositories, **kwargs):
+def transform_sources(
+    sources: List[str],
+    config: PipelineConfig,
+    repos: Repositories,
+    updated_since: Optional[datetime] = None,
+    **kwargs,
+):
     """
     Main function to orchestrate the transformation process for multiple sources.
 
@@ -157,7 +176,10 @@ def transform_sources(sources: List[str], config: PipelineConfig, repos: Reposit
         sources (List[str]): A list of data sources to process.
         config (PipelineConfig): collections and paths for this run.
         repos (Repositories): the collections this stage reads and writes.
+        updated_since (datetime, optional): only transform entries whose
+            ``@last_updated_at`` is on or after this datetime; ``None`` transforms
+            every entry.
         **kwargs: Arbitrary keyword arguments.
     """
     for source in sources:
-        process_source(source, config, repos)
+        process_source(source, config, repos, updated_since=updated_since)

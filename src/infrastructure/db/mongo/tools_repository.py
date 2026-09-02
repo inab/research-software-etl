@@ -5,6 +5,7 @@ from typing import Any, Iterator, Optional
 
 from bson import ObjectId
 from bson.errors import InvalidId
+from pymongo import UpdateOne
 
 from infrastructure.db.database_adapter import DatabaseAdapter
 
@@ -107,3 +108,19 @@ class ToolsRepository:
         self.db_adapter.update_entry(
             self.collection_name, tool_id, {"data.license": license_value}
         )
+
+    def bulk_set_licenses(self, licenses_by_id: dict) -> None:
+        """
+        Write many normalized license lists in one round-trip, keyed by ``_id``.
+
+        Replaces a per-tool ``set_license`` loop (one latency-bound update each --
+        ~18k of them on a full run) with a single ``bulk_write``. The driver
+        ``UpdateOne`` stays here in the repository. Missing tools are not created
+        (``upsert=False``): this only rewrites the license of tools that exist.
+        """
+        operations = [
+            UpdateOne({"_id": tool_id}, {"$set": {"data.license": license_value}})
+            for tool_id, license_value in licenses_by_id.items()
+        ]
+        if operations:
+            self.db_adapter.bulk_write(self.collection_name, operations)

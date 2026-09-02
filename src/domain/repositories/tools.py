@@ -56,3 +56,11 @@ class ToolsRepository(Protocol):
     def rename_to(self, new_name: str, drop_target: bool = False) -> None:
         """Rename the collection (atomically)."""
         ...
+
+    def set_license(self, tool_id: Any, license_value: Any) -> None:
+        """Rewrite one tool's normalized license list."""
+        ...
+
+    def bulk_set_licenses(self, licenses_by_id: dict) -> None:
+        """Rewrite many tools' license lists in a single round-trip, keyed by ``_id``."""
+        ...

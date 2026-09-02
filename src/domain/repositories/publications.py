@@ -32,6 +32,14 @@ class PublicationRepository(Protocol):
         """A publication metadata entry by PMCID."""
         ...
 
+    def find_existing_by_field(self, field: str, values: list) -> List[dict]:
+        """Publication entries whose ``data.<field>`` is in ``values`` (one ``$in`` query)."""
+        ...
+
     def save_entry(self, document: dict) -> Any:
         """Insert a publication metadata entry and return its id."""
+        ...
+
+    def save_many(self, documents: List[dict]) -> List[Any]:
+        """Insert many publication metadata entries in one round-trip; return their ids."""
         ...

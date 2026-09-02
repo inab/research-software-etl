@@ -227,6 +227,7 @@ def run_full(
     only_stage: Optional[str] = None,
     resume_run: Optional[str | Path] = None,
     dry_run_disambiguation: bool = False,
+    updated_within_days: int = 30,
     pair_wise_decisions_file: str | Path = "src/application/services/integration/disambiguation/pair_decisions.jsonl",
 ) -> None:
     
@@ -306,7 +307,15 @@ def run_full(
         print("=== Stage: transformation ===")
         _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
         _run(
-            [python_exe, "-m", "src.adapters.cli.transformation.transformation", "--sources", "all"],
+            [
+                python_exe,
+                "-m",
+                "src.adapters.cli.transformation.transformation",
+                "--sources",
+                "all",
+                "--updated-within-days",
+                str(updated_within_days),
+            ],
             cwd=wd,
         )
         executed_stages.append("transformation")
@@ -525,6 +534,7 @@ def run_full(
             "human_updates": human_updates,
             "do_merge_to_db": do_merge_to_db,
             "dry_run_disambiguation": dry_run_disambiguation,
+            "updated_within_days": updated_within_days,
 
         },
     }
@@ -552,6 +562,7 @@ def run_full(
             "human_updates": human_updates,
             "do_merge_to_db": do_merge_to_db,
             "dry_run_disambiguation": dry_run_disambiguation,
+            "updated_within_days": updated_within_days,
         },
         "latest_execution": execution_record,
         "latest_executed_stages": executed_stages,

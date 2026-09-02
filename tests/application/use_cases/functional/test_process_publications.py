@@ -1,12 +1,21 @@
 import pytest
 from dotenv import load_dotenv
 load_dotenv()
-from application.use_cases.transformation.main import process_publications
+from application.use_cases.transformation.publications_processing import (
+    resolve_publications_for_page,
+)
 from infrastructure.config import PipelineConfig
+from infrastructure.db.repositories import from_config
 
 # These exercise the real publications collection: they look up each publication
 # and insert it if it isn't there yet. They need a live database and they WRITE
 # to it, so they are manual-only. Run with `pytest -m manual`.
+
+
+def _resolve_one(entry, source):
+    config = PipelineConfig.from_env()
+    repos = from_config(config)
+    return resolve_publications_for_page([entry], source, config, repos)[0]
 
 
 @pytest.mark.manual
@@ -65,8 +74,7 @@ def test_process_publications_with_publications_biotools():
         '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/commit/e2b685b10889a328a0d038d4fca92f5306a20736',
         '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/opeb-tools-importer/-/pipelines/120778'
     }
-    source = "biotools"
-    result = process_publications(entry, source, PipelineConfig.from_env())
+    result = _resolve_one(entry, "biotools")
     print(f"Resulting IDs: {result}")
     assert len(result) > 0
 
@@ -153,7 +161,6 @@ def test_process_publications_with_publications_bioconda_recipes():
         '@created_by': 'https://gitlab.bsc.es/inb/elixir/software-observatory/biconda-importer/-/commit/96e7639eab516a89f6a7ddece0252c16aef1491f',
         '@created_logs': 'https://gitlab.bsc.es/inb/elixir/software-observatory/biconda-importer/-/pipelines/120716'
     }
-    source = "bioconda_recipes"
-    result = process_publications(entry, source, PipelineConfig.from_env())
+    result = _resolve_one(entry, "bioconda_recipes")
     print(f"Resulting IDs: {result}")
     assert len(result) > 0

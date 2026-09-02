@@ -40,8 +40,9 @@ from infrastructure.external.url_checker import UrlProbe
 def _matches(document: Dict[str, Any], query: Dict[str, Any]) -> bool:
     """
     Enough of the MongoDB query language for the pipeline's actual queries:
-    dotted paths, `$or`, `$in`/`$nin`, `$exists`, and equality (which matches a
-    scalar against a list field, as MongoDB does).
+    dotted paths, `$or`, `$in`/`$nin`, `$exists`, range comparisons
+    (`$gte`/`$gt`/`$lte`/`$lt`), and equality (which matches a scalar against a
+    list field, as MongoDB does).
     """
     for key, condition in query.items():
         if key == "$or":
@@ -64,6 +65,18 @@ def _matches(document: Dict[str, Any], query: Dict[str, Any]) -> bool:
                         return False
                 elif operator == "$ne":
                     if value == operand:
+                        return False
+                elif operator == "$gte":
+                    if value is _MISSING or not (value >= operand):
+                        return False
+                elif operator == "$gt":
+                    if value is _MISSING or not (value > operand):
+                        return False
+                elif operator == "$lte":
+                    if value is _MISSING or not (value <= operand):
+                        return False
+                elif operator == "$lt":
+                    if value is _MISSING or not (value < operand):
                         return False
                 else:
                     raise NotImplementedError(f"FakeDatabaseAdapter: {operator}")

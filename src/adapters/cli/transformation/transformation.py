@@ -19,6 +19,7 @@ python src/adapters/cli/transformation/transformation.py -e .env -s all
 """
 import argparse
 import os
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from infrastructure.logging_config import resolve_level, setup_logging
 
@@ -59,6 +60,16 @@ def main():
         dest="sources"
     )
 
+    parser.add_argument(
+        "--updated-within-days",
+        type=int,
+        default=30,
+        dest="updated_within_days",
+        help=("Only transform raw entries whose @last_updated_at is within the last "
+              "N days (default: 30). Use 0 (or a negative value) for a full "
+              "re-transform of every entry."),
+    )
+
     args = parser.parse_args()
 
     # Load the environment variables ------------------------------------------
@@ -88,9 +99,22 @@ def main():
     
     logger.info(f"Sources to transform: {sources}")
 
+    # Compute the incremental cutoff here, at the CLI layer, so nothing below
+    # adapters/ has to deal with clocks or config. A non-positive window means
+    # "no date filter" -> full re-transform.
+    if args.updated_within_days > 0:
+        updated_since = datetime.now() - timedelta(days=args.updated_within_days)
+        logger.info(
+            f"Transforming entries updated since {updated_since.isoformat()} "
+            f"(last {args.updated_within_days} days)"
+        )
+    else:
+        updated_since = None
+        logger.info("Full re-transform (no date filter)")
+
     logger.info("Transforming raw data...")
 
-    transform_sources(sources=sources, config=config, repos=repos)
+    transform_sources(sources=sources, config=config, repos=repos, updated_since=updated_since)
 
     # Finish ------------------------------------------------------------------
     logger.info("Transformation finished!")

@@ -376,16 +376,22 @@ class MongoDBAdapter:
             f"Fetching paginated entries from collection {collection_name} with query: {query}"
         )
         collection = self.db[collection_name]
-        skip = 0
 
-        while True:
-            cursor = collection.find(query).skip(skip).limit(page_size)
-            documents = list(cursor)
-            if not documents:
-                break  # stops when no more documents are found
-
-            yield documents
-            skip += page_size  # moves to the next page
+        # Stream a single cursor and chunk it. The previous `.skip(n).limit()`
+        # re-scanned the first `n` matches on every page (quadratic over the
+        # result set); one forward cursor visits each document once.
+        cursor = collection.find(query, no_cursor_timeout=True).batch_size(page_size)
+        try:
+            page: list = []
+            for document in cursor:
+                page.append(document)
+                if len(page) == page_size:
+                    yield page
+                    page = []
+            if page:
+                yield page
+        finally:
+            cursor.close()
 
     @retry(
         retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),

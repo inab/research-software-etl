@@ -116,3 +116,44 @@ def test_update_tool_licenses_writes_back_only_what_changed(db):
     assert repos.tools.get_all()[0]["data"]["license"] == [
         {"name": "MIT", "url": "https://spdx.org/licenses/MIT.html"}
     ]
+
+
+def test_update_tool_licenses_flushes_every_batch(db, monkeypatch):
+    """All changed tools are written even when they span several write batches."""
+    for i in range(5):
+        db.insert_one("tools", {"_id": f"t{i}", "data": {"license": [{"name": "Expat"}]}})
+    repos = fake_repos(db, tools=True, license_mapping=True)
+
+    # Count how many round-trips the writes take.
+    calls = {"n": 0}
+    original = repos.tools.bulk_set_licenses
+
+    def counting(licenses_by_id):
+        calls["n"] += 1
+        return original(licenses_by_id)
+
+    monkeypatch.setattr(repos.tools, "bulk_set_licenses", counting)
+
+    summary = update_tool_licenses(repos, write_batch_size=2)
+
+    assert summary["updated"] == 5
+    # 5 changed tools at batch size 2 -> 3 flushes (2 + 2 + 1), not 5.
+    assert calls["n"] == 3
+    # Every tool ended up with the mapped MIT license.
+    for tool in repos.tools.get_all():
+        assert tool["data"]["license"] == [
+            {"name": "MIT", "url": "https://spdx.org/licenses/MIT.html"}
+        ]
+
+
+def test_bulk_set_licenses_only_touches_existing_tools(db):
+    db.insert_one("tools", {"_id": "t1", "data": {"license": [{"name": "old"}]}})
+    repos = fake_repos(db, tools=True)
+
+    repos.tools.bulk_set_licenses(
+        {"t1": [{"name": "MIT", "url": "u"}], "ghost": [{"name": "MIT"}]}
+    )
+
+    assert repos.tools.find_by_id("t1")["data"]["license"] == [{"name": "MIT", "url": "u"}]
+    # A tool that does not exist is not created (upsert=False).
+    assert repos.tools.find_by_id("ghost") is None
