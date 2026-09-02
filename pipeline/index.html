@@ -1,0 +1,1006 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ETL for extraction, transformation, and integration of research software metadata for FAIR assessment.">
+      
+      
+      
+        <link rel="canonical" href="https://inab.github.io/research-software-etl/pipeline/">
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../cli/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Main Pipeline Stages - Research Software Observatory - Data pipeline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../assets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pipeline-stages" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Research Software Observatory - Data pipeline" class="md-header__button md-logo" aria-label="Research Software Observatory - Data pipeline" data-md-component="logo">
+      
+  <img src="../static/OEB-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Research Software Observatory - Data pipeline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Main Pipeline Stages
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/inab/research-software-etl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    inab/research-software-etl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Research Software Observatory - Data pipeline" class="md-nav__button md-logo" aria-label="Research Software Observatory - Data pipeline" data-md-component="logo">
+      
+  <img src="../static/OEB-logo.png" alt="logo">
+
+    </a>
+    Research Software Observatory - Data pipeline
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/inab/research-software-etl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    inab/research-software-etl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation & Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Main Pipeline Stages
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Main Pipeline Stages
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-pipeline-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Main pipeline stages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-maintenance-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical maintenance workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical maintenance workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-run-with-possible-human-curation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard run with possible human curation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-automatic-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full automatic run
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resume-a-specific-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resume a specific run
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-only-one-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run only one stage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outputs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary outputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run artifacts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tool-identity-collection-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool identity &amp; collection promotion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unattended-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unattended scheduling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auxiliary-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auxiliary pipelines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Auxiliary pipelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publications-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publications enrichment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web availability
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-for-maintainers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes for maintainers
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="pipeline-stages">Pipeline Stages<a class="headerlink" href="#pipeline-stages" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <strong>Research Software Observatory – Data Pipeline</strong> orchestrates the consolidation, enrichment, and integration of software metadata into analysis-ready datasets consumed by the <a href="https://openebench.bsc.es/observatory/">Research Software Observatory</a>.</p>
+<p><img alt="Pipeline overview" src="../pipeline.png" /></p>
+<p align="center" style="font-size: 15px"><i>
+Overview of the main and auxiliary pipelines of the Research Software Observatory.  
+Raw data importers are external to this repository and act as upstream inputs.
+</i></p>
+
+<p>The pipeline operates downstream of independent importer processes, which periodically collect and normalize metadata from external registries such as <strong>bio.tools</strong>, <strong>Bioconda</strong>, <strong>Galaxy</strong>, and others. These importer components are maintained separately and populate the <em>raw data layer</em>, which serves as the entry point of this pipeline.</p>
+<p>The pipeline then performs:</p>
+<ul>
+<li><strong>Normalization and enrichment</strong> of software metadata  </li>
+<li><strong>Integration and disambiguation</strong> of duplicate records  </li>
+<li><strong>FAIRsoft score computation</strong> and statistics generation  </li>
+<li><strong>Auxiliary enrichments</strong> such as publications and service availability  </li>
+</ul>
+<hr />
+<h2 id="execution-model">Execution model<a class="headerlink" href="#execution-model" title="Permanent link">&para;</a></h2>
+<p>In normal maintenance work, the pipeline is usually executed in one of two ways:</p>
+<ol>
+<li><strong>Run the main pipeline until disambiguation</strong><br />
+   This is the usual option when new identity conflicts may require human review. The pipeline generates the intermediate files, performs automated disambiguation, and creates the outputs needed for manual annotation.</li>
+</ol>
+<p><code>bash
+   rsetl run --until disambiguation --tag &lt;TAG&gt;</code></p>
+<ol>
+<li><strong>Run the full pipeline</strong><br />
+   This is used when the data can be processed end-to-end, or when no manual curation round is expected.</li>
+</ol>
+<p><code>bash
+   rsetl run --tag &lt;TAG&gt;</code></p>
+<p>After human annotation has been completed and committed, the <strong>latest relevant run should be resumed from the <code>human_updates</code> stage</strong>. This reuses the existing run directory and applies the curator decisions before continuing with merge, statistics, and FAIRsoft scoring.</p>
+<pre><code class="language-bash">rsetl run --resume-run latest --from-stage human_updates
+</code></pre>
+<p>Alternatively, use the explicit run ID:</p>
+<pre><code class="language-bash">rsetl run --resume-run &lt;RUN_ID&gt; --from-stage human_updates
+</code></pre>
+<p>This is important because the human annotations correspond to the conflict files generated in that specific run. Starting a fresh run after annotation may produce different block or conflict identifiers and can make the annotations impossible to apply correctly.</p>
+<hr />
+<h2 id="main-pipeline-stages">Main pipeline stages<a class="headerlink" href="#main-pipeline-stages" title="Permanent link">&para;</a></h2>
+<p>The full pipeline is composed of the following stages, in execution order:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">Stage</th>
+<th style="text-align: left;">CLI Module / Script</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">External Services</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><strong>Transformation</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.transformation.transformation</code></td>
+<td style="text-align: left;">Loads and normalizes raw metadata from MongoDB sources.</td>
+<td style="text-align: left;">MongoDB</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><strong>License normalization</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.post_transformation.normalize_licenses</code></td>
+<td style="text-align: left;">Maps license information to standardized SPDX identifiers.</td>
+<td style="text-align: left;">MongoDB</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><strong>Grouping / blocking &amp; recovery</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.integration.group_and_recovery</code></td>
+<td style="text-align: left;">Groups records into candidate identity blocks using names and repository-like links.</td>
+<td style="text-align: left;">MongoDB</td>
+</tr>
+<tr>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;"><strong>Remove OEB metrics</strong></td>
+<td style="text-align: left;"><code>scripts/utils/remove_oeb_metrics.py</code></td>
+<td style="text-align: left;">Removes redundant OpenEBench metric entries to reduce noise and processing time.</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><strong>Conflict detection</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.integration.conflict_detection</code></td>
+<td style="text-align: left;">Identifies disconnected records within blocks as potential identity conflicts.</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;"><strong>Simplify blocks</strong></td>
+<td style="text-align: left;"><code>scripts/utils/simplify_grouped_entries.py</code></td>
+<td style="text-align: left;">Reduces block structure to the minimal representation needed downstream.</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;"><strong>JSON to JSONL conversion</strong></td>
+<td style="text-align: left;"><code>scripts/utils/json_to_jsonl.py</code></td>
+<td style="text-align: left;">Converts conflict and block files into JSONL format.</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><strong>Disambiguation</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.integration.disambiguation</code></td>
+<td style="text-align: left;">Resolves conflicts using heuristics and LLM-based agreement scoring. Can generate manual-review issues for unresolved cases.</td>
+<td style="text-align: left;">OpenRouter, Hugging Face, GitHub, GitLab</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><strong>Human updates</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.integration.update_disambiguation_after_human_resolution</code></td>
+<td style="text-align: left;">Integrates curator decisions from <code>human_annotations/</code> into the disambiguation output.</td>
+<td style="text-align: left;">Git</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><strong>Merge</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.integration.merge_entries</code></td>
+<td style="text-align: left;">Consolidates resolved records into unified software entries, carrying each tool's <code>_id</code> over from the previous run and promoting them into the live collection. See <a href="#tool-identity-collection-promotion">Tool identity &amp; collection promotion</a>.</td>
+<td style="text-align: left;">MongoDB</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><strong>FAIRsoft scoring</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.fair_scores</code></td>
+<td style="text-align: left;">Computes FAIRsoft indicators and scores for software entries.</td>
+<td style="text-align: left;">MongoDB</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><strong>Statistics</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.generate_stats</code></td>
+<td style="text-align: left;">Computes descriptive statistics for Observatory dashboards.</td>
+<td style="text-align: left;">MongoDB</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><strong>Similarity</strong></td>
+<td style="text-align: left;"><code>src.adapters.cli.similarity</code></td>
+<td style="text-align: left;">Embeds tool descriptions using <code>gte-modernbert-base</code> and precomputes the top-10 nearest neighbours per tool, stored in <code>similaritiesDev</code> to power "similar software" recommendations.</td>
+<td style="text-align: left;">MongoDB, HuggingFace (model download)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Stage order</p>
+<p>FAIRsoft scoring runs <strong>before</strong> statistics — the <code>STAGES</code> list in <code>src/adapters/cli/pipeline_full.py</code> is the source of truth (<code>… merge → fairsoft → stats → similarity</code>).</p>
+</div>
+<hr />
+<h2 id="practical-maintenance-workflow">Practical maintenance workflow<a class="headerlink" href="#practical-maintenance-workflow" title="Permanent link">&para;</a></h2>
+<h3 id="standard-run-with-possible-human-curation">Standard run with possible human curation<a class="headerlink" href="#standard-run-with-possible-human-curation" title="Permanent link">&para;</a></h3>
+<p>Use this when you expect some conflicts to require manual review.</p>
+<pre><code class="language-bash">rsetl run --until disambiguation --tag &lt;TAG&gt;
+</code></pre>
+<p>Then complete and commit the human annotations.</p>
+<p>Once annotation is finished, resume the same run:</p>
+<pre><code class="language-bash">rsetl run --resume-run latest --from-stage human_updates
+</code></pre>
+<p>This executes:</p>
+<ul>
+<li><code>human_updates</code></li>
+<li><code>merge</code></li>
+<li><code>fairsoft</code></li>
+<li><code>stats</code></li>
+<li><code>similarity</code></li>
+</ul>
+<p>unless one of those stages is skipped with a command-line option.</p>
+<h3 id="full-automatic-run">Full automatic run<a class="headerlink" href="#full-automatic-run" title="Permanent link">&para;</a></h3>
+<p>Use this when you want to execute the full pipeline in one pass.</p>
+<pre><code class="language-bash">rsetl run --tag &lt;TAG&gt;
+</code></pre>
+<h3 id="resume-a-specific-run">Resume a specific run<a class="headerlink" href="#resume-a-specific-run" title="Permanent link">&para;</a></h3>
+<p>Use this when the run to resume is not the latest one.</p>
+<pre><code class="language-bash">rsetl run --resume-run &lt;RUN_ID&gt; --from-stage human_updates
+</code></pre>
+<h3 id="run-only-one-stage">Run only one stage<a class="headerlink" href="#run-only-one-stage" title="Permanent link">&para;</a></h3>
+<p>Useful for debugging or recomputing a downstream step.</p>
+<pre><code class="language-bash">rsetl run --resume-run &lt;RUN_ID&gt; --only stats
+</code></pre>
+<hr />
+<h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
+<h3 id="primary-outputs">Primary outputs<a class="headerlink" href="#primary-outputs" title="Permanent link">&para;</a></h3>
+<p>The pipeline produces:</p>
+<ul>
+<li><strong>Merged software records</strong>, stored in MongoDB. The default target collection is <code>toolsDev</code>.</li>
+<li><strong>Precomputed metrics and FAIRsoft scores</strong>, stored in MongoDB. The default target collection is <code>computationsDev</code>.</li>
+<li><strong>Precomputed similarity scores</strong>, stored in MongoDB. The default target collection is <code>similaritiesDev</code>.</li>
+</ul>
+<p>All collection names are configurable via <code>PipelineConfig</code> (see <a href="../development/">Development Guide</a> and the environment overrides in the <a href="../cli/">CLI Reference</a>); the values above are the defaults.</p>
+<h3 id="run-artifacts">Run artifacts<a class="headerlink" href="#run-artifacts" title="Permanent link">&para;</a></h3>
+<p>Each execution generates a versioned run directory under:</p>
+<pre><code class="language-text">data/integration/runs/&lt;run_id&gt;/
+</code></pre>
+<p>Typical contents:</p>
+<pre><code class="language-text">├── grouped_entries.&lt;run_id&gt;.json
+├── grouped_entries.no_opeb_metrics.&lt;run_id&gt;.json
+├── conflicts.&lt;run_id&gt;.json
+├── grouped_entries.simplified.&lt;run_id&gt;.json
+├── conflicts.&lt;run_id&gt;.jsonl
+├── grouped_entries.simplified.&lt;run_id&gt;.jsonl
+├── disambiguation.&lt;run_id&gt;.jsonl
+└── manifest.json
+</code></pre>
+<p>A <code>latest</code> symlink points to the most recent run directory.</p>
+<p>The <code>manifest.json</code> file records:</p>
+<ul>
+<li>run ID and run directory  </li>
+<li>git short SHA  </li>
+<li>created and last-updated timestamps  </li>
+<li>paths to generated files  </li>
+<li>selected and executed stages  </li>
+<li>latest execution options  </li>
+<li>masked environment configuration  </li>
+<li>execution history for resumed runs  </li>
+</ul>
+<hr />
+<h2 id="tool-identity-collection-promotion">Tool identity &amp; collection promotion<a class="headerlink" href="#tool-identity-collection-promotion" title="Permanent link">&para;</a></h2>
+<p>A tool's <code>_id</code> must <strong>outlive the run that produced it</strong>: FAIR scores upsert on <code>computationsDev.createdFrom = [str(tool._id)]</code>, and the front-end looks tools up by <code>similaritiesDev.tool_id</code>. If merge minted a fresh <code>_id</code> every run, all of those references would go stale.</p>
+<p><strong>Identity carry-over.</strong> A tool's lineage is its <code>source</code> list — the pretools entries it was merged from. Each newly merged tool inherits the <code>_id</code> of the previous tool it shares the most lineage with. When several tools collapse into one, the <strong>oldest</strong> id survives; when one tool splits, the <strong>dominant</strong> successor keeps it. The assignment is pure and does not depend on iteration order (<code>src/application/services/integration/tool_identity.py</code>).</p>
+<p><strong>Staging and promotion.</strong> Because the new entries inherit from the live collection, merge cannot write into it directly. Instead:</p>
+<ol>
+<li>Merge builds into a <strong>staging</strong> collection (<code>toolsDev_next</code>).</li>
+<li><code>finalize_run</code> <strong>archives</strong> the live collection as <code>toolsDev_archive_&lt;run_id&gt;</code> and <strong>promotes</strong> staging in its place — two atomic renames.</li>
+<li>Archive retention keeps only the newest <code>tools_archive_keep</code> archives (default <code>2</code>, env <code>TOOLS_ARCHIVE_KEEP</code>) and drops the rest, so archives don't accumulate one per run.</li>
+</ol>
+<p>Use <code>--no-promote</code> on the merge stage to build staging <strong>without</strong> swapping it in. To reverse a promotion, run:</p>
+<pre><code class="language-bash">rsetl rollback &lt;run_id&gt;
+</code></pre>
+<p><strong>The number to watch</strong> is <code>contested</code>. The merge stage prints <code>preserved / new / retired / contested</code>; <code>contested</code> counts tools where the oldest ancestor won over one that shared more lineage. On a healthy run it should be near zero — if it isn't, the id-ordering in <code>tool_identity.py</code> deserves a second look.</p>
+<hr />
+<h2 id="unattended-scheduling">Unattended scheduling<a class="headerlink" href="#unattended-scheduling" title="Permanent link">&para;</a></h2>
+<p>The pipeline can run on a schedule via an optional APScheduler-based runner (<code>src/adapters/scheduler/</code>). Because stage 9 (<strong>human updates</strong>) requires curators to review GitHub issues and record decisions as Git annotations, automation uses a <strong>two-phase</strong> model:</p>
+<ul>
+<li><strong>Phase A — automated (on a fixed cadence).</strong> Stages 1–8, then 10–12; stage 9 is skipped and the last set of curator decisions already in the repo is used implicitly by merge. This is a single command:</li>
+</ul>
+<p><code>bash
+  rsetl run --no-human-updates</code></p>
+<ul>
+<li><strong>Phase B — curator-triggered.</strong> After curators close the open GitHub issues, apply their decisions and continue:</li>
+</ul>
+<p><code>bash
+  rsetl run --only human_updates
+  rsetl run --from-stage merge</code></p>
+<p>The scheduler runs two jobs, each with a configurable crontab string:</p>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Config field (env var)</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>full_pipeline</code> (Phase A)</td>
+<td><code>full_pipeline_cron</code> (<code>FULL_PIPELINE_CRON</code>)</td>
+<td><code>0 1 * * mon,thu</code> (twice weekly, 01:00 UTC)</td>
+</tr>
+<tr>
+<td><code>publication_enrichment</code></td>
+<td><code>publication_enrichment_cron</code> (<code>PUBLICATION_ENRICHMENT_CRON</code>)</td>
+<td><code>0 3 * * sun</code> (weekly, Sun 03:00 UTC)</td>
+</tr>
+</tbody>
+</table>
+<p>Both jobs register with <code>max_instances=1</code> (two runs must never overlap — they both promote into the live collection). See the <a href="../cli/#rsetl-scheduler">CLI Reference</a> for <code>rsetl scheduler start</code> / <code>run-now</code>.</p>
+<hr />
+<h2 id="auxiliary-pipelines">Auxiliary pipelines<a class="headerlink" href="#auxiliary-pipelines" title="Permanent link">&para;</a></h2>
+<p>Auxiliary pipelines run independently from the main integration workflow.</p>
+<h3 id="publications-enrichment">Publications enrichment<a class="headerlink" href="#publications-enrichment" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLI</td>
+<td><code>rsetl enrich-publications</code></td>
+</tr>
+<tr>
+<td>Module</td>
+<td><code>adapters.cli.enrich_publications</code></td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Enriches publication metadata, citation counts, and cited-by counts using Europe PMC.</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Updates the MongoDB publication collection, <code>publicationsMetadataDev</code> by default, and optionally writes a JSONL cache.</td>
+</tr>
+<tr>
+<td>External services</td>
+<td>Europe PMC API</td>
+</tr>
+</tbody>
+</table>
+<p>For each publication the enrichment fetches:</p>
+<ul>
+<li><strong>Metadata</strong> — title, abstract, authors, journal, year, PMID, and source identifier.</li>
+<li><strong><code>citations</code></strong> — publications that cite this paper, grouped by year, sourced from the Europe PMC <a href="https://europepmc.org/RestfulWebService"><code>/{source}/{id}/citations</code></a> endpoint.</li>
+<li><strong><code>citedBy</code></strong> — same dataset as <code>citations</code>, stored under a dedicated field for downstream consumers that distinguish between outgoing and incoming citation relationships.</li>
+</ul>
+<p>Both <code>citations</code> and <code>citedBy</code> are stored as a list with a single entry of the form:</p>
+<pre><code class="language-json">[
+  {
+    &quot;source&quot;: &quot;Europe PMC&quot;,
+    &quot;count&quot;: {
+      &quot;2020&quot;: 3,
+      &quot;2021&quot;: 7,
+      &quot;total&quot;: 10
+    }
+  }
+]
+</code></pre>
+<p>Examples:</p>
+<pre><code class="language-bash">rsetl enrich-publications --limit 100
+rsetl enrich-publications --progress-every 100
+rsetl enrich-publications --no-update-db
+rsetl enrich-publications --no-skip-existing-europe-pmc-citations
+</code></pre>
+<h3 id="web-availability">Web availability<a class="headerlink" href="#web-availability" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLI</td>
+<td><code>rsetl run-webavailability</code></td>
+</tr>
+<tr>
+<td>Module</td>
+<td><code>adapters.cli.web_availability</code></td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Checks availability of tool URLs and web services.</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Updates the MongoDB collection used for service availability dashboards.</td>
+</tr>
+<tr>
+<td>External services</td>
+<td>HTTP endpoints</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-bash">rsetl run-webavailability
+</code></pre>
+<hr />
+<h2 id="notes-for-maintainers">Notes for maintainers<a class="headerlink" href="#notes-for-maintainers" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The pipeline is stage-driven and resumable.</li>
+<li>Use <code>--until disambiguation</code> when a human annotation round is expected.</li>
+<li>After human annotation, resume the same run from <code>human_updates</code>; do not start a fresh run for the annotation integration step.</li>
+<li>Use <code>rsetl runs list</code> and <code>rsetl runs latest</code> to identify available runs.</li>
+<li>Use <code>--only</code> for targeted recomputation of individual stages.</li>
+<li>Use <code>--dry-run-disambiguation</code> to test the disambiguation stage without creating conflict files or GitHub issues.</li>
+<li>See <a href="../cli/">CLI Reference</a> for all available command-line options.</li>
+<li>See <a href="../development/">Development Guide</a> for extending or customizing stages.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "content.code.copy", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

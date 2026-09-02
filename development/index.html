@@ -1,0 +1,785 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ETL for extraction, transformation, and integration of research software metadata for FAIR assessment.">
+      
+      
+      
+        <link rel="canonical" href="https://inab.github.io/research-software-etl/development/">
+      
+      
+        <link rel="prev" href="../cli/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Development Guide - Research Software Observatory - Data pipeline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../assets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#development-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Research Software Observatory - Data pipeline" class="md-header__button md-logo" aria-label="Research Software Observatory - Data pipeline" data-md-component="logo">
+      
+  <img src="../static/OEB-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Research Software Observatory - Data pipeline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Development Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/inab/research-software-etl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    inab/research-software-etl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Research Software Observatory - Data pipeline" class="md-nav__button md-logo" aria-label="Research Software Observatory - Data pipeline" data-md-component="logo">
+      
+  <img src="../static/OEB-logo.png" alt="logo">
+
+    </a>
+    Research Software Observatory - Data pipeline
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/inab/research-software-etl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    inab/research-software-etl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation & Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Pipeline Stages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Development Guide
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Development Guide
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-concepts-stages-and-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Core concepts: Stages and Use Cases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Core concepts: Stages and Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Repository structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-the-code-is-organized" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. How the code is organized
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuration-and-dependency-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Configuration and dependency injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configuration and dependency injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-access-the-repositories-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database access — the Repositories bundle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-api-clients-the-externalclients-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      External API clients — the ExternalClients bundle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-databaseadapter-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      The DatabaseAdapter protocol
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-adding-or-modifying-stages-and-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Adding or modifying stages and use cases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Testing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-linting-formatting-type-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Linting / formatting / type checking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Logging
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-key-principles-for-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Key principles for contributors
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="development-guide">Development Guide<a class="headerlink" href="#development-guide" title="Permanent link">&para;</a></h1>
+<h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<p>This guide helps new contributors understand how the <strong>Research Software Observatory – Data Pipeline</strong> is organized and how to extend it safely.</p>
+<p>The codebase follows a <strong>clean architecture</strong> with four layers. Each layer knows <em>what</em> it needs but not <em>how</em> the layers beneath it are implemented, which keeps the code testable, reusable, and maintainable. Two rules are enforced automatically by <code>tests/test_architecture.py</code> — it fails the build if they are broken, so read it before working around it.</p>
+<hr />
+<h2 id="2-core-concepts-stages-and-use-cases">2. Core concepts: Stages and Use Cases<a class="headerlink" href="#2-core-concepts-stages-and-use-cases" title="Permanent link">&para;</a></h2>
+<h3 id="stages">Stages<a class="headerlink" href="#stages" title="Permanent link">&para;</a></h3>
+<p>A <strong>stage</strong> represents a major part of the workflow — transformation, grouping, disambiguation, merge, statistics, and so on. Each stage corresponds to a step in the end-to-end ETL process and can be executed independently through the CLI. The full ordered list lives in <code>STAGES</code> in <code>src/adapters/cli/pipeline_full.py</code>.</p>
+<h3 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<p>A <strong>use case</strong> is a coherent unit of work that defines how the system performs a specific operation. Within a stage, a use case represents a concrete way to execute that stage (for example, a heuristic-only vs. a model-assisted disambiguation run). Use cases define <em>what</em> happens and <em>in what order</em>, combining services and domain models, and can be composed into larger workflows.</p>
+<p>Use cases have clear inputs and outputs, avoid direct interaction with databases, APIs, environment variables, or CLI logic, and return structured results (file paths, counts, summaries).</p>
+<hr />
+<h2 id="3-repository-structure">3. Repository structure<a class="headerlink" href="#3-repository-structure" title="Permanent link">&para;</a></h2>
+<pre><code>├── src/
+│   ├── adapters/                       # The only layer that reads the environment
+│   │   ├── cli/
+│   │   │   ├── main.py                 # CLI dispatcher (argparse)
+│   │   │   ├── pipeline_full.py        # Full pipeline execution (run_full, STAGES)
+│   │   │   ├── pipeline_runs.py        # `rsetl runs` inspection commands
+│   │   │   ├── integration/            # Stage-specific CLI scripts
+│   │   │   ├── transformation/
+│   │   │   └── post_transformation/
+│   │   └── scheduler/                  # APScheduler jobs + runner
+│   │
+│   ├── application/
+│   │   ├── use_cases/                  # Workflows (how services combine)
+│   │   └── services/                   # Application services (domain logic + I/O)
+│   │
+│   ├── domain/
+│   │   ├── models/                     # Pydantic models (entities)
+│   │   └── repositories/               # Repository Protocols + the Repositories bundle
+│   │
+│   └── infrastructure/
+│       ├── config.py                   # PipelineConfig, Credentials, CIContext
+│       ├── db/
+│       │   ├── database_adapter.py     # DatabaseAdapter protocol
+│       │   ├── repositories.py         # from_config(): wires the concrete repos
+│       │   └── mongo/                  # Concrete MongoDB adapter + repositories
+│       ├── external/                   # HTTP/API clients (GitHub, OpenRouter, …)
+│       └── storage/                    # JSONL/JSON file I/O between stages
+│
+├── scripts/                            # One-off utilities (outside the arch rules)
+├── data/integration/runs/             # Versioned run outputs (git-ignored)
+├── docs/                               # MkDocs documentation
+└── tests/                              # Tests (mirror src/), incl. test_architecture.py
+</code></pre>
+<hr />
+<h2 id="4-how-the-code-is-organized">4. How the code is organized<a class="headerlink" href="#4-how-the-code-is-organized" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Role</th>
+<th>Location</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CLI adapters</strong></td>
+<td>Entry points: parse args, load <code>.env</code>, build config + bundles, call use cases.</td>
+<td><code>src/adapters/cli/</code></td>
+<td>Thin — no business logic. The <em>only</em> layer allowed to read the environment.</td>
+</tr>
+<tr>
+<td><strong>Use cases</strong></td>
+<td>Define <em>how</em> a workflow runs — the logic that connects services.</td>
+<td><code>src/application/use_cases/</code></td>
+<td>One coherent workflow per file; take a <code>Repositories</code> bundle.</td>
+</tr>
+<tr>
+<td><strong>Application services</strong></td>
+<td>The actual operations — grouping, conflict detection, scoring, merging.</td>
+<td><code>src/application/services/</code></td>
+<td>Each takes the narrow repository/client it needs.</td>
+</tr>
+<tr>
+<td><strong>Domain</strong></td>
+<td>Pydantic models and the repository <code>Protocol</code>s the application depends on.</td>
+<td><code>src/domain/models/</code>, <code>src/domain/repositories/</code></td>
+<td>No I/O; pure structure and interfaces.</td>
+</tr>
+<tr>
+<td><strong>Infrastructure</strong></td>
+<td>External connectivity: MongoDB adapter, concrete repositories, API clients.</td>
+<td><code>src/infrastructure/</code></td>
+<td>Driver types (pymongo, requests) stay here.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-configuration-and-dependency-injection">5. Configuration and dependency injection<a class="headerlink" href="#5-configuration-and-dependency-injection" title="Permanent link">&para;</a></h2>
+<p>Nothing below <code>adapters/</code> reads the environment. Configuration is read <strong>once at the CLI layer</strong> and passed down.</p>
+<ul>
+<li><strong><code>PipelineConfig</code></strong> (<code>src/infrastructure/config.py</code>) holds collection names and file paths. Built with <code>PipelineConfig.from_env(...)</code>. Adding a path or collection name means adding a field here — do <strong>not</strong> inline a literal.</li>
+<li><strong><code>Credentials</code></strong> is kept separate from <code>PipelineConfig</code> so tokens cannot ride along into logs or the run manifest; its <code>__repr__</code> is redacted.</li>
+</ul>
+<pre><code class="language-python">config = PipelineConfig.from_env(grouped_json_path=args.grouped_entries_file)
+grouping_and_recovery_process(config)
+</code></pre>
+<blockquote>
+<p>Do <strong>not</strong> add new <code>os.getenv</code> calls below <code>adapters/</code>. <code>tests/test_architecture.py</code> enforces this.</p>
+</blockquote>
+<h3 id="database-access-the-repositories-bundle">Database access — the <code>Repositories</code> bundle<a class="headerlink" href="#database-access-the-repositories-bundle" title="Permanent link">&para;</a></h3>
+<p>Application code never names a collection or calls a Mongo verb. It receives a <code>Repositories</code> bundle and asks a repository for what it wants:</p>
+<pre><code class="language-python">config = PipelineConfig.from_env(...)
+repos = Repositories.from_config(config)   # built once, at the CLI
+grouping_and_recovery_process(config, repos)
+</code></pre>
+<p><code>from_config</code> (in <code>src/infrastructure/db/repositories.py</code>) wires every repository — <code>alambique</code>, <code>pretools</code>, <code>tools</code>, <code>tools_staging</code>, <code>publications</code>, <code>license_mapping</code>, <code>computations</code>, <code>similarities</code>, <code>web_availability</code> — over one adapter.</p>
+<ul>
+<li>Repository <strong>Protocols</strong> live in <code>src/domain/repositories/</code> (one per repository plus the <code>Repositories</code> bundle in <code>bundle.py</code>). <code>application/</code> imports only these.</li>
+<li><strong>Concrete</strong> Mongo repositories live in <code>src/infrastructure/db/mongo/</code>. They satisfy the protocols <em>structurally</em> — they do <strong>not</strong> inherit from them.</li>
+<li>Use cases take the whole bundle; services take the one narrow repository they need, so a signature says exactly which collections it can touch.</li>
+<li>Need a new query? Add a method to the repository, not a raw call in <code>application/</code>. Need a new collection? Add a field to <code>PipelineConfig</code> and a slot to <code>Repositories</code>.</li>
+<li><code>pymongo</code>/<code>bson</code> must not be imported under <code>application/</code> — <code>tests/test_architecture.py</code> fails the build if they are.</li>
+</ul>
+<h3 id="external-api-clients-the-externalclients-bundle">External API clients — the <code>ExternalClients</code> bundle<a class="headerlink" href="#external-api-clients-the-externalclients-bundle" title="Permanent link">&para;</a></h3>
+<p>Every HTTP call the pipeline makes lives behind a client class in <code>src/infrastructure/external/</code> — not just the tokened ones. <code>ExternalClients.from_credentials(creds)</code> bundles them and the CLI threads that bundle down.</p>
+<ul>
+<li><strong>Tokened:</strong> <code>GitHubClient</code>, <code>GitLabClient</code>, <code>OpenRouterClient</code>, <code>HuggingFaceClient</code>.</li>
+<li><strong>Tokenless (still bundled, so tests can inject offline fakes):</strong> <code>UrlChecker</code>, <code>PyPIClient</code>, <code>SourceForgeClient</code>, <code>BitbucketClient</code>, <code>HeadlessBrowserFetcher</code>.</li>
+<li><strong>Built directly by the CLI that needs them:</strong> <code>EuropePmcClient</code>, <code>SemanticScholarClient</code>, <code>CrossrefClient</code>.</li>
+</ul>
+<blockquote>
+<p>No module under <code>application/</code> or <code>domain/</code> may read a token, build an <code>Authorization</code> header, or make an HTTP request. <code>tests/test_architecture.py</code> fails the build if <code>requests</code>, <code>httpx</code>, <code>playwright</code>, or <code>urllib.request</code> is imported there.</p>
+</blockquote>
+<h3 id="the-databaseadapter-protocol">The DatabaseAdapter protocol<a class="headerlink" href="#the-databaseadapter-protocol" title="Permanent link">&para;</a></h3>
+<p><code>DatabaseAdapter</code> (<code>src/infrastructure/db/database_adapter.py</code>) is a <code>Protocol</code>. The current backend is MongoDB (<code>src/infrastructure/db/mongo/mongo_adapter.py</code>), which satisfies it <strong>structurally</strong> — concrete adapters must <em>not</em> inherit from it. (It used to be inherited; because its method bodies are <code>pass</code>, a method the adapter forgot to implement returned <code>None</code> instead of raising.) To add a new backend, implement the same protocol under <code>src/infrastructure/db/</code> and wire it in <code>from_config</code>.</p>
+<hr />
+<h2 id="6-adding-or-modifying-stages-and-use-cases">6. Adding or modifying stages and use cases<a class="headerlink" href="#6-adding-or-modifying-stages-and-use-cases" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Define clear, self-contained use cases</strong> in <code>src/application/use_cases/&lt;name&gt;.py</code>. Accept dependencies explicitly (<code>config</code>, <code>repos</code>, <code>clients</code>, paths). Return structured results. No environment access, logging config, or printing.</li>
+<li><strong>Reuse and extend services</strong> in <code>src/application/services/</code>. One focused purpose each. If logic is shared across use cases, extract a helper service rather than duplicating it.</li>
+<li><strong>Use domain models</strong> from <code>src/domain/models/</code> (<code>PretoolsEntryModel</code>, <code>ToolEntryModel</code>, <code>PublicationEntryModel</code>) instead of raw dictionaries.</li>
+<li><strong>Interact with infrastructure through the bundles</strong> — a repository for persistence, a client for external systems. Never <code>requests</code>/pymongo directly in application code.</li>
+<li><strong>Expose functionality through CLI adapters</strong> in <code>src/adapters/cli/</code>. Handle argument parsing, <code>.env</code> loading, and bundle construction here, then call the use case.</li>
+</ul>
+<hr />
+<h2 id="7-testing">7. Testing<a class="headerlink" href="#7-testing" title="Permanent link">&para;</a></h2>
+<p><code>pytest</code> runs <strong>green offline</strong>: no MongoDB, no API keys, no network. Two rules keep it that way.</p>
+<ol>
+<li><strong>Inject fakes; don't patch.</strong> <code>tests/fakes.py</code> provides <code>FakeDatabaseAdapter</code> (in-memory), <code>fake_repos()</code>, <code>FakeGitHubClient</code>, and <code>fake_clients()</code>. Build a <code>Repositories</code>/<code>ExternalClients</code> out of fakes and pass it in. <code>fake_repos()</code> wires only the collections you ask for, so a use case reaching for one you didn't wire raises instead of appearing to work.</li>
+<li><strong>Patch targets must not be prefixed with <code>src.</code></strong> The package installs as <code>application.*</code>, so <code>monkeypatch.setattr("src.application...")</code> patches a <em>different</em> module object and silently patches nothing.</li>
+</ol>
+<pre><code class="language-bash">pytest                   # all tests (excludes @manual)
+pytest -m manual         # only manual tests (require full env setup)
+pytest --cov             # with coverage
+</code></pre>
+<p><code>@pytest.mark.manual</code> is a last resort for what genuinely cannot be faked (excluded by default). If you mark a test manual, you are choosing not to run it. Test modules are packages (<code>tests/**/__init__.py</code>) so same-named test files in different directories don't collide.</p>
+<p><code>tests/test_architecture.py</code> enforces the layering rules from §5 — read it before working around it.</p>
+<hr />
+<h2 id="8-linting-formatting-type-checking">8. Linting / formatting / type checking<a class="headerlink" href="#8-linting-formatting-type-checking" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">black src/ tests/        # format
+ruff check src/ tests/   # lint
+mypy src/                # type check
+</code></pre>
+<p>Install the dev extras first: <code>pip install -e ".[dev]"</code>.</p>
+<hr />
+<h2 id="9-logging">9. Logging<a class="headerlink" href="#9-logging" title="Permanent link">&para;</a></h2>
+<p>Use the shared logger for consistency:</p>
+<pre><code class="language-python">import logging
+logger = logging.getLogger(&quot;rs-etl-pipeline&quot;)
+</code></pre>
+<p>Logging is configured in <code>src/infrastructure/logging_config.py</code>. By default messages go to <strong>stdout</strong>; log persistence is delegated to the execution layer (shell redirection, orchestration frameworks, container logging):</p>
+<pre><code class="language-sh">rsetl run &gt; full.log 2&gt;&amp;1
+</code></pre>
+<hr />
+<h2 id="10-key-principles-for-contributors">10. Key principles for contributors<a class="headerlink" href="#10-key-principles-for-contributors" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Use cases define workflows (<em>what</em> happens); services define capabilities (<em>how</em>); adapters and clients define connections (<em>how services talk to real data</em>).</li>
+<li>Read config once at the CLI via <code>PipelineConfig.from_env()</code> and pass it down. No <code>os.getenv</code>, tokens, or HTTP below <code>adapters/</code>.</li>
+<li>Depend on the <code>Repositories</code> and <code>ExternalClients</code> bundles, never on concrete Mongo classes or <code>requests</code> directly.</li>
+<li>Keep use cases small and explicit — one file, one responsibility. Prefer clarity over abstraction.</li>
+<li>Keep the suite green offline: inject fakes, don't patch; never prefix patch targets with <code>src.</code>.</li>
+<li>When in doubt, look at existing stages like <strong>Disambiguation</strong> or <strong>Merge</strong> for examples.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "content.code.copy", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
