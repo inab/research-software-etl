@@ -89,7 +89,8 @@ class githubStandardizer(MetadataStandardizer):
             "authors" : cls.authors(data),
             "publications" : data['publication'],
             "topics" : data['topics'],
-            "license" : data['license']
+            "license" : data['license'],
+            "dependencies" : data.get('dependencies', [])
         }
         
         # We keep only the fields that pass the validation

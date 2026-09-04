@@ -1,9 +1,48 @@
+import hashlib
+import json
 import time
 import logging
 from functools import wraps
+from typing import Any
 from pydantic import ValidationError
 
 logger = logging.getLogger("rs-etl-pipeline")
+
+
+def _canonicalize(value: Any) -> Any:
+    """
+    Rewrite ``value`` into a form whose JSON serialization does not depend on
+    list order.
+
+    Merged tool ``data`` is built through pydantic validators that call
+    ``list(set(...))`` (``source_code``, ``description``, ...), so the order of
+    those lists is not stable from one run to the next even when the content is
+    identical. Sorting every list here makes the fingerprint order-insensitive:
+    it flips only when the *set* of values changes, not when they are shuffled.
+
+    The trade-off is that a change consisting solely of reordering a list (e.g.
+    which ``version`` is listed first) is not seen as a change. FAIR indicators
+    key on presence and counts rather than position, so this is acceptable.
+    """
+    if isinstance(value, dict):
+        return {key: _canonicalize(val) for key, val in value.items()}
+    if isinstance(value, list):
+        canon = [_canonicalize(item) for item in value]
+        return sorted(canon, key=lambda item: json.dumps(item, sort_keys=True, default=str))
+    return value
+
+
+def content_hash(data: dict) -> str:
+    """
+    A stable fingerprint of a record's ``data`` payload.
+
+    Two records with the same content produce the same hash regardless of
+    run-to-run list ordering, so a stage can tell whether a record actually
+    changed since the previous run. Pure: no clock, no database, no
+    iteration-order dependence.
+    """
+    payload = json.dumps(_canonicalize(data), sort_keys=True, default=str, ensure_ascii=False)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 # --------------------------------------------
 # Constants 

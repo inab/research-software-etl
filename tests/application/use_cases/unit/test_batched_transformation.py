@@ -63,6 +63,31 @@ def test_build_document_for_existing_entry_preserves_created_and_bumps_updated()
     assert doc["data"]["name"] == "fresh"
 
 
+def test_build_document_for_unchanged_entry_preserves_updated():
+    # Stored data is content-identical to the incoming standardized record;
+    # `last_updated_at` (and updated_*) must be left untouched.
+    stored_data = _software()
+    existing = {
+        "_id": "biotools/tool/cmd/1",
+        "created_at": "2020-01-01T00:00:00",
+        "created_by": "someone",
+        "created_logs": "created-log",
+        "last_updated_at": "2021-06-06T00:00:00",
+        "updated_by": "updater",
+        "updated_logs": "updated-log",
+        "source": [{"collection": "alambiqueDev", "id": "biotools/tool/cmd/1", "source_url": None}],
+        "data": stored_data,
+    }
+    raw = {"_id": "biotools/tool/cmd/1"}
+
+    doc = build_pretools_document("biotools/tool/cmd/1", _software(), raw, existing, CONFIG)
+
+    assert doc["created_at"] == "2020-01-01T00:00:00"        # preserved
+    assert doc["last_updated_at"] == "2021-06-06T00:00:00"   # NOT bumped
+    assert doc["updated_by"] == "updater"                    # preserved
+    assert doc["updated_logs"] == "updated-log"              # preserved
+
+
 # --------------------------------------------------------------------------- #
 # resolve_publications_for_page (batched)
 # --------------------------------------------------------------------------- #

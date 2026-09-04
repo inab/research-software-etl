@@ -17,46 +17,13 @@ branch below is exercised offline.
 
 from __future__ import annotations
 
-import hashlib
-import json
 from dataclasses import dataclass, field
 from typing import Any, Hashable, Iterable, Optional
 
-
-def _canonicalize(value: Any) -> Any:
-    """
-    Rewrite ``value`` into a form whose JSON serialization does not depend on
-    list order.
-
-    The merged tool ``data`` is built through pydantic validators that call
-    ``list(set(...))`` (``source_code``, ``description``, ...), so the order of
-    those lists is not stable from one run to the next even when the content is
-    identical. Sorting every list here makes the fingerprint order-insensitive:
-    it flips only when the *set* of values changes, not when they are shuffled.
-
-    The trade-off is that a change consisting solely of reordering a list (e.g.
-    which ``version`` is listed first) is not seen as a change. FAIR indicators
-    key on presence and counts rather than position, so this is acceptable.
-    """
-    if isinstance(value, dict):
-        return {key: _canonicalize(val) for key, val in value.items()}
-    if isinstance(value, list):
-        canon = [_canonicalize(item) for item in value]
-        return sorted(canon, key=lambda item: json.dumps(item, sort_keys=True, default=str))
-    return value
-
-
-def content_hash(data: dict) -> str:
-    """
-    A stable fingerprint of a tool's ``data`` payload.
-
-    Two merged tools with the same content produce the same hash regardless of
-    run-to-run list ordering, so merge can tell whether a tool actually changed
-    since the previous run. Pure: no clock, no database, no iteration-order
-    dependence.
-    """
-    payload = json.dumps(_canonicalize(data), sort_keys=True, default=str, ensure_ascii=False)
-    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+# The content fingerprint lives in ``shared.utils`` so stages other than merge
+# (e.g. transformation) can reuse it without importing from ``integration``.
+# Re-exported here because merge code and its tests import it from this module.
+from shared.utils import content_hash, _canonicalize  # noqa: F401
 
 
 @dataclass(frozen=True)

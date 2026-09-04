@@ -17,6 +17,7 @@ from application.services.transformation.standardizers_factory import MetadataSt
 from application.services.transformation.metadata import create_new_metadata, update_existing_metadata
 from domain.models.metadata import Metadata
 from infrastructure.config import PipelineConfig
+from shared.utils import content_hash
 
 
 logger = logging.getLogger("rs-etl-pipeline")
@@ -81,9 +82,11 @@ def build_pretools_document(
 
     ``existing_doc`` is the current pretools entry for this identifier (from a
     batched ``get_by_ids``) or ``None`` if there is none. When absent, fresh
-    metadata is created; when present, its ``created_*`` provenance is preserved
-    and the ``last_updated_*`` fields are bumped, matching the old per-entry
-    ``generate_metadata`` behaviour.
+    metadata is created. When present, its ``created_*`` provenance is always
+    preserved, and the ``last_updated_*`` fields are bumped **only if the
+    standardized ``data`` actually changed** -- compared by content fingerprint
+    against ``existing_doc['data']``. An unchanged re-transform keeps the stored
+    ``last_updated_at`` so the field marks the last real change, not the last run.
 
     The returned document carries no ``_id``/``id`` field: ``bulk_upsert`` writes
     it with ``$set`` and supplies ``_id`` through the query filter, so setting the
@@ -104,7 +107,13 @@ def build_pretools_document(
         # The Metadata model keys the id as `id`; the stored doc keys it `_id`.
         if '_id' in meta_fields:
             meta_fields['id'] = meta_fields.pop('_id')
-        metadata = update_existing_metadata(Metadata(**meta_fields), config.ci)
+
+        unchanged = content_hash(existing_doc.get('data')) == content_hash(software_metadata_dict)
+        if unchanged:
+            # Content is identical to what is stored: preserve last_updated_* as-is.
+            metadata = Metadata(**meta_fields)
+        else:
+            metadata = update_existing_metadata(Metadata(**meta_fields), config.ci)
 
     document = metadata.model_dump(mode="json")
     document.pop('id', None)
