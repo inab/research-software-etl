@@ -161,7 +161,7 @@ def compute_record_similarity(
         text=text,
         vector=target_vec.tolist(),
         model=model_name,
-        version=tool.get("timestamp"),
+        version=tool.get("last_updated_at") or tool.get("timestamp"),
     )
 
     similar, scores = neighbours_for_vector(

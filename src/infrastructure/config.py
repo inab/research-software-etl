@@ -87,6 +87,7 @@ class Credentials:
     gitlab_token: Optional[str] = None
     openrouter_api_key: Optional[str] = None
     huggingface_api_key: Optional[str] = None
+    observatory_admin_token: Optional[str] = None
 
     @classmethod
     def from_env(cls) -> "Credentials":
@@ -95,6 +96,7 @@ class Credentials:
             gitlab_token=os.getenv("GITLAB_TOKEN"),
             openrouter_api_key=os.getenv("OPENROUTER_API_KEY"),
             huggingface_api_key=os.getenv("HUGGINGFACE_API_KEY"),
+            observatory_admin_token=os.getenv("OBSERVATORY_ADMIN_TOKEN"),
         )
 
     def require(self, *names: str) -> "Credentials":
@@ -186,6 +188,12 @@ class PipelineConfig:
         "data/cache/publications_enrichment.jsonl"
     )
 
+    # --- Observatory API ---
+    # Base URL of the observatory API. Merge calls its admin reindex endpoint
+    # after promoting a run, so the freshly-built tools collection gets its
+    # search/filter indexes back before the API queries it.
+    observatory_api_url: str = "https://observatory.openebench.bsc.es/api"
+
     # --- Scheduler cadence ---
     # Standard 5-field crontab strings, parsed by CronTrigger.from_crontab().
     full_pipeline_cron: str = "0 1 * * mon,thu"  # twice weekly, 01:00 UTC
@@ -224,6 +232,9 @@ class PipelineConfig:
             embeddings_collection=os.getenv("EMBEDDINGS", "toolEmbeddingsDev"),
             web_availability_collection=os.getenv(
                 "MONGO_WEBAV_COLL", "webAvailabilityDev"
+            ),
+            observatory_api_url=os.getenv(
+                "OBSERVATORY_API_URL", "https://observatory.openebench.bsc.es/api"
             ),
             group_split_corrections_path=_env_path(
                 "GROUP_SPLIT_CORRECTIONS_FILE",

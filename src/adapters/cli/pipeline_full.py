@@ -18,7 +18,6 @@ class PipelineError(RuntimeError):
 
 STAGES = [
     "transformation",
-    "license-normalization",
     "grouping",
     "remove_opeb_metrics",
     "conflict_detection",
@@ -27,6 +26,14 @@ STAGES = [
     "disambiguation",
     "human_updates",
     "merge",
+    # License normalization must run *after* merge: it rewrites `data.license`
+    # in the live `tools` collection (SPDX mapping + dedup). Merge rebuilds that
+    # collection from `pretools` every run, so normalizing before merge (its old
+    # position, right after transformation) sanitized the *previous* run's tools
+    # only to have merge overwrite them again. See CLAUDE.md and the docstring in
+    # normalize_licenses.py -- the stage iterates `repos.tools`, never pretools.
+    "license-normalization",
+    "reindex",
     "fairsoft",
     "stats",
     "similarity",
@@ -141,6 +148,10 @@ def _resolve_selected_stages(
         selected.remove("human_updates")
     if not do_merge_to_db and "merge" in selected:
         selected.remove("merge")
+    # Reindex rebuilds the promoted collection's indexes; if merge is skipped
+    # nothing was promoted, so there is nothing to reindex.
+    if not do_merge_to_db and "reindex" in selected:
+        selected.remove("reindex")
 
     return selected
 
@@ -282,6 +293,12 @@ def run_full(
         do_merge_to_db=do_merge_to_db,
     )
 
+    # Reindex needs the admin token. Check it before any stage runs, so a missing
+    # token fails here rather than after merge has already promoted a collection
+    # whose indexes would then be left unbuilt.
+    if "reindex" in selected_stages:
+        _require_env(["OBSERVATORY_ADMIN_TOKEN"])
+
     if is_resume:
         _check_prerequisites_for_selected_stages(
             selected_stages,
@@ -319,14 +336,6 @@ def run_full(
             cwd=wd,
         )
         executed_stages.append("transformation")
-
-    if should_run("license-normalization"):
-        print("=== Stage: license-normalization ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
-        _run(
-            [python_exe, "-m", "src.adapters.cli.post_transformation.normalize_licenses"],
-            cwd=wd
-        )
 
     if should_run("grouping"):
         print("=== Stage: grouping ===")
@@ -486,6 +495,24 @@ def run_full(
             cwd=wd,
         )
         executed_stages.append("merge")
+
+    if should_run("license-normalization"):
+        print("=== Stage: license-normalization ===")
+        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _run(
+            [python_exe, "-m", "src.adapters.cli.post_transformation.normalize_licenses"],
+            cwd=wd
+        )
+        executed_stages.append("license-normalization")
+
+    if should_run("reindex"):
+        print("=== Stage: reindex ===")
+        _require_env(["OBSERVATORY_ADMIN_TOKEN"])
+        _run(
+            [python_exe, "-m", "src.adapters.cli.integration.reindex"],
+            cwd=wd,
+        )
+        executed_stages.append("reindex")
 
     if should_run("fairsoft"):
         print("=== Stage: fairsoft ===")

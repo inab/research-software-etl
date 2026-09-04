@@ -60,16 +60,30 @@ class ToolsRepository:
     def iter_lineage(self) -> Iterator[dict]:
         """
         Stream just enough of each tool to work out what it is: its id, the pretools
-        entries it came from, and when it first appeared.
+        entries it came from, when it first appeared (``created_at``), and its last
+        update time (``last_updated_at``) and content fingerprint (so merge can tell
+        whether the tool actually changed).
+
+        The old field names (``first_seen`` / ``timestamp``) are projected too, so a
+        collection written before the rename still hands its dates to
+        ``previous_tool_from_document`` on the first post-rename run.
 
         Deliberately projected. The merge stage only needs lineage to carry ids
-        forward, and pulling ~50k full tool documents to read three fields would
-        cost far more memory than the job needs.
+        forward, and pulling ~50k full tool documents to read a handful of fields
+        would cost far more memory than the job needs.
         """
         return self.db_adapter.find(
             self.collection_name,
             {},
-            projection={"_id": 1, "source": 1, "first_seen": 1, "timestamp": 1},
+            projection={
+                "_id": 1,
+                "source": 1,
+                "created_at": 1,
+                "last_updated_at": 1,
+                "first_seen": 1,
+                "timestamp": 1,
+                "content_hash": 1,
+            },
         )
 
     def for_collection(self, collection_name: str) -> "ToolsRepository":

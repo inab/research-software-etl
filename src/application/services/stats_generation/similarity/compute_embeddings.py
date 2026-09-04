@@ -179,7 +179,7 @@ def compute_similarities(
     ids = [str(t["_id"]) for t in tools]
     names = [t.get("data", {}).get("name", "") for t in tools]
     texts = [build_text(t.get("data", {})) for t in tools]
-    versions = [t.get("timestamp") for t in tools]
+    versions = [t.get("last_updated_at") or t.get("timestamp") for t in tools]
 
     empty_text_count = sum(1 for tx in texts if not tx)
     if empty_text_count:

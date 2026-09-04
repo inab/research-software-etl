@@ -78,8 +78,9 @@ src/
 8. **Disambiguation** — resolve conflicts via heuristics and LLM-assisted scoring; ambiguous cases create GitHub issues for curators
 9. **Human updates** (optional) — apply curator decisions stored as Git annotations
 10. **Merge** — produce the final tool entries, carrying each one's `_id` over from the run before, and promote them into the `tools` collection (see *Tool identity* below)
-11. **FAIRsoft scores** — calculate FAIR compliance metrics per tool
-12. **Statistics** — aggregate metrics for visualization
+11. **Reindex** — ask the observatory API to rebuild the `tools` collection's search/filter indexes. Merge promotes a freshly-built collection that has only its `_id` index, so `/search` is broken until this runs (see *Tool indexes* below). Skipped when merge is (`--no-merge`); coupled to it in `_resolve_selected_stages`
+12. **FAIRsoft scores** — calculate FAIR compliance metrics per tool (via the `fairsoft-core` engine). Incremental by default: `fair_scores` only scores tools whose `last_updated_at` falls within `--updated-within-days` (default 30), mirroring the transformation stage. `--updated-within-days 0` scores every tool. This works because merge only bumps a tool's `last_updated_at` when its content actually changed (see *Tool identity*)
+13. **Statistics** — aggregate metrics for visualization
 
 **Run management:** Each execution creates a timestamped directory under `data/integration/runs/<YYYYMMDDTHHMMSSZ-<git_sha>[-tag]>/` with a `manifest.json` tracking stage inputs, outputs, and completion state. `--resume-run` uses this manifest to skip completed stages. `data/integration/runs/latest` symlinks to the most recent run.
 
@@ -129,11 +130,17 @@ Use cases take the whole `Repositories` bundle; services take the one narrow rep
 
 A tool's `_id` must outlive the run that produced it: FAIR scores upsert on `computationsDev.createdFrom = [str(tool._id)]`, and the front-end looks tools up by `similaritiesDev.tool_id`. Merge used to insert documents with no `_id`, so MongoDB minted a new one every run and every one of those references went stale.
 
-A tool's lineage is its `source` list — the pretools entries it was merged from. Each newly merged tool inherits the `_id` of the previous tool it shares the most lineage with. Ordering (`previous.first_seen ASC, previous._id ASC, overlap DESC, block_key ASC`) makes two rules fall out: when several tools collapse into one, the **oldest** id survives; when one tool splits, the **dominant** successor keeps it. `assign_identities` is pure and total — no database, no dependence on iteration order.
+A tool's lineage is its `source` list — the pretools entries it was merged from. Each newly merged tool inherits the `_id` of the previous tool it shares the most lineage with. Ordering (`previous.created_at ASC, previous._id ASC, overlap DESC, block_key ASC`) makes two rules fall out: when several tools collapse into one, the **oldest** id survives; when one tool splits, the **dominant** successor keeps it. `assign_identities` is pure and total — no database, no dependence on iteration order.
+
+A tool document carries two timestamps named to match pretools: `created_at` (set once, when the tool first appears, and carried forward by every successor) and `last_updated_at` (the last merge that changed its content — see *Content fingerprint* below). These replaced the earlier `first_seen` / `timestamp` fields; `previous_tool_from_document` still reads the old names so a collection written before the rename carries its dates across the first post-rename run. The tool `source` field is lineage (a list of pretools ids), unrelated to pretools' own `source`.
 
 Merge therefore cannot write into the live collection: it is what the new entries inherit from. It builds into `tools_staging` (`toolsDev_next`), then `finalize_run` archives the live collection as `toolsDev_archive_<run_id>` and promotes staging in its place — two atomic renames. `rsetl rollback <run_id>` reverses it. Use `--no-promote` to build the staging collection without swapping it in.
 
 The merge stage prints `preserved / new / retired / contested`. **`contested` is the number to watch**: it counts tools where the oldest ancestor won over one that shared more lineage. If it is not near zero on a real run, the ordering above deserves a second look.
+
+**Content fingerprint (change detection).** A tool's update time used to be set to `now()` on every merge, so it was a "this run touched it" marker, not a "content changed" one — which made the FAIR stage (keyed on it) recompute every tool every run. Merge now stores a `content_hash` on each tool (`content_hash` in `tool_identity.py`: an order-insensitive fingerprint of `data`, because the merge validators call `list(set(...))` and list order is not stable run to run). When a merged tool's hash matches the ancestor it continues, it **keeps the ancestor's `last_updated_at`**; only genuinely changed tools get a fresh one. That is what makes incremental FAIR (above) correct. Caveat: the hash covers a tool's own `data` (including its publication id list), not the contents of the linked publication documents — a publication whose metadata changes without any change to the tool will not bump the tool's `last_updated_at`.
+
+**Tool indexes (the `reindex` stage).** Promotion renames the old `tools` collection to the archive (which *keeps* its indexes — `renameCollection` preserves them) and swaps in the staging collection merge built by plain inserts, so the live collection is left with only its `_id` index. That breaks the API's `/search` (`text index required for $text query`) and turns filtered searches into collection scans. The index *definitions* live in the API repo (they encode its query shapes and a collation that must match the search route), so the pipeline does not own them: the `reindex` stage (`adapters/cli/integration/reindex.py`) POSTs to the API's admin reindex endpoint via `ObservatoryApiClient`, and the API rebuilds them. It runs right after merge, and only when merge does (skipped under `--no-merge`). Rollback needs no reindex — it restores the archive, indexes and all. Two failure rules: a missing `OBSERVATORY_ADMIN_TOKEN` is checked *before* merge runs (in `run_full`) so a misconfig can't promote a collection it then can't reindex; an API call that fails at run time only *warns and exits 0*, because the collection is already live and the API re-ensures indexes on its next restart anyway.
 
 **External API clients (`src/infrastructure/external/`):**
 
@@ -141,7 +148,7 @@ The merge stage prints `preserved / new / retired / contested`. **`contested` is
 
 - Tokened, each holding its token as a constructor argument: `GitHubClient`, `GitLabClient`, `OpenRouterClient`, `HuggingFaceClient`.
 - Tokenless, bundled for the same reason — a service that owns a `requests.Session` cannot be run offline: `UrlChecker`, `PyPIClient`, `SourceForgeClient` (Cloudflare retry/backoff), `BitbucketClient`, `HeadlessBrowserFetcher` (Playwright).
-- Built directly by the CLI that needs them, not bundled: `EuropePmcClient`, `SemanticScholarClient`, `CrossrefClient` (its `mailto` is a CLI flag, not a credential).
+- Built directly by the CLI that needs them, not bundled: `EuropePmcClient`, `SemanticScholarClient`, `CrossrefClient` (its `mailto` is a CLI flag, not a credential), and `ObservatoryApiClient` (tokened with `OBSERVATORY_ADMIN_TOKEN`, used only by the `reindex` stage — see *Tool indexes* above).
 
 `UrlChecker` is the "is this URL reachable, and where does it end up?" seam: `probe()` (HEAD, falling back to GET) for the web-availability stage, `resolve_redirects()` for GitHub redirect resolution in conflict detection and for link enrichment. Those three each owned a `requests.Session` before, so none of them could run without a network.
 

@@ -10,12 +10,13 @@ from application.services.integration.tool_identity import (
     NewTool,
     PreviousTool,
     assign_identities,
+    content_hash,
     previous_tool_from_document,
 )
 
 
-def previous(tool_id, sources, first_seen="2024-01-01"):
-    return PreviousTool(tool_id=tool_id, sources=frozenset(sources), first_seen=first_seen)
+def previous(tool_id, sources, created_at="2024-01-01"):
+    return PreviousTool(tool_id=tool_id, sources=frozenset(sources), created_at=created_at)
 
 
 def new(key, sources):
@@ -62,8 +63,8 @@ def test_a_tool_with_no_shared_lineage_gets_no_ancestor():
 
 
 def test_when_two_tools_collapse_the_oldest_id_survives():
-    old = previous("OLD", ["a"], first_seen="2024-01-01")
-    young = previous("YOUNG", ["b", "c"], first_seen="2026-05-01")
+    old = previous("OLD", ["a"], created_at="2024-01-01")
+    young = previous("YOUNG", ["b", "c"], created_at="2026-05-01")
 
     result = assign_identities([new("x/cmd", ["a", "b", "c"])], [old, young])
 
@@ -97,9 +98,9 @@ def test_a_previous_id_is_inherited_at_most_once():
 
 def test_the_assignment_does_not_depend_on_input_order():
     previous_tools = [
-        previous("A", ["a", "b"], first_seen="2024-01-01"),
-        previous("B", ["c"], first_seen="2025-01-01"),
-        previous("C", ["d", "e"], first_seen="2023-01-01"),
+        previous("A", ["a", "b"], created_at="2024-01-01"),
+        previous("B", ["c"], created_at="2025-01-01"),
+        previous("C", ["d", "e"], created_at="2023-01-01"),
     ]
     new_tools = [
         new("x/cmd", ["a", "b", "c"]),
@@ -124,14 +125,45 @@ def test_the_assignment_does_not_depend_on_input_order():
         assert {k: p.tool_id for k, p in result.inherited.items()} == expected
 
 
-def test_first_seen_falls_back_to_timestamp_when_absent():
-    """Nothing carries first_seen before this feature ships."""
-    doc = {"_id": "A", "source": ["a"], "timestamp": "2025-03-01T00:00:00"}
+def test_created_at_falls_back_to_update_time_when_absent():
+    """A document with only an update time still sorts deterministically."""
+    doc = {"_id": "A", "source": ["a"], "last_updated_at": "2025-03-01T00:00:00"}
 
-    assert previous_tool_from_document(doc).first_seen == "2025-03-01T00:00:00"
+    assert previous_tool_from_document(doc).created_at == "2025-03-01T00:00:00"
 
 
-def test_first_seen_wins_over_timestamp_once_it_exists():
+def test_created_at_wins_over_update_time_once_it_exists():
+    doc = {
+        "_id": "A",
+        "source": ["a"],
+        "created_at": "2024-01-01T00:00:00",
+        "last_updated_at": "2026-07-01T00:00:00",
+    }
+
+    assert previous_tool_from_document(doc).created_at == "2024-01-01T00:00:00"
+
+
+def test_a_document_with_no_lineage_is_not_a_candidate():
+    assert previous_tool_from_document({"_id": "A", "source": []}) is None
+
+
+def test_previous_tool_reads_new_field_names():
+    doc = {
+        "_id": "A",
+        "source": ["a"],
+        "created_at": "2024-01-01T00:00:00",
+        "last_updated_at": "2026-07-01T00:00:00",
+        "content_hash": "deadbeef",
+    }
+
+    previous = previous_tool_from_document(doc)
+    assert previous.created_at == "2024-01-01T00:00:00"
+    assert previous.last_updated_at == "2026-07-01T00:00:00"
+    assert previous.content_hash == "deadbeef"
+
+
+def test_previous_tool_reads_pre_rename_field_names():
+    """A collection written before the rename still hands its dates across."""
     doc = {
         "_id": "A",
         "source": ["a"],
@@ -139,11 +171,49 @@ def test_first_seen_wins_over_timestamp_once_it_exists():
         "timestamp": "2026-07-01T00:00:00",
     }
 
-    assert previous_tool_from_document(doc).first_seen == "2024-01-01T00:00:00"
+    previous = previous_tool_from_document(doc)
+    assert previous.created_at == "2024-01-01T00:00:00"
+    assert previous.last_updated_at == "2026-07-01T00:00:00"
 
 
-def test_a_document_with_no_lineage_is_not_a_candidate():
-    assert previous_tool_from_document({"_id": "A", "source": []}) is None
+def test_previous_tool_defaults_update_time_and_hash_when_absent():
+    """Tools written before content hashing carry neither field."""
+    previous = previous_tool_from_document({"_id": "A", "source": ["a"]})
+
+    assert previous.last_updated_at == ""
+    assert previous.content_hash == ""
+
+
+class TestContentHash:
+    def test_identical_content_hashes_equal(self):
+        data = {"name": "trimal", "source_code": ["a", "b"]}
+
+        assert content_hash(data) == content_hash(dict(data))
+
+    def test_list_order_does_not_change_the_hash(self):
+        """
+        The merge validators call list(set(...)), so list order is not stable
+        run to run. The fingerprint must ignore it or it would flip constantly.
+        """
+        a = {"name": "trimal", "source_code": ["a", "b", "c"], "version": ["1", "2"]}
+        b = {"name": "trimal", "source_code": ["c", "a", "b"], "version": ["2", "1"]}
+
+        assert content_hash(a) == content_hash(b)
+
+    def test_nested_list_order_does_not_change_the_hash(self):
+        a = {"repository": [{"url": "x", "kind": "git"}, {"url": "y"}]}
+        b = {"repository": [{"url": "y"}, {"kind": "git", "url": "x"}]}
+
+        assert content_hash(a) == content_hash(b)
+
+    def test_a_real_content_change_changes_the_hash(self):
+        a = {"name": "trimal", "source_code": ["a", "b"]}
+        b = {"name": "trimal", "source_code": ["a", "b", "c"]}
+
+        assert content_hash(a) != content_hash(b)
+
+    def test_key_order_does_not_change_the_hash(self):
+        assert content_hash({"a": 1, "b": 2}) == content_hash({"b": 2, "a": 1})
 
 
 @pytest.mark.parametrize("total_new", [0, 5])

@@ -19,6 +19,7 @@ from application.services.integration.disambiguation.utils import load_dict_from
 from application.services.integration.tool_identity import (
     NewTool,
     assign_identities,
+    content_hash,
     previous_tool_from_document,
 )
 from domain.models.software_instance.multitype_instance import multitype_instance
@@ -102,7 +103,13 @@ def prepare_for_db(entry, entries_ids):
 
     db_entry = {
         'source': entries_ids,
-        "timestamp": datetime.now().isoformat()
+        # A fresh update time by default. `carry_identities_forward` rolls this
+        # back to the previous run's value when the content fingerprint below
+        # shows the tool did not actually change, so stages keyed on
+        # `last_updated_at` (FAIR scores) recompute only what moved. Named to
+        # mirror pretools (`created_at` / `last_updated_at`).
+        "last_updated_at": datetime.now().isoformat(),
+        "content_hash": content_hash(entry),
     }
 
     db_entry['data'] = entry
@@ -236,11 +243,23 @@ def carry_identities_forward(entries, repos: Repositories):
         ancestor = assignment.inherited.get(key)
         if ancestor is not None:
             document["_id"] = ancestor.tool_id
-            document["first_seen"] = ancestor.first_seen
+            document["created_at"] = ancestor.created_at
+            # A tool whose content matches the one it continues keeps that tool's
+            # update time. Downstream stages skip when `last_updated_at` is
+            # unchanged, so this is what stops every run from recomputing every
+            # tool. A fresh update time is kept only when the content actually
+            # moved (or when the ancestor predates content hashing, so its hash
+            # is empty).
+            if ancestor.content_hash and ancestor.content_hash == document.get("content_hash"):
+                document["last_updated_at"] = ancestor.last_updated_at
         else:
             # No ancestor: a genuinely new tool. Leave _id unset and let MongoDB
-            # mint one, exactly as it did before this feature existed.
-            document["first_seen"] = now
+            # mint one, exactly as it did before this feature existed. Stamp
+            # created_at and last_updated_at at the same instant -- a tool first
+            # seen now was also last updated now -- rather than leaving the
+            # marginally earlier time prepare_for_db set a moment before.
+            document["created_at"] = now
+            document["last_updated_at"] = now
 
     return assignment
 

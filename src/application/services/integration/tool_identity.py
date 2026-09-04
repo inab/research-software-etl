@@ -17,8 +17,46 @@ branch below is exercised offline.
 
 from __future__ import annotations
 
+import hashlib
+import json
 from dataclasses import dataclass, field
 from typing import Any, Hashable, Iterable, Optional
+
+
+def _canonicalize(value: Any) -> Any:
+    """
+    Rewrite ``value`` into a form whose JSON serialization does not depend on
+    list order.
+
+    The merged tool ``data`` is built through pydantic validators that call
+    ``list(set(...))`` (``source_code``, ``description``, ...), so the order of
+    those lists is not stable from one run to the next even when the content is
+    identical. Sorting every list here makes the fingerprint order-insensitive:
+    it flips only when the *set* of values changes, not when they are shuffled.
+
+    The trade-off is that a change consisting solely of reordering a list (e.g.
+    which ``version`` is listed first) is not seen as a change. FAIR indicators
+    key on presence and counts rather than position, so this is acceptable.
+    """
+    if isinstance(value, dict):
+        return {key: _canonicalize(val) for key, val in value.items()}
+    if isinstance(value, list):
+        canon = [_canonicalize(item) for item in value]
+        return sorted(canon, key=lambda item: json.dumps(item, sort_keys=True, default=str))
+    return value
+
+
+def content_hash(data: dict) -> str:
+    """
+    A stable fingerprint of a tool's ``data`` payload.
+
+    Two merged tools with the same content produce the same hash regardless of
+    run-to-run list ordering, so merge can tell whether a tool actually changed
+    since the previous run. Pure: no clock, no database, no iteration-order
+    dependence.
+    """
+    payload = json.dumps(_canonicalize(data), sort_keys=True, default=str, ensure_ascii=False)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
 @dataclass(frozen=True)
@@ -27,7 +65,14 @@ class PreviousTool:
 
     tool_id: Any
     sources: frozenset[str]
-    first_seen: str
+    # When the tool first appeared (mirrors pretools' `created_at`).
+    created_at: str
+    # The last merge that changed the tool's content and its content fingerprint
+    # (mirrors pretools' `last_updated_at`). Both default to empty so a first run
+    # -- whose tools predate this feature -- reads as "no known content", which
+    # forces a fresh timestamp and a recompute downstream.
+    last_updated_at: str = ""
+    content_hash: str = ""
 
 
 @dataclass(frozen=True)
@@ -68,7 +113,7 @@ def _sort_key(edge: tuple[NewTool, PreviousTool, int]) -> tuple:
     #
     # `str(previous.tool_id)` and the block key make the order total: the result
     # must not depend on dict or cursor iteration order.
-    return (previous.first_seen, str(previous.tool_id), -overlap, new.key)
+    return (previous.created_at, str(previous.tool_id), -overlap, new.key)
 
 
 def assign_identities(
@@ -144,17 +189,29 @@ def previous_tool_from_document(document: dict) -> Optional[PreviousTool]:
     """
     Read a tool document from the live collection as a lineage record.
 
-    ``first_seen`` did not exist before this feature, so fall back to ``timestamp``
-    -- the merge time of the run that last wrote the document. On the first run
-    that is uniform across the collection, which simply means the oldest-wins
-    ordering has nothing to bite on yet and overlap decides. From the second run
-    onward ``first_seen`` is real.
+    The timestamp fields were renamed to mirror pretools (``first_seen`` ->
+    ``created_at``, ``timestamp`` -> ``last_updated_at``), so both names are read
+    here: a live collection written before the rename still carries the old ones,
+    and this is what lets identities carry across that first post-rename run.
+    ``created_at`` further falls back to the update time, so a document with no
+    creation date at all still sorts deterministically (oldest-wins simply has
+    nothing to bite on until real creation dates exist).
     """
     sources = document.get("source") or []
     if not sources:
         return None
+    created_at = (
+        document.get("created_at")
+        or document.get("first_seen")
+        or document.get("last_updated_at")
+        or document.get("timestamp")
+        or ""
+    )
+    last_updated_at = document.get("last_updated_at") or document.get("timestamp") or ""
     return PreviousTool(
         tool_id=document["_id"],
         sources=frozenset(sources),
-        first_seen=document.get("first_seen") or document.get("timestamp") or "",
+        created_at=created_at,
+        last_updated_at=last_updated_at,
+        content_hash=document.get("content_hash") or "",
     )

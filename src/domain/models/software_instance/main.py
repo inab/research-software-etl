@@ -191,7 +191,7 @@ class instance(BaseModel, validate_assignment=True):
     documentation : List[documentation_item] = Field([],
                                                     title="Documentation",
                                                     description="List of documentation items of the software.")
-    license : Optional[List[license_item]] = Field([],
+    license : List[license_item] = Field(default_factory=list,
                                                     title="License",
                                                     description="List of licenses of the software.")
     termsUse : bool = Field(False,
@@ -215,7 +215,7 @@ class instance(BaseModel, validate_assignment=True):
                                 title="Languages",
                                 description="List of programming languages of the software.",
                                 example=["R", "Rebol"])
-    citation: Optional[List[dict]] = Field([],
+    citation: List[dict] = Field(default_factory=list,
                                 title="Citation",
                                 description="How to cite the software.")
     
@@ -380,32 +380,40 @@ class instance(BaseModel, validate_assignment=True):
 
     @field_validator('license', mode="before")
     @classmethod
-    def remove_empty_name_and_url(cls, value) -> List[str]:
+    def coerce_and_clean_license(cls, value) -> list:
         '''
-        Removes empty name and url from the license.
-        '''
-        # logging.info(f"-- Validating license: {value}")
-        
-        new_licenses = []
-        if isinstance(value, List):
-            for item in value:
-                if isinstance(item, dict):
-                    if item.get('name') and item.get('url'):
-                        new_licenses.append(item)
-        
-        return value
+        Coerce a null license into an empty list and drop items that carry
+        neither a name nor a url.
 
-    @field_validator('license', mode="after")
-    @classmethod
-    def split_license(cls, value) -> List[str]:
-        '''
-        Splits the license string.
+        A source that omits the license key (e.g. bioconda_recipes, whose
+        transformer returns None when `about.license` is absent) passes None
+        here. Without this coercion a null would ride through into the tools
+        collection, where the observatory API's /initial-search iterates
+        `tool['license']` and crashes with `'NoneType' object is not iterable`.
         '''
         # logging.info(f"-- Validating license: {value}")
-        if isinstance(value, List):
-            for item in value:
-                if isinstance(item, str):
-                    if "|" in item:
-                        value.remove(item)
-                        value.extend(item.split("|"))
+        if value is None:
+            return []
+        if not isinstance(value, list):
+            return value
+
+        cleaned = []
+        for item in value:
+            if isinstance(item, dict):
+                if item.get('name') or item.get('url'):
+                    cleaned.append(item)
+            else:
+                cleaned.append(item)
+        return cleaned
+
+    @field_validator('citation', mode="before")
+    @classmethod
+    def coerce_null_citation(cls, value) -> list:
+        '''
+        Coerce a null citation into an empty list -- same null hazard as
+        `license`: any consumer that iterates `tool['citation']` would crash
+        on a None that reached the tools collection.
+        '''
+        if value is None:
+            return []
         return value

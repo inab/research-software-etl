@@ -26,16 +26,26 @@ def utc_now_iso():
     return datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def build_tools_query(tag_or_tools: str) -> dict:
+def build_tools_query(tag_or_tools: str, updated_since: str | None = None) -> dict:
     """
     tag_or_tools:
       - "tools" => all tools
       - otherwise => filter tools whose data.tags contains tag_or_tools
-    """
-    if tag_or_tools == "tools":
-        return {}
 
-    return {"data.tags": tag_or_tools}
+    updated_since:
+      - an ISO-8601 string => only tools whose ``last_updated_at`` is on or after
+        it. A tool's ``last_updated_at`` is bumped by merge only when its content
+        actually changed, so this skips tools that have not moved since the cutoff
+        without even fetching them. ``None`` scores every matching tool.
+    """
+    query: dict = {} if tag_or_tools == "tools" else {"data.tags": tag_or_tools}
+
+    if updated_since:
+        # Tool update times are stored as ISO-8601 strings; lexicographic $gte over
+        # that fixed-width format is a chronological comparison.
+        query["last_updated_at"] = {"$gte": updated_since}
+
+    return query
 
 
 def score_one_tool(repos: Repositories, entry: dict, force: bool = False) -> str:
@@ -47,16 +57,18 @@ def score_one_tool(repos: Repositories, entry: dict, force: bool = False) -> str
     skip/compute/upsert rules.
     """
     entry_id = str(entry.get("_id"))
-    tool_ts = entry.get("timestamp")
+    # `last_updated_at` is the tool's content-change time; fall back to the old
+    # `timestamp` name for tools written before the rename.
+    tool_ts = entry.get("last_updated_at") or entry.get("timestamp")
 
     if not entry_id or tool_ts is None:
         print(
-            f"[SKIP] Missing _id or timestamp: "
-            f"_id={entry.get('_id')} timestamp={tool_ts}"
+            f"[SKIP] Missing _id or last_updated_at: "
+            f"_id={entry.get('_id')} last_updated_at={tool_ts}"
         )
         return "skipped"
 
-    # 1) Check if score exists and is up-to-date for this tool timestamp
+    # 1) Check if score exists and is up-to-date for this tool's update time
     match = {
         "variable": VARIABLE,
         "createdFrom": [ entry_id ],
@@ -82,7 +94,7 @@ def score_one_tool(repos: Repositories, entry: dict, force: bool = False) -> str
         doc = {
             "variable": VARIABLE,
             "createdFrom": [ entry_id ],
-            "version": tool_ts,  # tool record timestamp = "computed-for"
+            "version": tool_ts,  # tool's last_updated_at = "computed-for"
             "createdAt": utc_now_iso(),  # computation time
             "data": result,
             "tags": entry.get("data", {}).get("tags", []),
@@ -105,8 +117,9 @@ def add_fair_scores(
     tag_or_tools: str = "tools",
     limit: int | None = None,
     force: bool = False,
+    updated_since: str | None = None,
 ):
-    tools = repos.tools.find(build_tools_query(tag_or_tools))
+    tools = repos.tools.find(build_tools_query(tag_or_tools, updated_since))
 
     processed = 0
     skipped = 0

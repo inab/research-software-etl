@@ -104,6 +104,10 @@ def ids_by_name(repos) -> dict:
     return {entry["data"]["name"]: entry["_id"] for entry in repos.tools.get_all()}
 
 
+def timestamps_by_name(repos) -> dict:
+    return {entry["data"]["name"]: entry["last_updated_at"] for entry in repos.tools.get_all()}
+
+
 def merge_and_promote(tmp_path, repos, config, spec, run_id):
     summary = merge_and_save_blocks(blocks(tmp_path, spec), repos)
     finalize_run(run_id, config, repos)
@@ -121,6 +125,43 @@ def test_an_unchanged_run_preserves_every_id(tmp_path, repos, config, first_run)
 
     assert ids_by_name(repos) == first_run
     assert summary["identities"] == {"preserved": 2, "new": 0, "retired": 0, "contested": 0}
+
+
+def test_an_unchanged_tool_keeps_its_timestamp(tmp_path, repos, config, first_run):
+    """
+    A tool whose content did not change keeps the previous run's timestamp, so the
+    FAIR stage -- which skips when the stored score's version matches the tool
+    timestamp -- does not recompute it. This is the whole point of hashing content.
+    """
+    before = timestamps_by_name(repos)
+
+    merge_and_promote(
+        tmp_path,
+        repos,
+        config,
+        {"abyss/cmd": [ABYSS, ABYSS_BIOTOOLS], "spades/cmd": [SPADES]},
+        "run-2",
+    )
+
+    assert timestamps_by_name(repos) == before, "no content change, no new timestamp"
+
+
+def test_a_changed_tool_bumps_its_timestamp(tmp_path, repos, config, first_run):
+    """Adding a release changes abyss's merged content, so its timestamp moves;
+    spades is untouched and keeps its timestamp."""
+    before = timestamps_by_name(repos)
+
+    merge_and_promote(
+        tmp_path,
+        repos,
+        config,
+        {"abyss/cmd": [ABYSS, ABYSS_BIOTOOLS, ABYSS_V3], "spades/cmd": [SPADES]},
+        "run-2",
+    )
+
+    after = timestamps_by_name(repos)
+    assert after["abyss"] > before["abyss"], "changed content gets a fresh timestamp"
+    assert after["spades"] == before["spades"], "unchanged tool keeps its timestamp"
 
 
 def test_an_id_survives_a_new_release_joining_its_group(tmp_path, repos, config, first_run):
@@ -179,8 +220,8 @@ def test_a_tool_that_disappears_retires_its_id(tmp_path, repos, config, first_ru
     assert summary["identities"] == {"preserved": 1, "new": 0, "retired": 1, "contested": 0}
 
 
-def test_first_seen_is_set_once_and_carried_forward(tmp_path, repos, config, first_run):
-    original = {e["_id"]: e["first_seen"] for e in repos.tools.get_all()}
+def test_created_at_is_set_once_and_carried_forward(tmp_path, repos, config, first_run):
+    original = {e["_id"]: e["created_at"] for e in repos.tools.get_all()}
 
     merge_and_promote(
         tmp_path,
@@ -191,8 +232,8 @@ def test_first_seen_is_set_once_and_carried_forward(tmp_path, repos, config, fir
     )
 
     for entry in repos.tools.get_all():
-        assert entry["first_seen"] == original[entry["_id"]], "first_seen is never rewritten"
-        assert entry["timestamp"] >= entry["first_seen"], "timestamp tracks the latest run"
+        assert entry["created_at"] == original[entry["_id"]], "created_at is never rewritten"
+        assert entry["last_updated_at"] >= entry["created_at"], "update time tracks the latest run"
 
 
 def test_promotion_archives_the_collection_it_replaces(tmp_path, repos, db, config, first_run):
