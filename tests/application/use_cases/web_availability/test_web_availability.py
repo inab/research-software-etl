@@ -21,8 +21,15 @@ from application.use_cases.web_availability.update_web_availability import (
 from tests.fakes import FakeDatabaseAdapter, FakeUrlChecker, fake_repos
 
 
-def tool(identifier, types, webpages):
-    return {"_id": identifier, "data": {"type": types, "webpage": webpages}}
+def tool(identifier, types, webpages, documentation=None):
+    data = {"type": types, "webpage": webpages}
+    if documentation is not None:
+        data["documentation"] = documentation
+    return {"_id": identifier, "data": data}
+
+
+def doc(url, doc_type="general", content=None):
+    return {"type": doc_type, "url": url, "content": content}
 
 
 def monitored(url, availability=None):
@@ -79,8 +86,13 @@ def test_appends_one_reading_per_relevant_url(checker):
 
 
 def test_keeps_only_the_last_keep_days_readings(checker):
-    old = [{"date": f"2026-0{n}-01T00:00:00Z", "code": 200, "access_time": 0.1} for n in (1, 2, 3)]
-    db = FakeDatabaseAdapter({"webavailability": [monitored("https://a.org", old)], "tools": []})
+    old = [
+        {"date": f"2026-0{n}-01T00:00:00Z", "code": 200, "access_time": 0.1}
+        for n in (1, 2, 3)
+    ]
+    db = FakeDatabaseAdapter(
+        {"webavailability": [monitored("https://a.org", old)], "tools": []}
+    )
 
     run_update_web_availability(
         WebAvailabilityConfig(keep_days=2), repos=build(db), url_checker=checker
@@ -129,15 +141,102 @@ def test_tracks_the_webpages_of_relevant_tools(checker):
     assert db.fetch_entry("webavailability", "https://cmd.org") is None
 
 
+# --- documentation URLs: monitored for every tool, any type ------------------------
+
+
+def test_tracks_documentation_of_a_non_deployable_tool(checker):
+    """A command-line tool has no webpage worth monitoring, but its documentation
+    still rots -- so its doc URL is tracked while its webpage is not."""
+    db = FakeDatabaseAdapter(
+        {
+            "webavailability": [],
+            "tools": [
+                tool("t1", ["cmd"], ["https://cmd.org"], [doc("https://docs.org")]),
+            ],
+        }
+    )
+    repos = build(db)
+
+    result = run_update_web_availability(WebAvailabilityConfig(), repos, checker)
+
+    assert result.tools_unique_urls == 1
+    tracked = db.fetch_entry("webavailability", "https://docs.org")
+    assert tracked["is_relevant"] is True
+    # The webpage of a cmd tool is not monitored.
+    assert db.fetch_entry("webavailability", "https://cmd.org") is None
+
+
+def test_content_only_documentation_contributes_no_url(checker):
+    """A ``help`` item carries only inline content (url=None): nothing to probe."""
+    db = FakeDatabaseAdapter(
+        {
+            "webavailability": [],
+            "tools": [
+                tool(
+                    "t1",
+                    ["cmd"],
+                    ["https://cmd.org"],
+                    [doc(None, doc_type="help", content="run --help")],
+                ),
+            ],
+        }
+    )
+    repos = build(db)
+
+    result = run_update_web_availability(WebAvailabilityConfig(), repos, checker)
+
+    assert result.tools_unique_urls == 0
+
+
+def test_downloadable_documentation_url_is_tracked(checker):
+    """Unlike webpages, doc URLs are not stripped by file extension: a PDF manual's
+    reachability is worth checking too."""
+    db = FakeDatabaseAdapter(
+        {
+            "webavailability": [],
+            "tools": [tool("t1", ["cmd"], [], [doc("https://x.org/manual.pdf")])],
+        }
+    )
+    repos = build(db)
+
+    result = run_update_web_availability(WebAvailabilityConfig(), repos, checker)
+
+    assert result.tools_unique_urls == 1
+    assert db.fetch_entry("webavailability", "https://x.org/manual.pdf") is not None
+
+
+def test_url_that_is_both_webpage_and_documentation_is_deduplicated(checker):
+    db = FakeDatabaseAdapter(
+        {
+            "webavailability": [],
+            "tools": [
+                tool("t1", ["web"], ["https://both.org"], [doc("https://both.org")])
+            ],
+        }
+    )
+    repos = build(db)
+
+    result = run_update_web_availability(WebAvailabilityConfig(), repos, checker)
+
+    assert result.tools_unique_urls == 1
+    assert result.inserted_missing_urls == 1
+
+
 def test_flags_a_url_an_earlier_process_created(checker):
     """
     The collection was seeded from a broader dataset. A URL already sitting there
     unflagged must get tagged -- otherwise step 1 never picks it up and it is
     monitored by nobody.
     """
-    stale = {"_id": "https://old.org", "data": {"url": "https://old.org", "availability": []}}
+    stale = {
+        "_id": "https://old.org",
+        "data": {"url": "https://old.org", "availability": []},
+    }
     db = FakeDatabaseAdapter(
-        {"webavailability": [stale], "tools": [tool("t1", ["rest"], ["https://old.org"])]}
+        {
+            "webavailability": [stale],
+            "tools": [tool("t1", ["rest"], ["https://old.org"])],
+        }
     )
     repos = build(db)
 
@@ -160,7 +259,9 @@ def test_dry_run_writes_nothing(checker):
     )
 
     assert result.processed_existing_urls == 1  # it still reports what it *would* do
-    assert db.fetch_entry("webavailability", "https://a.org")["data"]["availability"] == []
+    assert (
+        db.fetch_entry("webavailability", "https://a.org")["data"]["availability"] == []
+    )
     assert db.fetch_entry("webavailability", "https://new.org") is None
 
 

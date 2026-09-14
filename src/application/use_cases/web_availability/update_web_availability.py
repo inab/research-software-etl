@@ -76,22 +76,46 @@ def _tool_is_relevant(types_value: Any) -> bool:
     return any(isinstance(t, str) and t in RELEVANT_TYPES for t in types_value)
 
 
-def _relevant_tool_urls(repos: Repositories, cfg: WebAvailabilityConfig) -> Set[str]:
-    """Every webpage of every tool whose type makes it worth monitoring."""
-    urls: Set[str] = set()
-    for tool in repos.tools.iter_projected(
-        query={},
-        projection={"data.type": 1, "data.webpage": 1},
-        limit=cfg.limit_tools,
-        batch_size=cfg.batch_size,
-    ):
-        data = tool.get("data") or {}
-        if not _tool_is_relevant(data.get("type")):
-            continue
+def _documentation_urls(data: Dict[str, Any]) -> Set[str]:
+    """Every non-null http(s) documentation URL of a tool, any tool type.
 
+    Unlike webpages, documentation is monitored for *every* tool -- a library or
+    command-line tool has docs worth checking even though it has no service to
+    reach. Items carry an optional/nullable ``url`` (e.g. toolshed ``help`` items
+    are content-only), so null and non-http urls are skipped.
+    """
+    docs = data.get("documentation")
+    if not isinstance(docs, list):
+        return set()
+    urls: Set[str] = set()
+    for item in docs:
+        if isinstance(item, dict) and _is_http_url(item.get("url")):
+            urls.add(item["url"].strip())
+    return urls
+
+
+def _tool_monitored_urls(data: Dict[str, Any]) -> Set[str]:
+    """The URLs of one tool worth monitoring: its docs, plus webpages if its type
+    makes them worth reaching."""
+    urls = _documentation_urls(data)
+    if _tool_is_relevant(data.get("type")):
         webpages = data.get("webpage")
         if isinstance(webpages, list):
             urls.update(u.strip() for u in webpages if _is_http_url(u))
+    return urls
+
+
+def _relevant_tool_urls(repos: Repositories, cfg: WebAvailabilityConfig) -> Set[str]:
+    """Every URL worth monitoring across all tools: documentation for any tool, and
+    webpages for tools whose type makes them worth reaching."""
+    urls: Set[str] = set()
+    for tool in repos.tools.iter_projected(
+        query={},
+        projection={"data.type": 1, "data.webpage": 1, "data.documentation": 1},
+        limit=cfg.limit_tools,
+        batch_size=cfg.batch_size,
+    ):
+        urls |= _tool_monitored_urls(tool.get("data") or {})
 
     return urls
 
@@ -103,12 +127,12 @@ def probe_tool_urls(
     cfg: WebAvailabilityConfig,
 ) -> Dict[str, Any]:
     """
-    Probe one tool's webpage URLs and record their availability.
+    Probe one tool's monitored URLs and record their availability.
 
     The per-record counterpart of :func:`run_update_web_availability`: instead of
-    scanning the whole tools collection it takes a single tool document. Only
-    tools whose type is worth monitoring contribute URLs, mirroring
-    ``_relevant_tool_urls``.
+    scanning the whole tools collection it takes a single tool document. It gathers
+    the same URLs ``_relevant_tool_urls`` would -- documentation for any tool, plus
+    webpages when the tool's type is worth reaching -- via ``_tool_monitored_urls``.
 
     A URL new to the collection has no document yet, and ``append_availability``
     never creates one, so this tags first (which upserts the document) and then
@@ -116,17 +140,10 @@ def probe_tool_urls(
     daily pass to create documents later.
     """
     data = tool.get("data") or {}
-    if not _tool_is_relevant(data.get("type")):
-        return {"relevant": False, "probed": 0, "urls": []}
-
-    webpages = data.get("webpage")
-    urls = (
-        sorted({u.strip() for u in webpages if _is_http_url(u)})
-        if isinstance(webpages, list)
-        else []
-    )
+    relevant = _tool_is_relevant(data.get("type"))
+    urls = sorted(_tool_monitored_urls(data))
     if not urls:
-        return {"relevant": True, "probed": 0, "urls": []}
+        return {"relevant": relevant, "probed": 0, "urls": []}
 
     if not cfg.dry_run:
         # Tag first so a brand-new URL's document exists before the reading lands.
@@ -151,7 +168,7 @@ def probe_tool_urls(
             readings, cfg.keep_days, cfg.updated_by
         )
 
-    return {"relevant": True, "probed": len(urls), "urls": urls}
+    return {"relevant": relevant, "probed": len(urls), "urls": urls}
 
 
 def run_update_web_availability(
