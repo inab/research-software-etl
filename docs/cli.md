@@ -17,16 +17,16 @@ Run the full ETL/integration pipeline, a partial pipeline, a single stage, or re
 * `--from-stage STAGE` — start the pipeline from this stage.
 * `--until STAGE` — run the pipeline until this stage, inclusive.
 * `--only STAGE` — run only one stage.
+* `--updated-within-days N` — transformation only processes raw entries updated within the last N days (default: `30`). Use `0` for a full re-transform. FAIRsoft scoring uses the same window over tools' `last_updated_at`.
 * `--python-exe PATH` — Python executable for subprocesses. Default: `python`.
 * `--workdir PATH` — working directory. Default: `.`.
 * `--runs-root PATH` — root folder for run outputs. Default: `data/integration/runs`.
 
 **Stages**
 
-The pipeline supports the following stage names, in order:
+The pipeline supports the following stage names, in execution order:
 
 * `transformation`
-* `license-normalization`
 * `grouping`
 * `remove_opeb_metrics`
 * `conflict_detection`
@@ -35,6 +35,8 @@ The pipeline supports the following stage names, in order:
 * `disambiguation`
 * `human_updates`
 * `merge`
+* `license-normalization` — runs **after** merge (rewrites `data.license` in the live `tools` collection).
+* `reindex` — rebuilds the `tools` search/filter indexes via the Observatory API; runs only when merge does.
 * `fairsoft`
 * `stats`
 * `similarity`
@@ -80,6 +82,7 @@ rsetl run --only similarity
 * Resumed runs append a new execution record to the existing `manifest.json`.
 * When resuming, required input files for the selected stages must already exist.
 * The `remove_opeb_metrics`, `human_updates`, and `merge` stages can be skipped with their corresponding options.
+* `reindex` is coupled to `merge`: it is skipped automatically under `--no-merge`, and a missing `OBSERVATORY_ADMIN_TOKEN` aborts the run **before** merge so a promoted collection can't be left unindexed.
 * `--dry-run-disambiguation` only affects the `disambiguation` stage.
 
 ---
@@ -313,26 +316,31 @@ rsetl check-env
 
 ## Environment configuration
 
-The pipeline loads environment variables from a `.env` file if present.
+The pipeline loads environment variables from a `.env` file if present. **[`.env.example`](https://github.com/inab/research-software-etl/blob/main/.env.example) is the canonical, fully-commented list** — copy it and fill in the values:
 
-Example `.env`:
+```bash
+cp .env.example .env
+```
+
+Only the variables the code actually reads are listed there, with their defaults. The essentials:
 
 ```env
-# MongoDB
+# MongoDB (required)
 MONGO_HOST=localhost
-MONGO_PORT=27017
+MONGO_PORT=27018
 MONGO_USER=user
 MONGO_PWD=pass
 MONGO_AUTH_SRC=admin
-MONGO_DB=observatory
+MONGO_DB=oeb-research-software
 
-# Disambiguation
-GITHUB_TOKEN=ghp_...
-GITLAB_TOKEN=...
-OPENROUTER_API_KEY=...
-HUGGINGFACE_API_KEY=...
+# API tokens / keys
+OBSERVATORY_ADMIN_TOKEN=...    # required — checked before merge; used by the reindex stage
+GITHUB_TOKEN=ghp_...           # disambiguation: issue creation + metadata
+GITLAB_TOKEN=...               # disambiguation: metadata
+OPENROUTER_API_KEY=...         # disambiguation: LLM agreement scoring
+HUGGINGFACE_API_KEY=...        # similarity: embedding model download
 
-# Scheduling (optional — used by `rsetl scheduler`)
+# Scheduling (optional — used only by `rsetl scheduler`, not the VM cron deployment)
 FULL_PIPELINE_CRON=0 1 * * mon,thu           # Phase-A cadence (default)
 PUBLICATION_ENRICHMENT_CRON=0 3 * * sun       # publication enrichment (default)
 
@@ -340,13 +348,18 @@ PUBLICATION_ENRICHMENT_CRON=0 3 * * sun       # publication enrichment (default)
 TOOLS_ARCHIVE_KEEP=2                          # archives to retain after promotion
 ```
 
-Collection names also have environment overrides (all optional; defaults shown in
+Collection names have environment overrides (all optional; defaults shown in
 parentheses): `MONGO_TOOLS_COLL` (`toolsDev`), `MONGO_TOOLS_STAGING_COLL`
 (`toolsDev_next`), `MONGO_TOOLS_ARCHIVE_PREFIX` (`toolsDev_archive_`),
 `COMPUTATIONS` (`computationsDev`), `SIMILARITIES` (`similaritiesDev`),
-`PRETOOLS` (`pretoolsDev`), `ALAMBIQUE` (`alambiqueDev`),
-`PUBLICATIONS_COLLECTION` (`publicationsMetadataDev`), `MONGO_WEBAV_COLL`
-(`webAvailabilityDev`).
+`EMBEDDINGS` (`toolEmbeddingsDev`), `PRETOOLS` (`pretoolsDev`),
+`ALAMBIQUE` (`alambiqueDev`), `PUBLICATIONS_COLLECTION`
+(`publicationsMetadataDev`), `MONGO_WEBAV_COLL` (`webAvailabilityDev`).
+
+Cross-run state files (`PAIR_DECISIONS_FILE`, `HUMAN_ANNOTATIONS_LOG`,
+`GROUP_SPLIT_CORRECTIONS_FILE`) default to paths inside the source tree. In a
+container they **must** point at a mounted volume or curator history is lost each
+run — see the [Deployment guide](deployment.md).
 
 ## Run outputs
 

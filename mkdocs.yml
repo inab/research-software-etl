@@ -44,6 +44,7 @@ nav:
   - Installation & Configuration: installation.md
   - Main Pipeline Stages: pipeline.md
   - CLI Reference: cli.md
+  - Deployment: deployment.md
   - Development Guide: development.md
 
 plugins:

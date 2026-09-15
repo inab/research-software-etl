@@ -168,6 +168,17 @@ Test modules are packages (`tests/**/__init__.py`): two `test_disambiguation.py`
 
 `tests/test_architecture.py` enforces the two layering rules below — it will fail the build, so read it before working around it.
 
+**Deployment (Docker / the VM):**
+
+The pipeline runs on a VM as a container built from `Dockerfile` and published by CI (`.github/workflows/build_image.yml`) to `ghcr.io/inab/research-software-etl` on `v*` tags/releases — the same pattern as the importers (`ghcr.io/inab/*-importer`). `docker-compose.vm.yml` defines two one-shot services off that one image: `rsetl-full` (`command: ["run"]`, twice weekly) and `rsetl-webavailability` (`command: ["run-webavailability"]`, daily). Both are `restart: "no"` and triggered by host cron (`docker compose ... run --rm <svc>`, stdout redirected to `logs/`); credentials come from `.env` via `env_file` (documented in `.env.example` — never bake it into the image, `.dockerignore` excludes it).
+
+Non-obvious constraints the image shape depends on — don't undo them:
+- `run_full` spawns each stage as `python -m src.adapters.cli...` from the working directory, so the image **must** keep the whole `src/` tree at `WORKDIR=/app` *and* `pip install -e .` (editable), so `rsetl` and the `adapters.*` those stages import both resolve to the same files. A non-editable install would leave `python -m src.adapters...` importing a second copy from cwd.
+- CPU-only torch is installed explicitly (`--index-url .../whl/cpu`) before the package, so `sentence-transformers` doesn't drag in the multi-GB CUDA build. The similarity stage now auto-selects the device (`compute_embeddings._select_device`: CUDA → MPS → CPU) — it used to hardcode `device="mps"`, which only exists on Apple Silicon and crashed in the Linux container.
+- `HeadlessBrowserFetcher` launches `channel="chrome"`, so the image runs `playwright install --with-deps chrome` (real Google Chrome + its OS libs), and the launch args carry `--no-sandbox --disable-dev-shm-usage` because Chrome's setuid sandbox can't run as root in a container.
+- `data/` is a mounted volume; run outputs land there. **The cross-run state files default to paths inside `src/`** (`PAIR_DECISIONS_FILE`, `HUMAN_ANNOTATIONS_LOG` — see the debt note about `pair_decisions_path` below), which in a `--rm` container is the ephemeral layer. `docker-compose.vm.yml` redirects them onto the `data/` volume via env vars so curator history survives; seed `data/integration/pair_decisions.jsonl` from the committed file on first deploy.
+- Without `.git` in the build context the run id's git-sha falls back to `nogit` (`_git_short_sha`) — expected for the container.
+
 **Known architectural debt — do not make it worse:**
 - There is no mongo singleton any more: `mongo_db_singleton.py` is deleted, and every stage — the core pipeline, `stats_generation` and `web_availability` alike — takes a `Repositories` argument. Do not build a `MongoDBAdapter()` below `adapters/` to get around it; `tests/test_architecture.py` fails the build if you do. (The one-off scripts under `scripts/` construct their own adapter, and are outside these rules.)
 - Do not add new `os.getenv` calls below `adapters/` — read config once at the CLI layer via `PipelineConfig.from_env()` and pass it down.

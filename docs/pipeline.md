@@ -62,22 +62,26 @@ The full pipeline is composed of the following stages, in execution order:
 
 | # | Stage | CLI Module / Script | Description | External Services |
 |:-:|:------|:--------------------|:------------|:------------------|
-| 1 | **Transformation** | `src.adapters.cli.transformation.transformation` | Loads and normalizes raw metadata from MongoDB sources. | MongoDB |
-| 2 | **License normalization** | `src.adapters.cli.post_transformation.normalize_licenses` | Maps license information to standardized SPDX identifiers. | MongoDB |
-| 3 | **Grouping / blocking & recovery** | `src.adapters.cli.integration.group_and_recovery` | Groups records into candidate identity blocks using names and repository-like links. | MongoDB |
+| 1 | **Transformation** | `src.adapters.cli.transformation.transformation` | Loads and normalizes raw metadata from MongoDB sources. Incremental by default (`--updated-within-days`, default 30). | MongoDB |
+| 2 | **Grouping / blocking & recovery** | `src.adapters.cli.integration.group_and_recovery` | Groups records into candidate identity blocks using names and repository-like links. | MongoDB |
 | — | **Remove OEB metrics** | `scripts/utils/remove_oeb_metrics.py` | Removes redundant OpenEBench metric entries to reduce noise and processing time. | — |
-| 4 | **Conflict detection** | `src.adapters.cli.integration.conflict_detection` | Identifies disconnected records within blocks as potential identity conflicts. | — |
+| 3 | **Conflict detection** | `src.adapters.cli.integration.conflict_detection` | Identifies disconnected records within blocks as potential identity conflicts. | — |
 | — | **Simplify blocks** | `scripts/utils/simplify_grouped_entries.py` | Reduces block structure to the minimal representation needed downstream. | — |
 | — | **JSON to JSONL conversion** | `scripts/utils/json_to_jsonl.py` | Converts conflict and block files into JSONL format. | — |
-| 5 | **Disambiguation** | `src.adapters.cli.integration.disambiguation` | Resolves conflicts using heuristics and LLM-based agreement scoring. Can generate manual-review issues for unresolved cases. | OpenRouter, Hugging Face, GitHub, GitLab |
-| 6 | **Human updates** | `src.adapters.cli.integration.update_disambiguation_after_human_resolution` | Integrates curator decisions from `human_annotations/` into the disambiguation output. | Git |
-| 7 | **Merge** | `src.adapters.cli.integration.merge_entries` | Consolidates resolved records into unified software entries, carrying each tool's `_id` over from the previous run and promoting them into the live collection. See [Tool identity & collection promotion](#tool-identity-collection-promotion). | MongoDB |
-| 8 | **FAIRsoft scoring** | `src.adapters.cli.fair_scores` | Computes FAIRsoft indicators and scores for software entries. | MongoDB |
-| 9 | **Statistics** | `src.adapters.cli.generate_stats` | Computes descriptive statistics for Observatory dashboards. | MongoDB |
-| 10 | **Similarity** | `src.adapters.cli.similarity` | Embeds tool descriptions using `gte-modernbert-base` and precomputes the top-10 nearest neighbours per tool, stored in `similaritiesDev` to power "similar software" recommendations. | MongoDB, HuggingFace (model download) |
+| 4 | **Disambiguation** | `src.adapters.cli.integration.disambiguation` | Resolves conflicts using heuristics and LLM-based agreement scoring. Can generate manual-review issues for unresolved cases. | OpenRouter, Hugging Face, GitHub, GitLab |
+| 5 | **Human updates** | `src.adapters.cli.integration.update_disambiguation_after_human_resolution` | Integrates curator decisions from `human_annotations/` into the disambiguation output. | Git |
+| 6 | **Merge** | `src.adapters.cli.integration.merge_entries` | Consolidates resolved records into unified software entries, carrying each tool's `_id` over from the previous run and promoting them into the live collection. See [Tool identity & collection promotion](#tool-identity-collection-promotion). | MongoDB |
+| 7 | **License normalization** | `src.adapters.cli.post_transformation.normalize_licenses` | Maps license information to standardized SPDX identifiers. Runs **after** merge — it rewrites `data.license` in the live `tools` collection, which merge rebuilds every run. | MongoDB |
+| 8 | **Reindex** | `src.adapters.cli.integration.reindex` | Asks the Observatory API to rebuild the `tools` collection's search/filter indexes, which promotion leaves with only `_id`. See [Tool indexes & reindexing](#tool-indexes-reindexing). | Observatory API |
+| 9 | **FAIRsoft scoring** | `src.adapters.cli.fair_scores` | Computes FAIRsoft indicators and scores for software entries. Incremental by default (only tools whose `last_updated_at` is within `--updated-within-days`). | MongoDB |
+| 10 | **Statistics** | `src.adapters.cli.generate_stats` | Computes descriptive statistics for Observatory dashboards. | MongoDB |
+| 11 | **Similarity** | `src.adapters.cli.similarity` | Embeds tool descriptions using `gte-modernbert-base` and precomputes the top-10 nearest neighbours per tool, stored in `similaritiesDev` to power "similar software" recommendations. | MongoDB, HuggingFace (model download) |
 
 !!! note "Stage order"
-    FAIRsoft scoring runs **before** statistics — the `STAGES` list in `src/adapters/cli/pipeline_full.py` is the source of truth (`… merge → fairsoft → stats → similarity`).
+    License normalization and reindex run **after** merge, and FAIRsoft scoring runs **before** statistics. The `STAGES` list in `src/adapters/cli/pipeline_full.py` is the source of truth (`… merge → license-normalization → reindex → fairsoft → stats → similarity`).
+
+!!! note "Incremental by default"
+    Transformation and FAIRsoft scoring only process entries changed within the last `--updated-within-days` days (default `30`); pass `--updated-within-days 0` for a full pass. This works because merge only bumps a tool's `last_updated_at` when its content actually changes (see [Tool identity & collection promotion](#tool-identity-collection-promotion)).
 
 ---
 
@@ -103,11 +107,13 @@ This executes:
 
 - `human_updates`
 - `merge`
+- `license-normalization`
+- `reindex`
 - `fairsoft`
 - `stats`
 - `similarity`
 
-unless one of those stages is skipped with a command-line option.
+unless one of those stages is skipped with a command-line option. `reindex` is skipped automatically when merge is (`--no-merge`).
 
 ### Full automatic run
 
@@ -205,11 +211,29 @@ rsetl rollback <run_id>
 
 ---
 
+## Tool indexes & reindexing
+
+Promotion renames the old `tools` collection to the archive (which keeps its indexes) and swaps in the staging collection that merge built with plain inserts — so the freshly-promoted live collection has **only its `_id` index**. That breaks the API's `/search` (`text index required for $text query`) and turns filtered searches into collection scans.
+
+The index *definitions* live in the API repository (they encode its query shapes and a collation the search route must match), so the pipeline does not own them. The **reindex** stage POSTs to the API's admin reindex endpoint via `ObservatoryApiClient`, and the API rebuilds them. It runs right after license normalization, and only when merge does — it is skipped automatically under `--no-merge`.
+
+Two failure rules protect against a broken live collection:
+
+- A missing `OBSERVATORY_ADMIN_TOKEN` is checked **before** merge runs, so a misconfiguration can't promote a collection it then can't reindex.
+- A reindex API call that fails at run time only **warns and exits 0** — the collection is already live, and the API re-ensures its indexes on the next restart.
+
+Rollback (`rsetl rollback <run_id>`) needs no reindex: it restores the archive, indexes and all.
+
+---
+
 ## Unattended scheduling
 
-The pipeline can run on a schedule via an optional APScheduler-based runner (`src/adapters/scheduler/`). Because stage 9 (**human updates**) requires curators to review GitHub issues and record decisions as Git annotations, automation uses a **two-phase** model:
+!!! note "How the VM actually runs this"
+    In the production VM deployment the pipeline runs as a Docker container triggered by **host cron**, not by the in-process scheduler below — see the [Deployment guide](deployment.md). The APScheduler runner described here is the optional, self-contained alternative for environments without an external scheduler. Both use the same two-phase model.
 
-- **Phase A — automated (on a fixed cadence).** Stages 1–8, then 10–12; stage 9 is skipped and the last set of curator decisions already in the repo is used implicitly by merge. This is a single command:
+The pipeline can run on a schedule via an optional APScheduler-based runner (`src/adapters/scheduler/`). Because the **human updates** stage requires curators to review GitHub issues and record decisions as Git annotations, automation uses a **two-phase** model:
+
+- **Phase A — automated (on a fixed cadence).** Every stage except **human updates**, which is skipped; the last set of curator decisions already in the repo is used implicitly by merge. This is a single command:
 
   ```bash
   rsetl run --no-human-updates

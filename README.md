@@ -36,16 +36,30 @@ Each execution creates a versioned run directory under `data/integration/runs/<r
 pip install -e .
 
 # set up environment variables (MongoDB + API tokens)
-export MONGO_HOST=...
-export MONGO_DB=...
-export GITHUB_TOKEN=...
-# etc.
+cp .env.example .env        # then fill in the values
+# .env is auto-loaded; every variable the pipeline reads is documented there
 
 # run full integration
 rsetl run
 ``` 
 
 All intermediate and final files are automatically stored in timestamped directories, and a latest symlink always points to the most recent run.
+
+## Deployment
+
+The pipeline ships as a Docker image published to GitHub Container Registry. CI (`.github/workflows/build_image.yml`) builds and pushes `ghcr.io/inab/research-software-etl` on `v*` tags and published releases (and `:latest` on manual runs of the default branch), mirroring how the importers (`ghcr.io/inab/*-importer`) are deployed.
+
+On the VM, `docker-compose.vm.yml` defines two one-shot services off that single image, each triggered by host cron:
+
+```
+# full integration pipeline (twice weekly)
+docker compose -f docker-compose.vm.yml run --rm rsetl-full
+
+# web-availability refresh (daily)
+docker compose -f docker-compose.vm.yml run --rm rsetl-webavailability
+```
+
+Both services read credentials and collection overrides from `.env` (`env_file`); the image never bakes it in. `data/` is mounted so run outputs and the cross-run curator history survive `--rm` containers. See `.env.example` for the full list of variables and `Dockerfile` for the image build.
 
 
 ## Repository structure 

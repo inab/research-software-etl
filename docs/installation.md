@@ -11,9 +11,10 @@ Some stages call external services (APIs and model providers); make sure credent
 
 ## Requirements  
 
-- Python ≥ 3.9 (developed and tested on 3.10)
+- Python ≥ 3.9 (developed and tested on 3.10; the deployment image uses 3.12)
 - MongoDB instance
 - Tokens to access to the following services (depending on [stages](pipeline.md) you run):
+    - **Observatory admin token** (`OBSERVATORY_ADMIN_TOKEN`): required for a full `rsetl run` — the reindex stage uses it, and it is checked *before* merge  
     - [Hugging Face](https://huggingface.co/docs/inference-providers/guides/first-api-call) and [OpenRouter](https://openrouter.ai/docs/quickstart): for LLM-based disambiguation  
     - [GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens): for issue creation and metadata retrieval  
     - [GitLab](https://docs.gitlab.com/user/profile/personal_access_tokens/): for metadata retrieval  
@@ -44,13 +45,23 @@ pip install -e ".[docs]"       # mkdocs + material theme (building these docs)
 pip install -e ".[scheduler]"  # APScheduler (needed only for `rsetl scheduler`)
 ```
 
+### Docker
+
+For running the pipeline in a container (the VM deployment pattern), a prebuilt image is published to `ghcr.io/inab/research-software-etl`. See the [Deployment guide](deployment.md) for the image, `docker-compose.vm.yml`, and the host-cron model.
+
 ---
 
 ## Environment variables
 
-Before running the pipeline, export the following variables (or include them in a `.env` file):
+The pipeline reads its configuration from a `.env` file (auto-loaded if present). The repository ships a fully-commented [`.env.example`](https://github.com/inab/research-software-etl/blob/main/.env.example) listing **every variable the code reads, with its default** — copy it and fill in the values:
 
-### MongoDB connection
+```bash
+cp .env.example .env
+```
+
+The essentials:
+
+### MongoDB connection (required)
 
 ```bash
 MONGO_HOST=...
@@ -63,14 +74,15 @@ MONGO_DB=...
 
 ### API tokens
 
-Used in disambiguation steps:
+```bash
+OBSERVATORY_ADMIN_TOKEN=...   # required for a full run (reindex stage)
+GITHUB_TOKEN=...              # disambiguation
+GITLAB_TOKEN=...              # disambiguation
+OPENROUTER_API_KEY=...        # disambiguation (LLM)
+HUGGINGFACE_API_KEY=...       # similarity (embedding model download)
+```
 
-```
-GITHUB_TOKEN=...
-GITLAB_TOKEN=...
-OPENROUTER_API_KEY=...
-HUGGINGFACE_API_KEY=...
-```
+See [`.env.example`](https://github.com/inab/research-software-etl/blob/main/.env.example) for collection-name overrides, cross-run state file paths, web-availability tuning, and service URLs.
 
 ---
 
