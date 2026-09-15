@@ -36,6 +36,11 @@ class HeadlessBrowserFetcher:
                     args=[
                         "--proxy-bypass-list=<-loopback>",
                         "--dns-prefetch-disable",
+                        # Container-safe flags: Chrome's setuid sandbox can't run
+                        # as root inside Docker, and the default 64 MB /dev/shm
+                        # crashes it on heavy pages. Harmless on a desktop.
+                        "--no-sandbox",
+                        "--disable-dev-shm-usage",
                     ],
                 )
 

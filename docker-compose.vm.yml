@@ -1,0 +1,47 @@
+# VM deployment of the ETL pipeline. Both services run the same image from GHCR
+# (same pattern as the importers) and are one-shot: host cron triggers them with
+#   docker compose -f docker-compose.vm.yml run --rm rsetl-full
+#   docker compose -f docker-compose.vm.yml run --rm rsetl-webavailability
+# and redirects their stdout to logs/, e.g. ... >> logs/webavailability.log 2>&1
+#
+# Credentials and collection overrides come from .env (see .env for the full
+# list: MONGO_*, GITHUB_TOKEN, GITLAB_TOKEN, OPENROUTER_API_KEY,
+# HUGGINGFACE_API_KEY, OBSERVATORY_ADMIN_TOKEN, ...).
+
+services:
+  # Full integration pipeline (twice weekly). Writes run outputs under
+  # data/integration/runs/ and promotes the tools collection.
+  rsetl-full:
+    image: ghcr.io/inab/research-software-etl:latest
+    container_name: rsetl-full
+    command: ["run"]
+    env_file:
+      - .env
+    environment:
+      # Cache the embedding model across runs instead of re-downloading it.
+      HF_HOME: /app/.cache/huggingface
+      # These default to paths inside the source tree; in a --rm container that
+      # is the ephemeral layer and is lost each run. Redirect them onto the
+      # mounted data/ volume so the curator decision history and human-update log
+      # accumulate across runs (CLAUDE.md: pair_decisions is not run-scoped).
+      PAIR_DECISIONS_FILE: /app/data/integration/pair_decisions.jsonl
+      HUMAN_ANNOTATIONS_LOG: /app/data/integration/human_conflicts_log.jsonl
+    volumes:
+      - ./data:/app/data
+      - hf-cache:/app/.cache/huggingface
+    restart: "no"
+
+  # Daily web-availability refresh. Reads/writes the web_availability collection;
+  # needs no run directory, but shares the image and env.
+  rsetl-webavailability:
+    image: ghcr.io/inab/research-software-etl:latest
+    container_name: rsetl-webavailability
+    command: ["run-webavailability"]
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: "no"
+
+volumes:
+  hf-cache:

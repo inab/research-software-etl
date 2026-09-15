@@ -1,0 +1,46 @@
+# Secrets: never bake credentials into the image. Provided at run time via
+# docker-compose env_file.
+.env
+.env.*
+*.env
+
+# Version control (110 MB); the run id falls back to "nogit" without it.
+.git
+.gitignore
+
+# Run outputs / large data (4.1 GB). Mounted as a volume at /app/data.
+data/
+
+# Human-curation working tree written at run time, not needed to build.
+human_annotations/conflicts/
+
+# Docs, tests, and local tooling: not used by the runtime image.
+docs/
+site/
+tests/
+.github/
+.claude/
+mkdocs.yml
+requirements-mkdocs.txt
+
+# Large local artifacts checked into the tree.
+*.pdf
+*.png
+content*.html
+rsetl-project-export.md
+
+# Python / editor cruft
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.DS_Store
+.idea/
+.vscode/

@@ -43,6 +43,24 @@ def build_text(tool_data: dict) -> str:
     return text.strip()
 
 
+def _select_device() -> str:
+    """Pick the best available torch backend.
+
+    Hardcoding ``mps`` only worked on Apple Silicon; in a Linux container (the VM
+    deployment) that backend does not exist and model load raises. Prefer CUDA,
+    then Apple's MPS, then fall back to CPU so the stage runs anywhere.
+    """
+    try:
+        import torch
+    except ImportError:
+        return "cpu"
+    if torch.cuda.is_available():
+        return "cuda"
+    if getattr(torch.backends, "mps", None) is not None and torch.backends.mps.is_available():
+        return "mps"
+    return "cpu"
+
+
 def _load_model(model_name: str, token: str | None = None):
     try:
         from sentence_transformers import SentenceTransformer
@@ -51,10 +69,11 @@ def _load_model(model_name: str, token: str | None = None):
             "sentence-transformers is required for the similarity stage. "
             "Install it with: pip install sentence-transformers"
         ) from exc
-    logger.info(f"Loading embedding model: {model_name} (device=mps)")
+    device = _select_device()
+    logger.info(f"Loading embedding model: {model_name} (device={device})")
     # `token` authenticates the HuggingFace Hub download (higher rate limits,
     # private models). None falls back to anonymous, rate-limited access.
-    model = SentenceTransformer(model_name, device="mps", token=token)
+    model = SentenceTransformer(model_name, device=device, token=token)
     # gte-modernbert-base defaults to 8192 tokens; descriptions are short,
     # so cap at 512 to avoid padding overhead that dominates CPU runtime.
     model.max_seq_length = 512
