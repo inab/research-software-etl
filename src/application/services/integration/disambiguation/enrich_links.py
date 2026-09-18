@@ -4,6 +4,7 @@ import re
 from readability import Document
 from bs4 import BeautifulSoup
 from infrastructure.external.clients import ExternalClients
+from shared.utils import usegalaxy_eu_url
 
 SOURCEFORGE_ALTERNATIVES = [
     "sourceforge.net/projects/",
@@ -20,11 +21,9 @@ SOURCEFORGE_ALTERNATIVES = [
 async def get_link_content(link, clients: ExternalClients):
     decoded_link = urllib.parse.unquote(link)
 
-    if "galaxy.bi.uni-freiburg.de/tool_runner" in decoded_link:
-        decoded_link = decoded_link.replace(
-            "galaxy.bi.uni-freiburg.de/tool_runner",
-            "usegalaxy.eu/root",
-        )
+    usegalaxy_link = usegalaxy_eu_url(link)
+    if usegalaxy_link:
+        decoded_link = usegalaxy_link
 
     if any(alt in decoded_link for alt in SOURCEFORGE_ALTERNATIVES):
         return clients.sourceforge.fetch_html(decoded_link)

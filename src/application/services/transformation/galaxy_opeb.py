@@ -2,7 +2,7 @@ from application.services.transformation.metadata_standardizers import (
     MetadataStandardizer,
 )
 from domain.models.software_instance.main import instance
-from shared.utils import validate_and_filter
+from shared.utils import validate_and_filter, usegalaxy_eu_url
 
 from typing import List, Dict, Any
 
@@ -35,7 +35,14 @@ class galaxyOPEBStandardizer(MetadataStandardizer):
         webpage = []
         if tool.get("web"):
             if tool["web"].get("homepage"):
-                webpage.append(tool["web"]["homepage"])
+                homepage = tool["web"]["homepage"]
+                webpage.append(homepage)
+                # Keep the source's original link, but add a usable one on the
+                # current usegalaxy.eu domain when the homepage is an old
+                # (unreachable) Galaxy EU tool link.
+                new_url = usegalaxy_eu_url(homepage)
+                if new_url:
+                    webpage.append(new_url)
 
         return webpage
 

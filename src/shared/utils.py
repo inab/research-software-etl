@@ -2,11 +2,45 @@ import hashlib
 import json
 import time
 import logging
+import urllib.parse
 from functools import wraps
-from typing import Any
+from typing import Any, Optional
 from pydantic import ValidationError
 
 logger = logging.getLogger("rs-etl-pipeline")
+
+
+# --------------------------------------------
+# Galaxy EU link migration
+# --------------------------------------------
+# Galaxy EU tool links used to live on the Freiburg domain
+# (https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=...), which no longer
+# resolves. The current instance answers the same tool at
+# https://usegalaxy.eu/root?tool_id=<tool>.
+OLD_GALAXY_EU_HOST = "galaxy.bi.uni-freiburg.de/tool_runner"
+
+
+def usegalaxy_eu_url(url: str) -> Optional[str]:
+    """
+    Given an old Galaxy EU tool link, build an equivalent link on the current
+    usegalaxy.eu domain. Returns ``None`` for any URL that is not an old Galaxy
+    EU ``tool_runner`` link or from which a tool id cannot be extracted.
+    """
+    if not isinstance(url, str) or OLD_GALAXY_EU_HOST not in url:
+        return None
+
+    parsed = urllib.parse.urlparse(url)
+    tool_id = urllib.parse.parse_qs(parsed.query).get("tool_id", [None])[0]
+    if not tool_id:
+        return None
+
+    # tool_id is a toolshed path such as
+    # "toolshed.g2.bx.psu.edu/repos/<owner>/<repo>/<tool>/<version>";
+    # usegalaxy.eu addresses the tool by its short name (the tool segment,
+    # second from the end). A bare tool id without a path is used as is.
+    segments = tool_id.split("/")
+    tool_name = segments[-2] if len(segments) >= 2 else tool_id
+    return f"https://usegalaxy.eu/root?tool_id={tool_name}"
 
 
 def _canonicalize(value: Any) -> Any:

@@ -1,5 +1,6 @@
 from application.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
 from domain.models.software_instance.main import software_types, data_sources
+from shared.utils import usegalaxy_eu_url
 from pydantic import HttpUrl
 
 
@@ -62,5 +63,17 @@ class TestGalaxyopebStandardizer:
         assert instance.webpage == [
             HttpUrl(
                 "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fbgruening%2Faugustus%2Faugustus%2F3.2.3"
-            )
+            ),
+            HttpUrl("https://usegalaxy.eu/root?tool_id=augustus"),
         ]
+
+    def test_usegalaxy_eu_url_from_old_domain(self):
+        old = (
+            "https://galaxy.bi.uni-freiburg.de/tool_runner?tool_id="
+            "toolshed.g2.bx.psu.edu%2Frepos%2Frnateam%2Fintarna%2Fintarna%2F2.2.0"
+        )
+        assert usegalaxy_eu_url(old) == "https://usegalaxy.eu/root?tool_id=intarna"
+
+    def test_usegalaxy_eu_url_ignores_other_urls(self):
+        assert usegalaxy_eu_url("https://github.com/x/y") is None
+        assert usegalaxy_eu_url(None) is None
