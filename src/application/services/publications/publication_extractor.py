@@ -1,10 +1,11 @@
 from abc import ABC
 from typing import Dict, Any
 
+
 class PublicationExtractor(ABC):
     """Abstract base class for all publication extractors."""
+
     @classmethod
     def extract_publications(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """Extracts publication data from the raw source data."""
         pass
-

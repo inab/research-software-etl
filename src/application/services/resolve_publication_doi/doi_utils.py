@@ -17,7 +17,7 @@ def normalize_doi(doi: str | None) -> str | None:
 
     for prefix in prefixes:
         if doi.startswith(prefix):
-            doi = doi[len(prefix):].strip()
+            doi = doi[len(prefix) :].strip()
 
     doi = doi.strip().lower()
 

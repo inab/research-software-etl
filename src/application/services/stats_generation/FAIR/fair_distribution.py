@@ -2,10 +2,10 @@ from typing import List, Dict, Any
 from datetime import datetime
 from collections import defaultdict
 
-    
 
-
-def compute_fair_score_frequencies(results: List[Dict[str, Any]]) -> Dict[str, Dict[Any, int]]:
+def compute_fair_score_frequencies(
+    results: List[Dict[str, Any]]
+) -> Dict[str, Dict[Any, int]]:
     """
     Compute frequency counts for FAIR indicators and subindicators across multiple tools.
 
@@ -19,8 +19,8 @@ def compute_fair_score_frequencies(results: List[Dict[str, Any]]) -> Dict[str, D
     fair_frequencies = defaultdict(lambda: defaultdict(int))
 
     for result in results:
-        result = result['data']
-        
+        result = result["data"]
+
         for key, value in result.items():
             # Skip non-FAIR keys
             if key in {"name", "type", "version"}:
@@ -30,13 +30,16 @@ def compute_fair_score_frequencies(results: List[Dict[str, Any]]) -> Dict[str, D
                 fair_frequencies[key][value] += 1
 
     # Convert nested defaultdicts to regular dicts for output
-    return {indicator: dict(score_counts) for indicator, score_counts in fair_frequencies.items()}
+    return {
+        indicator: dict(score_counts)
+        for indicator, score_counts in fair_frequencies.items()
+    }
 
 
 def build_summary_scores(distribution):
-    '''
-    given a dictionary of frequencies of scores for all indicators, 
-    builds a summary dictionary suitable to build plots 
+    """
+    given a dictionary of frequencies of scores for all indicators,
+    builds a summary dictionary suitable to build plots
     {
         F: [
             {
@@ -45,23 +48,18 @@ def build_summary_scores(distribution):
                 count:  [25397, 18590],
                 percent: [0.58, 0.42]
             },
-            ...    
+            ...
         ],
         ...
     }
-    '''
+    """
     indicators = {
-        'F': ['F1', 'F2', 'F3'],
-        'A': ['A1', 'A3'],
-        'I': ['I1', 'I2', 'I3'],
-        'R': ['R1', 'R2', 'R3', 'R4']
+        "F": ["F1", "F2", "F3"],
+        "A": ["A1", "A3"],
+        "I": ["I1", "I2", "I3"],
+        "R": ["R1", "R2", "R3", "R4"],
     }
-    summary = {
-        'F':[],
-        'A':[],
-        'I':[],
-        'R':[]
-    }
+    summary = {"F": [], "A": [], "I": [], "R": []}
     for principle in indicators.keys():
         for indicator in indicators[principle]:
             # An indicator with no scored tools is simply absent from the
@@ -69,17 +67,21 @@ def build_summary_scores(distribution):
             # as empty scores rather than KeyError-ing.
             indicator_scores = distribution[principle].get(indicator, {})
             total = sum([indicator_scores[s] for s in indicator_scores.keys()])
-            indicator_summary  = {
-                'indicator': indicator,
-                'scores': [s for s in indicator_scores.keys()],
-                'count' : [indicator_scores[s] for s in indicator_scores.keys()],
+            indicator_summary = {
+                "indicator": indicator,
+                "scores": [s for s in indicator_scores.keys()],
+                "count": [indicator_scores[s] for s in indicator_scores.keys()],
                 # No scored tools for this indicator -> all-zero percentages,
                 # not a division-by-zero crash (e.g. an empty collection).
-                'percent' : [(indicator_scores[s]/total if total else 0) for s in indicator_scores.keys()]
+                "percent": [
+                    (indicator_scores[s] / total if total else 0)
+                    for s in indicator_scores.keys()
+                ],
             }
             summary[principle].append(indicator_summary)
-    
-    return(summary)
+
+    return summary
+
 
 def compute_fair_score_means(results: List[Dict[str, Any]]) -> Dict[str, float]:
     """
@@ -95,9 +97,26 @@ def compute_fair_score_means(results: List[Dict[str, Any]]) -> Dict[str, float]:
     score_sums = defaultdict(float)
     score_counts = defaultdict(int)
 
-    indicators = ['F','F1', 'F2', 'F3', 'A', 'A1', 'A3', 'I', 'I1', 'I2', 'I3','R', 'R1', 'R2', 'R3', 'R4']
+    indicators = [
+        "F",
+        "F1",
+        "F2",
+        "F3",
+        "A",
+        "A1",
+        "A3",
+        "I",
+        "I1",
+        "I2",
+        "I3",
+        "R",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+    ]
     for result in results:
-        result = result['data']
+        result = result["data"]
         for key, value in result.items():
             if key not in indicators:
                 continue
@@ -131,7 +150,7 @@ def _tool_key(created_from):
 
 def get_fair_scores(collection, computations):
     """The most recent FAIR score per tool."""
-    tag = None if collection == 'tools' else collection
+    tag = None if collection == "tools" else collection
     entries = computations.find_by_variable("FAIR_scores", tag=tag)
 
     latest_by_tool = {}
@@ -155,14 +174,14 @@ def get_fair_scores(collection, computations):
 def do_sanity_check(collection, repos):
 
     # tools
-    if collection == 'tools':
+    if collection == "tools":
         tools_entries = repos.tools.get_all()
     else:
         # Tags live under `data` on a tool; the top-level `tags` this used to query
         # does not exist there, so it always found nothing.
-        tools_entries = repos.tools.find({'data.tags': collection})
+        tools_entries = repos.tools.find({"data.tags": collection})
 
-    tag = None if collection == 'tools' else collection
+    tag = None if collection == "tools" else collection
     fair_entries = repos.computations.find_by_variable("FAIR_scores", tag=tag)
 
     if len(tools_entries) != len(fair_entries):
@@ -181,45 +200,37 @@ def compute_fair_distributions(collection, repos):
     results = get_fair_scores(collection, repos.computations)
     print(f"Results for {collection}: {len(results)} documents")
 
-
     frequencies = compute_fair_score_frequencies(results)
 
-    new_freqs = {
-        'F': {},
-        'A': {},
-        'I': {},
-        'R': {}
-    }
+    new_freqs = {"F": {}, "A": {}, "I": {}, "R": {}}
 
     for key in frequencies.keys():
-        if key.startswith('F'):
-            new_freqs['F'][key] = frequencies[key]
-        elif key.startswith('A'):
-            new_freqs['A'][key] = frequencies[key]
-        elif key.startswith('I'):
-            new_freqs['I'][key] = frequencies[key]
-        elif key.startswith('R'):
-            new_freqs['R'][key] = frequencies[key]
-    
+        if key.startswith("F"):
+            new_freqs["F"][key] = frequencies[key]
+        elif key.startswith("A"):
+            new_freqs["A"][key] = frequencies[key]
+        elif key.startswith("I"):
+            new_freqs["I"][key] = frequencies[key]
+        elif key.startswith("R"):
+            new_freqs["R"][key] = frequencies[key]
 
-    summary =  build_summary_scores(new_freqs)
+    summary = build_summary_scores(new_freqs)
     means = compute_fair_score_means(results)
 
     data = {
-        'variable': 'FAIR_scores_summary',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': summary,
-        'collection': collection
+        "variable": "FAIR_scores_summary",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": summary,
+        "collection": collection,
     }
 
     repos.computations.save(data)
 
     data_2 = {
-        'variable': 'FAIR_scores_means',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': means,
-        'collection': collection
+        "variable": "FAIR_scores_means",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": means,
+        "collection": collection,
     }
 
     repos.computations.save(data_2)
-

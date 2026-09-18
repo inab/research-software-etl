@@ -1,20 +1,32 @@
-from application.services.publications.publication_standardizer import PublicationStandardizer
-from application.services.publications.bioconductor_extractor_standardizer import BioconductorPublicationStandardizer
-from application.services.publications.biotools_extractor_standardizer import BiotoolsPublicationStandardizer
-from application.services.publications.toolshed_extractor_standardizer import ToolshedPublicationStandardizer
-from application.services.publications.opeb_metrics_extractor_standardizer import OPEBMetricsPublicationStandardizer
-from application.services.publications.bioconda_recipes_extractor_standardizer import BiocondaRecipesPublicationStandardizer
+from application.services.publications.publication_standardizer import (
+    PublicationStandardizer,
+)
+from application.services.publications.bioconductor_extractor_standardizer import (
+    BioconductorPublicationStandardizer,
+)
+from application.services.publications.biotools_extractor_standardizer import (
+    BiotoolsPublicationStandardizer,
+)
+from application.services.publications.toolshed_extractor_standardizer import (
+    ToolshedPublicationStandardizer,
+)
+from application.services.publications.opeb_metrics_extractor_standardizer import (
+    OPEBMetricsPublicationStandardizer,
+)
+from application.services.publications.bioconda_recipes_extractor_standardizer import (
+    BiocondaRecipesPublicationStandardizer,
+)
 
 
 class StandardizerFactory:
     """Factory for creating the appropriate publication standardizer."""
-    
+
     _standardizers = {
         "bioconductor": BioconductorPublicationStandardizer,
         "biotools": BiotoolsPublicationStandardizer,
         "toolshed": ToolshedPublicationStandardizer,
         "opeb_metrics": OPEBMetricsPublicationStandardizer,
-        "bioconda_recipes": BiocondaRecipesPublicationStandardizer
+        "bioconda_recipes": BiocondaRecipesPublicationStandardizer,
     }
 
     @classmethod

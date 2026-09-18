@@ -1,11 +1,11 @@
 from datetime import datetime
 from typing import List, Dict, Any
 
-'''
+"""
 USAGE:
 # tools = (entry['data'] for entry in collection.find({...}))
 semantic_versioning(tools, collection_name)
-'''
+"""
 
 
 def semantic_versioning(tools: List[Dict[str, Any]], collection: str, computations):
@@ -13,34 +13,26 @@ def semantic_versioning(tools: List[Dict[str, Any]], collection: str, computatio
     Computes versioning statistics from software entries and prepares data for storage/plotting.
     """
 
-    versioning_summary = {
-        'Semantic Versioning (X.Y.Z)': 0,
-        'Other': 0,
-        'None': 0
-    }
+    versioning_summary = {"Semantic Versioning (X.Y.Z)": 0, "Other": 0, "None": 0}
 
     other_versions = []
 
     for entry in tools:
-        entry = entry.get('data', {})
-        versions = entry.get('version', [])
-        version_counts = {
-            'Semantic Versioning (X.Y.Z)': 0,
-            'Other': 0,
-            'None': 0
-        }
+        entry = entry.get("data", {})
+        versions = entry.get("version", [])
+        version_counts = {"Semantic Versioning (X.Y.Z)": 0, "Other": 0, "None": 0}
 
         if not versions:
-            versioning_summary['None'] += 1
+            versioning_summary["None"] += 1
             continue
 
         for v in versions:
-            if v is None or v.strip() == '' or v.lower() == 'unknown':
-                version_counts['None'] += 1
-            elif v.lower() == 'v1' or len(v.split('.')) >= 2:
-                version_counts['Semantic Versioning (X.Y.Z)'] += 1
+            if v is None or v.strip() == "" or v.lower() == "unknown":
+                version_counts["None"] += 1
+            elif v.lower() == "v1" or len(v.split(".")) >= 2:
+                version_counts["Semantic Versioning (X.Y.Z)"] += 1
             else:
-                version_counts['Other'] += 1
+                version_counts["Other"] += 1
                 other_versions.append(v)
 
         dominant_type = max(version_counts, key=version_counts.get)
@@ -48,21 +40,21 @@ def semantic_versioning(tools: List[Dict[str, Any]], collection: str, computatio
 
     # Prepare data for plot
     data = {
-        'labels': ['Semantic Versioning', 'Other', 'None'],
-        'values': [
-            versioning_summary['Semantic Versioning (X.Y.Z)'],
-            versioning_summary['Other'],
-            versioning_summary['None']
-        ]
+        "labels": ["Semantic Versioning", "Other", "None"],
+        "values": [
+            versioning_summary["Semantic Versioning (X.Y.Z)"],
+            versioning_summary["Other"],
+            versioning_summary["None"],
+        ],
     }
-    created_from = [tool['_id'] for tool in tools]
+    created_from = [tool["_id"] for tool in tools]
     data_versioning = {
-        'variable': 'semantic_versioning',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': data,
-        'collection': collection,
-        'createdFrom': created_from,
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+        "variable": "semantic_versioning",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": data,
+        "collection": collection,
+        "createdFrom": created_from,
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
     # Save or return this object for further processing

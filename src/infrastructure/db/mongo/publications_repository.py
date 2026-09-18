@@ -11,7 +11,8 @@ from infrastructure.db.database_adapter import DatabaseAdapter
 def _to_oid(identifier: Any) -> Any:
     """Coerce a str id into an ``ObjectId`` for querying the ObjectId-keyed
     publications collection. A str that isn't a valid ObjectId is left as-is (it will
-    simply match nothing here); already-``ObjectId`` (or anything else) passes through."""
+    simply match nothing here); already-``ObjectId`` (or anything else) passes through.
+    """
     if isinstance(identifier, str):
         try:
             return ObjectId(identifier)
@@ -173,7 +174,9 @@ class MongoPublicationRepository:
             update_data["meta.doi_resolution_match_title"] = doi_resolution_match_title
 
         if doi_resolution_match_journal is not None:
-            update_data["meta.doi_resolution_match_journal"] = doi_resolution_match_journal
+            update_data["meta.doi_resolution_match_journal"] = (
+                doi_resolution_match_journal
+            )
 
         if doi_resolution_match_year is not None:
             update_data["meta.doi_resolution_match_year"] = doi_resolution_match_year

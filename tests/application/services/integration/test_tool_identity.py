@@ -16,7 +16,9 @@ from application.services.integration.tool_identity import (
 
 
 def previous(tool_id, sources, created_at="2024-01-01"):
-    return PreviousTool(tool_id=tool_id, sources=frozenset(sources), created_at=created_at)
+    return PreviousTool(
+        tool_id=tool_id, sources=frozenset(sources), created_at=created_at
+    )
 
 
 def new(key, sources):
@@ -26,17 +28,26 @@ def new(key, sources):
 def test_an_unchanged_source_set_keeps_its_id():
     prev = previous("A", ["bioconda/x/cmd/1", "biotools/x/cmd/None"])
 
-    result = assign_identities([new("x/cmd", ["bioconda/x/cmd/1", "biotools/x/cmd/None"])], [prev])
+    result = assign_identities(
+        [new("x/cmd", ["bioconda/x/cmd/1", "biotools/x/cmd/None"])], [prev]
+    )
 
     assert result.inherited["x/cmd"].tool_id == "A"
     assert result.retired == []
-    assert result.summary(total_new=1) == {"preserved": 1, "new": 0, "retired": 0, "contested": 0}
+    assert result.summary(total_new=1) == {
+        "preserved": 1,
+        "new": 0,
+        "retired": 0,
+        "contested": 0,
+    }
 
 
 def test_a_grown_source_set_keeps_its_id():
     """The common case: a registry ships a new version, so a new pretools id appears."""
     prev = previous("A", ["bioconda/x/cmd/1", "biotools/x/cmd/None"])
-    grown = new("x/cmd", ["bioconda/x/cmd/1", "biotools/x/cmd/None", "bioconda/x/cmd/2"])
+    grown = new(
+        "x/cmd", ["bioconda/x/cmd/1", "biotools/x/cmd/None", "bioconda/x/cmd/2"]
+    )
 
     result = assign_identities([grown], [prev])
 
@@ -59,7 +70,12 @@ def test_a_tool_with_no_shared_lineage_gets_no_ancestor():
 
     assert "y/cmd" not in result.inherited
     assert [p.tool_id for p in result.retired] == ["A"]
-    assert result.summary(total_new=1) == {"preserved": 0, "new": 1, "retired": 1, "contested": 0}
+    assert result.summary(total_new=1) == {
+        "preserved": 0,
+        "new": 1,
+        "retired": 1,
+        "contested": 0,
+    }
 
 
 def test_when_two_tools_collapse_the_oldest_id_survives():

@@ -1,5 +1,7 @@
 from typing import Dict, Any, List
-from application.services.publications.publication_standardizer import PublicationStandardizer
+from application.services.publications.publication_standardizer import (
+    PublicationStandardizer,
+)
 from application.services.publications.publication_extractor import PublicationExtractor
 from domain.models.publication.publication import Publication
 from shared.utils import validate_and_filter
@@ -7,32 +9,34 @@ import logging
 
 logger = logging.getLogger("rs-etl-pipeline")
 
+
 class BiotoolsPublicationExtractor(PublicationExtractor):
     """Extracts publication data from Biotools."""
 
     @classmethod
     def extract_publications(cls, raw_data) -> List[Dict]:
-        '''
+        """
         The publications are in the 'publications' (data.publications) field of the raw data.
-        '''
-        if raw_data['data'].get('publications'):
-            return raw_data['data'].get('publications')
+        """
+        if raw_data["data"].get("publications"):
+            return raw_data["data"].get("publications")
         else:
             return []
+
 
 class BiotoolsPublicationStandardizer(PublicationStandardizer):
     """Standardizes publication data from Biotools."""
 
     @classmethod
     def standardize(cls, raw_data) -> Dict[str, Any]:
-        '''
+        """
         bio.tools entries only have the following information (usually only one):
         - doi
         - pmid
         - pmcid
 
-        TODO: Check is the population of te publication_dict is correct once the DB is working again 
-        '''
+        TODO: Check is the population of te publication_dict is correct once the DB is working again
+        """
         try:
             publication_dict = {
                 "doi": raw_data.get("doi", None),

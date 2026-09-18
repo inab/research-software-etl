@@ -337,7 +337,9 @@ MONGO_DB=oeb-research-software
 OBSERVATORY_ADMIN_TOKEN=...    # required — checked before merge; used by the reindex stage
 GITHUB_TOKEN=ghp_...           # disambiguation: issue creation + metadata
 GITLAB_TOKEN=...               # disambiguation: metadata
-OPENROUTER_API_KEY=...         # disambiguation: LLM agreement scoring
+GEPETO_API_KEY=...             # disambiguation: LLM agreement scoring (Gepeto/BSC)
+GEPETO_MODEL_A=...             # disambiguation: first opinion model id
+GEPETO_MODEL_B=...             # disambiguation: second opinion model id (different family)
 HUGGINGFACE_API_KEY=...        # similarity: embedding model download
 
 # Scheduling (optional — used only by `rsetl scheduler`, not the VM cron deployment)

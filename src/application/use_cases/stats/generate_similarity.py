@@ -15,7 +15,9 @@ Behaviour:
 import logging
 from datetime import datetime, timezone
 
-from application.services.stats_generation.similarity.compute_embeddings import compute_similarities
+from application.services.stats_generation.similarity.compute_embeddings import (
+    compute_similarities,
+)
 from domain.repositories import Repositories
 
 logger = logging.getLogger(__name__)
@@ -31,7 +33,7 @@ def compute_and_store_similarities(
     k: int = 10,
     force: bool = False,
     model_name: str = "Alibaba-NLP/gte-modernbert-base",
-    batch_size: int =64,
+    batch_size: int = 64,
     chunk_size: int = 1000,
     hf_token: str | None = None,
 ) -> None:
@@ -55,7 +57,9 @@ def compute_and_store_similarities(
     """
     if not force and not repos.similarities.is_empty():
         logger.info("Similarities already computed. Pass --force to recompute.")
-        print("[SKIP] The similarities collection is already populated. Use --force to recompute.")
+        print(
+            "[SKIP] The similarities collection is already populated. Use --force to recompute."
+        )
         return
 
     # The front-end fetches neighbours by tool_id, and the upsert below assumes one

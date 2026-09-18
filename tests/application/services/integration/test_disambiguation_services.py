@@ -7,9 +7,15 @@ in sight. Together they pin the split in `disambiguator.py`.
 
 import pytest
 
-from application.services.integration.disambiguation.pair_scoring import PairScoringService
-from application.services.integration.disambiguation.review import DisambiguationReviewService
-from application.services.integration.disambiguation.utils import replace_with_full_entries
+from application.services.integration.disambiguation.pair_scoring import (
+    PairScoringService,
+)
+from application.services.integration.disambiguation.review import (
+    DisambiguationReviewService,
+)
+from application.services.integration.disambiguation.utils import (
+    replace_with_full_entries,
+)
 from infrastructure.config import PipelineConfig
 from tests.application.services.integration.data.data_disambiguation_original import (
     conflicts_blocks_sets,
@@ -32,8 +38,10 @@ def clients():
 
 
 @pytest.mark.asyncio
-async def test_pair_scoring_scores_without_touching_github(monkeypatch, tmp_path, repos, clients):
-    def proxy(messages, clients):
+async def test_pair_scoring_scores_without_touching_github(
+    monkeypatch, tmp_path, repos, clients
+):
+    def proxy(messages, clients, model_a, model_b):
         return {"verdict": "different", "confidence": "high"}
 
     # No "src." prefix -- the package installs as `application.*`.
@@ -43,7 +51,7 @@ async def test_pair_scoring_scores_without_touching_github(monkeypatch, tmp_path
     )
 
     proxy_path = tmp_path / "results_proxy.jsonl"
-    scoring = PairScoringService(clients, repos, proxy_path)
+    scoring = PairScoringService(clients, repos, proxy_path, "model-a", "model-b")
 
     conflict = conflicts_blocks_sets[0]["ale/cmd"]
     conflict_full = replace_with_full_entries(conflict, repos.pretools)
@@ -53,7 +61,9 @@ async def test_pair_scoring_scores_without_touching_github(monkeypatch, tmp_path
     scored = await scoring.score(pairs[0], "ale/cmd")
 
     assert scored.result["verdict"] == "different"
-    assert "disconnected" in scored.full_conflict and "remaining" in scored.full_conflict
+    assert (
+        "disconnected" in scored.full_conflict and "remaining" in scored.full_conflict
+    )
     # The run-scoped proxy diagnostic was written...
     assert proxy_path.exists()
     # ...and no GitHub side effects happened during scoring.
@@ -83,7 +93,12 @@ def _review(tmp_path, clients, dry_run=False):
         pair_decisions_path=tmp_path / "pair_decisions.jsonl",
         conflicts_repo_dir=tmp_path / "conflicts",
     )
-    return DisambiguationReviewService(clients, config, {}, run_id="test-run", dry_run=dry_run), config
+    return (
+        DisambiguationReviewService(
+            clients, config, {}, run_id="test-run", dry_run=dry_run
+        ),
+        config,
+    )
 
 
 def test_review_records_decision_into_cache(tmp_path, clients):
@@ -105,7 +120,10 @@ def test_review_opens_issue_without_touching_llm(tmp_path, clients):
 
     conflict = {"remaining": [{"id": "r"}], "disconnected": [{"id": "d"}]}
     conflict_pair = {"remaining": [{"_id": "r"}], "disconnected": [{"_id": "d"}]}
-    full_conflict = {"disconnected": [_minimal_entry("d")], "remaining": [_minimal_entry("r")]}
+    full_conflict = {
+        "disconnected": [_minimal_entry("d")],
+        "remaining": [_minimal_entry("r")],
+    }
 
     issue_url, dry_run_record = review.open_issue(
         conflict, conflict_pair, "ale/cmd", "p:demo", full_conflict, 1
@@ -115,9 +133,8 @@ def test_review_opens_issue_without_touching_llm(tmp_path, clients):
     assert issue_url  # the FakeGitHubClient's issue URL
     assert clients.github.issues  # one issue opened
     assert clients.github.commits  # conflict file committed
-    # The LLM slots were never needed.
-    assert clients.openrouter is None
-    assert clients.huggingface is None
+    # The LLM slot was never needed.
+    assert clients.gepeto is None
 
 
 def test_review_dry_run_opens_nothing(tmp_path, clients):
@@ -125,7 +142,10 @@ def test_review_dry_run_opens_nothing(tmp_path, clients):
 
     conflict = {"remaining": [{"id": "r"}], "disconnected": [{"id": "d"}]}
     conflict_pair = {"remaining": [{"_id": "r"}], "disconnected": [{"_id": "d"}]}
-    full_conflict = {"disconnected": [_minimal_entry("d")], "remaining": [_minimal_entry("r")]}
+    full_conflict = {
+        "disconnected": [_minimal_entry("d")],
+        "remaining": [_minimal_entry("r")],
+    }
 
     issue_url, dry_run_record = review.open_issue(
         conflict, conflict_pair, "ale/cmd", "p:demo", full_conflict, 1

@@ -15,13 +15,13 @@ from infrastructure.db.repositories import from_config
 from infrastructure.logging_config import resolve_level
 
 
-
 def main():
     parser = argparse.ArgumentParser(
         description="Generate FAIR indicators and scores for research software tools."
     )
     parser.add_argument(
-        "--collections", "-c",
+        "--collections",
+        "-c",
         help=(
             "Tool selection scope. "
             "Use 'tools' to process all tools, or provide a tag to process only tools "
@@ -53,12 +53,14 @@ def main():
         ),
     )
     parser.add_argument(
-        "--env-file", "-e",
+        "--env-file",
+        "-e",
         help="File containing environment variables to be set before running.",
         default=".env",
     )
     parser.add_argument(
-        "--loglevel", "-l",
+        "--loglevel",
+        "-l",
         help="Set the logging level (default: LOG_LEVEL env var, else INFO).",
         default=os.getenv("LOG_LEVEL", "INFO"),
     )
@@ -71,7 +73,7 @@ def main():
     logging.debug(f"Env file: {args.env_file}")
 
     if args.collections.lower() == "all":
-        collections = ['tools']
+        collections = ["tools"]
 
     else:
         collections = [c.strip() for c in args.collections.split(",") if c.strip()]
@@ -83,7 +85,9 @@ def main():
     # filter" -> score every tool. Mirrors the transformation stage's
     # --updated-within-days.
     if args.updated_within_days > 0:
-        updated_since = (datetime.now() - timedelta(days=args.updated_within_days)).isoformat()
+        updated_since = (
+            datetime.now() - timedelta(days=args.updated_within_days)
+        ).isoformat()
         logging.info(
             f"Scoring tools updated since {updated_since} "
             f"(last {args.updated_within_days} days)"
@@ -93,9 +97,7 @@ def main():
         logging.info("Scoring every tool (no date filter)")
 
     for collection in collections:
-        logging.info(
-            f"Generating FAIR indicators/scores for selection: {collection}"
-        )
+        logging.info(f"Generating FAIR indicators/scores for selection: {collection}")
         add_fair_scores(
             repos,
             tag_or_tools=collection,
@@ -103,12 +105,9 @@ def main():
             force=args.force,
             updated_since=updated_since,
         )
-        logging.info(
-            f"Generation of FAIR indicators/scores complete for {collection}"
-        )
+        logging.info(f"Generation of FAIR indicators/scores complete for {collection}")
 
     logging.info("FAIR indicators/scores generation complete.")
-
 
 
 if __name__ == "__main__":

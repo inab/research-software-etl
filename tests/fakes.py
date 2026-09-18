@@ -495,8 +495,7 @@ def fake_clients(
     *,
     github=None,
     gitlab=None,
-    openrouter=None,
-    huggingface=None,
+    gepeto=None,
     url_checker=None,
     pypi=None,
     sourceforge=None,
@@ -506,15 +505,14 @@ def fake_clients(
     """
     External clients with only the slots a test exercises filled in.
 
-    The tokened four default to None, so a test that did not ask for GitHub and
+    The tokened three default to None, so a test that did not ask for GitHub and
     reaches for it raises instead of quietly opening a connection. The tokenless
     fetchers default to offline fakes instead: link enrichment probes every URL a
     conflict happens to carry, and the point of these is that no test can reach
     the network by forgetting one.
     """
     return ExternalClients(
-        openrouter=openrouter,
-        huggingface=huggingface,
+        gepeto=gepeto,
         github=github,
         gitlab=gitlab,
         url_checker=url_checker or FakeUrlChecker(),

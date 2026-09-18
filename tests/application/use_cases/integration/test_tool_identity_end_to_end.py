@@ -105,7 +105,10 @@ def ids_by_name(repos) -> dict:
 
 
 def timestamps_by_name(repos) -> dict:
-    return {entry["data"]["name"]: entry["last_updated_at"] for entry in repos.tools.get_all()}
+    return {
+        entry["data"]["name"]: entry["last_updated_at"]
+        for entry in repos.tools.get_all()
+    }
 
 
 def merge_and_promote(tmp_path, repos, config, spec, run_id):
@@ -124,7 +127,12 @@ def test_an_unchanged_run_preserves_every_id(tmp_path, repos, config, first_run)
     )
 
     assert ids_by_name(repos) == first_run
-    assert summary["identities"] == {"preserved": 2, "new": 0, "retired": 0, "contested": 0}
+    assert summary["identities"] == {
+        "preserved": 2,
+        "new": 0,
+        "retired": 0,
+        "contested": 0,
+    }
 
 
 def test_an_unchanged_tool_keeps_its_timestamp(tmp_path, repos, config, first_run):
@@ -164,7 +172,9 @@ def test_a_changed_tool_bumps_its_timestamp(tmp_path, repos, config, first_run):
     assert after["spades"] == before["spades"], "unchanged tool keeps its timestamp"
 
 
-def test_an_id_survives_a_new_release_joining_its_group(tmp_path, repos, config, first_run):
+def test_an_id_survives_a_new_release_joining_its_group(
+    tmp_path, repos, config, first_run
+):
     """The common case: bioconda ships abyss 3.0, so a new pretools id appears."""
     summary = merge_and_promote(
         tmp_path,
@@ -208,7 +218,12 @@ def test_a_brand_new_tool_gets_a_fresh_id(tmp_path, repos, config, first_run):
     ids = ids_by_name(repos)
     assert ids["abyss"] == first_run["abyss"]
     assert ids["velvet"] not in first_run.values()
-    assert summary["identities"] == {"preserved": 2, "new": 1, "retired": 0, "contested": 0}
+    assert summary["identities"] == {
+        "preserved": 2,
+        "new": 1,
+        "retired": 0,
+        "contested": 0,
+    }
 
 
 def test_a_tool_that_disappears_retires_its_id(tmp_path, repos, config, first_run):
@@ -217,7 +232,12 @@ def test_a_tool_that_disappears_retires_its_id(tmp_path, repos, config, first_ru
     )
 
     assert "spades" not in ids_by_name(repos)
-    assert summary["identities"] == {"preserved": 1, "new": 0, "retired": 1, "contested": 0}
+    assert summary["identities"] == {
+        "preserved": 1,
+        "new": 0,
+        "retired": 1,
+        "contested": 0,
+    }
 
 
 def test_created_at_is_set_once_and_carried_forward(tmp_path, repos, config, first_run):
@@ -232,11 +252,17 @@ def test_created_at_is_set_once_and_carried_forward(tmp_path, repos, config, fir
     )
 
     for entry in repos.tools.get_all():
-        assert entry["created_at"] == original[entry["_id"]], "created_at is never rewritten"
-        assert entry["last_updated_at"] >= entry["created_at"], "update time tracks the latest run"
+        assert (
+            entry["created_at"] == original[entry["_id"]]
+        ), "created_at is never rewritten"
+        assert (
+            entry["last_updated_at"] >= entry["created_at"]
+        ), "update time tracks the latest run"
 
 
-def test_promotion_archives_the_collection_it_replaces(tmp_path, repos, db, config, first_run):
+def test_promotion_archives_the_collection_it_replaces(
+    tmp_path, repos, db, config, first_run
+):
     merge_and_promote(
         tmp_path,
         repos,
@@ -246,12 +272,16 @@ def test_promotion_archives_the_collection_it_replaces(tmp_path, repos, db, conf
     )
 
     assert db.collection_exists("tools_archive_run-2")
-    assert not db.collection_exists("tools_next"), "staging is consumed by the promotion"
+    assert not db.collection_exists(
+        "tools_next"
+    ), "staging is consumed by the promotion"
     archived = repos.tools.for_collection("tools_archive_run-2").get_all()
     assert {e["data"]["name"]: e["_id"] for e in archived} == first_run
 
 
-def test_the_live_collection_is_untouched_until_promotion(tmp_path, repos, config, first_run):
+def test_the_live_collection_is_untouched_until_promotion(
+    tmp_path, repos, config, first_run
+):
     merge_and_save_blocks(
         blocks(tmp_path, {"abyss/cmd": [ABYSS, ABYSS_BIOTOOLS, ABYSS_V3]}), repos
     )
@@ -260,7 +290,9 @@ def test_the_live_collection_is_untouched_until_promotion(tmp_path, repos, confi
     assert len(repos.tools_staging.get_all()) == 1
 
 
-def test_rollback_restores_the_archived_collection(tmp_path, repos, db, config, first_run):
+def test_rollback_restores_the_archived_collection(
+    tmp_path, repos, db, config, first_run
+):
     merge_and_promote(tmp_path, repos, config, {"abyss/cmd": [ABYSS]}, "run-2")
     assert "spades" not in ids_by_name(repos), "run-2 dropped spades"
 
@@ -280,7 +312,9 @@ def test_finalizing_without_a_merge_is_refused(repos, config):
         finalize_run("run-1", config, repos)
 
 
-def test_stale_staging_from_a_failed_run_is_not_promoted(tmp_path, repos, config, first_run):
+def test_stale_staging_from_a_failed_run_is_not_promoted(
+    tmp_path, repos, config, first_run
+):
     """A crashed run can leave documents in staging. They are not this run's output."""
     repos.tools_staging.insert(
         {"_id": "leftover", "source": ["x"], "data": {"name": "leftover"}}

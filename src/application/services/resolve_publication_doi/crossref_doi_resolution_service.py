@@ -72,7 +72,9 @@ class CrossrefDoiResolutionService:
 
         return None
 
-    def _query_crossref(self, title: str, journal: str | None = None) -> list[dict[str, Any]]:
+    def _query_crossref(
+        self, title: str, journal: str | None = None
+    ) -> list[dict[str, Any]]:
         query = title.strip()
         if journal and str(journal).strip():
             query = f"{query} {journal.strip()}"

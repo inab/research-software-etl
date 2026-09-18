@@ -69,7 +69,9 @@ def check_mongo() -> bool:
         return False
 
 
-def check_http_service(name: str, url: str, headers: dict | None = None, path: str = "/") -> bool:
+def check_http_service(
+    name: str, url: str, headers: dict | None = None, path: str = "/"
+) -> bool:
     try:
         if not url:
             _warn_status(name, "URL not configured")
@@ -108,35 +110,39 @@ def main() -> None:
 
     # --- Europe PMC ---
     epmc_url = os.getenv("EUROPE_PMC_API_URL", "https://www.ebi.ac.uk")
-    check_http_service("Europe PMC", epmc_url, path="/europepmc/webservices/rest/search?query=p53")
+    check_http_service(
+        "Europe PMC", epmc_url, path="/europepmc/webservices/rest/search?query=p53"
+    )
 
     # --- Semantic Scholar ---
     ss_url = os.getenv("SEMANTIC_SCHOLAR_API_URL", "https://api.semanticscholar.org")
-    check_http_service("Semantic Scholar", ss_url, path="/graph/v1/paper/autocomplete?query=semanti")
+    check_http_service(
+        "Semantic Scholar", ss_url, path="/graph/v1/paper/autocomplete?query=semanti"
+    )
 
-    # --- Hugging Face ---
+    # --- Hugging Face Hub (embedding-model downloads for the similarity stage) ---
     hf_key = os.getenv("HUGGINGFACE_API_KEY")
     if hf_key:
         check_http_service(
-            "Hugging Face API",
+            "HuggingFace Hub (embeddings)",
             "https://huggingface.co/api/",
             headers={"Authorization": f"Bearer {hf_key}"},
             path="whoami-v2",
         )
     else:
-        _warn_status("Hugging Face API", "no API key provided")
+        _warn_status("HuggingFace Hub (embeddings)", "no API key provided")
 
-    # --- OpenRouter ---
-    or_key = os.getenv("OPENROUTER_API_KEY")
-    if or_key:
+    # --- Gepeto (LLM-assisted disambiguation) ---
+    gepeto_key = os.getenv("GEPETO_API_KEY")
+    if gepeto_key:
         check_http_service(
-            "OpenRouter API",
-            "https://openrouter.ai/api/",
-            headers={"Authorization": f"Bearer {or_key}"},
-            path="v1/models",
+            "Gepeto API",
+            "https://gepeto.bsc.es/api/",
+            headers={"Authorization": f"Bearer {gepeto_key}"},
+            path="models",
         )
     else:
-        _warn_status("OpenRouter API", "no API key provided")
+        _warn_status("Gepeto API", "no API key provided")
 
     # --- GitHub ---
     gh_token = os.getenv("GITHUB_TOKEN")
@@ -151,7 +157,9 @@ def main() -> None:
     gl_token = os.getenv("GITLAB_TOKEN")
     if gl_token:
         headers = {"Authorization": f"Bearer {gl_token}"}
-        check_http_service("GitLab API", "https://gitlab.com/api/v4/", headers, "projects")
+        check_http_service(
+            "GitLab API", "https://gitlab.com/api/v4/", headers, "projects"
+        )
     else:
         _warn_status("GitLab API", "no token provided")
 

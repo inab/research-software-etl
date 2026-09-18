@@ -30,7 +30,9 @@ def test_save_appends_a_computation(repos):
     repos.computations.save({"variable": "types_count", "data": {"cmd": 0.8}})
     repos.computations.save({"variable": "types_count", "data": {"cmd": 0.9}})
 
-    assert len(repos.computations.find({"variable": "types_count"})) == 2, "stats append"
+    assert (
+        len(repos.computations.find({"variable": "types_count"})) == 2
+    ), "stats append"
 
 
 def test_find_by_variable_scopes_to_a_tag(repos):
@@ -56,8 +58,12 @@ def test_upsert_updates_rather_than_duplicating(repos):
 
 
 def test_similarities_upsert_keeps_one_document_per_tool(repos):
-    repos.similarities.upsert_by_tool_id({"tool_id": "t1", "similar": [{"tool_id": "t2"}]})
-    repos.similarities.upsert_by_tool_id({"tool_id": "t1", "similar": [{"tool_id": "t3"}]})
+    repos.similarities.upsert_by_tool_id(
+        {"tool_id": "t1", "similar": [{"tool_id": "t2"}]}
+    )
+    repos.similarities.upsert_by_tool_id(
+        {"tool_id": "t1", "similar": [{"tool_id": "t3"}]}
+    )
 
     stored = repos.computations.db_adapter.fetch_entries("similarities", {})
     assert len(stored) == 1
@@ -82,7 +88,9 @@ def test_ensure_index_is_requested_but_never_fatal(repos, db):
 
 
 def test_tag_relevant_creates_missing_urls_and_tags_existing_ones(repos, db):
-    db.insert_one("webavailability", {"_id": "https://old.example", "data": {"availability": [1]}})
+    db.insert_one(
+        "webavailability", {"_id": "https://old.example", "data": {"availability": [1]}}
+    )
 
     repos.web_availability.tag_relevant(
         ["https://old.example", "https://new.example"],
@@ -97,7 +105,9 @@ def test_tag_relevant_creates_missing_urls_and_tags_existing_ones(repos, db):
 
     # Top-level, not under `relevance`: this is the flag the daily job filters on.
     assert old["is_relevant"] is True
-    assert old["data"]["availability"] == [1], "$setOnInsert must not touch an existing doc"
+    assert old["data"]["availability"] == [
+        1
+    ], "$setOnInsert must not touch an existing doc"
     assert new["is_relevant"] is True
     assert new["data"]["availability"] == [], "a new url starts with no readings"
     assert new["relevance"]["source"] == "toolsDev"

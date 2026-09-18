@@ -1,12 +1,12 @@
 from datetime import datetime
 from typing import List, Dict, Any
 
-'''
+"""
 USAGE:
 tools = (entry['data'] for entry in db.mytools.find({}))
 features_cummulative(tools, "my_stats")
 features_xy(tools, "my_stats")
-'''
+"""
 
 
 all_features = [
@@ -29,14 +29,15 @@ all_features = [
     "publication",
     "topics",
     "operations",
-    "test"
+    "test",
 ]
+
 
 def is_value_meaningful(value: Any) -> bool:
     """
     Check if a value is meaningful (not None, empty, or 'unknown').
     """
-    if value in [None, '', 'None', 'unknown', False]:
+    if value in [None, "", "None", "unknown", False]:
         return False
     if value == True:
         return True
@@ -44,18 +45,18 @@ def is_value_meaningful(value: Any) -> bool:
         return any(is_value_meaningful(v) for v in value)
     return True
 
+
 def is_meaningful(key, value):
     if key in all_features:
-        if value in [None, '', 'None', 'unknown']:
+        if value in [None, "", "None", "unknown"]:
             return False
         if isinstance(value, list):
             return any(is_value_meaningful(v) for v in value)
 
         return True
-    
-    else: 
+
+    else:
         return False
-    
 
 
 def features_cummulative(tools: List[Dict[str, Any]], collection: str, computations):
@@ -64,9 +65,9 @@ def features_cummulative(tools: List[Dict[str, Any]], collection: str, computati
     """
 
     def count_features(tool: Dict[str, Any]) -> int:
-        return sum(1 for k,v in tool.items() if is_meaningful(k,v))
+        return sum(1 for k, v in tool.items() if is_meaningful(k, v))
 
-    counts = [count_features(tool['data']) for tool in tools]
+    counts = [count_features(tool["data"]) for tool in tools]
     total_tools = len(tools)
 
     feat_num = []
@@ -79,18 +80,15 @@ def features_cummulative(tools: List[Dict[str, Any]], collection: str, computati
         feat_num.append(number)
         count_cumm_pct.append(round((cumulative / total_tools), 2))  # as percentage
 
-    data = {
-        'feat_num': feat_num,
-        'count_cumm_pct': count_cumm_pct
-    }
+    data = {"feat_num": feat_num, "count_cumm_pct": count_cumm_pct}
 
     feats_cummulative = {
-        'variable': 'features_cummulative',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': data,
-        'collection': collection,
-        'createdFrom': [tool['_id'] for tool in tools],
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+        "variable": "features_cummulative",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": data,
+        "collection": collection,
+        "createdFrom": [tool["_id"] for tool in tools],
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
     computations.save(feats_cummulative)
@@ -106,25 +104,26 @@ def features_xy(tools: List[Dict[str, Any]], collection: str, computations):
     """
 
     def count_features(tool: Dict[str, Any]) -> int:
-        return sum(1 for k,v in tool.items() if is_meaningful(k,v))
+        return sum(1 for k, v in tool.items() if is_meaningful(k, v))
 
-    counts = [count_features(tool['data']) for tool in tools]
+    counts = [count_features(tool["data"]) for tool in tools]
     counter = Counter(counts)
     total = len(tools)
 
     data = {
-        'y': sorted(counter.keys()),
-        'x': [round((counter[k] / total), 2) for k in sorted(counter.keys())]  # percentages with 2 decimals
+        "y": sorted(counter.keys()),
+        "x": [
+            round((counter[k] / total), 2) for k in sorted(counter.keys())
+        ],  # percentages with 2 decimals
     }
 
     feats_xy = {
-        'variable': 'distribution_features',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': data,
-        'collection': collection,
-        'createdFrom': [tool['_id'] for tool in tools],
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+        "variable": "distribution_features",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": data,
+        "collection": collection,
+        "createdFrom": [tool["_id"] for tool in tools],
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
-
 
     computations.save(feats_xy)

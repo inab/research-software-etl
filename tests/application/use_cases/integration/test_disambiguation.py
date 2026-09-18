@@ -18,7 +18,9 @@ import pytest
 from application.services.integration.disambiguation.utils import load_dict_from_jsonl
 from application.use_cases.integration.disambiguation import run_full_disambiguation
 from infrastructure.config import PipelineConfig
-from tests.application.services.integration.pretools_fixtures import pretools_entries_for
+from tests.application.services.integration.pretools_fixtures import (
+    pretools_entries_for,
+)
 from tests.fakes import FakeDatabaseAdapter, FakeGitHubClient, fake_clients, fake_repos
 
 DATA_DIR = "tests/application/use_cases/integration/data"
@@ -52,7 +54,7 @@ def config_in(tmp_path) -> PipelineConfig:
 @pytest.mark.asyncio
 async def test_full_disambiguation_with_github_issue(monkeypatch, tmp_path):
     # Force every conflict down the manual-review path.
-    def mock_decision_agreement_proxy(messages, clients):
+    def mock_decision_agreement_proxy(messages, clients, model_a, model_b):
         return {"verdict": "disagreement", "confidence": "high"}
 
     monkeypatch.setattr(
@@ -90,7 +92,7 @@ async def test_full_disambiguation_with_github_issue(monkeypatch, tmp_path):
 async def test_dry_run_opens_no_issues(monkeypatch, tmp_path):
     """--dry-run-disambiguation must reach the same verdicts without escalating."""
 
-    def mock_decision_agreement_proxy(messages, clients):
+    def mock_decision_agreement_proxy(messages, clients, model_a, model_b):
         return {"verdict": "disagreement", "confidence": "high"}
 
     monkeypatch.setattr(

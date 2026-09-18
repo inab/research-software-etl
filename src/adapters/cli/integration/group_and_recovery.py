@@ -1,15 +1,17 @@
 """
 The command-line interface for the group and recovery step of the integration 
-""" 
+"""
+
 import argparse
 import logging
 import os
 from dotenv import load_dotenv
-from application.use_cases.integration.group_and_recovery import grouping_and_recovery_process
+from application.use_cases.integration.group_and_recovery import (
+    grouping_and_recovery_process,
+)
 from infrastructure.config import PipelineConfig
 from infrastructure.db.repositories import from_config
 from infrastructure.logging_config import resolve_level, setup_logging
-
 
 
 def main():
@@ -17,22 +19,25 @@ def main():
     setup_logging(resolve_level(os.getenv("LOG_LEVEL")))
     logger = logging.getLogger("rs-etl-pipeline")
 
-
     parser = argparse.ArgumentParser(
         description="""Group entries based on shared repository links and shared name and non-repository links. Entries, that must have been previously standardized,
         are fetched from the MongoDB database. The grouped entries are written to a JSON file."""
     )
 
     parser.add_argument(
-        "--grouped-entries-file", "-g",
-        help=("Path to the file containing grouped entries. This file is the output of the whole process. Default is 'data/grouped.json'."),
+        "--grouped-entries-file",
+        "-g",
+        help=(
+            "Path to the file containing grouped entries. This file is the output of the whole process. Default is 'data/grouped.json'."
+        ),
         type=str,
         dest="grouped_entries_file",
         default=None,
     )
 
     parser.add_argument(
-        "--env-file", "-e",
+        "--env-file",
+        "-e",
         help=("File containing environment variables to be set before running"),
         type=str,
         dest="env_file",

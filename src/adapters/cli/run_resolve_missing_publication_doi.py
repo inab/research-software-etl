@@ -1,4 +1,4 @@
-'''
+"""
 Test:
 python -m adapters.cli.run_resolve_missing_publication_doi \
   --mailto eva.martin@bsc.es \
@@ -8,8 +8,7 @@ python -m adapters.cli.run_resolve_missing_publication_doi \
 
 Real: 
 python -m adapters.cli.run_resolve_missing_publication_doi --mailto eva.martin@bsc.es 
-'''
-
+"""
 
 from __future__ import annotations
 

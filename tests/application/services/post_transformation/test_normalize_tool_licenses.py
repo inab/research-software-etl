@@ -75,7 +75,9 @@ def test_a_deprecated_identifier_never_matches(license_mapping):
 
 
 def test_an_unknown_license_is_kept_as_is(license_mapping):
-    result = normalize_tool_licenses(_tool([{"name": "Weird Custom License"}]), license_mapping)
+    result = normalize_tool_licenses(
+        _tool([{"name": "Weird Custom License"}]), license_mapping
+    )
 
     assert result == [{"name": "Weird Custom License", "url": None}]
 
@@ -90,7 +92,9 @@ def test_licenses_that_collapse_to_the_same_spdx_id_are_deduplicated(license_map
 
 
 def test_nameless_licenses_are_dropped(license_mapping):
-    result = normalize_tool_licenses(_tool([{"name": ""}, {"url": "http://x"}]), license_mapping)
+    result = normalize_tool_licenses(
+        _tool([{"name": ""}, {"url": "http://x"}]), license_mapping
+    )
 
     assert result == []
 
@@ -101,7 +105,11 @@ def test_update_tool_licenses_writes_back_only_what_changed(db):
         "tools",
         {
             "_id": "t2",
-            "data": {"license": [{"name": "MIT", "url": "https://spdx.org/licenses/MIT.html"}]},
+            "data": {
+                "license": [
+                    {"name": "MIT", "url": "https://spdx.org/licenses/MIT.html"}
+                ]
+            },
         },
     )
     repos = fake_repos(db, tools=True, license_mapping=True)
@@ -121,7 +129,9 @@ def test_update_tool_licenses_writes_back_only_what_changed(db):
 def test_update_tool_licenses_flushes_every_batch(db, monkeypatch):
     """All changed tools are written even when they span several write batches."""
     for i in range(5):
-        db.insert_one("tools", {"_id": f"t{i}", "data": {"license": [{"name": "Expat"}]}})
+        db.insert_one(
+            "tools", {"_id": f"t{i}", "data": {"license": [{"name": "Expat"}]}}
+        )
     repos = fake_repos(db, tools=True, license_mapping=True)
 
     # Count how many round-trips the writes take.
@@ -154,6 +164,8 @@ def test_bulk_set_licenses_only_touches_existing_tools(db):
         {"t1": [{"name": "MIT", "url": "u"}], "ghost": [{"name": "MIT"}]}
     )
 
-    assert repos.tools.find_by_id("t1")["data"]["license"] == [{"name": "MIT", "url": "u"}]
+    assert repos.tools.find_by_id("t1")["data"]["license"] == [
+        {"name": "MIT", "url": "u"}
+    ]
     # A tool that does not exist is not created (upsert=False).
     assert repos.tools.find_by_id("ghost") is None

@@ -1,5 +1,7 @@
 from typing import Dict, Any, List
-from application.services.publications.publication_standardizer import PublicationStandardizer
+from application.services.publications.publication_standardizer import (
+    PublicationStandardizer,
+)
 from application.services.publications.publication_extractor import PublicationExtractor
 from domain.models.publication.publication import Publication
 from shared.utils import validate_and_filter
@@ -8,6 +10,7 @@ import logging
 
 logger = logging.getLogger("rs-etl-pipeline")
 
+
 class BiocondaRecipesPublicationExtractor(PublicationExtractor):
     """Extracts publication data from Bioconda recipes."""
 
@@ -15,12 +18,12 @@ class BiocondaRecipesPublicationExtractor(PublicationExtractor):
     def extract_publications(cls, raw_data) -> List[Dict]:
         new_pubids = set()
         # Extract DOIs
-        if raw_data.get('data'):
-            if raw_data['data'].get('extra'):
-                if raw_data['data']['extra'].get('identifiers'):
-                    for identifier in raw_data['data']['extra'].get('identifiers'):
-                        reg1 = 'https:\/\/doi.org\/(10.([\w.]+?)\/([\w.]+)([\w.\/]+)?)'
-                        reg2 = 'doi:(10.([\w.]+?)\/([\w.]+)([\w.\/]+)?)'
+        if raw_data.get("data"):
+            if raw_data["data"].get("extra"):
+                if raw_data["data"]["extra"].get("identifiers"):
+                    for identifier in raw_data["data"]["extra"].get("identifiers"):
+                        reg1 = "https:\/\/doi.org\/(10.([\w.]+?)\/([\w.]+)([\w.\/]+)?)"
+                        reg2 = "doi:(10.([\w.]+?)\/([\w.]+)([\w.\/]+)?)"
                         m1 = re.match(reg1, identifier)
                         m2 = re.match(reg2, identifier)
                         if m1:
@@ -28,19 +31,18 @@ class BiocondaRecipesPublicationExtractor(PublicationExtractor):
                         if m2:
                             new_pubids.add(m2.group(1))
 
-                if raw_data['data']['extra'].get('doi'):
-                    for doi in raw_data['data']['extra'].get('doi'):
-                        if doi != 'NA':
+                if raw_data["data"]["extra"].get("doi"):
+                    for doi in raw_data["data"]["extra"].get("doi"):
+                        if doi != "NA":
                             new_pubids.add(doi)
-        
+
         # Build the publications dictionary
-        publications = []        
+        publications = []
         for pubid in new_pubids:
-            publications.append({
-                'doi': pubid
-            })
-    
+            publications.append({"doi": pubid})
+
         return publications
+
 
 class BiocondaRecipesPublicationStandardizer(PublicationStandardizer):
     """Standardizes publication data from Bioconda recipes."""
@@ -48,16 +50,15 @@ class BiocondaRecipesPublicationStandardizer(PublicationStandardizer):
     @classmethod
     def standardize(cls, raw_data) -> Dict[str, Any]:
         try:
-            
-            publication_dict = {
-                "doi": raw_data.get("doi"),
-                "title": None
-            }
+
+            publication_dict = {"doi": raw_data.get("doi"), "title": None}
 
             publication = validate_and_filter(Publication, **publication_dict)
 
             return publication
 
         except Exception as e:
-            logger.error(f"Error processing Bioconda recipes publication data: {str(e)}")
+            logger.error(
+                f"Error processing Bioconda recipes publication data: {str(e)}"
+            )
             return {}

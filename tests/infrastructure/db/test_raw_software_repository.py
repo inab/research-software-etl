@@ -3,12 +3,19 @@ transformation stage."""
 
 from datetime import datetime
 
-from infrastructure.db.mongo.raw_software_repository import RawSoftwareMetadataRepository
+from infrastructure.db.mongo.raw_software_repository import (
+    RawSoftwareMetadataRepository,
+)
 from tests.fakes import FakeDatabaseAdapter
 
 
 def _doc(_id: str, source: str, updated_at: datetime) -> dict:
-    return {"_id": _id, "@data_source": source, "@last_updated_at": updated_at, "data": {}}
+    return {
+        "_id": _id,
+        "@data_source": source,
+        "@last_updated_at": updated_at,
+        "data": {},
+    }
 
 
 def _seed_repo() -> RawSoftwareMetadataRepository:

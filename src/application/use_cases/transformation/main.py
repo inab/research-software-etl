@@ -10,15 +10,16 @@ data.
 Its responsibility is orchestration rather than normalization: the detailed
 publication and software metadata transformation logic is delegated to the
 corresponding helper modules and specialized services.
-""" 
-
+"""
 
 import logging
 from datetime import datetime
 from typing import List, Dict, Optional
 from infrastructure.config import PipelineConfig
 from domain.repositories import Repositories
-from application.use_cases.transformation.publications_processing import resolve_publications_for_page
+from application.use_cases.transformation.publications_processing import (
+    resolve_publications_for_page,
+)
 from application.use_cases.transformation.software_metadata_processing import (
     standardize_entry,
     pretools_identifier,
@@ -27,19 +28,20 @@ from application.use_cases.transformation.software_metadata_processing import (
 
 logger = logging.getLogger("rs-etl-pipeline")
 
+
 def get_identifier(entry: Dict) -> str:
-    '''
+    """
     Extracts the identifier from a raw entry.
 
     Args:
         entry (dict): dictionary with the raw data
-    '''
-    identifier = entry.get('_id', None)
+    """
+    identifier = entry.get("_id", None)
     if not identifier:
         logger.error(f"No identifier found for entry {entry}")
         return None
     return identifier
-    
+
 
 def setup_logging(loglevel: int):
     """
@@ -52,11 +54,13 @@ def setup_logging(loglevel: int):
     specifically setting a quieter logging level for 'bibtexparser' to reduce verbosity.
     """
     logging.basicConfig(level=loglevel)
-    logging.getLogger('bibtexparser').setLevel(logging.WARNING)
+    logging.getLogger("bibtexparser").setLevel(logging.WARNING)
     return
 
 
-def process_page(raw_entries: List[Dict], source: str, config: PipelineConfig, repos: Repositories):
+def process_page(
+    raw_entries: List[Dict], source: str, config: PipelineConfig, repos: Repositories
+):
     """
     Transform one page of raw entries with a fixed, small number of DB round-trips.
 
@@ -77,7 +81,9 @@ def process_page(raw_entries: List[Dict], source: str, config: PipelineConfig, r
         standardized_per_entry.append(software_dicts or [])
 
     # 2. Resolve this page's publications in a handful of batched round-trips.
-    publication_ids_by_entry = resolve_publications_for_page(raw_entries, source, config, repos)
+    publication_ids_by_entry = resolve_publications_for_page(
+        raw_entries, source, config, repos
+    )
 
     # 3. Flatten to the pretools records to write, attaching publication ids.
     inputs: List[tuple] = []  # (identifier, software_dict, raw_entry)
@@ -85,8 +91,10 @@ def process_page(raw_entries: List[Dict], source: str, config: PipelineConfig, r
         publication_ids = publication_ids_by_entry[entry_index]
         raw_entry = raw_entries[entry_index]
         for software_dict in software_dicts:
-            software_dict['publication'] = publication_ids
-            inputs.append((pretools_identifier(software_dict), software_dict, raw_entry))
+            software_dict["publication"] = publication_ids
+            inputs.append(
+                (pretools_identifier(software_dict), software_dict, raw_entry)
+            )
 
     if not inputs:
         return
@@ -126,7 +134,9 @@ def process_source(
     that fails is logged and skipped so the rest of the source still transforms.
     """
     logger.info(f"Starting transformation of data from {source}")
-    raw_data = repos.alambique.get_raw_documents_from_source(source, updated_since=updated_since)
+    raw_data = repos.alambique.get_raw_documents_from_source(
+        source, updated_since=updated_since
+    )
 
     pages = 0
     entries = 0
@@ -136,17 +146,21 @@ def process_source(
         try:
             process_page(page, source, config, repos)
         except Exception as e:
-            logger.error(f"An error occurred while processing a page of source {source}: {e}")
+            logger.error(
+                f"An error occurred while processing a page of source {source}: {e}"
+            )
 
     if pages == 0:
         logger.info(f"No data found for source {source}")
     else:
-        logger.info(f"Transformed {entries} raw entries from {source} across {pages} page(s)")
+        logger.info(
+            f"Transformed {entries} raw entries from {source} across {pages} page(s)"
+        )
 
     return
 
 
-'''
+"""
 sources = [
     'bioconda',
     'bioconda_recipes',
@@ -158,8 +172,7 @@ sources = [
     'sourceforge',
     'opeb_metrics'
 ]
-'''
-
+"""
 
 
 def transform_sources(

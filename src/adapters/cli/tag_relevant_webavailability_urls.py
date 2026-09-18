@@ -1,8 +1,8 @@
-'''
+"""
 Usage:
 
 PYTHONPATH=$(pwd) python -m adapters.cli.tag_relevant_webavailability_urls
-'''
+"""
 
 from __future__ import annotations
 
@@ -29,7 +29,9 @@ def build_parser() -> argparse.ArgumentParser:
     # MONGO_WEBAV_COLL), and the tag field belongs to the repository's schema.
     ap.add_argument("--created-by", default=os.getenv("CREATED_BY", "oeb-ingest"))
     ap.add_argument("--updated-by", default=os.getenv("UPDATED_BY", "oeb-ingest"))
-    ap.add_argument("--limit-tools", type=int, default=0, help="Limit tool docs to scan (0=all)")
+    ap.add_argument(
+        "--limit-tools", type=int, default=0, help="Limit tool docs to scan (0=all)"
+    )
     ap.add_argument("--dry-run", action="store_true")
     return ap
 

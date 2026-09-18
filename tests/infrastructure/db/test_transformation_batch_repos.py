@@ -10,14 +10,18 @@ from tests.fakes import FakeDatabaseAdapter
 
 def test_bulk_upsert_inserts_new_and_updates_existing_in_one_call():
     db = FakeDatabaseAdapter(
-        {"pretools": [{"_id": "s/a/cmd/1", "data": {"name": "a"}, "last_updated_at": "old"}]}
+        {
+            "pretools": [
+                {"_id": "s/a/cmd/1", "data": {"name": "a"}, "last_updated_at": "old"}
+            ]
+        }
     )
     repo = PretoolsRepository(db, "pretools")
 
     repo.bulk_upsert(
         {
             "s/a/cmd/1": {"data": {"name": "a2"}, "last_updated_at": "new"},  # update
-            "s/b/cmd/1": {"data": {"name": "b"}, "last_updated_at": "new"},   # insert
+            "s/b/cmd/1": {"data": {"name": "b"}, "last_updated_at": "new"},  # insert
         }
     )
 

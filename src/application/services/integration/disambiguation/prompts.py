@@ -9,7 +9,7 @@ from pathlib import Path
 
 from application.services.integration.disambiguation.utils import get_pub
 
-MAX_TOTAL_TOKENS = 130000  
+MAX_TOTAL_TOKENS = 130000
 
 
 # -------------------------------
@@ -21,8 +21,10 @@ MAX_TOTAL_TOKENS = 130000
 def get_tokenizer(model="gpt-4"):
     return tiktoken.encoding_for_model(model)
 
+
 def count_tokens(text, model="gpt-4") -> int:
     return len(get_tokenizer(model).encode(text))
+
 
 def estimate_total_tokens(messages, model="gpt-4"):
     enc = get_tokenizer(model)
@@ -33,14 +35,15 @@ def estimate_total_tokens(messages, model="gpt-4"):
 # Prompt + Chat Message Builder
 # -------------------------------
 
+
 def build_chat_messages_with_disconnected(
     instruction_prompt: str,
     conflict_data: dict,
     publications,
-    disconnected_preamble= "**Disconnected tools** to be analyzed",
-    remaining_preamble= "Tools known to be the **same software**",
+    disconnected_preamble="**Disconnected tools** to be analyzed",
+    remaining_preamble="Tools known to be the **same software**",
     max_tokens_per_chunk=8000,
-    model="gpt-4"
+    model="gpt-4",
 ):
     messages = [{"role": "user", "content": instruction_prompt}]
     enc = get_tokenizer(model)
@@ -52,11 +55,11 @@ def build_chat_messages_with_disconnected(
 
         for entry in entries:
             new_pubs = []
-            if entry['publication']:
-                new_pubs.append(get_pub(entry['publication'], publications))
-            entry['publication'] = new_pubs
-            #print('Entry')
-            #pprint(entry)
+            if entry["publication"]:
+                new_pubs.append(get_pub(entry["publication"], publications))
+            entry["publication"] = new_pubs
+            # print('Entry')
+            # pprint(entry)
             entry_json = json.dumps(entry, ensure_ascii=False)
             entry_tokens = len(enc.encode(entry_json))
 
@@ -82,17 +85,21 @@ def build_chat_messages_with_disconnected(
     # Add entries: known and disconnected tools
     if conflict_data.get("remaining"):
         for i, chunk in enumerate(chunk_entries(conflict_data["remaining"])):
-            messages.append({
-                "role": "user",
-                "content": f"{remaining_preamble} - part {i+1}:\n```json\n{json.dumps(chunk, indent=2, ensure_ascii=False)}\n```"
-            })
+            messages.append(
+                {
+                    "role": "user",
+                    "content": f"{remaining_preamble} - part {i+1}:\n```json\n{json.dumps(chunk, indent=2, ensure_ascii=False)}\n```",
+                }
+            )
 
     if conflict_data.get("disconnected"):
         for j, chunk in enumerate(chunk_entries(conflict_data["disconnected"])):
-            messages.append({
-                "role": "user",
-                "content": f"{disconnected_preamble} - part {j+1}:\n```json\n{json.dumps(chunk, indent=2, ensure_ascii=False)}\n```"
-            })
+            messages.append(
+                {
+                    "role": "user",
+                    "content": f"{disconnected_preamble} - part {j+1}:\n```json\n{json.dumps(chunk, indent=2, ensure_ascii=False)}\n```",
+                }
+            )
 
     # Add enriched webpage and repository contents
     if "webpage_contents" in conflict_data:
@@ -100,22 +107,28 @@ def build_chat_messages_with_disconnected(
             messages.append(chunk)
 
     # Final instruction
-    messages.append({
-        "role": "user",
-        "content": "All parts have been sent. Please now analyze the entries and provide the output as specified. \n\nIMPORTANT: Return ONLY a valid Python dictionary with the following keys: 'verdict', 'explanation', 'confidence', and 'features'. Do NOT explanation, or extra commentary. This is a strict output constraint."
-    })
+    messages.append(
+        {
+            "role": "user",
+            "content": "All parts have been sent. Please now analyze the entries and provide the output as specified. \n\nIMPORTANT: Return ONLY a valid Python dictionary with the following keys: 'verdict', 'explanation', 'confidence', and 'features'. Do NOT explanation, or extra commentary. This is a strict output constraint.",
+        }
+    )
 
     # Token budget check
     total_tokens = estimate_total_tokens(messages, model=model)
-    #logging.info(f"Total tokens: {total_tokens}")
+    # logging.info(f"Total tokens: {total_tokens}")
     if total_tokens > MAX_TOTAL_TOKENS:
-        raise ValueError(f"Prompt too long: {total_tokens} tokens. Limit is {MAX_TOTAL_TOKENS}.")
+        raise ValueError(
+            f"Prompt too long: {total_tokens} tokens. Limit is {MAX_TOTAL_TOKENS}."
+        )
 
     return messages
+
 
 # -------------------------------
 # Template Loader
 # -------------------------------
+
 
 def load_templates_from_folder(folder_path: str) -> dict:
     logging.info(f"Loading templates from folder: {folder_path}")
@@ -128,12 +141,15 @@ def load_templates_from_folder(folder_path: str) -> dict:
     return templates
 
 
-PROMPT_TEMPLATES = load_templates_from_folder("src/application/services/integration/prompts")
+PROMPT_TEMPLATES = load_templates_from_folder(
+    "src/application/services/integration/prompts"
+)
 
 
 # -------------------------------
 # Prompt Selection
 # -------------------------------
+
 
 def build_prompt(disconnected, remaining, publications):
 
@@ -141,9 +157,8 @@ def build_prompt(disconnected, remaining, publications):
 
     instruction_prompt = template.render()
 
-    data_dict = {
-        "disconnected": disconnected,
-        "remaining": remaining
-    }
+    data_dict = {"disconnected": disconnected, "remaining": remaining}
 
-    return build_chat_messages_with_disconnected(instruction_prompt, data_dict, publications)
+    return build_chat_messages_with_disconnected(
+        instruction_prompt, data_dict, publications
+    )

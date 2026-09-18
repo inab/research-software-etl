@@ -17,17 +17,20 @@ def main():
         description="Generate statistics for research software collections."
     )
     parser.add_argument(
-        "--collections", "-c",
+        "--collections",
+        "-c",
         help="Comma-separated list of collection tags, or 'all' for all collections.",
         required=True,
     )
     parser.add_argument(
-        "--env-file", "-e",
+        "--env-file",
+        "-e",
         help="File containing environment variables to be set before running.",
         default=".env",
     )
     parser.add_argument(
-        "--loglevel", "-l",
+        "--loglevel",
+        "-l",
         help="Set the logging level (default: LOG_LEVEL env var, else INFO).",
         default=os.getenv("LOG_LEVEL", "INFO"),
     )
@@ -38,7 +41,16 @@ def main():
     logging.debug(f"Env file: {args.env_file}")
 
     if args.collections.lower() == "all":
-        collections = ['RIS3CAT VEIS', 'ELIXIR-ES', 'BioExcel', 'PerMedCoE', 'IMPaCT-Data', '3D-BioInfo', 'EUCAIM', 'Proteomics']
+        collections = [
+            "RIS3CAT VEIS",
+            "ELIXIR-ES",
+            "BioExcel",
+            "PerMedCoE",
+            "IMPaCT-Data",
+            "3D-BioInfo",
+            "EUCAIM",
+            "Proteomics",
+        ]
         if "tools" not in collections:
             collections.append("tools")
     else:
@@ -48,9 +60,9 @@ def main():
 
     logging.info(f"Generating stats for collections: {collections}")
     generate_stats_for_collections(collections, repos)
-    
+
     logging.info("Stats generation complete.")
+
 
 if __name__ == "__main__":
     main()
-

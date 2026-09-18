@@ -7,10 +7,14 @@ import requests
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 
-class OpenRouterClient:
-    """Chat-completions client for OpenRouter (https://openrouter.ai)."""
+class GepetoClient:
+    """Chat-completions client for Gepeto, the BSC LLM provider.
 
-    BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
+    Gepeto is an Open WebUI instance that exposes an OpenAI-compatible
+    ``/api/chat/completions`` endpoint.
+    """
+
+    BASE_URL = "https://gepeto.bsc.es/api"
 
     def __init__(self, api_key: str | None = None) -> None:
         self.api_key = api_key
@@ -36,16 +40,17 @@ class OpenRouterClient:
             "temperature": 0.2,
         }
 
-        logging.info(f"Sending request to OpenRouter API: {self.BASE_URL}")
+        url = f"{self.BASE_URL}/chat/completions"
+        logging.info(f"Sending request to Gepeto API: {url}")
 
-        response = requests.post(self.BASE_URL, json=payload, headers=headers)
+        response = requests.post(url, json=payload, headers=headers)
 
         if response.status_code == 200:
             try:
                 body = response.json()
                 content = body["choices"][0]["message"]["content"].strip()
                 meta = body.get("usage", {})
-                meta["provider"] = body.get("provider", "")
+                meta["provider"] = "gepeto"
                 if content:
                     return content, meta
             except Exception:

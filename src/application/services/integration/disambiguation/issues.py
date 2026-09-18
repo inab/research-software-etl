@@ -11,9 +11,10 @@ def generate_github_body(context, template_path=None):
     safe -- but callers in the pipeline pass the path from the config the CLI built.
     """
     template_path = template_path or PipelineConfig().github_issue_template_path
-    env = Environment(loader=FileSystemLoader('.'))
+    env = Environment(loader=FileSystemLoader("."))
     template = env.get_template(str(template_path))
     return template.render(context)
+
 
 def extract_url(repo):
     urls = ""
@@ -26,6 +27,7 @@ def extract_url(repo):
             urls += f"\n\t- {repos}"
 
     return urls
+
 
 def prepare_website(websites):
     if not websites:
@@ -60,15 +62,15 @@ def prepare_description(description_list):
         if not cleaned:
             return "No description available."
 
-        text = "\n\t```"    
+        text = "\n\t```"
         for item in cleaned:
             text += f"\n\t{item}"
 
         text += "\n\t```"
         return text
-    
-    
+
     return str(description_list)  # Fallback, just in case
+
 
 def prepare_publications(publications):
     if not publications:
@@ -86,7 +88,9 @@ def prepare_publications(publications):
             parts[-1] += f" ({year})"
 
         # Prefer URL, then DOI, then identifiers
-        link = pub.get("url") or (f"https://doi.org/{pub['doi']}" if pub.get("doi") else None)
+        link = pub.get("url") or (
+            f"https://doi.org/{pub['doi']}" if pub.get("doi") else None
+        )
         if link:
             parts.append(f"[Link]({link})")
 
@@ -111,20 +115,21 @@ def prepare_license(license_data):
     licenses = ""
     if not license_data:
         return "No license information."
-    
+
     for license in license_data:
 
         value = license.get("name", "")
         url = license.get("url", "")
 
         if value and url:
-           licenses += f"\n\t- [{value}]({url})"
+            licenses += f"\n\t- [{value}]({url})"
         elif value:
             licenses += f"\n\t- {value}"
         elif url:
             licenses += f"\n\t- [License link]({url})"
     else:
         return "No license information."
+
 
 def prepare_documentation(docs):
     if not docs:
@@ -155,9 +160,10 @@ def prepare_authors(authors):
         if email:
             formatted += f"\n\t- {name} ({author_type}, [{email}](mailto:{email}))"
         else:
-            formatted += (f"\n\t-{name} ({author_type})")
+            formatted += f"\n\t-{name} ({author_type})"
 
     return formatted
+
 
 def preprocess_entry(entry):
 
@@ -173,8 +179,9 @@ def preprocess_entry(entry):
         "publications": prepare_publications(entry.get("publications")),
         "license": prepare_license(entry.get("license")),
         "description": prepare_description(entry.get("description")),
-        "documentation": prepare_documentation(entry.get("documentation")),   
+        "documentation": prepare_documentation(entry.get("documentation")),
     }
+
 
 def generate_context(key, conflict_id, full_conflict, conflict_url, run_id):
     return {
@@ -182,23 +189,21 @@ def generate_context(key, conflict_id, full_conflict, conflict_url, run_id):
         "id": conflict_id,
         "entry_a": preprocess_entry(full_conflict["disconnected"][0]),
         "entry_b": preprocess_entry(full_conflict["remaining"][0]),
-        'conflict_url': conflict_url,
-        'run_id': run_id
+        "conflict_url": conflict_url,
+        "run_id": run_id,
     }
-
-
 
 
 def generate_conflict_file(conflict, conflict_name, conflict_id, run_id):
-    
+
     content = {
-        'date': datetime.now(timezone.utc).isoformat(),
-        'conflict_name': conflict_name,
-        'conflict_id': conflict_id,
-        'run_id': run_id,
-        'conflict': conflict
+        "date": datetime.now(timezone.utc).isoformat(),
+        "conflict_name": conflict_name,
+        "conflict_id": conflict_id,
+        "run_id": run_id,
+        "conflict": conflict,
     }
 
     filename = f"{conflict_id}.json"
-    
+
     return content, filename

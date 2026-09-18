@@ -63,7 +63,7 @@ src/
 └── infrastructure/
     ├── db/mongo/          # MongoDB adapter + repositories (raw, standardized, publications)
     ├── storage/           # JSONL/JSON file I/O for inter-stage data
-    └── external/          # API clients (Europe PMC, Semantic Scholar, OpenRouter)
+    └── external/          # API clients (Europe PMC, Semantic Scholar, Gepeto)
 ```
 
 **Pipeline stages (in order):**
@@ -88,7 +88,7 @@ src/
 - `DatabaseAdapter` is a Protocol; all database access goes through typed repositories rather than raw pymongo calls
 - Each entry has a `@metadata` dict (provenance, source) alongside its `data` payload
 - Large collections are processed in batches via generators to avoid loading everything into memory
-- All credentials and API tokens come from `.env` (MongoDB URI, GitHub, GitLab, OpenRouter, HuggingFace)
+- All credentials and API tokens come from `.env` (MongoDB URI, GitHub, GitLab, Gepeto, HuggingFace)
 - Tests use `.env` auto-loading; tests requiring a live environment are marked `@pytest.mark.manual`
 
 **Configuration (`src/infrastructure/config.py`):**
@@ -146,7 +146,7 @@ The merge stage prints `preserved / new / retired / contested`. **`contested` is
 
 **Every HTTP call the pipeline makes lives here**, behind a client class — not just the tokened ones. `ExternalClients.from_credentials(creds)` bundles them, and the CLI threads that bundle down the disambiguation chain (`run_full_disambiguation → disambiguate_blocks → process_conflict → {proxy, conflict_builder → enrich_links}`).
 
-- Tokened, each holding its token as a constructor argument: `GitHubClient`, `GitLabClient`, `OpenRouterClient`, `HuggingFaceClient`.
+- Tokened, each holding its token as a constructor argument: `GepetoClient` (BSC LLM provider, both disambiguation opinions), `GitHubClient`, `GitLabClient`. (`HUGGINGFACE_API_KEY` still exists as a *credential* — it authenticates embedding-model downloads in the similarity stage — but there is no `HuggingFaceClient`; embeddings go through `sentence-transformers`, not this bundle.)
 - Tokenless, bundled for the same reason — a service that owns a `requests.Session` cannot be run offline: `UrlChecker`, `PyPIClient`, `SourceForgeClient` (Cloudflare retry/backoff), `BitbucketClient`, `HeadlessBrowserFetcher` (Playwright).
 - Built directly by the CLI that needs them, not bundled: `EuropePmcClient`, `SemanticScholarClient`, `CrossrefClient` (its `mailto` is a CLI flag, not a credential), and `ObservatoryApiClient` (tokened with `OBSERVATORY_ADMIN_TOKEN`, used only by the `reindex` stage — see *Tool indexes* above).
 
@@ -154,7 +154,7 @@ The merge stage prints `preserved / new / retired / contested`. **`contested` is
 
 No module under `application/` may read a token, build an `Authorization` header, or make an HTTP request. Services receive `clients` (or the one narrow client they need — `run_update_web_availability_daily(cfg, repos, url_checker)`) and call methods on it. `tests/test_architecture.py` fails the build if `requests`, `httpx`, `playwright` or `urllib.request` is imported under `application/` or `domain/`.
 
-Tests inject fakes into `ExternalClients` rather than patching module globals — see `tests/application/services/integration/test_agreement_proxy.py`. `fake_clients()` leaves the four tokened slots `None` (so an unexpected reach-through raises) but fills the tokenless fetchers with offline fakes, so no test can reach the network by forgetting one. That is not hypothetical: while the disambiguation tests patched `enrich_links.get_link_content`, the redirect check underneath it went unpatched and hit the live network on every conflict.
+Tests inject fakes into `ExternalClients` rather than patching module globals — see `tests/application/services/integration/test_agreement_proxy.py`. `fake_clients()` leaves the three tokened slots `None` (so an unexpected reach-through raises) but fills the tokenless fetchers with offline fakes, so no test can reach the network by forgetting one. That is not hypothetical: while the disambiguation tests patched `enrich_links.get_link_content`, the redirect check underneath it went unpatched and hit the live network on every conflict.
 
 **Tests:**
 

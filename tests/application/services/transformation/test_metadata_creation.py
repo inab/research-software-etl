@@ -1,7 +1,11 @@
 import pytest
 from freezegun import freeze_time
 from pydantic import HttpUrl
-from application.services.transformation.metadata import create_new_metadata, update_existing_metadata, build_commit_url
+from application.services.transformation.metadata import (
+    create_new_metadata,
+    update_existing_metadata,
+    build_commit_url,
+)
 from domain.models.metadata import Metadata
 from infrastructure.config import CIContext
 
@@ -49,7 +53,7 @@ def test_update_existing_metadata(ci):
         last_updated_at="2022-12-25T12:00:00",
         updated_by="https://old.url",
         updated_logs="https://old.pipeline.url",
-        source=[{"collection": alambique, "id": "002", "source_url": source_url}]
+        source=[{"collection": alambique, "id": "002", "source_url": source_url}],
     )
 
     updated_metadata = update_existing_metadata(existing_metadata, ci)
@@ -57,7 +61,9 @@ def test_update_existing_metadata(ci):
     assert updated_metadata.last_updated_at == "2023-01-01T12:00:00"
     assert updated_metadata.updated_by == build_commit_url(ci)
     assert updated_metadata.updated_logs == "https://pipeline.url"
-    assert updated_metadata.created_at == "2022-12-25T12:00:00"  # Should remain unchanged
+    assert (
+        updated_metadata.created_at == "2022-12-25T12:00:00"
+    )  # Should remain unchanged
     assert updated_metadata.created_by == "https://old.url"  # Should remain unchanged
 
 

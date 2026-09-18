@@ -53,7 +53,9 @@ def test_count_tools_records_the_total(computations):
 
 
 def test_semantic_versioning_writes_a_document(computations):
-    semantic_versioning([tool("a", version="1.0.0"), tool("b", version="nope")], "tools", computations)
+    semantic_versioning(
+        [tool("a", version="1.0.0"), tool("b", version="nope")], "tools", computations
+    )
 
     assert len(computations.find({})) == 1
 

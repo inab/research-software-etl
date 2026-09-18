@@ -76,7 +76,7 @@ def clients():
 
 
 def _stub_proxy(monkeypatch, verdict: str):
-    def proxy(messages, clients):
+    def proxy(messages, clients, model_a, model_b):
         return {"verdict": verdict, "confidence": "high"}
 
     # NB: no "src." prefix -- the package installs as `application.*`, so
@@ -119,24 +119,43 @@ async def test_real_conflict_cases(monkeypatch, tmp_path, repos, clients):
         assert "ale/cmd" in disamb_result
 
         expected_result = expected[i]
-        assert set(disamb_result["ale/cmd"]["merged_entries"]) == set(expected_result["merged_entries"])
-        assert set(disamb_result["ale/cmd"]["unmerged_entries"]) == set(expected_result["unmerged_entries"])
+        assert set(disamb_result["ale/cmd"]["merged_entries"]) == set(
+            expected_result["merged_entries"]
+        )
+        assert set(disamb_result["ale/cmd"]["unmerged_entries"]) == set(
+            expected_result["unmerged_entries"]
+        )
         assert disamb_result["ale/cmd"]["resolution"] == expected_result["resolution"]
         assert disamb_result["ale/cmd"]["notes"] == expected_result["notes"]
 
         for block_id in ["1000genomes_vcf2ped/web", "mapcaller/cmd", "cvinspector/cmd"]:
-            assert set(disamb_result[block_id]["merged_entries"]) == set(expected_heuristics[block_id]["merged_entries"])
-            assert set(disamb_result[block_id]["unmerged_entries"]) == set(expected_heuristics[block_id]["unmerged_entries"])
-            assert disamb_result[block_id]["resolution"] == expected_heuristics[block_id]["resolution"]
-            assert disamb_result[block_id]["source"] == expected_heuristics[block_id]["source"]
-            assert disamb_result[block_id]["notes"] == expected_heuristics[block_id]["notes"]
+            assert set(disamb_result[block_id]["merged_entries"]) == set(
+                expected_heuristics[block_id]["merged_entries"]
+            )
+            assert set(disamb_result[block_id]["unmerged_entries"]) == set(
+                expected_heuristics[block_id]["unmerged_entries"]
+            )
+            assert (
+                disamb_result[block_id]["resolution"]
+                == expected_heuristics[block_id]["resolution"]
+            )
+            assert (
+                disamb_result[block_id]["source"]
+                == expected_heuristics[block_id]["source"]
+            )
+            assert (
+                disamb_result[block_id]["notes"]
+                == expected_heuristics[block_id]["notes"]
+            )
 
         # Each case starts from a clean slate of already-disambiguated blocks.
         disambiguated_path.write_text("")
 
 
 @pytest.mark.asyncio
-async def test_disagreement_escalates_to_a_curator(monkeypatch, tmp_path, repos, clients):
+async def test_disagreement_escalates_to_a_curator(
+    monkeypatch, tmp_path, repos, clients
+):
     """When the two models disagree the conflict must escalate: a conflict file is
     committed and a GitHub issue opened."""
     _stub_proxy(monkeypatch, "disagreement")
@@ -157,7 +176,9 @@ async def test_disagreement_escalates_to_a_curator(monkeypatch, tmp_path, repos,
 
 
 @pytest.mark.asyncio
-async def test_conflict_entries_are_hydrated_from_pretools(monkeypatch, tmp_path, repos, clients):
+async def test_conflict_entries_are_hydrated_from_pretools(
+    monkeypatch, tmp_path, repos, clients
+):
     """The stage reads full documents out of pretools rather than trusting the
     block: an id the collection does not hold must not silently resolve."""
     _stub_proxy(monkeypatch, "different")

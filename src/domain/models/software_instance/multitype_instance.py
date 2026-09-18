@@ -7,48 +7,62 @@ The "data" in entries in the tools collection (post integration) this schema (mu
 from domain.models.software_instance.main import instance, software_types
 from typing import List, Dict
 
-class multitype_instance(instance):
-    '''
-    Same as instance, but with a list of software types and other names.
-    '''
-    type : List[software_types]
-    other_names : List[str]
 
-    def merge(self, other: 'instance') -> 'instance':
-        '''
+class multitype_instance(instance):
+    """
+    Same as instance, but with a list of software types and other names.
+    """
+
+    type: List[software_types]
+    other_names: List[str]
+
+    def merge(self, other: "instance") -> "instance":
+        """
         Merges two instances of the same software into one.
         In lists, the duplication of items is avoided.
-        '''
+        """
         # Decide a name and put the other names in "other_names"
         # TODO: adjust naming logic after integration analysis (insights about naming)
 
         if self.name == other.name:
             self.other_names = list(set(self.other_names + other.other_names))
         else:
-            self.other_names = list(set(self.other_names + [other.name] + other.other_names))
-        
+            self.other_names = list(
+                set(self.other_names + [other.name] + other.other_names)
+            )
+
         self.type = list(set(self.type + other.type))
         self.version = list(set(self.version + other.version))
         self.label = list(set(self.label + other.label))
         self.links = list(set(self.links + other.links))
-        self.webpage = list(set(self.webpage + other.webpage)) ## 
+        self.webpage = list(set(self.webpage + other.webpage))  ##
         self.download = list(set(self.download + other.download))
         self.repository = self.merge_repositories(other.repository)
-        self.operating_system = list(set(self.operating_system + other.operating_system))
+        self.operating_system = list(
+            set(self.operating_system + other.operating_system)
+        )
         self.source_code = list(set(self.source_code + other.source_code))
-        self.https = self.https or other.https # True if any of the instances has it
-        self.ssl = self.ssl or other.ssl # True if any of the instances has it
-        self.operational = self.operational or other.operational # True if any of the instances has it
-        self.bioschemas = self.bioschemas or other.bioschemas # True if any of the instances has it
-        self.source = list(set(self.source + other.source)) 
+        self.https = self.https or other.https  # True if any of the instances has it
+        self.ssl = self.ssl or other.ssl  # True if any of the instances has it
+        self.operational = (
+            self.operational or other.operational
+        )  # True if any of the instances has it
+        self.bioschemas = (
+            self.bioschemas or other.bioschemas
+        )  # True if any of the instances has it
+        self.source = list(set(self.source + other.source))
         # ------- from here, tests are needed -------
         self.edam_topics = list(set(self.edam_topics + other.edam_topics))
         self.edam_operations = list(set(self.edam_operations + other.edam_operations))
         self.description = list(set(self.description + other.description))
-        self.test = self.test or other.test # True if any of the instances has it
-        self.inst_instr = self.inst_instr or other.inst_instr # True if any of the instances has it
+        self.test = self.test or other.test  # True if any of the instances has it
+        self.inst_instr = (
+            self.inst_instr or other.inst_instr
+        )  # True if any of the instances has it
         self.dependencies = list(set(self.dependencies + other.dependencies))
-        self.contribution_policy = self.contribution_policy or other.contribution_policy # True if any of the instances has it
+        self.contribution_policy = (
+            self.contribution_policy or other.contribution_policy
+        )  # True if any of the instances has it
         self.tags = list(set(self.tags + other.tags))
 
         # Has tests
@@ -56,7 +70,9 @@ class multitype_instance(instance):
         self.output = self.merge_data_formats(self.output, other.output)
         self.documentation = self.merge_documentation(other.documentation)
         self.license = self.merge_licenses(other.license)
-        self.termsUse = self.termsUse or other.termsUse # True if any of the instances has it
+        self.termsUse = (
+            self.termsUse or other.termsUse
+        )  # True if any of the instances has it
         self.authors = self.merge_authors(other.authors)
         self.publication = list(set(self.publication + other.publication))
         self.languages = list(set(self.languages + other.languages))
@@ -66,7 +82,6 @@ class multitype_instance(instance):
 
         return self
 
-            
     def merge_repositories(self, other_repository):
         """
         Merges the other_repository into the self_repository by appending repositories that don't already exist.
@@ -78,7 +93,7 @@ class multitype_instance(instance):
         Returns:
             list: The merged list of repositories.
         """
-        existing_urls = [repo.url for repo in self.repository] 
+        existing_urls = [repo.url for repo in self.repository]
         resulting_repositories = self.repository
         for repo in other_repository:
             if repo.url not in existing_urls:
@@ -104,7 +119,7 @@ class multitype_instance(instance):
         # Convert the dictionary back to a list
         merged_formats = list(format_map.values())
         return merged_formats
-    
+
     def merge_documentation(self, other_documentation: list) -> None:
         """
         Merges the documentation list from another instance into this instance.
@@ -126,7 +141,6 @@ class multitype_instance(instance):
         documentation = list(doc_map.values())
 
         return documentation
-    
 
     def merge_licenses(self, other_licenses: list) -> None:
         """
@@ -141,14 +155,14 @@ class multitype_instance(instance):
                 return []
             else:
                 return other_licenses
-        
+
         else:
 
             license_map = {lic.name: lic for lic in self.license}
 
             if not other_licenses:
                 return self.license
-            
+
             for lic in other_licenses:
                 if lic.name in license_map:
                     # Merge with the existing license item
@@ -160,7 +174,7 @@ class multitype_instance(instance):
             resulting_licenses = list(license_map.values())
 
         return resulting_licenses
-    
+
     def merge_authors(self, other_authors: list) -> None:
         """
         Merges the authors list from another instance into this instance.
@@ -181,7 +195,7 @@ class multitype_instance(instance):
         resulting_authors = list(author_map.values())
 
         return resulting_authors
-  
+
     def merge_citations(self, other_citations: List[Dict]) -> None:
         """
         Merges the citations list from another SoftwareInstance into this instance.
@@ -192,11 +206,17 @@ class multitype_instance(instance):
 
         for citation in self.citation + other_citations:
             # Generate a unique key based on essential fields
-            key = (citation.get('title', ''), citation.get('year', ''), citation.get('DOI', ''))
+            key = (
+                citation.get("title", ""),
+                citation.get("year", ""),
+                citation.get("DOI", ""),
+            )
 
             if key in citation_map:
                 # Merge the existing citation with the new one
-                citation_map[key] = self._merge_two_citations(citation_map[key], citation)
+                citation_map[key] = self._merge_two_citations(
+                    citation_map[key], citation
+                )
             else:
                 # Add the new citation if not already present
                 citation_map[key] = citation
@@ -205,9 +225,16 @@ class multitype_instance(instance):
         self.citation = list(citation_map.values())
 
         # Remove any citations that are fully contained within another
-        resulting_citation = [cit for i, cit in enumerate(self.citation) 
-                        if not any(self._is_subset(cit, other) for j, other in enumerate(self.citation) if i != j)]
-        
+        resulting_citation = [
+            cit
+            for i, cit in enumerate(self.citation)
+            if not any(
+                self._is_subset(cit, other)
+                for j, other in enumerate(self.citation)
+                if i != j
+            )
+        ]
+
         return resulting_citation
 
     def _is_subset(self, cit1: Dict, cit2: Dict) -> bool:
@@ -228,7 +255,7 @@ class multitype_instance(instance):
         for key in set(cit1.keys()).union(cit2.keys()):
             value1 = cit1.get(key)
             value2 = cit2.get(key)
-            
+
             if isinstance(value1, list) and isinstance(value2, list):
                 # Merge lists by combining and removing duplicates
                 merged_citation[key] = list(set(value1 + value2))
@@ -237,7 +264,7 @@ class multitype_instance(instance):
                 merged_citation[key] = value1 or value2
 
         return merged_citation
-    
+
     def merge_operations(self, other_operations: list) -> None:
         """
         Merges the operations list from another instance into this instance.
@@ -277,4 +304,3 @@ class multitype_instance(instance):
 
         resulting_topics = list(topic_map.values())
         return resulting_topics
-

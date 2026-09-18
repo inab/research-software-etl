@@ -5,8 +5,12 @@ from application.services.integration.disambiguation.results import (
     build_disambiguated_record_manual,
     build_no_conflict_record,
 )
-from application.services.integration.disambiguation.pair_scoring import PairScoringService
-from application.services.integration.disambiguation.review import DisambiguationReviewService
+from application.services.integration.disambiguation.pair_scoring import (
+    PairScoringService,
+)
+from application.services.integration.disambiguation.review import (
+    DisambiguationReviewService,
+)
 from application.services.integration.disambiguation.utils import (
     replace_with_full_entries,
     load_dict_from_jsonl,
@@ -32,7 +36,9 @@ def _pair_result_from_decision(conflict_pair, pair_stable_id, decision):
     }
 
 
-async def process_conflict(conflict_name, conflict, run_id, best_pair, config, clients, repos, dry_run=False):
+async def process_conflict(
+    conflict_name, conflict, run_id, best_pair, config, clients, repos, dry_run=False
+):
     """
     Process a single conflict block: build pairs, disambiguate them, and return
     a disambiguated_blocks record for this block.
@@ -47,8 +53,16 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, config, c
     block returns manual_review_pending after all pairs are processed; otherwise
     the normal disambiguated record.
     """
-    scoring = PairScoringService(clients, repos, config.proxy_results_path)
-    review = DisambiguationReviewService(clients, config, best_pair, run_id, dry_run=dry_run)
+    scoring = PairScoringService(
+        clients,
+        repos,
+        config.proxy_results_path,
+        config.gepeto_model_a,
+        config.gepeto_model_b,
+    )
+    review = DisambiguationReviewService(
+        clients, config, best_pair, run_id, dry_run=dry_run
+    )
 
     conflict_full = replace_with_full_entries(conflict, repos.pretools)
     conflict_pairs = scoring.build_pairs(conflict_full, conflict_name)
@@ -67,7 +81,9 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, config, c
         # 1) Reuse cached pair decision
         cached = review.cached(pair_stable_id)
         if cached is not None:
-            pair_results.append(_pair_result_from_decision(conflict_pair, pair_stable_id, cached))
+            pair_results.append(
+                _pair_result_from_decision(conflict_pair, pair_stable_id, cached)
+            )
             continue
 
         # 2) Score the pair with the agreement proxy
@@ -79,7 +95,9 @@ async def process_conflict(conflict_name, conflict, run_id, best_pair, config, c
             # The persisted payload defaults confidence to ""; the in-run pair
             # result has historically used the raw proxy value (None when absent).
             decision = {**payload, "confidence": scored.result.get("confidence")}
-            pair_results.append(_pair_result_from_decision(conflict_pair, pair_stable_id, decision))
+            pair_results.append(
+                _pair_result_from_decision(conflict_pair, pair_stable_id, decision)
+            )
             continue
 
         # 4) Proxy disagreement -> manual review needed
@@ -204,7 +222,9 @@ async def disambiguate_blocks(
             # Record already exists in disambiguated blocks, skipping
             pass
 
-    logger.info("After first round: %s errors in first round of disambiguation", errors_n)
+    logger.info(
+        "After first round: %s errors in first round of disambiguation", errors_n
+    )
 
     if errors_n:
         logger.warning("Examples of error blocks: %s", ", ".join(errors))

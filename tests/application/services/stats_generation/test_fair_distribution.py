@@ -21,10 +21,24 @@ def fair_score(tool_id, version, score=1.0, tags=None):
         "createdFrom": [tool_id],  # a one-element LIST, since db_createdFrom_to_list.py
         "version": version,
         "tags": tags if tags is not None else [],
-        "data": {"F": score, "F1": score, "F2": score, "F3": score,
-                 "A": score, "A1": score, "A3": score,
-                 "I": score, "I1": score, "I2": score, "I3": score,
-                 "R": score, "R1": score, "R2": score, "R3": score, "R4": score},
+        "data": {
+            "F": score,
+            "F1": score,
+            "F2": score,
+            "F3": score,
+            "A": score,
+            "A1": score,
+            "A3": score,
+            "I": score,
+            "I1": score,
+            "I2": score,
+            "I3": score,
+            "R": score,
+            "R1": score,
+            "R2": score,
+            "R3": score,
+            "R4": score,
+        },
     }
 
 
@@ -57,14 +71,18 @@ def test_the_latest_score_per_tool_wins(repos):
 
 def test_scores_can_be_scoped_to_a_tag(repos):
     repos.computations.save(fair_score("tool-1", "2026-01-01T00:00:00", tags="eucaim"))
-    repos.computations.save(fair_score("tool-2", "2026-01-01T00:00:00", tags="proteomics"))
+    repos.computations.save(
+        fair_score("tool-2", "2026-01-01T00:00:00", tags="proteomics")
+    )
 
     assert len(get_fair_scores("tools", repos.computations)) == 2
     assert len(get_fair_scores("eucaim", repos.computations)) == 1
 
 
 def test_entries_without_a_version_are_ignored(repos):
-    repos.computations.save({"variable": "FAIR_scores", "createdFrom": ["t"], "data": {}})
+    repos.computations.save(
+        {"variable": "FAIR_scores", "createdFrom": ["t"], "data": {}}
+    )
 
     assert get_fair_scores("tools", repos.computations) == []
 
@@ -85,7 +103,9 @@ def test_the_sanity_check_finds_tag_scoped_tools(repos, capsys):
 
 def test_distributions_are_written_for_the_collection(repos):
     for i in range(3):
-        repos.computations.save(fair_score(f"tool-{i}", "2026-01-01T00:00:00", score=1.0))
+        repos.computations.save(
+            fair_score(f"tool-{i}", "2026-01-01T00:00:00", score=1.0)
+        )
 
     compute_fair_distributions("tools", repos)
 

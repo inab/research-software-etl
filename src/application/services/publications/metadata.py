@@ -1,9 +1,10 @@
-'''
+"""
 Functions to create the metadata for the publication entries. To be inserted in the "publications" collection.
 - import metadata entity
 - create_metadata
 - return metadata object
-'''
+"""
+
 from datetime import datetime
 from domain.models.publication.metadata import Metadata
 from infrastructure.config import CIContext
@@ -32,7 +33,7 @@ def create_new_metadata(ci: CIContext = None) -> Dict:
         created_logs=ci.logs_url(),
         last_updated_at=current_date,
         updated_by=ci.commit_url(),
-        updated_logs=ci.logs_url()
+        updated_logs=ci.logs_url(),
     )
 
     return metadata.model_dump()

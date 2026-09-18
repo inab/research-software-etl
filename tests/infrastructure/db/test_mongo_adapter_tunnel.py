@@ -13,7 +13,7 @@ SSHTunnelForwarder = pytest.importorskip("sshtunnel").SSHTunnelForwarder
 import pymongo
 
 # Load .env variables
-load_dotenv(dotenv_path='.env', override=True)
+load_dotenv(dotenv_path=".env", override=True)
 logger = logging.getLogger("rs-etl-pipeline")
 
 '''
@@ -101,7 +101,6 @@ def test_mongo_debug_constructor():
 '''
 
 
-
 @pytest.mark.manual
 def test_mongodb_connection_through_ssh():
     """
@@ -110,7 +109,18 @@ def test_mongodb_connection_through_ssh():
     - Valid .env file with SSH and MongoDB config
     """
 
-    required_vars = ['USE_SSH_TUNNEL', 'SSH_HOST', 'SSH_USER', 'SSH_KEY', 'MONGO_HOST', 'MONGO_PORT', 'MONGO_USER', 'MONGO_PWD', 'MONGO_AUTH_SRC', 'MONGO_DB']
+    required_vars = [
+        "USE_SSH_TUNNEL",
+        "SSH_HOST",
+        "SSH_USER",
+        "SSH_KEY",
+        "MONGO_HOST",
+        "MONGO_PORT",
+        "MONGO_USER",
+        "MONGO_PWD",
+        "MONGO_AUTH_SRC",
+        "MONGO_DB",
+    ]
     missing = [var for var in required_vars if not os.getenv(var)]
     if missing:
         pytest.skip(f"Missing required env vars: {', '.join(missing)}")

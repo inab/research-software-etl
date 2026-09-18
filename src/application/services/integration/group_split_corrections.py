@@ -6,6 +6,7 @@ from pathlib import Path
 
 logger = logging.getLogger("rs-etl-pipeline")
 
+
 def normalize_source_name_stem(instance_id: str) -> str | None:
     """
     Extract <source>/<name> from a full instance id.
@@ -36,7 +37,10 @@ def load_split_corrections(corrections_file: str | Path) -> list[set[str]]:
     path = Path(corrections_file)
 
     if not path.exists():
-        logger.warning("Split corrections file not found: %s. Continuing without corrections.", path)
+        logger.warning(
+            "Split corrections file not found: %s. Continuing without corrections.",
+            path,
+        )
         return []
 
     with open(path, "r", encoding="utf-8") as f:
@@ -45,7 +49,11 @@ def load_split_corrections(corrections_file: str | Path) -> list[set[str]]:
     corrections = []
     for i, group in enumerate(raw, start=1):
         if not isinstance(group, list):
-            logger.warning("Skipping invalid correction at index %d: expected list, got %r", i, type(group))
+            logger.warning(
+                "Skipping invalid correction at index %d: expected list, got %r",
+                i,
+                type(group),
+            )
             continue
 
         stems = {
@@ -57,7 +65,9 @@ def load_split_corrections(corrections_file: str | Path) -> list[set[str]]:
         if len(stems) >= 2:
             corrections.append(stems)
         else:
-            logger.warning("Skipping correction at index %d: fewer than 2 valid stems", i)
+            logger.warning(
+                "Skipping correction at index %d: fewer than 2 valid stems", i
+            )
 
     logger.info(
         "Loaded %d split-correction groups from %s",
@@ -82,7 +92,9 @@ def build_instance_identity_index(instances: list[dict]) -> dict[str, list[dict]
         if stem:
             by_identity[stem].append(inst)
         else:
-            logger.warning("Could not extract source/name stem from instance id: %r", inst_id)
+            logger.warning(
+                "Could not extract source/name stem from instance id: %r", inst_id
+            )
 
     return dict(by_identity)
 

@@ -16,6 +16,7 @@ SOURCEFORGE_ALTERNATIVES = [
 # Web Scraping & Parsing
 # -------------------------------
 
+
 async def get_link_content(link, clients: ExternalClients):
     decoded_link = urllib.parse.unquote(link)
 
@@ -99,10 +100,12 @@ def extract_sourceforge_project_info(html: str) -> dict:
                 section_text += "\n" + inner.get_text(separator="\n", strip=True)
                 links.extend([a["href"] for a in inner.find_all("a", href=True)])
 
-            result["sections"].append({
-                "text": section_text.strip(),
-                "hrefs": list(set(links)),
-            })
+            result["sections"].append(
+                {
+                    "text": section_text.strip(),
+                    "hrefs": list(set(links)),
+                }
+            )
 
         for section in soup.find_all("section", class_="psp-section"):
             section_text = section.get_text(separator="\n", strip=True)
@@ -113,10 +116,12 @@ def extract_sourceforge_project_info(html: str) -> dict:
                 section_text += "\n" + inner.get_text(separator="\n", strip=True)
                 links.extend([a["href"] for a in inner.find_all("a", href=True)])
 
-            result["sections"].append({
-                "text": section_text.strip(),
-                "hrefs": list(set(links)),
-            })
+            result["sections"].append(
+                {
+                    "text": section_text.strip(),
+                    "hrefs": list(set(links)),
+                }
+            )
 
     except Exception as e:
         logging.warning(f"Error parsing SourceForge HTML: {e}")
@@ -127,6 +132,7 @@ def extract_sourceforge_project_info(html: str) -> dict:
 # -------------------------------
 # Repository/Webpage Enrichment
 # -------------------------------
+
 
 def enrich_repo(url, clients: ExternalClients):
     repo = {"url": url, "metadata": None, "readme_content": None}
@@ -156,8 +162,12 @@ async def enrich_link(link, clients: ExternalClients):
                 parts = link.split("/")
                 if len(parts) >= 5:
                     owner, repo_name = parts[3], parts[4]
-                    new_link["repo_metadata"] = clients.github.get_repo_metadata(owner, repo_name)
-                    new_link["readme_content"] = clients.github.get_repo_readme(owner, repo_name)
+                    new_link["repo_metadata"] = clients.github.get_repo_metadata(
+                        owner, repo_name
+                    )
+                    new_link["readme_content"] = clients.github.get_repo_readme(
+                        owner, repo_name
+                    )
                     processed = True
             except Exception as e:
                 logging.warning(f"Error processing GitHub link {link}: {e}")
@@ -170,7 +180,9 @@ async def enrich_link(link, clients: ExternalClients):
             if metadata:
                 readme_url = metadata.get("readme_url")
                 if readme_url:
-                    new_link["readme_content"] = clients.gitlab.get_readme(readme_url, link)
+                    new_link["readme_content"] = clients.gitlab.get_readme(
+                        readme_url, link
+                    )
                     processed = True
 
         elif "pypi.org/project/" in link:
@@ -196,7 +208,9 @@ async def enrich_link(link, clients: ExternalClients):
                 metadata = clients.bitbucket.get_repo_metadata(user, repo)
                 new_link["repo_metadata"] = metadata
                 if metadata and "main_branch" in metadata:
-                    new_link["readme_content"] = clients.bitbucket.get_readme(user, repo, metadata)
+                    new_link["readme_content"] = clients.bitbucket.get_readme(
+                        user, repo, metadata
+                    )
                 processed = True
             except Exception as e:
                 logging.warning(f"Error processing Bitbucket link {link}: {e}")

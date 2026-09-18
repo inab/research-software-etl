@@ -2,57 +2,60 @@ import json
 import bibtexparser
 import logging
 from typing import Dict, Any, List
-from application.services.publications.publication_standardizer import PublicationStandardizer
+from application.services.publications.publication_standardizer import (
+    PublicationStandardizer,
+)
 from application.services.publications.publication_extractor import PublicationExtractor
 from domain.models.publication.publication import Publication
 from shared.utils import validate_and_filter
 
 logger = logging.getLogger("rs-etl-pipeline")
 
+
 class ToolshedPublicationExtractor(PublicationExtractor):
     """Extracts publication data from Galaxy Toolshed."""
 
     @staticmethod
     def parse_bibtex(ent):
-        '''
+        """
         Gets journal publication information from bibtex citation.
-        '''
+        """
         parser = bibtexparser.bparser.BibTexParser(common_strings=True)
         new_entries = []
         try:
             bibtexdb = bibtexparser.loads(ent, parser=parser)
             for entry in bibtexdb.entries:
-                if entry['ENTRYTYPE'].lower() != 'misc':
+                if entry["ENTRYTYPE"].lower() != "misc":
                     single_entry = {}
-                    single_entry['url'] = entry.get('url')
-                    single_entry['title'] = entry.get('title')
-                    single_entry['year'] = entry.get('year')
-                    single_entry['journal'] = entry.get('journal')
-                    single_entry['doi'] = entry.get('doi')
-                    single_entry['pmid'] = entry.get('pmid')
+                    single_entry["url"] = entry.get("url")
+                    single_entry["title"] = entry.get("title")
+                    single_entry["year"] = entry.get("year")
+                    single_entry["journal"] = entry.get("journal")
+                    single_entry["doi"] = entry.get("doi")
+                    single_entry["pmid"] = entry.get("pmid")
                     new_entries.append(single_entry)
         except Exception as err:
-            logger.error(f'FAILED attempt to parse citation (bibtex). Error: {err}')
+            logger.error(f"FAILED attempt to parse citation (bibtex). Error: {err}")
             logger.error(json.dumps(ent, sort_keys=False, indent=4))
 
-        return(new_entries)
-    
+        return new_entries
+
     @classmethod
     def extract_publications(cls, raw_data) -> List[Dict]:
         publications = []
-        if raw_data['data'].get('citation'):
-            for cit in raw_data['data']['citation']:
+        if raw_data["data"].get("citation"):
+            for cit in raw_data["data"]["citation"]:
 
-                if cit.get('type') == 'doi':
-                    new_pub = {'doi': cit.get('value')}
+                if cit.get("type") == "doi":
+                    new_pub = {"doi": cit.get("value")}
                     publications.append(new_pub)
-                
-                elif cit.get('type') == 'bibtex':
-                    new_entries = cls.parse_bibtex(cit.get('value'))
+
+                elif cit.get("type") == "bibtex":
+                    new_entries = cls.parse_bibtex(cit.get("value"))
                     for se in new_entries:
                         publications.append(se)
-        
-        return(publications)
+
+        return publications
 
 
 class ToolshedPublicationStandardizer(PublicationStandardizer):
@@ -67,7 +70,7 @@ class ToolshedPublicationStandardizer(PublicationStandardizer):
                 "title": raw_data.get("title"),
                 "year": raw_data.get("year"),
                 "journal": raw_data.get("journal"),
-                "pmid": raw_data.get("pmid")
+                "pmid": raw_data.get("pmid"),
             }
 
             publication = validate_and_filter(Publication, **publication_dict)

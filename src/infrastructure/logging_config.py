@@ -27,7 +27,7 @@ def setup_logging(level: int = logging.DEBUG):
     """
     logger = logging.getLogger("rs-etl-pipeline")
     logger.setLevel(level)
-    logging.getLogger('bibtexparser').setLevel(logging.WARNING)
+    logging.getLogger("bibtexparser").setLevel(logging.WARNING)
 
     # Remove any existing handlers to avoid duplicate logs
     if logger.hasHandlers():

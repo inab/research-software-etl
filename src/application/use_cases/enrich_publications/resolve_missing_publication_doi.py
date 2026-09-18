@@ -33,7 +33,9 @@ class ResolveMissingPublicationDoiUseCase:
     ) -> None:
         collection_name = collection_name or self.config.publications_collection
         resolved_cache_path = resolved_cache_path or self.config.resolved_dois_path
-        unresolved_cache_path = unresolved_cache_path or self.config.unresolved_dois_path
+        unresolved_cache_path = (
+            unresolved_cache_path or self.config.unresolved_dois_path
+        )
 
         seen_doc_ids = (
             load_seen_document_ids(

@@ -15,7 +15,8 @@ Some stages call external services (APIs and model providers); make sure credent
 - MongoDB instance
 - Tokens to access to the following services (depending on [stages](pipeline.md) you run):
     - **Observatory admin token** (`OBSERVATORY_ADMIN_TOKEN`): required for a full `rsetl run` — the reindex stage uses it, and it is checked *before* merge  
-    - [Hugging Face](https://huggingface.co/docs/inference-providers/guides/first-api-call) and [OpenRouter](https://openrouter.ai/docs/quickstart): for LLM-based disambiguation  
+    - **Gepeto** (`GEPETO_API_KEY`, BSC LLM provider at `https://gepeto.bsc.es/api`): for LLM-based disambiguation  
+    - [Hugging Face](https://huggingface.co/docs/inference-providers/guides/first-api-call): for downloading the embedding model in the similarity stage  
     - [GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens): for issue creation and metadata retrieval  
     - [GitLab](https://docs.gitlab.com/user/profile/personal_access_tokens/): for metadata retrieval  
 
@@ -78,7 +79,9 @@ MONGO_DB=...
 OBSERVATORY_ADMIN_TOKEN=...   # required for a full run (reindex stage)
 GITHUB_TOKEN=...              # disambiguation
 GITLAB_TOKEN=...              # disambiguation
-OPENROUTER_API_KEY=...        # disambiguation (LLM)
+GEPETO_API_KEY=...            # disambiguation (LLM)
+GEPETO_MODEL_A=...            # disambiguation: first opinion model id
+GEPETO_MODEL_B=...            # disambiguation: second opinion model id (different family)
 HUGGINGFACE_API_KEY=...       # similarity (embedding model download)
 ```
 
@@ -112,8 +115,8 @@ If your MongoDB is reachable and your tokens valid, you should see something lik
 ✅ Licenses API              reachable (200)
 ✅ Europe PMC                reachable (200)
 ✅ Semantic Scholar          reachable (200)
-✅ Hugging Face API          reachable (200)
-✅ OpenRouter API            reachable (200)
+✅ HuggingFace Hub (embeddings)  reachable (200)
+✅ Gepeto API                reachable (200)
 ✅ GitHub API                reachable (200)
 ✅ GitLab API                reachable (200)
 

@@ -3,17 +3,19 @@ from typing import List, Dict, Any
 from collections import Counter
 import re
 
-'''
+"""
 USAGE:
 # tools = (entry['data'] for entry in collection.find({...}))
 dependencies(tools, collection_name)
-'''
+"""
+
 
 def clean_dependency(dep: str) -> str:
     # Remove version specifiers like '>= 1.2', '<= 2.0', '==1.0', etc.
-    dep = re.split(r'\s*[<>=!~]+\s*', dep)[0]
+    dep = re.split(r"\s*[<>=!~]+\s*", dep)[0]
     # Remove anything like '(' or trailing spaces
-    return re.sub(r'\s*\(.*$', '', dep).strip()
+    return re.sub(r"\s*\(.*$", "", dep).strip()
+
 
 def count_dependencies(tools: List[Dict[str, Any]]):
     """
@@ -23,8 +25,8 @@ def count_dependencies(tools: List[Dict[str, Any]]):
     dependencies_counter = Counter()
     tools_w_deps = 0
     for entry in tools:
-        entry = entry.get('data', {})
-        dependencies = entry.get('dependencies', [])
+        entry = entry.get("data", {})
+        dependencies = entry.get("dependencies", [])
 
         if len(dependencies) > 0:
             tools_w_deps += 1
@@ -38,15 +40,17 @@ def count_dependencies(tools: List[Dict[str, Any]]):
     return top_20, tools_w_deps
 
 
-def dependencies_count(dependencies_stats: Dict[str, int], collection: str, computations):
+def dependencies_count(
+    dependencies_stats: Dict[str, int], collection: str, computations
+):
     """
     Prepares data for storage/plotting.
     """
     dependencies_summary = {
-        'variable': 'dependencies_count',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': dependencies_stats,
-        'collection': collection
+        "variable": "dependencies_count",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": dependencies_stats,
+        "collection": collection,
     }
 
     return dependencies_summary
@@ -56,19 +60,19 @@ def dependencies_coverage(tools, tools_w_deps, collection, computations):
 
     total = len(list(tools))
     data = {
-        'count': tools_w_deps,
+        "count": tools_w_deps,
         # A collection with no tools has 0% coverage, not a crash. This happens
         # whenever a collection/tag has no tools (e.g. a small sample, or an
         # empty collection in production for whatever reason).
-        'percentage': (tools_w_deps / total) if total else 0
+        "percentage": (tools_w_deps / total) if total else 0,
     }
 
     doc = {
-        'variable':'dependencies_coverage',
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': data,
-        'collection': collection
+        "variable": "dependencies_coverage",
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": data,
+        "collection": collection,
     }
 
     return doc
@@ -76,18 +80,20 @@ def dependencies_coverage(tools, tools_w_deps, collection, computations):
 
 def dependencies(tools: List[Dict[str, Any]], collection: str, computations):
     dependencies_stats, tools_w_deps = count_dependencies(tools)
-    created_from = [tool['_id'] for tool in tools]
+    created_from = [tool["_id"] for tool in tools]
 
-    dependencies_summary = dependencies_count(dependencies_stats, collection, computations)
-    dependencies_summary['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
-    dependencies_summary['createdFrom'] = created_from
+    dependencies_summary = dependencies_count(
+        dependencies_stats, collection, computations
+    )
+    dependencies_summary["createdAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    dependencies_summary["createdFrom"] = created_from
     computations.save(dependencies_summary)
 
-    dependencies_coverage_doc = dependencies_coverage(tools, tools_w_deps, collection, computations)
-    dependencies_coverage_doc['createdAt'] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
-    dependencies_coverage_doc['createdFrom'] = created_from
+    dependencies_coverage_doc = dependencies_coverage(
+        tools, tools_w_deps, collection, computations
+    )
+    dependencies_coverage_doc["createdAt"] = datetime.now().strftime(
+        "%Y-%m-%dT%H:%M:%SZ"
+    )
+    dependencies_coverage_doc["createdFrom"] = created_from
     computations.save(dependencies_coverage_doc)
-
-
-
-

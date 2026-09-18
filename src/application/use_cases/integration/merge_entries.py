@@ -37,13 +37,13 @@ def pretty_print_dict(d):
 
 
 def convert_to_multi_type_instance(entry):
-    instance_data_dict = entry['data']
-    if instance_data_dict['type']:
-        instance_data_dict['type'] = [instance_data_dict['type']]
+    instance_data_dict = entry["data"]
+    if instance_data_dict["type"]:
+        instance_data_dict["type"] = [instance_data_dict["type"]]
     else:
-        instance_data_dict['type'] = []
-    
-    instance_data_dict['other_names'] = []
+        instance_data_dict["type"] = []
+
+    instance_data_dict["other_names"] = []
 
     return multitype_instance(**instance_data_dict)
 
@@ -51,10 +51,10 @@ def convert_to_multi_type_instance(entry):
 def merge_instances(instances):
     merged_instances = instances[0]
     for instance in instances[1:]:
-        merged_instances = merged_instances.merge(instance)   
+        merged_instances = merged_instances.merge(instance)
 
-    return merged_instances 
-        
+    return merged_instances
+
 
 def fetch_entry_from_db(entry_id, repos: Repositories):
     return repos.pretools.get_by_id(entry_id)
@@ -92,9 +92,6 @@ def resolve_entry(entry_id, pretools_by_id, repos: Repositories):
     return copy.deepcopy(entry)
 
 
-
-
-
 def prepare_for_db(entry, entries_ids):
 
     # make suere entries_ids is a list
@@ -102,7 +99,7 @@ def prepare_for_db(entry, entries_ids):
         entries_ids = [entries_ids]
 
     db_entry = {
-        'source': entries_ids,
+        "source": entries_ids,
         # A fresh update time by default. `carry_identities_forward` rolls this
         # back to the previous run's value when the content fingerprint below
         # shows the tool did not actually change, so stages keyed on
@@ -112,7 +109,7 @@ def prepare_for_db(entry, entries_ids):
         "content_hash": content_hash(entry),
     }
 
-    db_entry['data'] = entry
+    db_entry["data"] = entry
 
     return db_entry
 
@@ -153,19 +150,19 @@ def merge_entries(entries_ids, pretools_by_id, repos: Repositories):
         print("No entries")
         print(f"ids: {entries_ids}")
     instances = [convert_to_multi_type_instance(entry) for entry in entries]
-    #print('Instances in entries_ids converted to multitype_instance.')
+    # print('Instances in entries_ids converted to multitype_instance.')
 
     # merge entries
     if len(instances) > 1:
         # merge instances
-        #print(f"Merging {len(instances)} entries in entries_ids...")
+        # print(f"Merging {len(instances)} entries in entries_ids...")
         merged_instances = merge_instances(instances)
-        #print('Entries in entries_ids merged.')
+        # print('Entries in entries_ids merged.')
     else:
         merged_instances = instances[0]
-        #print(f"Only one entry in entries_ids. No merging needed.")
+        # print(f"Only one entry in entries_ids. No merging needed.")
 
-    merged_entries = merged_instances.model_dump(mode="json")   
+    merged_entries = merged_instances.model_dump(mode="json")
 
     return merged_entries
 
@@ -194,21 +191,23 @@ def build_entries(disambiguated_blocks, pretools_by_id, repos: Repositories, sum
                 merged_ids = value.get("merged_entries")
                 entry = merge_entries(merged_ids, pretools_by_id, repos)
                 entries.append((key, prepare_for_db(entry, merged_ids)))
-                summary['n_inserted_entries'] += 1
+                summary["n_inserted_entries"] += 1
 
                 if resolution == "partial" and len(value.get("unmerged_entries")) == 1:
                     unmerged_ids = value.get("unmerged_entries")
                     entry = merge_entries(unmerged_ids, pretools_by_id, repos)
                     # A second tool out of the same block needs its own key.
-                    entries.append((f"{key}#unmerged", prepare_for_db(entry, unmerged_ids)))
-                    summary['n_inserted_entries'] += 1
+                    entries.append(
+                        (f"{key}#unmerged", prepare_for_db(entry, unmerged_ids))
+                    )
+                    summary["n_inserted_entries"] += 1
 
-                summary['n_processed'] += 1
+                summary["n_processed"] += 1
 
             elif resolution == "unclear":
-                summary['n_unclear'] += 1
+                summary["n_unclear"] += 1
             elif resolution == "manual_review_pending":
-                summary['n_pending'] += 1
+                summary["n_pending"] += 1
 
         except Exception:
             print(f"Error processing block {key}.")
@@ -234,7 +233,10 @@ def carry_identities_forward(entries, repos: Repositories):
     ]
 
     assignment = assign_identities(
-        (NewTool(key=key, sources=frozenset(document["source"])) for key, document in entries),
+        (
+            NewTool(key=key, sources=frozenset(document["source"]))
+            for key, document in entries
+        ),
         previous,
     )
 
@@ -250,7 +252,9 @@ def carry_identities_forward(entries, repos: Repositories):
             # tool. A fresh update time is kept only when the content actually
             # moved (or when the ancestor predates content hashing, so its hash
             # is empty).
-            if ancestor.content_hash and ancestor.content_hash == document.get("content_hash"):
+            if ancestor.content_hash and ancestor.content_hash == document.get(
+                "content_hash"
+            ):
                 document["last_updated_at"] = ancestor.last_updated_at
         else:
             # No ancestor: a genuinely new tool. Leave _id unset and let MongoDB
@@ -265,7 +269,7 @@ def carry_identities_forward(entries, repos: Repositories):
 
 
 def merge_and_save_blocks(disambiguated_blocks_file, repos: Repositories):
-    '''
+    """
     Merge entries if:
         - resolution == merged or resolution == no_conflict:
             - merge “merged entries”
@@ -275,16 +279,16 @@ def merge_and_save_blocks(disambiguated_blocks_file, repos: Repositories):
 
     Entries are written to the staging collection, keeping the ids of the tools
     they continue. The live collection is untouched until the run is finalized.
-    '''
+    """
 
     disambiguated_blocks = load_dict_from_jsonl(disambiguated_blocks_file)
-    print('Disambiguated blocks loaded.')
+    print("Disambiguated blocks loaded.")
 
     # Preload every source entry in one $in query instead of one round-trip per
     # id. Over a tunnel, the per-id fetches were the dominant cost.
     source_ids = collect_source_ids(disambiguated_blocks)
     pretools_by_id = repos.pretools.get_by_ids(source_ids)
-    print(f'Preloaded {len(pretools_by_id)} of {len(source_ids)} source entries.')
+    print(f"Preloaded {len(pretools_by_id)} of {len(source_ids)} source entries.")
 
     summary = {
         "N": len(disambiguated_blocks),
@@ -311,8 +315,3 @@ def merge_and_save_blocks(disambiguated_blocks_file, repos: Repositories):
     logger.info("Tool identities: %s", summary["identities"])
 
     return summary
-
-
-
-
-

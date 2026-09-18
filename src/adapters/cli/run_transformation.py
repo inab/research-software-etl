@@ -1,9 +1,9 @@
-'''
+"""
 rsetl run-transformation
 rsetl run-transformation --tag test1
 rsetl run-transformation --sources all
 rsetl run-transformation --workdir . --runs-root data/integration/runs
-''' 
+"""
 
 from __future__ import annotations
 
@@ -29,10 +29,16 @@ class PipelineError(RuntimeError):
 def _require_env(vars_: Sequence[str]) -> None:
     missing = [v for v in vars_ if not os.getenv(v)]
     if missing:
-        raise PipelineError(f"Missing required environment variables: {', '.join(missing)}")
+        raise PipelineError(
+            f"Missing required environment variables: {', '.join(missing)}"
+        )
 
 
-def _run(cmd: Sequence[str] | str, cwd: Optional[Path] = None, extra_env: Optional[dict] = None) -> None:
+def _run(
+    cmd: Sequence[str] | str,
+    cwd: Optional[Path] = None,
+    extra_env: Optional[dict] = None,
+) -> None:
     if isinstance(cmd, str):
         cmd = shlex.split(cmd)
 
@@ -49,7 +55,9 @@ def _run(cmd: Sequence[str] | str, cwd: Optional[Path] = None, extra_env: Option
 
 def _git_short_sha(cwd: Path) -> str:
     try:
-        out = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=str(cwd))
+        out = subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"], cwd=str(cwd)
+        )
         return out.decode().strip()
     except Exception:
         return "nogit"
@@ -121,7 +129,16 @@ def run_transformation(
     started_at = datetime.now(timezone.utc)
 
     print("=== Stage 0/0: Transformation ===")
-    _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+    _require_env(
+        [
+            "MONGO_HOST",
+            "MONGO_PORT",
+            "MONGO_USER",
+            "MONGO_PWD",
+            "MONGO_AUTH_SRC",
+            "MONGO_DB",
+        ]
+    )
 
     _run(
         [
@@ -169,7 +186,9 @@ def run_transformation(
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run only the transformation step")
     parser.add_argument("--tag", dest="run_tag", help="Optional tag appended to run ID")
-    parser.add_argument("--sources", default="all", help="Sources passed to the transformation step")
+    parser.add_argument(
+        "--sources", default="all", help="Sources passed to the transformation step"
+    )
     parser.add_argument(
         "--updated-within-days",
         type=int,
@@ -177,9 +196,15 @@ def main(argv: list[str] | None = None) -> int:
         dest="updated_within_days",
         help="Only transform raw entries updated within the last N days (default: 30). Use 0 for a full re-transform.",
     )
-    parser.add_argument("--python-exe", default="python", help="Python executable for subprocesses")
+    parser.add_argument(
+        "--python-exe", default="python", help="Python executable for subprocesses"
+    )
     parser.add_argument("--workdir", default=".", help="Working directory")
-    parser.add_argument("--runs-root", default="data/integration/runs", help="Root folder for run outputs")
+    parser.add_argument(
+        "--runs-root",
+        default="data/integration/runs",
+        help="Root folder for run outputs",
+    )
     args = parser.parse_args(argv)
 
     run_transformation(
@@ -191,6 +216,7 @@ def main(argv: list[str] | None = None) -> int:
         python_exe=args.python_exe,
     )
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

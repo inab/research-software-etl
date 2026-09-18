@@ -2,7 +2,11 @@ import os
 import pytest
 import uuid
 
-from application.services.integration.disambiguation.issues import generate_context, generate_conflict_file, generate_github_body
+from application.services.integration.disambiguation.issues import (
+    generate_context,
+    generate_conflict_file,
+    generate_github_body,
+)
 from application.services.integration.disambiguation.utils import stable_hash
 from infrastructure.external.github import GitHubClient
 
@@ -12,14 +16,12 @@ RUN_ID = "test-run"
 CONFLICT_ID = "p:ale_bioconda_recipes/ale/cmd/20180904,biotools/ale/cmd/None"
 
 
-full_conflict ={
+full_conflict = {
     "disconnected": [
         {
             "id": "bioconda_recipes/ale/cmd/20180904",
             "name": "ale",
-            "description": [
-                "ALE: Assembly Likelihood Estimator."
-            ],
+            "description": ["ALE: Assembly Likelihood Estimator."],
             "repository": [
                 {
                     "url": "https://github.com/sc932/ALE",
@@ -27,51 +29,36 @@ full_conflict ={
                     "source_hasAnonymousAccess": None,
                     "source_isDownloadRegistered": None,
                     "source_isFree": None,
-                    "source_isRepoAccessible": None
+                    "source_isRepoAccessible": None,
                 }
             ],
-            "webpage": [
-                "https://github.com/sc932/ALE"
-            ],
-            "source": [
-                "bioconda_recipes"
-            ],
-            "license": [
-                {
-                    "name": "NCSA",
-                    "url": "https://spdx.org/licenses/NCSA.html"
-                }
-            ],
+            "webpage": ["https://github.com/sc932/ALE"],
+            "source": ["bioconda_recipes"],
+            "license": [{"name": "NCSA", "url": "https://spdx.org/licenses/NCSA.html"}],
             "authors": [],
             "publication": [],
             "documentation": [
                 {
                     "type": "installation_instructions",
                     "url": "https://bioconda.github.io/recipes/ale/README.html",
-                    "content": None
+                    "content": None,
                 },
                 {
                     "type": "general",
                     "url": "https://bioconda.github.io/recipes/ale/README.html",
-                    "content": None
-                }
-            ]
+                    "content": None,
+                },
+            ],
         }
     ],
     "remaining": [
         {
             "id": "biotools/ale/cmd/None",
             "name": "ale",
-            "description": [
-                "Automated label extraction from GEO metadata."
-            ],
+            "description": ["Automated label extraction from GEO metadata."],
             "repository": [],
-            "webpage": [
-                "https://github.com/wrenlab/label-extraction"
-            ],
-            "source": [
-                "biotools"
-            ],
+            "webpage": ["https://github.com/wrenlab/label-extraction"],
+            "source": ["biotools"],
             "license": [],
             "authors": [
                 {
@@ -80,7 +67,7 @@ full_conflict ={
                     "email": "jonathan-wren@omrf.org",
                     "maintainer": False,
                     "url": None,
-                    "orcid": None
+                    "orcid": None,
                 },
                 {
                     "type": "Person",
@@ -88,21 +75,17 @@ full_conflict ={
                     "email": "jdwren@gmail.com",
                     "maintainer": False,
                     "url": None,
-                    "orcid": None
-                }
+                    "orcid": None,
+                },
             ],
-            "publication": [
-                {
-                    "$oid": "67c7a9b6d3b8acd1a2f9bb26"
-                }
-            ],
+            "publication": [{"$oid": "67c7a9b6d3b8acd1a2f9bb26"}],
             "documentation": [
                 {
                     "type": "general",
                     "url": "https://github.com/wrenlab/label-extraction/blob/master/README.md",
-                    "content": None
+                    "content": None,
                 }
-            ]
+            ],
         }
     ],
     "webpage_contents": {
@@ -112,12 +95,8 @@ full_conflict ={
             ],
             "Repository metadata": {
                 "name": "label-extraction",
-                "label": [
-                    "label-extraction"
-                ],
-                "description": [
-                    "ALE Label Extraction Data and CLI Tools"
-                ],
+                "label": ["label-extraction"],
+                "description": ["ALE Label Extraction Data and CLI Tools"],
                 "links": [],
                 "webpage": [],
                 "isDisabled": False,
@@ -127,9 +106,7 @@ full_conflict ={
                 "isTemplate": False,
                 "version": [],
                 "license": [],
-                "repository": [
-                    "https://github.com/wrenlab/label-extraction"
-                ],
+                "repository": ["https://github.com/wrenlab/label-extraction"],
                 "topics": [],
                 "operations": [],
                 "authors": [
@@ -137,14 +114,14 @@ full_conflict ={
                         "name": "Cory Giles",
                         "type": "person",
                         "email": "mail@corygil.es",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Xiavan",
                         "type": "person",
                         "email": "xiavan-roopnarinesingh@omrf.org",
-                        "maintainer": False
-                    }
+                        "maintainer": False,
+                    },
                 ],
                 "bioschemas": False,
                 "contribPolicy": [],
@@ -152,7 +129,7 @@ full_conflict ={
                 "documentation": [
                     {
                         "type": "readme",
-                        "url": "https://github.com/wrenlab/label-extraction/blob/main/README.md"
+                        "url": "https://github.com/wrenlab/label-extraction/blob/main/README.md",
                     }
                 ],
                 "download": [],
@@ -169,17 +146,15 @@ full_conflict ={
                     "inputs": [],
                     "outputs": [],
                     "topics": [],
-                    "operations": []
+                    "operations": [],
                 },
-                "source": [
-                    "github"
-                ],
+                "source": ["github"],
                 "src": [],
                 "ssl": True,
                 "tags": [],
                 "test": [],
-                "type": ""
-            }
+                "type": "",
+            },
         },
         "https://github.com/sc932/ALE": {
             "README content": [
@@ -187,16 +162,10 @@ full_conflict ={
             ],
             "Repository metadata": {
                 "name": "ALE",
-                "label": [
-                    "ALE"
-                ],
-                "description": [
-                    "Assembly Likelihood Estimator"
-                ],
+                "label": ["ALE"],
+                "description": ["Assembly Likelihood Estimator"],
                 "links": [],
-                "webpage": [
-                    ""
-                ],
+                "webpage": [""],
                 "isDisabled": False,
                 "isEmpty": False,
                 "isLocked": False,
@@ -206,12 +175,10 @@ full_conflict ={
                 "license": [
                     {
                         "name": "Other",
-                        "url": "http://choosealicense.com/licenses/other/"
+                        "url": "http://choosealicense.com/licenses/other/",
                     }
                 ],
-                "repository": [
-                    "https://github.com/sc932/ALE"
-                ],
+                "repository": ["https://github.com/sc932/ALE"],
                 "topics": [],
                 "operations": [],
                 "authors": [
@@ -219,86 +186,86 @@ full_conflict ={
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "rsegan@lbl.gov",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Eric  DEVEAUD",
                         "type": "person",
                         "email": "edeveaud@pasteur.fr",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Alexander Regueiro",
                         "type": "person",
                         "email": "alexreg@gmail.com",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "RSEgan@lbl.gov",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "github-rob@egannetworks.com",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "holmrenser",
                         "type": "person",
                         "email": "rens.holmer@wur.nl",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Scott Clark",
                         "type": "person",
                         "email": "scott@scottclark.io",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "genepool1.nersc.gov",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "genepool02.nersc.gov",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "regan@phoebe.nersc.gov",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "regan@genepool04.nersc.gov",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "regan@dakar.jgi-psf.org",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Rob Egan",
                         "type": "person",
                         "email": "regan@regan2.local",
-                        "maintainer": False
+                        "maintainer": False,
                     },
                     {
                         "name": "Scott Clark",
                         "type": "person",
                         "email": "sc932@cornell.edu",
-                        "maintainer": False
-                    }
+                        "maintainer": False,
+                    },
                 ],
                 "bioschemas": False,
                 "contribPolicy": [],
@@ -318,19 +285,17 @@ full_conflict ={
                     "inputs": [],
                     "outputs": [],
                     "topics": [],
-                    "operations": []
+                    "operations": [],
                 },
-                "source": [
-                    "github"
-                ],
+                "source": ["github"],
                 "src": [],
                 "ssl": True,
                 "tags": [],
                 "test": [],
-                "type": ""
-            }
-        }
-    }
+                "type": "",
+            },
+        },
+    },
 }
 
 
@@ -340,7 +305,9 @@ def test_github_issue_context_and_issue():
     conflict_url = "https://github.com/inab/research-software-etl/human_annotation/conflicts/test.jsonl"
     conflict_id = CONFLICT_ID
 
-    context = generate_context(conflict_name, conflict_id, full_conflict, conflict_url, RUN_ID)
+    context = generate_context(
+        conflict_name, conflict_id, full_conflict, conflict_url, RUN_ID
+    )
 
     issue = generate_github_body(context)
 
@@ -360,6 +327,7 @@ def test_github_issue_context_and_issue():
 # in `remaining` + `disconnected`, splits comma-joined composite ids, sorts them
 # and joins them. The id must therefore be stable regardless of record order.
 # --------------------------------------------------------------------------------
+
 
 def _conflict(remaining_ids, disconnected_ids):
     return {
@@ -395,14 +363,18 @@ def test_stable_hash_distinguishes_different_conflicts():
     b = _conflict(["a/x/cmd/1"], ["c/x/cmd/3"])
     assert stable_hash(a) != stable_hash(b)
 
+
 # --------------------------------------------------------------------------------
+
 
 def test_generate_conflict_file():
     # generate_conflict_file(conflict, conflict_name, conflict_id, run_id) -> (content, filename)
     conflict_name = "ale/cmd"
     conflict_id = CONFLICT_ID
 
-    content, filename = generate_conflict_file(full_conflict, conflict_name, conflict_id, RUN_ID)
+    content, filename = generate_conflict_file(
+        full_conflict, conflict_name, conflict_id, RUN_ID
+    )
 
     # The file is named after the conflict id, so re-running a conflict lands on
     # the same path (and the 422 guard in GitHubClient.commit_file catches it).
@@ -416,11 +388,11 @@ def test_generate_conflict_file():
 
 # --------------- Full Integration Test --------------------------------------------
 #
-# Run with: 
-#   PYTHONPATH=$(pwd) pytest -v -s -m manual tests/application/services/integration/test_github_issue.py 
+# Run with:
+#   PYTHONPATH=$(pwd) pytest -v -s -m manual tests/application/services/integration/test_github_issue.py
 #
-# This test creates an issue and adds the conflict file to https://github.com/EvaMart/test-integrations/ 
-# 
+# This test creates an issue and adds the conflict file to https://github.com/EvaMart/test-integrations/
+#
 # --------------------------------------------------------------------------------
 
 
@@ -428,24 +400,26 @@ def test_generate_conflict_file():
 def test_create_github_issue():
     # Hits the real GitHub API against a sandbox repo. Needs GITHUB_TOKEN.
     conflict_name = "ale/cmd"
-    REPO = 'EvaMart/test-integrations'
+    REPO = "EvaMart/test-integrations"
 
     github = GitHubClient(os.environ["GITHUB_TOKEN"])
 
     conflict_id = CONFLICT_ID
-    content, _ = generate_conflict_file(full_conflict, conflict_name, conflict_id, RUN_ID)
+    content, _ = generate_conflict_file(
+        full_conflict, conflict_name, conflict_id, RUN_ID
+    )
 
     # a suffix in the filename is necessary so new tests do not try to create already existing files
     random_suffix = uuid.uuid4().hex
     filename = f"human_annotations/conflicts/test_{random_suffix}.json"
 
-    conflict_url = github.commit_file(content, filename, branch='main', repo=REPO)
-    context = generate_context(conflict_name, conflict_id, full_conflict, conflict_url, RUN_ID)
+    conflict_url = github.commit_file(content, filename, branch="main", repo=REPO)
+    context = generate_context(
+        conflict_name, conflict_id, full_conflict, conflict_url, RUN_ID
+    )
     body = generate_github_body(context)
 
     title = f"Manual resolution needed for {conflict_name}"
-    response = github.create_issue(title, body, labels=['test'], repo=REPO)
+    response = github.create_issue(title, body, labels=["test"], repo=REPO)
 
     assert response["html_url"]
-  
-

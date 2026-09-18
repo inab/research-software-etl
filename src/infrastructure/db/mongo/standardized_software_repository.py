@@ -12,14 +12,18 @@ logger = logging.getLogger("rs-etl-pipeline")
 
 
 class PretoolsRepository:
-    def __init__(self, db_adapter: DatabaseAdapter, collection_name: str = "pretoolsDev"):
+    def __init__(
+        self, db_adapter: DatabaseAdapter, collection_name: str = "pretoolsDev"
+    ):
         self.db_adapter = db_adapter
         self.collection_name = collection_name
 
     def get_all(self):
-        logger.info('Fetching standardized software data from the pretools collection')
-        standardized_software_data = self.db_adapter.fetch_entries(self.collection_name, {})
-        logger.debug('Software obtained')
+        logger.info("Fetching standardized software data from the pretools collection")
+        standardized_software_data = self.db_adapter.fetch_entries(
+            self.collection_name, {}
+        )
+        logger.debug("Software obtained")
         return standardized_software_data
 
     def get_by_id(self, entry_id: str):
@@ -55,7 +59,9 @@ class PretoolsRepository:
     def upsert(self, identifier: str, document: dict):
         """Update the entry if it is already there, insert it otherwise."""
         if self.exists(identifier):
-            return self.db_adapter.update_entry(self.collection_name, identifier, document)
+            return self.db_adapter.update_entry(
+                self.collection_name, identifier, document
+            )
         return self.db_adapter.insert_one(self.collection_name, document)
 
     def bulk_upsert(self, docs_by_id: dict) -> None:
@@ -90,7 +96,7 @@ class PretoolsRepository:
         validated_documents = []
         for doc in documents:
             try:
-                validated_doc = PretoolsEntryModel(metadata=doc, data=doc['data'])
+                validated_doc = PretoolsEntryModel(metadata=doc, data=doc["data"])
                 validated_documents.append(validated_doc.dict())
             except ValidationError as ve:
                 logger.error(f"Data validation failed for {doc}: {ve}")
@@ -99,18 +105,20 @@ class PretoolsRepository:
         return validated_documents
 
     def get_bioconda_types(self):
-        '''
+        """
         This function returns a dictionary with the types of the bioconda tools in the pretools collection.
-        '''
+        """
         bioconda_types = {}
         try:
             bioconda_entries = self.db_adapter.fetch_entries(
-                self.collection_name, {'data.source': ['bioconda']}
+                self.collection_name, {"data.source": ["bioconda"]}
             )
         except Exception:
-            logger.error('while generating bioconda_types: could not connect to the pretools collection')
+            logger.error(
+                "while generating bioconda_types: could not connect to the pretools collection"
+            )
         else:
             for tool in bioconda_entries:
-                bioconda_types[tool['data']['name']] = tool['data']['type']
+                bioconda_types[tool["data"]["name"]] = tool["data"]["type"]
 
         return bioconda_types

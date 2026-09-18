@@ -1,5 +1,10 @@
-from application.services.integration.disambiguation.results import build_disambiguated_record_after_human
-from application.services.integration.disambiguation.utils import load_dict_from_jsonl, update_jsonl_record
+from application.services.integration.disambiguation.results import (
+    build_disambiguated_record_after_human,
+)
+from application.services.integration.disambiguation.utils import (
+    load_dict_from_jsonl,
+    update_jsonl_record,
+)
 from infrastructure.config import PipelineConfig
 
 import json
@@ -40,8 +45,7 @@ def extract_issue_url_from_notes(notes):
         return None
 
     match = re.search(
-        r"https://github\.com/inab/research-software-etl/issues/\d+",
-        notes
+        r"https://github\.com/inab/research-software-etl/issues/\d+", notes
     )
     return match.group(0) if match else None
 
@@ -65,9 +69,7 @@ def index_human_annotations_by_issue_url(human_annotations):
 
 
 def run_disambiguation_after_human_annotation(
-    conflict_blocks_file,
-    disambiguated_blocks_file,
-    config: PipelineConfig = None
+    conflict_blocks_file, disambiguated_blocks_file, config: PipelineConfig = None
 ):
     print("Starting update of disambiguated blocks after human resolution....")
 
@@ -107,9 +109,7 @@ def run_disambiguation_after_human_annotation(
                 continue
 
             record = build_disambiguated_record_after_human(
-                conflict_id,
-                conflict,
-                decision
+                conflict_id, conflict, decision
             )
 
             update_jsonl_record(disambiguated_blocks_file, conflict_id, record)

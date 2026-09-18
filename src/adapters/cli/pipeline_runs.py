@@ -39,10 +39,7 @@ def latest_run_dir(runs_root: Path) -> Path:
     if not runs_root.exists():
         raise PipelineError(f"Runs root does not exist: {runs_root}")
 
-    run_dirs = [
-        p for p in runs_root.iterdir()
-        if p.is_dir() and p.name != "latest"
-    ]
+    run_dirs = [p for p in runs_root.iterdir() if p.is_dir() and p.name != "latest"]
     if not run_dirs:
         raise PipelineError(f"No runs found under {runs_root}")
 
@@ -54,11 +51,17 @@ def _default_paths_for_run(run_dir: Path) -> dict[str, str]:
     run_id = run_dir.name
     return {
         "grouped_entries_file": str(run_dir / f"grouped_entries.{run_id}.json"),
-        "grouped_entries_no_opeb": str(run_dir / f"grouped_entries.no_opeb_metrics.{run_id}.json"),
+        "grouped_entries_no_opeb": str(
+            run_dir / f"grouped_entries.no_opeb_metrics.{run_id}.json"
+        ),
         "conflicts_json": str(run_dir / f"conflicts.{run_id}.json"),
-        "simplified_blocks_json": str(run_dir / f"grouped_entries.simplified.{run_id}.json"),
+        "simplified_blocks_json": str(
+            run_dir / f"grouped_entries.simplified.{run_id}.json"
+        ),
         "conflicts_jsonl": str(run_dir / f"conflicts.{run_id}.jsonl"),
-        "simplified_blocks_jsonl": str(run_dir / f"grouped_entries.simplified.{run_id}.jsonl"),
+        "simplified_blocks_jsonl": str(
+            run_dir / f"grouped_entries.simplified.{run_id}.jsonl"
+        ),
         "disambiguation_out_dir": str(run_dir / f"disambiguation.{run_id}.jsonl"),
     }
 
@@ -69,12 +72,13 @@ def get_run_status(run_dir: Path) -> dict[str, Any]:
 
     paths = manifest.get("paths", _default_paths_for_run(run_dir))
     execution_history = manifest.get("execution_history", [])
-    latest_execution = manifest.get("latest_execution") or (execution_history[-1] if execution_history else {})
-    latest_stage_selection = latest_execution.get("stage_selection", {})
-    latest_executed_stages = (
-        manifest.get("latest_executed_stages")
-        or latest_stage_selection.get("executed_stages", [])
+    latest_execution = manifest.get("latest_execution") or (
+        execution_history[-1] if execution_history else {}
     )
+    latest_stage_selection = latest_execution.get("stage_selection", {})
+    latest_executed_stages = manifest.get(
+        "latest_executed_stages"
+    ) or latest_stage_selection.get("executed_stages", [])
 
     disambiguation_exists = Path(paths["disambiguation_out_dir"]).exists()
     resumable = bool(execution_history) or disambiguation_exists
@@ -92,7 +96,9 @@ def get_run_status(run_dir: Path) -> dict[str, Any]:
     }
 
 
-def list_runs(workdir: str | Path = ".", runs_root: str | Path = "data/integration/runs") -> list[dict[str, Any]]:
+def list_runs(
+    workdir: str | Path = ".", runs_root: str | Path = "data/integration/runs"
+) -> list[dict[str, Any]]:
     wd = Path(workdir).resolve()
     runs_root = (wd / runs_root).resolve()
 
@@ -114,7 +120,11 @@ def list_runs(workdir: str | Path = ".", runs_root: str | Path = "data/integrati
     return runs
 
 
-def show_run(run_ref: str, workdir: str | Path = ".", runs_root: str | Path = "data/integration/runs") -> dict[str, Any]:
+def show_run(
+    run_ref: str,
+    workdir: str | Path = ".",
+    runs_root: str | Path = "data/integration/runs",
+) -> dict[str, Any]:
     wd = Path(workdir).resolve()
     runs_root = (wd / runs_root).resolve()
 
@@ -132,7 +142,9 @@ def show_run(run_ref: str, workdir: str | Path = ".", runs_root: str | Path = "d
     }
 
 
-def get_latest_run(workdir: str | Path = ".", runs_root: str | Path = "data/integration/runs") -> dict[str, Any]:
+def get_latest_run(
+    workdir: str | Path = ".", runs_root: str | Path = "data/integration/runs"
+) -> dict[str, Any]:
     wd = Path(workdir).resolve()
     runs_root = (wd / runs_root).resolve()
     run_dir = latest_run_dir(runs_root)

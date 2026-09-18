@@ -5,8 +5,8 @@
 # and redirects their stdout to logs/, e.g. ... >> logs/webavailability.log 2>&1
 #
 # Credentials and collection overrides come from .env (see .env for the full
-# list: MONGO_*, GITHUB_TOKEN, GITLAB_TOKEN, OPENROUTER_API_KEY,
-# HUGGINGFACE_API_KEY, OBSERVATORY_ADMIN_TOKEN, ...).
+# list: MONGO_*, GITHUB_TOKEN, GITLAB_TOKEN, GEPETO_API_KEY, GEPETO_MODEL_A,
+# GEPETO_MODEL_B, HUGGINGFACE_API_KEY, OBSERVATORY_ADMIN_TOKEN, ...).
 
 services:
   # Full integration pipeline (twice weekly). Writes run outputs under

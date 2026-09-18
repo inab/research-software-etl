@@ -31,7 +31,9 @@ def _pretools_document(entry: dict) -> dict:
         "data": {
             "name": entry.get("name"),
             "type": entry.get("types"),
-            "description": [description] if isinstance(description, str) else (description or []),
+            "description": (
+                [description] if isinstance(description, str) else (description or [])
+            ),
             # repository is a list of items, not of bare urls; the block flattens it.
             "repository": [{"url": _url(r)} for r in (entry.get("repository") or [])],
             "webpage": [_url(w) for w in (entry.get("webpage") or [])],

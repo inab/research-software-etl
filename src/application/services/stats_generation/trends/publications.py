@@ -1,14 +1,15 @@
 from collections import defaultdict
 from datetime import datetime
 
-def compute_journal_impact(docs, years=['2023', '2024', '2025']):
+
+def compute_journal_impact(docs, years=["2023", "2024", "2025"]):
     """
     Compute total citations in selected years per journal and collect document IDs.
-    
+
     Args:
         docs (list): List of documents from MongoDB.
         years (list): List of years to include in impact calculation. If None, use 'total'.
-    
+
     Returns:
         dict: journal -> {'impact': int, 'ids': list of _id}
     """
@@ -20,7 +21,7 @@ def compute_journal_impact(docs, years=['2023', '2024', '2025']):
     for doc in docs:
         if not doc.get("data"):
             continue
-        
+
         N += 1
         journal = doc.get("data", {}).get("journal")
         citations = doc.get("data", {}).get("citations")
@@ -28,18 +29,18 @@ def compute_journal_impact(docs, years=['2023', '2024', '2025']):
 
         if not journal or not citations:
             continue
-        
+
         n_journals += 1
         for c in citations:
             if c.get("source") == "Europe PMC":
-                
+
                 counts = c.get("count")
                 if not counts:
                     continue
-                
+
                 n_citations += 1
                 impact = sum(counts.get(y, 0) for y in years)
-            
+
                 journal_impact[journal]["impact"] += impact
                 journal_impact[journal]["ids"].append(doc_id)
 
@@ -48,46 +49,49 @@ def compute_journal_impact(docs, years=['2023', '2024', '2025']):
     print(f"Total publications with journals: {n_journals}")
     print(f"Total publications with citations: {n_citations}")
     print(f"Total journals: {len(journal_impact)}")
-    print('-----------------')
-    
+    print("-----------------")
+
     return journal_impact
 
+
 def get_top_journals(journal_impact, top_n=10):
-    return sorted(journal_impact.items(), key=lambda x: x[1]["impact"], reverse=True)[:top_n]
+    return sorted(journal_impact.items(), key=lambda x: x[1]["impact"], reverse=True)[
+        :top_n
+    ]
 
 
 def number_of_tools(publication_ids, tools):
     n = 0
     for entry in tools:
-        publications = entry['data'].get("publication", [])
+        publications = entry["data"].get("publication", [])
         for publication in publications:
             if str(publication) in publication_ids:
                 n += 1
 
     return n
 
+
 def tools_w_publication(tools):
-    n=0
+    n = 0
     for entry in tools:
-        publications = entry['data'].get("publication", [])
+        publications = entry["data"].get("publication", [])
         if len(publications) > 0:
             n += 1
 
     return n
 
 
-
 def publications_journals_IF(collection, repos):
     """Reads tools and publications as well as writing computations, so it takes
     the whole bundle rather than a single repository."""
     # 1) Fetch tools (materialize)
-    if collection == 'tools':
+    if collection == "tools":
         tools = list(repos.tools.get_all())
     else:
-        tools = list(repos.tools.find({'data.tags': collection}))
+        tools = list(repos.tools.find({"data.tags": collection}))
 
     # 2) Build publications doc list robustly
-    if collection != 'tools':
+    if collection != "tools":
         docs = []
         for tool in tools:
             data = tool.get("data") or {}
@@ -102,27 +106,29 @@ def publications_journals_IF(collection, repos):
         docs = list(repos.publications.get_all())
 
     # 3) Compute & report
-    journal_impact = compute_journal_impact(docs, years=['2023','2024','2025'])
+    journal_impact = compute_journal_impact(docs, years=["2023", "2024", "2025"])
     top_journals = get_top_journals(journal_impact)
 
-    print('----------------- Top Journals -------------------')
+    print("----------------- Top Journals -------------------")
     for journal, data in top_journals:
-        print(f"Journal: {journal}, Impact: {data['impact']}, Number of publications: {len(data['ids'])}")
-    print('-----------------------------------------------')
+        print(
+            f"Journal: {journal}, Impact: {data['impact']}, Number of publications: {len(data['ids'])}"
+        )
+    print("-----------------------------------------------")
 
-    _tools = {'y': [], 'x': []}
-    _publications = {'y': [], 'x': []}
-    citations = {'y': [], 'x': []}
+    _tools = {"y": [], "x": []}
+    _publications = {"y": [], "x": []}
+    citations = {"y": [], "x": []}
 
     for journal, data in top_journals:
-        _publications['x'].append(journal)
-        _publications['y'].append(len(data['ids']))
+        _publications["x"].append(journal)
+        _publications["y"].append(len(data["ids"]))
 
         # count each tool at most once per journal
         n_tools = 0
-        pub_ids_set = set(data['ids'])
+        pub_ids_set = set(data["ids"])
         for entry in tools:
-            pubs = (entry.get('data') or {}).get("publication", []) or []
+            pubs = (entry.get("data") or {}).get("publication", []) or []
             # if any publication of this tool is in the set, count it once
             found = False
             for p in pubs:
@@ -132,31 +138,35 @@ def publications_journals_IF(collection, repos):
             if found:
                 n_tools += 1
 
-        _tools['x'].append(journal)
-        _tools['y'].append(n_tools)
+        _tools["x"].append(journal)
+        _tools["y"].append(n_tools)
 
-        citations['x'].append(journal)
-        citations['y'].append(data['impact'])
+        citations["x"].append(journal)
+        citations["y"].append(data["impact"])
 
-    created_from = [tool['_id'] for tool in tools]
+    created_from = [tool["_id"] for tool in tools]
     result = {
-        'variable': 'publications_journals_IF',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': {'tools': _tools, 'publications': _publications, 'citations': citations},
-        'collection': collection,
-        'createdFrom': created_from,
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+        "variable": "publications_journals_IF",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": {
+            "tools": _tools,
+            "publications": _publications,
+            "citations": citations,
+        },
+        "collection": collection,
+        "createdFrom": created_from,
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
     repos.computations.save(result)
 
-    tools_w_pubs = sum(1 for t in tools if (t.get('data') or {}).get('publication'))
+    tools_w_pubs = sum(1 for t in tools if (t.get("data") or {}).get("publication"))
     denom = len(tools) or 1
     result_count = {
-        'variable': 'publications_coverage',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': {'count': tools_w_pubs, 'percentage': tools_w_pubs / denom},
-        'collection': collection,
-        'createdFrom': created_from,
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+        "variable": "publications_coverage",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": {"count": tools_w_pubs, "percentage": tools_w_pubs / denom},
+        "collection": collection,
+        "createdFrom": created_from,
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
     repos.computations.save(result_count)

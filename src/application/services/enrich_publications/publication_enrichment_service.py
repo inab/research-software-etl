@@ -48,7 +48,9 @@ class PublicationEnrichmentService:
                 counts_per_year = self.europe_pmc_client.count_citations_per_year(
                     citing_publications
                 )
-                metadata["citations"] = [{"source": "Europe PMC", "count": counts_per_year}]
+                metadata["citations"] = [
+                    {"source": "Europe PMC", "count": counts_per_year}
+                ]
 
             metadata = remove_empty_fields(metadata)
 

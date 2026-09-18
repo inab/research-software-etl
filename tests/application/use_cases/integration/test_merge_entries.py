@@ -16,7 +16,9 @@ from application.use_cases.integration.merge_entries import (
 )
 from tests.fakes import FakeDatabaseAdapter, fake_repos
 
-BLOCKS_FILE = "tests/application/use_cases/integration/data/disambiguated_blocks_2.jsonl"
+BLOCKS_FILE = (
+    "tests/application/use_cases/integration/data/disambiguated_blocks_2.jsonl"
+)
 
 
 def _pretools_entry(entry_id: str) -> dict:
@@ -67,7 +69,9 @@ def test_merged_entries_are_written_to_the_staging_collection(repos):
 
     written = repos.tools_staging.get_all()
 
-    assert repos.tools.get_all() == [], "the live collection is untouched until promotion"
+    assert (
+        repos.tools.get_all() == []
+    ), "the live collection is untouched until promotion"
     assert len(written) == 5, "one document per inserted entry"
     # Unresolved blocks (manual_review_pending, unclear) must not reach tools.
     names = {entry["data"]["name"] for entry in written}

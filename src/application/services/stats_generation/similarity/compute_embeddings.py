@@ -25,7 +25,8 @@ def build_text(tool_data: dict) -> str:
     else:
         help_item = next(
             (
-                item for item in tool_data.get("documentation", [])
+                item
+                for item in tool_data.get("documentation", [])
                 if item.get("type") == "help" and item.get("content")
             ),
             None,
@@ -56,7 +57,10 @@ def _select_device() -> str:
         return "cpu"
     if torch.cuda.is_available():
         return "cuda"
-    if getattr(torch.backends, "mps", None) is not None and torch.backends.mps.is_available():
+    if (
+        getattr(torch.backends, "mps", None) is not None
+        and torch.backends.mps.is_available()
+    ):
         return "mps"
     return "cpu"
 
@@ -202,7 +206,9 @@ def compute_similarities(
 
     empty_text_count = sum(1 for tx in texts if not tx)
     if empty_text_count:
-        logger.warning(f"{empty_text_count} tools have no description/topics/operations text.")
+        logger.warning(
+            f"{empty_text_count} tools have no description/topics/operations text."
+        )
 
     model = _load_model(model_name, token=hf_token)
     embeddings = _embed(model, texts, batch_size=batch_size)

@@ -46,54 +46,54 @@ def generate_stats_for_collections(collections, repos: Repositories):
     computations = repos.computations
 
     for collection in collections:
-        print(f'Processing collection: {collection}')
+        print(f"Processing collection: {collection}")
 
-        if collection == 'tools':
+        if collection == "tools":
             tools = repos.tools.get_all()
         else:
-            tools = repos.tools.find({'data.tags': collection})
+            tools = repos.tools.find({"data.tags": collection})
 
         licenses_stats(tools, collection, computations)
-        print('Licenses stats done')
+        print("Licenses stats done")
 
         semantic_versioning(tools, collection, computations)
-        print('Semantic versioning done')
+        print("Semantic versioning done")
 
         count_tools_per_source(tools, collection, computations)
-        print('Count tools per source done')
+        print("Count tools per source done")
 
         count_tools(tools, collection, computations)
-        print('Count tools done')
+        print("Count tools done")
 
         version_control(tools, collection, computations)
-        print('Version control done')
+        print("Version control done")
 
         coverage_sources(tools, collection, computations)
-        print('Coverage sources done')
+        print("Coverage sources done")
 
         features_overview(tools, collection, computations)
-        print('Features overview done')
+        print("Features overview done")
 
         features_cummulative(tools, collection, computations)
-        print('Features cummulative done')
+        print("Features cummulative done")
 
         features_xy(tools, collection, computations)
-        print('Features xy done')
+        print("Features xy done")
 
         count_types_tools(tools, collection, computations)
-        print('Count types tools done')
+        print("Count types tools done")
 
         dependencies(tools, collection, computations)
-        print('Dependencies done')
+        print("Dependencies done")
 
         documentation(tools, collection, computations)
-        print('Documentation done')
+        print("Documentation done")
 
         formats(tools, collection, computations)
-        print('Input and otput data formats done')
+        print("Input and otput data formats done")
 
         publications_journals_IF(collection, repos)
-        print('Publications journals IF done')
+        print("Publications journals IF done")
 
         compute_fair_distributions(collection, repos)
-        print('FAIR distributions done')
+        print("FAIR distributions done")

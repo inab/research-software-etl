@@ -1,6 +1,8 @@
 import logging
 from typing import Dict, Any, List
-from application.services.publications.publication_standardizer import PublicationStandardizer
+from application.services.publications.publication_standardizer import (
+    PublicationStandardizer,
+)
 from application.services.publications.publication_extractor import PublicationExtractor
 from domain.models.publication.publication import Publication
 from shared.utils import validate_and_filter
@@ -14,13 +16,14 @@ class OPEBMetricsPublicationExtractor(PublicationExtractor):
     @classmethod
     def extract_publications(cls, raw_data) -> List[Dict]:
         publications = []
-        data = raw_data.get('data', {})
-        if data.get('project'):
-            if data['project'].get('publications'):
-                for publication in data['project']['publications']:
-                    publications.extend(publication.get('entries', []))        
+        data = raw_data.get("data", {})
+        if data.get("project"):
+            if data["project"].get("publications"):
+                for publication in data["project"]["publications"]:
+                    publications.extend(publication.get("entries", []))
 
         return publications
+
 
 class OPEBMetricsPublicationStandardizer(PublicationStandardizer):
     """Standardizes publication data from OPEB metrics."""
@@ -28,7 +31,7 @@ class OPEBMetricsPublicationStandardizer(PublicationStandardizer):
     @classmethod
     def standardize(cls, raw_data) -> Dict[str, Any]:
         try:
-            
+
             publication_dict = {
                 "doi": raw_data.get("doi"),
                 "pmid": raw_data.get("pmid"),
@@ -40,9 +43,9 @@ class OPEBMetricsPublicationStandardizer(PublicationStandardizer):
                     {
                         "source_id": "europepmc",
                         "total_citations": raw_data.get("cit_count", None),
-                        "citations_per_year" : raw_data.get("citations", []),
+                        "citations_per_year": raw_data.get("citations", []),
                     }
-                ]
+                ],
             }
 
             publication = validate_and_filter(Publication, **publication_dict)

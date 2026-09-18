@@ -4,10 +4,9 @@ from urllib.parse import urlparse
 def get_pub(object_id, publications):
     publication = publications.get_by_id(object_id)
     if publication:
-        return publication.get('data')
+        return publication.get("data")
     else:
         return None
-
 
 
 VERSION_CONTROL_DOMAINS = {
@@ -81,6 +80,7 @@ def has_version_control(entry: dict) -> bool:
 
     return False
 
+
 def collect_entry_links(entry: dict) -> list[str]:
     """
     Collect all relevant URLs from an entry into a single list.
@@ -130,87 +130,82 @@ def collect_entry_links(entry: dict) -> list[str]:
     return collected_links
 
 
-
 def prep_entry_for_evaluation(entry, publications):
 
     publications_records = set()
 
-    id = str(entry.get('_id'))
-    entry = entry.get('data', {})
+    id = str(entry.get("_id"))
+    entry = entry.get("data", {})
     publications_new = []
-    if entry.get('publication'):
-        for pub in entry['publication']:
+    if entry.get("publication"):
+        for pub in entry["publication"]:
             publication = get_pub(str(pub), publications)
             if publication:
                 publications_records.add(id)
-                if 'citations' in publication:
-                    del publication['citations']
-                if 'abstract' in publication:
-                    del publication['abstract']
-            
+                if "citations" in publication:
+                    del publication["citations"]
+                if "abstract" in publication:
+                    del publication["abstract"]
+
                 publications_new.append(publication)
-        
-    entry['publication'] = publications_new
 
-    if entry.get('type'):
-        if len(entry.get('type', []))>1:
-            entry['other_types'] = entry.get('type', [])[1:]
-            entry['type'] = entry.get('type', [])[0]
+    entry["publication"] = publications_new
+
+    if entry.get("type"):
+        if len(entry.get("type", [])) > 1:
+            entry["other_types"] = entry.get("type", [])[1:]
+            entry["type"] = entry.get("type", [])[0]
         else:
-            entry['other_types'] = []
-            entry['type'] = entry.get('type', [])[0]
+            entry["other_types"] = []
+            entry["type"] = entry.get("type", [])[0]
     else:
-        entry['type'] = None
-        entry['other_types'] = []
+        entry["type"] = None
+        entry["other_types"] = []
 
-    if entry.get('version'):
-        if len(entry.get('version', []))>1:
-            entry['other_versions'] = entry.get('version', [])[1:]
-            entry['version'] = entry.get('version', [])[0]
+    if entry.get("version"):
+        if len(entry.get("version", [])) > 1:
+            entry["other_versions"] = entry.get("version", [])[1:]
+            entry["version"] = entry.get("version", [])[0]
         else:
-            entry['other_versions'] = []
-            entry['version'] = entry.get('version', [])[0]
+            entry["other_versions"] = []
+            entry["version"] = entry.get("version", [])[0]
     else:
-        entry['version'] = None
-        entry['other_versions'] = []
+        entry["version"] = None
+        entry["other_versions"] = []
 
-
-    if entry['authors'] is None:
-        entry['authors'] = []
+    if entry["authors"] is None:
+        entry["authors"] = []
     else:
-        for author in entry['authors']:
-            if author['type'] == None:
-                author['type'] = 'unknown'
-            if author['name'] == None:
-                author['name'] = 'unknown'
-            if author['email'] == None:
-                author['email'] = ''
-
+        for author in entry["authors"]:
+            if author["type"] == None:
+                author["type"] = "unknown"
+            if author["name"] == None:
+                author["name"] = "unknown"
+            if author["email"] == None:
+                author["email"] = ""
 
     repos = []
-    if entry['repository']:
-        for repo in entry['repository']:
-            if repo.get('url'):
-                repos.append(repo['url'])
-    entry['repository'] = repos
+    if entry["repository"]:
+        for repo in entry["repository"]:
+            if repo.get("url"):
+                repos.append(repo["url"])
+    entry["repository"] = repos
 
-    if entry['test'] is True:
-        entry['test'] = ['https://openebech.bsc.es']
+    if entry["test"] is True:
+        entry["test"] = ["https://openebech.bsc.es"]
     else:
-        entry['test'] = []
+        entry["test"] = []
 
-    entry['src'] = collect_entry_links(entry)
+    entry["src"] = collect_entry_links(entry)
 
-    if entry['operating_system']:
-        entry['os'] = entry['operating_system']
+    if entry["operating_system"]:
+        entry["os"] = entry["operating_system"]
     else:
-        entry['os'] = []
+        entry["os"] = []
 
-
-    entry['version_control'] = has_version_control(entry)
+    entry["version_control"] = has_version_control(entry)
 
     return entry
-
 
 
 def evaluate_tool(entry, publications):
@@ -218,5 +213,4 @@ def evaluate_tool(entry, publications):
 
     entry = prep_entry_for_evaluation(entry, publications)
 
-    return run_fairsoft_evaluation(entry).get('result')
-
+    return run_fairsoft_evaluation(entry).get("result")

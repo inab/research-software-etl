@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 # NORMALIZATION HELPERS
 # -----------------------------------------------------------------------------
 
+
 def normalize_name(name: str) -> str:
     """
     Normalize software name for grouping/recovery.
@@ -107,6 +108,7 @@ def normalize_url(url):
 # GROUP INTROSPECTION
 # -----------------------------------------------------------------------------
 
+
 def get_group_identity(group_data: dict) -> tuple[set[str], set[str], set[str]]:
     """
     Return:
@@ -162,6 +164,7 @@ def get_group_links(group_data: dict) -> set[str]:
 # -----------------------------------------------------------------------------
 # RECOVERY CANDIDATE DISCOVERY
 # -----------------------------------------------------------------------------
+
 
 def find_shared_links_across_groups(grouped_instancies):
     """
@@ -250,6 +253,7 @@ def find_same_source_name_groups(grouped_instancies):
 # MERGING OF OVERLAPPING RECOVERY GROUPS
 # -----------------------------------------------------------------------------
 
+
 def merge_overlapping_groups(groups):
     """
     Merge overlapping lists of group keys.
@@ -280,6 +284,7 @@ def merge_overlapping_groups(groups):
 # -----------------------------------------------------------------------------
 # GROUP UPDATE
 # -----------------------------------------------------------------------------
+
 
 def create_new_group_key(group, grouped_instancies):
     """
@@ -324,6 +329,7 @@ def update_groups(groups_to_merge, grouped_instancies):
 # DEBUG
 # -----------------------------------------------------------------------------
 
+
 def debug_group_links(grouped_instancies, target_keys):
     for group_key in target_keys:
         print(f"\nGROUP: {group_key}")
@@ -359,6 +365,7 @@ def debug_group_links(grouped_instancies, target_keys):
 # -----------------------------------------------------------------------------
 # MAIN RECOVERY
 # -----------------------------------------------------------------------------
+
 
 def recover_shared_name_link(grouped_instancies):
     """

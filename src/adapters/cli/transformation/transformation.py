@@ -17,6 +17,7 @@ Example of usage:
 python src/adapters/cli/transformation/transformation.py -e .env -s bioconda_recipes github
 python src/adapters/cli/transformation/transformation.py -e .env -s all
 """
+
 import argparse
 import os
 from datetime import datetime, timedelta
@@ -29,17 +30,17 @@ from infrastructure.logging_config import resolve_level, setup_logging
 logger = setup_logging(resolve_level(os.getenv("LOG_LEVEL")))
 
 ALL_SOURCES = [
-            "bioconda", 
-            "bioconda_recipes", 
-            "github", 
-            "biotools", 
-            "bioconductor", 
-            "galaxy_metadata", 
-            "toolshed", 
-            "galaxy", 
-            "sourceforge", 
-            "opeb_metrics"
-        ]
+    "bioconda",
+    "bioconda_recipes",
+    "github",
+    "biotools",
+    "bioconductor",
+    "galaxy_metadata",
+    "toolshed",
+    "galaxy",
+    "sourceforge",
+    "opeb_metrics",
+]
 
 
 def main():
@@ -47,17 +48,21 @@ def main():
         description="Transform raw data from different sources into a common format."
     )
     parser.add_argument(
-        "--env-file", "-e",
+        "--env-file",
+        "-e",
         help=("File containing environment variables to be set before running "),
         default=".env",
     )
 
     parser.add_argument(
-        "--sources", "-s",
-        help=("Sources to transform. The posiblities are: bioconda, bioconda_recipes, github, biotools, bioconductor, galaxy_metadata, toolshed, galaxy, sourceforge and opeb_metrics, or all to include all of them. Default is all sources."),
-        nargs='+',
-        default=['all'],
-        dest="sources"
+        "--sources",
+        "-s",
+        help=(
+            "Sources to transform. The posiblities are: bioconda, bioconda_recipes, github, biotools, bioconductor, galaxy_metadata, toolshed, galaxy, sourceforge and opeb_metrics, or all to include all of them. Default is all sources."
+        ),
+        nargs="+",
+        default=["all"],
+        dest="sources",
     )
 
     parser.add_argument(
@@ -65,9 +70,11 @@ def main():
         type=int,
         default=30,
         dest="updated_within_days",
-        help=("Only transform raw entries whose @last_updated_at is within the last "
-              "N days (default: 30). Use 0 (or a negative value) for a full "
-              "re-transform of every entry."),
+        help=(
+            "Only transform raw entries whose @last_updated_at is within the last "
+            "N days (default: 30). Use 0 (or a negative value) for a full "
+            "re-transform of every entry."
+        ),
     )
 
     args = parser.parse_args()
@@ -85,18 +92,20 @@ def main():
     repos = from_config(config)
 
     # Transform the sources ---------------------------------------------------
-    if 'all' in args.sources:
+    if "all" in args.sources:
         sources = ALL_SOURCES
-    else: 
+    else:
         sources = args.sources
 
     # check that all sources are valid
     for source in sources:
         if source not in ALL_SOURCES:
-            logger.error(f"Invalid source: {source}. The posiblities are: bioconda, bioconda_recipes, github, biotools, bioconductor, galaxy_metadata, toolshed, galaxy, sourceforge and opeb_metrics.")
+            logger.error(
+                f"Invalid source: {source}. The posiblities are: bioconda, bioconda_recipes, github, biotools, bioconductor, galaxy_metadata, toolshed, galaxy, sourceforge and opeb_metrics."
+            )
             logger.info("Transformation aborted because invalid sources were provided.")
             return
-    
+
     logger.info(f"Sources to transform: {sources}")
 
     # Compute the incremental cutoff here, at the CLI layer, so nothing below
@@ -114,10 +123,13 @@ def main():
 
     logger.info("Transforming raw data...")
 
-    transform_sources(sources=sources, config=config, repos=repos, updated_since=updated_since)
+    transform_sources(
+        sources=sources, config=config, repos=repos, updated_since=updated_since
+    )
 
     # Finish ------------------------------------------------------------------
     logger.info("Transformation finished!")
+
 
 if __name__ == "__main__":
     main()

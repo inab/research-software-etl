@@ -4,58 +4,51 @@ import re
 
 from infrastructure.external.clients import ExternalClients
 
-# Models the two independent opinions come from. They must disagree for a
-# conflict to escalate to a human, so they are deliberately different families.
-LLAMA_MODEL = "meta-llama/Llama-3.3-70B-Instruct-Turbo"
-LLAMA_PROVIDER = "together"
-# The second opinion stays in the Mistral family. `mixtral-8x7b-instruct` was
-# retired from OpenRouter; Mistral Small 3.2 (24B) is its active successor. The
-# `mixtral`/`MIXTRAL_*` names are kept as legacy labels for this second opinion.
-MIXTRAL_MODEL = "mistralai/mistral-small-3.2-24b-instruct"
 
-
-def decision_agreement_proxy(messages: str, clients: ExternalClients) -> dict:
+def decision_agreement_proxy(
+    messages: str, clients: ExternalClients, model_a: str, model_b: str
+) -> dict:
     """
     Ask two models the same question and report whether they agree.
 
-    Returns the shared verdict when they agree, or {"verdict": "disagreement"}
-    when they don't -- which is what escalates the conflict to a curator.
+    Both opinions come from Gepeto, but from two *different* models (``model_a``
+    and ``model_b``) so a genuine disagreement can surface. Returns the shared
+    verdict when they agree, or {"verdict": "disagreement"} when they don't --
+    which is what escalates the conflict to a curator.
     """
-    # model 1: Llama, via HuggingFace
-    result_llama_4, meta_llama_4 = clients.huggingface.query_chat(
-        messages, model=LLAMA_MODEL, provider=LLAMA_PROVIDER
-    )
+    # model A, via Gepeto
+    result_a, meta_a = clients.gepeto.query(messages, model=model_a)
     try:
-        result_llama_4 = parse_result(result_llama_4)
+        result_a = parse_result(result_a)
     except Exception as e:
-        logging.warning(f"Parsing error: {e} | Response: {result_llama_4}")
-        result_llama_4 = {}
+        logging.warning(f"Parsing error: {e} | Response: {result_a}")
+        result_a = {}
 
-    # model 2: Mixtral 8x7B, via OpenRouter
-    result_mixtral, meta_mixtral = clients.openrouter.query(messages, model=MIXTRAL_MODEL)
+    # model B, via Gepeto
+    result_b, meta_b = clients.gepeto.query(messages, model=model_b)
     try:
-        result_mixtral = parse_result(result_mixtral)
+        result_b = parse_result(result_b)
     except Exception:
-        result_mixtral = {}
-    
+        result_b = {}
+
     # agreement
-    result_llama_4_verdict = result_llama_4.get("verdict", None)
-    result_mixtral_verdict = result_mixtral.get("verdict", None)
+    result_a_verdict = result_a.get("verdict", None)
+    result_b_verdict = result_b.get("verdict", None)
     # if both models agree, return the result
-    if result_llama_4_verdict == result_mixtral_verdict:
-        if result_llama_4_verdict != None:
+    if result_a_verdict == result_b_verdict:
+        if result_a_verdict is not None:
             return {
-                'verdict': result_llama_4_verdict,
-                'llama_4': result_llama_4,
-                'mixtral': result_mixtral
+                "verdict": result_a_verdict,
+                "model_a": result_a,
+                "model_b": result_b,
             }
         # If models agree and are None, human annotation is needed
-        
+
     else:
         return {
             "verdict": "disagreement",
-            "llama_4": result_llama_4,
-            "mixtral": result_mixtral,
+            "model_a": result_a,
+            "model_b": result_b,
         }
 
 

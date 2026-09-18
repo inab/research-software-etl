@@ -13,8 +13,14 @@ def db():
     return FakeDatabaseAdapter(
         {
             "pretools": [
-                {"_id": "bioconda/abyss/cmd/2.0", "data": {"name": "abyss", "source": ["bioconda"]}},
-                {"_id": "biotools/abyss/cmd/None", "data": {"name": "abyss", "source": ["biotools"]}},
+                {
+                    "_id": "bioconda/abyss/cmd/2.0",
+                    "data": {"name": "abyss", "source": ["bioconda"]},
+                },
+                {
+                    "_id": "biotools/abyss/cmd/None",
+                    "data": {"name": "abyss", "source": ["biotools"]},
+                },
             ]
         }
     )
@@ -39,7 +45,9 @@ def test_insert_one_mints_an_id_when_the_document_has_none(db):
 
 def test_bare_identifier_is_treated_as_an_id_filter(db):
     """PyMongo treats a non-Mapping filter as an _id, and get_pub relies on it."""
-    assert db.fetch_entry("pretools", "bioconda/abyss/cmd/2.0")["data"]["name"] == "abyss"
+    assert (
+        db.fetch_entry("pretools", "bioconda/abyss/cmd/2.0")["data"]["name"] == "abyss"
+    )
 
 
 def test_equality_matches_inside_a_list_field(db):
@@ -61,11 +69,15 @@ def test_or_and_exists_queries(db):
 
 
 def test_update_entry_understands_dotted_paths(db):
-    db.update_entry("pretools", "bioconda/abyss/cmd/2.0", {"data.license": [{"name": "MIT"}]})
+    db.update_entry(
+        "pretools", "bioconda/abyss/cmd/2.0", {"data.license": [{"name": "MIT"}]}
+    )
 
     entry = db.fetch_entry("pretools", {"_id": "bioconda/abyss/cmd/2.0"})
     assert entry["data"]["license"] == [{"name": "MIT"}]
-    assert entry["data"]["name"] == "abyss", "the dotted update must not clobber siblings"
+    assert (
+        entry["data"]["name"] == "abyss"
+    ), "the dotted update must not clobber siblings"
 
 
 def test_get_entry_metadata_drops_the_data_field(db):
@@ -79,7 +91,10 @@ def test_reads_are_copies_so_callers_cannot_corrupt_the_store(db):
     entry = db.fetch_entry("pretools", {"_id": "bioconda/abyss/cmd/2.0"})
     entry["data"]["name"] = "mutated"
 
-    assert db.fetch_entry("pretools", {"_id": "bioconda/abyss/cmd/2.0"})["data"]["name"] == "abyss"
+    assert (
+        db.fetch_entry("pretools", {"_id": "bioconda/abyss/cmd/2.0"})["data"]["name"]
+        == "abyss"
+    )
 
 
 def test_paginated_entries_yields_pages():
@@ -142,9 +157,13 @@ def test_pretools_repository_over_the_fake(db):
     assert repos.pretools.exists("bioconda/abyss/cmd/2.0")
     assert repos.pretools.get_by_id("bioconda/abyss/cmd/2.0")["data"]["name"] == "abyss"
 
-    repos.pretools.upsert("new/entry/cmd/1", {"_id": "new/entry/cmd/1", "data": {"name": "n"}})
+    repos.pretools.upsert(
+        "new/entry/cmd/1", {"_id": "new/entry/cmd/1", "data": {"name": "n"}}
+    )
     assert repos.pretools.exists("new/entry/cmd/1")
 
     repos.pretools.upsert("new/entry/cmd/1", {"data": {"name": "renamed"}})
     assert repos.pretools.get_by_id("new/entry/cmd/1")["data"]["name"] == "renamed"
-    assert len(repos.pretools.get_all()) == 3, "upsert of an existing id must not insert a second"
+    assert (
+        len(repos.pretools.get_all()) == 3
+    ), "upsert of an existing id must not insert a second"

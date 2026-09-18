@@ -44,9 +44,15 @@ class _FakeDB:
 def test_paginates_without_skip_and_closes_cursor(monkeypatch):
     docs = [{"_id": i} for i in range(250)]
     collection = _FakeCollection(docs)
-    monkeypatch.setattr(MongoDBAdapter, "db", property(lambda self: _FakeDB(collection)))
+    monkeypatch.setattr(
+        MongoDBAdapter, "db", property(lambda self: _FakeDB(collection))
+    )
 
-    pages = list(MongoDBAdapter().fetch_paginated_entries("c", {"@data_source": "x"}, page_size=100))
+    pages = list(
+        MongoDBAdapter().fetch_paginated_entries(
+            "c", {"@data_source": "x"}, page_size=100
+        )
+    )
 
     # Chunked 250 into 100/100/50, every doc exactly once, order preserved.
     assert [len(p) for p in pages] == [100, 100, 50]
@@ -59,7 +65,9 @@ def test_paginates_without_skip_and_closes_cursor(monkeypatch):
 
 def test_empty_result_yields_no_pages(monkeypatch):
     collection = _FakeCollection([])
-    monkeypatch.setattr(MongoDBAdapter, "db", property(lambda self: _FakeDB(collection)))
+    monkeypatch.setattr(
+        MongoDBAdapter, "db", property(lambda self: _FakeDB(collection))
+    )
 
     pages = list(MongoDBAdapter().fetch_paginated_entries("c", {}, page_size=100))
 

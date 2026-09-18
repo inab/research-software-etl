@@ -8,7 +8,9 @@ import os
 
 from dotenv import load_dotenv
 
-from application.use_cases.stats.generate_similarity import compute_and_store_similarities
+from application.use_cases.stats.generate_similarity import (
+    compute_and_store_similarities,
+)
 from infrastructure.config import Credentials, PipelineConfig
 from infrastructure.db.repositories import from_config
 from infrastructure.logging_config import resolve_level
@@ -19,7 +21,8 @@ def main():
         description="Compute embedding-based similarity scores for research software tools."
     )
     parser.add_argument(
-        "--collections", "-c",
+        "--collections",
+        "-c",
         default="tools",
         help=(
             "Tool selection scope. "
@@ -56,12 +59,14 @@ def main():
         help="Row-chunk size for the similarity computation pass.",
     )
     parser.add_argument(
-        "--env-file", "-e",
+        "--env-file",
+        "-e",
         default=".env",
         help="File containing environment variables.",
     )
     parser.add_argument(
-        "--loglevel", "-l",
+        "--loglevel",
+        "-l",
         default=os.getenv("LOG_LEVEL", "INFO"),
         help="Logging level (default: LOG_LEVEL env var, else INFO).",
     )

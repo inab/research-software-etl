@@ -59,7 +59,9 @@ class DisambiguationReviewService:
         self.best_pair[pair_stable_id] = payload
         return payload
 
-    def open_issue(self, conflict, conflict_pair, conflict_name, pair_stable_id, full_conflict, n):
+    def open_issue(
+        self, conflict, conflict_pair, conflict_name, pair_stable_id, full_conflict, n
+    ):
         """Escalate a disagreement to a curator.
 
         Returns ``(issue_url, dry_run_record)``. In dry-run mode no GitHub call is

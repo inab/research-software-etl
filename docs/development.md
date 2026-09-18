@@ -48,7 +48,7 @@ Use cases have clear inputs and outputs, avoid direct interaction with databases
 │       │   ├── database_adapter.py     # DatabaseAdapter protocol
 │       │   ├── repositories.py         # from_config(): wires the concrete repos
 │       │   └── mongo/                  # Concrete MongoDB adapter + repositories
-│       ├── external/                   # HTTP/API clients (GitHub, OpenRouter, …)
+│       ├── external/                   # HTTP/API clients (GitHub, Gepeto, …)
 │       └── storage/                    # JSONL/JSON file I/O between stages
 │
 ├── scripts/                            # One-off utilities (outside the arch rules)
@@ -107,7 +107,7 @@ grouping_and_recovery_process(config, repos)
 
 Every HTTP call the pipeline makes lives behind a client class in `src/infrastructure/external/` — not just the tokened ones. `ExternalClients.from_credentials(creds)` bundles them and the CLI threads that bundle down.
 
-- **Tokened:** `GitHubClient`, `GitLabClient`, `OpenRouterClient`, `HuggingFaceClient`.
+- **Tokened:** `GepetoClient`, `GitHubClient`, `GitLabClient`.
 - **Tokenless (still bundled, so tests can inject offline fakes):** `UrlChecker`, `PyPIClient`, `SourceForgeClient`, `BitbucketClient`, `HeadlessBrowserFetcher`.
 - **Built directly by the CLI that needs them:** `EuropePmcClient`, `SemanticScholarClient`, `CrossrefClient`.
 

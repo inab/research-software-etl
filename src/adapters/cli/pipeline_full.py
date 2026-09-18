@@ -43,7 +43,9 @@ STAGES = [
 def _require_env(vars_: Sequence[str]) -> None:
     missing = [v for v in vars_ if not os.getenv(v)]
     if missing:
-        raise PipelineError(f"Missing required environment variables: {', '.join(missing)}")
+        raise PipelineError(
+            f"Missing required environment variables: {', '.join(missing)}"
+        )
 
 
 def _run(
@@ -65,7 +67,9 @@ def _run(
 
 def _git_short_sha(cwd: Path) -> str:
     try:
-        out = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=str(cwd))
+        out = subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"], cwd=str(cwd)
+        )
         return out.decode().strip()
     except Exception:
         return "nogit"
@@ -239,9 +243,10 @@ def run_full(
     resume_run: Optional[str | Path] = None,
     dry_run_disambiguation: bool = False,
     updated_within_days: int = 30,
-    pair_wise_decisions_file: str | Path = "src/application/services/integration/disambiguation/pair_decisions.jsonl",
+    pair_wise_decisions_file: (
+        str | Path
+    ) = "src/application/services/integration/disambiguation/pair_decisions.jsonl",
 ) -> None:
-    
 
     if resume_run and run_tag:
         raise PipelineError("--tag cannot be used together with --resume-run")
@@ -273,7 +278,7 @@ def run_full(
 
     # The pair-decision cache is deliberately *not* run-scoped: it is the curator
     # decision history, and it accumulates across runs.
-    pair_wise_decisions_file = (wd / pair_wise_decisions_file)
+    pair_wise_decisions_file = wd / pair_wise_decisions_file
 
     disambiguation_out_file = run_dir / f"disambiguation.{run_id}.jsonl"
     # Diagnostics belong to the run that produced them, not to the checkout.
@@ -322,7 +327,16 @@ def run_full(
 
     if should_run("transformation"):
         print("=== Stage: transformation ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _require_env(
+            [
+                "MONGO_HOST",
+                "MONGO_PORT",
+                "MONGO_USER",
+                "MONGO_PWD",
+                "MONGO_AUTH_SRC",
+                "MONGO_DB",
+            ]
+        )
         _run(
             [
                 python_exe,
@@ -339,7 +353,16 @@ def run_full(
 
     if should_run("grouping"):
         print("=== Stage: grouping ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _require_env(
+            [
+                "MONGO_HOST",
+                "MONGO_PORT",
+                "MONGO_USER",
+                "MONGO_PWD",
+                "MONGO_AUTH_SRC",
+                "MONGO_DB",
+            ]
+        )
         _run(
             [
                 python_exe,
@@ -430,7 +453,7 @@ def run_full(
 
     if should_run("disambiguation"):
         print("=== Stage: disambiguation ===")
-        _require_env(["GITHUB_TOKEN", "GITLAB_TOKEN", "OPENROUTER_API_KEY", "HUGGINGFACE_API_KEY"])
+        _require_env(["GITHUB_TOKEN", "GITLAB_TOKEN", "GEPETO_API_KEY"])
         cmd = [
             python_exe,
             "-m",
@@ -478,7 +501,16 @@ def run_full(
 
     if should_run("merge"):
         print("=== Stage: merge ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _require_env(
+            [
+                "MONGO_HOST",
+                "MONGO_PORT",
+                "MONGO_USER",
+                "MONGO_PWD",
+                "MONGO_AUTH_SRC",
+                "MONGO_DB",
+            ]
+        )
         _run(
             [
                 python_exe,
@@ -498,10 +530,23 @@ def run_full(
 
     if should_run("license-normalization"):
         print("=== Stage: license-normalization ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _require_env(
+            [
+                "MONGO_HOST",
+                "MONGO_PORT",
+                "MONGO_USER",
+                "MONGO_PWD",
+                "MONGO_AUTH_SRC",
+                "MONGO_DB",
+            ]
+        )
         _run(
-            [python_exe, "-m", "src.adapters.cli.post_transformation.normalize_licenses"],
-            cwd=wd
+            [
+                python_exe,
+                "-m",
+                "src.adapters.cli.post_transformation.normalize_licenses",
+            ],
+            cwd=wd,
         )
         executed_stages.append("license-normalization")
 
@@ -516,33 +561,69 @@ def run_full(
 
     if should_run("fairsoft"):
         print("=== Stage: fairsoft ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _require_env(
+            [
+                "MONGO_HOST",
+                "MONGO_PORT",
+                "MONGO_USER",
+                "MONGO_PWD",
+                "MONGO_AUTH_SRC",
+                "MONGO_DB",
+            ]
+        )
         _run(
-            [python_exe, "-m", "src.adapters.cli.fair_scores", "--collections", "tools"],
+            [
+                python_exe,
+                "-m",
+                "src.adapters.cli.fair_scores",
+                "--collections",
+                "tools",
+            ],
             cwd=wd,
         )
         executed_stages.append("fairsoft")
 
     if should_run("stats"):
         print("=== Stage: stats ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _require_env(
+            [
+                "MONGO_HOST",
+                "MONGO_PORT",
+                "MONGO_USER",
+                "MONGO_PWD",
+                "MONGO_AUTH_SRC",
+                "MONGO_DB",
+            ]
+        )
         _run(
-            [python_exe, "-m", "src.adapters.cli.generate_stats", "--collections", "all"],
+            [
+                python_exe,
+                "-m",
+                "src.adapters.cli.generate_stats",
+                "--collections",
+                "all",
+            ],
             cwd=wd,
         )
         executed_stages.append("stats")
 
     if should_run("similarity"):
         print("=== Stage: similarity ===")
-        _require_env(["MONGO_HOST", "MONGO_PORT", "MONGO_USER", "MONGO_PWD", "MONGO_AUTH_SRC", "MONGO_DB"])
+        _require_env(
+            [
+                "MONGO_HOST",
+                "MONGO_PORT",
+                "MONGO_USER",
+                "MONGO_PWD",
+                "MONGO_AUTH_SRC",
+                "MONGO_DB",
+            ]
+        )
         _run(
             [python_exe, "-m", "src.adapters.cli.similarity", "--collections", "tools"],
             cwd=wd,
         )
         executed_stages.append("similarity")
-
-
-
 
     execution_record = {
         "utc_started": started_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -562,7 +643,6 @@ def run_full(
             "do_merge_to_db": do_merge_to_db,
             "dry_run_disambiguation": dry_run_disambiguation,
             "updated_within_days": updated_within_days,
-
         },
     }
 
@@ -573,7 +653,9 @@ def run_full(
         "run_id": run_id,
         "run_dir": str(run_dir),
         "git_short_sha": _git_short_sha(wd),
-        "created_utc": previous_manifest.get("created_utc", started_at.strftime("%Y-%m-%dT%H:%M:%SZ")),
+        "created_utc": previous_manifest.get(
+            "created_utc", started_at.strftime("%Y-%m-%dT%H:%M:%SZ")
+        ),
         "last_updated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "paths": {
             "grouped_entries_file": str(grouped_entries_file),
@@ -602,7 +684,7 @@ def run_full(
             "MONGO_PWD": mask_secret(os.getenv("MONGO_PWD")),
             "GITHUB_TOKEN": mask_secret(os.getenv("GITHUB_TOKEN")),
             "GITLAB_TOKEN": mask_secret(os.getenv("GITLAB_TOKEN")),
-            "OPENROUTER_API_KEY": mask_secret(os.getenv("OPENROUTER_API_KEY")),
+            "GEPETO_API_KEY": mask_secret(os.getenv("GEPETO_API_KEY")),
             "HUGGINGFACE_API_KEY": mask_secret(os.getenv("HUGGINGFACE_API_KEY")),
         },
         "execution_history": execution_history,

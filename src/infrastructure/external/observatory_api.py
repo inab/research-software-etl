@@ -39,7 +39,9 @@ class ObservatoryApiClient:
         """
         url = f"{self.base_url}{self.REINDEX_PATH}"
         headers = {"Authorization": f"Bearer {self.token}"}
-        logger.info("Requesting tools reindex: POST %s (force_text=%s)", url, force_text)
+        logger.info(
+            "Requesting tools reindex: POST %s (force_text=%s)", url, force_text
+        )
 
         response = requests.post(
             url, headers=headers, json={"force_text": force_text}, timeout=timeout

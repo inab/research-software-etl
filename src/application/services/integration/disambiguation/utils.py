@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+
 def append_dict_to_jsonl(path, data: dict) -> None:
     """
     Appends a dictionary as a single JSON line to a .jsonl file.
@@ -15,25 +16,26 @@ def append_dict_to_jsonl(path, data: dict) -> None:
     with path.open("a", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False)
         f.write("\n")
-                
+
+
 def extract_ids(obj):
     all_ids = []
-    for record in obj['remaining']:
-        id = record['_id'].split(',')
+    for record in obj["remaining"]:
+        id = record["_id"].split(",")
         for i in id:
             all_ids.append(i)
 
-    for record in obj['disconnected']:
-        id = record['_id'].split(',')
+    for record in obj["disconnected"]:
+        id = record["_id"].split(",")
         for i in id:
             all_ids.append(i)
 
     all_ids.sort()
-    final_id = ','.join(all_ids)
+    final_id = ",".join(all_ids)
 
     return final_id
 
-    
+
 def stable_hash(obj: Any) -> str:
     # actually, it is not a hash anymore
     stable_id = extract_ids(obj)
@@ -44,9 +46,10 @@ def get_pub(object_id, publications):
     publication = publications.get_by_id(object_id)
 
     if publication:
-        return publication.get('data')
+        return publication.get("data")
     else:
         return None
+
 
 def load_dict_from_jsonl(path):
     path = Path(path)
@@ -75,19 +78,19 @@ def load_dict_from_jsonl(path):
 
 
 def remove_jsonl_record(path, target_key):
-    #print(f'Removing record(s) with key: {target_key}')
+    # print(f'Removing record(s) with key: {target_key}')
     path = Path(path)
-    temp_path = path.with_name(path.name + '.tmp')
+    temp_path = path.with_name(path.name + ".tmp")
     removed = False
 
-    with open(path, 'r') as infile, open(temp_path, 'w') as outfile:
+    with open(path, "r") as infile, open(temp_path, "w") as outfile:
         for line in infile:
             try:
                 record = json.loads(line)
                 key = next(iter(record))
                 if key != target_key:
                     json.dump(record, outfile)
-                    outfile.write('\n')
+                    outfile.write("\n")
                 else:
                     removed = True
             except json.JSONDecodeError:
@@ -97,16 +100,16 @@ def remove_jsonl_record(path, target_key):
         os.replace(temp_path, path)
     else:
         os.remove(temp_path)
-        print(f'Key {target_key} not found.')
+        print(f"Key {target_key} not found.")
 
 
 def update_jsonl_record(path, updated_key, new_value):
-    #print(f'Updating record with key: {updated_key}')
+    # print(f'Updating record with key: {updated_key}')
     path = Path(path)
     updated = False
-    temp_path = path.with_name(path.name + '.tmp')
+    temp_path = path.with_name(path.name + ".tmp")
 
-    with open(path, 'r') as infile, open(temp_path, 'w') as outfile:
+    with open(path, "r") as infile, open(temp_path, "w") as outfile:
         for line in infile:
             try:
                 record = json.loads(line)
@@ -116,21 +119,22 @@ def update_jsonl_record(path, updated_key, new_value):
                     updated = True
                 else:
                     json.dump(record, outfile)
-                outfile.write('\n')
+                outfile.write("\n")
             except json.JSONDecodeError:
                 continue  # optionally log bad lines
 
     if not updated:
-        with open(temp_path, 'a') as outfile:
+        with open(temp_path, "a") as outfile:
             json.dump({updated_key: new_value}, outfile)
-            outfile.write('\n')
+            outfile.write("\n")
 
     os.replace(temp_path, path)  # atomic rename
 
+
 def add_jsonl_record(path, new_record):
-    with open(path, 'a') as f:
-            json.dump(new_record, f)
-            f.write('\n')
+    with open(path, "a") as f:
+        json.dump(new_record, f)
+        f.write("\n")
 
 
 def process_publications(publications, publications_repo):
@@ -148,7 +152,9 @@ def process_publications(publications, publications_repo):
                 processed_publications.append(publication)
             else:
                 # an id reference (str, or a stray ObjectId) — resolve it
-                processed_publications.append(get_pub(str(publication), publications_repo))
+                processed_publications.append(
+                    get_pub(str(publication), publications_repo)
+                )
         return processed_publications
 
 
@@ -165,27 +171,23 @@ def replace_with_full_entries(conflict, pretools):
         "disconnected": [],
         "remaining": [],
     }
-    for entry in conflict['disconnected']:
-        new_conflict['disconnected'].append(pretools.get_by_id(entry["id"]))
+    for entry in conflict["disconnected"]:
+        new_conflict["disconnected"].append(pretools.get_by_id(entry["id"]))
 
-    for entry in conflict['remaining']:
-        new_conflict['remaining'].append(pretools.get_by_id(entry["id"]))
+    for entry in conflict["remaining"]:
+        new_conflict["remaining"].append(pretools.get_by_id(entry["id"]))
 
     return new_conflict
-
 
 
 def filter_relevant_fields(conflict, publications):
     """
     Filter the relevant fields from the conflict dictionary.
     """
-    filtered_conflict = {
-        "disconnected": [],
-        "remaining": []
-    }
+    filtered_conflict = {"disconnected": [], "remaining": []}
 
     for entry in conflict["disconnected"]:
-        #print('Entry:', entry)
+        # print('Entry:', entry)
         filtered_entry = {
             "id": entry["_id"],
             "name": entry["data"].get("name"),
@@ -195,13 +197,15 @@ def filter_relevant_fields(conflict, publications):
             "source": entry["data"].get("source"),
             "license": entry["data"].get("license"),
             "authors": entry["data"].get("authors"),
-            "publication": process_publications(entry["data"].get("publication"), publications),
-            "documentation": entry["data"].get("documentation")
+            "publication": process_publications(
+                entry["data"].get("publication"), publications
+            ),
+            "documentation": entry["data"].get("documentation"),
         }
         filtered_conflict["disconnected"].append(filtered_entry)
 
     for entry in conflict["remaining"]:
-        #print('Entry:', entry)
+        # print('Entry:', entry)
         filtered_entry = {
             "id": entry["_id"],
             "name": entry["data"].get("name"),
@@ -212,12 +216,11 @@ def filter_relevant_fields(conflict, publications):
             "license": entry["data"].get("license"),
             "authors": entry["data"].get("authors"),
             "publication": entry["data"].get("publication"),
-            "documentation": entry["data"].get("documentation")
+            "documentation": entry["data"].get("documentation"),
         }
         filtered_conflict["remaining"].append(filtered_entry)
 
     return filtered_conflict
-
 
 
 SOURCE_PRIORITY = {
@@ -225,13 +228,15 @@ SOURCE_PRIORITY = {
     "llm": 1,
 }
 
+
 def parse_ts(ts: str) -> float:
     """Parse ISO timestamp to sortable float."""
     return datetime.fromisoformat(ts.replace("Z", "+00:00")).timestamp()
 
+
 def is_better(new, old):
     """Return True if `new` decision should replace `old`.
-       For now, there should be no conflicts solvd by humans and LLMs, but it may be the case in the future
+    For now, there should be no conflicts solvd by humans and LLMs, but it may be the case in the future
     """
     # 1. Source priority
     if SOURCE_PRIORITY[new["source"]] != SOURCE_PRIORITY[old["source"]]:
@@ -243,6 +248,7 @@ def is_better(new, old):
 
     # 3. Recency
     return parse_ts(new["ts"]) > parse_ts(old["ts"])
+
 
 def load_pair_decisions(path: str | Path):
     """

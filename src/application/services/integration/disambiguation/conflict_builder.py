@@ -1,5 +1,7 @@
 from application.services.integration.disambiguation.prompts import get_tokenizer
 from application.services.integration.disambiguation.enrich_links import enrich_link
+
+
 # -------------------------------
 # Chunking big text
 # -------------------------------
@@ -30,6 +32,7 @@ def chunk_text(text: str, max_tokens: int = 8000, model: str = "gpt-4"):
 # Conflict Handling
 # -------------------------------
 
+
 async def build_full_conflict(conflict, clients, max_tokens=8000, model="gpt-4"):
     """
     Returns a conflict dictionary where:
@@ -51,20 +54,23 @@ async def build_full_conflict(conflict, clients, max_tokens=8000, model="gpt-4")
             contents[url] = {}
 
             if enriched and enriched.get("content"):
-                chunks = chunk_text(enriched["content"], max_tokens=max_tokens, model=model)
-                contents[url]["Content"]  = chunks
+                chunks = chunk_text(
+                    enriched["content"], max_tokens=max_tokens, model=model
+                )
+                contents[url]["Content"] = chunks
 
             if enriched and enriched.get("readme_content"):
-                contents[url]["README content"] = chunk_text(enriched.get("readme_content"), max_tokens=max_tokens, model=model)
-            
+                contents[url]["README content"] = chunk_text(
+                    enriched.get("readme_content"), max_tokens=max_tokens, model=model
+                )
+
             if enriched and enriched.get("repo_metadata"):
-                contents[url]['Repository metadata'] = enriched["repo_metadata"]
-            
+                contents[url]["Repository metadata"] = enriched["repo_metadata"]
+
             if enriched and enriched.get("project_metadata"):
                 contents[url]["Project metadata"] = enriched["project_metadata"]
 
         return dict(contents)
-
 
     new_conflict = {
         "disconnected": [],
@@ -80,16 +86,18 @@ async def build_full_conflict(conflict, clients, max_tokens=8000, model="gpt-4")
         webpages = entry.get("webpage", [])
         repos = entry.get("repository", [])
         all_webpages.update(webpages)
-        for repo in repos:  
-            if repo.get('kind') == "github" and "github.com" in repo.get('url', ''):
-                all_repos.add(repo.get('url', ''))
-            elif repo.get('kind') == "bitbucket" and "bitbucket.com" in repo.get('url', ''):
-                all_repos.add(repo.get('url', ''))
-            elif repo.get('kind') == "gitlab" and "gitlab.com" in repo.get('url', ''):
-                all_repos.add(repo.get('url', ''))
+        for repo in repos:
+            if repo.get("kind") == "github" and "github.com" in repo.get("url", ""):
+                all_repos.add(repo.get("url", ""))
+            elif repo.get("kind") == "bitbucket" and "bitbucket.com" in repo.get(
+                "url", ""
+            ):
+                all_repos.add(repo.get("url", ""))
+            elif repo.get("kind") == "gitlab" and "gitlab.com" in repo.get("url", ""):
+                all_repos.add(repo.get("url", ""))
             else:
-                all_webpages.add(repo.get('url', ''))
-            
+                all_webpages.add(repo.get("url", ""))
+
         return entry
 
     for entry in conflict["disconnected"]:

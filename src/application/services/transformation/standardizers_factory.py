@@ -1,9 +1,13 @@
 from application.services.transformation.bioconda_opeb import biocondaOPEBStandardizer
-from application.services.transformation.bioconda_recipes import biocondaRecipesStandardizer
+from application.services.transformation.bioconda_recipes import (
+    biocondaRecipesStandardizer,
+)
 from application.services.transformation.bioconductor import bioconductorStandardizer
 from application.services.transformation.biotools_opeb import biotoolsOPEBStandardizer
 from application.services.transformation.toolshed import toolshedStandardizer
-from application.services.transformation.galaxy_metadata import galaxyMetadataStandardizer
+from application.services.transformation.galaxy_metadata import (
+    galaxyMetadataStandardizer,
+)
 from application.services.transformation.galaxy_opeb import galaxyOPEBStandardizer
 from application.services.transformation.opeb_metrics import OPEBMetricsStandardizer
 from application.services.transformation.source_forge import sourceforgeStandardizer
@@ -24,17 +28,25 @@ class MetadataStandardizerFactory:
             raise ValueError("No standardizer available for source {}".format(source))
         return standardizer_cls()
 
-# Register all available 
-MetadataStandardizerFactory.register_standardizer('bioconda', biocondaOPEBStandardizer)
-MetadataStandardizerFactory.register_standardizer('bioconda_recipes', biocondaRecipesStandardizer)
-MetadataStandardizerFactory.register_standardizer('bioconductor', bioconductorStandardizer)
-MetadataStandardizerFactory.register_standardizer('biotools', biotoolsOPEBStandardizer)
-MetadataStandardizerFactory.register_standardizer('toolshed', toolshedStandardizer)
-MetadataStandardizerFactory.register_standardizer('galaxy_metadata', galaxyMetadataStandardizer)
-MetadataStandardizerFactory.register_standardizer('galaxy', galaxyOPEBStandardizer)
-MetadataStandardizerFactory.register_standardizer('opeb_metrics', OPEBMetricsStandardizer)
-MetadataStandardizerFactory.register_standardizer('sourceforge', sourceforgeStandardizer)
-MetadataStandardizerFactory.register_standardizer('github', githubStandardizer)
 
-
-
+# Register all available
+MetadataStandardizerFactory.register_standardizer("bioconda", biocondaOPEBStandardizer)
+MetadataStandardizerFactory.register_standardizer(
+    "bioconda_recipes", biocondaRecipesStandardizer
+)
+MetadataStandardizerFactory.register_standardizer(
+    "bioconductor", bioconductorStandardizer
+)
+MetadataStandardizerFactory.register_standardizer("biotools", biotoolsOPEBStandardizer)
+MetadataStandardizerFactory.register_standardizer("toolshed", toolshedStandardizer)
+MetadataStandardizerFactory.register_standardizer(
+    "galaxy_metadata", galaxyMetadataStandardizer
+)
+MetadataStandardizerFactory.register_standardizer("galaxy", galaxyOPEBStandardizer)
+MetadataStandardizerFactory.register_standardizer(
+    "opeb_metrics", OPEBMetricsStandardizer
+)
+MetadataStandardizerFactory.register_standardizer(
+    "sourceforge", sourceforgeStandardizer
+)
+MetadataStandardizerFactory.register_standardizer("github", githubStandardizer)

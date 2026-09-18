@@ -85,7 +85,7 @@ class Credentials:
 
     github_token: Optional[str] = None
     gitlab_token: Optional[str] = None
-    openrouter_api_key: Optional[str] = None
+    gepeto_api_key: Optional[str] = None
     huggingface_api_key: Optional[str] = None
     observatory_admin_token: Optional[str] = None
 
@@ -94,7 +94,7 @@ class Credentials:
         return cls(
             github_token=os.getenv("GITHUB_TOKEN"),
             gitlab_token=os.getenv("GITLAB_TOKEN"),
-            openrouter_api_key=os.getenv("OPENROUTER_API_KEY"),
+            gepeto_api_key=os.getenv("GEPETO_API_KEY"),
             huggingface_api_key=os.getenv("HUGGINGFACE_API_KEY"),
             observatory_admin_token=os.getenv("OBSERVATORY_ADMIN_TOKEN"),
         )
@@ -181,6 +181,14 @@ class PipelineConfig:
     # curators are committed to.
     conflicts_repo_dir: Path = Path("human_annotations/conflicts")
 
+    # --- Disambiguation LLMs (Gepeto) ---
+    # The agreement proxy asks two *different* models the same question and only
+    # escalates a conflict to a curator when they disagree, so these should be
+    # from different families. Override with GEPETO_MODEL_A / GEPETO_MODEL_B to
+    # match the ids Gepeto actually serves (`python agent.py --models`).
+    gepeto_model_a: str = "meta-llama/Llama-3.3-70B-Instruct"
+    gepeto_model_b: str = "mistralai/Mistral-Small-3.2-24B-Instruct"
+
     # --- Publication enrichment caches ---
     resolved_dois_path: Path = Path("data/cache/resolved_dois.jsonl")
     unresolved_dois_path: Path = Path("data/cache/unresolved_dois.jsonl")
@@ -247,6 +255,12 @@ class PipelineConfig:
             human_log_path=_env_path(
                 "HUMAN_ANNOTATIONS_LOG",
                 "human_annotations/human_conflicts_log.jsonl",
+            ),
+            gepeto_model_a=os.getenv(
+                "GEPETO_MODEL_A", "meta-llama/Llama-3.3-70B-Instruct"
+            ),
+            gepeto_model_b=os.getenv(
+                "GEPETO_MODEL_B", "mistralai/Mistral-Small-3.2-24B-Instruct"
             ),
             full_pipeline_cron=os.getenv("FULL_PIPELINE_CRON", "0 1 * * mon,thu"),
             publication_enrichment_cron=os.getenv(

@@ -25,6 +25,7 @@ CONFIG = PipelineConfig()
 # build_pretools_document (pure)
 # --------------------------------------------------------------------------- #
 
+
 def _software(name="tool", version="1"):
     return {"source": ["biotools"], "name": name, "type": "cmd", "version": [version]}
 
@@ -50,15 +51,23 @@ def test_build_document_for_existing_entry_preserves_created_and_bumps_updated()
         "last_updated_at": "2020-01-01T00:00:00",
         "updated_by": "someone",
         "updated_logs": "log",
-        "source": [{"collection": "alambiqueDev", "id": "biotools/tool/cmd/1", "source_url": None}],
+        "source": [
+            {
+                "collection": "alambiqueDev",
+                "id": "biotools/tool/cmd/1",
+                "source_url": None,
+            }
+        ],
         "data": {"name": "stale"},
     }
     raw = {"_id": "biotools/tool/cmd/1"}
 
-    doc = build_pretools_document("biotools/tool/cmd/1", _software(name="fresh"), raw, existing, CONFIG)
+    doc = build_pretools_document(
+        "biotools/tool/cmd/1", _software(name="fresh"), raw, existing, CONFIG
+    )
 
     assert "_id" not in doc and "id" not in doc
-    assert doc["created_at"] == "2020-01-01T00:00:00"      # preserved
+    assert doc["created_at"] == "2020-01-01T00:00:00"  # preserved
     assert doc["last_updated_at"] != "2020-01-01T00:00:00"  # bumped
     assert doc["data"]["name"] == "fresh"
 
@@ -75,22 +84,31 @@ def test_build_document_for_unchanged_entry_preserves_updated():
         "last_updated_at": "2021-06-06T00:00:00",
         "updated_by": "updater",
         "updated_logs": "updated-log",
-        "source": [{"collection": "alambiqueDev", "id": "biotools/tool/cmd/1", "source_url": None}],
+        "source": [
+            {
+                "collection": "alambiqueDev",
+                "id": "biotools/tool/cmd/1",
+                "source_url": None,
+            }
+        ],
         "data": stored_data,
     }
     raw = {"_id": "biotools/tool/cmd/1"}
 
-    doc = build_pretools_document("biotools/tool/cmd/1", _software(), raw, existing, CONFIG)
+    doc = build_pretools_document(
+        "biotools/tool/cmd/1", _software(), raw, existing, CONFIG
+    )
 
-    assert doc["created_at"] == "2020-01-01T00:00:00"        # preserved
-    assert doc["last_updated_at"] == "2021-06-06T00:00:00"   # NOT bumped
-    assert doc["updated_by"] == "updater"                    # preserved
-    assert doc["updated_logs"] == "updated-log"              # preserved
+    assert doc["created_at"] == "2020-01-01T00:00:00"  # preserved
+    assert doc["last_updated_at"] == "2021-06-06T00:00:00"  # NOT bumped
+    assert doc["updated_by"] == "updater"  # preserved
+    assert doc["updated_logs"] == "updated-log"  # preserved
 
 
 # --------------------------------------------------------------------------- #
 # resolve_publications_for_page (batched)
 # --------------------------------------------------------------------------- #
+
 
 class _IdentityStandardizer:
     """Standardizes a raw publication dict to itself."""
@@ -114,11 +132,13 @@ def test_resolve_reuses_existing_and_inserts_new_pub_once(monkeypatch):
         {"_id": "e1", "_pubs": [{"doi": "10.NEW"}]},
     ]
     monkeypatch.setattr(
-        publications_processing, "extract_publications",
+        publications_processing,
+        "extract_publications",
         lambda source, entry: entry.get("_pubs", []),
     )
     monkeypatch.setattr(
-        publications_processing.StandardizerFactory, "get_standardizer",
+        publications_processing.StandardizerFactory,
+        "get_standardizer",
         staticmethod(lambda source: _IdentityStandardizer()),
     )
 
@@ -126,9 +146,7 @@ def test_resolve_reuses_existing_and_inserts_new_pub_once(monkeypatch):
 
     # Exactly one new publication document was inserted for the whole page.
     assert len(db.collections["publications"]) == 2
-    new_oids = [
-        _id for _id in db.collections["publications"] if _id != existing_oid
-    ]
+    new_oids = [_id for _id in db.collections["publications"] if _id != existing_oid]
     new_oid = new_oids[0]
 
     assert set(result[0]) == {existing_oid, new_oid}
@@ -145,6 +163,7 @@ def test_resolve_returns_empty_for_source_without_publications(monkeypatch):
 # process_page orchestration
 # --------------------------------------------------------------------------- #
 
+
 def test_process_page_upserts_with_publications_and_updates_existing(monkeypatch):
     existing_id = "biotools/existing/cmd/1"
     db = FakeDatabaseAdapter(
@@ -158,7 +177,13 @@ def test_process_page_upserts_with_publications_and_updates_existing(monkeypatch
                     "last_updated_at": "2020-01-01T00:00:00",
                     "updated_by": "someone",
                     "updated_logs": "log",
-                    "source": [{"collection": "alambiqueDev", "id": existing_id, "source_url": None}],
+                    "source": [
+                        {
+                            "collection": "alambiqueDev",
+                            "id": existing_id,
+                            "source_url": None,
+                        }
+                    ],
                     "data": {"name": "existing", "stale": True},
                 }
             ]
@@ -174,11 +199,13 @@ def test_process_page_upserts_with_publications_and_updates_existing(monkeypatch
     pub_oid = ObjectId()
 
     monkeypatch.setattr(
-        main, "standardize_entry",
+        main,
+        "standardize_entry",
         lambda raw_id, raw, source: software_by_entry.pop(0),
     )
     monkeypatch.setattr(
-        main, "resolve_publications_for_page",
+        main,
+        "resolve_publications_for_page",
         lambda entries, source, config, repos: [[pub_oid], []],
     )
 

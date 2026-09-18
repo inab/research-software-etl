@@ -5,13 +5,17 @@ from typing import Optional
 
 from infrastructure.db.mongo.mongo_adapter import MongoDBAdapter
 
+
 class RawSoftwareMetadataRepository:
-    def __init__(self, db_adapter: MongoDBAdapter, collection_name: str = "alambiqueDev"):
+    def __init__(
+        self, db_adapter: MongoDBAdapter, collection_name: str = "alambiqueDev"
+    ):
         self.db_adapter = db_adapter
         self.collection_name = collection_name
 
-
-    def get_raw_documents_from_source(self, source: str, updated_since: Optional[datetime] = None):
+    def get_raw_documents_from_source(
+        self, source: str, updated_since: Optional[datetime] = None
+    ):
         """
         Retrieve and return documents from a specified MongoDB collection that match a particular source.
 
@@ -24,12 +28,10 @@ class RawSoftwareMetadataRepository:
         Returns:
             Generator.
         """
-        query = {'@data_source': source}
+        query = {"@data_source": source}
         if updated_since is not None:
-            query['@last_updated_at'] = {'$gte': updated_since}
+            query["@last_updated_at"] = {"$gte": updated_since}
 
         raw_data = self.db_adapter.fetch_paginated_entries(self.collection_name, query)
 
         return raw_data
-    
-    

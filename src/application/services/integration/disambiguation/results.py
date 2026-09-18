@@ -1,9 +1,8 @@
 from datetime import datetime
 
+
 def generate_merge_note_if_needed(merged_ids):
-    """
-   
-    """
+    """ """
 
     # Extract name from _id assuming format: <source>/<name>/<type><version>
     def parse_name_from_id(entry_id):
@@ -23,7 +22,7 @@ def generate_merge_note_if_needed(merged_ids):
         return "Caution: merged entries have different names. May be distinct software."
 
     else:
-        return ''
+        return ""
 
 
 from collections import Counter
@@ -142,16 +141,18 @@ def build_disambiguated_record(
             )
             source_counter[normalized_source] += 1
 
-            pair_decisions.append({
-                "pair_id": res.get("conflict_id"),
-                "remaining_id": res.get("remaining_id"),
-                "disconnected_id": disconnected_id,
-                "decision": decision or None,
-                "same_as_remaining": same_as_remaining,
-                "confidence": res.get("confidence"),
-                "source": res.get("source"),
-                "ts": res.get("ts"),
-            })
+            pair_decisions.append(
+                {
+                    "pair_id": res.get("conflict_id"),
+                    "remaining_id": res.get("remaining_id"),
+                    "disconnected_id": disconnected_id,
+                    "decision": decision or None,
+                    "same_as_remaining": same_as_remaining,
+                    "confidence": res.get("confidence"),
+                    "source": res.get("source"),
+                    "ts": res.get("ts"),
+                }
+            )
 
             if decision == "unclear":
                 unclear_entries.append(disconnected_id)
@@ -242,9 +243,6 @@ def build_disambiguated_record_manual(
     }
 
     return {block_id: record}
-
-
-
 
 
 def build_disambiguated_record_after_human(conflict_id, conflict, decision):
@@ -357,15 +355,15 @@ def build_disambiguated_record_after_human(conflict_id, conflict, decision):
                 "pair_id": pair_id,
                 "decision": human_decision or None,
                 "same_as_remaining": (
-                    True if human_decision in {"same", "unclear"}
-                    else False if human_decision == "different"
-                    else None
+                    True
+                    if human_decision in {"same", "unclear"}
+                    else False if human_decision == "different" else None
                 ),
-        "confidence": decision.get("confidence"),
-        "source": "human",
-        "ts": decision.get("ts"),
-    }
-],
+                "confidence": decision.get("confidence"),
+                "source": "human",
+                "ts": decision.get("ts"),
+            }
+        ],
         "confidence_scores": confidence_scores,
         "pairwise_summary": pairwise_summary,
         "timestamp": datetime.now().isoformat(),
@@ -373,8 +371,6 @@ def build_disambiguated_record_after_human(conflict_id, conflict, decision):
     }
 
     return record
-    
-
 
 
 def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
@@ -387,7 +383,7 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
 
     note = generate_merge_note_if_needed(merged_ids)
     note = f"All entries grouped heuristically or by shared metadata. No disambiguation needed. {note}"
-    note = note.strip() # strip leading and trailing whitespace
+    note = note.strip()  # strip leading and trailing whitespace
 
     return {
         block_id: {
@@ -397,6 +393,6 @@ def build_no_conflict_record(block_id, block, source="auto:no_conflict"):
             "source": source,
             "confidence_scores": {},
             "timestamp": datetime.now().isoformat(),
-            "notes": note
+            "notes": note,
         }
     }

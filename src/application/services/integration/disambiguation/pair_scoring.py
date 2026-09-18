@@ -14,9 +14,13 @@ import logging
 from dataclasses import dataclass
 
 from application.services.integration.disambiguation.pairing import build_pairs
-from application.services.integration.disambiguation.conflict_builder import build_full_conflict
+from application.services.integration.disambiguation.conflict_builder import (
+    build_full_conflict,
+)
 from application.services.integration.disambiguation.prompts import build_prompt
-from application.services.integration.disambiguation.proxy import decision_agreement_proxy
+from application.services.integration.disambiguation.proxy import (
+    decision_agreement_proxy,
+)
 from application.services.integration.disambiguation.utils import (
     filter_relevant_fields,
     add_jsonl_record,
@@ -39,10 +43,12 @@ class ScoredPair:
 
 
 class PairScoringService:
-    def __init__(self, clients, repos, proxy_results_path):
+    def __init__(self, clients, repos, proxy_results_path, model_a, model_b):
         self.clients = clients
         self.repos = repos
         self.proxy_results_path = proxy_results_path
+        self.model_a = model_a
+        self.model_b = model_b
 
     def build_pairs(self, conflict_full, conflict_name):
         """Split a hydrated conflict block into the pairs to score."""
@@ -67,7 +73,9 @@ class PairScoringService:
             full_conflict["remaining"],
             self.repos.publications,
         )
-        result = decision_agreement_proxy(messages, self.clients)
+        result = decision_agreement_proxy(
+            messages, self.clients, self.model_a, self.model_b
+        )
 
         add_jsonl_record(str(self.proxy_results_path), {conflict_name: result})
 

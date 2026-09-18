@@ -173,7 +173,6 @@ def process_description(description):
     return " ".join(description) if description else ""
 
 
-
 def normalize_source_identity(source: str) -> str | None:
     """
     Normalize a source string to a stable identity suitable for conflict-block merging.
@@ -254,6 +253,7 @@ def normalize_name_relaxed(name: str) -> str:
     name = re.sub(r"[_\-]+", " ", name)
     name = re.sub(r"\s+", " ", name)
     return name
+
 
 def get_source_origins(entry):
     origins = set()
@@ -434,11 +434,10 @@ def get_galaxy_related_same_name(entries):
     valid_names = {name for name, count in name_counter.items() if count >= 2}
 
     return [
-        e for e in entries
+        e
+        for e in entries
         if is_galaxy_related(e) and e["name"].strip().lower() in valid_names
     ]
-
-
 
 
 def build_instance_representation(instances, url_checker=None, resolve_github=False):
@@ -462,11 +461,7 @@ def build_instance_representation(instances, url_checker=None, resolve_github=Fa
             for repo in instance["data"].get("repository", [])
             if repo.get("url")
         ]
-        webpage_urls = [
-            url
-            for url in instance["data"].get("webpage", [])
-            if url
-        ]
+        webpage_urls = [url for url in instance["data"].get("webpage", []) if url]
 
         repo_links = collect_link_set(
             repo_urls, url_checker=url_checker, resolve_github=resolve_github
@@ -492,7 +487,9 @@ def build_instance_representation(instances, url_checker=None, resolve_github=Fa
     return instance_details, instance_links
 
 
-def classify_entries(instance_details, instance_links, use_name_match_for_no_links=True):
+def classify_entries(
+    instance_details, instance_links, use_name_match_for_no_links=True
+):
     """
     Classify entries into disconnected and remaining using already-built link sets.
     """
@@ -507,9 +504,7 @@ def classify_entries(instance_details, instance_links, use_name_match_for_no_lin
                 disconnected.append(details)
         else:
             shared = any(
-                links_a & links_b
-                for j, links_b in enumerate(instance_links)
-                if i != j
+                links_a & links_b for j, links_b in enumerate(instance_links) if i != j
             )
             if shared:
                 remaining.append(details)
@@ -567,37 +562,38 @@ def find_disconnected_entries(data, url_checker, use_name_match_for_no_links=Tru
 
         # First pass: cheap only
         instance_details, instance_links = build_instance_representation(
-            instances,
-            resolve_github=False
+            instances, resolve_github=False
         )
 
         if len(instance_details) <= 1:
             continue
 
         if all_entries_same_name_and_galaxy_related(instance_details):
-            logging.debug(f"Skipping conflict for {key} — all Galaxy-related entries with same name.")
+            logging.debug(
+                f"Skipping conflict for {key} — all Galaxy-related entries with same name."
+            )
             continue
 
         disconnected, remaining = classify_entries(
             instance_details,
             instance_links,
-            use_name_match_for_no_links=use_name_match_for_no_links
+            use_name_match_for_no_links=use_name_match_for_no_links,
         )
 
         # Second pass: only if needed
         if disconnected and group_has_github_urls(instances):
             logging.debug(f"Retrying block {key} with GitHub resolution")
 
-            instance_details_resolved, instance_links_resolved = build_instance_representation(
-                instances,
-                url_checker=url_checker,
-                resolve_github=True
+            instance_details_resolved, instance_links_resolved = (
+                build_instance_representation(
+                    instances, url_checker=url_checker, resolve_github=True
+                )
             )
 
             disconnected_resolved, remaining_resolved = classify_entries(
                 instance_details_resolved,
                 instance_links_resolved,
-                use_name_match_for_no_links=use_name_match_for_no_links
+                use_name_match_for_no_links=use_name_match_for_no_links,
             )
 
             disconnected = disconnected_resolved
@@ -606,7 +602,7 @@ def find_disconnected_entries(data, url_checker, use_name_match_for_no_links=Tru
         if disconnected:
             disconnected_keys[key] = {
                 "disconnected": disconnected,
-                "remaining": remaining
+                "remaining": remaining,
             }
 
     resolved_conflicts = resolve_source_name_clusters(disconnected_keys)

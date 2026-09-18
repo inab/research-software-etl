@@ -12,6 +12,7 @@ from infrastructure.config import PipelineConfig
 
 BLACKLIST_PATH = PipelineConfig().repo_blacklist_path
 
+
 def load_repository_blacklist(path: Path) -> set[str]:
     """
     Load normalized repository URLs from a plain-text blacklist file.
@@ -62,7 +63,6 @@ def load_repository_blacklist(path: Path) -> set[str]:
 # -----------------------------------------------------------------------------
 # URL NORMALIZATION
 # -----------------------------------------------------------------------------
-
 
 
 def normalize_url(url: str) -> str | None:
@@ -126,6 +126,7 @@ IGNORED_REPOSITORY_URLS.add("emboss.open-bio.org/html/adm/ch01s01")
 
 import re
 
+
 def normalize_name(name: str) -> str:
     """
     Normalize software name for grouping by name.
@@ -183,6 +184,7 @@ def safe_list(value):
 # -----------------------------------------------------------------------------
 # LINK EXTRACTION
 # -----------------------------------------------------------------------------
+
 
 def should_ignore_repository_url(url: str) -> bool:
     """
@@ -248,7 +250,9 @@ def extract_grouping_links(inst: dict) -> set[str]:
             continue
 
         normalized_url = normalize_url(web_link)
-        if normalized_url and any(domain in normalized_url for domain in repository_like_domains):
+        if normalized_url and any(
+            domain in normalized_url for domain in repository_like_domains
+        ):
             links.add(normalized_url)
 
     return links
@@ -257,6 +261,7 @@ def extract_grouping_links(inst: dict) -> set[str]:
 # -----------------------------------------------------------------------------
 # UNION-FIND / DISJOINT SET
 # -----------------------------------------------------------------------------
+
 
 class UnionFind:
     """
@@ -297,6 +302,7 @@ class UnionFind:
 # -----------------------------------------------------------------------------
 # MAIN GROUPING FUNCTION
 # -----------------------------------------------------------------------------
+
 
 def group_by_key_with_links(instances, logger: logging.Logger | None = None):
     """
@@ -487,7 +493,11 @@ def group_by_key_with_links(instances, logger: logging.Logger | None = None):
         # This matches your previous logic, but now safely.
         if len(unique_names) > 1 or len(unique_types) > 1:
             name_id = min(unique_names, key=len) if unique_names else "unknown"
-            type_id = "*" if len(unique_types) > 1 else (next(iter(unique_types)) if unique_types else "*")
+            type_id = (
+                "*"
+                if len(unique_types) > 1
+                else (next(iter(unique_types)) if unique_types else "*")
+            )
             new_id = f"{name_id}/{type_id}"
             relabel_changed += 1
         else:
@@ -504,7 +514,7 @@ def group_by_key_with_links(instances, logger: logging.Logger | None = None):
             relabel_collisions += 1
             logger.warning(
                 "Final relabel collision for '%s'. Merging groups instead of overwriting.",
-                new_id
+                new_id,
             )
 
         final_groups[new_id]["instances"].extend(group_instances)

@@ -71,7 +71,7 @@ def score_one_tool(repos: Repositories, entry: dict, force: bool = False) -> str
     # 1) Check if score exists and is up-to-date for this tool's update time
     match = {
         "variable": VARIABLE,
-        "createdFrom": [ entry_id ],
+        "createdFrom": [entry_id],
     }
     existing = repos.computations.find_one(match)
 
@@ -93,7 +93,7 @@ def score_one_tool(repos: Repositories, entry: dict, force: bool = False) -> str
 
         doc = {
             "variable": VARIABLE,
-            "createdFrom": [ entry_id ],
+            "createdFrom": [entry_id],
             "version": tool_ts,  # tool's last_updated_at = "computed-for"
             "createdAt": utc_now_iso(),  # computation time
             "data": result,
@@ -139,7 +139,9 @@ def add_fair_scores(
                 break
 
     except KeyboardInterrupt:
-        print("\n[STOP] Interrupted (Ctrl+C). Safe to rerun; it will resume based on DB state.")
+        print(
+            "\n[STOP] Interrupted (Ctrl+C). Safe to rerun; it will resume based on DB state."
+        )
 
     print(
         f"\nDone. processed={processed}, "

@@ -1,6 +1,9 @@
-from application.use_cases.integration.update_all_disambiguation_after_human_resolution import run_disambiguation_after_human_annotation
+from application.use_cases.integration.update_all_disambiguation_after_human_resolution import (
+    run_disambiguation_after_human_annotation,
+)
 from infrastructure.config import PipelineConfig
 import argparse
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -8,7 +11,8 @@ def main():
     )
 
     parser.add_argument(
-        "--conflict-blocks-file", "-cf",
+        "--conflict-blocks-file",
+        "-cf",
         help=("Path to the file containing conflict blocks."),
         type=str,
         dest="conflict_blocks_file",
@@ -16,7 +20,8 @@ def main():
     )
 
     parser.add_argument(
-        "--disambiguated-blocks-file", "-df",
+        "--disambiguated-blocks-file",
+        "-df",
         help=("Path to the file containing disambiguated blocks."),
         type=str,
         dest="disambiguated_blocks_file",

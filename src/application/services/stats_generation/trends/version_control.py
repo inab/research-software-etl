@@ -2,52 +2,53 @@ from datetime import datetime
 from typing import List, Dict, Any
 
 
-'''
+"""
 USAGE:
 cursor = db.collection.find({})
 version_control(cursor, collection="stats")
-'''
+"""
+
 
 def guess_repo_kind_from_url(url: str) -> str:
-    if 'github.com' in url:
-        return 'github'
-    elif 'bitbucket.org' in url:
-        return 'bitbucket'
-    elif 'sourceforge.net' in url:
-        return 'sourceforge'
-    elif 'gitlab.com' in url:
-        return 'gitlab'
-    elif 'anaconda.org/bioconda' in url:
-        return 'bioconda'
-    elif 'git.bioconductor.org' in url:
-        return 'bioconductor'
+    if "github.com" in url:
+        return "github"
+    elif "bitbucket.org" in url:
+        return "bitbucket"
+    elif "sourceforge.net" in url:
+        return "sourceforge"
+    elif "gitlab.com" in url:
+        return "gitlab"
+    elif "anaconda.org/bioconda" in url:
+        return "bioconda"
+    elif "git.bioconductor.org" in url:
+        return "bioconductor"
     return None
 
 
 def version_control(tools: List[Dict[str, Any]], collection: str, computations):
     # Counters
     repo_counts = {
-        'github': 0,
-        'gitlab': 0,
-        'bitbucket': 0,
-        'sourceforge': 0,
-        'bioconductor': 0
+        "github": 0,
+        "gitlab": 0,
+        "bitbucket": 0,
+        "sourceforge": 0,
+        "bioconductor": 0,
     }
     tools_with_repo = 0
     tools_without_repo = 0
 
     for entry in tools:
-        entry = entry.get('data', {})
+        entry = entry.get("data", {})
         links = set()
 
         # Collect repository URLs
-        for repo in entry.get('repository', []):
-            url = repo.get('url')
+        for repo in entry.get("repository", []):
+            url = repo.get("url")
             if url:
                 links.add(url)
 
         # Collect other links
-        for link in entry.get('links', []):
+        for link in entry.get("links", []):
             if link:
                 links.add(link)
 
@@ -68,31 +69,31 @@ def version_control(tools: List[Dict[str, Any]], collection: str, computations):
 
     # --- Output 1: version control presence ---
     data_count = {
-        'version control': tools_with_repo,
-        'no version control': tools_without_repo,
+        "version control": tools_with_repo,
+        "no version control": tools_without_repo,
     }
 
-    created_from = [tool['_id'] for tool in tools]
+    created_from = [tool["_id"] for tool in tools]
 
     data_vs_count = {
-        'variable': 'version_control_count',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': data_count,
-        'collection': collection,
-        'createdFrom':created_from,
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+        "variable": "version_control_count",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": data_count,
+        "collection": collection,
+        "createdFrom": created_from,
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
-    
+
     computations.save(data_vs_count)
 
     # --- Output 2: repository type distribution ---
     data_vs_repos = {
-        'variable': 'version_control_repositories',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': repo_counts,
-        'collection': collection,
-        'createdFrom': created_from,
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+        "variable": "version_control_repositories",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": repo_counts,
+        "collection": collection,
+        "createdFrom": created_from,
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
-   
+
     computations.save(data_vs_repos)

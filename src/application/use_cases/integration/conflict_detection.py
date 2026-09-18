@@ -1,5 +1,7 @@
 import json
-from application.services.integration.conflict_detection import find_disconnected_entries
+from application.services.integration.conflict_detection import (
+    find_disconnected_entries,
+)
 
 
 def detect_conflicts(grouped_entries_file, disconnected_entries_file, url_checker):
@@ -7,7 +9,9 @@ def detect_conflicts(grouped_entries_file, disconnected_entries_file, url_checke
         grouped_entries = json.load(f)
 
     print(f"Number of blocks: {len(grouped_entries)}")
-    print(f"Number of instances: {sum(len(block['instances']) for block in grouped_entries.values())}")
+    print(
+        f"Number of instances: {sum(len(block['instances']) for block in grouped_entries.values())}"
+    )
 
     conflict_blocks = find_disconnected_entries(
         grouped_entries, url_checker, use_name_match_for_no_links=False
@@ -16,4 +20,3 @@ def detect_conflicts(grouped_entries_file, disconnected_entries_file, url_checke
 
     with open(disconnected_entries_file, "w", encoding="utf-8") as f:
         json.dump(conflict_blocks, f, indent=4)
-

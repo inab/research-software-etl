@@ -1,10 +1,11 @@
 from datetime import datetime
 from typing import List, Dict, Any
 
-'''
+"""
 tools = (entry['data'] for entry in db.collection.find({}))
 coverage_sources(tools, "my_stats")
-'''
+"""
+
 
 def coverage_sources(tools: List[Dict[str, Any]], collection: str, computations):
     """
@@ -13,16 +14,16 @@ def coverage_sources(tools: List[Dict[str, Any]], collection: str, computations)
 
     # Source normalization
     source_match = {
-        'bioconda': 'bioconda',
-        'bioconda_recipes': 'bioconda',
-        'bioconda_conda': 'bioconda',
-        'galaxy_metadata': 'toolshed',
-        'toolshed': 'toolshed',
-        'github': 'github',
-        'biotools': 'biotools',
-        'bioconductor': 'bioconductor',
-        'sourceforge': 'sourceforge',
-        'galaxy': 'galaxy'
+        "bioconda": "bioconda",
+        "bioconda_recipes": "bioconda",
+        "bioconda_conda": "bioconda",
+        "galaxy_metadata": "toolshed",
+        "toolshed": "toolshed",
+        "github": "github",
+        "biotools": "biotools",
+        "bioconductor": "bioconductor",
+        "sourceforge": "sourceforge",
+        "galaxy": "galaxy",
     }
 
     sources_lab = set(source_match.values())
@@ -33,9 +34,11 @@ def coverage_sources(tools: List[Dict[str, Any]], collection: str, computations)
     count_source = {label: {} for label in sources_lab}
 
     for tool in tools:
-        tool = tool.get('data', {})
-        raw_sources = tool.get('source', [])
-        mapped_sources = list({source_match[s] for s in raw_sources if s in source_match})
+        tool = tool.get("data", {})
+        raw_sources = tool.get("source", [])
+        mapped_sources = list(
+            {source_match[s] for s in raw_sources if s in source_match}
+        )
         num_sources = len(mapped_sources)
 
         if 1 <= num_sources <= 9:
@@ -61,18 +64,17 @@ def coverage_sources(tools: List[Dict[str, Any]], collection: str, computations)
         new_counts[src] = counts
 
     data = {
-        'counts': new_counts,
-        'counts_cummulative': Counts_cummulative,
+        "counts": new_counts,
+        "counts_cummulative": Counts_cummulative,
     }
 
     result = {
-        'variable': 'coverage_sources',
-        'version': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        'data': data,
-        'collection': collection,
-        'createdFrom': [tool['_id'] for tool in tools],
-        'createdAt': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+        "variable": "coverage_sources",
+        "version": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "data": data,
+        "collection": collection,
+        "createdFrom": [tool["_id"] for tool in tools],
+        "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
     computations.save(result)
-
