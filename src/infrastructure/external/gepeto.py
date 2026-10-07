@@ -22,7 +22,9 @@ class GepetoClient:
     @retry(
         stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10)
     )
-    def query(self, messages: Any, model: str) -> tuple[str, dict]:
+    def query(
+        self, messages: Any, model: str, temperature: float = 0.2
+    ) -> tuple[str, dict]:
         """
         Send a chat completion request.
 
@@ -37,7 +39,7 @@ class GepetoClient:
         payload = {
             "model": model,
             "messages": messages,
-            "temperature": 0.2,
+            "temperature": temperature,
         }
 
         url = f"{self.BASE_URL}/chat/completions"

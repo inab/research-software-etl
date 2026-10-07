@@ -7,6 +7,7 @@ from pathlib import Path
 
 from adapters.cli import enrich_publications
 from adapters.cli import enrich_tool
+from adapters.cli import synthetic_queries
 from adapters.cli import check_environment
 from adapters.cli import web_availability
 from adapters.cli.pipeline_full import PipelineError, STAGES, run_full
@@ -239,6 +240,14 @@ def main(argv: list[str] | None = None) -> int:
         help="Regenerate FAIR scores, web availability and similar tools for one tool",
     )
 
+    # --- synthetic-queries ------------------------------------------------------
+    subparsers.add_parser(
+        "synthetic-queries",
+        help="Generate synthetic search queries (export/import for MN5, or generate via Gepeto)",
+        # Let -h reach synthetic_queries' own parser, which has the subcommands.
+        add_help=False,
+    )
+
     # --- rollback ---------------------------------------------------------------
     rollback_p = subparsers.add_parser(
         "rollback",
@@ -314,6 +323,7 @@ def main(argv: list[str] | None = None) -> int:
         "run-webavailability",
         "enrich-publications",
         "enrich-tool",
+        "synthetic-queries",
     }
     args, passthrough = parser.parse_known_args(argv)
     if passthrough and args.command not in PASSTHROUGH_COMMANDS:
@@ -364,6 +374,9 @@ def main(argv: list[str] | None = None) -> int:
 
         if args.command == "enrich-tool":
             return enrich_tool.main(passthrough)
+
+        if args.command == "synthetic-queries":
+            return synthetic_queries.main(passthrough)
 
         if args.command == "rollback":
             from dotenv import load_dotenv

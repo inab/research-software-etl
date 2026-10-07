@@ -85,6 +85,10 @@ class DatabaseAdapter(Protocol):
         self, collection_name: str, key: str, query: Optional[Dict[str, Any]] = None
     ) -> List[Any]: ...
 
+    def delete_many(self, collection_name: str, query: Dict[str, Any]) -> int:
+        """Delete every document matching ``query``; return how many were deleted."""
+        ...
+
     def create_index(
         self, collection_name: str, key: str, unique: bool = False
     ) -> Any: ...

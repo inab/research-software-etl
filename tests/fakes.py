@@ -26,6 +26,9 @@ from infrastructure.db.mongo.publications_repository import MongoPublicationRepo
 from infrastructure.db.mongo.raw_software_repository import (
     RawSoftwareMetadataRepository,
 )
+from infrastructure.db.mongo.semantic_search_repository import (
+    SemanticSearchRepository,
+)
 from infrastructure.db.mongo.similarities_repository import SimilaritiesRepository
 from infrastructure.db.mongo.standardized_software_repository import PretoolsRepository
 from infrastructure.db.mongo.tools_repository import ToolsRepository
@@ -290,6 +293,13 @@ class FakeDatabaseAdapter:
                 values.append(value)
         return values
 
+    def delete_many(self, collection_name: str, query: Dict[str, Any]) -> int:
+        collection = self._collection(collection_name)
+        doomed = [k for k, doc in collection.items() if _matches(doc, query)]
+        for key in doomed:
+            del collection[key]
+        return len(doomed)
+
     def create_index(self, collection_name: str, key: str, unique: bool = False) -> str:
         self.indexes.setdefault(collection_name, []).append((key, unique))
         return f"{key}_1"
@@ -364,6 +374,7 @@ def fake_repos(
     similarities: bool = False,
     embeddings: bool = False,
     web_availability: bool = False,
+    semantic_search: bool = False,
 ) -> Repositories:
     """
     A `Repositories` over an in-memory adapter, wiring only what is asked for.
@@ -396,6 +407,9 @@ def fake_repos(
             if web_availability
             else None
         ),
+        semantic_search=(
+            SemanticSearchRepository(db, "semantic_search") if semantic_search else None
+        ),
     )
 
 
@@ -422,6 +436,32 @@ class FakeGitHubClient:
 
     def get_repo_readme(self, owner, repo_name):
         return self.readme
+
+
+class FakeGepetoClient:
+    """
+    Canned chat completions, keyed by a substring of the user message.
+
+    Records every call. A message matching no key gets `default`; an exception
+    instance as a value is raised instead of returned, like a transport failure.
+    """
+
+    def __init__(self, responses=None, default: str = "") -> None:
+        self.responses = responses or {}
+        self.default = default
+        self.calls: List[dict] = []
+
+    def query(self, messages, model, temperature=0.2):
+        self.calls.append(
+            {"messages": messages, "model": model, "temperature": temperature}
+        )
+        user = next((m["content"] for m in messages if m["role"] == "user"), "")
+        for key, response in self.responses.items():
+            if key in user:
+                if isinstance(response, Exception):
+                    raise response
+                return response, {}
+        return self.default, {}
 
 
 class FakeUrlChecker:

@@ -142,6 +142,50 @@ def save_entries(documents, repos: Repositories, batch_size: int = 1000):
         repos.tools_staging.insert_many(documents[start : start + batch_size])
 
 
+def select_preferred(entries, instances):
+    """
+    Choose the ``preferred_label`` and ``preferred_description`` for a merged tool.
+
+    ``merge`` collapses every source record's labels and descriptions into
+    unordered sets, so it cannot say which one is freshest. The front end displays
+    a tool by its label, and wants a single label and description, so this pairs
+    each source record's update time (``last_updated_at`` on the pretools
+    document) with the normalized label/description on the instance built from it,
+    and picks from the most recently updated record that actually has one.
+
+    Label and description are chosen independently: a record updated last night
+    that carries a new label but no description does not blank out a description
+    an older record still provides. Ties break on the record ``_id`` so the result
+    is stable run to run (and so the content fingerprint below is too).
+    """
+    ranked = sorted(
+        zip(entries, instances),
+        key=lambda pair: (
+            pair[0].get("last_updated_at") or "",
+            str(pair[0].get("_id") or ""),
+        ),
+        reverse=True,
+    )
+
+    preferred_label = None
+    preferred_description = None
+    for _entry, inst in ranked:
+        if preferred_label is None:
+            for label in inst.label:
+                if label and label.strip():
+                    preferred_label = label.strip()
+                    break
+        if preferred_description is None:
+            for description in inst.description:
+                if description and description.strip():
+                    preferred_description = description.strip()
+                    break
+        if preferred_label is not None and preferred_description is not None:
+            break
+
+    return preferred_label, preferred_description
+
+
 def merge_entries(entries_ids, pretools_by_id, repos: Repositories):
     # retrieve full entries from the preloaded cache (falling back to the db)
     entries = [resolve_entry(entry, pretools_by_id, repos) for entry in entries_ids]
@@ -152,6 +196,10 @@ def merge_entries(entries_ids, pretools_by_id, repos: Repositories):
     instances = [convert_to_multi_type_instance(entry) for entry in entries]
     # print('Instances in entries_ids converted to multitype_instance.')
 
+    # Decide the display label/description before merging folds each record's
+    # labels and descriptions into unordered sets.
+    preferred_label, preferred_description = select_preferred(entries, instances)
+
     # merge entries
     if len(instances) > 1:
         # merge instances
@@ -161,6 +209,9 @@ def merge_entries(entries_ids, pretools_by_id, repos: Repositories):
     else:
         merged_instances = instances[0]
         # print(f"Only one entry in entries_ids. No merging needed.")
+
+    merged_instances.preferred_label = preferred_label
+    merged_instances.preferred_description = preferred_description
 
     merged_entries = merged_instances.model_dump(mode="json")
 

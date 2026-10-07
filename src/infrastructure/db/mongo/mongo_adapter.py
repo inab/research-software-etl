@@ -172,6 +172,15 @@ class MongoDBAdapter:
         wait=wait_exponential(multiplier=1, min=1, max=10),
         stop=stop_after_attempt(5),
     )
+    def delete_many(self, collection_name: str, query: Dict) -> int:
+        """Delete every document matching ``query``; return the deleted count."""
+        return self.db[collection_name].delete_many(query).deleted_count
+
+    @retry(
+        retry=retry_if_exception_type((NetworkTimeout, AutoReconnect)),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        stop=stop_after_attempt(5),
+    )
     def distinct(self, collection_name: str, key: str, query: Optional[Dict] = None):
         """Wrapper around collection.distinct."""
         collection = self.db[collection_name]

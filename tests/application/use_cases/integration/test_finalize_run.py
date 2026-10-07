@@ -89,6 +89,37 @@ def test_keep_larger_than_the_archive_count_drops_nothing():
     assert len(_archives(db)) == len(OLD_RUNS) + 1  # this run added one
 
 
+def test_re_finalizing_a_run_preserves_the_original_archive():
+    """
+    Re-running the merge stage for a run that already promoted must not crash on
+    the existing archive, and must keep that archive as the true rollback target
+    (the pre-run state) rather than overwriting it with the run's own output.
+    """
+    db = FakeDatabaseAdapter(
+        {
+            # The genuine pre-run snapshot, archived by the first attempt.
+            f"tools_archive_{NEW_RUN}": [{"_id": "before", "data": {"name": "before"}}],
+            # This run's earlier output, sitting live from the first promotion.
+            "tools": [{"_id": "first_output", "data": {"name": "first_output"}}],
+            # The freshly rebuilt staging from this re-run.
+            "tools_next": [{"_id": "rebuilt", "data": {"name": "rebuilt"}}],
+        }
+    )
+    repos = fake_repos(db, tools=True, tools_staging=True)
+
+    result = finalize_run(NEW_RUN, _config(keep=2), repos)
+
+    # Staging was promoted...
+    assert [d["_id"] for d in repos.tools.get_all()] == ["rebuilt"]
+    # ...the original archive is untouched (still the pre-run state)...
+    archived = repos.tools.for_collection(f"tools_archive_{NEW_RUN}").get_all()
+    assert [d["_id"] for d in archived] == ["before"]
+    # ...and rollback still restores that pre-run state.
+    assert result["archived_as"] == f"tools_archive_{NEW_RUN}"
+    rollback_run(NEW_RUN, _config(keep=2), repos)
+    assert [d["_id"] for d in repos.tools.get_all()] == ["before"]
+
+
 @pytest.mark.parametrize("keep", [0, -1])
 def test_keep_below_one_is_refused_and_prunes_nothing(keep):
     """keep < 1 would drop this run's own archive and break its rollback."""

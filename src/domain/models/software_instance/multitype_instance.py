@@ -5,7 +5,8 @@ The "data" in entries in the tools collection (post integration) this schema (mu
 """
 
 from domain.models.software_instance.main import instance, software_types
-from typing import List, Dict
+from typing import List, Dict, Optional
+from pydantic import Field
 
 
 class multitype_instance(instance):
@@ -15,6 +16,22 @@ class multitype_instance(instance):
 
     type: List[software_types]
     other_names: List[str]
+    preferred_label: Optional[str] = Field(
+        None,
+        title="Preferred label",
+        description="""Label shown in the front end. Merge picks it from the
+                       most recently updated source record that has a label, so a
+                       tool's display label tracks its freshest metadata rather
+                       than an arbitrary one of the merged records.""",
+    )
+    preferred_description: Optional[str] = Field(
+        None,
+        title="Preferred description",
+        description="""Description shown in the front end. Merge picks it from
+                       the most recently updated source record that has a
+                       description (independently of preferred_label, so a fresh
+                       record with no description does not blank it out).""",
+    )
 
     def merge(self, other: "instance") -> "instance":
         """

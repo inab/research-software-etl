@@ -152,6 +152,9 @@ class PipelineConfig:
     # embeds only itself instead of re-embedding the whole corpus.
     embeddings_collection: str = "toolEmbeddingsDev"
     web_availability_collection: str = "webAvailabilityDev"
+    # Synthetic search queries per tool (dense retrieval for semantic search).
+    # One document per tool, keyed by tool_id.
+    semantic_search_collection: str = "semantic_search"
 
     # --- Per-run stage artifacts (the orchestrator passes these as CLI flags,
     #     pointing into data/integration/runs/<run_id>/) ---
@@ -188,6 +191,19 @@ class PipelineConfig:
     # match the ids Gepeto actually serves (`python agent.py --models`).
     gepeto_model_a: str = "meta-llama/Llama-3.3-70B-Instruct"
     gepeto_model_b: str = "mistralai/Mistral-Small-3.2-24B-Instruct"
+    # Model for the online (`synthetic-queries generate`) path. The batch path runs
+    # on MareNostrum 5 instead (see hpc/mn5/), where the model is a job argument.
+    gepeto_query_model: str = "nemotron-3-super:120b"
+
+    # --- Synthetic queries: MN5 batch hand-off files ---
+    # `export` writes the prompts for tools that need queries; the MN5 job writes
+    # its raw completions next to them; `import` reads those back.
+    synthetic_query_requests_path: Path = Path(
+        "data/semantic_search/query_requests.jsonl"
+    )
+    synthetic_query_results_path: Path = Path(
+        "data/semantic_search/query_results.jsonl"
+    )
 
     # --- Publication enrichment caches ---
     resolved_dois_path: Path = Path("data/cache/resolved_dois.jsonl")
@@ -241,6 +257,9 @@ class PipelineConfig:
             web_availability_collection=os.getenv(
                 "MONGO_WEBAV_COLL", "webAvailabilityDev"
             ),
+            semantic_search_collection=os.getenv(
+                "SEMANTIC_SEARCH_COLL", "semantic_search"
+            ),
             observatory_api_url=os.getenv(
                 "OBSERVATORY_API_URL", "https://observatory.openebench.bsc.es/api"
             ),
@@ -262,6 +281,7 @@ class PipelineConfig:
             gepeto_model_b=os.getenv(
                 "GEPETO_MODEL_B", "mistralai/Mistral-Small-3.2-24B-Instruct"
             ),
+            gepeto_query_model=os.getenv("GEPETO_QUERY_MODEL", "nemotron-3-super:120b"),
             full_pipeline_cron=os.getenv("FULL_PIPELINE_CRON", "0 1 * * mon,thu"),
             publication_enrichment_cron=os.getenv(
                 "PUBLICATION_ENRICHMENT_CRON", "0 3 * * sun"

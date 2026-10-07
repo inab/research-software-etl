@@ -26,6 +26,9 @@ from infrastructure.db.mongo.publications_repository import MongoPublicationRepo
 from infrastructure.db.mongo.raw_software_repository import (
     RawSoftwareMetadataRepository,
 )
+from infrastructure.db.mongo.semantic_search_repository import (
+    SemanticSearchRepository,
+)
 from infrastructure.db.mongo.similarities_repository import SimilaritiesRepository
 from infrastructure.db.mongo.standardized_software_repository import PretoolsRepository
 from infrastructure.db.mongo.tools_repository import ToolsRepository
@@ -61,5 +64,8 @@ def from_config(
         embeddings=EmbeddingsRepository(db, config.embeddings_collection),
         web_availability=WebAvailabilityRepository(
             db, config.web_availability_collection
+        ),
+        semantic_search=SemanticSearchRepository(
+            db, config.semantic_search_collection
         ),
     )

@@ -43,8 +43,24 @@ def finalize_run(run_id: str, config: PipelineConfig, repos: Repositories) -> di
     had_live = repos.tools.exists()
 
     if had_live:
-        logger.info("Archiving '%s' as '%s'", config.tools_collection, archive)
-        repos.tools.rename_to(archive)
+        if repos.tools.for_collection(archive).exists():
+            # A prior attempt of this same run already archived the pre-run
+            # collection under this name -- run ids are unique, so an existing
+            # archive can only belong to this run. That archive is the genuine
+            # rollback target (the state before this run first promoted); the
+            # current live collection is this run's own earlier output.
+            # Overwriting the archive with it would destroy the rollback target,
+            # so keep the archive and discard the stale live collection instead.
+            logger.warning(
+                "Archive '%s' already exists (run re-finalized); keeping it as the "
+                "rollback target and dropping the current '%s'",
+                archive,
+                config.tools_collection,
+            )
+            repos.tools.drop()
+        else:
+            logger.info("Archiving '%s' as '%s'", config.tools_collection, archive)
+            repos.tools.rename_to(archive)
 
     logger.info(
         "Promoting '%s' to '%s'",

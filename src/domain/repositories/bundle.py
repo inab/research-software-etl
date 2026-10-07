@@ -24,6 +24,7 @@ from domain.repositories.license_mapping import LicenseMappingRepository
 from domain.repositories.pretools import PretoolsRepository
 from domain.repositories.publications import PublicationRepository
 from domain.repositories.raw_software import RawSoftwareRepository
+from domain.repositories.semantic_search import SemanticSearchRepository
 from domain.repositories.similarities import SimilaritiesRepository
 from domain.repositories.tools import ToolsRepository
 from domain.repositories.web_availability import WebAvailabilityRepository
@@ -46,3 +47,5 @@ class Repositories:
     # run writes it. See `SimilaritiesRepository` for the neighbour lists it feeds.
     embeddings: Optional[EmbeddingsRepository] = None
     web_availability: Optional[WebAvailabilityRepository] = None
+    # Synthetic search queries per tool, for semantic search.
+    semantic_search: Optional[SemanticSearchRepository] = None
