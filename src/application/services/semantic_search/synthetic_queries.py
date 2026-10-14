@@ -18,16 +18,27 @@ import hashlib
 import json
 import re
 from dataclasses import dataclass, field
-from typing import Any, List, Optional
+from collections import Counter
+from typing import Any, Iterable, List, Optional
 
-# Bump when SYSTEM_PROMPT or build_tool_context change in a way that should
+# Bump when a prompt or build_tool_context change in a way that should
 # regenerate every tool's queries.
 PROMPT_VERSION = "1"
+# Version 2 adds an excerpt of the tool's GitHub README to the context. Opt-in
+# (build_request(..., prompt_version=README_PROMPT_VERSION)) until the README
+# fetch is part of the stage; the default stays at PROMPT_VERSION.
+README_PROMPT_VERSION = "2"
 
 MAX_QUERIES = 6
 MIN_WORDS = 3
 MAX_WORDS = 15
 MAX_DESCRIPTION_CHARS = 2000
+MAX_README_CHARS = 3000
+# A word in the descriptions of at least this many tools is vocabulary, not an
+# identifier (see `vocabulary`). Chosen on the 2026-10 corpus (~50k tools):
+# "driver" (91), "partition" (58) and "word"/"cloud" clear it; one-off names
+# such as "brinda" or "trvae" (1 each) are nowhere near.
+MIN_VOCABULARY_DF = 50
 
 STATUS_GENERATED = "generated"
 # Stored, so a thin record is not re-asked every run. It is regenerated as soon
@@ -48,11 +59,27 @@ CONTEXT_PROJECTION = {
     "data.output": 1,
 }
 
-SYSTEM_PROMPT = f"""You write search queries that researchers would type into a \
+# What `vocabulary` reads: the descriptions, and the help text they fall back to.
+VOCABULARY_PROJECTION = {"_id": 1, "data.description": 1, "data.documentation": 1}
+
+_README_RULE = """
+- The record may end with an excerpt of the tool's README. Use it for specifics \
+(data types, file formats, methods, organisms, use cases); ignore installation \
+steps, licensing, citation, badges and other boilerplate.
+- Do not base queries on example datasets, benchmark figures, version numbers or \
+implementation internals (encodings, checksums, internal file layouts): \
+researchers search for what a tool does, not for how it was tested or built."""
+
+# Version 2 also steers towards the length people actually type.
+_README_LENGTH = ", mostly 4-10, as a researcher would type them"
+
+
+def _system_prompt(readme_rule: str = "", length_hint: str = "") -> str:
+    return f"""You write search queries that researchers would type into a \
 life-science research software registry to find a specific tool.
 
 Given a tool record, write up to {MAX_QUERIES} diverse queries ({MIN_WORDS}-{MAX_WORDS} \
-words each) for which this tool is a strong, specific answer.
+words each{length_hint}) for which this tool is a strong, specific answer.
 
 Rules:
 - Phrase each query as a researcher's need: the task, the data types, the file \
@@ -62,11 +89,18 @@ paraphrase the same query.
 - Never include the tool's name or label.
 - No generic queries such as "bioinformatics tool", "data analysis software" or \
 "process files".
-- Use only information present in the record; do not invent capabilities.
+- Use only information present in the record; do not invent capabilities.{readme_rule}
 - If the record lacks enough specific information to write useful queries, return \
 an empty list.
 
 Respond with JSON only, no commentary: {{"queries": ["...", "..."]}}"""
+
+
+SYSTEM_PROMPT = _system_prompt()
+SYSTEM_PROMPTS = {
+    PROMPT_VERSION: SYSTEM_PROMPT,
+    README_PROMPT_VERSION: _system_prompt(_README_RULE, _README_LENGTH),
+}
 
 
 # The answer's shape. Exported with each request so the MN5 job can constrain
@@ -100,7 +134,7 @@ class QueryRequest:
 
     def messages(self) -> List[dict]:
         return [
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": SYSTEM_PROMPTS[self.prompt_version]},
             {"role": "user", "content": self.context or ""},
         ]
 
@@ -145,19 +179,125 @@ def _descriptions(data: dict) -> List[str]:
     return []
 
 
-def build_tool_context(data: dict) -> Optional[str]:
+# README sections that say nothing about what a tool is for.
+_BOILERPLATE_HEADING = re.compile(
+    r"\b(install\w*|licen[cs]es?|licensing|citations?|citing|cite|contribut\w*|"
+    r"acknowledge?ments?|changelog|change log|news|funding|contacts?|support|"
+    r"authors?|maintainers?|table of contents|contents|badges?|requirements|"
+    r"prerequisites|dependencies|download\w*|docker|conda|bioconda|setup|compil\w*|"
+    r"building|getting help|issues|bugs|copyright|tests?|testing|development|"
+    r"developers?|benchmarks?|benchmarking|performance|roadmap|release notes|"
+    r"documentation)\b",
+    re.IGNORECASE,
+)
+_HTML_COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
+_FENCE = re.compile(r"^(```|~~~).*?^\1[^\n]*$", re.DOTALL | re.MULTILINE)
+_BADGE = re.compile(r"\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)")
+_IMAGE = re.compile(r"!\[[^\]]*\]\([^)]*\)")
+_LINK = re.compile(r"\[([^\]]*)\]\([^)]*\)")
+_LINK_DEF = re.compile(r"^\s*\[[^\]]+\]:\s*\S+.*$", re.MULTILINE)
+_HTML_TAG = re.compile(r"<[^>]+>")
+# reStructuredText: `text <url>`_ links, `text`_ / name_ references, |substitutions|.
+_RST_LINK = re.compile(r"`([^`<]*?)\s*(?:<[^>]*>)?`_{1,2}")
+_RST_REF = re.compile(r"\b(\w+)_(?=[\s.,;:)]|$)", re.MULTILINE)
+_RST_SUBST = re.compile(r"\|[\w -]+\|")
+# Explicit markup (directives, link targets, comments) and directive options.
+_RST_DIRECTIVE = re.compile(r"^\s*(\.\.\s|:\w[\w -]*:\s).*$", re.MULTILINE)
+_UNDERLINE_LEVEL = {"=": 1, "-": 2, "~": 3, "^": 4}
+_ATX = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
+# A line that is only markup: setext/RST underlines, table rules, separators.
+_RULE = re.compile(r"^[\s=\-~*_|:+^#`]*$")
+
+
+def clean_readme(text: Optional[str]) -> Optional[str]:
+    """
+    A README reduced to the prose that says what the tool does, or None.
+
+    Drops code blocks, images and badges, HTML, link targets (keeping link text),
+    and whole sections whose heading is boilerplate (installation, licence,
+    citation, ...). Capped at MAX_README_CHARS, cut at a line boundary.
+    """
+    if not text:
+        return None
+    for pattern, repl in (
+        (_HTML_COMMENT, ""),
+        (_FENCE, ""),
+        (_BADGE, ""),
+        (_IMAGE, ""),
+        (_LINK, r"\1"),
+        (_LINK_DEF, ""),
+        (_RST_LINK, r"\1"),
+        (_RST_REF, r"\1"),
+        (_RST_SUBST, ""),
+        (_HTML_TAG, ""),
+        (_RST_DIRECTIVE, ""),
+    ):
+        text = pattern.sub(repl, text)
+
+    lines: List[str] = []
+    skip_level: Optional[int] = None
+    in_literal = False
+    raw = text.splitlines()
+    for n, line in enumerate(raw):
+        line = line.rstrip()
+        # An RST literal block (code): the indented lines after one ending in "::".
+        if in_literal:
+            if not line or line[0].isspace():
+                continue
+            in_literal = False
+        if line.endswith("::"):
+            in_literal = True
+            line = line[:-1].rstrip(":").rstrip() + ":" if line.strip() != "::" else ""
+        heading = _ATX.match(line)
+        level, title = (
+            (len(heading.group(1)), heading.group(2)) if heading else (None, None)
+        )
+        # Setext / RST heading: a text line underlined with one of these.
+        nxt = raw[n + 1].strip() if n + 1 < len(raw) else ""
+        if not heading and line.strip() and len(nxt) >= 3 and len(set(nxt)) == 1:
+            level = _UNDERLINE_LEVEL.get(nxt[0])
+            title = line.strip() if level else None
+        if title is not None:
+            if skip_level is not None and level <= skip_level:
+                skip_level = None
+            if skip_level is None and _BOILERPLATE_HEADING.search(title):
+                skip_level = level
+                continue
+        if skip_level is not None:
+            continue
+        if _RULE.match(line):
+            if lines and lines[-1]:
+                lines.append("")
+            continue
+        lines.append(heading.group(2) if heading else line)
+
+    out: List[str] = []
+    size = 0
+    for line in "\n".join(lines).strip().splitlines():
+        if size + len(line) + 1 > MAX_README_CHARS:
+            break
+        out.append(line)
+        size += len(line) + 1
+    cleaned = "\n".join(out).strip()
+    return cleaned or None
+
+
+def build_tool_context(data: dict, readme: Optional[str] = None) -> Optional[str]:
     """
     The record as the LLM sees it, or None when there is nothing to go on.
 
-    None means no description, no help text and no EDAM topics or operations --
-    a name alone is not enough to write specific queries. Anything more goes to
+    None means no description, no help text, no EDAM topics or operations and no
+    README -- a name alone is not enough to write specific queries. Anything more goes to
     the LLM, which makes the final call: short Galaxy descriptions ("In aligned
     Bam files.") read fine next to the name ("bbtools_callvariants").
+
+    ``readme`` is an already-cleaned README excerpt (``clean_readme``); it goes
+    last, after the curated fields.
     """
     descriptions = _descriptions(data)
     topics = _terms(data.get("topics"))
     operations = _terms(data.get("operations"))
-    if not descriptions and not topics and not operations:
+    if not descriptions and not topics and not operations and not readme:
         return None
 
     lines = [f"Name: {data.get('name') or ''}"]
@@ -176,6 +316,8 @@ def build_tool_context(data: dict) -> Optional[str]:
     ):
         if terms:
             lines.append(f"{label}: {', '.join(terms)}")
+    if readme:
+        lines.append("README (excerpt):\n" + readme)
     return "\n".join(lines)
 
 
@@ -189,17 +331,62 @@ def input_hash(context: Optional[str]) -> str:
     return hashlib.sha256((context or "").encode("utf-8")).hexdigest()
 
 
-def build_request(tool: dict) -> QueryRequest:
+def _tokens(text: str) -> List[str]:
+    return [t for t in _NON_ALNUM.split(text.lower()) if len(t) >= 3]
+
+
+def vocabulary(
+    tools_data: Iterable[dict], min_df: int = MIN_VOCABULARY_DF
+) -> frozenset:
+    """
+    Words used in the descriptions of at least ``min_df`` tools.
+
+    The name filter (``_mentions``) exists to stop queries that just repeat the
+    tool's name. A name made only of such words ("driver", "word_cloud", a label
+    like "Filter") is how the field describes the task, and filtering it drops
+    exactly the tool's most relevant queries ("prioritize cancer driver genes").
+    The price: a few tools so widely cited that their name is vocabulary too
+    ("samtools", "blast") may keep it in a query.
+    """
+    df: Counter = Counter()
+    for data in tools_data:
+        df.update(set(_tokens(" ".join(_descriptions(data or {})))))
+    return frozenset(word for word, n in df.items() if n >= min_df)
+
+
+def _is_vocabulary(name: str, vocab: frozenset) -> bool:
+    tokens = _tokens(name)
+    return bool(tokens) and all(t in vocab for t in tokens)
+
+
+def build_request(
+    tool: dict,
+    readme: Optional[str] = None,
+    prompt_version: str = PROMPT_VERSION,
+    vocab: frozenset = frozenset(),
+) -> QueryRequest:
+    """
+    One tool's prompt. ``readme`` is the raw README text; it is cleaned here and
+    used only by a prompt version that knows about it. Names made only of words
+    in ``vocab`` (see ``vocabulary``) do not filter queries.
+    """
     data = tool.get("data") or {}
     name = data.get("name") or ""
     labels = [label for label in data.get("label") or [] if isinstance(label, str)]
-    context = build_tool_context(data)
+    if prompt_version not in SYSTEM_PROMPTS:
+        raise ValueError(f"Unknown prompt version: {prompt_version}")
+    if prompt_version != README_PROMPT_VERSION:
+        readme = None
+    context = build_tool_context(data, clean_readme(readme))
     return QueryRequest(
         tool_id=str(tool["_id"]),
         tool_name=name,
-        names=sorted({n for n in [name, *labels] if n}),
+        names=sorted(
+            {n for n in [name, *labels] if n and not _is_vocabulary(n, vocab)}
+        ),
         input_hash=input_hash(context),
         context=context,
+        prompt_version=prompt_version,
     )
 
 

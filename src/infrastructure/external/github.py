@@ -67,6 +67,68 @@ class GitHubClient:
         except Exception:
             return None
 
+    def get_readme_via_metadata(self, owner: str, repo_name: str) -> str | None:
+        """
+        The repository's root README, fetched entirely through the metadata API.
+
+        ``/metadata/user`` lists the repo's documentation files, READMEs typed
+        ``readme`` (``https://github.com/<o>/<r>/blob/HEAD/<path>``); the one at
+        the root is read with ``/metadata/content/user``. None when the repo has
+        no root README or either call fails.
+        """
+        data = {
+            "owner": owner,
+            "repo": repo_name,
+            "userToken": self.token,
+            "prepare": False,
+            "dependencies_extract": False,
+        }
+        try:
+            response = requests.post(self.METADATA_URL, json=data, timeout=60)
+            response.raise_for_status()
+            documentation = (response.json().get("data") or {}).get("documentation")
+        except Exception:
+            return None
+
+        paths = []
+        for item in documentation or []:
+            if not isinstance(item, dict) or item.get("type") != "readme":
+                continue
+            _, sep, path = (item.get("url") or "").partition("/blob/")
+            path = path.partition("/")[2] if sep else ""
+            if path and "/" not in path:
+                paths.append(path)
+        # README.md before README.rst before anything else, then by name.
+        rank = {".md": 0, ".rst": 1}
+        paths.sort(key=lambda p: (rank.get(p[p.rfind(".") :].lower(), 2), p))
+        # The metadata API only classifies Markdown READMEs; try the usual
+        # other names when it lists none.
+        for path in paths[:1] or self.README_FALLBACKS:
+            content = self._readme_content(owner, repo_name, path)
+            if content:
+                return content
+        return None
+
+    README_FALLBACKS = ("README.rst", "README", "README.txt", "readme.md")
+
+    def _readme_content(self, owner: str, repo_name: str, path: str) -> str | None:
+        try:
+            response = requests.post(
+                self.CONTENT_URL,
+                json={
+                    "owner": owner,
+                    "repo": repo_name,
+                    "path": path,
+                    "userToken": self.token,
+                },
+                timeout=60,
+            )
+            response.raise_for_status()
+            content = response.json().get("content")
+        except Exception:
+            return None
+        return content if isinstance(content, str) and content.strip() else None
+
     # --- public GitHub REST API ---
 
     def get_repo_readme(self, owner: str, repo_name: str) -> str | None:

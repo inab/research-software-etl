@@ -33,12 +33,14 @@ from application.services.semantic_search.synthetic_queries import (
     CONTEXT_PROJECTION,
     QUERY_SCHEMA,
     STATUS_INSUFFICIENT,
+    VOCABULARY_PROJECTION,
     QueryRequest,
     QueryResult,
     build_document,
     build_request,
     is_current,
     result_from_completion,
+    vocabulary,
 )
 from domain.repositories import Repositories
 
@@ -93,11 +95,19 @@ def _plan(
     force: bool,
 ) -> _Plan:
     stored = repos.semantic_search.fingerprints()
+    # Over every tool whatever the scope, so a tool's name filter does not depend
+    # on which tag it was generated under.
+    vocab = vocabulary(
+        tool.get("data")
+        for tool in repos.tools.iter_projected(
+            {}, VOCABULARY_PROJECTION, batch_size=2000
+        )
+    )
     plan = _Plan()
     for tool in repos.tools.iter_projected(
         _scope_query(tag), CONTEXT_PROJECTION, batch_size=1000
     ):
-        request = build_request(tool)
+        request = build_request(tool, vocab=vocab)
         plan.live_ids.add(request.tool_id)
         if not force and is_current(request, stored.get(request.tool_id)):
             summary.unchanged += 1

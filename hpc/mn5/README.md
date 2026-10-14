@@ -18,6 +18,8 @@ Division of labour:
   schema of the answer), and the full validation on import: the JSON schema, 3-15
   words per query, no tool name, no duplicates, at most 6 queries. The online
   Gepeto path (`rsetl synthetic-queries generate`) goes through the same code.
+  `export` produces prompt version 1. Version 2 (the record plus the tool's GitHub
+  README) is not exported yet; see CLAUDE.md, *Synthetic queries*.
 - **`generate_queries.py`** is a generic, resumable vLLM batch runner. It starts
   one engine per job and submits prompts in large chunks, constraining decoding to
   the exported JSON schema. Answers that still do not parse are retried in-job
@@ -109,7 +111,7 @@ per environment.
 
 ```sh
 scp 'bsc619075@transfer1.bsc.es:/gpfs/scratch/bsc23/bsc619075/semantic_search/results.jsonl' data/semantic_search/
-rsetl synthetic-queries import -i data/semantic_search/query_results*.jsonl
+rsetl synthetic-queries import -i data/semantic_search/results.jsonl
 ```
 
 Import skips results whose tool changed or disappeared since the export
