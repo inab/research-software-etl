@@ -14,7 +14,12 @@ Incremental: a tool is (re)generated only when it has no document yet, or when
 what the LLM would be shown (``input_hash``) or the prompt (``PROMPT_VERSION``)
 has changed since. Tool ids survive merges (see ``tool_identity.py``), so
 ``tool_id`` is a stable key across runs. Tools too thin to prompt are stored as
-``insufficient`` without an LLM call. Failures are not stored, so they are
+``insufficient`` without an LLM call.
+
+Prompt version 2 (``README_PROMPT_VERSION``) adds the tool's GitHub README,
+looked up through a ``ReadmeSource`` (a cache in front of the github-metadata-api;
+see ``readme_repos`` for which tools get one). Import needs the same source, to
+recompute the ``input_hash`` a v2 result was exported with. Failures are not stored, so they are
 retried next time. Documents of tools that no longer exist are removed whenever
 the run covers the whole collection (no tag).
 
@@ -27,11 +32,14 @@ import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Any, Iterable, List, Optional, Protocol
+from typing import Any, Callable, Dict, Iterable, List, Optional, Protocol, Tuple
 
 from application.services.semantic_search.synthetic_queries import (
     CONTEXT_PROJECTION,
+    PROMPT_VERSION,
     QUERY_SCHEMA,
+    README_PROMPT_VERSION,
+    README_REPO_PROJECTION,
     STATUS_INSUFFICIENT,
     VOCABULARY_PROJECTION,
     QueryRequest,
@@ -39,6 +47,7 @@ from application.services.semantic_search.synthetic_queries import (
     build_document,
     build_request,
     is_current,
+    readme_repos,
     result_from_completion,
     vocabulary,
 )
@@ -53,6 +62,15 @@ class ChatClient(Protocol):
     def query(
         self, messages: Any, model: str, temperature: float = 0.2
     ) -> tuple[str, dict]: ...
+
+
+Repo = Tuple[str, str]
+
+
+class ReadmeSource(Protocol):
+    """Raw READMEs by (owner, repo); None for a repository without one."""
+
+    def readmes(self, repos: Iterable[Repo]) -> Dict[Repo, Optional[str]]: ...
 
 
 @dataclass
@@ -87,14 +105,54 @@ def _scope_query(tag: Optional[str]) -> dict:
     return {} if tag in (None, "tools") else {"data.tags": tag}
 
 
+def _no_readme(tool_id: str) -> Optional[str]:
+    return None
+
+
+def _readme_lookup(
+    repos: Repositories,
+    readmes: Optional[ReadmeSource],
+    scope: Optional[set[str]] = None,
+) -> Callable[[str], Optional[str]]:
+    """tool_id -> raw README, for the tools in ``scope`` (None: every tool)."""
+    if readmes is None:
+        raise ValueError(f"Prompt version {README_PROMPT_VERSION} needs READMEs")
+    # Over every tool whatever the scope: a repository is shared or not
+    # collection-wide.
+    repo_of = readme_repos(
+        repos.tools.iter_projected({}, README_REPO_PROJECTION, batch_size=2000)
+    )
+    if scope is not None:
+        repo_of = {k: v for k, v in repo_of.items() if k in scope}
+    texts = readmes.readmes(set(repo_of.values()))
+    logger.info(
+        f"READMEs: {sum(1 for r in repo_of.values() if texts.get(r))} of "
+        f"{len(repo_of)} eligible tools have one"
+    )
+    return lambda tool_id: texts.get(repo_of[tool_id]) if tool_id in repo_of else None
+
+
 def _plan(
     repos: Repositories,
     summary: Summary,
     tag: Optional[str],
     limit: Optional[int],
     force: bool,
+    prompt_version: str = PROMPT_VERSION,
+    readmes: Optional[ReadmeSource] = None,
 ) -> _Plan:
     stored = repos.semantic_search.fingerprints()
+    readme_of: Callable[[str], Optional[str]] = _no_readme
+    if prompt_version == README_PROMPT_VERSION:
+        scope = (
+            None
+            if tag in (None, "tools")
+            else {
+                str(t["_id"])
+                for t in repos.tools.iter_projected(_scope_query(tag), {"_id": 1})
+            }
+        )
+        readme_of = _readme_lookup(repos, readmes, scope)
     # Over every tool whatever the scope, so a tool's name filter does not depend
     # on which tag it was generated under.
     vocab = vocabulary(
@@ -107,7 +165,12 @@ def _plan(
     for tool in repos.tools.iter_projected(
         _scope_query(tag), CONTEXT_PROJECTION, batch_size=1000
     ):
-        request = build_request(tool, vocab=vocab)
+        request = build_request(
+            tool,
+            readme_of(str(tool["_id"])),
+            prompt_version=prompt_version,
+            vocab=vocab,
+        )
         plan.live_ids.add(request.tool_id)
         if not force and is_current(request, stored.get(request.tool_id)):
             summary.unchanged += 1
@@ -171,12 +234,14 @@ def generate_synthetic_queries(
     workers: int = 4,
     temperature: float = 0.5,
     dry_run: bool = False,
+    prompt_version: str = PROMPT_VERSION,
+    readmes: Optional[ReadmeSource] = None,
 ) -> Summary:
     """Generate queries online, one LLM call per tool, storing each as it arrives."""
     summary = Summary()
     if not dry_run:
         repos.semantic_search.ensure_tool_id_index()
-    plan = _plan(repos, summary, tag, limit, force)
+    plan = _plan(repos, summary, tag, limit, force, prompt_version, readmes)
     if not dry_run:
         _store_thin_and_prune(repos, plan, summary, tag)
 
@@ -207,6 +272,8 @@ def export_query_requests(
     tag: Optional[str] = None,
     limit: Optional[int] = None,
     force: bool = False,
+    prompt_version: str = PROMPT_VERSION,
+    readmes: Optional[ReadmeSource] = None,
 ) -> tuple[List[dict], Summary]:
     """
     The prompts of every tool that needs queries, as JSON-serializable dicts.
@@ -217,7 +284,7 @@ def export_query_requests(
     """
     summary = Summary()
     repos.semantic_search.ensure_tool_id_index()
-    plan = _plan(repos, summary, tag, limit, force)
+    plan = _plan(repos, summary, tag, limit, force, prompt_version, readmes)
     _store_thin_and_prune(repos, plan, summary, tag)
     requests = [
         {
@@ -235,23 +302,35 @@ def export_query_requests(
     return requests, summary
 
 
-def import_query_results(repos: Repositories, results: Iterable[dict]) -> Summary:
+def import_query_results(
+    repos: Repositories,
+    results: Iterable[dict],
+    readmes: Optional[ReadmeSource] = None,
+) -> Summary:
     """
     Store the batch job's completions.
 
     A result whose ``input_hash`` no longer matches its tool (the tool changed, or
     was retired, after the export) is skipped as stale: storing it would overwrite
     queries generated from newer input. The next export picks that tool up again.
+
+    Version-2 results need ``readmes`` -- the same README source as the export, so
+    the hash comes out the same; without it they are all stale.
     """
     summary = Summary()
     repos.semantic_search.ensure_tool_id_index()
-    current = {
-        request.tool_id: request.input_hash
-        for request in map(
-            build_request,
-            repos.tools.iter_projected({}, CONTEXT_PROJECTION, batch_size=1000),
-        )
-    }
+    readme_of: Callable[[str], Optional[str]] = _no_readme
+    if readmes is not None:
+        readme_of = _readme_lookup(repos, readmes)
+    # (tool_id, prompt_version) -> input_hash, for both versions.
+    current = {}
+    for tool in repos.tools.iter_projected({}, CONTEXT_PROJECTION, batch_size=1000):
+        tool_id = str(tool["_id"])
+        current[(tool_id, PROMPT_VERSION)] = build_request(tool).input_hash
+        if readmes is not None:
+            current[(tool_id, README_PROMPT_VERSION)] = build_request(
+                tool, readme_of(tool_id), prompt_version=README_PROMPT_VERSION
+            ).input_hash
     for item in results:
         request = QueryRequest(
             tool_id=item["id"],
@@ -261,7 +340,7 @@ def import_query_results(repos: Repositories, results: Iterable[dict]) -> Summar
             context=None,
             prompt_version=item["prompt_version"],
         )
-        if current.get(request.tool_id) != request.input_hash:
+        if current.get((request.tool_id, request.prompt_version)) != request.input_hash:
             summary.stale += 1
             continue
         if item.get("error"):

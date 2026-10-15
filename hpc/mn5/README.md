@@ -18,8 +18,10 @@ Division of labour:
   schema of the answer), and the full validation on import: the JSON schema, 3-15
   words per query, no tool name, no duplicates, at most 6 queries. The online
   Gepeto path (`rsetl synthetic-queries generate`) goes through the same code.
-  `export` produces prompt version 1. Version 2 (the record plus the tool's GitHub
-  README) is not exported yet; see CLAUDE.md, *Synthetic queries*.
+  `export` produces prompt version 2 by default: the record plus the tool's
+  GitHub README, read from the README cache (`data/semantic_search/readmes.jsonl`)
+  and fetched through the github-metadata-api when missing (needs `GITHUB_TOKEN`).
+  `--prompt-version 1` exports the record alone.
 - **`generate_queries.py`** is a generic, resumable vLLM batch runner. It starts
   one engine per job and submits prompts in large chunks, constraining decoding to
   the exported JSON schema. Answers that still do not parse are retried in-job
@@ -37,6 +39,12 @@ rsetl synthetic-queries export              # tools with no queries, or whose in
 rsetl synthetic-queries export --limit 500  # a trial batch
 rsetl synthetic-queries export --force      # everything (e.g. after changing model)
 ```
+
+A README fetch takes ~7 s; the first v2 export of the 2026-10 corpus fetched
+about 4k of the 8.8k eligible repositories (the rest were seeded from an earlier
+crawl). Repositories with no README are cached too, as null; `--refetch-missing-readmes`
+retries them (the client cannot tell "none" from a failed fetch), and
+`--no-readme-fetch` uses the cache alone.
 
 Export also stores tools too thin to prompt as `insufficient`, and removes the
 documents of tools that no longer exist.
@@ -113,6 +121,10 @@ per environment.
 scp 'bsc619075@transfer1.bsc.es:/gpfs/scratch/bsc23/bsc619075/semantic_search/results.jsonl' data/semantic_search/
 rsetl synthetic-queries import -i data/semantic_search/results.jsonl
 ```
+
+Import recomputes each tool's `input_hash` with the README *cache* (it fetches
+nothing), so import against the same cache the export used; a README that changed
+in between makes that tool `stale`.
 
 Import skips results whose tool changed or disappeared since the export
 (`stale`); the next export picks those tools up again. Importing the same files

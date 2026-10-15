@@ -25,8 +25,8 @@ from typing import Any, Iterable, List, Optional
 # regenerate every tool's queries.
 PROMPT_VERSION = "1"
 # Version 2 adds an excerpt of the tool's GitHub README to the context. Opt-in
-# (build_request(..., prompt_version=README_PROMPT_VERSION)) until the README
-# fetch is part of the stage; the default stays at PROMPT_VERSION.
+# here (build_request(..., prompt_version=README_PROMPT_VERSION)); the
+# `rsetl synthetic-queries` CLI defaults to it and fetches the READMEs.
 README_PROMPT_VERSION = "2"
 
 MAX_QUERIES = 6
@@ -61,6 +61,11 @@ CONTEXT_PROJECTION = {
 
 # What `vocabulary` reads: the descriptions, and the help text they fall back to.
 VOCABULARY_PROJECTION = {"_id": 1, "data.description": 1, "data.documentation": 1}
+
+# What `readme_repos` reads.
+README_REPO_PROJECTION = {"_id": 1, "data.repository": 1}
+
+_GITHUB_REPO = re.compile(r"github\.com[/:]([^/\s#?]+)/([^/\s#?]+)", re.IGNORECASE)
 
 _README_RULE = """
 - The record may end with an excerpt of the tool's README. Use it for specifics \
@@ -280,6 +285,33 @@ def clean_readme(text: Optional[str]) -> Optional[str]:
         size += len(line) + 1
     cleaned = "\n".join(out).strip()
     return cleaned or None
+
+
+def github_repos(tool: dict) -> set[tuple[str, str]]:
+    """The tool's GitHub repositories as (owner, repo), lowercased, without .git."""
+    found = set()
+    for item in (tool.get("data") or {}).get("repository") or []:
+        url = item.get("url") if isinstance(item, dict) else None
+        match = _GITHUB_REPO.search(url or "")
+        if match:
+            repo = re.sub(r"\.git$", "", match.group(2), flags=re.IGNORECASE)
+            found.add((match.group(1).lower(), repo.lower()))
+    return found
+
+
+def readme_repos(tools: Iterable[dict]) -> dict[str, tuple[str, str]]:
+    """
+    tool_id -> the GitHub repository whose README describes the tool.
+
+    Only tools with exactly one GitHub repository that no other tool shares: a
+    hub repository's README describes the hub, not the tool (ucscgenomebrowser/kent
+    backs 171 tools). ``tools`` must be the whole collection
+    (``README_REPO_PROJECTION``), or sharing goes unnoticed.
+    """
+    per_tool = {str(tool["_id"]): github_repos(tool) for tool in tools}
+    per_repo = Counter(repo for found in per_tool.values() for repo in found)
+    sole = {k: next(iter(found)) for k, found in per_tool.items() if len(found) == 1}
+    return {k: repo for k, repo in sole.items() if per_repo[repo] == 1}
 
 
 def build_tool_context(data: dict, readme: Optional[str] = None) -> Optional[str]:

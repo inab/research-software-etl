@@ -204,6 +204,9 @@ class PipelineConfig:
     synthetic_query_results_path: Path = Path(
         "data/semantic_search/query_results.jsonl"
     )
+    # GitHub READMEs for prompt version 2, one row per repository. Accumulates
+    # across runs: a cached README is not refetched, which keeps input_hash stable.
+    readme_cache_path: Path = Path("data/semantic_search/readmes.jsonl")
 
     # --- Publication enrichment caches ---
     resolved_dois_path: Path = Path("data/cache/resolved_dois.jsonl")

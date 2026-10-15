@@ -8,6 +8,11 @@ Command-line interface for synthetic search queries (semantic search).
 `export` / `import` bracket the offline batch job on MareNostrum 5 (see
 hpc/mn5/README.md). `generate` does the same work online through Gepeto.
 All three are incremental; see application/use_cases/semantic_search.
+
+The default prompt is version 2, which adds each tool's GitHub README. READMEs
+are cached in config `readme_cache_path`; `export` and `generate` fetch the
+missing ones through the github-metadata-api (GITHUB_TOKEN), `import` only reads
+the cache.
 """
 
 from __future__ import annotations
@@ -22,6 +27,10 @@ from typing import Iterator
 
 from dotenv import load_dotenv
 
+from application.services.semantic_search.synthetic_queries import (
+    README_PROMPT_VERSION,
+    SYSTEM_PROMPTS,
+)
 from application.use_cases.semantic_search.synthetic_queries import (
     export_query_requests,
     generate_synthetic_queries,
@@ -30,6 +39,8 @@ from application.use_cases.semantic_search.synthetic_queries import (
 from infrastructure.config import Credentials, PipelineConfig
 from infrastructure.db.repositories import from_config
 from infrastructure.external.gepeto import GepetoClient
+from infrastructure.external.github import GitHubClient
+from infrastructure.storage.readme_cache import ReadmeCache
 from infrastructure.logging_config import resolve_level
 
 
@@ -51,6 +62,11 @@ def build_parser() -> argparse.ArgumentParser:
     common.add_argument(
         "--loglevel", "-l", default=os.getenv("LOG_LEVEL", "INFO"), help="Log level."
     )
+    common.add_argument(
+        "--readme-cache",
+        default=None,
+        help="README cache (default: config readme_cache_path).",
+    )
 
     scope = argparse.ArgumentParser(add_help=False)
     scope.add_argument(
@@ -67,6 +83,26 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Regenerate even tools whose stored queries are current (e.g. after "
         "switching models).",
+    )
+    scope.add_argument(
+        "--prompt-version",
+        default=README_PROMPT_VERSION,
+        choices=sorted(SYSTEM_PROMPTS),
+        help=f"Prompt version (default {README_PROMPT_VERSION}: with the GitHub "
+        "README). Tools stored under another version are regenerated.",
+    )
+    scope.add_argument(
+        "--readme-workers", type=int, default=4, help="Concurrent README fetches."
+    )
+    scope.add_argument(
+        "--no-readme-fetch",
+        action="store_true",
+        help="Use only cached READMEs; fetch nothing.",
+    )
+    scope.add_argument(
+        "--refetch-missing-readmes",
+        action="store_true",
+        help="Retry repositories cached without a README (failed or none).",
     )
 
     parser = argparse.ArgumentParser(
@@ -123,13 +159,34 @@ def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=resolve_level(args.loglevel))
 
     config = PipelineConfig.from_env(
-        synthetic_query_requests_path=getattr(args, "output", None)
+        synthetic_query_requests_path=getattr(args, "output", None),
+        readme_cache_path=args.readme_cache,
     )
     repos = from_config(config)
 
+    readmes = None
+    if args.action == "import":
+        readmes = ReadmeCache(config.readme_cache_path)
+    elif args.prompt_version == README_PROMPT_VERSION:
+        fetch = None
+        if not args.no_readme_fetch:
+            token = Credentials.from_env().require("github_token").github_token
+            fetch = GitHubClient(token).get_readme_via_metadata
+        readmes = ReadmeCache(
+            config.readme_cache_path,
+            fetch,
+            workers=args.readme_workers,
+            refetch_missing=args.refetch_missing_readmes,
+        )
+
     if args.action == "export":
         requests, summary = export_query_requests(
-            repos, tag=args.collections, limit=args.limit, force=args.force
+            repos,
+            tag=args.collections,
+            limit=args.limit,
+            force=args.force,
+            prompt_version=args.prompt_version,
+            readmes=readmes,
         )
         path = config.synthetic_query_requests_path
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -149,7 +206,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"[ERROR] Results file(s) not found: {missing}", file=sys.stderr)
             return 1
         summary = import_query_results(
-            repos, (row for path in paths for row in _read_jsonl(path))
+            repos, (row for path in paths for row in _read_jsonl(path)), readmes
         )
 
     else:
@@ -164,6 +221,8 @@ def main(argv: list[str] | None = None) -> int:
             workers=args.workers,
             temperature=args.temperature,
             dry_run=args.dry_run,
+            prompt_version=args.prompt_version,
+            readmes=readmes,
         )
 
     print(f"Done. {summary.line()}")

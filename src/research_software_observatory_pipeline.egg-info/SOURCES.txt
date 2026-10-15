@@ -175,6 +175,7 @@ src/infrastructure/external/semantic_scholar.py
 src/infrastructure/external/sourceforge.py
 src/infrastructure/external/url_checker.py
 src/infrastructure/storage/jsonl.py
+src/infrastructure/storage/readme_cache.py
 src/research_software_observatory_pipeline.egg-info/PKG-INFO
 src/research_software_observatory_pipeline.egg-info/SOURCES.txt
 src/research_software_observatory_pipeline.egg-info/dependency_links.txt
