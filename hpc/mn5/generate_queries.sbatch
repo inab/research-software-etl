@@ -107,3 +107,16 @@ for ((i = 0; i < REPLICAS; i++)); do
 
     pids+=("$!")
 done
+
+# The replicas run in the background: wait for them, or the batch script ends
+# here and Slurm kills them with it. Fail the job if any replica failed.
+status=0
+for i in "${!pids[@]}"; do
+    if ! wait "${pids[$i]}"; then
+        status=1
+        echo "Replica $i failed; see $WORK_DIR/logs/replica_${SLURM_JOB_ID}_${i}.log" >&2
+    fi
+done
+
+echo "=== finished (status $status) ==="
+exit "$status"
