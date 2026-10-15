@@ -47,6 +47,12 @@ export PYTHONNOUSERSITE=1
 unset PYTHONPATH
 source "$VENV/bin/activate"
 
+# FlashInfer JIT-compiles its sampling kernels with nvcc on first use, taking the
+# host compiler from $CC/$CXX. The default MN5 login environment sets them to
+# Intel's icc (inherited by sbatch), which nvcc rejects ("Unsupported host
+# compiler 'ICC'"). Use the system GCC.
+export CC=/usr/bin/gcc CXX=/usr/bin/g++ CUDAHOSTCXX=/usr/bin/g++
+
 # Node-local temp and HF caches; persistent vLLM/torch.compile cache on GPFS so
 # compilation and CUDA-graph work is not redone every job (keep one cache per
 # environment -- do not share it with a different vLLM/torch install).
